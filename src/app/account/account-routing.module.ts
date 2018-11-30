@@ -5,7 +5,7 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
 // import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 const routes: Routes = [
-  {path: ':id', component: ProfileComponent}
+  {path: ':id', component: ProfileComponent},
   {path: ':id/edit', component: EditProfileComponent}
 ];
 
