@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/core/models/user';
+// import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-profile',
@@ -13,6 +14,8 @@ export class EditProfileComponent implements OnInit {
   ngOnInit() {
   }
 
+  fname: string = 'blah';
+
   user: User = {
     id: 1,
     firstname: 'Yuki',
@@ -21,6 +24,10 @@ export class EditProfileComponent implements OnInit {
     password: 'password',
     userRole: 'trainer',
     email: 'ym@gmail.com',
+  }
+
+  updateProfile() {
+    console.log(this.user);
   }
 
 }
