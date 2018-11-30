@@ -1,35 +1,57 @@
 <div class="container">
-    <div class="row">
-        <div class="col-3">
-          <p> hello </p>
-        </div>
 
-        <div class="col-3">
+  <div class="row">
+    <div class="col-2"></div>
 
-      <p>id: {{user.id}}</p>
-      <p>firstname: {{user.firstname}}</p>
-      <p>lastname: {{user.lastname}}</p>
-      <p>username: {{user.username}}</p>
-      <p>password: {{user.password}}</p>
+    <div class="col-2">
+      <p>First Name:</p>
+    </div>
+
+    <div class="col-2">
+        <p>{{user.firstname}}</p>
+      </div>
+
+    <div class="col-2">
+      <p>Last Name:</p>
+    </div>
+
+    <div class="col-2">
+      <p>{{user.lastname}}</p>
+    </div>
+
+    <div class="col-2"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-4"></div>
+
+    <div class="col-4">
       <p>email: {{user.email}}</p>
       <p>user role: {{user.userRole}}</p>
-        </div>
-
- 
     </div>
+
+    <div class="col-4"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-4"></div>
+
+    <div class="col-4">
+      <p>username: {{user.username}}</p>
+      <p>password: {{user.password}}</p>
+    </div>
+
+    <div class="col-4"></div>
+  </div>
 </div>
 
-  
+
 <div class="alert alert-primary" role="alert">
-    A simple primary alert—check it out!
-  </div>
-  
-  <mat-grid-list cols="4" rowHeight="100px">
-      <mat-grid-tile
-          *ngFor="let tile of tiles"
-          [colspan]="tile.cols"
-          [rowspan]="tile.rows"
-          [style.background]="tile.color">
-        {{tile.text}}
-      </mat-grid-tile>
-    </mat-grid-list>
+  A simple primary alert—check it out!
+</div>
+
+<mat-grid-list cols="4" rowHeight="100px">
+  <mat-grid-tile *ngFor="let tile of tiles" [colspan]="tile.cols" [rowspan]="tile.rows" [style.background]="tile.color">
+    {{tile.text}}
+  </mat-grid-tile>
+</mat-grid-list>

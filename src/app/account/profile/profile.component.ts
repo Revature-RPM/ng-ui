@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/core/models/user';
 
+
 export interface Tile {
   color: string;
   cols: number;
