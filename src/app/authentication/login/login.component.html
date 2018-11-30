@@ -1,5 +1,5 @@
-<div id="login-container"></div>
-<div>
+<!--<div id="login-container"></div>-->
+<div id="login-container">
   <mat-card>
     <mat-card-header>
       <mat-card-title>Login</mat-card-title>
@@ -7,16 +7,16 @@
 
     <mat-card-content>
       <br/>
-      <mat-card-field>
+      <mat-form-field>
         <input matInput type="text" placeholder="Username" id="username">
-      </mat-card-field>
+      </mat-form-field>
       <br/>
-      <mat-card-field>
+      <mat-form-field>
         <input matInput type="password" placeholder="Password" id="password">
-      </mat-card-field>
+      </mat-form-field>
       <br/>
       <br/>
-      <button mat-flat-button type="button" (click)="">Login</button>
+      <button mat-flat-button type="button" (click)="login()">Login</button>
       <br/>
       <a mat-button routerLink="/auth/register">Register</a>
     </mat-card-content>
