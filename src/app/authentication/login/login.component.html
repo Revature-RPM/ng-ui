@@ -1,0 +1,24 @@
+<div id="login-container"></div>
+<div>
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Login</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <br/>
+      <mat-card-field>
+        <input matInput type="text" placeholder="Username" id="username">
+      </mat-card-field>
+      <br/>
+      <mat-card-field>
+        <input matInput type="password" placeholder="Password" id="password">
+      </mat-card-field>
+      <br/>
+      <br/>
+      <button mat-flat-button type="button" (click)="">Login</button>
+      <br/>
+      <a mat-button routerLink="/auth/register">Register</a>
+    </mat-card-content>
+  </mat-card>
+</div>
