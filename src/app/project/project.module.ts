@@ -15,9 +15,10 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { UserActionsComponent } from './user-actions/user-actions.component';
 import { ViewProjectsComponent } from './view-projects/view-projects.component';
+import { ProjectCardComponent } from './view-projects/project-card/project-card.component';
 
 @NgModule({
-  declarations: [HomePageComponent, NavbarComponent, UserActionsComponent, ViewProjectsComponent],
+  declarations: [HomePageComponent, NavbarComponent, UserActionsComponent, ViewProjectsComponent, ProjectCardComponent],
   imports: [
     CommonModule,
     ProjectRoutingModule,
