@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
-import { User } from '../models/user';
+import { User } from '../models/User';
 
 import { environment } from '../../../environments/environment';
 
