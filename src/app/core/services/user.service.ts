@@ -34,12 +34,12 @@ ${error.error}`
   }
 
   login(user: User): Observable<User> {
-    return this.http.post<User>(environment.url + 'customer/login', user, httpOptions)
+    return this.http.post<User>(environment.url + 'login', user, httpOptions)
     .pipe(catchError(this.handleError));
   }
 
   register(user: User): Observable<User> {
-    return this.http.post<User>(environment.url + 'customer/register', user, httpOptions)
+    return this.http.post<User>(environment.url + 'register', user, httpOptions)
     .pipe(catchError(this.handleError));
   }
 }
