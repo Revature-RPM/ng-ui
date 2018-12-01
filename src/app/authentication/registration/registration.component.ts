@@ -29,14 +29,14 @@ export class RegistrationComponent implements OnInit {
     }
   }
 
-  register() {
-    console.log(this.user);
-    this.userService.register(this.user).pipe(first()).subscribe((user) => {
-      if (user) {
-        localStorage.setItem('user', JSON.stringify(user));
-        this.loggedIn.loggedIn.next(true);
-        this.router.navigate(['']);
-      }
-    });
-  }
+  // register() {
+  //   console.log(this.user);
+  //   this.userService.register(this.user).pipe(first()).subscribe((user) => {
+  //     if (user) {
+  //       localStorage.setItem('user', JSON.stringify(user));
+  //       this.loggedIn.loggedIn.next(true);
+  //       this.router.navigate(['']);
+  //     }
+  //   });
+  // }
 }

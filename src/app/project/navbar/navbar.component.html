@@ -1,10 +1,26 @@
 <div id="toolbar">
-    <mat-toolbar color="primary">
-        <span>Application Title</span>
-      
-        <!-- This fills the remaining space of the current row -->
-        <span class="example-fill-remaining-space"></span>
-      
-        <span>Right Aligned Text</span>
+    <mat-toolbar color="accent">
+        <mat-toolbar-row>
+                <button id="navbarTitle" mat-icon-button>NPG</button>
+                <!-- This fills the remaining space of the current row -->
+                <span class="example-fill-remaining-space"></span>
+            <span>
+                    <button mat-icon-button [matMenuTriggerFor]="accountMenu">
+                            <mat-icon svgIcon="account"></mat-icon>
+                    </button>
+                        <mat-menu  #accountMenu="matMenu">
+                            <button mat-menu-item>
+                                <span>View Account</span>
+                            </button>
+                            <button mat-menu-item  *ngIf="isAdministrator">
+                                <span>Creat New Admin</span>
+                            </button>
+                            <button mat-menu-item>
+                                <span>Logout</span>
+                            </button>
+                        </mat-menu>
+            </span>
+        </mat-toolbar-row>
+        <mat-divider></mat-divider>
       </mat-toolbar>
 </div>

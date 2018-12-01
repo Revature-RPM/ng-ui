@@ -1,3 +1,51 @@
-<p>
-  user-actions works!
-</p>
+<div id="userActions">
+    <mat-toolbar color="accent">
+      <mat-toolbar-row>
+          <button mat-icon-button [matMenuTriggerFor]="filterMenu">
+              <mat-icon svgIcon="add_project"></mat-icon>
+          </button>
+          <span class="example-fill-remaining-space"></span>
+          <mat-tab-group>
+              <mat-tab label="Your Projects">
+                <ng-template matTabContent>
+    
+                </ng-template>
+              </mat-tab>
+              <mat-tab label="All Projects">
+                <ng-template matTabContent>
+                
+                </ng-template>
+              </mat-tab>
+          </mat-tab-group>
+          <span class="example-fill-remaining-space"></span>
+          <button mat-button [matMenuTriggerFor]="filterMenu">Filter Projects</button>
+          <mat-menu  #filterMenu="matMenu">
+              <button mat-menu-item>
+                  <span>Project Name</span>
+              </button>
+              <button mat-menu-item>
+                  <span>Batch Name</span>
+              </button>
+              <button mat-menu-item>
+                  <span>Trainer</span>
+              </button>
+              <button mat-menu-item>
+                  <span>Stack</span>
+              </button>
+          </mat-menu>
+          <span class="example-fill-remaining-space"></span>
+          <button *ngIf="isAdministrator" mat-button [matMenuTriggerFor]="projectMenu">Type of Project</button>
+          <mat-menu  #projectMenu="matMenu">
+              <button mat-menu-item>
+                  <span>Pending Projects</span>
+              </button>
+              <button mat-menu-item>
+                  <span>Pending Edits</span>
+              </button>
+              <button mat-menu-item>
+                  <span>All Projects</span>
+              </button>
+          </mat-menu>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</div>
