@@ -9,15 +9,18 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { FlexLayoutModule } from "@angular/flex-layout";
+import {MatCardModule} from '@angular/material/card';
+
 
 import { ProjectRoutingModule } from './project-routing.module';
 import { HomePageComponent } from './home-page/home-page.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { UserActionsComponent } from './user-actions/user-actions.component';
 import { ViewProjectsComponent } from './view-projects/view-projects.component';
+import { ProjectCardComponent } from './view-projects/project-card/project-card.component';
 
 @NgModule({
-  declarations: [HomePageComponent, NavbarComponent, UserActionsComponent, ViewProjectsComponent],
+  declarations: [HomePageComponent, NavbarComponent, UserActionsComponent, ViewProjectsComponent, ProjectCardComponent],
   imports: [
     CommonModule,
     ProjectRoutingModule,
@@ -29,7 +32,8 @@ import { ViewProjectsComponent } from './view-projects/view-projects.component';
     MatTabsModule,
     MatDividerModule,
     MatGridListModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatCardModule
   ]
 })
 export class ProjectModule { }

@@ -33,22 +33,21 @@ ${error.error}`
     return throwError('Something went wrong; please try again later.');
   }
 
-  // login(user: User): Observable<User> {
-  //   return this.http.post<User>(environment.url + 'customer/login', user, httpOptions)
-  //   .pipe(catchError(this.handleError));
-  // }
+  login(user: User): Observable<User> {
+    return this.http.post<User>(environment.url + 'customer/login', user, httpOptions)
+    .pipe(catchError(this.handleError));
+  }
 
-  // register(user: User): Observable<User> {
-  //   return this.http.post<User>(environment.url + 'customer/register', user, httpOptions)
-  //   .pipe(catchError(this.handleError));
-  // }
-  
+  register(user: User): Observable<User> {
+    return this.http.post<User>(environment.url + 'customer/register', user, httpOptions)
+    .pipe(catchError(this.handleError));
+  }
 }
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoggedInService {
-  userExists = (localStorage.getItem('user')) ? true : false;
+  userExists = Boolean(localStorage.getItem('user'));
   public loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(this.userExists);
 }
