@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatGridListModule, MatFormFieldModule, MatOptionModule, MatSelectModule, MatInputModule, MatButtonModule } from '@angular/material';
-// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatGridListModule, MatFormFieldModule, MatOptionModule, MatSelectModule, MatButtonModule, MatInputModule, MatCardModule } from '@angular/material';
 
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -9,24 +8,22 @@ import { MatGridListModule, MatFormFieldModule, MatOptionModule, MatSelectModule
   declarations: [],
   imports: [
     CommonModule,
-    // BrowserAnimationsModule,
-    MatGridListModule,
+    MatCardModule,
     MatFormFieldModule,
+    MatInputModule,
+    MatGridListModule,
     MatOptionModule,
     MatSelectModule,
-    MatInputModule,
     MatButtonModule,
-    // NgbModule,
   ],
   exports: [
-    // BrowserAnimationsModule,
-    MatGridListModule,
+    MatCardModule,
     MatFormFieldModule,
+    MatInputModule,
+    MatGridListModule,
     MatOptionModule,
     MatSelectModule,
-    MatInputModule,
-    MatButtonModule
-    // NgbModule,
+    MatButtonModule,
   ]
 })
 export class SharedModule { }
