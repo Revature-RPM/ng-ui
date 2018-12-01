@@ -6,17 +6,20 @@
           </button>
           <span class="example-fill-remaining-space"></span>
           <mat-tab-group>
-              <mat-tab label="Your Projects">
-                <ng-template matTabContent>
-    
+              <mat-tab>
+                <ng-template mat-tab-label>
+                  <span class="labelColor">Your Projects</span>
                 </ng-template>
+              
               </mat-tab>
-              <mat-tab label="All Projects">
-                <ng-template matTabContent>
-                
+            
+              <mat-tab>
+                <ng-template mat-tab-label>
+                 <span class="labelColor">All Projects</span>
                 </ng-template>
+              
               </mat-tab>
-          </mat-tab-group>
+            </mat-tab-group>
           <span class="example-fill-remaining-space"></span>
           <button mat-button [matMenuTriggerFor]="filterMenu">Filter Projects</button>
           <mat-menu  #filterMenu="matMenu">
@@ -41,9 +44,6 @@
               </button>
               <button mat-menu-item>
                   <span>Pending Edits</span>
-              </button>
-              <button mat-menu-item>
-                  <span>All Projects</span>
               </button>
           </mat-menu>
     </mat-toolbar-row>
