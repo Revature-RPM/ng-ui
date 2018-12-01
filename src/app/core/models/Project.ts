@@ -10,4 +10,5 @@ export interface Project {
     RepoLinks?: String[];
     TeckStack?: String[];
     Status?: String;
+    Description?: String;
  }
