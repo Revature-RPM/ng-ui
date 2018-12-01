@@ -3,8 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   { path: '', redirectTo: ':id' },
-  { path: ':id', component: ProfileComponent }, // import component
-  { path: ':id/edit', component: EditComponent } // or whatever you wanna call it
+  // { path: ':id', component: ProfileComponent }, // import component
+  // { path: ':id/edit', component: EditComponent } // or whatever you wanna call it
 ];
 
 @NgModule({
