@@ -14,9 +14,7 @@ export class RegistrationComponent implements OnInit {
   isValid = true;
   sessionUser = localStorage.getItem('user');
   user: User = {};
-
-  isCheckedYes = true;
-  isCheckedNo = false;
+  isChecked = true;
 
 
   constructor(private loggedIn: LoggedInService,
