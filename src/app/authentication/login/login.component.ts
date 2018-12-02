@@ -24,13 +24,13 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  login() {
-    this.userService.login(this.user).pipe(first()).subscribe((user) => {
-      if (user) {
-        localStorage.setItem('user', JSON.stringify(user));
-        this.loggedIn.loggedIn.next(true);
-        this.router.navigate(['']);
-      }
-    });
-  }
+  // login() {
+  //   this.userService.login(this.user).pipe(first()).subscribe((user) => {
+  //     if (user) {
+  //       localStorage.setItem('user', JSON.stringify(user));
+  //       this.loggedIn.loggedIn.next(true);
+  //       this.router.navigate(['']);
+  //     }
+  //   });
+  // }
 }

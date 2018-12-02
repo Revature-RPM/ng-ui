@@ -1,35 +1,36 @@
-<!-- <div class="container">
-  <div class="row">
-    <div class="col-3">
-      <p> hello </p>
+<!-- <form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <label for="inputFirstName">First Name</label>
+      <input type="text" class="form-control" id="inputFirstName" placeholder="First Name" formControlName="firstname"
+        required>
     </div>
-
-    <div class="col-3">
-
-      <p>id: {{user.id}}</p>
-      <p>firstname: {{user.firstname}}</p>
-      <p>lastname: {{user.lastname}}</p>
-      <p>username: {{user.username}}</p>
-      <p>password: {{user.password}}</p>
-      <p>email: {{user.email}}</p>
-      <p>user role: {{user.userRole}}</p>
+    <div class="form-group col-md-4">
+      <label for="inputLastName">Last Name</label>
+      <input type="text" class="form-control" id="inputLastName" placeholder="Last Name" formControlName="lastname"
+        required>
     </div>
-
-
+  </div> -->
+<!-- <div class="form-row">
+    <div class="form-group col-md-4">
+      <label for="inputEmail">Email</label>
+      <input type="text" class="form-control" id="inputEmail" placeholder="Email" formControlName="email" required>
+    </div>
   </div>
-</div> -->
-
-<div class="row">
-  <div class="form-group col-md-4">
-    <h6>Hello</h6>
-  </div>
-  <div class="form-group col-md-4">
-    <h6>Hello</h6>
-  </div>
-</div>
-
-<hr>
-<hr>
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <label for="inputUsername">Username</label>
+      <input type="text" class="form-control" id="inputUsername" placeholder="Username" formControlName="username"
+        required>
+    </div>
+    <div class="form-group col-md-4">
+      <label for="inputPassword">Password</label>
+      <input type="password" class="form-control" id="inputPassword" placeholder="Password" formControlName="password"
+        required>
+    </div>
+  </div> -->
+<!-- <button type="submit" class="btn ts-button">Submit</button>
+</form> -->
 
 
 <div class="container">
@@ -38,57 +39,79 @@
 
     <div class="col-2"></div>
 
-    <div class="jumbotron ">
-        <h1>Profile</h1>
-      <div class="form-group col-8">
-        <div class="row">
-          <div class="col-4 text-center">
-            <mat-form-field>
-              <input matInput placeholder="First Name" value="{{user.firstname}}" required>
-            </mat-form-field>
-          </div>
-          <div class="col-4"></div>
-          <div class="col-4">
-            <mat-form-field class="example-full-width">
-              <input matInput placeholder="Last Name" value="{{user.lastname}}" required>
-            </mat-form-field>
-          </div>
+    <div class="jumbotron">
+      <div class="row">
+        <div class="col-9">
+          <h1>Profile</h1>
         </div>
-
-        <div class="row">
-          <div class="col-4">
-            <mat-form-field>
-              <input matInput placeholder="Email" value="{{user.email}}" required>
-            </mat-form-field>
-          </div>
-          <div class="col-4"></div>
-          <div class="col-4">
-              <mat-form-field>
-                <input matInput placeholder="Username" value="{{user.username}}" required>
-              </mat-form-field>
-            </div>
+        <div class="col-3">
+          <h3 id="user-role">{{user.userRole}}</h3>
         </div>
-
-        <div class="row">
+      </div>
+      <p> Edit your profile information, and then press the 'Save' button to update your information.</p>
+      <hr>  
+        <form [formGroup]="form" class="col-8">
+          <div class="row">
             <div class="col-4">
               <mat-form-field>
-                <input type="password" matInput placeholder="Password" value="{{user.password}}" required>
+                <input matInput readonly={{setReadOnly}} id="inputFirstName" placeholder="First Name" formControlName="firstname"
+                  required>
               </mat-form-field>
             </div>
             <div class="col-4"></div>
             <div class="col-4">
-                <mat-form-field>
-                  <input type="password" matInput placeholder="Retype Password" value="" required>
-                </mat-form-field>
-              </div>
+              <mat-form-field>
+                <input matInput readonly={{setReadOnly}} id="inputLastName" placeholder="Last Name" formControlName="lastname"
+                  required>
+              </mat-form-field>
+            </div>
           </div>
-      
-        <div class="row">
-        <button type="button" mat-stroked-button color="primary" (click)="updateProfile()">Save</button>
-        </div>
-      </div>
+
+          <div class="row">
+            <div class="col-4">
+              <mat-form-field>
+                <input matInput readonly={{setReadOnly}} id="inputEmail" placeholder="Email" formControlName="email"
+                  required>
+                  <mat-error *ngIf="form.get('email').hasError('email') && !form.get('email').hasError('required')">
+                      Please enter a valid email address
+                    </mat-error>
+                  <mat-error *ngIf="form.get('email').hasError('required')">
+                      Email is <strong>required</strong>
+                    </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-4"></div>
+            <div class="col-4">
+              <mat-form-field>
+                <input matInput readonly={{setReadOnly}} id="inputUsername" placeholder="Username" formControlName="username"
+                  required>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-4">
+              <mat-form-field>
+                <input matInput readonly={{setReadOnly}} type="password" id="inputPassword" placeholder="Password"
+                  formControlName="password" required>
+              </mat-form-field>
+            </div>
+            <div class="col-4"></div>
+            <div class="col-4">
+              <mat-form-field *ngIf="!setReadOnly">
+                <input matInput type="password" id="inputRetypePassword" placeholder="Retype Password" formControlName="retypePassword"
+                  required>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row">
+            <button *ngIf="setReadOnly" type="button" mat-stroked-button color="primary" (click)="setReadOnly=false">Edit</button>
+            <button *ngIf="!setReadOnly" type="button" mat-stroked-button color="primary" (click)="setReadOnly=true; updateProfile()">Save</button>
+          </div>
+        </form>
     </div>
- 
+
 
     <div class="col-2"></div>
 
@@ -97,7 +120,7 @@
 
 
 
-<div class="container">
+<!-- <div class="container">
   <div class="row">
     <div class="col-3"></div>
 
@@ -105,28 +128,16 @@
       <hr>
       <div class="jumbotron">
         <form class="form-group" (ngSubmit)="updateProfile()" id="editProfile">
-          <!-- <div class="form-row">
-            <div class="form-group col-md-4">
-              <label for="inputFirstName">First Name</label>
-              <input type="text" class="form-control" id="inputFirstName" placeholder="First Name" formControlName="firstname"
-                required>
-            </div>
-            <div class="form-group col-md-4">
-              <label for="inputLastName">Last Name</label>
-              <input type="text" class="form-control" id="inputLastName" placeholder="Last Name" formControlName="lastname"
-                required>
-            </div>
-          </div> -->
 
           <div class="form-row">
             <div class="form-group col-md-4">
               <label for="inputFirstName">First Name</label>
-              <input type="text" class="form-control" id="inputFirstName" placeholder="First Name" formControlName="firstname"
+              <input type="text" class="form-control" id="inputFirstName" placeholder="First Name"
                 required>
             </div>
             <div class="form-group col-md-4">
               <label for="inputLastName">Last Name</label>
-              <input type="text" class="form-control" id="inputLastName" placeholder="Last Name" formControlName="lastname"
+              <input type="text" class="form-control" id="inputLastName" placeholder="Last Name"
                 required>
             </div>
           </div>
@@ -219,4 +230,4 @@
       <div class="col-3"></div>
     </div>
   </div>
-</div>
+</div> -->
