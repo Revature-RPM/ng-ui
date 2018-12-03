@@ -25,15 +25,15 @@ export class ProjectCardComponent implements OnInit {
     // }else {
     //   this.admin = false;
     // }
-    this.currentimage=this.project.teamPic[0];
+    this.currentimage=this.project.teamImage;
   }
   changeImage(){
     console.log("change image")
     if(this.project){
-      if(this.currentimage==this.project.teamPic[0])
+      if(this.currentimage==this.project.teamImage)
         this.currentimage = this.project.screenshots[0];
       else
-        this.currentimage=this.project.teamPic[0];
+        this.currentimage=this.project.teamImage;
     }
   }
 }

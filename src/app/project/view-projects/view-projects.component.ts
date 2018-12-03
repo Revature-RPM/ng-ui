@@ -27,7 +27,6 @@ export class ViewProjectsComponent implements OnInit {
             this.projects = projectResponse;
             console.log("got projects")
             console.log( projectResponse)
-            console.log(projectResponse[0].teamPic[0])
             });
   }
 
