@@ -24,15 +24,18 @@ import { Observable, Subject } from 'rxjs';
 * @author Andrew Mitchem (1810-Oct08-Java-USF)
 */
 export class ZipComponentComponent implements OnInit {
-  RenderStrings: string[] = [];
-  RenderFileName: string[] = [];
   RenderFile: File[] = [];
+  SelectedFile: File;
   /*Constructur: Injects Http Client into the component for use of resource request
   *@param HttpClient standard angular dependency to fire http request.
   *
   */
   constructor(private http: HttpClient) { }
   ngOnInit() {
+    let testfile = new File();
+    testfile.fileName = "HELP";
+    testfile.fileContent = "HELLO";
+    this.SelectedFile = testfile;
   }
   /*
   * ZipComponentComponent.sendRequest()
