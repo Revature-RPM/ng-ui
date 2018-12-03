@@ -1,35 +1,38 @@
 <div id="registration-container">
-  <mat-card>
-    <mat-card-header>
-      <mat-card-title>Registration</mat-card-title>
-    </mat-card-header>
-
-    <mat-card-content>
-      <br>
-      <mat-form-field appearance="outline">
-        <input matInput type="text" placeholder="Username" id="username" [(ngModel)]="user.username">
-      </mat-form-field>
-      <br>
-      <mat-form-field appearance="outline">
-        <input matInput type="password" placeholder="Password" id="password" [(ngModel)]="user.password">
-      </mat-form-field>
-      <br>
-      <mat-form-field appearance="outline">
-        <input matInput type="text" placeholder="First Name" id="first-name" [(ngModel)]="user.firstName">
-      </mat-form-field>
-      <br>
-      <mat-form-field appearance="outline">
-        <input matInput type="text" placeholder="Last Name" id="last-name" [(ngModel)]="user.lastName">
-      </mat-form-field>
-      <br>
-      <mat-form-field appearance="outline">
-        <input matInput type="email" placeholder="Email" id="email" [(ngModel)]="user.email">
-      </mat-form-field>
-      
-      <br>
-      <button mat-flat-button type="button" (click)="register()">Register</button>
-      <br>
-      <a mat-button routerLink="/auth/login">Login</a>
-    </mat-card-content>
-  </mat-card>
-</div>
+    <mat-jumbotron id="jumbotron">
+      <mat-jumbotron-content id="content">
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>Registration</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <br>
+            <mat-form-field appearance="outline">
+              <input matInput type="text" placeholder="Username" id="username" [(ngModel)]="user.username">
+            </mat-form-field>
+            
+            <mat-form-field appearance="outline">
+              <input matInput type="password" placeholder="Password" id="password" [(ngModel)]="user.password">
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="outline">
+              <input matInput type="text" placeholder="First Name" id="first-name" [(ngModel)]="user.firstName">
+            </mat-form-field>
+            
+            <mat-form-field appearance="outline">
+              <input matInput type="text" placeholder="Last Name" id="last-name" [(ngModel)]="user.lastName">
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="outline" id="email">
+              <input matInput type="email" placeholder="Email" id="email" [(ngModel)]="user.email">
+            </mat-form-field>
+  
+            <br>
+            <button mat-flat-button type="button" (click)="register()">Register</button>
+            <br>
+            <a mat-button routerLink="/auth/login">Login</a>
+          </mat-card-content>
+        </mat-card>
+      </mat-jumbotron-content>
+    </mat-jumbotron>
+  </div>
