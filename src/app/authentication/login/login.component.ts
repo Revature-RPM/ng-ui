@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 
-import { User } from '../../core/models/User';
+import { User } from 'src/app/core/models/User';
 import { LoggedInService, UserService } from '../../core/services/user.service';
 
 @Component({
@@ -11,7 +11,8 @@ import { LoggedInService, UserService } from '../../core/services/user.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  sessionUser = localStorage.getItem('user');
+  // sessionUser = localStorage.getItem('user');
+  sessionUser = false;
   user: User = {};
 
   constructor(private loggedIn: LoggedInService,
