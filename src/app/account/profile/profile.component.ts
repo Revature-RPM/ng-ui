@@ -24,7 +24,7 @@ export class ProfileComponent implements OnInit {
     password: 'password',
     userRole: 'trainer',
     email: 'ym@gmail.com',
-  }
+  };
 
   constructor() { }
 
