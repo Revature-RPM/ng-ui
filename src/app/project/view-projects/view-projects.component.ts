@@ -22,7 +22,13 @@ export class ViewProjectsComponent implements OnInit {
   constructor(private viewProjectsService: ProjectServiceService) { }
 
   ngOnInit() {
-    this.subscription = this.viewProjectsService.getAllProjects().subscribe((projectResponse) => this.projects = projectResponse);
+    this.subscription = this.viewProjectsService.getAllProjects()
+          .subscribe((projectResponse) => {
+            this.projects = projectResponse;
+            console.log("got projects")
+            console.log( projectResponse)
+            console.log(projectResponse[0].teamPic[0])
+            });
   }
 
   ngOnDestroy() {

@@ -12,6 +12,6 @@ export class ProjectServiceService {
   constructor(private httpClient: HttpClient) { }
 
   getAllProjects(): Observable<Project[]>{
-    return this.httpClient.get<Project[]>(environment.url);
+    return this.httpClient.get<Project[]>("http://localhost:8080/spring-mvc/projects");
   }
 }

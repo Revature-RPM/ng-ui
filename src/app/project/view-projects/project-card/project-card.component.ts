@@ -13,8 +13,9 @@ export class ProjectCardComponent implements OnInit {
   admin: Boolean = true;
   approved: Boolean = false;  
   loggedInUser: User;
+  currentimage: string;
   constructor() {
-
+      
    }
 
   ngOnInit() {
@@ -24,6 +25,15 @@ export class ProjectCardComponent implements OnInit {
     // }else {
     //   this.admin = false;
     // }
+    this.currentimage=this.project.teamPic[0];
   }
-
+  changeImage(){
+    console.log("change image")
+    if(this.project){
+      if(this.currentimage==this.project.teamPic[0])
+        this.currentimage = this.project.screenshots[0];
+      else
+        this.currentimage=this.project.teamPic[0];
+    }
+  }
 }

@@ -44,17 +44,30 @@ textarea{
     color:  $TextImportant;
     opacity: 1;
   }
+.file_header{
+  overflow-x: hidden;
+  overflow-y: hidden;
+  height: 2.2em;
+  width: 100%;
+  white-space: nowrap; 
+}
+.file_header:hover{
+  overflow-x: scroll;
+  height: 3em;
+}
 details{
-  margin-top:0px;
-  width:70%;
-  margin-left:0%;
+  display: inline-block;
+
+  height: 2em;
+  width: 100px;
 }
 details:focus{
   border-color: $Border;
+  margin:0px;
 }
 details summary{
-  padding-top:1em;
-  vertical-align: middle;
+  display: inline-block;
+  padding-top:.5em;
   overflow: hidden; 
   /* box-shadow: 0px 0px 8px rgb(231, 247, 89); */
   /* border-radius: 5px; */
@@ -65,9 +78,8 @@ details summary{
   border-top-color:  $Border;
   border-bottom-style: none;
   border-width: 1px;
-  max-width: 40%;
-  min-width: 40%;
   height: 2em;
+  width: 8em;
   padding-left:1em;
   background-color: $Saturation80;
   color: $TextPassive;
@@ -82,9 +94,7 @@ details summary::-webkit-details-marker {
 details summary:focus{
   /* box-shadow: 0px 0px 8px rgb(247, 71, 138); */
   outline: none;
-  width: auto;
   white-space: nowrap;
-  min-width: 40%;
 }
 details[open] summary{
   background-color: $Saturation100;
