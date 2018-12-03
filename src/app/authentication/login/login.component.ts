@@ -11,7 +11,8 @@ import { LoggedInService, UserService } from '../../core/services/user.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  sessionUser = localStorage.getItem('user');
+  // sessionUser = localStorage.getItem('user');
+  sessionUser = false;
   user: User = {};
 
   constructor(private loggedIn: LoggedInService,
@@ -24,13 +25,13 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  // login() {
-  //   this.userService.login(this.user).pipe(first()).subscribe((user) => {
-  //     if (user) {
-  //       localStorage.setItem('user', JSON.stringify(user));
-  //       this.loggedIn.loggedIn.next(true);
-  //       this.router.navigate(['']);
-  //     }
-  //   });
-  // }
+  login() {
+    this.userService.login(this.user).pipe(first()).subscribe((user) => {
+      if (user) {
+        localStorage.setItem('user', JSON.stringify(user));
+        this.loggedIn.loggedIn.next(true);
+        this.router.navigate(['']);
+      }
+    });
+  }
 }
