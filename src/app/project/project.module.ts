@@ -11,13 +11,13 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import {MatCardModule} from '@angular/material/card';
 
-
 import { ProjectRoutingModule } from './project-routing.module';
 import { HomePageComponent } from './home-page/home-page.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { UserActionsComponent } from './user-actions/user-actions.component';
 import { ViewProjectsComponent } from './view-projects/view-projects.component';
 import { ProjectCardComponent } from './view-projects/project-card/project-card.component';
+import { ProjectServiceService } from '../core/services/project-service.service';
 
 @NgModule({
   declarations: [HomePageComponent, NavbarComponent, UserActionsComponent, ViewProjectsComponent, ProjectCardComponent],
@@ -34,6 +34,7 @@ import { ProjectCardComponent } from './view-projects/project-card/project-card.
     MatGridListModule,
     FlexLayoutModule,
     MatCardModule
-  ]
+  ],
+  providers:[ProjectServiceService]
 })
 export class ProjectModule { }

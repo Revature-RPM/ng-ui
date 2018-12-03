@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Project } from 'src/app/core/models/Project';
+import { Subscription } from 'rxjs';
+import { ProjectServiceService } from 'src/app/core/services/project-service.service';
 
 @Component({
   selector: 'app-view-projects',
@@ -7,9 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViewProjectsComponent implements OnInit {
 
-  constructor() { }
+  projects: Project[];
+  subscription: Subscription;
+  constructor(private viewProjectsService: ProjectServiceService) { }
 
   ngOnInit() {
+    this.subscription = this.viewProjectsService.getAllProjects().subscribe((projectResponse) => this.projects = projectResponse);
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
 }
