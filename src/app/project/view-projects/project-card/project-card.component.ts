@@ -26,6 +26,7 @@ export class ProjectCardComponent implements OnInit {
     //   this.admin = false;
     // }
     this.currentimage=this.project.teamImage;
+    console.log(this.project.techStack[0])
   }
   changeImage(){
     console.log("change image")

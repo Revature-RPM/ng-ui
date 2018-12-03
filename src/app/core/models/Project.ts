@@ -8,7 +8,7 @@ export interface Project {
     screenshots?: string[];
     teamImage?: string;
     repoLinks?: string[];
-    teckStack?: string[];
+    techStack?: string[];
     status?: string;
     description?: string;
  }
