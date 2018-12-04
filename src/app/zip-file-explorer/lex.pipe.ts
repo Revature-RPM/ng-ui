@@ -60,7 +60,7 @@ export class LexPipe implements PipeTransform {
     this.lex[`<span class='token6'>\$&</span>`]   = /(?<!\w)(if|for|new|return|void|extends|implements|console|System|else|try|catch)(?!\w)/g
     this.lex[`<span class='token7'>\$&</span>`]   = /(?<!\w)(this|super|switch|null|case|default|throws)(?!\w)/g
     this.lex[`<span class='token8'>\$&</span>`]   = /\.\w+/g 
-    this.lex[`<span class='token14'>\$&</span>`]  = /\".*(?<!\\)\"/g
+    this.lex[`<span class='token14'>\$&</span>`]  = /"(?:[^"\\]|\\.)*"/g
    
     // (?:[^\w\d])
     //(?:[^\w\d])

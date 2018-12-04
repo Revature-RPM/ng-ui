@@ -18,6 +18,7 @@ import { UserActionsComponent } from './user-actions/user-actions.component';
 import { ViewProjectsComponent } from './view-projects/view-projects.component';
 import { ProjectCardComponent } from './view-projects/project-card/project-card.component';
 import { ProjectServiceService } from '../core/services/project-service.service';
+import { ZipFileExplorerModule } from '../zip-file-explorer/zip-file-explorer.module';
 
 @NgModule({
   declarations: [HomePageComponent, NavbarComponent, UserActionsComponent, ViewProjectsComponent, ProjectCardComponent],
@@ -33,7 +34,8 @@ import { ProjectServiceService } from '../core/services/project-service.service'
     MatDividerModule,
     MatGridListModule,
     FlexLayoutModule,
-    MatCardModule
+    MatCardModule,
+    ZipFileExplorerModule
   ],
   providers:[ProjectServiceService]
 })
