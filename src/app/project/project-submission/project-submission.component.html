@@ -1,0 +1,53 @@
+<h1 id="title">Upload a Project</h1>
+<form #f="ngForm" (ngSubmit)="submitForm(f)">
+    <table class="example-full-width" cellspacing="5"><tr>
+      <td><mat-form-field class="example-full-width">
+        <input type="text" matInput placeholder="Project Name" [(ngModel)]="projectToUpload.name" [ngModelOptions]="{standalone: true}">
+      </mat-form-field></td>
+      <td><mat-form-field class="example-full-width">
+        <input type="text" matInput placeholder="Batch Name" [(ngModel)]="projectToUpload.batch" [ngModelOptions]="{standalone: true}">
+      </mat-form-field></td>
+    </tr></table>
+  
+
+    <table class="example-full-width" cellspacing="5">
+      <tr>
+        <td><mat-form-field class="example-full-width">
+                <textarea (click)="openDialog()" matInput placeholder="Trainers"></textarea>
+              </mat-form-field></td>
+        <td><mat-form-field class="example-full-width">
+                <textarea matInput placeholder="Group Members" [(ngModel)]="projectToUpload.groupMembers" [ngModelOptions]="{standalone: true}"></textarea>
+              </mat-form-field></td>
+      </tr>
+    </table>
+
+    <table class="example-full-width" cellspacing="5"><tr>
+        <td><mat-form-field class="example-full-width">
+          <textarea matInput placeholder="Project Description" [(ngModel)]="projectToUpload.description" [ngModelOptions]="{standalone: true}"></textarea>
+        </mat-form-field></td>
+    </tr></table>
+
+    <table class="example-full-width" cellspacing="5">
+        <tr>
+          <td><mat-form-field class="example-full-width">
+                  <textarea matInput placeholder="Project Repository Links" [(ngModel)]="projectToUpload.repoLinks" [ngModelOptions]="{standalone: true}"></textarea>
+                </mat-form-field></td>
+          <td><mat-form-field class="example-full-width">
+                  <textarea matInput placeholder="Project Technology Stack" [(ngModel)]="projectToUpload.techStack" [ngModelOptions]="{standalone: true}"></textarea>
+                </mat-form-field></td>
+        </tr>
+      </table>
+
+      <table class="example-full-width" cellspacing="5">
+          <tr>
+            <td><mat-form-field class="example-full-width">
+                    <textarea matInput placeholder="Project Screenshots" [(ngModel)]="projectToUpload.screenshots" [ngModelOptions]="{standalone: true}"></textarea>
+                  </mat-form-field></td>
+            <td><mat-form-field class="example-full-width">
+                    <textarea matInput placeholder="Team Image" [(ngModel)]="projectToUpload.teamImage" [ngModelOptions]="{standalone: true}"></textarea>
+                  </mat-form-field></td>
+          </tr>
+        </table>
+        <br>
+       <button type="submit" id="submit" mat-raised-button	color="warn">Upload Project</button>
+  </form>
