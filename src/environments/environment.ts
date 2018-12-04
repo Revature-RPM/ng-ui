@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  appId: 'rpm',
   url: 'https://8500e2c3-d096-4e9b-b395-556553ef23a3.mock.pstmn.io/'
 };
 

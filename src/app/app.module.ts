@@ -1,9 +1,10 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatJumbotronModule } from '@angular-material-extensions/jumbotron';
-
 import { ServiceWorkerModule } from '@angular/service-worker';
+
 import { AppRoutingModule } from './app-routing.module';
 import { ProjectModule } from './project/project.module';
 import { AppComponent } from './app.component';
@@ -17,6 +18,7 @@ import { environment } from 'src/environments/environment';
   imports: [
     AppRoutingModule,
     BrowserAnimationsModule,
+    BrowserModule.withServerTransition({ appId: environment.appId }),
     CoreModule,
     HttpClientModule,
     ProjectModule,
