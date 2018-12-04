@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { MatGridListModule, MatFormFieldModule, MatOptionModule, MatSelectModule, MatButtonModule, MatInputModule, MatCardModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-
-// import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MatJumbotronModule } from '@angular-material-extensions/jumbotron';
+import { FlexLayoutModule } from "@angular/flex-layout";
 
 @NgModule({
   declarations: [],
@@ -20,6 +20,8 @@ import { RouterModule } from '@angular/router';
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
+    MatJumbotronModule,
+    FlexLayoutModule,
   ],
   exports: [
     MatCardModule,
@@ -32,6 +34,8 @@ import { RouterModule } from '@angular/router';
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
+    MatJumbotronModule,
+    FlexLayoutModule,
   ]
 })
 export class SharedModule { }
