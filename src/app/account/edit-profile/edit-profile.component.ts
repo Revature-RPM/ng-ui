@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from 'src/app/core/models/User';
+
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-
-import { User } from 'src/app/core/models/User';
 
 @Component({
   selector: 'app-edit-profile',
@@ -12,13 +12,13 @@ import { User } from 'src/app/core/models/User';
 export class EditProfileComponent implements OnInit {
 
   form: FormGroup;
-  user: User;
-  setReadOnly = true;
+  user: User; 
+  setReadOnly: boolean = true;
 
   constructor(private router: Router, private fb: FormBuilder) { }
 
   ngOnInit() {
-    const tempUser: User = {
+    let tempUser: User = {
       id: 1,
       firstname: 'Yuki',
       lastname: 'Mano',
@@ -26,9 +26,9 @@ export class EditProfileComponent implements OnInit {
       password: 'password',
       userRole: 'trainer',
       email: 'ym@gmail.com',
-    };
+    }
 
-    window.localStorage.setItem('user', JSON.stringify(tempUser));
+    window.localStorage.setItem('user', JSON.stringify(tempUser)); 
 
     this.user = JSON.parse(window.localStorage.getItem('user'));
 
@@ -47,7 +47,7 @@ export class EditProfileComponent implements OnInit {
   updateProfile() {
     console.log(this.fname.trim());
 
-    const updatedUserInfo: User = {
+    let updatedUserInfo: User = {
       id: this.user.id,
       firstname: this.form.get('firstname').value,
       lastname: this.form.get('lastname').value,
@@ -55,13 +55,15 @@ export class EditProfileComponent implements OnInit {
       username: this.form.get('username').value,
       password: this.form.get('password').value,
       userRole: this.user.userRole,
-    };
+    }; 
 
-    // this line should be put in user service
-    localStorage.setItem('user', JSON.stringify(updatedUserInfo));
+    // this line should be put in user service 
+    window.localStorage.setItem('user', JSON.stringify(updatedUserInfo));
 
+    
     console.log(updatedUserInfo);
   }
+
 }
 
 /*
@@ -69,14 +71,14 @@ export class EditProfileComponent implements OnInit {
 TO-DO
 
 validdation:
-- password and retype password must match
+- password and retype password must match 
 - usernme must be uniqued (call to the db)
 - email must be uniqued (call to the db) *not required*
 
-- mat-error for every field input
+- mat-error for every field input 
 
-- disabled update button when all inputs are not filled
-- include 'cancel' button, which brings back to 'view' page and repopulate fields with local storage, which has not been changed
+- disabled update button when all inputs are not filled 
+- include 'cancel' button, which brings back to 'view' page and repopulate fields with local storage, which has not been changed 
 
 - create a function in user-service which call to the server side and set the data into local storage
 

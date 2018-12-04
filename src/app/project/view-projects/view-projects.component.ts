@@ -33,5 +33,4 @@ export class ViewProjectsComponent implements OnInit {
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
-
 }
