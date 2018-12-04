@@ -26,6 +26,7 @@ import { MatJumbotronModule } from '@angular-material-extensions/jumbotron';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TrainerDialogComponent } from './project-submission/trainer-dialog/trainer-dialog.component';
+import { ZipFileExplorerModule } from '../zip-file-explorer/zip-file-explorer.module';
 
 @NgModule({
   declarations: [HomePageComponent, NavbarComponent, UserActionsComponent, ViewProjectsComponent, ProjectCardComponent, ProjectSubmissionComponent, TrainerDialogComponent],
@@ -47,6 +48,7 @@ import { TrainerDialogComponent } from './project-submission/trainer-dialog/trai
     MatJumbotronModule,
     MatFormFieldModule,
     MatInputModule,
+    ZipFileExplorerModule
   ],
   providers:[ProjectServiceService]
 })

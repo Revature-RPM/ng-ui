@@ -8,9 +8,26 @@ $Border: rgb(66, 66, 66);
 $TextImportant: white;
 $TextPassive: gray;
 $baseColor: rgb(29, 29, 29);
+.background{
+  background-color: $baseColor;
+   min-height:98vh;
+}
 .container{
   min-height:100vh;
 }
+.editor-container{
+  position: static;
+}
+.editor{
+  width:80em;
+  left: 17.4em;
+  height: 80vh;
+  overflow-y: scroll;
+  white-space: pre;
+  background-color: $Saturation100;
+  color: rgb(161, 229, 238);
+}
+
 textarea{
     height: 30em;
     width: 50em;
