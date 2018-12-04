@@ -11,6 +11,7 @@ export class RenderZipComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    const zip = new JSZip();
+    let zip = new JSZip();
   }
+
 }
