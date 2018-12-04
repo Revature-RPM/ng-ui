@@ -4,11 +4,13 @@ import { first } from 'rxjs/operators';
 
 import { User } from 'src/app/core/models/User';
 import { LoggedInService, UserService } from '../../core/services/user.service';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
-  selector: 'app-registration',
+  selector: 'app-registration', 
   templateUrl: './registration.component.html',
-  styleUrls: ['./registration.component.scss']
+  styleUrls: ['./registration.component.scss'],
+
 })
 export class RegistrationComponent implements OnInit {
   isValid = true;
@@ -16,16 +18,26 @@ export class RegistrationComponent implements OnInit {
   sessionUser = false;
   user: User = {};
   isChecked = true;
+  isLinear = true;
+  firstFormGroup: FormGroup;
+  secondFormGroup: FormGroup;
 
 
   constructor(private loggedIn: LoggedInService,
               private userService: UserService,
-              private router: Router) { }
+              private router: Router,
+              private _formBuilder: FormBuilder) { }
 
   ngOnInit() {
     if (this.sessionUser) {
       this.router.navigate(['']);
     }
+    this.firstFormGroup = this._formBuilder.group({
+      firstCtrl: ['', Validators.required]
+    });
+    this.secondFormGroup = this._formBuilder.group({
+      secondCtrl: ['', Validators.required]
+    });
   }
 
   register() {
