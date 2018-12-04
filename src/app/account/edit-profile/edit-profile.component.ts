@@ -32,27 +32,19 @@ export class EditProfileComponent implements OnInit {
 
     this.user = JSON.parse(window.localStorage.getItem('user'));
 
-    this.form = this.fb.group({
-      firstname: [this.user.firstname, Validators.required],
-      lastname: [this.user.lastname, Validators.required],
-      email: [this.user.email, [Validators.required, Validators.email]],
-      username: [this.user.username, Validators.required],
-      password: [this.user.password, Validators.required],
-      retypePassword: ['', Validators.required],
-    });
+    this.fillFormGroup(this.user.firstname, this.user.lastname, this.user.email, this.user.username, this.user.password);
   }
 
   fname: string = '    blah   ';
-
   updateProfile() {
     console.log(this.fname.trim());
 
     const updatedUserInfo: User = {
       id: this.user.id,
-      firstname: this.form.get('firstname').value,
-      lastname: this.form.get('lastname').value,
-      email: this.form.get('email').value,
-      username: this.form.get('username').value,
+      firstname: this.form.get('firstname').value.trim(),
+      lastname: this.form.get('lastname').value.trim(),
+      email: this.form.get('email').value.trim(),
+      username: this.form.get('username').value.trim(),
       password: this.form.get('password').value,
       userRole: this.user.userRole,
     };
@@ -62,7 +54,28 @@ export class EditProfileComponent implements OnInit {
 
     console.log(updatedUserInfo);
   }
+
+  cancelEditProfile() {
+    this.user = JSON.parse(window.localStorage.getItem('user'));
+
+    this.fillFormGroup(this.user.firstname, this.user.lastname, this.user.email, this.user.username, this.user.password);
+  }
+
+  fillFormGroup(firstname: string, lastname: string, email: string, username: string, password: string) {
+    this.form = this.fb.group({
+      firstname: [firstname, Validators.required],
+      lastname: [lastname, Validators.required],
+      email: [email, [Validators.required, Validators.email]],
+      username: [username, Validators.required],
+      password: [password, Validators.required],
+      retypePassword: ['', Validators.required],
+    });
+  }
+
 }
+
+
+
 
 /*
 

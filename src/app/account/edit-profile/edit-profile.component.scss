@@ -1,12 +1,15 @@
-.container {
-  height: 100%;
-  width: 100%;
-}
+
 
 #user-role {
-  margin-top: -48%;
+  margin-top: -30%;
   border-color: black;  
 }
+
+#profile-text {
+  font-size: 100%;
+}
+
+
 
 // .container {
 //   display: flex;
@@ -15,4 +18,9 @@
 
 // .container > * {
 //   width: 100%;
+// }
+
+
+// #profile-jumbotron {
+//   // background-color: lightgray  ;
 // }

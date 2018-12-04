@@ -1,233 +1,96 @@
-<!-- <form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <div class="form-row">
-    <div class="form-group col-md-4">
-      <label for="inputFirstName">First Name</label>
-      <input type="text" class="form-control" id="inputFirstName" placeholder="First Name" formControlName="firstname"
-        required>
-    </div>
-    <div class="form-group col-md-4">
-      <label for="inputLastName">Last Name</label>
-      <input type="text" class="form-control" id="inputLastName" placeholder="Last Name" formControlName="lastname"
-        required>
-    </div>
-  </div> -->
-<!-- <div class="form-row">
-    <div class="form-group col-md-4">
-      <label for="inputEmail">Email</label>
-      <input type="text" class="form-control" id="inputEmail" placeholder="Email" formControlName="email" required>
-    </div>
-  </div>
-  <div class="form-row">
-    <div class="form-group col-md-4">
-      <label for="inputUsername">Username</label>
-      <input type="text" class="form-control" id="inputUsername" placeholder="Username" formControlName="username"
-        required>
-    </div>
-    <div class="form-group col-md-4">
-      <label for="inputPassword">Password</label>
-      <input type="password" class="form-control" id="inputPassword" placeholder="Password" formControlName="password"
-        required>
-    </div>
-  </div> -->
-<!-- <button type="submit" class="btn ts-button">Submit</button>
-</form> -->
+<mat-grid-list cols="8" height="100%" width="100%">
+  <mat-grid-tile colspan=1 rowspan=1></mat-grid-tile>
 
+  <mat-grid-tile colspan=6 rowspan=3.5>
+    <div class="container" fxLayout.xs="column" fxLayoutAlign="center">
+      <mat-jumbotron>
+        <mat-jumbotron-content>
 
-<div class="container">
-
-  <div class="row">
-
-    <div class="col-2"></div>
-
-    <div class="jumbotron">
-      <div class="row">
-        <div class="col-9">
-          <h1>Profile</h1>
-        </div>
-        <div class="col-3">
-          <h3 id="user-role">{{user.userRole}}</h3>
-        </div>
-      </div>
-      <p> Edit your profile information, and then press the 'Save' button to update your information.</p>
-      <hr>  
-        <form [formGroup]="form" class="col-8">
-          <div class="row">
-            <div class="col-4">
-              <mat-form-field>
-                <input matInput readonly={{setReadOnly}} id="inputFirstName" placeholder="First Name" formControlName="firstname"
-                  required>
-              </mat-form-field>
+          <div class="container" fxLayout="row" fxLayoutGap="75%" fxLayoutGap.xs="0">
+            <div fxLayout.xs="column">
+              <h1 id="profile-header"><strong>Profile</strong></h1>
             </div>
-            <div class="col-4"></div>
-            <div class="col-4">
-              <mat-form-field>
-                <input matInput readonly={{setReadOnly}} id="inputLastName" placeholder="Last Name" formControlName="lastname"
-                  required>
-              </mat-form-field>
+            <div fxLayout.xs="column">
+              <h3 id="user-role">{{user.userRole}}</h3>
             </div>
           </div>
 
-          <div class="row">
-            <div class="col-4">
-              <mat-form-field>
-                <input matInput readonly={{setReadOnly}} id="inputEmail" placeholder="Email" formControlName="email"
-                  required>
-                  <mat-error *ngIf="form.get('email').hasError('email') && !form.get('email').hasError('required')">
+          <div class="container" fxLayout="row" fxLayout.xs="column">
+            <p id="profile-text">Edit your profile information, and then press the 'Save' button to update your information.</p>
+            
+          </div>
+
+          <form [formGroup]="form">
+            <hr>
+            <div class="container" fxLayout="row" fxLayoutGap="10%" fxLayoutGap.xs="0">
+                <div fxLayout.xs="column"></div>
+              <div fxLayout.xs="column">
+                <mat-form-field>
+                  <input matInput readonly={{setReadOnly}} id="inputFirstName" placeholder="First Name"
+                    formControlName="firstname" required>
+                </mat-form-field>
+              </div>
+
+              <div fxLayout.xs="column">
+                <mat-form-field>
+                  <input matInput readonly={{setReadOnly}} id="inputLastName" placeholder="Last Name" formControlName="lastname"
+                    required>
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="container" fxLayout="row" fxLayoutGap="10%" fxLayoutGap.xs="0">
+                <div fxLayout.xs="column"></div>
+                <div fxLayout.xs="column">
+                  <mat-form-field>
+                    <input matInput readonly={{setReadOnly}} id="inputEmail" placeholder="Email" formControlName="email"
+                      required>
+                    <mat-error *ngIf="form.get('email').hasError('email') && !form.get('email').hasError('required')">
                       Please enter a valid email address
                     </mat-error>
-                  <mat-error *ngIf="form.get('email').hasError('required')">
+                    <mat-error *ngIf="form.get('email').hasError('required')">
                       Email is <strong>required</strong>
                     </mat-error>
-              </mat-form-field>
-            </div>
-            <div class="col-4"></div>
-            <div class="col-4">
-              <mat-form-field>
-                <input matInput readonly={{setReadOnly}} id="inputUsername" placeholder="Username" formControlName="username"
-                  required>
-              </mat-form-field>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-4">
-              <mat-form-field>
-                <input matInput readonly={{setReadOnly}} type="password" id="inputPassword" placeholder="Password"
-                  formControlName="password" required>
-              </mat-form-field>
-            </div>
-            <div class="col-4"></div>
-            <div class="col-4">
-              <mat-form-field *ngIf="!setReadOnly">
-                <input matInput type="password" id="inputRetypePassword" placeholder="Retype Password" formControlName="retypePassword"
-                  required>
-              </mat-form-field>
-            </div>
-          </div>
-
-          <div class="row">
-            <button *ngIf="setReadOnly" type="button" mat-stroked-button color="primary" (click)="setReadOnly=false">Edit</button>
-            <button *ngIf="!setReadOnly" type="button" mat-stroked-button color="primary" (click)="setReadOnly=true; updateProfile()">Save</button>
-          </div>
-        </form>
-    </div>
-
-
-    <div class="col-2"></div>
-
-  </div>
-</div>
-
-
-
-<!-- <div class="container">
-  <div class="row">
-    <div class="col-3"></div>
-
-    <div class="col-6">
-      <hr>
-      <div class="jumbotron">
-        <form class="form-group" (ngSubmit)="updateProfile()" id="editProfile">
-
-          <div class="form-row">
-            <div class="form-group col-md-4">
-              <label for="inputFirstName">First Name</label>
-              <input type="text" class="form-control" id="inputFirstName" placeholder="First Name"
-                required>
-            </div>
-            <div class="form-group col-md-4">
-              <label for="inputLastName">Last Name</label>
-              <input type="text" class="form-control" id="inputLastName" placeholder="Last Name"
-                required>
-            </div>
-          </div>
-
-
-          <div class="form-row">
-            <div class="form-group">
-
-              <div class="col-xs-6">
-                <label for="first_name">
-                  <h4>First Name</h4>
-                </label>
-                <input type="text" class="form-control" name="first_name" id="first_name" placeholder="{{user.firstname}}"
-                  title="Update your first name if wanted.">
+                  </mat-form-field>
+                </div>
+                <div fxLayout.xs="column">
+                  <mat-form-field>
+                    <input matInput readonly={{setReadOnly}} id="inputUsername" placeholder="Username" formControlName="username"
+                      required>
+                  </mat-form-field>
+                </div>
               </div>
 
-              <div class="col-xs-6">
-                <label for="last_name">
-                  <h4>Last name</h4>
-                </label>
-                <input type="text" class="form-control" name="last_name" id="last_name" placeholder="last name" title="enter your last name if any.">
-              </div>
-            </div>
-          </div>
+              <div class="container" fxLayout="row" fxLayoutGap="10%" fxLayoutGap.xs="0">
+                  <div fxLayout.xs="column"></div>
+                  <div fxLayout.xs="column">
+                    <mat-form-field>
+                      <input matInput readonly={{setReadOnly}} type="password" id="inputPassword" placeholder="Password"
+                        formControlName="password" required>
+                    </mat-form-field>
+                  </div>
+                  <div fxLayout.xs="column">
+                    <mat-form-field *ngIf="!setReadOnly">
+                      <input matInput type="password" id="inputRetypePassword" placeholder="Retype Password" formControlName="retypePassword"
+                        required>
+                    </mat-form-field>
+                  </div>
+                </div>
 
-          <div class="form-group">
+                <div class="container" fxLayout="row"  fxLayoutGap="10%" fxLayoutGap.xs="0">
+                  <div fxLayout.xs="column"></div>
+                  <div fxLayout.xs="column">
+                    <button *ngIf="setReadOnly" type="button" mat-stroked-button color="primary" (click)="setReadOnly=false">Edit</button>
+                    <button *ngIf="!setReadOnly" type="button" mat-stroked-button color="primary" (click)="setReadOnly=true; updateProfile()">Save</button>
+                    <button *ngIf="!setReadOnly" type="button" mat-stroked-button color="primary" (click)="setReadOnly=true; cancelEditProfile()">Cancel</button>
+                  </div>
+                </div>
+          </form>
 
-            <div class="col-xs-6">
-              <label for="phone">
-                <h4>Phone</h4>
-              </label>
-              <input type="text" class="form-control" name="phone" id="phone" placeholder="enter phone" title="enter your phone number if any.">
-            </div>
-          </div>
-
-          <div class="form-group">
-            <div class="col-xs-6">
-              <label for="mobile">
-                <h4>Mobile</h4>
-              </label>
-              <input type="text" class="form-control" name="mobile" id="mobile" placeholder="enter mobile number" title="enter your mobile number if any.">
-            </div>
-          </div>
-          <div class="form-group">
-
-            <div class="col-xs-6">
-              <label for="email">
-                <h4>Email</h4>
-              </label>
-              <input type="email" class="form-control" name="email" id="email" placeholder="you@email.com" title="enter your email.">
-            </div>
-          </div>
-          <div class="form-group">
-
-            <div class="col-xs-6">
-              <label for="email">
-                <h4>Location</h4>
-              </label>
-              <input type="email" class="form-control" id="location" placeholder="somewhere" title="enter a location">
-            </div>
-          </div>
-          <div class="form-group">
-
-            <div class="col-xs-6">
-              <label for="password">
-                <h4>Password</h4>
-              </label>
-              <input type="password" class="form-control" name="password" id="password" placeholder="password" title="enter your password.">
-            </div>
-          </div>
-          <div class="form-group">
-
-            <div class="col-xs-6">
-              <label for="password2">
-                <h4>Verify</h4>
-              </label>
-              <input type="password" class="form-control" name="password2" id="password2" placeholder="password2" title="enter your password2.">
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="col-xs-12">
-              <br>
-              <button class="btn btn-lg btn-success pull-left" type="submit"><i class="glyphicon glyphicon-ok-sign"></i>
-                Save</button>
-            </div>
-          </div>
-        </form>
-      </div>
-
-      <div class="col-3"></div>
+        </mat-jumbotron-content>
+      </mat-jumbotron>
     </div>
-  </div>
-</div> -->
+  </mat-grid-tile>
+
+  <mat-grid-tile colspan=1 rowspan=1></mat-grid-tile>
+</mat-grid-list>
