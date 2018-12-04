@@ -1,2 +1,2 @@
 # ng-ui
-Angular UI for Project Legacy Object Packager (name TBD)
+Angular UI for Project Legacy Object Packager (RPM)
