@@ -39,43 +39,43 @@ export class ZipComponentComponent implements OnInit {
   }
   /*
   * ZipComponentComponent.sendRequest()
-  * Fire off an http request for given request. 
+  * Fire off an http request for given request.
   * @author Andrew Mitchem (1810-Oct08-Java-USF)
-  * 
+  *
   */
-  sendRequest(){
-    //reponse type is arraybuffer so the get request knows this is a oclet-array-stream request
+  sendRequest() {
+    // reponse type is arraybuffer so the get request knows this is a oclet-array-stream request
     this.http.get('http://localhost:8080/spring-mvc/files', {responseType: 'arraybuffer'})
     .pipe(
       map(arrayBuffer => new Uint8Array(arrayBuffer))
     )
     .subscribe(ui8Array => {
-      //after the array is retrieve. open the data with JSZip
-      console.log("got (ui8Arra)")
+      // after the array is retrieve. open the data with JSZip
+      console.log('got (ui8Arra)');
       this.openData(ui8Array);
     });
   }
   /*
   * ZipComponentComponent.sendRequest()
   * unpacks a zip blob(ui8array) and opens with JSZip (zip is the reference variable)
-  * @param data. ui8array blob object that "is" a valid zip file. 
+  * @param data. ui8array blob object that "is" a valid zip file.
   * @author Andrew Mitchem (1810-Oct08-Java-USF)
   */
-  openData(data){
-     let zip = new JSZip(); 
-     //new instance of JSZip. note this object lifecycle needs to be undone after rendering
-     //as such it not a class member but function member only for the scope of this function closure
+  openData(data) {
+     const zip = new JSZip();
+     // new instance of JSZip. note this object lifecycle needs to be undone after rendering
+     // as such it not a class member but function member only for the scope of this function closure
      zip.loadAsync(data)
-        .then(contents=>{
-          //console.log(this.RenderStrings)
-          //move to the sub folder inside the zip file: replace with pass paramater variables
-          let dirFolder =  zip.folder('reflections-mafia-server-master/src/main/java')
-          let fileArray = dirFolder.file(/^.*/) //get the array of all files in this subdirectory 
-          for(let i = 0; i < fileArray.length; i++){
-            let file = fileArray[i]
+        .then(contents => {
+          // console.log(this.RenderStrings)
+          // move to the sub folder inside the zip file: replace with pass paramater variables
+          const dirFolder =  zip.folder('reflections-mafia-server-master/src/main/java');
+          const fileArray = dirFolder.file(/^.*/); // get the array of all files in this subdirectory
+          for (let i = 0; i < fileArray.length; i++) {
+            const file = fileArray[i];
             this.parseFiles(file);
           }
-      })
+      });
       // .then(()=>{
       //   console.log("um help");
       //   this.RenderStrings.next(this.tempString);
@@ -90,25 +90,25 @@ export class ZipComponentComponent implements OnInit {
   * @param file. ZipObject (class of JSzip) to be unpacked into a normal blob object
   * @author Andrew Mitchem (1810-Oct08-Java-USF)
   */
-  parseFiles(file){
+  parseFiles(file) {
     // console.log("iterating over", file.name);
     // console.log(file)
-    //check if file is a directory
-    if(!file.dir){
-        let fileName = file.name; 
-        //save ZipObject file name as once unzip into a  standardfile  we loose acess to this data
-        fileName = fileName.replace("reflections-mafia-server-master/src/main/java","") 
-        //remove leading path
-        let helpme = file.async("uint8array").then(function (data) { //converts the ZipObject 
+    // check if file is a directory
+    if (!file.dir) {
+        let fileName = file.name;
+        // save ZipObject file name as once unzip into a  standardfile  we loose acess to this data
+        fileName = fileName.replace('reflections-mafia-server-master/src/main/java', '');
+        // remove leading path
+        const helpme = file.async('uint8array').then(function (data) { // converts the ZipObject
           let string = '';
-          string = new TextDecoder("utf-8").decode(data);
-          //if(string) --< this section is to prevent error. uncomment if oddities arise
-          return string
+          string = new TextDecoder('utf-8').decode(data);
+          // if(string) --< this section is to prevent error. uncomment if oddities arise
+          return string;
         });
-        helpme.then(string=>{ 
-          //promise to unrwap the string. not prvious function has no concept of component namespace due to closur
-          //console.log(string)
-          let file = new File();
+        helpme.then(string => {
+          // promise to unrwap the string. not prvious function has no concept of component namespace due to closur
+          // console.log(string)
+          const file = new File();
           file.fileName = fileName;
           file.fileContent = string; // "file here is a string text readable format stored for rendering logic"
           this.RenderFile.push(file);
@@ -121,17 +121,17 @@ export class ZipComponentComponent implements OnInit {
   * SubClass for storing render related structure
   * @author Andrew Mitchem (1810-Oct08-Java-USF)
   */
-class Tree{
+class Tree {
   name: string;
   files: File[] = [];
   tree: Tree[] = [];
 }
  /*
-  * File 
+  * File
   * SubClass for storing render related structure
   * @author Andrew Mitchem (1810-Oct08-Java-USF)
   */
-class File{
+class File {
   fileName: String;
   fileContent: String;
 }
