@@ -98,6 +98,7 @@ export class ZipComponentComponent implements OnInit {
         let fileName = file.name; 
         //save ZipObject file name as once unzip into a  standardfile  we loose acess to this data
         fileName = fileName.replace("reflections-mafia-server-master/src/main/java","") 
+        fileName = fileName.substring(fileName.lastIndexOf("/")+1)
         //remove leading path
         let helpme = file.async("uint8array").then(function (data) { //converts the ZipObject 
           let string = '';
