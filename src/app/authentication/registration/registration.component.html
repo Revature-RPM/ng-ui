@@ -8,14 +8,14 @@
             <mat-form-field>
               <input matInput placeholder="First Name" formControlName="firstCtrl" required [(ngModel)]="user.firstname">
             </mat-form-field>
-            <br/>
+            <br />
             <mat-form-field>
-                <input matInput placeholder="Last Name" formControlName="firstCtrl" required [(ngModel)]="user.lastname">
-              </mat-form-field>
-              <br/>
-              <mat-form-field>
-                  <input matInput placeholder="Email" formControlName="firstCtrl" required [(ngModel)]="user.email">
-              </mat-form-field>
+              <input matInput placeholder="Last Name" formControlName="firstCtrl" required [(ngModel)]="user.lastname">
+            </mat-form-field>
+            <br />
+            <mat-form-field>
+              <input matInput placeholder="Email" formControlName="firstCtrl" required [(ngModel)]="user.email">
+            </mat-form-field>
             <div>
               <button mat-button matStepperNext>Next</button>
               <a mat-button routerLink="/auth/login">Cancel</a>
@@ -28,26 +28,17 @@
             <mat-form-field>
               <input matInput placeholder="Username" formControlName="secondCtrl" required [(ngModel)]="user.username">
             </mat-form-field>
+            <br />
+            <mat-form-field>
+              <input matInput type="password" id="password" placeholder="Password" formControlName="secondCtrl"
+                required [(ngModel)]="user.password">
+            </mat-form-field>
             <br/>
             <mat-form-field>
-                <input  matInput type="password" id="password"placeholder="Password" formControlName="secondCtrl" required [(ngModel)]="user.password">     
-            <mat-form-field appearance="outline">
-              <input matInput type="password" placeholder="Password" id="password" [(ngModel)]="user.password">
+              <input type="password" id="verifiedPassword" matInput placeholder="Verify Password" formControlName="secondCtrl"
+                required>
             </mat-form-field>
-            <br>
-            <mat-form-field appearance="outline">
-              <input matInput type="text" placeholder="First Name" id="first-name" [(ngModel)]="user.firstname">
-            </mat-form-field>
-            
-            <mat-form-field appearance="outline">
-              <input matInput type="text" placeholder="Last Name" id="last-name" [(ngModel)]="user.lastname">
 
-            </mat-form-field>
-            <br/>
-            <mat-form-field>
-                <input type="password" id="verifiedPassword" matInput placeholder="Verify Password" formControlName="secondCtrl" required>
-            </mat-form-field>
-            
             <div>
               <button mat-button matStepperPrevious>Back</button>
               <button mat-button matStepperNext>Next</button>
