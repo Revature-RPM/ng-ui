@@ -30,7 +30,18 @@
             </mat-form-field>
             <br/>
             <mat-form-field>
-                <input  matInput type="password" id="password"placeholder="Password" formControlName="secondCtrl" required [(ngModel)]="user.password">
+                <input  matInput type="password" id="password"placeholder="Password" formControlName="secondCtrl" required [(ngModel)]="user.password">     
+            <mat-form-field appearance="outline">
+              <input matInput type="password" placeholder="Password" id="password" [(ngModel)]="user.password">
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="outline">
+              <input matInput type="text" placeholder="First Name" id="first-name" [(ngModel)]="user.firstname">
+            </mat-form-field>
+            
+            <mat-form-field appearance="outline">
+              <input matInput type="text" placeholder="Last Name" id="last-name" [(ngModel)]="user.lastname">
+
             </mat-form-field>
             <br/>
             <mat-form-field>
