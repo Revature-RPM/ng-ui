@@ -3,6 +3,9 @@
     <div class="btn-container">
       <button (click)='sendRequest()'>🗁</button>
       <h3 class="display-text">File Explorer</h3>
+      <div>
+      <p *ngFor="let help of RenderFile" (click)="SelectedFile = help">{{help.fileName}}</p>
+    </div>
     </div>
   <div class="container_div">
 
