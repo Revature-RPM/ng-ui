@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/core/models/User';
 
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -15,6 +15,7 @@ export class ProfileComponent implements OnInit {
   form: FormGroup;
   user: User; 
   setReadOnly: boolean = true;
+  disableButton: boolean = true;
 
   constructor(private router: Router, private fb: FormBuilder) { }
 
@@ -34,12 +35,11 @@ export class ProfileComponent implements OnInit {
     this.user = JSON.parse(window.localStorage.getItem('user'));
 
     this.fillFormGroup(this.user.firstname, this.user.lastname, this.user.email, this.user.username, this.user.password);
+
+    console.log(this.form.valid);
   }
 
-  fname: string = '    blah   ';
   updateProfile() {
-    console.log(this.fname.trim());
-
     let updatedUserInfo: User = {
       id: this.user.id,
       firstname: this.form.get('firstname').value.trim(),
@@ -52,6 +52,7 @@ export class ProfileComponent implements OnInit {
 
     // this line should be put in user service 
     window.localStorage.setItem('user', JSON.stringify(updatedUserInfo));
+    this.user = JSON.parse(window.localStorage.getItem('user'));
 
     this.fillFormGroup(this.user.firstname, this.user.lastname, this.user.email, this.user.username, this.user.password);
     
@@ -59,6 +60,8 @@ export class ProfileComponent implements OnInit {
   }
 
   cancelEditProfile() {
+    this.disableButton = true;
+
     this.user = JSON.parse(window.localStorage.getItem('user'));
 
     this.fillFormGroup(this.user.firstname, this.user.lastname, this.user.email, this.user.username, this.user.password);
@@ -71,25 +74,44 @@ export class ProfileComponent implements OnInit {
       email: [email.trim(), [Validators.required, Validators.email]],
       username: [username.trim(), Validators.required],
       password: [password, Validators.required],
-      retypePassword: ['', Validators.required],
+      confirmPassword: ['', Validators.required],
+    }, {
+      validator: ProfileComponent.MatchPassword // match password validation
     });
   }
+
+  // all input fields must be filled 
+  formFilled(){
+    if(this.form.valid){
+      this.disableButton = false;
+    }
+    else{
+      this.disableButton = true;
+    }
+  }
+
+
+  // https://scotch.io/@ibrahimalsurkhi/match-password-validation-with-angular-2
+  static MatchPassword(AC: AbstractControl) {
+    let password = AC.get('password').value; // to get value in input tag
+    let confirmPassword = AC.get('confirmPassword').value; // to get value in input tag
+     if(password != confirmPassword) {
+         AC.get('confirmPassword').setErrors( {MatchPassword: true} )
+     } else {
+         return null
+     }
+ }
 
 }
 
 /*
-
 TO-DO
 
 validdation:
-- password and retype password must match 
-- usernme must be uniqued (call to the db)
-- email must be uniqued (call to the db) *not required*
+- confrim password only works when 'password' is filled first then 'confirm password'; not vice versa
 
-- mat-error for every field input 
-
-- disabled update button when all inputs are not filled 
-- include 'cancel' button, which brings back to 'view' page and repopulate fields with local storage, which has not been changed 
+- usernme must be uniqued (call to the db) --> mat-error when username is not uniqued 
+- email must be uniqued (call to the db) *not required* --> mat-error when email is not uniqued 
 
 - create a function in user-service which call to the server side and set the data into local storage
 
