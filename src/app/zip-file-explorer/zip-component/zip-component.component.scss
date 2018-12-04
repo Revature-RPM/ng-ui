@@ -28,6 +28,7 @@ $baseColor: rgb(29, 29, 29);
   white-space: pre-wrap;
   background-color: $Saturation100;
   color: rgb(161, 229, 238);
+  cursor: default;
 
 }
 
@@ -144,11 +145,15 @@ button:hover{
 button:click{
   background-color: $Saturation20;
 }
+.selected_p{
+  background-color:  $Saturation80;
+ 
+}
 .btn-container{
   position: relative;
   top: 0;
   left: 0;
-  width: 11%;
+  width: 14%;
   display: block;
   float: left;
   height: 80vh;
@@ -156,12 +161,17 @@ button:click{
   
 }
 .btn-container>div{
+  padding-left:0px;
   height:70vh;
   overflow-y:hidden;
   overflow-x:hidden;
 }
 .btn-container>div>p{
   color: $TextImportant;
+  margin:0px;
+  padding:0px;
+  padding-left:1em;
+  cursor: default;
 }
 .btn-container>div:hover{
   overflow-y:auto;
@@ -203,5 +213,6 @@ button:click{
 }
 .display-text{
   color: $TextImportant;
+  background-color: $Saturation90;
   word-wrap: normal;
 }

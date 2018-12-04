@@ -102,15 +102,15 @@ export class LexPipe implements PipeTransform {
     this.lex[`<span class='token15'>\$&</span>`]  = /(import|package).*/g
     //Simply selects imports/packages. doesn't include items infront of them (ie anuglar)
     this.lex[`<span class='token16'>\$&</span>`]  = /(?<=(class ))\w+/g
-    //simply selects words preceed by reserved token class  uses lookahead 
+    //simply selects words preceed by reserved token class uses lookahead 
     this.lex[`<span class='token9'>\$&</span>`]   = /(?<=(public ))\w+/g 
-    //simply selects tokens preceeded by reserved token public  uses lookahead 
+    //simply selects tokens preceeded by reserved token public uses lookahead 
     this.lex[`<span class='token10'>\$&</span>`]  = /(?<=(private ))\w+/g 
-    //simply selects tokens preceeded by reserved token private.  uses lookahead 
+    //simply selects tokens preceeded by reserved token private.uses lookahead 
     this.lex[`<span class='token11'>\$&</span>`]  = /(?<=(static ))\w+/g 
-    //simply selects tokens preceeded by reserved token static   uses lookahead 
+    //simply selects tokens preceeded by reserved token static uses lookahead 
     this.lex[`<span class='token12'>\$&</span>`]  = /(?<=(protected ))\w+/g 
-    //simply selects tokens preceeded by reserved token protected   uses lookahead 
+    //simply selects tokens preceeded by reserved token protected uses lookahead 
     this.lex[`<span class='token2'>\$&</span>`]   = /public|private|protected|package/g;
     //simply selects reserved tokens public private protected package
     this.lex[`<span class='token3'>\$&</span>`]   = /(?<!\w)(Integer|boolean|Boolean|int|String|Date|long|Long|byte|Byte|char|Char)(?!\w)/g;

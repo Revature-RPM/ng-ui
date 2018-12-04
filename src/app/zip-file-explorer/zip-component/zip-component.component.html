@@ -2,9 +2,9 @@
   <div class="header"><span>JSZip Demo</span></div>
     <div class="btn-container">
       <button (click)='sendRequest()'>🗁</button>
-      <h3 class="display-text">File Explorer</h3>
+      <h4 class="display-text">Explorer</h4>
       <div>
-      <p *ngFor="let help of RenderFile" (click)="SelectedFile = help">{{help.fileName}}</p>
+      <p *ngFor="let help of RenderFile" [class.selected_p]="SelectedFile === help"  (click)="SelectedFile = help">{{help.fileName}}</p>
     </div>
     </div>
   <div class="container_div">
