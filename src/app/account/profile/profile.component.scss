@@ -6,3 +6,9 @@
   #profile-text {
     font-size: 100%;
   }
+
+  ::ng-deep .mat-tooltip {
+    background: lightgrey!important;
+    font-size: 8px!important;
+    color: black!important;
+}
