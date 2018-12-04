@@ -1,3 +1,5 @@
-<p>
-  view-projects works!
-</p>
+<mat-grid-list cols="4" rowHeight="500px">
+  <mat-grid-tile *ngFor="let project of projects">
+    <app-project-card [project]="project"></app-project-card>
+  </mat-grid-tile>
+</mat-grid-list>

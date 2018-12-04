@@ -11,12 +11,15 @@
         {{string}}
     </li>
   </ul> -->
-  <div *ngFor="let help of RenderFile">
-    <details>
-      <summary>{{help.fileName}}</summary>
-      <textarea placeholder={{help.fileContent}} disabled=true></textarea>
+  <div class="file_header">
+    <details *ngFor="let help of RenderFile">
+      <summary (click)="SelectedFile = help">{{help.fileName}}</summary>
+      <!-- <textarea placeholder="{{(help.fileContent | lineNumber)}}" disabled=true></textarea> -->
     </details>
-  </div>
-</div>
+    </div>
+    <div class="editor" [innerHTML]="SelectedFile.fileContent| lineNumber | lex">
+    </div>
+    <!-- <textarea [value]="SelectedFile.fileContent | lineNumber " disabled></textarea> -->
 </div>
 
+</div>
