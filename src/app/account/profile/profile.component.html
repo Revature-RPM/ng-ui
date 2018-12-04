@@ -77,7 +77,7 @@
               <div fxLayout.xs="column">
                 <mat-form-field>
                   <input matInput readonly={{setReadOnly}} type="password" id="inputPassword" placeholder="Password"
-                    formControlName="password" (blur)=formFilled() (mouseleave)=formFilled() required>
+                    formControlName="password" (blur)=retypeConfirmPassword() required>
                   <mat-error *ngIf="form.get('password').hasError('required')">
                     Password is <strong>required</strong>
                   </mat-error>
