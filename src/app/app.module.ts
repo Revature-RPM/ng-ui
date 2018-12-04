@@ -1,6 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatJumbotronModule } from '@angular-material-extensions/jumbotron';
 
 import { AppRoutingModule } from './app-routing.module';
 import { ProjectModule } from './project/project.module';
@@ -19,6 +20,7 @@ import { environment } from '../environments/environment';
     CoreModule,
     HttpClientModule,
     ProjectModule,
+    MatJumbotronModule.forRoot(),
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],

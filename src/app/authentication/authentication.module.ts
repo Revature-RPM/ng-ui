@@ -7,6 +7,7 @@ import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { SharedModule } from '../shared/shared.module';
+import { MatJumbotronModule } from '@angular-material-extensions/jumbotron';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { SharedModule } from '../shared/shared.module';
     CommonModule,
     AuthenticationRoutingModule,
     FormsModule,
-    SharedModule
+    SharedModule,
+    MatJumbotronModule
   ]
 })
 export class AuthenticationModule { }

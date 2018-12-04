@@ -1,0 +1,73 @@
+@import '~@angular/material/theming';
+
+$darker-grey: mat-color($mat-grey, 800);
+$dark-grey: mat-color($mat-grey, 700);
+$light-grey: mat-color($mat-grey, 200);
+$black: mat-color($mat-grey,900);
+
+$font: 'Courier New', sans-serif;
+
+#registration-container {
+    background: $black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 85%;
+    padding-top: 3%;
+    padding-bottom: 9%;
+    
+    mat-card {
+        margin: 0 auto;
+
+        mat-card-header {
+            justify-content: center;
+
+            mat-card-title {
+                color: $black;
+                font-family: $font;
+                font-size: 300%;
+            }
+        }
+
+        mat-card-content {
+            justify-content: center;
+
+            input {
+                color: $dark-grey;
+                font-family: $font;
+                font-size: 120%;
+            }
+
+            #email{
+                padding-left: 25%;
+                text-align: start;
+            }
+
+            button {
+                width: 100%;
+                background-color: $dark-grey;
+                color: $light-grey;
+                font-family: $font;
+                font-size: 120%;
+            }
+
+            button:hover {
+                background-color: $black;
+            }
+
+            a {
+                margin-top: 2%;
+                width: 100%;
+                background: $dark-grey;
+                color: $light-grey;
+                font-family: $font;
+                font-size: 120%;
+            }
+
+            a:hover {
+                background-color: $black;
+                text-decoration: none;
+            }
+        }
+    }
+}
