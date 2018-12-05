@@ -25,11 +25,11 @@ import { SharedModule } from '../shared/shared.module';
 import { MatJumbotronModule } from '@angular-material-extensions/jumbotron';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { TrainerDialogComponent } from './project-submission/trainer-dialog/trainer-dialog.component';
+import {MatDialogModule} from '@angular/material/dialog';
 import { ZipFileExplorerModule } from '../zip-file-explorer/zip-file-explorer.module';
 
 @NgModule({
-  declarations: [HomePageComponent, NavbarComponent, UserActionsComponent, ViewProjectsComponent, ProjectCardComponent, ProjectSubmissionComponent, TrainerDialogComponent],
+  declarations: [HomePageComponent, NavbarComponent, UserActionsComponent, ViewProjectsComponent, ProjectCardComponent, ProjectSubmissionComponent],
   imports: [
     CommonModule,
     ProjectRoutingModule,
@@ -48,7 +48,8 @@ import { ZipFileExplorerModule } from '../zip-file-explorer/zip-file-explorer.mo
     MatJumbotronModule,
     MatFormFieldModule,
     MatInputModule,
-    ZipFileExplorerModule
+    ZipFileExplorerModule,
+    MatDialogModule
   ],
   providers:[ProjectServiceService]
 })
