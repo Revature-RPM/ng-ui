@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { NavbarComponent } from './navbar/navbar.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { ProjectSubmissionComponent } from './project-submission/project-submission.component';
 import { ZipComponentComponent } from '../zip-file-explorer/zip-component/zip-component.component'

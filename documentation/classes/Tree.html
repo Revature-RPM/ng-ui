@@ -139,7 +139,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="123" class="link-to-prism">src/app/zip-file-explorer/zip-component/zip-component.component.ts:123</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="127" class="link-to-prism">src/app/zip-file-explorer/zip-component/zip-component.component.ts:127</a></div>
                             </td>
                         </tr>
 
@@ -173,7 +173,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="122" class="link-to-prism">src/app/zip-file-explorer/zip-component/zip-component.component.ts:122</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="126" class="link-to-prism">src/app/zip-file-explorer/zip-component/zip-component.component.ts:126</a></div>
                             </td>
                         </tr>
 
@@ -212,7 +212,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="124" class="link-to-prism">src/app/zip-file-explorer/zip-component/zip-component.component.ts:124</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="128" class="link-to-prism">src/app/zip-file-explorer/zip-component/zip-component.component.ts:128</a></div>
                             </td>
                         </tr>
 
@@ -257,15 +257,18 @@ import { Observable, Subject } from &#x27;rxjs&#x27;;
 * @author Andrew Mitchem (1810-Oct08-Java-USF)
 */
 export class ZipComponentComponent implements OnInit {
-  RenderStrings: string[] &#x3D; [];
-  RenderFileName: string[] &#x3D; [];
   RenderFile: File[] &#x3D; [];
+  SelectedFile: File;
   /*Constructur: Injects Http Client into the component for use of resource request
   *@param HttpClient standard angular dependency to fire http request.
   *
   */
   constructor(private http: HttpClient) { }
   ngOnInit() {
+    let testfile &#x3D; new File();
+    testfile.fileName &#x3D; &quot;HELP&quot;;
+    testfile.fileContent &#x3D; &quot;HELLO&quot;;
+    this.SelectedFile &#x3D; testfile;
   }
   /*
   * ZipComponentComponent.sendRequest()
@@ -328,6 +331,7 @@ export class ZipComponentComponent implements OnInit {
         let fileName &#x3D; file.name; 
         //save ZipObject file name as once unzip into a  standardfile  we loose acess to this data
         fileName &#x3D; fileName.replace(&quot;reflections-mafia-server-master/src/main/java&quot;,&quot;&quot;) 
+        fileName &#x3D; fileName.substring(fileName.lastIndexOf(&quot;/&quot;)+1)
         //remove leading path
         let helpme &#x3D; file.async(&quot;uint8array&quot;).then(function (data) { //converts the ZipObject 
           let string &#x3D; &#x27;&#x27;;

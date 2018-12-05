@@ -14,7 +14,6 @@ import { MatInputModule, MatButtonModule } from '@angular/material';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { ProjectRoutingModule } from './project-routing.module';
 import { HomePageComponent } from './home-page/home-page.component';
-import { NavbarComponent } from './navbar/navbar.component';
 import { UserActionsComponent } from './user-actions/user-actions.component';
 import { ViewProjectsComponent } from './view-projects/view-projects.component';
 import { ProjectCardComponent } from './view-projects/project-card/project-card.component';
@@ -29,7 +28,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { ZipFileExplorerModule } from '../zip-file-explorer/zip-file-explorer.module';
 
 @NgModule({
-  declarations: [HomePageComponent, NavbarComponent, UserActionsComponent, ViewProjectsComponent, ProjectCardComponent, ProjectSubmissionComponent],
+  declarations: [HomePageComponent, UserActionsComponent, ViewProjectsComponent, ProjectCardComponent, ProjectSubmissionComponent],
   imports: [
     CommonModule,
     ProjectRoutingModule,

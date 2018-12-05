@@ -4,13 +4,14 @@ import { CommonModule } from '@angular/common';
 import { AccountRoutingModule } from './account-routing.module';
 import { ProfileComponent } from './profile/profile.component';
 import { SharedModule } from '../shared/shared.module';
+import { ProjectModule } from '../project/project.module';
 
 @NgModule({
   declarations: [ProfileComponent],
   imports: [
     CommonModule,
     AccountRoutingModule,
-    SharedModule,
+    SharedModule
   ]
 })
 export class AccountModule { }

@@ -1,45 +1,57 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatGridListModule, MatFormFieldModule, MatOptionModule, MatSelectModule, MatButtonModule, MatInputModule, MatCardModule, MatIconModule, MatTooltipModule } from '@angular/material';
+import { MatGridListModule, MatToolbarModule, MatFormFieldModule, MatOptionModule, MatSelectModule, MatButtonModule, MatInputModule, MatCardModule, MatIconModule, MatTooltipModule, MatMenuModule, MatTabsModule, MatDividerModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { MatJumbotronModule } from '@angular-material-extensions/jumbotron';
 import { FlexLayoutModule } from "@angular/flex-layout";
+import { NavbarComponent } from './navbar/navbar.component';
+import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
-  declarations: [],
+  declarations: [NavbarComponent],
   imports: [
     CommonModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatIconModule,
+    MatMenuModule,
+    MatSelectModule,
+    MatTabsModule,
+    MatDividerModule,
+    MatGridListModule,
+    FlexLayoutModule,
     MatCardModule,
+    FormsModule,
+    MatJumbotronModule,
     MatFormFieldModule,
     MatInputModule,
-    MatGridListModule,
     MatOptionModule,
-    MatSelectModule,
-    MatButtonModule,
-    FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    MatJumbotronModule,
-    FlexLayoutModule,
-    MatIconModule,
-    MatTooltipModule,
+    MatTooltipModule
   ],
   exports: [
+    CommonModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatIconModule,
+    MatMenuModule,
+    MatSelectModule,
+    MatTabsModule,
+    MatDividerModule,
+    MatGridListModule,
+    FlexLayoutModule,
     MatCardModule,
+    FormsModule,
+    MatJumbotronModule,
     MatFormFieldModule,
     MatInputModule,
-    MatGridListModule,
     MatOptionModule,
-    MatSelectModule,
-    MatButtonModule,
-    FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    MatJumbotronModule,
-    FlexLayoutModule,
-    MatIconModule,
-    MatTooltipModule
+    MatTooltipModule,
+    NavbarComponent
   ]
 })
 export class SharedModule { }
