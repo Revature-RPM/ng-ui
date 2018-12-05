@@ -1,4 +1,4 @@
-<div id="userActions">
+<div *ngIf="user" id="userActions">
     <mat-toolbar color="accent">
       <mat-toolbar-row>
           <button mat-icon-button (click)="submitProject()">
@@ -10,7 +10,6 @@
                 <ng-template mat-tab-label>
                   <span class="labelColor">Your Projects</span>
                 </ng-template>
-              
               </mat-tab>
             
               <mat-tab>
@@ -37,7 +36,7 @@
               </button>
           </mat-menu>
           <span class="example-fill-remaining-space"></span>
-          <button *ngIf="isAdministrator" mat-button [matMenuTriggerFor]="projectMenu">Type of Project</button>
+          <button *ngIf="user.userRole == 'admin'" mat-button [matMenuTriggerFor]="projectMenu">Type of Project</button>
           <mat-menu  #projectMenu="matMenu">
               <button mat-menu-item>
                   <span>Pending Projects</span>

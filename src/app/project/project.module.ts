@@ -23,10 +23,6 @@ import { ZipFileExplorerModule } from '../zip-file-explorer/zip-file-explorer.mo
   imports: [
     CommonModule,
     ProjectRoutingModule,
-    MatToolbarModule,
-    MatMenuModule,
-    MatTabsModule,
-    MatDividerModule,
     SharedModule,
     ZipFileExplorerModule,
     MatDialogModule

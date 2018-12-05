@@ -20,6 +20,8 @@ import { RouterModule } from '@angular/router';
 import { MatJumbotronModule } from '@angular-material-extensions/jumbotron';
 
 import { NavbarComponent } from './navbar/navbar.component';
+import { SliderModule } from 'angular-image-slider';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [NavbarComponent],
@@ -43,7 +45,14 @@ import { NavbarComponent } from './navbar/navbar.component';
     MatTooltipModule,
     ReactiveFormsModule,
     RouterModule,
-    ScrollDispatchModule
+    MatJumbotronModule,
+    FlexLayoutModule,
+    MatIconModule,
+    MatTooltipModule,
+    ScrollDispatchModule,
+    MatTableModule,
+    SliderModule,
+    MatSortModule
   ],
   exports: [
     FlexLayoutModule,
@@ -62,9 +71,15 @@ import { NavbarComponent } from './navbar/navbar.component';
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
+    NavbarComponent,
     ReactiveFormsModule,
     RouterModule,
-    ScrollDispatchModule
+    ScrollDispatchModule,
+    MatTooltipModule,
+    NavbarComponent,
+    MatTableModule,
+    SliderModule,
+    MatSortModule
   ]
 })
 export class SharedModule { }

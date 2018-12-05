@@ -7,28 +7,28 @@ table {
     overflow: auto;
   }
   
-  tr.example-detail-row {
+  tr.detail-row {
     height: 0;
   }
   
-  tr.example-project-row:not(.example-expanded-row):hover {
+  tr.project-row:not(.expanded-row):hover {
     background: #f5f5f5;
   }
   
-  tr.example-project-row:not(.example-expanded-row):active {
+  tr.project-row:not(.expanded-row):active {
     background: #efefef;
   }
   
-  .example-project-row td {
+  .project-row td {
     border-bottom-width: 0;
   }
   
-  .example-project-detail {
+  .project-detail {
     overflow: hidden;
     display: flex;
   }
   
-  .example-project-diagram {
+  .project-diagram {
     min-width: 80px;
     border: 2px solid black;
     padding: 8px;
@@ -37,16 +37,24 @@ table {
     height: 104px;
   }
   
-  .example-project-symbol {
+ .project-image {
+    max-width: 200px; 
+    max-height: 200px;
+    border: 2px solid black;
+    padding: 8px;
+    margin: 8px 0;
+ }
+
+  .project-name {
     font-weight: bold;
     font-size: 40px;
     line-height: normal;
   }
   
-  .example-project-description {
+  .project-description {
     padding: 16px;
   }
   
-  .example-project-description-attribution {
+  .project-description-attribution {
     opacity: 0.5;
   }
