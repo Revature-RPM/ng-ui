@@ -11,7 +11,6 @@ import { ProjectCardComponent } from './view-projects/project-card/project-card.
 import { ProjectService } from '../core/services/project.service';
 import { SharedModule } from '../shared/shared.module';
 import { ZipFileExplorerModule } from '../zip-file-explorer/zip-file-explorer.module';
-import { MatToolbarModule, MatTabsModule, MatMenuModule, MatDividerModule } from '@angular/material';
 
 @NgModule({
   declarations: [

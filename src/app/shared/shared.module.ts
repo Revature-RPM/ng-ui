@@ -21,6 +21,7 @@ import { MatJumbotronModule } from '@angular-material-extensions/jumbotron';
 
 import { NavbarComponent } from './navbar/navbar.component';
 import { SliderModule } from 'angular-image-slider';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [NavbarComponent],
@@ -50,7 +51,8 @@ import { SliderModule } from 'angular-image-slider';
     MatTooltipModule,
     ScrollDispatchModule,
     MatTableModule,
-    SliderModule
+    SliderModule,
+    MatSortModule
   ],
   exports: [
     FlexLayoutModule,
@@ -76,7 +78,8 @@ import { SliderModule } from 'angular-image-slider';
     MatTooltipModule,
     NavbarComponent,
     MatTableModule,
-    SliderModule
+    SliderModule,
+    MatSortModule
   ]
 })
 export class SharedModule { }

@@ -1,6 +1,7 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { MatSort, MatTableDataSource } from '@angular/material';
 
 import { Project } from 'src/app/core/models/Project';
 import { ProjectService } from 'src/app/core/services/project.service';
@@ -26,14 +27,14 @@ const PROJECT_DATA: Project[] = [
     groupMembers: ['Paul', 'Miles', 'Derek', 'Andrew'], screenShots: ['https://i.ytimg.com/vi/wRx3Uvcktm8/maxresdefault.jpg',
       'https://gfnc1kn6pi-flywheel.netdna-ssl.com/wp-content/uploads/2018/06/best-food-for-pug-puppies-header.jpg',
       'https://buzzsharer.com/wp-content/uploads/2016/04/pug-sleeping-upside.jpg',], zipLinks: ['https://github.com/1810-oct08-java-usf/ng-ui', 'https://github.com/1810-oct08-java-usf/auth-service'],
-    techStack: 'Full-Stack Java Developer', status: 'Approved', description: 'Description of Tratior'
+    techStack: 'Full-Stack Java Developer', status: 'Pending', description: 'Description of Tratior'
   },
   {
     id: 1, name: 'TopShelf', batch: '1810-oct08-java-usf', fullName: 'Wezley Singleton',
     groupMembers: ['Yuki Mano', 'Caleb Massey', 'Shawn Bickel'], screenShots: ['https://i.ytimg.com/vi/wRx3Uvcktm8/maxresdefault.jpg',
       'https://gfnc1kn6pi-flywheel.netdna-ssl.com/wp-content/uploads/2018/06/best-food-for-pug-puppies-header.jpg',
       'https://buzzsharer.com/wp-content/uploads/2016/04/pug-sleeping-upside.jpg',], zipLinks: ['https://github.com/1810-oct08-java-usf/ng-ui', 'https://github.com/1810-oct08-java-usf/auth-service'],
-    techStack: 'Full-Stack Java Developer', status: 'Approved', description: 'description of TopShelf'
+    techStack: 'Full-Stack Java Developer', status: 'Pending', description: 'description of TopShelf'
   },
   {
     id: 2, name: 'Kevin Craft Bacon', batch: '1810-oct08-java-usf', fullName: 'Wezley Singleton',
@@ -88,13 +89,17 @@ const PROJECT_DATA: Project[] = [
 export class ViewProjectsComponent implements OnInit, OnDestroy {
 
   displayedColumns: string[] = ['name', 'batch', 'fullName', 'techStack', 'status']; // change fullName to trainer
-  dataSource = PROJECT_DATA;
+  dataSource: MatTableDataSource<Project>;
+  @ViewChild(MatSort) sort: MatSort;
+
   expandedProject: Project | null;
-  public imagesUrl;
 
   projects: Project[];
   subscription: Subscription;
-  constructor(private viewProjectsService: ProjectService) { }
+  constructor(private viewProjectsService: ProjectService) { 
+    // Assign the data to the data source for the table to render
+    this.dataSource = new MatTableDataSource(PROJECT_DATA);
+   }
 
   /**
  * this is a lifecycle method called once by Angular after ngOnChanges(); it should be used to perform intialization logic; 
@@ -110,12 +115,14 @@ export class ViewProjectsComponent implements OnInit, OnDestroy {
         console.log(projectResponse);
       });
 
-    this.imagesUrl = [
-      'https://i.ytimg.com/vi/wRx3Uvcktm8/maxresdefault.jpg',
-      'https://gfnc1kn6pi-flywheel.netdna-ssl.com/wp-content/uploads/2018/06/best-food-for-pug-puppies-header.jpg',
-      'https://buzzsharer.com/wp-content/uploads/2016/04/pug-sleeping-upside.jpg',
-    ]
+      this.dataSource.sort = this.sort;
 
+
+    // this.imagesUrl = [
+    //   'https://i.ytimg.com/vi/wRx3Uvcktm8/maxresdefault.jpg',
+    //   'https://gfnc1kn6pi-flywheel.netdna-ssl.com/wp-content/uploads/2018/06/best-food-for-pug-puppies-header.jpg',
+    //   'https://buzzsharer.com/wp-content/uploads/2016/04/pug-sleeping-upside.jpg',
+    // ]
   }
 
   /**
@@ -126,5 +133,10 @@ export class ViewProjectsComponent implements OnInit, OnDestroy {
   */
   ngOnDestroy() {
     this.subscription.unsubscribe();
+  }
+
+  // apply filter to the data source table by entering in any string
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 }
