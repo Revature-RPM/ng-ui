@@ -1,8 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Project } from 'src/app/core/models/Project';
 import { Subscription } from 'rxjs';
+<<<<<<< HEAD
 import { ProjectServiceService } from 'src/app/core/services/project-service.service';
 import {animate, state, style, transition, trigger} from '@angular/animations';
+=======
+import { ProjectService } from 'src/app/core/services/project.service';
+>>>>>>> 058c0817660304d5ce32fe5dfff2b4cb07bba413
 
 const PROJECT_DATA: Project[] = [
   {id: 1, name: 'TopShelf', batch: '1810-oct08-java-usf', fullName: 'Wezley Singleton', 
@@ -46,6 +50,7 @@ const PROJECT_DATA: Project[] = [
     ]),
   ],
 })
+<<<<<<< HEAD
 
 export class ViewProjectsComponent implements OnInit {
 
@@ -53,9 +58,12 @@ export class ViewProjectsComponent implements OnInit {
   dataSource = PROJECT_DATA;
   expandedProject: Project | null;
   
+=======
+export class ViewProjectsComponent implements OnInit, OnDestroy {
+>>>>>>> 058c0817660304d5ce32fe5dfff2b4cb07bba413
   projects: Project[];
   subscription: Subscription;
-  constructor(private viewProjectsService: ProjectServiceService) { }
+  constructor(private viewProjectsService: ProjectService) { }
 
     /**
 	 * this is a lifecycle method called once by Angular after ngOnChanges(); it should be used to perform intialization logic; 
@@ -67,8 +75,8 @@ export class ViewProjectsComponent implements OnInit {
     this.subscription = this.viewProjectsService.getAllProjects()
           .subscribe((projectResponse) => {
             this.projects = projectResponse;
-            console.log("got projects")
-            console.log( projectResponse)
+            console.log('got projects');
+            console.log( projectResponse);
             });
   }
 

@@ -1,4 +1,3 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatGridListModule, MatToolbarModule, MatFormFieldModule, MatOptionModule, MatSelectModule, MatButtonModule, MatInputModule, MatCardModule, MatIconModule, MatTooltipModule, MatMenuModule, MatTabsModule, MatDividerModule, MatTableModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -7,6 +6,7 @@ import { MatJumbotronModule } from '@angular-material-extensions/jumbotron';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { ScrollDispatchModule } from '@angular/cdk/scrolling';
 import { NavbarComponent } from './navbar/navbar.component';
+import { NgModule } from '@angular/core';
 
 @NgModule({
   declarations: [NavbarComponent],
@@ -27,6 +27,10 @@ import { NavbarComponent } from './navbar/navbar.component';
     MatFormFieldModule,
     MatInputModule,
     MatOptionModule,
+    MatGridListModule,
+    MatSelectModule,
+    MatButtonModule,
+    FormsModule,
     ReactiveFormsModule,
     RouterModule,
     MatJumbotronModule,
@@ -53,6 +57,10 @@ import { NavbarComponent } from './navbar/navbar.component';
     MatFormFieldModule,
     MatInputModule,
     MatOptionModule,
+    MatGridListModule,
+    MatSelectModule,
+    MatButtonModule,
+    FormsModule,
     ReactiveFormsModule,
     RouterModule,
     ScrollDispatchModule,
