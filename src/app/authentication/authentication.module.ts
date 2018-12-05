@@ -1,13 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 
 import { AuthenticationRoutingModule } from './authentication-routing.module';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { SharedModule } from '../shared/shared.module';
-import { MatJumbotronModule } from '@angular-material-extensions/jumbotron';
 
 @NgModule({
   declarations: [
@@ -18,9 +16,7 @@ import { MatJumbotronModule } from '@angular-material-extensions/jumbotron';
   imports: [
     CommonModule,
     AuthenticationRoutingModule,
-    FormsModule,
-    SharedModule,
-    MatJumbotronModule
+    SharedModule
   ]
 })
 export class AuthenticationModule { }

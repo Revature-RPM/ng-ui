@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { Project } from 'src/app/core/models/Project';
-import { Subscription } from 'rxjs';
-import { ProjectServiceService } from 'src/app/core/services/project-service.service';
 import {animate, state, style, transition, trigger} from '@angular/animations';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+
+import { Project } from 'src/app/core/models/Project';
+import { ProjectService } from 'src/app/core/services/project.service';
 
 const PROJECT_DATA: Project[] = [
   {id: 1, name: 'TopShelf', batch: '1810-oct08-java-usf', fullName: 'Wezley Singleton', 
@@ -46,8 +47,7 @@ const PROJECT_DATA: Project[] = [
     ]),
   ],
 })
-
-export class ViewProjectsComponent implements OnInit {
+export class ViewProjectsComponent implements OnInit, OnDestroy {
 
   displayedColumns: string[] = ['name', 'batch', 'fullName', 'techStack', 'status']; // change fullName to trainer
   dataSource = PROJECT_DATA;
@@ -56,7 +56,7 @@ export class ViewProjectsComponent implements OnInit {
   
   projects: Project[];
   subscription: Subscription;
-  constructor(private viewProjectsService: ProjectServiceService) { }
+  constructor(private viewProjectsService: ProjectService) { }
 
     /**
 	 * this is a lifecycle method called once by Angular after ngOnChanges(); it should be used to perform intialization logic; 
@@ -68,8 +68,8 @@ export class ViewProjectsComponent implements OnInit {
     this.subscription = this.viewProjectsService.getAllProjects()
           .subscribe((projectResponse) => {
             this.projects = projectResponse;
-            console.log("got projects")
-            console.log( projectResponse)
+            console.log('got projects');
+            console.log( projectResponse);
             });
   
             this.imagesUrl = [
