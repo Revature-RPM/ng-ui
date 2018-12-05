@@ -34,7 +34,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     MatIconModule,
     MatTooltipModule,
     ScrollDispatchModule,
-    MatTableModule
+    MatTableModule,
   ],
   exports: [
     CommonModule,
