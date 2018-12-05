@@ -133,10 +133,13 @@ button{
   box-shadow: 2px 2px 8px $Saturation100;
   background-color:  $Saturation80;
   // border-radius: 5px;
-  font-size: 2rem;
+  height:1.5em;
+  width:1.5em;
+  font-size: 2em;
   color: $TextPassive;
-  position: relative;
-  top:0
+  float:left;
+  top:0;
+  clear: left;
 }
 button:hover{
   background-color: $Saturation100;
@@ -145,6 +148,9 @@ button:hover{
 }
 button:click{
   background-color: $Saturation20;
+}
+.btn-home:hover{
+  color: rgb(243, 31, 31);
 }
 .selected_p{
   background-color:  $Saturation80;

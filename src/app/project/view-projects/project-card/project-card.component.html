@@ -1,4 +1,4 @@
-<!-- <mat-card class="example-card">
+<mat-card class="example-card">
     <mat-card-header>
       <mat-card-title>{{ project.name }}</mat-card-title>
     </mat-card-header>
@@ -14,10 +14,5 @@
       <button mat-button *ngIf="admin && !approved">Approve</button>
       <button mat-button (click)="openCodeBase()">CodeBase</button>
     </mat-card-actions>
-  </mat-card> -->
+  </mat-card>
   
-
-
-  <cdk-virtual-scroll-viewport itemSize="50" class="example-viewport">
-      <div *cdkVirtualFor="let item of items" class="example-item">{{item}}</div>
-    </cdk-virtual-scroll-viewport>
