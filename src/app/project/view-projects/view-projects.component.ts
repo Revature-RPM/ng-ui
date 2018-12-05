@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Project } from 'src/app/core/models/Project';
 import { Subscription } from 'rxjs';
-import { ProjectServiceService } from 'src/app/core/services/project-service.service';
+import { ProjectService } from 'src/app/core/services/project.service';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 
 const PROJECT_DATA: Project[] = [
@@ -55,7 +55,7 @@ export class ViewProjectsComponent implements OnInit {
   
   projects: Project[];
   subscription: Subscription;
-  constructor(private viewProjectsService: ProjectServiceService) { }
+  constructor(private viewProjectsService: ProjectService) { }
 
     /**
 	 * this is a lifecycle method called once by Angular after ngOnChanges(); it should be used to perform intialization logic; 
