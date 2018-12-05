@@ -13,7 +13,11 @@
       <button 
                 (click)="SelectedFile = help" 
                 [class.selected_btn]="SelectedFile === help" 
-                *ngFor="let help of OpenFile">{{help.fileName}}</button>
+                *ngFor="let help of OpenFile">
+                <div class="x" (click)="OpenFile.splice( OpenFile.indexOf(help), 1 );">X</div>
+                  {{help.fileName}}
+                  
+      </button>
      
       <!-- <details [open]="SelectedFile === help" (click)="SelectedFile = help" *ngFor="let help of RenderFile">
         <summary >{{help.fileName}}</summary>

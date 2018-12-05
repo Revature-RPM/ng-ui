@@ -103,6 +103,15 @@ textarea{
 .file_header > button:focus{
   outline: none;
 }
+.x{
+  float: left;
+  height: 1em;
+  width: 1em;
+  margin-right: .5em;
+  background-color: rgba(255, 255, 255, 0);
+  padding-top:.5em;
+  font-size: .5em;
+}
 details{
   display: inline-block;
 
