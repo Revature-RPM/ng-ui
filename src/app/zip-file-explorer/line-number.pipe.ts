@@ -3,6 +3,11 @@ import { Pipe, PipeTransform } from '@angular/core';
 @Pipe({
   name: 'lineNumber'
 })
+/*
+  * Class lineNumberPipe
+  * A pipe to insert line numbers. 
+  * @author Andrew Mitchem (1810-Oct08-Java-USF)
+  */
 export class LineNumberPipe implements PipeTransform {
 
   transform(value: string, args?: any): string {
