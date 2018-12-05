@@ -5,6 +5,7 @@ import { first } from 'rxjs/operators';
 import { User } from 'src/app/core/models/User';
 import { LoggedInService, UserService } from '../../core/services/user.service';
 import {FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import {AbstractControl} from '@angular/forms';
 
 @Component({
   selector: 'app-registration', 
@@ -25,8 +26,7 @@ export class RegistrationComponent implements OnInit{
   constructor(private loggedIn: LoggedInService,
               private userService: UserService,
               private router: Router,
-              private _formBuilder: FormBuilder,
-              private _formBuilder1: FormBuilder) { }
+              private _formBuilder: FormBuilder) { }
 
   ngOnInit() {
     if (this.sessionUser) {
@@ -55,15 +55,14 @@ export class RegistrationComponent implements OnInit{
         Validators.required,
         Validators.minLength
       ],
-      verifiedPassword: [
-        Validators.required,
-        Validators.minLength
-      ]
+      verifiedPassword: ['', Validators.required]
+  },{
+    validator: RegistrationComponent.MatchPassword // your validation method
   });
 
   }
   emailPattern = "^[a-zA-Z0-9_.+-]+(?:(?:[a-zA-Z0-9-]+\.)?[a-zA-Z]+\.)?@(revature)\.com$";
-  // usernamePattern = "^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$";
+  usernamePattern = "^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$";
 
   register() {
     console.log(this.user);
@@ -75,4 +74,18 @@ export class RegistrationComponent implements OnInit{
       }
     });
   }
+
+  static MatchPassword(AC: AbstractControl) {
+    let password = AC.get('password').value; // to get value in input tag
+    let confirmPassword = AC.get('verifiedPassword').value; // to get value in input tag
+     if(password != confirmPassword) {
+         console.log('false');
+         AC.get('verifiedPassword').setErrors( {MatchPassword: true} )
+     } else {
+         console.log('true');
+         return null
+     }
+ }
+
 }
+

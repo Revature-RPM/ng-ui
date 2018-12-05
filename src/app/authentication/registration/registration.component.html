@@ -31,20 +31,20 @@
             <ng-template matStepLabel>Select a Username and Password</ng-template>
             <mat-form-field>
               <input matInput placeholder="Username" formControlName="username" 
-                     minLength="4" required [pattern]="usernamePattern" [(ngModel)]="user.username"
-                     oninvalid="setCustomValidity('Username cannot contain underscore at beginning or end')">
-            </mat-form-field>         
-            <br />
-            <mat-form-field>
-              <input matInput type="password" placeholder="Password"
-                     formControlName="password" required [(ngModel)]="user.password"
-                     >
+                     minLength="4" required [pattern]="usernamePattern" [(ngModel)]="user.username">
             </mat-form-field>
             <br />
             <mat-form-field>
-              <input matInput type="password" placeholder="Verify Password" 
+              <input matInput class="form-control" type="password" placeholder="Password"
+                     formControlName="password" required [(ngModel)]="user.password">
+            </mat-form-field>
+            <br />
+            <mat-form-field>
+              <input matInput class="form-control" type="password" placeholder="Verify Password" 
                      formControlName="verifiedPassword" required>
             </mat-form-field>
+            <div class="alert alert-danger"
+            *ngIf="form.controls.confirmPassword.errors?.MutchPassword">Password not match</div>
 
             <div>
               <button mat-button matStepperPrevious>Back</button>
