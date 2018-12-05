@@ -1,10 +1,10 @@
 <div id="toolbar">
     <mat-toolbar class="my-theme" color="accent">
         <mat-toolbar-row>
-                <button id="navbarTitle" mat-icon-button>RPM</button>
+                <button (click)="homepageShortcut()" id="navbarTitle" mat-icon-button>RPM</button>
                 <!-- This fills the remaining space of the current row -->
                 <span class="example-fill-remaining-space"></span>
-            <span *ngIf="loggedIn">
+            <span *ngIf="user">
                     <button mat-icon-button [matMenuTriggerFor]="accountMenu">
                             <mat-icon svgIcon="account"></mat-icon>
                     </button>
@@ -15,12 +15,12 @@
                             <button mat-menu-item  *ngIf="user.userRole == 'admin'">
                                 <span>Creat New Admin</span>
                             </button>
-                            <button mat-menu-item>
+                            <button (click)="logout()" mat-menu-item>
                                 <span>Logout</span>
                             </button>
                         </mat-menu>
             </span>
-            <span *ngIf="!loggedIn">
+            <span *ngIf="!user">
                     <button mat-icon-button [matMenuTriggerFor]="accountMenu">
                             <mat-icon svgIcon="account"></mat-icon>
                     </button>

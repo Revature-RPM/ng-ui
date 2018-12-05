@@ -12,7 +12,6 @@ import { User } from 'src/app/core/models/User';
 export class NavbarComponent implements OnInit {
 
   user: User = {};
-  loggedIn: Boolean = false;
   /**
 	 * the constructor is called when an instance of the class is created
 	 *
@@ -40,9 +39,15 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['/account/`${this.user.id}`']);
   }
 
+  logout(){
+    this.router.navigate(['auth/logout'])
+  }
+
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem('user'));
   }
 
-
+  homepageShortcut(){
+    this.router.navigate(['home']);
+  }
 }

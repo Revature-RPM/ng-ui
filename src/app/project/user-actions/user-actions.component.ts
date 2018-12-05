@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { User } from 'src/app/core/models/User';
 
 @Component({
   selector: 'app-user-actions',
@@ -10,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class UserActionsComponent implements OnInit {
 
-  isAdministrator: Boolean = true;
+  user: User = {};
   /**
 	 * the constructor is called when an instance of the class is created
 	 * 
@@ -31,6 +32,7 @@ export class UserActionsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.user = JSON.parse(localStorage.getItem('user'));
   }
 
 }
