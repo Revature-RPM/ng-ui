@@ -17,19 +17,14 @@ export class ProjectSubmissionComponent implements OnInit {
   ngOnInit() {
   }
 
-<<<<<<< HEAD
    /**
 	 * This method is bound to the event that the form is submitted; all the data of the form is placed as key/value pairs into a FormData object;
-   * the keys and values are reprsentations of the form fields in the form and their values respectively; this FormData object is then sent to the server
-   * as a post request to create a new project 
+   * the keys and values are reprsentations of the form fields in the form and their values respectively; this FormData object is then sent to 
+   * the server as a post request to create a new project 
 	 * @author Shawn Bickel (1810-Oct08-Java-USF)
 	 */
-  submitForm(){
-    var formData = new FormData(); 
-=======
   submitForm() {
     const formData = new FormData();
->>>>>>> 058c0817660304d5ce32fe5dfff2b4cb07bba413
     formData.append('name', this.projectToUpload.name);
     formData.append('batch', this.projectToUpload.batch);
     formData.append('fullName', this.projectToUpload.fullName);

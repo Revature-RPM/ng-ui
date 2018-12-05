@@ -3,9 +3,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 
 import { LexPipe } from './lex.pipe';
-import {CoreModule} from '../core/core.module'
-import { ZipComponent } from './zip/zip.component';
 import { LineNumberPipe } from './line-number.pipe';
+import { ZipComponent } from './zip/zip.component';
+import { CoreModule } from '../core/core.module';
 
 @NgModule({
   declarations: [ZipComponent, LineNumberPipe, LexPipe],

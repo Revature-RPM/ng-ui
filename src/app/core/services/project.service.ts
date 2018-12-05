@@ -15,16 +15,18 @@ const HTTP_OPTIONS = {
 })
 export class ProjectService {
   CurrentProject: Project;
+  
   constructor(private httpClient: HttpClient) { }
 
   getAllProjects(): Observable<Project[]>{
     return this.httpClient.get<Project[]>("http://localhost:8080/spring-mvc/projects", HTTP_OPTIONS);
   }
 
-  createProject(formData: FormData):  Observable<Project>{
+  createProject(formData: FormData): Observable<Project> {
     return this.httpClient.post('endpoint', formData);
   }
-  setCurrentProject(project: Project){
+  
+  setCurrentProject(project: Project) {
     this.CurrentProject = project;
   }
 }
