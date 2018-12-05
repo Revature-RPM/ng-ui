@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { HomePageComponent } from './home-page/home-page.component';
 import { ProjectSubmissionComponent } from './project-submission/project-submission.component';
-import { ZipComponent } from '../zip-file-explorer/zip-component/zip-component.component';
+import { ZipComponent } from '../zip-file-explorer/zip/zip.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent, pathMatch: 'full' }, // home component
