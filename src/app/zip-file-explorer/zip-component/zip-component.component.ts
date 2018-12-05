@@ -28,6 +28,7 @@ import { Location } from '@angular/common';
 export class ZipComponentComponent implements OnInit {
   RenderFile: File[] = [];
   SelectedFile: File;
+  OpenFile: File[] = [];
   /*Constructur: Injects Http Client into the component for use of resource request
   *@param HttpClient standard angular dependency to fire http request.
   *@param ProjectServiceService. injects the project service from core modules

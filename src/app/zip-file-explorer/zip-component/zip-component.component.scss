@@ -1,6 +1,7 @@
 $Saturation100: rgb(24, 23, 23);
 $Saturation90: rgb(39, 38, 38);
 $Saturation80: rgb(54, 53, 53);
+$Saturation80alpha50: rgba(78, 77, 77, 0.452);
 $Saturation20: rgb(134, 134, 134);
 $Contrast: white;
 $Shadow: rgb(161, 236, 154);
@@ -45,8 +46,8 @@ textarea{
     /* box-shadow: 0px 0px 8px rgb(206, 71, 177); */
 }
 ::-webkit-scrollbar-thumb {
-  background-color: $Saturation80;
-  border-radius: 10px;
+  background-color:$Saturation80alpha50;
+  border-radius: 5px;
   -webkit-box-shadow: inset 0 0 6px $Saturation100;
 }
 ::-webkit-scrollbar {
@@ -77,11 +78,37 @@ textarea{
   overflow-x: scroll;
   height: 3em;
 }
+.file_header > button{
+  font-size: 1em;
+  float: none;
+  clear: none;
+  display: inline-block;
+  // border-style: solid;
+  // border-left-color: $Border;
+  // border-right-color:  $Border;
+  // border-top-color:  $Border;
+  // border-bottom-style: none;
+  border-width: 1px;
+  height: 2em;
+  width: 200px;
+  margin:0px;
+  padding-left:1em;
+  background-color: $Saturation80;
+  box-shadow: none;
+}
+.file_header > button.selected_btn{
+  background-color: $Saturation100;
+  color: $TextImportant;
+}
+.file_header > button:focus{
+  outline: none;
+}
 details{
   display: inline-block;
 
   height: 2em;
   width: 200px;
+  cursor: default;
 }
 details:focus{
   border-color: $Border;
@@ -118,6 +145,9 @@ details summary:focus{
   outline: none;
   white-space: nowrap;
 }
+details[open] {
+  background-color: $Saturation100;
+}
 details[open] summary{
   background-color: $Saturation100;
   color: $TextImportant;
@@ -144,10 +174,14 @@ button{
 button:hover{
   background-color: $Saturation100;
   border-color: rgb(255, 203, 212);
-  color: rgb(31, 183, 243);
+  
 }
+
 button:click{
   background-color: $Saturation20;
+}
+.btn-home:hover{
+  color: rgb(31, 183, 243);
 }
 .btn-home:hover{
   color: rgb(243, 31, 31);
