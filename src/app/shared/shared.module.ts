@@ -64,7 +64,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     MatTooltipModule,
     ReactiveFormsModule,
     RouterModule,
-    ScrollDispatchModule
+    ScrollDispatchModule,
+    NavbarComponent
   ]
 })
 export class SharedModule { }

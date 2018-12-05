@@ -12,7 +12,7 @@ import { User } from 'src/app/core/models/User';
 export class NavbarComponent implements OnInit {
 
   user: User = {};
-  loggedIn: Boolean = true;
+  loggedIn: Boolean = false;
   /**
 	 * the constructor is called when an instance of the class is created
 	 * 
