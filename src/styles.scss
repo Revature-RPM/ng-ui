@@ -3,6 +3,12 @@
 
 @import 'theme.scss';
 
+html body {
+  margin: 0px;
+  height: 100;
+  width: 100%;
+}
+
 .my-theme {
     @include angular-material-theme($my-app-theme);
 }
