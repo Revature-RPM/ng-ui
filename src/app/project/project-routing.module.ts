@@ -6,10 +6,10 @@ import { ProjectSubmissionComponent } from './project-submission/project-submiss
 import { ZipComponent } from '../zip-file-explorer/zip/zip.component';
 
 const routes: Routes = [
-  { path: '', component: HomePageComponent, pathMatch: 'full' }, // home component
+  { path: '', component: HomePageComponent, pathMatch: 'full' },
   { path: 'project_submission', component: ProjectSubmissionComponent },
-  // { path: ':id', component:  }, // view project metadata
-  // { path: ':id/edit', component:  }, // make project edits
+  // TODO { path: ':id', component: ViewProjectComponent },
+  // TODO { path: ':id/edit', component: EditProjectComponent },
   { path: ':id/codebase', component: ZipComponent },
   { path: '**', redirectTo: 'home' }
 ];
