@@ -62,6 +62,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
+    NavbarComponent,
     ReactiveFormsModule,
     RouterModule,
     ScrollDispatchModule,

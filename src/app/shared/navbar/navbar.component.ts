@@ -15,7 +15,7 @@ export class NavbarComponent implements OnInit {
   loggedIn: Boolean = false;
   /**
 	 * the constructor is called when an instance of the class is created
-	 * 
+	 *
 	 * @param iconRegistry:  a service to register icons so they can be used with the mat-icon component from Angular Materials
    * @param sanitizer:     prevents cross-site scripting attacks by filtering values to be used in the DOM; in this case it is bypassing
    *                         Angular's default security to use this image asset
