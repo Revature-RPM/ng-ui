@@ -52,6 +52,7 @@ export class ViewProjectsComponent implements OnInit {
   displayedColumns: string[] = ['name', 'batch', 'fullName', 'techStack', 'status']; // change fullName to trainer
   dataSource = PROJECT_DATA;
   expandedProject: Project | null;
+  public imagesUrl;
   
   projects: Project[];
   subscription: Subscription;
@@ -70,7 +71,14 @@ export class ViewProjectsComponent implements OnInit {
             console.log("got projects")
             console.log( projectResponse)
             });
-  }
+  
+            this.imagesUrl = [
+              'https://i.ytimg.com/vi/wRx3Uvcktm8/maxresdefault.jpg', 
+              'https://gfnc1kn6pi-flywheel.netdna-ssl.com/wp-content/uploads/2018/06/best-food-for-pug-puppies-header.jpg', 
+              'https://buzzsharer.com/wp-content/uploads/2016/04/pug-sleeping-upside.jpg',
+            ]
+  
+          }
 
    /**
 	 * this is a lifecycle method called once by Angular before the component is destroyed;

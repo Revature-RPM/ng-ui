@@ -7,6 +7,7 @@ import { MatJumbotronModule } from '@angular-material-extensions/jumbotron';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { ScrollDispatchModule } from '@angular/cdk/scrolling';
 import { NavbarComponent } from './navbar/navbar.component';
+import { SliderModule } from 'angular-image-slider';
 
 @NgModule({
   declarations: [NavbarComponent],
@@ -35,6 +36,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     MatTooltipModule,
     ScrollDispatchModule,
     MatTableModule,
+    SliderModule
   ],
   exports: [
     CommonModule,
@@ -58,7 +60,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     ScrollDispatchModule,
     MatTooltipModule,
     NavbarComponent,
-    MatTableModule
+    MatTableModule,
+    SliderModule
   ]
 })
 export class SharedModule { }
