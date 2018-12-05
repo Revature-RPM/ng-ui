@@ -1,14 +1,14 @@
 import { User } from './User';
 
 export interface Project {
+    id?: number;
     name?: string;
     batch?: string;
-    trainers?: User[];
+    fullName?: string;
     groupMembers?: string[];
-    screenshots?: string[];
-    teamImage?: string;
-    repoLinks?: string[];
-    techStack?: string[];
+    screenShots?: string[];
+    zipLinks?: string[];
+    techStack?: string;
     status?: string;
     description?: string;
  }
