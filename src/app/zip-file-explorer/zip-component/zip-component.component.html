@@ -1,8 +1,9 @@
 <div class="background">
-  <div class="header"><span>JSZip Demo</span></div>
+  <div class="header"><span> Code Base Editor</span></div>
     <div class="btn-container">
       <button (click)='sendRequest()'>🗁</button>
-      <h4 class="display-text">Explorer</h4>
+      <button>⌂</button>
+      <h4 class="display-text"> &#x25b7; Explorer</h4>
       <div>
       <p *ngFor="let help of RenderFile" [class.selected_p]="SelectedFile === help"  (click)="SelectedFile = help">{{help.fileName}}</p>
     </div>

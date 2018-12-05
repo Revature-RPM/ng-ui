@@ -14,6 +14,7 @@ $baseColor: rgb(29, 29, 29);
 }
 .container{
   min-height:100vh;
+  font-family: monospace;
 }
 .editor-container{
   position: static;
@@ -21,7 +22,7 @@ $baseColor: rgb(29, 29, 29);
 .editor{
   widows: 60vw;
   left: 17.4em;
-  height: 80vh;
+  height: 90vh;
   text-align: left;
   overflow-y: scroll;
   overflow-x: auto;
@@ -213,6 +214,6 @@ button:click{
 }
 .display-text{
   color: $TextImportant;
-  background-color: $Saturation90;
+  background-color: $Saturation80;
   word-wrap: normal;
 }

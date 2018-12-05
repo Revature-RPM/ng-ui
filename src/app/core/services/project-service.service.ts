@@ -22,6 +22,6 @@ export class ProjectServiceService {
   }
 
   createProject(formData: FormData):  Observable<Project>{
-    return this.httpClient.post('endpoint', formData, HTTP_OPTIONS);
+    return this.httpClient.post('endpoint', formData);
   }
 }
