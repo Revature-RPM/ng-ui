@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from 'src/app/core/models/User';
-
-import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+
+import { User } from 'src/app/core/models/User';
 
 @Component({
   selector: 'app-profile',
@@ -14,14 +14,14 @@ export class ProfileComponent implements OnInit {
 
   form: FormGroup;
   user: User;
-  setReadOnly: boolean = true;
-  disableButton: boolean = true;
-  filledPassword: boolean = true;
+  setReadOnly = true;
+  disableButton = true;
+  filledPassword = true;
 
   constructor(private router: Router, private fb: FormBuilder) { }
 
   ngOnInit() {
-    let tempUser: User = {
+    const tempUser: User = {
       id: 1,
       firstname: 'Yuki',
       lastname: 'Mano',
@@ -29,20 +29,20 @@ export class ProfileComponent implements OnInit {
       password: 'password',
       userRole: 'trainer',
       email: 'ym@gmail.com',
-    }
+    };
 
     window.localStorage.setItem('user', JSON.stringify(tempUser));
 
-    // pre-fill the profile information with logged-in user information 
+    // pre-fill the profile information with logged-in user information
     this.user = JSON.parse(window.localStorage.getItem('user'));
 
     this.fillFormGroup(this.user.firstname, this.user.lastname, this.user.email, this.user.username, this.user.password);
   }
 
-  // call user-service to update the profile information 
+  // call user-service to update the profile information
   updateProfile() {
     if (this.form.valid) {
-      let updatedUserInfo: User = {
+      const updatedUserInfo: User = {
         id: this.user.id,
         firstname: this.form.get('firstname').value.trim(),
         lastname: this.form.get('lastname').value.trim(),
@@ -52,7 +52,7 @@ export class ProfileComponent implements OnInit {
         userRole: this.user.userRole,
       };
 
-      // this line should be put in user service 
+      // this line should be put in user service
       window.localStorage.setItem('user', JSON.stringify(updatedUserInfo));
       this.user = JSON.parse(window.localStorage.getItem('user'));
 
@@ -71,7 +71,7 @@ export class ProfileComponent implements OnInit {
     this.fillFormGroup(this.user.firstname, this.user.lastname, this.user.email, this.user.username, this.user.password);
   }
 
-  // pre-fill the form  
+  // pre-fill the form
   fillFormGroup(firstname: string, lastname: string, email: string, username: string, password: string) {
     this.form = this.fb.group({
       firstname: [firstname.trim(), Validators.required],
@@ -89,14 +89,13 @@ export class ProfileComponent implements OnInit {
   formFilled() {
     if (this.form.valid) {
       this.disableButton = false;
-    }
-    else {
+    } else {
       this.disableButton = true;
     }
   }
 
   // source: <https://scotch.io/@ibrahimalsurkhi/match-password-validation-with-angular-2>
-  // enable validation error when password is not matched 
+  // enable validation error when password is not matched
   static MatchPassword(AC: AbstractControl) {
     let password = AC.get('password').value; // to get value in input tag
     let confirmPassword = AC.get('confirmPassword').value; // to get value in input tag
@@ -116,8 +115,8 @@ export class ProfileComponent implements OnInit {
 /*
 TO-DO
 
-- usernme must be uniqued (call to the db) --> mat-error when username is not uniqued 
-- email must be uniqued (call to the db) *not required* --> mat-error when email is not uniqued 
+- usernme must be uniqued (call to the db) --> mat-error when username is not uniqued
+- email must be uniqued (call to the db) *not required* --> mat-error when email is not uniqued
 
 - create a function in user-service which call to the server side and set the data into local storage
 

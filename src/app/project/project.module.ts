@@ -1,10 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MatDividerModule } from '@angular/material/divider';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatTabsModule } from '@angular/material/tabs';
-import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { HomePageComponent } from './home-page/home-page.component';
 import { ProjectRoutingModule } from './project-routing.module';
@@ -19,10 +15,10 @@ import { ZipFileExplorerModule } from '../zip-file-explorer/zip-file-explorer.mo
 @NgModule({
   declarations: [
     HomePageComponent,
-    UserActionsComponent,
-    ViewProjectsComponent,
     ProjectCardComponent,
-    ProjectSubmissionComponent
+    ProjectSubmissionComponent,
+    UserActionsComponent,
+    ViewProjectsComponent
   ],
   imports: [
     CommonModule,

@@ -1,13 +1,14 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ZipComponentComponent } from './zip-component/zip-component.component';
-import {HttpClientModule} from '@angular/common/http';
-import { LineNumberPipe } from './line-number.pipe';
+import { HttpClientModule } from '@angular/common/http';
+import { NgModule } from '@angular/core';
+
 import { LexPipe } from './lex.pipe';
-import {CoreModule} from '../core/core.module'
+import { LineNumberPipe } from './line-number.pipe';
+import { ZipComponent } from './zip/zip.component';
+import { CoreModule } from '../core/core.module';
 
 @NgModule({
-  declarations: [ZipComponentComponent, LineNumberPipe, LexPipe],
+  declarations: [ZipComponent, LineNumberPipe, LexPipe],
   imports: [
     CommonModule,
     HttpClientModule,
