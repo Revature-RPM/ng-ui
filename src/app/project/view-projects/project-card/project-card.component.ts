@@ -1,8 +1,9 @@
-import { Component, OnInit, Input  } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { Project } from '../../../core/models/Project';
 import { User } from '../../../core/models/User';
-import { ProjectServiceService } from 'src/app/core/services/project-service.service';
-import { Router } from '@angular/router';
+import { ProjectService } from 'src/app/core/services/project.service';
 
 @Component({
   selector: 'app-project-card',
@@ -12,33 +13,21 @@ import { Router } from '@angular/router';
 export class ProjectCardComponent implements OnInit {
 
   @Input() project: Project;
-  admin: Boolean = true;
-  approved: Boolean = false;  
+  admin = true;
+  approved = false;  
   loggedInUser: User;
   currentimage: string;
-  constructor(private projectservice: ProjectServiceService, private router: Router) {
-      
-   }
+  
+  constructor(private projectservice: ProjectService, private router: Router) {
+  }
 
   ngOnInit() {
-    // this.loggedInUser = JSON.parse(localStorage.getItem('user'));
-    // if(this.loggedInUser.userRole === 'admin'){
-    //   this.admin = true;
-    // }else {
-    //   this.admin = false;
-    // }
-
-    console.log(this.project.techStack[0])
+    console.log(this.project.techStack[0]);
   }
+  
   changeImage(){
-    // console.log("change image")
-    // if(this.project){
-    //   if(this.currentimage==this.project.teamImage)
-    //     this.currentimage = this.project.screenshots[0];
-    //   else
-    //     this.currentimage=this.project.teamImage;
-    // }
   }
+  
   openCodeBase(){
     this.projectservice.setCurrentProject(this.project);
     this.router.navigate(['projects/codebase']);

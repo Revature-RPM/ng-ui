@@ -1,64 +1,70 @@
-import { NgModule } from '@angular/core';
+import { ScrollDispatchModule } from '@angular/cdk/scrolling';
 import { CommonModule } from '@angular/common';
-import { MatGridListModule, MatToolbarModule, MatFormFieldModule, MatOptionModule, MatSelectModule, MatButtonModule, MatInputModule, MatCardModule, MatIconModule, MatTooltipModule, MatMenuModule, MatTabsModule, MatDividerModule, MatTableModule } from '@angular/material';
+import { NgModule } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatSelectModule } from '@angular/material/select';
+import { MatTableModule } from '@angular/material/table';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { MatJumbotronModule } from '@angular-material-extensions/jumbotron';
-import { FlexLayoutModule } from "@angular/flex-layout";
-import { ScrollDispatchModule } from '@angular/cdk/scrolling';
+
 import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [NavbarComponent],
   imports: [
     CommonModule,
-    MatToolbarModule,
+    FlexLayoutModule,
+    FormsModule,
     MatButtonModule,
+    MatCardModule,
+    MatDividerModule,
+    MatFormFieldModule,
+    MatGridListModule,
     MatIconModule,
+    MatInputModule,
+    MatJumbotronModule,
     MatMenuModule,
     MatSelectModule,
+    MatTableModule,
     MatTabsModule,
-    MatDividerModule,
-    MatGridListModule,
-    FlexLayoutModule,
-    MatCardModule,
-    FormsModule,
-    MatJumbotronModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatOptionModule,
+    MatToolbarModule,
+    MatTooltipModule,
     ReactiveFormsModule,
     RouterModule,
-    MatJumbotronModule,
-    FlexLayoutModule,
-    MatIconModule,
-    MatTooltipModule,
-    ScrollDispatchModule,
-    MatTableModule,
+    ScrollDispatchModule
   ],
   exports: [
-    CommonModule,
-    MatToolbarModule,
+    FlexLayoutModule,
+    FormsModule,
     MatButtonModule,
+    MatCardModule,
+    MatDividerModule,
+    MatFormFieldModule,
+    MatGridListModule,
     MatIconModule,
+    MatInputModule,
+    MatJumbotronModule,
     MatMenuModule,
     MatSelectModule,
+    MatTableModule,
     MatTabsModule,
-    MatDividerModule,
-    MatGridListModule,
-    FlexLayoutModule,
-    MatCardModule,
-    FormsModule,
-    MatJumbotronModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatOptionModule,
+    MatToolbarModule,
+    MatTooltipModule,
     ReactiveFormsModule,
     RouterModule,
-    ScrollDispatchModule,
-    MatTooltipModule,
-    NavbarComponent,
-    MatTableModule
+    ScrollDispatchModule
   ]
 })
 export class SharedModule { }
