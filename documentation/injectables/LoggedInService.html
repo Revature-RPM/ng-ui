@@ -215,12 +215,12 @@ ${error.error}&#x60;
   }
 
   login(user: User): Observable&lt;User&gt; {
-    return this.http.post&lt;User&gt;(environment.url + &#x27;customer/login&#x27;, user, httpOptions)
+    return this.http.post&lt;User&gt;(environment.url + &#x27;login&#x27;, user, httpOptions)
     .pipe(catchError(this.handleError));
   }
 
   register(user: User): Observable&lt;User&gt; {
-    return this.http.post&lt;User&gt;(environment.url + &#x27;customer/register&#x27;, user, httpOptions)
+    return this.http.post&lt;User&gt;(environment.url + &#x27;register&#x27;, user, httpOptions)
     .pipe(catchError(this.handleError));
   }
 }

@@ -1,0 +1,27 @@
+<div class="background">
+  <div class="header"><span> Code Base Viewer</span></div>
+    <div class="btn-container">
+      <button class="btn-open btn-side"(click)='sendRequest()'>🗁</button>
+      <button class="btn-home btn-side"(click)='goBack()'>⌂</button>
+      <h4 class="display-text"> &#x25b7; Explorer</h4>
+      <div>
+      <p *ngFor="let help of RenderFile" [class.selected_p]="SelectedFile === help"  (click)="SelectedFile = help; !OpenFile.includes(help) && OpenFile.push(help)">{{help.fileName}}</p>
+    </div>
+    </div>
+  <div class="container_div">
+    <div class="file_header">
+      <button 
+                (click)="SelectedFile = help" 
+                [class.selected_btn]="SelectedFile === help" 
+                *ngFor="let help of OpenFile">{{help.fileName}}</button>
+     
+      <!-- <details [open]="SelectedFile === help" (click)="SelectedFile = help" *ngFor="let help of RenderFile">
+        <summary >{{help.fileName}}</summary>
+      </details> -->
+    </div>
+  <div class="editor" [innerHTML]="SelectedFile.fileContent| lineNumber | lex">  </div>
+
+    <!--  <textarea hidden #editortext (scroll)="scrollEditor()" autocomplete="off" autocorrect="off" autocapitalize="off"
+                spellcheck="false" class="editor-input" [(ngModel)]="SelectedFile.fileContent">  </textarea> -->
+  </div>
+</div>

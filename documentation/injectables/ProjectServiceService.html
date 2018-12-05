@@ -38,7 +38,7 @@
 
 <ol class="breadcrumb">
   <li>Injectables</li>
-  <li>UserService</li>
+  <li>ProjectServiceService</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -56,7 +56,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/core/services/user.service.ts</code>
+            <code>src/app/core/services/project.service.ts</code>
         </p>
 
 
@@ -75,14 +75,10 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#handleError">handleError</a>
+                                <a href="#createProject">createProject</a>
                             </li>
                             <li>
-                                <a href="#login">login</a>
-                            </li>
-                            <li>
-                                <a href="#register">register</a>
+                                <a href="#getAllProjects">getAllProjects</a>
                             </li>
                         </ul>
                     </td>
@@ -102,12 +98,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(http: <a href="https://angular.io/api/common/http/HttpClient" target="_blank">HttpClient</a>)</code>
+<code>constructor(httpClient: <a href="https://angular.io/api/common/http/HttpClient" target="_blank">HttpClient</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/core/services/user.service.ts:19</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/core/services/project.service.ts:16</a></div>
                             </td>
                         </tr>
 
@@ -125,7 +121,7 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>http</td>
+                                                        <td>httpClient</td>
                                                   
                                                         <td>
                                                                     <code><a href="https://angular.io/api/common/http/HttpClient" target="_blank" >HttpClient</a></code>
@@ -154,27 +150,25 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="handleError"></a>
+                        <a name="createProject"></a>
                         <span class="name">
                             <b>
-                                <span class="modifier">Private</span>
-                            handleError
+                            createProject
                             </b>
-                            <a href="#handleError"><span class="icon ion-ios-link"></span></a>
+                            <a href="#createProject"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                            <span class="modifier-icon icon ion-ios-reset"></span>
-                        <code>handleError(error: <a href="https://angular.io/api/common/http/HttpErrorResponse" target="_blank">HttpErrorResponse</a>)</code>
+<code>createProject(formData: FormData)</code>
                     </td>
                 </tr>
 
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/core/services/user.service.ts:23</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/core/services/project.service.ts:24</a></div>
                             </td>
                         </tr>
 
@@ -194,9 +188,9 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>error</td>
+                                                        <td>formData</td>
                                                         <td>
-                                                                    <code><a href="https://angular.io/api/common/http/HttpErrorResponse" target="_blank" >HttpErrorResponse</a></code>
+                                                                    <code>FormData</code>
                                                         </td>
                                                     
                                                     <td>
@@ -211,7 +205,7 @@
                             <div>
                             </div>
                             <div class="io-description">
-                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                <b>Returns : </b>    <code><a href="../interfaces/Project.html" target="_self" >Observable&lt;Project&gt;</a></code>
 
                             </div>
                                 <div class="io-description">
@@ -225,25 +219,25 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="login"></a>
+                        <a name="getAllProjects"></a>
                         <span class="name">
                             <b>
-                            login
+                            getAllProjects
                             </b>
-                            <a href="#login"><span class="icon ion-ios-link"></span></a>
+                            <a href="#getAllProjects"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-<code>login(user: <a href="../interfaces/User.html">User</a>)</code>
+<code>getAllProjects()</code>
                     </td>
                 </tr>
 
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/core/services/user.service.ts:36</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/core/services/project.service.ts:20</a></div>
                             </td>
                         </tr>
 
@@ -252,109 +246,9 @@
                     <td class="col-md-4">
 
                             <div class="io-description">
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>user</td>
-                                                        <td>
-                                                                    <code><a href="../interfaces/User.html" target="_self" >User</a></code>
-                                                        </td>
-                                                    
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                            <div>
-                            </div>
-                            <div class="io-description">
-                                <b>Returns : </b>    <code><a href="../interfaces/User.html" target="_self" >Observable&lt;User&gt;</a></code>
+                                <b>Returns : </b>    <code><a href="../interfaces/Project.html" target="_self" >Observable&lt;Project[]&gt;</a></code>
 
                             </div>
-                                <div class="io-description">
-                                    
-                                </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="register"></a>
-                        <span class="name">
-                            <b>
-                            register
-                            </b>
-                            <a href="#register"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-<code>register(user: <a href="../interfaces/User.html">User</a>)</code>
-                    </td>
-                </tr>
-
-
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/core/services/user.service.ts:41</a></div>
-                            </td>
-                        </tr>
-
-
-                <tr>
-                    <td class="col-md-4">
-
-                            <div class="io-description">
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>user</td>
-                                                        <td>
-                                                                    <code><a href="../interfaces/User.html" target="_self" >User</a></code>
-                                                        </td>
-                                                    
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                            <div>
-                            </div>
-                            <div class="io-description">
-                                <b>Returns : </b>    <code><a href="../interfaces/User.html" target="_self" >Observable&lt;User&gt;</a></code>
-
-                            </div>
-                                <div class="io-description">
-                                    
-                                </div>
                     </td>
                 </tr>
             </tbody>
@@ -366,59 +260,34 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { HttpClient, HttpErrorResponse, HttpHeaders } from &#x27;@angular/common/http&#x27;;
-import { Injectable } from &#x27;@angular/core&#x27;;
-import { BehaviorSubject, Observable, throwError } from &#x27;rxjs&#x27;;
-import { catchError } from &#x27;rxjs/operators&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
+import { HttpClient, HttpHeaders } from &#x27;@angular/common/http&#x27;;
+import { Observable } from &#x27;rxjs&#x27;;
+import { Project } from &#x27;../models/Project&#x27;;
+import { environment } from &#x27;src/environments/environment&#x27;;
 
-import { User } from &#x27;../models/User&#x27;;
-
-import { environment } from &#x27;../../../environments/environment&#x27;;
-
-const httpOptions &#x3D; {
+const HTTP_OPTIONS &#x3D; {
   headers: new HttpHeaders({
-    &#x27;Content-Type&#x27;: &#x27;application/json&#x27;
+    &#x27;Content-type&#x27;: &#x27;application/json&#x27;
   })
 };
 
 @Injectable({
   providedIn: &#x27;root&#x27;
 })
-export class UserService {
+export class ProjectServiceService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private httpClient: HttpClient) { }
 
-  private handleError(error: HttpErrorResponse) {
-    if (error.error instanceof ErrorEvent) {
-      console.error(&#x27;Aw, Snap!\n&#x27; + error.error.message);
-    } else {
-      console.error(
-        &#x60;Error code ${error.status}:
-${error.error}&#x60;
-      );
-    }
-
-    return throwError(&#x27;Something went wrong; please try again later.&#x27;);
+  getAllProjects(): Observable&lt;Project[]&gt;{
+    return this.httpClient.get&lt;Project[]&gt;(&quot;http://localhost:8080/spring-mvc/projects&quot;, HTTP_OPTIONS);
   }
 
-  login(user: User): Observable&lt;User&gt; {
-    return this.http.post&lt;User&gt;(environment.url + &#x27;login&#x27;, user, httpOptions)
-    .pipe(catchError(this.handleError));
-  }
-
-  register(user: User): Observable&lt;User&gt; {
-    return this.http.post&lt;User&gt;(environment.url + &#x27;register&#x27;, user, httpOptions)
-    .pipe(catchError(this.handleError));
+  createProject(formData: FormData):  Observable&lt;Project&gt;{
+    return this.httpClient.post(&#x27;endpoint&#x27;, formData, HTTP_OPTIONS);
   }
 }
-
-@Injectable({
-  providedIn: &#x27;root&#x27;
-})
-export class LoggedInService {
-  userExists &#x3D; Boolean(localStorage.getItem(&#x27;user&#x27;));
-  public loggedIn: BehaviorSubject&lt;boolean&gt; &#x3D; new BehaviorSubject&lt;boolean&gt;(this.userExists);
-}</code></pre>
+</code></pre>
     </div>
 
 </div>
@@ -450,7 +319,7 @@ export class LoggedInService {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
-            var COMPODOC_CURRENT_PAGE_URL = 'UserService.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'ProjectServiceService.html';
        </script>
 
        <script src="../js/libs/custom-elements.min.js"></script>

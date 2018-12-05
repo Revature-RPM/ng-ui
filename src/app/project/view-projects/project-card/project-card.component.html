@@ -11,6 +11,7 @@
     <mat-card-actions>
       <button mat-button>Edit</button>
       <button mat-button *ngIf="admin && !approved">Approve</button>
+      <button mat-button (click)="openCodeBase()">CodeBase</button>
     </mat-card-actions>
   </mat-card>
   

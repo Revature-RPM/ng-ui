@@ -61,7 +61,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/account/profile/profile.component.ts</code>
+            <code>src/app/project/view-projects/view-projects.component.ts</code>
         </p>
 
 
@@ -223,8 +223,9 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
-import { User } from &#x27;src/app/core/models/User&#x27;;
-
+import { Project } from &#x27;src/app/core/models/Project&#x27;;
+import { Subscription } from &#x27;rxjs&#x27;;
+import { ProjectService } from &#x27;src/app/core/services/project.service&#x27;;
 
 export interface Tile {
   color: string;
@@ -233,35 +234,41 @@ export interface Tile {
   text: string;
 }
 
+
 @Component({
-  selector: &#x27;app-profile&#x27;,
-  templateUrl: &#x27;./profile.component.html&#x27;,
-  styleUrls: [&#x27;./profile.component.scss&#x27;]
+  selector: &#x27;app-view-projects&#x27;,
+  templateUrl: &#x27;./view-projects.component.html&#x27;,
+  styleUrls: [&#x27;./view-projects.component.scss&#x27;]
 })
-export class ProfileComponent implements OnInit {
+export class ViewProjectsComponent implements OnInit {
+  projects: Project[];
+  subscription: Subscription;
+  constructor(private viewProjectsService: ProjectServiceService) { }
 
-  user: User &#x3D; {
-    id: 1,
-    firstname: &#x27;Yuki&#x27;,
-    lastname: &#x27;Mano&#x27;,
-    username: &#x27;ysm&#x27;,
-    password: &#x27;password&#x27;,
-    userRole: &#x27;trainer&#x27;,
-    email: &#x27;ym@gmail.com&#x27;,
-  }
-
-  constructor() { }
-
+    /**
+	 * this is a lifecycle method called once by Angular after ngOnChanges(); it should be used to perform intialization logic; 
+   * the content of the method includes a call to a service to consume information from an endpoint concerning projects; an observable 
+   * is subscribed to and the returned projects are placed in an array to be displayed in a grid view.
+	 * @author Shawn Bickel (1810-Oct08-Java-USF)
+	 */
   ngOnInit() {
+    this.subscription &#x3D; this.viewProjectsService.getAllProjects()
+          .subscribe((projectResponse) &#x3D;&gt; {
+            this.projects &#x3D; projectResponse;
+            console.log(&quot;got projects&quot;)
+            console.log( projectResponse)
+            });
   }
 
-  tiles: Tile[] &#x3D; [
-    {text: &#x27;One&#x27;, cols: 3, rows: 1, color: &#x27;lightblue&#x27;},
-    {text: &#x27;Two&#x27;, cols: 1, rows: 2, color: &#x27;lightgreen&#x27;},
-    {text: &#x27;Three&#x27;, cols: 1, rows: 1, color: &#x27;lightpink&#x27;},
-    {text: &#x27;Four&#x27;, cols: 2, rows: 1, color: &#x27;#DDBDF1&#x27;},
-  ];
-
+   /**
+	 * this is a lifecycle method called once by Angular before the component is destroyed;
+   * it is usually used to close resources such as unsubscribing from the observable&#x27;s data stream;
+   * resources should be released to avoid memory leaks
+	 * @author Shawn Bickel (1810-Oct08-Java-USF)
+	 */
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
 }
 </code></pre>
     </div>

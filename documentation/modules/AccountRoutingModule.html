@@ -73,11 +73,9 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &#x27;@angular/core&#x27;;
 import { Routes, RouterModule } from &#x27;@angular/router&#x27;;
 import { ProfileComponent } from &#x27;./profile/profile.component&#x27;;
-import { EditProfileComponent } from &#x27;./edit-profile/edit-profile.component&#x27;;
 
 const routes: Routes &#x3D; [
   { path: &#x27;:id&#x27;, component: ProfileComponent },
-  { path: &#x27;:id/edit&#x27;, component: EditProfileComponent }
 ];
 
 @NgModule({
