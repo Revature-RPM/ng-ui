@@ -24,10 +24,6 @@ import { MatToolbarModule, MatTabsModule, MatMenuModule, MatDividerModule } from
   imports: [
     CommonModule,
     ProjectRoutingModule,
-    MatToolbarModule,
-    MatMenuModule,
-    MatTabsModule,
-    MatDividerModule,
     SharedModule,
     ZipFileExplorerModule,
     MatDialogModule
