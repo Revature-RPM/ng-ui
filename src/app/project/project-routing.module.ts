@@ -5,13 +5,12 @@ import { ProjectSubmissionComponent } from './project-submission/project-submiss
 import { ZipComponentComponent } from '../zip-file-explorer/zip-component/zip-component.component'
 
 const routes: Routes = [
-  { path: 'home', component: HomePageComponent }, // home component
-  { path: 'home/project_submission', component: ProjectSubmissionComponent},
-  // { path: ':id', component:  }, // view project metadata
-  // { path: ':id/code', component:  }, // view project codebase
-  // { path: ':id/edit', component:  }, // make project edits
-  // { path: '**', redirectTo: 'home' }
-  { path: 'codebase', component: ZipComponentComponent}
+  { path: '', component: HomePageComponent, pathMatch: 'full' },
+  { path: 'project_submission', component: ProjectSubmissionComponent },
+  // TODO { path: ':id', component: ViewProjectComponent },
+  // TODO { path: ':id/edit', component: EditProjectComponent },
+  { path: ':id/codebase', component: ZipComponent },
+  { path: '**', redirectTo: 'home' }
 ];
 
 @NgModule({
