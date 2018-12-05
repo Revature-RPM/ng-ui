@@ -3,6 +3,8 @@ import * as JSZip from 'jszip';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Observable, Subject } from 'rxjs';
+import { ProjectServiceService } from 'src/app/core/services/project-service.service';
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-zip-component',
   templateUrl: './zip-component.component.html',
@@ -26,16 +28,19 @@ import { Observable, Subject } from 'rxjs';
 export class ZipComponentComponent implements OnInit {
   RenderFile: File[] = [];
   SelectedFile: File;
+  OpenFile: File[] = [];
   /*Constructur: Injects Http Client into the component for use of resource request
   *@param HttpClient standard angular dependency to fire http request.
-  *
+  *@param ProjectServiceService. injects the project service from core modules
+  *@author Andrew Mitchem (1810-Oct08-Java-USF)
   */
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private projectservice: ProjectServiceService, private location: Location) { }
   ngOnInit() {
     let testfile = new File();
     testfile.fileName = "HELP";
     testfile.fileContent = "HELLO";
     this.SelectedFile = testfile;
+    console.log(this.projectservice.CurrentProject);
   }
   /*
   * ZipComponentComponent.sendRequest()
@@ -43,6 +48,9 @@ export class ZipComponentComponent implements OnInit {
   * @author Andrew Mitchem (1810-Oct08-Java-USF)
   * 
   */
+ goBack(){
+   this.location.back();
+ }
   sendRequest(){
     //reponse type is arraybuffer so the get request knows this is a oclet-array-stream request
     this.http.get('http://localhost:8080/spring-mvc/files', {responseType: 'arraybuffer'})

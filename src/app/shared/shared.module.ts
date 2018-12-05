@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatGridListModule, MatToolbarModule, MatFormFieldModule, MatOptionModule, MatSelectModule, MatButtonModule, MatInputModule, MatCardModule, MatIconModule, MatTooltipModule, MatMenuModule, MatTabsModule, MatDividerModule } from '@angular/material';
+import { MatGridListModule, MatToolbarModule, MatFormFieldModule, MatOptionModule, MatSelectModule, MatButtonModule, MatInputModule, MatCardModule, MatIconModule, MatTooltipModule, MatMenuModule, MatTabsModule, MatDividerModule, MatTableModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { MatJumbotronModule } from '@angular-material-extensions/jumbotron';
 import { FlexLayoutModule } from "@angular/flex-layout";
+import { ScrollDispatchModule } from '@angular/cdk/scrolling';
 import { NavbarComponent } from './navbar/navbar.component';
-import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
   declarations: [NavbarComponent],
@@ -29,7 +29,12 @@ import { BrowserModule } from '@angular/platform-browser';
     MatOptionModule,
     ReactiveFormsModule,
     RouterModule,
-    MatTooltipModule
+    MatJumbotronModule,
+    FlexLayoutModule,
+    MatIconModule,
+    MatTooltipModule,
+    ScrollDispatchModule,
+    MatTableModule,
   ],
   exports: [
     CommonModule,
@@ -50,8 +55,10 @@ import { BrowserModule } from '@angular/platform-browser';
     MatOptionModule,
     ReactiveFormsModule,
     RouterModule,
+    ScrollDispatchModule,
     MatTooltipModule,
-    NavbarComponent
+    NavbarComponent,
+    MatTableModule
   ]
 })
 export class SharedModule { }
