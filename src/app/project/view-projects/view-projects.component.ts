@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Project } from 'src/app/core/models/Project';
 import { Subscription } from 'rxjs';
 import { ProjectService } from 'src/app/core/services/project.service';
@@ -47,7 +47,7 @@ const PROJECT_DATA: Project[] = [
   ],
 })
 
-export class ViewProjectsComponent implements OnInit {
+export class ViewProjectsComponent implements OnInit, OnDestroy {
 
   displayedColumns: string[] = ['name', 'batch', 'fullName', 'techStack', 'status']; // change fullName to trainer
   dataSource = PROJECT_DATA;
