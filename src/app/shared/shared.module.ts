@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { MatJumbotronModule } from '@angular-material-extensions/jumbotron';
 import { FlexLayoutModule } from "@angular/flex-layout";
+import { ScrollDispatchModule } from '@angular/cdk/scrolling';
 
 @NgModule({
   declarations: [],
@@ -24,6 +25,7 @@ import { FlexLayoutModule } from "@angular/flex-layout";
     FlexLayoutModule,
     MatIconModule,
     MatTooltipModule,
+    ScrollDispatchModule,
   ],
   exports: [
     MatCardModule,
@@ -39,7 +41,8 @@ import { FlexLayoutModule } from "@angular/flex-layout";
     MatJumbotronModule,
     FlexLayoutModule,
     MatIconModule,
-    MatTooltipModule
+    MatTooltipModule,
+    ScrollDispatchModule
   ]
 })
 export class SharedModule { }
