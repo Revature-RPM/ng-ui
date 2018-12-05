@@ -34,7 +34,8 @@ export class RegistrationComponent implements OnInit {
       if (user) {
         localStorage.setItem('user', JSON.stringify(user));
         this.loggedIn.loggedIn.next(true);
-        this.router.navigate(['']);
+        this.router.navigate(['auth/login']);
+
       }
     });
   }

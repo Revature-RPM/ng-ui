@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
       if (user) {
         localStorage.setItem('user', JSON.stringify(user));
         this.loggedIn.loggedIn.next(true);
-        this.router.navigate(['']);
+        this.router.navigate(['/projects/home']);
       }
     });
   }
