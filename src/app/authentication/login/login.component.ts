@@ -11,7 +11,6 @@ import { LoggedInService, UserService } from '../../core/services/user.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  // sessionUser = localStorage.getItem('user');
   sessionUser = false;
   user: User = {};
 

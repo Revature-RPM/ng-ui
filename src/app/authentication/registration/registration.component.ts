@@ -4,15 +4,15 @@ import { first } from 'rxjs/operators';
 
 import { User } from 'src/app/core/models/User';
 import { LoggedInService, UserService } from '../../core/services/user.service';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-registration', 
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.scss'],
-
 })
-export class RegistrationComponent implements OnInit {
+
+export class RegistrationComponent implements OnInit{
   isValid = true;
   // sessionUser = localStorage.getItem('user');
   sessionUser = false;
@@ -22,23 +22,48 @@ export class RegistrationComponent implements OnInit {
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
 
-
   constructor(private loggedIn: LoggedInService,
               private userService: UserService,
               private router: Router,
-              private _formBuilder: FormBuilder) { }
+              private _formBuilder: FormBuilder,
+              private _formBuilder1: FormBuilder) { }
 
   ngOnInit() {
     if (this.sessionUser) {
       this.router.navigate(['']);
     }
     this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required]
+      firstName: [
+        Validators.required,
+        Validators.minLength
+      ],
+      lastName:[
+        Validators.required,
+        Validators.minLength
+      ],
+      email:[
+        Validators.required,
+        Validators.minLength
+      ]
     });
     this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required]
-    });
+      username: [
+        Validators.required,
+        Validators.minLength
+      ],
+      password: [
+        Validators.required,
+        Validators.minLength
+      ],
+      verifiedPassword: [
+        Validators.required,
+        Validators.minLength
+      ]
+  });
+
   }
+  emailPattern = "^[a-zA-Z0-9_.+-]+(?:(?:[a-zA-Z0-9-]+\.)?[a-zA-Z]+\.)?@(revature)\.com$";
+  // usernamePattern = "^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$";
 
   register() {
     console.log(this.user);
