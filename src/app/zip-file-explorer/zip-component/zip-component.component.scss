@@ -8,9 +8,30 @@ $Border: rgb(66, 66, 66);
 $TextImportant: white;
 $TextPassive: gray;
 $baseColor: rgb(29, 29, 29);
+.background{
+  background-color: $baseColor;
+   min-height:98vh;
+}
 .container{
   min-height:100vh;
 }
+.editor-container{
+  position: static;
+}
+.editor{
+  widows: 60vw;
+  left: 17.4em;
+  height: 80vh;
+  text-align: left;
+  overflow-y: scroll;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  background-color: $Saturation100;
+  color: rgb(161, 229, 238);
+  cursor: default;
+
+}
+
 textarea{
     height: 30em;
     width: 50em;
@@ -44,17 +65,30 @@ textarea{
     color:  $TextImportant;
     opacity: 1;
   }
+.file_header{
+  overflow-x: hidden;
+  overflow-y: hidden;
+  height: 2.2em;
+  width: 100%;
+  white-space: nowrap; 
+}
+.file_header:hover{
+  overflow-x: scroll;
+  height: 3em;
+}
 details{
-  margin-top:0px;
-  width:70%;
-  margin-left:0%;
+  display: inline-block;
+
+  height: 2em;
+  width: 200px;
 }
 details:focus{
   border-color: $Border;
+  margin:0px;
 }
 details summary{
-  padding-top:1em;
-  vertical-align: middle;
+  display: inline-block;
+  padding-top:.25em;
   overflow: hidden; 
   /* box-shadow: 0px 0px 8px rgb(231, 247, 89); */
   /* border-radius: 5px; */
@@ -65,9 +99,8 @@ details summary{
   border-top-color:  $Border;
   border-bottom-style: none;
   border-width: 1px;
-  max-width: 40%;
-  min-width: 40%;
   height: 2em;
+  width: 200px;
   padding-left:1em;
   background-color: $Saturation80;
   color: $TextPassive;
@@ -82,9 +115,7 @@ details summary::-webkit-details-marker {
 details summary:focus{
   /* box-shadow: 0px 0px 8px rgb(247, 71, 138); */
   outline: none;
-  width: auto;
   white-space: nowrap;
-  min-width: 40%;
 }
 details[open] summary{
   background-color: $Saturation100;
@@ -114,16 +145,38 @@ button:hover{
 button:click{
   background-color: $Saturation20;
 }
+.selected_p{
+  background-color:  $Saturation80;
+ 
+}
 .btn-container{
   position: relative;
   top: 0;
   left: 0;
-  width: 11%;
+  width: 14%;
   display: block;
   float: left;
-  height:90%;
+  height: 80vh;
   background-color: $baseColor;
+  
 }
+.btn-container>div{
+  padding-left:0px;
+  height:70vh;
+  overflow-y:hidden;
+  overflow-x:hidden;
+}
+.btn-container>div>p{
+  color: $TextImportant;
+  margin:0px;
+  padding:0px;
+  padding-left:1em;
+  cursor: default;
+}
+.btn-container>div:hover{
+  overflow-y:auto;
+}
+
 .container_div{
   margin-top: 1px;
   margin-left: 0px;
@@ -160,5 +213,6 @@ button:click{
 }
 .display-text{
   color: $TextImportant;
+  background-color: $Saturation90;
   word-wrap: normal;
 }

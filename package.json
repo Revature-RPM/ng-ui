@@ -7,10 +7,12 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "compodoc": "./node_modules/.bin/compodoc -p src/tsconfig.app.json"
   },
   "private": true,
   "dependencies": {
+    "@angular-material-extensions/jumbotron": "^1.0.1",
     "@angular/animations": "^7.0.4",
     "@angular/cdk": "^7.1.0",
     "@angular/common": "~7.0.0",
@@ -25,12 +27,13 @@
     "@angular/pwa": "^0.11.0",
     "@angular/router": "~7.0.0",
     "@angular/service-worker": "~7.0.0",
-    "@ng-bootstrap/ng-bootstrap": "^4.0.0",
-    "bootstrap": "^4.0.0-alpha.6",
     "core-js": "^2.5.4",
-    "font-awesome": "^4.7.0",
     "hammerjs": "^2.0.8",
+<<<<<<< HEAD
     "jquery": "^1.9.1",
+=======
+    "jquery": "^3.3.1",
+>>>>>>> bc9ec42bb3e6a14f20cf6c4587a624bb613ff4bb
     "jszip": "^3.1.5",
     "popper.js": "^1.14.3",
     "rxjs": "~6.3.3",
