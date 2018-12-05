@@ -7,11 +7,11 @@ import { ProjectService } from 'src/app/core/services/project.service';
 import { Location } from '@angular/common';
 @Component({
   selector: 'app-zip-component',
-  templateUrl: './zip-component.component.html',
-  styleUrls: ['./zip-component.component.scss']
+  templateUrl: './zip.component.html',
+  styleUrls: ['./zip.component.scss']
 })
 /*
-* ZipComponentComponent is Reponsible for Unzipping and Rendering a file.zip
+* ZipComponent is Reponsible for Unzipping and Rendering a file.zip
 *
 * If stream is unresovable error when ng serve and attempt to render
 * then in tsconfig.json (no .app.json or event tsoncif.spec.json. the top level tsconfig.json)
@@ -25,13 +25,13 @@ import { Location } from '@angular/common';
     },
 * @author Andrew Mitchem (1810-Oct08-Java-USF)
 */
-export class ZipComponentComponent implements OnInit {
+export class ZipComponent implements OnInit {
   RenderFile: File[] = [];
   SelectedFile: File;
   OpenFile: File[] = [];
   /*Constructur: Injects Http Client into the component for use of resource request
   *@param HttpClient standard angular dependency to fire http request.
-  *@param ProjectServiceService. injects the project service from core modules
+  *@param ProjectService. injects the project service from core modules
   *@author Andrew Mitchem (1810-Oct08-Java-USF)
   */
   constructor(private http: HttpClient, private projectservice: ProjectService, private location: Location) { }
@@ -43,7 +43,7 @@ export class ZipComponentComponent implements OnInit {
     console.log(this.projectservice.CurrentProject);
   }
   /*
-  * ZipComponentComponent.sendRequest()
+  * ZipComponent.sendRequest()
   * Fire off an http request for given request. 
   * @author Andrew Mitchem (1810-Oct08-Java-USF)
   * 
@@ -64,7 +64,7 @@ export class ZipComponentComponent implements OnInit {
     });
   }
   /*
-  * ZipComponentComponent.sendRequest()
+  * ZipComponent.sendRequest()
   * unpacks a zip blob(ui8array) and opens with JSZip (zip is the reference variable)
   * @param data. ui8array blob object that "is" a valid zip file. 
   * @author Andrew Mitchem (1810-Oct08-Java-USF)
@@ -93,7 +93,7 @@ export class ZipComponentComponent implements OnInit {
       // })
   }
    /*
-  * ZipComponentComponent.parseFiles(file)
+  * ZipComponent.parseFiles(file)
   * opens and individual zip file. This method ignores files that are directories (ie. not files with contnet)
   * @param file. ZipObject (class of JSzip) to be unpacked into a normal blob object
   * @author Andrew Mitchem (1810-Oct08-Java-USF)
