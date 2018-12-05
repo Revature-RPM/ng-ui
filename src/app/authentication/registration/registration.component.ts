@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 
 import { User } from 'src/app/core/models/User';
-import { LoggedInService, UserService } from '../../core/services/user.service';
+import { UserService } from '../../core/services/user.service';
 
 @Component({
   selector: 'app-registration',
@@ -11,16 +11,11 @@ import { LoggedInService, UserService } from '../../core/services/user.service';
   styleUrls: ['./registration.component.scss']
 })
 export class RegistrationComponent implements OnInit {
-  isValid = true;
-  // sessionUser = localStorage.getItem('user');
-  sessionUser = false;
+  sessionUser = false; // localStorage.getItem('user');
   user: User = {};
-  isChecked = true;
 
 
-  constructor(private loggedIn: LoggedInService,
-              private userService: UserService,
-              private router: Router) { }
+  constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit() {
     if (this.sessionUser) {
@@ -33,7 +28,6 @@ export class RegistrationComponent implements OnInit {
     this.userService.register(this.user).pipe(first()).subscribe((user) => {
       if (user) {
         localStorage.setItem('user', JSON.stringify(user));
-        this.loggedIn.loggedIn.next(true);
         this.router.navigate(['']);
       }
     });
