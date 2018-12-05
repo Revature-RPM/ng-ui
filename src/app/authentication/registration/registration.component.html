@@ -35,17 +35,14 @@
             </mat-form-field>
             <br />
             <mat-form-field>
-              <input matInput class="form-control" type="password" placeholder="Password"
+              <input matInput type="password" placeholder="Password"
                      formControlName="password" required [(ngModel)]="user.password">
             </mat-form-field>
             <br />
             <mat-form-field>
-              <input matInput class="form-control" type="password" placeholder="Verify Password" 
+              <input matInput type="password" placeholder="Verify Password" 
                      formControlName="verifiedPassword" required>
             </mat-form-field>
-            <div class="alert alert-danger"
-            *ngIf="form.controls.confirmPassword.errors?.MutchPassword">Password not match</div>
-
             <div>
               <button mat-button matStepperPrevious>Back</button>
               <button mat-button matStepperNext type="submit" ng-disabled=!vm.form.$valid>Next</button>
