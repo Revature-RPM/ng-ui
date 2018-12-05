@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Project } from 'src/app/core/models/Project';
 import { Subscription } from 'rxjs';
-import { ProjectServiceService } from 'src/app/core/services/project-service.service';
+import { ProjectService } from 'src/app/core/services/project.service';
 
 export interface Tile {
   color: string;
@@ -16,17 +16,17 @@ export interface Tile {
   templateUrl: './view-projects.component.html',
   styleUrls: ['./view-projects.component.scss']
 })
-export class ViewProjectsComponent implements OnInit {
+export class ViewProjectsComponent implements OnInit, OnDestroy {
   projects: Project[];
   subscription: Subscription;
-  constructor(private viewProjectsService: ProjectServiceService) { }
+  constructor(private viewProjectsService: ProjectService) { }
 
   ngOnInit() {
     this.subscription = this.viewProjectsService.getAllProjects()
           .subscribe((projectResponse) => {
             this.projects = projectResponse;
-            console.log("got projects")
-            console.log( projectResponse)
+            console.log('got projects');
+            console.log( projectResponse);
             });
   }
 
