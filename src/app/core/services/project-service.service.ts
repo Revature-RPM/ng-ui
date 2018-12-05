@@ -14,7 +14,7 @@ const HTTP_OPTIONS = {
   providedIn: 'root'
 })
 export class ProjectServiceService {
-
+  CurrentProject: Project;
   constructor(private httpClient: HttpClient) { }
 
   getAllProjects(): Observable<Project[]>{
@@ -23,5 +23,8 @@ export class ProjectServiceService {
 
   createProject(formData: FormData):  Observable<Project>{
     return this.httpClient.post('endpoint', formData);
+  }
+  setCurrentProject(project: Project){
+    this.CurrentProject = project;
   }
 }
