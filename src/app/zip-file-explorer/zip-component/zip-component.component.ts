@@ -3,7 +3,7 @@ import * as JSZip from 'jszip';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Observable, Subject } from 'rxjs';
-import { ProjectServiceService } from 'src/app/core/services/project-service.service';
+import { ProjectService } from 'src/app/core/services/project.service';
 import { Location } from '@angular/common';
 @Component({
   selector: 'app-zip-component',
@@ -34,7 +34,7 @@ export class ZipComponentComponent implements OnInit {
   *@param ProjectServiceService. injects the project service from core modules
   *@author Andrew Mitchem (1810-Oct08-Java-USF)
   */
-  constructor(private http: HttpClient, private projectservice: ProjectServiceService, private location: Location) { }
+  constructor(private http: HttpClient, private projectservice: ProjectService, private location: Location) { }
   ngOnInit() {
     let testfile = new File();
     testfile.fileName = "HELP";
@@ -144,4 +144,3 @@ class File{
   fileName: String;
   fileContent: String;
 }
-
