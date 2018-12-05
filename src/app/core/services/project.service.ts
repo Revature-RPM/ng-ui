@@ -13,7 +13,7 @@ const HTTP_OPTIONS = {
 @Injectable({
   providedIn: 'root'
 })
-export class ProjectServiceService {
+export class ProjectService {
   CurrentProject: Project;
   constructor(private httpClient: HttpClient) { }
 
