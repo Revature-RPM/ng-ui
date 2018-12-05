@@ -182,7 +182,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/authentication/registration/registration.component.ts:17</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/authentication/registration/registration.component.ts:18</a></div>
                             </td>
                         </tr>
 
@@ -275,7 +275,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/authentication/registration/registration.component.ts:24</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/authentication/registration/registration.component.ts:25</a></div>
                             </td>
                         </tr>
 
@@ -313,7 +313,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/authentication/registration/registration.component.ts:30</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/authentication/registration/registration.component.ts:31</a></div>
                             </td>
                         </tr>
 
@@ -362,7 +362,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/authentication/registration/registration.component.ts:17</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/authentication/registration/registration.component.ts:18</a></div>
                             </td>
                         </tr>
 
@@ -423,12 +423,12 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>localStorage.getItem(&#x27;user&#x27;)</code>
+                            <i>Default value : </i><code>false</code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/authentication/registration/registration.component.ts:15</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/authentication/registration/registration.component.ts:16</a></div>
                             </td>
                         </tr>
 
@@ -467,7 +467,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/authentication/registration/registration.component.ts:16</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/authentication/registration/registration.component.ts:17</a></div>
                             </td>
                         </tr>
 
@@ -494,7 +494,8 @@ import { LoggedInService, UserService } from &#x27;../../core/services/user.serv
 })
 export class RegistrationComponent implements OnInit {
   isValid &#x3D; true;
-  sessionUser &#x3D; localStorage.getItem(&#x27;user&#x27;);
+  // sessionUser &#x3D; localStorage.getItem(&#x27;user&#x27;);
+  sessionUser &#x3D; false;
   user: User &#x3D; {};
   isChecked &#x3D; true;
 
@@ -524,47 +525,122 @@ export class RegistrationComponent implements OnInit {
 
     <div class="tab-pane fade " id="c-templateData">
         <pre class="line-numbers"><code class="language-html">&lt;div id&#x3D;&quot;registration-container&quot;&gt;
-  &lt;mat-card&gt;
-    &lt;mat-card-header&gt;
-      &lt;mat-card-title&gt;Registration&lt;/mat-card-title&gt;
-    &lt;/mat-card-header&gt;
-
-    &lt;mat-card-content&gt;
-      &lt;br&gt;
-      &lt;mat-form-field appearance&#x3D;&quot;outline&quot;&gt;
-        &lt;input matInput type&#x3D;&quot;text&quot; placeholder&#x3D;&quot;Username&quot; id&#x3D;&quot;username&quot; [(ngModel)]&#x3D;&quot;user.username&quot;&gt;
-      &lt;/mat-form-field&gt;
-      &lt;br&gt;
-      &lt;mat-form-field appearance&#x3D;&quot;outline&quot;&gt;
-        &lt;input matInput type&#x3D;&quot;password&quot; placeholder&#x3D;&quot;Password&quot; id&#x3D;&quot;password&quot; [(ngModel)]&#x3D;&quot;user.password&quot;&gt;
-      &lt;/mat-form-field&gt;
-      &lt;br&gt;
-      &lt;mat-form-field appearance&#x3D;&quot;outline&quot;&gt;
-        &lt;input matInput type&#x3D;&quot;text&quot; placeholder&#x3D;&quot;First Name&quot; id&#x3D;&quot;first-name&quot; [(ngModel)]&#x3D;&quot;user.firstName&quot;&gt;
-      &lt;/mat-form-field&gt;
-      &lt;br&gt;
-      &lt;mat-form-field appearance&#x3D;&quot;outline&quot;&gt;
-        &lt;input matInput type&#x3D;&quot;text&quot; placeholder&#x3D;&quot;Last Name&quot; id&#x3D;&quot;last-name&quot; [(ngModel)]&#x3D;&quot;user.lastName&quot;&gt;
-      &lt;/mat-form-field&gt;
-      &lt;br&gt;
-      &lt;mat-form-field appearance&#x3D;&quot;outline&quot;&gt;
-        &lt;input matInput type&#x3D;&quot;email&quot; placeholder&#x3D;&quot;Email&quot; id&#x3D;&quot;email&quot; [(ngModel)]&#x3D;&quot;user.email&quot;&gt;
-      &lt;/mat-form-field&gt;
-      
-      &lt;br&gt;
-      &lt;button mat-flat-button type&#x3D;&quot;button&quot; (click)&#x3D;&quot;register()&quot;&gt;Register&lt;/button&gt;
-      &lt;br&gt;
-      &lt;a mat-button routerLink&#x3D;&quot;/auth/login&quot;&gt;Login&lt;/a&gt;
-    &lt;/mat-card-content&gt;
-  &lt;/mat-card&gt;
-&lt;/div&gt;</code></pre>
+    &lt;mat-jumbotron id&#x3D;&quot;jumbotron&quot;&gt;
+      &lt;mat-jumbotron-content id&#x3D;&quot;content&quot;&gt;
+        &lt;mat-card&gt;
+          &lt;mat-card-header&gt;
+            &lt;mat-card-title&gt;Registration&lt;/mat-card-title&gt;
+          &lt;/mat-card-header&gt;
+          &lt;mat-card-content&gt;
+            &lt;br&gt;
+            &lt;mat-form-field appearance&#x3D;&quot;outline&quot;&gt;
+              &lt;input matInput type&#x3D;&quot;text&quot; placeholder&#x3D;&quot;Username&quot; id&#x3D;&quot;username&quot; [(ngModel)]&#x3D;&quot;user.username&quot;&gt;
+            &lt;/mat-form-field&gt;
+            
+            &lt;mat-form-field appearance&#x3D;&quot;outline&quot;&gt;
+              &lt;input matInput type&#x3D;&quot;password&quot; placeholder&#x3D;&quot;Password&quot; id&#x3D;&quot;password&quot; [(ngModel)]&#x3D;&quot;user.password&quot;&gt;
+            &lt;/mat-form-field&gt;
+            &lt;br&gt;
+            &lt;mat-form-field appearance&#x3D;&quot;outline&quot;&gt;
+              &lt;input matInput type&#x3D;&quot;text&quot; placeholder&#x3D;&quot;First Name&quot; id&#x3D;&quot;first-name&quot; [(ngModel)]&#x3D;&quot;user.firstname&quot;&gt;
+            &lt;/mat-form-field&gt;
+            
+            &lt;mat-form-field appearance&#x3D;&quot;outline&quot;&gt;
+              &lt;input matInput type&#x3D;&quot;text&quot; placeholder&#x3D;&quot;Last Name&quot; id&#x3D;&quot;last-name&quot; [(ngModel)]&#x3D;&quot;user.lastname&quot;&gt;
+            &lt;/mat-form-field&gt;
+            &lt;br&gt;
+            &lt;mat-form-field appearance&#x3D;&quot;outline&quot; id&#x3D;&quot;email&quot;&gt;
+              &lt;input matInput type&#x3D;&quot;email&quot; placeholder&#x3D;&quot;Email&quot; id&#x3D;&quot;email&quot; [(ngModel)]&#x3D;&quot;user.email&quot;&gt;
+            &lt;/mat-form-field&gt;
+  
+            &lt;br&gt;
+            &lt;button mat-flat-button type&#x3D;&quot;button&quot; (click)&#x3D;&quot;register()&quot;&gt;Register&lt;/button&gt;
+            &lt;br&gt;
+            &lt;a mat-button routerLink&#x3D;&quot;/auth/login&quot;&gt;Login&lt;/a&gt;
+          &lt;/mat-card-content&gt;
+        &lt;/mat-card&gt;
+      &lt;/mat-jumbotron-content&gt;
+    &lt;/mat-jumbotron&gt;
+  &lt;/div&gt;</code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-styleData">
                 <p class="comment">
                     <code>./registration.component.scss</code>
                 </p>
-                <pre class="line-numbers"><code class="language-scss"></code></pre>
+                <pre class="line-numbers"><code class="language-scss">@import &#x27;~@angular/material/theming&#x27;;
+
+$darker-grey: mat-color($mat-grey, 800);
+$dark-grey: mat-color($mat-grey, 700);
+$light-grey: mat-color($mat-grey, 200);
+$black: mat-color($mat-grey,900);
+
+$font: &#x27;Courier New&#x27;, sans-serif;
+
+#registration-container {
+    background: $black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 85%;
+    padding-top: 3%;
+    padding-bottom: 9%;
+    
+    mat-card {
+        margin: 0 auto;
+
+        mat-card-header {
+            justify-content: center;
+
+            mat-card-title {
+                color: $black;
+                font-family: $font;
+                font-size: 300%;
+            }
+        }
+
+        mat-card-content {
+            justify-content: center;
+
+            input {
+                color: $dark-grey;
+                font-family: $font;
+                font-size: 120%;
+            }
+
+            #email{
+                padding-left: 25%;
+                text-align: start;
+            }
+
+            button {
+                width: 100%;
+                background-color: $dark-grey;
+                color: $light-grey;
+                font-family: $font;
+                font-size: 120%;
+            }
+
+            button:hover {
+                background-color: $black;
+            }
+
+            a {
+                margin-top: 2%;
+                width: 100%;
+                background: $dark-grey;
+                color: $light-grey;
+                font-family: $font;
+                font-size: 120%;
+            }
+
+            a:hover {
+                background-color: $black;
+                text-decoration: none;
+            }
+        }
+    }
+}</code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-tree">
@@ -592,8 +668,8 @@ export class RegistrationComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div id="registration-container">  <mat-card>    <mat-card-header>      <mat-card-title>Registration</mat-card-title>    </mat-card-header>    <mat-card-content>      <br>      <mat-form-field appearance="outline">        <input matInput type="text" placeholder="Username" id="username" [(ngModel)]="user.username">      </mat-form-field>      <br>      <mat-form-field appearance="outline">        <input matInput type="password" placeholder="Password" id="password" [(ngModel)]="user.password">      </mat-form-field>      <br>      <mat-form-field appearance="outline">        <input matInput type="text" placeholder="First Name" id="first-name" [(ngModel)]="user.firstName">      </mat-form-field>      <br>      <mat-form-field appearance="outline">        <input matInput type="text" placeholder="Last Name" id="last-name" [(ngModel)]="user.lastName">      </mat-form-field>      <br>      <mat-form-field appearance="outline">        <input matInput type="email" placeholder="Email" id="email" [(ngModel)]="user.email">      </mat-form-field>            <br>      <button mat-flat-button type="button" (click)="register()">Register</button>      <br>      <a mat-button routerLink="/auth/login">Login</a>    </mat-card-content>  </mat-card></div></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'EditProfileComponent', 'selector': 'app-edit-profile'},{'name': 'HomePageComponent', 'selector': 'app-home-page'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LogoutComponent', 'selector': 'app-logout'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'ProfileComponent', 'selector': 'app-profile'},{'name': 'ProjectCardComponent', 'selector': 'app-project-card'},{'name': 'RegistrationComponent', 'selector': 'app-registration'},{'name': 'RenderZipComponent', 'selector': 'app-render-zip'},{'name': 'UserActionsComponent', 'selector': 'app-user-actions'},{'name': 'ViewProjectsComponent', 'selector': 'app-view-projects'},{'name': 'ZipComponentComponent', 'selector': 'app-zip-component'}];
+        var COMPONENT_TEMPLATE = '<div><div id="registration-container">    <mat-jumbotron id="jumbotron">      <mat-jumbotron-content id="content">        <mat-card>          <mat-card-header>            <mat-card-title>Registration</mat-card-title>          </mat-card-header>          <mat-card-content>            <br>            <mat-form-field appearance="outline">              <input matInput type="text" placeholder="Username" id="username" [(ngModel)]="user.username">            </mat-form-field>                        <mat-form-field appearance="outline">              <input matInput type="password" placeholder="Password" id="password" [(ngModel)]="user.password">            </mat-form-field>            <br>            <mat-form-field appearance="outline">              <input matInput type="text" placeholder="First Name" id="first-name" [(ngModel)]="user.firstname">            </mat-form-field>                        <mat-form-field appearance="outline">              <input matInput type="text" placeholder="Last Name" id="last-name" [(ngModel)]="user.lastname">            </mat-form-field>            <br>            <mat-form-field appearance="outline" id="email">              <input matInput type="email" placeholder="Email" id="email" [(ngModel)]="user.email">            </mat-form-field>              <br>            <button mat-flat-button type="button" (click)="register()">Register</button>            <br>            <a mat-button routerLink="/auth/login">Login</a>          </mat-card-content>        </mat-card>      </mat-jumbotron-content>    </mat-jumbotron>  </div></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'HomePageComponent', 'selector': 'app-home-page'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LogoutComponent', 'selector': 'app-logout'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'ProfileComponent', 'selector': 'app-profile'},{'name': 'ProjectCardComponent', 'selector': 'app-project-card'},{'name': 'ProjectSubmissionComponent', 'selector': 'app-project-submission'},{'name': 'RegistrationComponent', 'selector': 'app-registration'},{'name': 'UserActionsComponent', 'selector': 'app-user-actions'},{'name': 'ViewProjectsComponent', 'selector': 'app-view-projects'},{'name': 'ZipComponentComponent', 'selector': 'app-zip-component'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'RegistrationComponent'};
 </script>
