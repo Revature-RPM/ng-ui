@@ -9,8 +9,8 @@
     </div>
     </div>
   <div class="container_div">
-    <div class="file_header">
-      <button 
+    <div *ngIf="OpenFile.length!==0" class="file_header">
+      <button  class="btn-file"
                 (click)="SelectedFile = help" 
                 [class.selected_btn]="SelectedFile === help" 
                 *ngFor="let help of OpenFile">
