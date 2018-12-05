@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatGridListModule, MatToolbarModule, MatFormFieldModule, MatOptionModule, MatSelectModule, MatButtonModule, MatInputModule, MatCardModule, MatIconModule, MatTooltipModule, MatMenuModule, MatTabsModule, MatDividerModule } from '@angular/material';
+import { MatGridListModule, MatToolbarModule, MatFormFieldModule, MatOptionModule, MatSelectModule, MatButtonModule, MatInputModule, MatCardModule, MatIconModule, MatTooltipModule, MatMenuModule, MatTabsModule, MatDividerModule, MatTableModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { MatJumbotronModule } from '@angular-material-extensions/jumbotron';
@@ -34,6 +34,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     MatIconModule,
     MatTooltipModule,
     ScrollDispatchModule,
+    MatTableModule
   ],
   exports: [
     CommonModule,
@@ -56,7 +57,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     RouterModule,
     ScrollDispatchModule,
     MatTooltipModule,
-    NavbarComponent
+    NavbarComponent,
+    MatTableModule
   ]
 })
 export class SharedModule { }

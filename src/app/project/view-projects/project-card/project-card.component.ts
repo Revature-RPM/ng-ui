@@ -11,8 +11,6 @@ import { Router } from '@angular/router';
 })
 export class ProjectCardComponent implements OnInit {
 
-  items = Array.from({length: 100000}).map((_, i) => `Item #${i}`);
-
   @Input() project: Project;
   admin: Boolean = true;
   approved: Boolean = false;  
