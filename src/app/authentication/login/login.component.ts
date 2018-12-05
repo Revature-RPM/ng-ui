@@ -13,7 +13,7 @@ import { UserService } from '../../core/services/user.service';
 export class LoginComponent implements OnInit {
   sessionUser = false; // localStorage.getItem('user');
   user: User = {};
-
+  loggedIn: Boolean = false;
   constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit() {
@@ -26,12 +26,8 @@ export class LoginComponent implements OnInit {
     this.userService.login(this.user).pipe(first()).subscribe((user) => {
       if (user) {
         localStorage.setItem('user', JSON.stringify(user));
-<<<<<<< HEAD
-        this.loggedIn.loggedIn.next(true);
+        this.loggedIn.next(true);
         this.router.navigate(['/projects/home']);
-=======
-        this.router.navigate(['']);
->>>>>>> 058c0817660304d5ce32fe5dfff2b4cb07bba413
       }
     });
   }
