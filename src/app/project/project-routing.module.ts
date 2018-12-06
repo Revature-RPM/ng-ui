@@ -11,7 +11,7 @@ const routes: Routes = [
   // TODO { path: ':id', component: ViewProjectComponent },
   // TODO { path: ':id/edit', component: EditProjectComponent },
   { path: ':id/codebase', component: ZipComponent },
-  { path: '**', redirectTo: 'home' }
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({

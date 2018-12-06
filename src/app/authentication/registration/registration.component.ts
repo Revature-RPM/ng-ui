@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 
 import { User } from 'src/app/core/models/User';
-import { UserService } from '../../core/services/user.service';
+import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
   selector: 'app-registration',
@@ -13,7 +13,7 @@ import { UserService } from '../../core/services/user.service';
 })
 
 export class RegistrationComponent implements OnInit {
-  sessionUser = false; // localStorage.getItem('user');
+  sessionUser = localStorage.getItem('user');
   user: User = {};
   isLinear = true;
   firstFormGroup: FormGroup;
@@ -26,7 +26,7 @@ export class RegistrationComponent implements OnInit {
     const confirmPassword = AC.get('verifiedPassword').value; // to get value in input tag
     if (password != confirmPassword) {
       console.log('false');
-      AC.get('verifiedPassword').setErrors( {MatchPassword: true} )
+      AC.get('verifiedPassword').setErrors( {MatchPassword: true} );
     } else {
       console.log('true');
       return null;
@@ -38,7 +38,7 @@ export class RegistrationComponent implements OnInit {
               private _formBuilder: FormBuilder) { }
 
   ngOnInit() {
-    if (this.sessionUser) {
+    if (this.sessionUser !== null) {
       this.router.navigate(['']);
     }
     this.firstFormGroup = this._formBuilder.group({
