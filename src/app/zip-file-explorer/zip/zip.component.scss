@@ -132,6 +132,7 @@ textarea{
     color:  $TextImportant;
     opacity: 1;
   }
+//end of base element styling.
 //file header menu css
 .file_header{
   overflow-x: hidden;
@@ -188,7 +189,7 @@ textarea{
   font-weight: bold;
 }
 
-
+//end of file header menu css
 
 //side bar css
 .fileContainer {
@@ -276,6 +277,8 @@ textarea{
 .btn-container>div:hover{
   overflow-y:auto;
 }
+
+//end of side bar css
 //code display css
 .container_div{
   margin-top: 1px;
@@ -331,3 +334,4 @@ textarea{
   background-color: $Saturation80;
   word-wrap: normal;
 }
+//end of code display css
