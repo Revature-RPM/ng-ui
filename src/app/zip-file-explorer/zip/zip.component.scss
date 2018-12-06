@@ -191,6 +191,46 @@ textarea{
 
 
 //side bar css
+.fileContainer {
+  overflow: hidden;
+
+  border-color: rgb(216, 121, 139);
+  border-style: none;
+  border-width: 0px;
+  box-shadow: 2px 2px 8px $Saturation100;
+  background-color:  $Saturation80;
+  // border-radius: 5px;
+  padding: .2em;
+  font-size: 2em;
+  height:1.5em;
+  width:1.5em;
+  color: $TextPassive;
+  float:left;
+  top:0;
+  clear: left;
+}
+
+
+
+.fileContainer:hover{
+  background-color: $Saturation100;
+  border-color: rgb(255, 203, 212);
+  color:rgb(85, 255, 85);
+  
+}
+.fileContainer [type=file] {
+  cursor: inherit;
+  display: block;
+  font-size: 2em;
+  filter: alpha(opacity=0);
+  height:.1px;
+  width:.1px;
+  opacity: 0;
+  position: absolute;
+  right: 0;
+  text-align: right;
+  top: 0;
+}
 .btn-container{
   position: relative;
   top: 0;
@@ -202,7 +242,7 @@ textarea{
   background-color: $baseColor;
   
 }
-.btn-home:hover{
+.btn-open:hover{
   color: rgb(31, 183, 243);
 }
 .btn-home:hover{
@@ -261,7 +301,7 @@ textarea{
   text-align: left;
   overflow-y: scroll;
   overflow-x: auto;
-  white-space: pre-wrap;
+  white-space: pre;
   background-color: $Saturation100;
   color: rgb(161, 229, 238);
   cursor: default;
