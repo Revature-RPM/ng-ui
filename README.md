@@ -11,6 +11,9 @@ This is the Angular front-end of a full-stack application with the purpose of pr
 ## Usage
 * We should include screenshots of our application at this point to illustrate use cases and functionality.
 
+## Testing
+We will need to describe how we tested the Angular application.
+
 ## Documentation
 
 Futher information concerning the details of our application, application workflow, and material design can be found in our [project wiki](../../wiki)
