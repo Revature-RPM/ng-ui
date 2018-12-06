@@ -9,6 +9,23 @@ $Border: rgb(66, 66, 66);
 $TextImportant: white;
 $TextPassive: gray;
 $baseColor: rgb(29, 29, 29);
+
+$orangePallet: (
+    50: #fff2e0,
+    100: #ffdeb3,
+    200: #ffc980,
+    300: #ffb34d,
+    400: #ffa226,
+    500: #ff9200,
+    600: #ff8a00,
+    700: #ff7f00,
+    800: #ff7500,
+    900: #ff6300,
+    A100: #ffffff,
+    A200: #fff6f2,
+    A400: #ffd4bf,
+    A700: #ffc3a6,
+);
 .background{
   background-color: $baseColor;
    min-height:100vh;
@@ -209,6 +226,7 @@ textarea{
   float:left;
   top:0;
   clear: left;
+  color:rgb(85, 255, 85);
 }
 
 
@@ -243,8 +261,14 @@ textarea{
   background-color: $baseColor;
   
 }
+.btn-open{
+  color: rgb(31, 183, 243);
+}
 .btn-open:hover{
   color: rgb(31, 183, 243);
+}
+.btn-home{
+  color: rgb(243, 31, 31);
 }
 .btn-home:hover{
   color: rgb(243, 31, 31);
@@ -314,7 +338,7 @@ textarea{
 .header {
  
   max-width: 100%;
-  background-color: $Saturation80;
+  background-color: #ff6300;
   /*
   *background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0)60%, rgba(255, 77, 246, 0.24));
   */padding-left:10em;

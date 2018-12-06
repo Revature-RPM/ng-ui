@@ -9,7 +9,7 @@
     
       <h4 class="display-text"> &#x25b7; Explorer</h4>
       <div>
-      <p *ngFor="let help of RenderFile" [class.selected_p]="SelectedFile === help"  (click)="SelectedFile = help; !OpenFile.includes(help) && OpenFile.push(help)">{{help.fileName}}</p>
+      <p *ngFor="let help of RenderFile" [class.selected_p]="SelectedFile === help"  (click)="openRenderFile(help)">{{help.fileName}}</p>
     </div>
     </div>
   <div class="container_div">
@@ -18,7 +18,7 @@
                 (click)="SelectedFile = help" 
                 [class.selected_btn]="SelectedFile === help" 
                 *ngFor="let help of OpenFile">
-                <div class="x" (click)="OpenFile.splice( OpenFile.indexOf(help), 1 );">X</div>
+                <div class="x" (click)="closeRenderFile(help)">X</div>
                   {{help.fileName}}
                   
       </button>
