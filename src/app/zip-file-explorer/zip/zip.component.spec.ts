@@ -1,6 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { RouterTestingModule } from '@angular/router/testing';
+import { AppModule} from '../../app.module';
+
 import { ZipComponent } from './zip.component';
+import { ZipFileExplorerModule } from '../zip-file-explorer.module';
 
 describe('ZipComponent', () => {
   let component: ZipComponent;
@@ -8,7 +13,8 @@ describe('ZipComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ZipComponent ]
+      declarations: [ ],
+      imports: [BrowserAnimationsModule, RouterTestingModule, AppModule, ZipFileExplorerModule]
     })
     .compileComponents();
   }));
