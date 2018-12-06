@@ -1,7 +1,7 @@
 <app-navbar></app-navbar>
  
  <h1 id="title">Upload a Project</h1>
-<form #projectForm="ngForm" (ngSubmit)="submitForm()" novalidate>
+<form class="my-theme"  #projectForm="ngForm" (ngSubmit)="submitForm()" novalidate>
     <table class="example-full-width" cellspacing="5"><tr>
       <td><mat-form-field class="example-full-width">
         <input id="project_name" name="projectName" ngModel #projectName="ngModel" type="text" matInput placeholder="Project Name" [(ngModel)]="projectToUpload.name" [ngModelOptions]="{standalone: true}">
@@ -48,5 +48,5 @@
           </tr>
         </table>
         <br>
-       <button type="submit" id="submit" mat-raised-button	color="warn">Upload Project</button>
+       <button type="submit" id="submit" mat-flat-button color="accent">Upload Project</button>
   </form>

@@ -11,11 +11,64 @@ $font: 'Courier New', sans-serif;
     font-style: $black;
   }
 #registration-container {
-    background: $black;
+    background-color: #ff7f00;
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100%;
     padding-top: 3%;
     padding-bottom: 9%;
+    
+    mat-card {
+        margin: 0 auto;
+
+        mat-card-header {
+            justify-content: center;
+
+            mat-card-title {
+                color: $black;
+                font-family: $font;
+                font-size: 300%;
+            }
+        }
+
+        mat-card-content {
+            justify-content: center;
+
+            input {
+                color: $dark-grey;
+                font-family: $font;
+                font-size: 120%;
+            }
+
+            #email{
+                padding-left: 25%;
+                text-align: start;
+            }
+
+            button {
+                width: 100%;
+                color: $light-grey;
+                font-family: $font;
+                font-size: 120%;
+            }
+
+            button:hover {
+                text-decoration: none;
+            }
+
+            a {
+                margin-top: 2%;
+                width: 100%;
+                background-color: #091abd;
+                color: $light-grey;
+                font-family: $font;
+                font-size: 120%;
+            }
+
+            a:hover {
+                text-decoration: none;
+            }
+        }
+    }
 }

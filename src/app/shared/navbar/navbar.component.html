@@ -1,22 +1,37 @@
 <div id="toolbar">
-    <mat-toolbar color="accent">
-        <mat-toolbar-row>
-                <button id="navbarTitle" mat-icon-button>NPG</button>
+    <mat-toolbar class="my-theme" color="primary">
+        <mat-toolbar-row >
+                <button (click)="homepageShortcut()" id="navbarTitle" mat-icon-button>
+                        <mat-icon svgIcon="logo"></mat-icon>
+                </button>
                 <!-- This fills the remaining space of the current row -->
                 <span class="example-fill-remaining-space"></span>
-            <span>
+            <span *ngIf="user">
                     <button mat-icon-button [matMenuTriggerFor]="accountMenu">
                             <mat-icon svgIcon="account"></mat-icon>
                     </button>
                         <mat-menu  #accountMenu="matMenu">
-                            <button mat-menu-item>
-                                <span>View Account</span>
+                            <button (click)="userAccount()" mat-menu-item>
+                                <span>Profile</span>
                             </button>
-                            <button mat-menu-item  *ngIf="isAdministrator">
-                                <span>Creat New Admin</span>
+                            <button mat-menu-item  *ngIf="user.userRole == 'admin'">
+                                <span>Create New Admin</span>
                             </button>
-                            <button mat-menu-item>
+                            <button (click)="logout()" mat-menu-item>
                                 <span>Logout</span>
+                            </button>
+                        </mat-menu>
+            </span>
+            <span *ngIf="!user">
+                    <button mat-icon-button [matMenuTriggerFor]="accountMenu">
+                            <mat-icon svgIcon="account"></mat-icon>
+                    </button>
+                        <mat-menu  #accountMenu="matMenu">
+                            <button (click)="goToLogin()" mat-menu-item>
+                                <span>Log In</span>
+                            </button>
+                            <button (click)="goToRegister()" mat-menu-item>
+                                <span>Register</span>
                             </button>
                         </mat-menu>
             </span>

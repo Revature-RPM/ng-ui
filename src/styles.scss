@@ -1,12 +1,16 @@
-@import '@angular/material/prebuilt-themes/indigo-pink.css';
-@import '~@angular/material/theming';
+@import 'theme.scss';
 
-$black: mat-color($mat-grey,900);
+html, body {
+  margin: 0px;
+  height: 100%;
+  width: 100%;
+  min-width: 100%;
+  min-height: 100%;
+}
 
-body { 
-  background-color: $black;
-  font-family: Roboto, Arial, sans-serif;
-  margin: 0;
+// this class can be used anywhere in the application to implement the custom theme
+.my-theme {
+    @include angular-material-theme($my-app-theme);
 }
 
 .basic-container {
@@ -41,7 +45,6 @@ span.token13{color:green;}
 span.token14{color:rgb(243, 102, 161)}
 span.token14 * {color:rgb(243, 102, 161)}
 span.token13 *{color:green;}
-
 span.token15 {color: rgb(236, 127, 127)}
 span.token15 * {color: rgb(236, 127, 127)}
 span.token16 {color: rgb(0, 255, 149)}

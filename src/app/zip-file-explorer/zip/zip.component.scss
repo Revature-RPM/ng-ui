@@ -1,6 +1,7 @@
 $Saturation100: rgb(24, 23, 23);
 $Saturation90: rgb(39, 38, 38);
 $Saturation80: rgb(54, 53, 53);
+$Saturation80alpha50: rgba(78, 77, 77, 0.452);
 $Saturation20: rgb(134, 134, 134);
 $Contrast: white;
 $Shadow: rgb(161, 236, 154);
@@ -10,77 +11,21 @@ $TextPassive: gray;
 $baseColor: rgb(29, 29, 29);
 .background{
   background-color: $baseColor;
-   min-height:98vh;
+   min-height:100vh;
+   font-family: monospace;
 }
 .container{
   min-height:100vh;
+  font-family: monospace;
+  background-color: $baseColor;
 }
-.editor-container{
-  position: static;
-}
-.editor{
-  widows: 60vw;
-  left: 17.4em;
-  height: 80vh;
-  text-align: left;
-  overflow-y: scroll;
-  overflow-x: auto;
-  white-space: pre-wrap;
-  background-color: $Saturation100;
-  color: rgb(161, 229, 238);
-  cursor: default;
-
-}
-
-textarea{
-    height: 30em;
-    width: 50em;
-    resize: none;
-    background-color: $Saturation100;
-    color: $TextImportant;
-    border-radius: 2px;
-    padding: 1em;
-    border-style: none;
-    /* box-shadow: 0px 0px 8px rgb(206, 71, 177); */
-}
-::-webkit-scrollbar-thumb {
-  background-color: $Saturation80;
-  border-radius: 10px;
-  -webkit-box-shadow: inset 0 0 6px $Saturation100;
-}
-::-webkit-scrollbar {
-  background-color: $Saturation100;
-}
-::-webkit-input-placeholder { /* Chrome */
-    color: $TextImportant;
-  }
-  :-ms-input-placeholder { /* IE 10+ */
-    color:  $TextImportant;
-  }
-  ::-moz-placeholder { /* Firefox 19+ */
-    color:  $TextImportant;
-    opacity: 1;
-  }
-  :-moz-placeholder { /* Firefox 4 - 18 */
-    color:  $TextImportant;
-    opacity: 1;
-  }
-.file_header{
-  overflow-x: hidden;
-  overflow-y: hidden;
-  height: 2.2em;
-  width: 100%;
-  white-space: nowrap; 
-}
-.file_header:hover{
-  overflow-x: scroll;
-  height: 3em;
-}
+//base element styling.
 details{
   display: inline-block;
 
   height: 2em;
   width: 200px;
+  cursor: default;
 }
 details:focus{
   border-color: $Border;
@@ -117,6 +62,9 @@ details summary:focus{
   outline: none;
   white-space: nowrap;
 }
+details[open] {
+  background-color: $Saturation100;
+}
 details[open] summary{
   background-color: $Saturation100;
   color: $TextImportant;
@@ -125,6 +73,7 @@ details[open] summary{
   border-bottom-color: $Saturation100;
   box-shadow: 0px 2px 2px $Saturation90;
 }
+
 button{
   border-color: rgb(216, 121, 139);
   border-style: none;
@@ -132,22 +81,155 @@ button{
   box-shadow: 2px 2px 8px $Saturation100;
   background-color:  $Saturation80;
   // border-radius: 5px;
-  font-size: 2rem;
+  height:1.5em;
+  width:1.5em;
+  font-size: 2em;
   color: $TextPassive;
-  position: relative;
-  top:0
+  float:left;
+  top:0;
+  clear: left;
 }
+
 button:hover{
   background-color: $Saturation100;
   border-color: rgb(255, 203, 212);
-  color: rgb(31, 183, 243);
+  
 }
+
 button:click{
   background-color: $Saturation20;
 }
-.selected_p{
-  background-color:  $Saturation80;
+textarea{
+    height: 30em;
+    width: 50em;
+    resize: none;
+    background-color: $Saturation100;
+    color: $TextImportant;
+    border-radius: 2px;
+    padding: 1em;
+    border-style: none;
+    /* box-shadow: 0px 0px 8px rgb(206, 71, 177); */
+}
+::-webkit-scrollbar-thumb {
+  background-color:$Saturation80alpha50;
+  border-radius: 5px;
+  -webkit-box-shadow: inset 0 0 6px $Saturation100;
+}
+::-webkit-scrollbar {
+  background-color: $Saturation100;
+}
+::-webkit-input-placeholder { /* Chrome */
+    color: $TextImportant;
+  }
+  :-ms-input-placeholder { /* IE 10+ */
+    color:  $TextImportant;
+  }
+  ::-moz-placeholder { /* Firefox 19+ */
+    color:  $TextImportant;
+    opacity: 1;
+  }
+  :-moz-placeholder { /* Firefox 4 - 18 */
+    color:  $TextImportant;
+    opacity: 1;
+  }
+//file header menu css
+.file_header{
+  overflow-x: hidden;
+  overflow-y: hidden;
+  height: 2.2em;
+  width: 100%;
+  white-space: nowrap; 
+}
+.file_header:hover{
+  overflow-x: scroll;
+  height: 3em;
+}
+.file_header > button{
+  font-size: 1em;
+  float: none;
+  clear: none;
+  display: inline-block;
+  // border-style: solid;
+  // border-left-color: $Border;
+  // border-right-color:  $Border;
+  // border-top-color:  $Border;
+  // border-bottom-style: none;
+  border-width: 1px;
+  height: 2em;
+  width: 200px;
+  margin:0px;
+  padding-left:1em;
+  background-color: $Saturation80;
+  box-shadow: none;
+  overflow:hidden;
+}
+.file_header > button.selected_btn{
+  background-color: $Saturation100;
+  color: $TextImportant;
  
+}
+.file_header > button:focus{
+  outline: none;
+}
+.x{
+  float: left;
+  height: 1em;
+  width: 1em;
+  margin-right: .5em;
+  background-color: rgba(255, 255, 255, 0);
+  font-size: 1em;
+  color: rgba(255, 255, 255, 0);
+}
+.file_header > button:hover {
+  color:$TextImportant;
+}
+.file_header > button:hover > .x{
+  color:rgb(255, 255, 255);
+  font-weight: bold;
+}
+
+
+
+//side bar css
+.fileContainer {
+  overflow: hidden;
+
+  border-color: rgb(216, 121, 139);
+  border-style: none;
+  border-width: 0px;
+  box-shadow: 2px 2px 8px $Saturation100;
+  background-color:  $Saturation80;
+  // border-radius: 5px;
+  padding: .2em;
+  font-size: 2em;
+  height:1.5em;
+  width:1.5em;
+  color: $TextPassive;
+  float:left;
+  top:0;
+  clear: left;
+}
+
+
+
+.fileContainer:hover{
+  background-color: $Saturation100;
+  border-color: rgb(255, 203, 212);
+  color:rgb(85, 255, 85);
+  
+}
+.fileContainer [type=file] {
+  cursor: inherit;
+  display: block;
+  font-size: 2em;
+  filter: alpha(opacity=0);
+  height:.1px;
+  width:.1px;
+  opacity: 0;
+  position: absolute;
+  right: 0;
+  text-align: right;
+  top: 0;
 }
 .btn-container{
   position: relative;
@@ -160,6 +242,17 @@ button:click{
   background-color: $baseColor;
   
 }
+.btn-open:hover{
+  color: rgb(31, 183, 243);
+}
+.btn-home:hover{
+  color: rgb(243, 31, 31);
+}
+.selected_p{
+  background-color:  $Saturation80;
+ 
+}
+
 .btn-container>div{
   padding-left:0px;
   height:70vh;
@@ -169,22 +262,30 @@ button:click{
 .btn-container>div>p{
   color: $TextImportant;
   margin:0px;
-  padding:0px;
+  padding:5px 0px 5px 0px;
+  font-size: .9em;
   padding-left:1em;
   cursor: default;
+}
+.btn-container>div>p:hover{
+  background-color: $Saturation90;
+}
+.btn-container>div>.selected_p:hover{
+  background-color:  $Saturation80;
 }
 .btn-container>div:hover{
   overflow-y:auto;
 }
-
+//code display css
 .container_div{
   margin-top: 1px;
   margin-left: 0px;
   padding-top: 0;
   width: 90%;
   max-width: 86%;
-  min-height:92vh;
-  height: 100%;
+  min-height:96vh;
+  height: 92vh;
+  overflow: hidden;
   background-color: $Saturation90;
   border-left-color: $Border;
   border-left-width: 1px;
@@ -193,6 +294,20 @@ button:click{
   float:right;
   
 }
+.editor{
+  widows: 60vw;
+  left: 17.4em;
+  height: 95vh;
+  text-align: left;
+  overflow-y: scroll;
+  overflow-x: auto;
+  white-space: pre;
+  background-color: $Saturation100;
+  color: rgb(161, 229, 238);
+  cursor: default;
+
+}
+//header css
 .header {
  
   max-width: 100%;
@@ -213,6 +328,6 @@ button:click{
 }
 .display-text{
   color: $TextImportant;
-  background-color: $Saturation90;
+  background-color: $Saturation80;
   word-wrap: normal;
 }

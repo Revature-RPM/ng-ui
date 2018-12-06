@@ -1,27 +1,34 @@
 <div class="background">
-  <div class="header"><span>JSZip Demo</span></div>
+  <div class="header"><span> Code Base Viewer</span></div>
     <div class="btn-container">
-      <button (click)='sendRequest()'>🗁</button>
-      <h4 class="display-text">Explorer</h4>
+      <button  class="btn-open btn-side"(click)='sendRequest()'>🗁</button>
+      <button class="btn-home btn-side"(click)='goBack()'>⌂</button>
+      <label class="fileContainer"> 🗁
+      <input #fileOpener type="file" class="" (change)='openData(fileOpener.files[0])'>
+      </label>
+      <h4 class="display-text"> &#x25b7; Explorer</h4>
       <div>
-      <p *ngFor="let help of RenderFile" [class.selected_p]="SelectedFile === help"  (click)="SelectedFile = help">{{help.fileName}}</p>
+      <p *ngFor="let help of RenderFile" [class.selected_p]="SelectedFile === help"  (click)="SelectedFile = help; !OpenFile.includes(help) && OpenFile.push(help)">{{help.fileName}}</p>
     </div>
     </div>
   <div class="container_div">
-
-  <!-- <ul>
-    <li *ngFor="let string of  RenderFileName">
-        {{string}}
-    </li>
-  </ul> -->
-    <div class="file_header">
-      <details *ngFor="let help of RenderFile">
-        <summary (click)="SelectedFile = help">{{help.fileName}}</summary>
-        <!-- <textarea placeholder="{{(help.fileContent | lineNumber)}}" disabled=true></textarea> -->
-      </details>
+    <div *ngIf="OpenFile.length!==0" class="file_header">
+      <button  class="btn-file"
+                (click)="SelectedFile = help" 
+                [class.selected_btn]="SelectedFile === help" 
+                *ngFor="let help of OpenFile">
+                <div class="x" (click)="OpenFile.splice( OpenFile.indexOf(help), 1 );">X</div>
+                  {{help.fileName}}
+                  
+      </button>
+     
+      <!-- <details [open]="SelectedFile === help" (click)="SelectedFile = help" *ngFor="let help of RenderFile">
+        <summary >{{help.fileName}}</summary>
+      </details> -->
     </div>
   <div class="editor" [innerHTML]="SelectedFile.fileContent| lineNumber | lex">  </div>
 
-    <!-- <textarea [value]="SelectedFile.fileContent | lineNumber " disabled></textarea> -->
+    <!--  <textarea hidden #editortext (scroll)="scrollEditor()" autocomplete="off" autocorrect="off" autocapitalize="off"
+                spellcheck="false" class="editor-input" [(ngModel)]="SelectedFile.fileContent">  </textarea> -->
   </div>
 </div>

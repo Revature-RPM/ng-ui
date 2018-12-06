@@ -1,5 +1,5 @@
-<div id="userActions">
-    <mat-toolbar color="accent">
+<div class="my-theme" *ngIf="user" id="userActions">
+    <mat-toolbar color="primary">
       <mat-toolbar-row>
           <button mat-icon-button (click)="submitProject()">
               <mat-icon svgIcon="add_project"></mat-icon>
@@ -8,14 +8,13 @@
           <mat-tab-group>
               <mat-tab>
                 <ng-template mat-tab-label>
-                  <span class="labelColor">Your Projects</span>
+                  <span>Your Projects</span>
                 </ng-template>
-              
               </mat-tab>
             
               <mat-tab>
                 <ng-template mat-tab-label>
-                 <span class="labelColor">All Projects</span>
+                 <span>All Projects</span>
                 </ng-template>
               
               </mat-tab>
@@ -37,7 +36,7 @@
               </button>
           </mat-menu>
           <span class="example-fill-remaining-space"></span>
-          <button *ngIf="isAdministrator" mat-button [matMenuTriggerFor]="projectMenu">Type of Project</button>
+          <button *ngIf="user.userRole == 'admin'" mat-button [matMenuTriggerFor]="projectMenu">Type of Project</button>
           <mat-menu  #projectMenu="matMenu">
               <button mat-menu-item>
                   <span>Pending Projects</span>

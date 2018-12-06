@@ -1,4 +1,5 @@
-<div id="registration-container">
+<app-app-logo></app-app-logo>
+<div class="my-theme" id="registration-container">
   <mat-jumbotron id="jumbotron">
     <mat-jumbotron-content id="content">
       <mat-vertical-stepper [linear]="isLinear">
@@ -54,7 +55,7 @@
           <ng-template matStepLabel>Done</ng-template>
           <div>
             <button mat-button matStepperPrevious>Back</button>
-            <button mat-flat-button type="button" (click)="register()"><strong>Create Account</strong></button>
+            <button color="accent" mat-flat-button type="button" (click)="register()"><strong>Create Account</strong></button>
             <a mat-button routerLink="/auth/login">Cancel</a>
           </div>
         </mat-step>
