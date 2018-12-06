@@ -1,5 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { Project } from '../../../core/models/Project';
+import { User } from '../../../core/models/User';
+import { ProjectService } from 'src/app/core/services/project.service';
+
 @Component({
   selector: 'app-project-card',
   templateUrl: './project-card.component.html',
@@ -7,14 +12,24 @@ import { Project } from '../../../core/models/Project';
 })
 export class ProjectCardComponent implements OnInit {
 
-  project: Project;
-  admin: Boolean = true;
-  approved: Boolean = false;
-  constructor() {
-
-   }
-
-  ngOnInit() {
+  @Input() project: Project;
+  admin = true;
+  approved = false;  
+  loggedInUser: User;
+  currentimage: string;
+  
+  constructor(private projectservice: ProjectService, private router: Router) {
   }
 
+  ngOnInit() {
+    console.log(this.project.techStack[0]);
+  }
+  
+  changeImage(){
+  }
+  
+  openCodeBase(){
+    this.projectservice.setCurrentProject(this.project);
+    this.router.navigate(['projects/codebase']);
+  }
 }

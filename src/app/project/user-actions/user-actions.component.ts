@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-actions',
@@ -16,12 +17,17 @@ export class UserActionsComponent implements OnInit {
 	 * @param iconRegistry:  a service to register icons so they can be used with the mat-icon component from Angular Materials
    * @param sanitizer: prevents cross-site scripting attacks by filtering values to be used in the DOM; in this case it is bypassing
    *                         Angular's default security to use this image asset
+   * @param router: provides navigation to various views in an Angular application
 	 * @author Shawn Bickel (1810-Oct08-Java-USF)
 	 */
-  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) { 
+  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, private router: Router) { 
     iconRegistry.addSvgIcon(
       'add_project',
       sanitizer.bypassSecurityTrustResourceUrl('assets/img/round-add-24px.svg'));
+  }
+
+  submitProject(){
+    this.router.navigate(['/projects/home/project_submission']);
   }
 
   ngOnInit() {

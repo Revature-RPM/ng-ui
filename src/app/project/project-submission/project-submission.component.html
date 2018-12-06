@@ -1,0 +1,52 @@
+<app-navbar></app-navbar>
+ 
+ <h1 id="title">Upload a Project</h1>
+<form #projectForm="ngForm" (ngSubmit)="submitForm()" novalidate>
+    <table class="example-full-width" cellspacing="5"><tr>
+      <td><mat-form-field class="example-full-width">
+        <input id="project_name" name="projectName" ngModel #projectName="ngModel" type="text" matInput placeholder="Project Name" [(ngModel)]="projectToUpload.name" [ngModelOptions]="{standalone: true}">
+      </mat-form-field></td>
+      <td><mat-form-field class="example-full-width">
+        <input type="text" name="batchName" ngModel #batchName="ngModel" matInput placeholder="Batch Name" [(ngModel)]="projectToUpload.batch" [ngModelOptions]="{standalone: true}">
+      </mat-form-field></td>
+    </tr></table>
+  
+
+    <table class="example-full-width" cellspacing="5">
+      <tr>
+        <td><mat-form-field class="example-full-width">
+                <textarea name="trainers" ngModel #trainers="ngModel" matInput placeholder="Trainer Name" [(ngModel)]="projectToUpload.fullName" [ngModelOptions]="{standalone: true}"></textarea>
+              </mat-form-field></td>
+        <td><mat-form-field class="example-full-width">
+                <textarea matInput name="groupMembers" ngModel #groupMembers="ngModel" placeholder="Group Members" [(ngModel)]="projectToUpload.groupMembers" [ngModelOptions]="{standalone: true}"></textarea>
+              </mat-form-field></td>
+      </tr>
+    </table>
+
+    <table class="example-full-width" cellspacing="5"><tr>
+        <td><mat-form-field class="example-full-width">
+          <textarea matInput name="description" ngModel #description="ngModel" placeholder="Project Description" [(ngModel)]="projectToUpload.description" [ngModelOptions]="{standalone: true}"></textarea>
+        </mat-form-field></td>
+    </tr></table>
+
+    <table class="example-full-width" cellspacing="5">
+        <tr>
+          <td><mat-form-field class="example-full-width">
+                  <textarea name="repoLinks" ngModel #repoLinks="ngModel" matInput placeholder="Project Repository Links" [(ngModel)]="projectToUpload.zipLinks" [ngModelOptions]="{standalone: true}"></textarea>
+                </mat-form-field></td>
+          <td><mat-form-field class="example-full-width">
+                  <textarea matInput name="stack" ngModel #stack="ngModel" placeholder="Project Technology Stack" [(ngModel)]="projectToUpload.techStack" [ngModelOptions]="{standalone: true}"></textarea>
+                </mat-form-field></td>
+        </tr>
+      </table>
+
+      <table class="example-full-width" cellspacing="5">
+          <tr>
+            <td><mat-form-field class="example-full-width">
+                    <textarea matInput name="screenShots" ngModel #screenShots="ngModel" placeholder="Project Screenshots" [(ngModel)]="projectToUpload.screenShots" [ngModelOptions]="{standalone: true}"></textarea>
+                  </mat-form-field></td>
+          </tr>
+        </table>
+        <br>
+       <button type="submit" id="submit" mat-raised-button	color="warn">Upload Project</button>
+  </form>

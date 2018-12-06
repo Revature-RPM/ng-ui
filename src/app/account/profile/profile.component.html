@@ -1,57 +1,116 @@
-<div class="container">
+<app-navbar></app-navbar>
 
-  <div class="row">
-    <div class="col-2"></div>
+<mat-grid-list cols="8" height="100%" width="100%">
+  <mat-grid-tile colspan=1 rowspan=1></mat-grid-tile>
 
-    <div class="col-2">
-      <p>First Name:</p>
+  <mat-grid-tile colspan=6 rowspan=3.5>
+    <div class="container" fxLayout.xs="column" fxLayoutAlign="center">
+      <mat-jumbotron>
+        <mat-jumbotron-content>
+          <div class="container" fxLayout="row" fxLayoutGap="75%" fxLayoutGap.xs="0">
+            <div fxLayout.xs="column">
+              <button mat-icon-button mat-stroked-button color="primary" mat-button routerLink="/projects/home"
+                matTooltip="Home" matTooltipPosition="right">
+                <mat-icon>home</mat-icon>
+              </button>
+              <h1 id="profile-header"><strong>Profile</strong></h1>
+            </div>
+            <div fxLayout.xs="column">
+              <h3 id="user-role">{{user.userRole}}</h3>
+            </div>
+          </div>
+
+          <div class="container" fxLayout="row" fxLayout.xs="column">
+            <p id="profile-text">Edit your profile information, and then press the 'Save' button to update your
+              information.</p>
+          </div>
+
+          <form [formGroup]="form">
+            <hr>
+            <div class="container" fxLayout="row" fxLayoutGap="10%" fxLayoutGap.xs="0">
+              <div fxLayout.xs="column"></div>
+              <div fxLayout.xs="column">
+                <mat-form-field>
+                  <input matInput readonly={{setReadOnly}} id="inputFirstName" placeholder="First Name" formControlName="firstname"
+                    (blur)=formFilled() (mouseleave)=formFilled() required>
+                  <mat-error *ngIf="form.get('firstname').hasError('required')">
+                    First name is <strong>required</strong>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div fxLayout.xs="column">
+                <mat-form-field>
+                  <input matInput readonly={{setReadOnly}} id="inputLastName" placeholder="Last Name" formControlName="lastname"
+                    (blur)=formFilled() (mouseleave)=formFilled() required>
+                  <mat-error *ngIf="form.get('lastname').hasError('required')">
+                    Last name is <strong>required</strong>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="container" fxLayout="row" fxLayoutGap="10%" fxLayoutGap.xs="0">
+              <div fxLayout.xs="column"></div>
+              <div fxLayout.xs="column">
+                <mat-form-field>
+                  <input matInput readonly={{setReadOnly}} id="inputEmail" placeholder="Email" formControlName="email"
+                    (blur)=formFilled() (mouseleave)=formFilled() required>
+                  <mat-error *ngIf="form.get('email').hasError('email') && !form.get('email').hasError('required')">
+                    Please enter a valid email address
+                  </mat-error>
+                  <mat-error *ngIf="form.get('email').hasError('required')">
+                    Email is <strong>required</strong>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div fxLayout.xs="column">
+                <mat-form-field>
+                  <input matInput readonly={{setReadOnly}} id="inputUsername" placeholder="Username" formControlName="username"
+                    (blur)=formFilled() (mouseleave)=formFilled() required>
+                  <mat-error *ngIf="form.get('username').hasError('required')">
+                    Username is <strong>required</strong>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="container" fxLayout="row" fxLayoutGap="10%" fxLayoutGap.xs="0">
+              <div fxLayout.xs="column"></div>
+              <div fxLayout.xs="column">
+                <mat-form-field>
+                  <input matInput readonly={{setReadOnly}} type="password" id="inputPassword" placeholder="Password"
+                    formControlName="password" (blur)=retypeConfirmPassword() required>
+                  <mat-error *ngIf="form.get('password').hasError('required')">
+                    Password is <strong>required</strong>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div fxLayout.xs="column">
+                <mat-form-field *ngIf="!setReadOnly">
+                  <input matInput type="password" id="inputConfirmPassword" placeholder="Confirm Password"
+                    formControlName="confirmPassword" (blur)=formFilled() (mouseleave)=formFilled() required>
+                  <mat-error *ngIf="form.controls.confirmPassword.errors?.MatchPassword">
+                    Password must <strong>match</strong>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="container" fxLayout="row" fxLayoutGap="10%" fxLayoutGap.xs="0">
+              <div fxLayout.xs="column"></div>
+              <div fxLayout.xs="column">
+                <button *ngIf="setReadOnly" type="button" mat-stroked-button color="primary" (click)="setReadOnly=false">Edit</button>
+                <button *ngIf="!setReadOnly" type="button" mat-stroked-button color="primary" [disabled]="disableButton"
+                  (click)="setReadOnly=true; updateProfile()">Save</button>
+                <button *ngIf="!setReadOnly" type="button" mat-stroked-button color="primary" (click)="setReadOnly=true; cancelEditProfile()">Cancel</button>
+              </div>
+            </div>
+          </form>
+
+        </mat-jumbotron-content>
+      </mat-jumbotron>
     </div>
-
-    <div class="col-2">
-        <p>{{user.firstname}}</p>
-      </div>
-
-    <div class="col-2">
-      <p>Last Name:</p>
-    </div>
-
-    <div class="col-2">
-      <p>{{user.lastname}}</p>
-    </div>
-
-    <div class="col-2"></div>
-  </div>
-
-  <div class="row">
-    <div class="col-4"></div>
-
-    <div class="col-4">
-      <p>email: {{user.email}}</p>
-      <p>user role: {{user.userRole}}</p>
-    </div>
-
-    <div class="col-4"></div>
-  </div>
-
-  <div class="row">
-    <div class="col-4"></div>
-
-    <div class="col-4">
-      <p>username: {{user.username}}</p>
-      <p>password: {{user.password}}</p>
-    </div>
-
-    <div class="col-4"></div>
-  </div>
-</div>
-
-
-<div class="alert alert-primary" role="alert">
-  A simple primary alert—check it out!
-</div>
-
-<mat-grid-list cols="4" rowHeight="100px">
-  <mat-grid-tile *ngFor="let tile of tiles" [colspan]="tile.cols" [rowspan]="tile.rows" [style.background]="tile.color">
-    {{tile.text}}
   </mat-grid-tile>
+
+  <mat-grid-tile colspan=1 rowspan=1></mat-grid-tile>
 </mat-grid-list>
