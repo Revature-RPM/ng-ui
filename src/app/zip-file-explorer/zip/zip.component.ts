@@ -3,6 +3,7 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import * as JSZip from 'jszip';
 import { map } from 'rxjs/operators';
+import { ProjectService } from 'src/app/core/services/project.service';
 
 @Component({
   selector: 'app-zip-component',
@@ -32,27 +33,38 @@ export class ZipComponent implements OnInit {
   filepath: string = '';
   /*Constructur: Injects Http Client into the component for use of resource request
   *@param HttpClient standard angular dependency to fire http request.
-  *
+  *@param Location: Allows the page to redirect back to the last page it was opened from
+  *@param ProjectService: Injects the project service to get the request url
+  *@author Andrew Mitchem (1810-Oct08-Java-USF)
   */
-  constructor(private http: HttpClient, private location: Location) { }
+  constructor(private http: HttpClient, private location: Location,private projectService: ProjectService) { }
 
   ngOnInit() {
     
     this.SelectedFile = this.defaultFile();
   }
-  errorFile(): RenderFile{
+  /*zip.errorFIle
+  * sets the defualt display for error messages
+  *@param message
+  *@author Andrew Mitchem (1810-Oct08-Java-USF)
+  */
+  errorFile(message: string): RenderFile{
     let testfile = new  RenderFile();
     testfile.fileName = "HELP";
     testfile.fileContent = 
-    `ERROR: repo name does not match zip filename`;
+    `ERROR:${message}`;
     return testfile;
   }
+  /*zip..defualtFile
+  * sets the defualt display message as a helpme file
+  *@author Andrew Mitchem (1810-Oct08-Java-USF)
+  */
   defaultFile(): RenderFile{
     let testfile = new  RenderFile();
     testfile.fileName = "HELP";
     testfile.fileContent = 
-    `HELPME: use the first 🗁 to import the remote saved codebase zip. 
-use the second 🗁 to open a local repo zip. 
+    `HELPME: use the first 🗁 (blue) to import the remote saved codebase zip. 
+use the second 🗁 (green) to open a local repo zip. 
 ⌂ to return to the websites
       
 Currently can open and navigate to the src directory of Angular and Java Repositories
@@ -61,7 +73,7 @@ Currently can open and navigate to the src directory of Angular and Java Reposit
       return testfile;
   }
   /*
-   *ZipComponent.goBack()
+   *Zip.goBack()
   * Redirects back to the last page
   * @author Andrew Mitchem (1810-Oct08-Java-USF)
   */
@@ -69,8 +81,8 @@ Currently can open and navigate to the src directory of Angular and Java Reposit
     this.location.back();
   }
   /*
-  * ZipComponent.sendRequest()
-  * Fire off an http request for given request.
+  * Zip.sendRequest()
+  * Fire off an http request to retrieve the zip file
   * @author Andrew Mitchem (1810-Oct08-Java-USF)
   *
   */
@@ -96,7 +108,7 @@ Currently can open and navigate to the src directory of Angular and Java Reposit
     });
   }
    /*
-   *ZipComponent.getFileNameFromHttpResponse()
+   *Zip.getFileNameFromHttpResponse()
   * splits content-dispotion header ; attachmenent file=filename.ext into file name
   * from stack overflow
   * @author Andrew Mitchem (1810-Oct08-Java-USF)
@@ -106,7 +118,7 @@ Currently can open and navigate to the src directory of Angular and Java Reposit
     return result.replace(/"/g, '');
   }
   /*
-  * ZipComponent.sendRequest()
+  * Zip.openData()
   * unpacks a zip blob(ui8array) and opens with JSZip (zip is the reference variable)
   * @param data. ui8array blob object that "is" a valid zip file.
   * @param datafilename, optional. passed in file name.
@@ -136,7 +148,7 @@ Currently can open and navigate to the src directory of Angular and Java Reposit
         //move to the sub folder inside the zip file: replace with pass paramater variables
         if(!zip.folder(new RegExp(dataname)).length) {
           console.log("malformed package");
-          this.SelectedFile= this.errorFile();
+          this.SelectedFile= this.errorFile("Package didn't match zip filename");
           return;
         }
         let dirFolder =  zip.folder(dataname)
@@ -147,11 +159,15 @@ Currently can open and navigate to the src directory of Angular and Java Reposit
            dirFolder =  dirFolder.folder('src/main/java')
            console.log(dirFolder)
            this.filepath = dataname + '/src/main/java';
-        }else{ 
+        }else if (dirFolder.folder(/src\/app/).length){ 
           console.log('Hello')
           dirFolder =  dirFolder.folder('src/app')
           console.log(dirFolder)
           this.filepath = dataname + '/src/app';
+        }else{
+          console.log("malformed package. not angular or java");
+          this.SelectedFile= this.errorFile("cannot determined repo language type");
+          return;
         }
         let fileArray = dirFolder.file(/^.*/) //get the array of all files in this subdirectory 
         for(let i = 0; i < fileArray.length; i++){
@@ -161,7 +177,7 @@ Currently can open and navigate to the src directory of Angular and Java Reposit
     })
 }
    /*
-  * ZipComponent.parseFiles(file)
+  * Zip.parseFiles(file)
   * opens and individual zip file. This method ignores files that are directories (ie. not files with contnet)
   * @param file. ZipObject (class of JSzip) to be unpacked into a normal blob object
   * @author Andrew Mitchem (1810-Oct08-Java-USF)
