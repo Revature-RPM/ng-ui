@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import * as JSZip from 'jszip';
-import { map } from 'rxjs/operators';
 import { ProjectService } from 'src/app/core/services/project.service';
 
 @Component({
@@ -30,17 +29,16 @@ export class ZipComponent implements OnInit {
   RenderFile: RenderFile[] = [];
   SelectedFile: RenderFile;
   OpenFile: RenderFile[] = [];
-  filepath: string = '';
+  filepath = '';
   /*Constructur: Injects Http Client into the component for use of resource request
   *@param HttpClient standard angular dependency to fire http request.
   *@param Location: Allows the page to redirect back to the last page it was opened from
   *@param ProjectService: Injects the project service to get the request url
   *@author Andrew Mitchem (1810-Oct08-Java-USF)
   */
-  constructor(private http: HttpClient, private location: Location,private projectService: ProjectService) { }
+  constructor(private http: HttpClient, private location: Location, private projectService: ProjectService) { }
 
   ngOnInit() {
-    
     this.SelectedFile = this.defaultFile();
   }
   /*zip.errorFIle
@@ -48,10 +46,10 @@ export class ZipComponent implements OnInit {
   *@param message
   *@author Andrew Mitchem (1810-Oct08-Java-USF)
   */
-  errorFile(message: string): RenderFile{
-    let testfile = new  RenderFile();
-    testfile.fileName = "HELP";
-    testfile.fileContent = 
+  errorFile(message: string): RenderFile {
+    const testfile = new  RenderFile();
+    testfile.fileName = 'HELP';
+    testfile.fileContent =
     `ERROR:${message}`;
     return testfile;
   }
@@ -59,14 +57,14 @@ export class ZipComponent implements OnInit {
   * sets the defualt display message as a helpme file
   *@author Andrew Mitchem (1810-Oct08-Java-USF)
   */
-  defaultFile(): RenderFile{
-    let testfile = new  RenderFile();
-    testfile.fileName = "HELP";
-    testfile.fileContent = 
-    `HELPME: use the first 🗁 (blue) to import the remote saved codebase zip. 
-use the second 🗁 (green) to open a local repo zip. 
+  defaultFile(): RenderFile {
+    const testfile = new  RenderFile();
+    testfile.fileName = 'HELP';
+    testfile.fileContent =
+    `HELPME: use the first 🗁 (blue) to import the remote saved codebase zip.
+use the second 🗁 (green) to open a local repo zip.
 ⌂ to return to the websites
-      
+
 Currently can open and navigate to the src directory of Angular and Java Repositories
     `;
       return testfile;
@@ -86,23 +84,23 @@ Currently can open and navigate to the src directory of Angular and Java Reposit
   *
   */
   sendRequest() {
-    let url = 'https://s3.us-east-2.amazonaws.com/zip-test-bucket/reflections-mafia-client-master.zip'
-    //reponse type is arraybuffer so the get request knows this is a oclet-array-stream request
-    this.http.get(url,{ observe: 'response', responseType: 'blob'})
+    const url = 'https://s3.us-east-2.amazonaws.com/zip-test-bucket/reflections-mafia-client-master.zip';
+    // reponse type is arraybuffer so the get request knows this is a oclet-array-stream request
+    this.http.get(url, { observe: 'response', responseType: 'blob'})
     .subscribe(blob => {
-      //after the array is retrieve. open the data with JSZip
+      // after the array is retrieve. open the data with JSZip
       console.log('got (ui8Arra)');
       console.log(blob);
       console.log(blob.body);
       console.log(blob.headers);
       console.log(blob.headers.get('content-disposition'));
-      if(blob.headers.get('content-disposition')){
-        let datafilename = this.getFileNameFromHttpResponse(blob.headers.get('content-disposition'));
+      if (blob.headers.get('content-disposition')) {
+        const datafilename = this.getFileNameFromHttpResponse(blob.headers.get('content-disposition'));
         console.log(datafilename);
-        this.openData(blob.body,datafilename);
-      }else{
-        let datafilename = url.substring(url.lastIndexOf("/")+1);
-        this.openData(blob.body,datafilename);
+        this.openData(blob.body, datafilename);
+      } else {
+        const datafilename = url.substring(url.lastIndexOf('/') + 1);
+        this.openData(blob.body, datafilename);
       }
     });
   }
@@ -113,7 +111,7 @@ Currently can open and navigate to the src directory of Angular and Java Reposit
   * @author Andrew Mitchem (1810-Oct08-Java-USF)
   */
   getFileNameFromHttpResponse(contentDispositionHeader) {
-    var result = contentDispositionHeader.split(';')[1].trim().split('=')[1];
+    const result = contentDispositionHeader.split(';')[1].trim().split('=')[1];
     return result.replace(/"/g, '');
   }
   /*
@@ -123,59 +121,59 @@ Currently can open and navigate to the src directory of Angular and Java Reposit
   * @param datafilename, optional. passed in file name.
   * @author Andrew Mitchem (1810-Oct08-Java-USF)
   */
- openData(data , datafilename?){
-  console.log("This is your data file: "+datafilename)
-  this.RenderFile= [];
-  this.SelectedFile = this.defaultFile();
-  this.OpenFile = [];
-  // console.log("hi")
-  console.log("This is your data: " )
-  console.log(data);
-  let dataname ='';
-  if(data.name)
-      dataname = data.name.substring(0,data.name.lastIndexOf("."));
-  else
-      dataname = datafilename.substring(0,datafilename.lastIndexOf("."));
-  console.log(dataname)
-   let zip = new JSZip(); 
-   //new instance of JSZip. note this object lifecycle needs to be undone after rendering
-   //as such it not a class member but function member only for the scope of this function closure
-   zip.loadAsync(data)
-      .then(contents=>{
-        console.log(contents)
-        //console.log(this.RenderStrings)
-        //move to the sub folder inside the zip file: replace with pass paramater variables
-        if(!zip.folder(new RegExp(dataname)).length) {
-          console.log("malformed package");
-          this.SelectedFile= this.errorFile("Package didn't match zip filename");
+  openData(data , datafilename?) {
+    console.log('This is your data file: ' + datafilename);
+    this.RenderFile = [];
+    this.SelectedFile = this.defaultFile();
+    this.OpenFile = [];
+    // console.log("hi")
+    console.log('This is your data: ');
+    console.log(data);
+    let dataname = '';
+    if (data.name) {
+        dataname = data.name.substring(0, data.name.lastIndexOf('.'));
+    } else {
+        dataname = datafilename.substring(0, datafilename.lastIndexOf('.'));
+    }
+    console.log(dataname);
+    const zip = new JSZip();
+    // new instance of JSZip. note this object lifecycle needs to be undone after rendering
+    // as such it not a class member but function member only for the scope of this function closure
+    zip.loadAsync(data)
+      .then(contents => {
+        console.log(contents);
+        // move to the sub folder inside the zip file: replace with pass paramater variables
+        if (!zip.folder(new RegExp(dataname)).length) {
+          console.log('malformed package');
+          this.SelectedFile = this.errorFile('Package didn\'t match zip filename');
           return;
         }
-        let dirFolder =  zip.folder(dataname)
-        console.log(dirFolder)
-        console.log(dirFolder.folder(/src\/main\/java/))
-        if(dirFolder.folder(/src\/main\/java/).length){
-          console.log('Hi')
-           dirFolder =  dirFolder.folder('src/main/java')
-           console.log(dirFolder)
-           this.filepath = dataname + '/src/main/java';
-        }else if (dirFolder.folder(/src\/app/).length){ 
-          console.log('Hello')
-          dirFolder =  dirFolder.folder('src/app')
-          console.log(dirFolder)
+        let dirFolder =  zip.folder(dataname);
+        console.log(dirFolder);
+        console.log(dirFolder.folder(/src\/main\/java/));
+        if (dirFolder.folder(/src\/main\/java/).length) {
+          console.log('Hi');
+          dirFolder =  dirFolder.folder('src/main/java');
+          console.log(dirFolder);
+          this.filepath = dataname + '/src/main/java';
+        } else if (dirFolder.folder(/src\/app/).length) {
+          console.log('Hello');
+          dirFolder =  dirFolder.folder('src/app');
+          console.log(dirFolder);
           this.filepath = dataname + '/src/app';
-        }else{
-          console.log("malformed package. not angular or java");
-          this.SelectedFile= this.errorFile("cannot determined repo language type");
+        } else {
+          console.log('malformed package. not angular or java');
+          this.SelectedFile = this.errorFile('cannot determined repo language type');
           return;
         }
-        let fileArray = dirFolder.file(/^.*/) //get the array of all files in this subdirectory 
-        for(let i = 0; i < fileArray.length; i++){
-          let file = fileArray[i]
+        const fileArray = dirFolder.file(/^.*/); // get the array of all files in this subdirectory
+        for (let i = 0; i < fileArray.length; i++) {
+          const file = fileArray[i];
           this.parseFiles(file);
         }
-    })
+    });
 }
-   /*
+  /*
   * Zip.parseFiles(file)
   * opens and individual zip file. This method ignores files that are directories (ie. not files with contnet)
   * @param file. ZipObject (class of JSzip) to be unpacked into a normal blob object
