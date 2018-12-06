@@ -22,10 +22,8 @@ export class UserActionsComponent implements OnInit {
    * @param router: provides navigation to various views in an Angular application
 	 * @author Shawn Bickel (1810-Oct08-Java-USF)
 	 */
-  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, private router: Router) { 
-    iconRegistry.addSvgIcon(
-      'add_project',
-      sanitizer.bypassSecurityTrustResourceUrl('assets/img/round-add-24px.svg'));
+  constructor(private iconRegistry: MatIconRegistry, private sanitizer: DomSanitizer, private router: Router) { 
+   
   }
 
   submitProject(){
@@ -34,6 +32,9 @@ export class UserActionsComponent implements OnInit {
 
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem('user'));
+    this.iconRegistry.addSvgIcon(
+      'add_project',
+      this.sanitizer.bypassSecurityTrustResourceUrl('assets/img/round-add-24px.svg'));
   }
 
 }
