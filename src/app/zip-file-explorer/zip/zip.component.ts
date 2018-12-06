@@ -1,8 +1,9 @@
-import { HttpClient, } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import * as JSZip from 'jszip';
 import { map } from 'rxjs/operators';
+
 @Component({
   selector: 'app-zip-component',
   templateUrl: './zip.component.html',
@@ -26,7 +27,7 @@ import { map } from 'rxjs/operators';
 export class ZipComponent implements OnInit {
   RenderFile: RenderFile[] = [];
   SelectedFile: RenderFile;
-  OpenFile:  RenderFile[] = [];
+  OpenFile: RenderFile[] = [];
   filepath: string = '';
   /*Constructur: Injects Http Client into the component for use of resource request
   *@param HttpClient standard angular dependency to fire http request.
@@ -40,7 +41,8 @@ export class ZipComponent implements OnInit {
     testfile.fileContent = "HELLO: \n use the first 🗁 to open the remote saved codebase zip. \n or use the second 🗁 to open a local repo zip. \n ⌂ to return to the websites";
     this.SelectedFile = testfile;
   }
-  goBack(){
+  
+  goBack() {
     this.location.back();
   }
   /*
@@ -49,27 +51,26 @@ export class ZipComponent implements OnInit {
   * @author Andrew Mitchem (1810-Oct08-Java-USF)
   *
   */
- sendRequest(){
-  //reponse type is arraybuffer so the get request knows this is a oclet-array-stream request
-  this.http.get('http://localhost:8080/spring-mvc/files',{ observe: 'response', responseType: 'blob'})
-
-  .subscribe(blob => {
-    //after the array is retrieve. open the data with JSZip
-    console.log("got (ui8Arra)")
-    console.log(blob);
- 
-    console.log(blob.body)
-    console.log(blob.headers)
-    console.log(blob.headers.get('content-disposition'));
-    let datafilename = this.getFileNameFromHttpResponse(blob.headers.get('content-disposition'))
-    console.log(datafilename);
-    this.openData(blob.body,datafilename);
-  });
-}
-getFileNameFromHttpResponse(contentDispositionHeader) {
-  var result = contentDispositionHeader.split(';')[1].trim().split('=')[1];
-  return result.replace(/"/g, '');
-}
+  sendRequest() {
+    //reponse type is arraybuffer so the get request knows this is a oclet-array-stream request
+    this.http.get('http://localhost:8080/spring-mvc/files',{ observe: 'response', responseType: 'blob'})
+    .subscribe(blob => {
+      //after the array is retrieve. open the data with JSZip
+      console.log('got (ui8Arra)');
+      console.log(blob);
+      console.log(blob.body);
+      console.log(blob.headers);
+      console.log(blob.headers.get('content-disposition'));
+      const datafilename = this.getFileNameFromHttpResponse(blob.headers.get('content-disposition'));
+      console.log(datafilename);
+      this.openData(blob.body,datafilename);
+    });
+  }
+  
+  getFileNameFromHttpResponse(contentDispositionHeader) {
+    var result = contentDispositionHeader.split(';')[1].trim().split('=')[1];
+    return result.replace(/"/g, '');
+  }
   /*
   * ZipComponent.sendRequest()
   * unpacks a zip blob(ui8array) and opens with JSZip (zip is the reference variable)

@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 
 import { Project } from '../../../core/models/Project';
 import { User } from '../../../core/models/User';
-import { ProjectService } from 'src/app/core/services/project.service';
+import { ProjectService } from '../../../core/services/project.service';
 
 @Component({
   selector: 'app-project-card',

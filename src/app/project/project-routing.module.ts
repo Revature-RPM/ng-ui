@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+
 import { HomePageComponent } from './home-page/home-page.component';
 import { ProjectSubmissionComponent } from './project-submission/project-submission.component';
 import { ZipComponent } from '../zip-file-explorer/zip/zip.component';
@@ -15,6 +16,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule] 
+  exports: [RouterModule]
 })
 export class ProjectRoutingModule { }

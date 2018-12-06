@@ -9,17 +9,18 @@ $black: mat-color($mat-grey,900);
 $font: 'Courier New', sans-serif;
 
 #login-container {
-    background-color: $black;
+    background-color: #ff7f00;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 85%;
-    padding-top: 3%;
-    padding-bottom: 9%;
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+    min-height: 100%;
 
     mat-card {
         margin: 0 auto;
-
+       
         mat-card-header {
             justify-content: center;
 
@@ -41,28 +42,23 @@ $font: 'Courier New', sans-serif;
 
             button {
                 width: 100%;
-                background-color: $dark-grey;
                 color: $light-grey;
                 font-family: $font;
                 font-size: 120%;
                 margin-top: 23%;
             }
 
-            button:hover {
-                background-color: $black;
-            }
-
             a {
                 margin-top: 2%;
                 width: 100%;
-                background: $dark-grey;
+                background-color: #091abd;
                 color: $light-grey;
                 font-family: $font;
                 font-size: 120%;
             }
 
             a:hover {
-                background-color: $black;
+                background-color: #091abd;
                 text-decoration: none;
             }
         }

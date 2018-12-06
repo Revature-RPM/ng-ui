@@ -1,14 +1,16 @@
-@import '~@angular/material/theming';
-@include mat-core();
+
 
 @import 'theme.scss';
 
-html body {
+html, body {
   margin: 0px;
-  height: 100;
+  height: 100%;
   width: 100%;
+  min-width: 100%;
+  min-height: 100%;
 }
 
+// this class can be used anywhere in the application to implement the custom theme
 .my-theme {
     @include angular-material-theme($my-app-theme);
 }
