@@ -1,4 +1,5 @@
 import { HttpClient } from '@angular/common/http';
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import * as JSZip from 'jszip';
 import { map } from 'rxjs/operators';
@@ -24,18 +25,25 @@ import { map } from 'rxjs/operators';
 * @author Andrew Mitchem (1810-Oct08-Java-USF)
 */
 export class ZipComponent implements OnInit {
-  RenderFile: File[] = [];
-  SelectedFile: File;
+  RenderFile: RenderFile[] = [];
+  SelectedFile: RenderFile;
+  OpenFile: RenderFile[] = [];
+  filepath: string = '';
   /*Constructur: Injects Http Client into the component for use of resource request
   *@param HttpClient standard angular dependency to fire http request.
   *
   */
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private location: Location) { }
+
   ngOnInit() {
-    const testfile = new File();
+    let testfile = new RenderFile();
     testfile.fileName = 'HELP';
     testfile.fileContent = 'HELLO';
     this.SelectedFile = testfile;
+  }
+  
+  goBack() {
+    this.location.back();
   }
   /*
   * ZipComponent.sendRequest()
@@ -44,16 +52,24 @@ export class ZipComponent implements OnInit {
   *
   */
   sendRequest() {
-    // reponse type is arraybuffer so the get request knows this is a oclet-array-stream request
-    this.http.get('http://localhost:8080/spring-mvc/files', {responseType: 'arraybuffer'})
-    .pipe(
-      map(arrayBuffer => new Uint8Array(arrayBuffer))
-    )
-    .subscribe(ui8Array => {
-      // after the array is retrieve. open the data with JSZip
+    //reponse type is arraybuffer so the get request knows this is a oclet-array-stream request
+    this.http.get('http://localhost:8080/spring-mvc/files',{ observe: 'response', responseType: 'blob'})
+    .subscribe(blob => {
+      //after the array is retrieve. open the data with JSZip
       console.log('got (ui8Arra)');
-      this.openData(ui8Array);
+      console.log(blob);
+      console.log(blob.body);
+      console.log(blob.headers);
+      console.log(blob.headers.get('content-disposition'));
+      const datafilename = this.getFileNameFromHttpResponse(blob.headers.get('content-disposition'));
+      console.log(datafilename);
+      this.openData(blob.body,datafilename);
     });
+  }
+  
+  getFileNameFromHttpResponse(contentDispositionHeader) {
+    var result = contentDispositionHeader.split(';')[1].trim().split('=')[1];
+    return result.replace(/"/g, '');
   }
   /*
   * ZipComponent.sendRequest()
@@ -61,28 +77,48 @@ export class ZipComponent implements OnInit {
   * @param data. ui8array blob object that "is" a valid zip file.
   * @author Andrew Mitchem (1810-Oct08-Java-USF)
   */
-  openData(data) {
-     const zip = new JSZip();
-     // new instance of JSZip. note this object lifecycle needs to be undone after rendering
-     // as such it not a class member but function member only for the scope of this function closure
+   openData(data , datafilename?) {
+     console.log('This is your data file: ' + datafilename);
+     this.RenderFile= [];
+     const testfile = new  RenderFile();
+     testfile.fileName = 'HELP';
+     testfile.fileContent = 'HELLO';
+     this.SelectedFile = testfile;
+     this.OpenFile = [];
+     console.log("This is your data: " + data);
+     let dataname ='';
+     if (data.name)
+       dataname = data.name.substring(0,data.name.lastIndexOf("."));
+     else
+       dataname = datafilename.substring(0,datafilename.lastIndexOf("."));
+     console.log(dataname);
+     const zip = new JSZip(); 
+     //new instance of JSZip. note this object lifecycle needs to be undone after rendering
+     //as such it not a class member but function member only for the scope of this function closure
      zip.loadAsync(data)
         .then(contents => {
-          // console.log(this.RenderStrings)
-          // move to the sub folder inside the zip file: replace with pass paramater variables
-          const dirFolder =  zip.folder('reflections-mafia-server-master/src/main/java');
-          const fileArray = dirFolder.file(/^.*/); // get the array of all files in this subdirectory
+          console.log(contents);
+          //move to the sub folder inside the zip file: replace with pass paramater variables
+          const dirFolder = zip.folder(dataname);
+          console.log(dirFolder);
+          console.log(dirFolder.folder(/src\/main\/java/));
+          if (dirFolder.folder(/src\/main\/java/).length) {
+            console.log('Hi');
+            dirFolder =  dirFolder.folder('src/main/java');
+            console.log(dirFolder);
+            this.filepath = dataname + '/src/main/java';
+          } else { 
+            console.log('Hello');
+            dirFolder =  dirFolder.folder('src/app');
+            console.log(dirFolder);
+            this.filepath = dataname + '/src/app';
+          }
+          const fileArray = dirFolder.file(/^.*/); //get the array of all files in this subdirectory 
           for (let i = 0; i < fileArray.length; i++) {
             const file = fileArray[i];
             this.parseFiles(file);
           }
       });
-      // .then(()=>{
-      //   console.log("um help");
-      //   this.RenderStrings.next(this.tempString);
-      //   console.log(this.tempString)
-      //   this.tempString = []
-      //   console.log(this.RenderStrings)
-      // })
   }
    /*
   * ZipComponent.parseFiles(file)
@@ -109,7 +145,7 @@ export class ZipComponent implements OnInit {
         helpme.then(string => {
           // promise to unrwap the string. not prvious function has no concept of component namespace due to closur
           // console.log(string)
-          const file = new File();
+          const file = new RenderFile();
           file.fileName = fileName;
           file.fileContent = string; // "file here is a string text readable format stored for rendering logic"
           this.RenderFile.push(file);
@@ -128,11 +164,11 @@ class Tree {
   tree: Tree[] = [];
 }
  /*
-  * File
+  * RenderFile
   * SubClass for storing render related structure
   * @author Andrew Mitchem (1810-Oct08-Java-USF)
   */
-class File {
+class RenderFile {
   fileName: String;
   fileContent: String;
 }
