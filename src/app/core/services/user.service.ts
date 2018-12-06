@@ -4,7 +4,6 @@ import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 import { User } from '../models/User';
-
 import { environment } from '../../../environments/environment';
 
 const httpOptions = {
@@ -20,6 +19,7 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
+  // TODO clean this up
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       console.error('Aw, Snap!\n' + error.error.message);
@@ -44,12 +44,4 @@ ${error.error}`
     return this.http.post<User>(environment.url + 'register', user, httpOptions)
     .pipe(catchError(this.handleError));
   }
-}
-
-@Injectable({
-  providedIn: 'root'
-})
-export class LoggedInService {
-  userExists = Boolean(localStorage.getItem('user'));
-  public loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(this.userExists);
 }

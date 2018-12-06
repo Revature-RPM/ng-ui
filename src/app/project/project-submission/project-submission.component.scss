@@ -1,0 +1,29 @@
+@import '~@angular/material/theming';
+$black: mat-color($mat-grey,900);
+$font: 'Courier New', sans-serif;
+$alignment: center;
+$minimal-padding: 1%;
+
+#title{
+    text-align: $alignment;
+    padding: $minimal-padding;
+}
+
+#submit{
+    text-align: $alignment;
+    padding-left: 10%;;
+    padding-right: 10%;
+}
+
+form {
+    width: 85%;
+    text-align: $alignment;
+    height: 85%;
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+  

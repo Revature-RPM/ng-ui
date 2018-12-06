@@ -2,13 +2,17 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 
-import { ZipComponentComponent } from './zip-component/zip-component.component';
+import { LexPipe } from './lex.pipe';
+import { LineNumberPipe } from './line-number.pipe';
+import { ZipComponent } from './zip/zip.component';
+import { CoreModule } from '../core/core.module';
 
 @NgModule({
-  declarations: [ZipComponentComponent],
+  declarations: [ZipComponent, LineNumberPipe, LexPipe],
   imports: [
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
+    CoreModule,
   ]
 })
 export class ZipFileExplorerModule { }
