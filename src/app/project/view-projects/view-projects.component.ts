@@ -1,7 +1,7 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { Subscription } from 'rxjs';
 import { MatSort, MatTableDataSource } from '@angular/material';
+import { Subscription } from 'rxjs';
 
 import { Project } from 'src/app/core/models/Project';
 import { ProjectService } from 'src/app/core/services/project.service';
@@ -87,7 +87,6 @@ const PROJECT_DATA: Project[] = [
 })
 
 export class ViewProjectsComponent implements OnInit, OnDestroy {
-
   displayedColumns: string[] = ['name', 'batch', 'fullName', 'techStack', 'status']; // change fullName to trainer
   dataSource: MatTableDataSource<Project>;
   @ViewChild(MatSort) sort: MatSort;
@@ -116,13 +115,6 @@ export class ViewProjectsComponent implements OnInit, OnDestroy {
       });
 
       this.dataSource.sort = this.sort;
-
-
-    // this.imagesUrl = [
-    //   'https://i.ytimg.com/vi/wRx3Uvcktm8/maxresdefault.jpg',
-    //   'https://gfnc1kn6pi-flywheel.netdna-ssl.com/wp-content/uploads/2018/06/best-food-for-pug-puppies-header.jpg',
-    //   'https://buzzsharer.com/wp-content/uploads/2016/04/pug-sleeping-upside.jpg',
-    // ]
   }
 
   /**
