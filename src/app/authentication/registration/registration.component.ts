@@ -63,9 +63,7 @@ export class RegistrationComponent implements OnInit {
       password: [
         Validators.required,
         Validators.minLength
-      ],
-      verifiedPassword: ['', Validators.required],
-      validator: RegistrationComponent.MatchPassword
+      ]
     });
   }
 
