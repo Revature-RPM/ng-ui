@@ -37,10 +37,28 @@ export class ZipComponent implements OnInit {
   constructor(private http: HttpClient, private location: Location) { }
 
   ngOnInit() {
+    
+    this.SelectedFile = this.defaultFile();
+  }
+  errorFile(): RenderFile{
     let testfile = new  RenderFile();
     testfile.fileName = "HELP";
-    testfile.fileContent = "HELLO: \n use the first 🗁 to open the remote saved codebase zip. \n or use the second 🗁 to open a local repo zip. \n ⌂ to return to the websites";
-    this.SelectedFile = testfile;
+    testfile.fileContent = 
+    `ERROR: repo name does not match zip filename`;
+    return testfile;
+  }
+  defaultFile(): RenderFile{
+    let testfile = new  RenderFile();
+    testfile.fileName = "HELP";
+    testfile.fileContent = 
+    `HELPME: use the first 🗁 to import the remote saved codebase zip. 
+use the second 🗁 to open a local repo zip. 
+⌂ to return to the websites
+      
+Currently can open and navigate to the src directory of Angular and Java Repositories
+
+    `;
+      return testfile;
   }
   /*
    *ZipComponent.goBack()
@@ -57,8 +75,9 @@ export class ZipComponent implements OnInit {
   *
   */
   sendRequest() {
+    let url = 'https://s3.us-east-2.amazonaws.com/zip-test-bucket/reflections-mafia-client-master.zip'
     //reponse type is arraybuffer so the get request knows this is a oclet-array-stream request
-    this.http.get('http://localhost:8080/spring-mvc/files',{ observe: 'response', responseType: 'blob'})
+    this.http.get(url,{ observe: 'response', responseType: 'blob'})
     .subscribe(blob => {
       //after the array is retrieve. open the data with JSZip
       console.log('got (ui8Arra)');
@@ -66,9 +85,14 @@ export class ZipComponent implements OnInit {
       console.log(blob.body);
       console.log(blob.headers);
       console.log(blob.headers.get('content-disposition'));
-      const datafilename = this.getFileNameFromHttpResponse(blob.headers.get('content-disposition'));
-      console.log(datafilename);
-      this.openData(blob.body,datafilename);
+      if(blob.headers.get('content-disposition')){
+        let datafilename = this.getFileNameFromHttpResponse(blob.headers.get('content-disposition'));
+        console.log(datafilename);
+        this.openData(blob.body,datafilename);
+      }else{
+        let datafilename = url.substring(url.lastIndexOf("/")+1);
+        this.openData(blob.body,datafilename);
+      }
     });
   }
    /*
@@ -91,13 +115,11 @@ export class ZipComponent implements OnInit {
  openData(data , datafilename?){
   console.log("This is your data file: "+datafilename)
   this.RenderFile= [];
-  let testfile = new  RenderFile();
-  testfile.fileName = "HELP";
-  testfile.fileContent = "HELLO: \n use the first 🗁 to open the remote saved codebase zip. \n or use the second 🗁 to open a local repo zip. \n ⌂ to return to the websites";
-  this.SelectedFile = testfile;
+  this.SelectedFile = this.defaultFile();
   this.OpenFile = [];
   // console.log("hi")
-  console.log("This is your data: " + data)
+  console.log("This is your data: " )
+  console.log(data);
   let dataname ='';
   if(data.name)
       dataname = data.name.substring(0,data.name.lastIndexOf("."));
@@ -112,6 +134,11 @@ export class ZipComponent implements OnInit {
         console.log(contents)
         //console.log(this.RenderStrings)
         //move to the sub folder inside the zip file: replace with pass paramater variables
+        if(!zip.folder(new RegExp(dataname)).length) {
+          console.log("malformed package");
+          this.SelectedFile= this.errorFile();
+          return;
+        }
         let dirFolder =  zip.folder(dataname)
         console.log(dirFolder)
         console.log(dirFolder.folder(/src\/main\/java/))
