@@ -4,7 +4,10 @@ import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 
 import { User } from 'src/app/core/models/User';
+import { LoggedInService, UserService } from '../../core/services/user.service';
+import {FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../../core/services/user.service';
+
 
 @Component({
   selector: 'app-registration',

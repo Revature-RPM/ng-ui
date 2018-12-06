@@ -4,7 +4,7 @@
     <mat-jumbotron-content id="content">
       <mat-vertical-stepper [linear]="isLinear">
         <mat-step [stepControl]="firstFormGroup">
-          <form ngNativeValidate [formGroup]="firstFormGroup" name="form1" required>
+          <form ngNativeValidate [formGroup]="firstFormGroup">
             <ng-template matStepLabel>Fill out your name</ng-template>
             <mat-form-field>
               <input matInput placeholder="First Name" formControlName="firstName" 
@@ -29,7 +29,7 @@
         </mat-step>
         <mat-step [stepControl]="secondFormGroup">
           <form ngNativeValidate [formGroup]="secondFormGroup">
-            <ng-template matStepLabel>Select a Username and Password</ng-template>
+            <ng-template matStepLabel>Create a Username and Password</ng-template>
             <mat-form-field>
               <input matInput placeholder="Username" formControlName="username" 
                      minLength="4" required [pattern]="usernamePattern" [(ngModel)]="user.username">
@@ -38,11 +38,6 @@
             <mat-form-field>
               <input matInput type="password" placeholder="Password"
                      formControlName="password" required [(ngModel)]="user.password">
-            </mat-form-field>
-            <br />
-            <mat-form-field>
-              <input matInput type="password" placeholder="Verify Password" 
-                     formControlName="verifiedPassword" required>
             </mat-form-field>
             <div>
               <button mat-button matStepperPrevious>Back</button>
