@@ -26,6 +26,7 @@ export class AppLogoComponent implements OnInit {
   }
 
   ngOnInit() {
+   
   }
 
 }
