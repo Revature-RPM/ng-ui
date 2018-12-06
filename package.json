@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "start": "ng serve --aot",
+    "build": "ng build --aot",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
@@ -24,6 +24,7 @@
     "@angular/material": "^7.1.1",
     "@angular/platform-browser": "~7.0.0",
     "@angular/platform-browser-dynamic": "~7.0.0",
+    "@angular/platform-server": "^7.1.1",
     "@angular/pwa": "^0.11.0",
     "@angular/router": "~7.0.0",
     "@angular/service-worker": "~7.0.0",
@@ -33,6 +34,7 @@
     "hammerjs": "^2.0.8",
     "jszip": "^3.1.5",
     "rxjs": "~6.3.3",
+    "ts-loader": "^5.3.1",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
