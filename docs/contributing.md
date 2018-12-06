@@ -6,7 +6,7 @@ will be ignored. The appropriate manner to submit code for review is as follows:
 
 1. Clone the repository selecting the desired branch -- `git clone <SSH or HTTPS>`
 2. Create a feature branch for your changes and modifications -- `git checkout -b <feature_branch_name>`
-3. Push your changes to your feature branch.
+3. Push your changes to your feature branch -- `git push -u origin <feature_branch_name>`
 4. Submit a pull request to the appropriate branch.
 
 # Guidelines for Pull Requests
