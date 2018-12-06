@@ -1,4 +1,5 @@
-<div id="registration-container">
+<app-app-logo></app-app-logo>
+<div class="my-theme" id="registration-container">
     <mat-jumbotron id="jumbotron">
       <mat-jumbotron-content id="content">
         <mat-card>
@@ -28,7 +29,7 @@
             </mat-form-field>
   
             <br>
-            <button mat-flat-button type="button" (click)="register()">Register</button>
+            <button color="accent" mat-flat-button type="button" (click)="register()">Register</button>
             <br>
             <a mat-button routerLink="/auth/login">Login</a>
           </mat-card-content>

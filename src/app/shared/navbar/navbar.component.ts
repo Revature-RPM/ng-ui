@@ -17,14 +17,12 @@ export class NavbarComponent implements OnInit {
 	 *
 	 * @param iconRegistry:  a service to register icons so they can be used with the mat-icon component from Angular Materials
    * @param sanitizer:     prevents cross-site scripting attacks by filtering values to be used in the DOM; in this case it is bypassing
-   *                         Angular's default security to use this image asset
+   *                         Angular's default security to use image assets as icons
    * @param router:        enables navigation to various views in the application
 	 * @author Shawn Bickel (1810-Oct08-Java-USF)
 	 */
   constructor(private iconRegistry: MatIconRegistry, private sanitizer: DomSanitizer, private router: Router) { 
-    iconRegistry.addSvgIcon(
-      'account',
-      sanitizer.bypassSecurityTrustResourceUrl('assets/img/round-account_circle-24px.svg'));
+   
   }
 
   goToRegister() {
@@ -45,6 +43,14 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem('user'));
+
+    this.iconRegistry.addSvgIcon(
+      'account',
+      this.sanitizer.bypassSecurityTrustResourceUrl('assets/img/round-account_circle-24px.svg'));
+
+      this.iconRegistry.addSvgIcon(
+        'logo',
+        this.sanitizer.bypassSecurityTrustResourceUrl('assets/img/round-cloud_upload-24px.svg'));
   }
 
   homepageShortcut() {
