@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     if (this.sessionUser !== null) {
-      this.router.navigate(['']);
+      this.router.navigate(['/home']);
     }
   }
 
@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
     this.userService.login(this.user).pipe(first()).subscribe((user) => {
       if (user) {
         localStorage.setItem('user', JSON.stringify(user));
-        this.router.navigate(['']);
+        this.router.navigate(['/home']);
       }
     });
   }
