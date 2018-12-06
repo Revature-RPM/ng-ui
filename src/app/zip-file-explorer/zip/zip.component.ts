@@ -13,8 +13,9 @@ import { map } from 'rxjs/operators';
 * ZipComponent is Reponsible for Unzipping and Rendering a file.zip
 *
 * If stream is unresovable error when ng serve and attempt to render
-* then in tsconfig.json (no .app.json or event tsoncif.spec.json. the top level tsconfig.json)
-* Do not manually go and change in node modules JSzip to readable-stream from stream....
+* then in tsconfig.json (not.app.json or tsoncif.spec.json. the top level tsconfig.json)
+* add the following code path to the file compileroptions
+* Do not manually go and change in node modules JSzip to readable-stream from stream
 * Git push ignores app modules but not tsconfig.json
 *
 * "paths": {
@@ -36,9 +37,9 @@ export class ZipComponent implements OnInit {
   constructor(private http: HttpClient, private location: Location) { }
 
   ngOnInit() {
-    let testfile = new RenderFile();
-    testfile.fileName = 'HELP';
-    testfile.fileContent = 'HELLO';
+    let testfile = new  RenderFile();
+    testfile.fileName = "HELP";
+    testfile.fileContent = "HELLO: \n use the first 🗁 to open the remote saved codebase zip. \n or use the second 🗁 to open a local repo zip. \n ⌂ to return to the websites";
     this.SelectedFile = testfile;
   }
   
@@ -77,49 +78,58 @@ export class ZipComponent implements OnInit {
   * @param data. ui8array blob object that "is" a valid zip file.
   * @author Andrew Mitchem (1810-Oct08-Java-USF)
   */
-   openData(data , datafilename?) {
-     console.log('This is your data file: ' + datafilename);
-     this.RenderFile= [];
-     const testfile = new  RenderFile();
-     testfile.fileName = 'HELP';
-     testfile.fileContent = 'HELLO';
-     this.SelectedFile = testfile;
-     this.OpenFile = [];
-     console.log("This is your data: " + data);
-     let dataname ='';
-     if (data.name)
-       dataname = data.name.substring(0,data.name.lastIndexOf("."));
-     else
-       dataname = datafilename.substring(0,datafilename.lastIndexOf("."));
-     console.log(dataname);
-     const zip = new JSZip(); 
-     //new instance of JSZip. note this object lifecycle needs to be undone after rendering
-     //as such it not a class member but function member only for the scope of this function closure
-     zip.loadAsync(data)
-        .then(contents => {
-          console.log(contents);
-          //move to the sub folder inside the zip file: replace with pass paramater variables
-          let dirFolder = zip.folder(dataname);
-          console.log(dirFolder);
-          console.log(dirFolder.folder(/src\/main\/java/));
-          if (dirFolder.folder(/src\/main\/java/).length) {
-            console.log('Hi');
-            dirFolder =  dirFolder.folder('src/main/java');
-            console.log(dirFolder);
-            this.filepath = dataname + '/src/main/java';
-          } else { 
-            console.log('Hello');
-            dirFolder =  dirFolder.folder('src/app');
-            console.log(dirFolder);
-            this.filepath = dataname + '/src/app';
-          }
-          const fileArray = dirFolder.file(/^.*/); //get the array of all files in this subdirectory 
-          for (let i = 0; i < fileArray.length; i++) {
-            const file = fileArray[i];
-            this.parseFiles(file);
-          }
-      });
-  }
+ openData(data , datafilename?){
+  console.log("This is your data file: "+datafilename)
+  this.RenderFile= [];
+  let testfile = new  RenderFile();
+  testfile.fileName = "HELP";
+  testfile.fileContent = "HELLO: \n use the first 🗁 to open the remote saved codebase zip. \n or use the second 🗁 to open a local repo zip. \n ⌂ to return to the websites";
+  this.SelectedFile = testfile;
+  this.OpenFile = [];
+  // console.log("hi")
+  console.log("This is your data: " + data)
+  let dataname ='';
+  if(data.name)
+      dataname = data.name.substring(0,data.name.lastIndexOf("."));
+  else
+      dataname = datafilename.substring(0,datafilename.lastIndexOf("."));
+  console.log(dataname)
+   let zip = new JSZip(); 
+   //new instance of JSZip. note this object lifecycle needs to be undone after rendering
+   //as such it not a class member but function member only for the scope of this function closure
+   zip.loadAsync(data)
+      .then(contents=>{
+        console.log(contents)
+        //console.log(this.RenderStrings)
+        //move to the sub folder inside the zip file: replace with pass paramater variables
+        let dirFolder =  zip.folder(dataname)
+        console.log(dirFolder)
+        console.log(dirFolder.folder(/src\/main\/java/))
+        if(dirFolder.folder(/src\/main\/java/).length){
+          console.log('Hi')
+           dirFolder =  dirFolder.folder('src/main/java')
+           console.log(dirFolder)
+           this.filepath = dataname + '/src/main/java';
+        }else{ 
+          console.log('Hello')
+          dirFolder =  dirFolder.folder('src/app')
+          console.log(dirFolder)
+          this.filepath = dataname + '/src/app';
+        }
+        let fileArray = dirFolder.file(/^.*/) //get the array of all files in this subdirectory 
+        for(let i = 0; i < fileArray.length; i++){
+          let file = fileArray[i]
+          this.parseFiles(file);
+        }
+    })
+    // .then(()=>{
+    //   console.log("um help");
+    //   this.RenderStrings.next(this.tempString);
+    //   console.log(this.tempString)
+    //   this.tempString = []
+    //   console.log(this.RenderStrings)
+    // })
+}
    /*
   * ZipComponent.parseFiles(file)
   * opens and individual zip file. This method ignores files that are directories (ie. not files with contnet)
