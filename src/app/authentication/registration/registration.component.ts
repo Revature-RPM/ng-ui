@@ -4,8 +4,7 @@ import { first } from 'rxjs/operators';
 
 import { User } from 'src/app/core/models/User';
 import { LoggedInService, UserService } from '../../core/services/user.service';
-import {FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import {AbstractControl} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-registration', 
@@ -54,10 +53,8 @@ export class RegistrationComponent implements OnInit{
       password: [
         Validators.required,
         Validators.minLength
-      ],
-      verifiedPassword: ['', Validators.required],
-      validator: RegistrationComponent.MatchPassword
-  });
+      ]}
+    );
 
   }
   emailPattern = "^[a-zA-Z0-9_.+-]+(?:(?:[a-zA-Z0-9-]+\.)?[a-zA-Z]+\.)?@(revature)\.com$";
@@ -73,18 +70,4 @@ export class RegistrationComponent implements OnInit{
       }
     });
   }
-
-  static MatchPassword(AC: AbstractControl) {
-    let password = AC.get('password').value; // to get value in input tag
-    let confirmPassword = AC.get('verifiedPassword').value; // to get value in input tag
-     if(password != confirmPassword) {
-         console.log('false');
-         AC.get('verifiedPassword').setErrors( {MatchPassword: true} )
-     } else {
-         console.log('true');
-         return null
-     }
- }
-
 }
-

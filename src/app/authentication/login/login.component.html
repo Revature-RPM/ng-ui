@@ -1,28 +1,30 @@
 <div id="login-container">
   <mat-jumbotron id="jumbotron">
-    <mat-jumbotron-content id="content">      
-      <mat-card>
-        <mat-card-header>
-          <mat-card-title>Login</mat-card-title>
-        </mat-card-header>
-
-        <mat-card-content>
-          <br/>
-          <br/>
-          <mat-form-field appearance="outline">
-            <input matInput type="text" placeholder="Username" id="username" [(ngModel)]="user.username">
-          </mat-form-field>
-          <br />
-          <mat-form-field appearance="outline">
-            <input matInput type="password" placeholder="Password" id="password" [(ngModel)]="user.password">
-          </mat-form-field>
-          <br />
-          <br />
-          <button mat-flat-button type="button" (click)="login()">Login</button>
-
-          <a mat-button routerLink="/auth/register">Register</a>
-        </mat-card-content>
-      </mat-card>
+    <mat-jumbotron-content id="content">
+      <form #formcontrol="ngForm">
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>Login</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <br />
+            <br />
+            <mat-form-field appearance="outline">
+              <input matInput type="text" class="form-control" placeholder="Username" name="username" [(ngModel)]="user.username"
+                required>
+            </mat-form-field>
+            <br />
+            <mat-form-field appearance="outline">
+              <input matInput type="password" class="form-control" placeholder="Password" name="password" [(ngModel)]="user.password"
+                required>
+            </mat-form-field>
+            <br />
+            <mat-error *ngIf="!formcontrol.form.valid">Please enter all fields</mat-error>
+            <button mat-flat-button type="button" [disabled]="!formcontrol.form.valid" (click)="login()">Login</button>
+            <a mat-button routerLink="/auth/register">Register</a>
+          </mat-card-content>
+        </mat-card>
+      </form>
     </mat-jumbotron-content>
   </mat-jumbotron>
 </div>

@@ -34,6 +34,7 @@ ${error.error}`
   }
 
   login(user: User): Observable<User> {
+    console.log(user)
     return this.http.post<User>(environment.url + 'login', user, httpOptions)
     .pipe(catchError(this.handleError));
   }
