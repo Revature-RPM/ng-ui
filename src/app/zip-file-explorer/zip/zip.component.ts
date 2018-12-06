@@ -37,7 +37,7 @@ export class ZipComponent implements OnInit {
   ngOnInit() {
     let testfile = new  RenderFile();
     testfile.fileName = "HELP";
-    testfile.fileContent = "HELLO";
+    testfile.fileContent = "HELLO: \n use the first 🗁 to open the remote saved codebase zip. \n or use the second 🗁 to open a local repo zip. \n ⌂ to return to the websites";
     this.SelectedFile = testfile;
   }
   goBack(){
@@ -81,7 +81,7 @@ getFileNameFromHttpResponse(contentDispositionHeader) {
   this.RenderFile= [];
   let testfile = new  RenderFile();
   testfile.fileName = "HELP";
-  testfile.fileContent = "HELLO";
+  testfile.fileContent = "HELLO: \n use the first 🗁 to open the remote saved codebase zip. \n or use the second 🗁 to open a local repo zip. \n ⌂ to return to the websites";
   this.SelectedFile = testfile;
   this.OpenFile = [];
   // console.log("hi")
