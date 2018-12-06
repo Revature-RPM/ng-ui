@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 
 import { Project } from 'src/app/core/models/Project';
 import { ProjectService } from 'src/app/core/services/project.service';
+import { Router } from '@angular/router';
 
 const PROJECT_DATA: Project[] = [
   {
@@ -71,6 +72,27 @@ const PROJECT_DATA: Project[] = [
       'https://buzzsharer.com/wp-content/uploads/2016/04/pug-sleeping-upside.jpg',], zipLinks: ['https://github.com/1810-oct08-java-usf/ng-ui', 'https://github.com/1810-oct08-java-usf/auth-service'],
     techStack: 'Full-Stack Java Developer', status: 'Approved', description: 'Description of Tratior'
   },
+  {
+    id: 1, name: 'TopShelf', batch: '1810-oct08-java-usf', fullName: 'Wezley Singleton',
+    groupMembers: ['Yuki Mano', 'Caleb Massey', 'Shawn Bickel'], screenShots: ['https://i.ytimg.com/vi/wRx3Uvcktm8/maxresdefault.jpg',
+      'https://gfnc1kn6pi-flywheel.netdna-ssl.com/wp-content/uploads/2018/06/best-food-for-pug-puppies-header.jpg',
+      'https://buzzsharer.com/wp-content/uploads/2016/04/pug-sleeping-upside.jpg',], zipLinks: ['https://github.com/1810-oct08-java-usf/ng-ui', 'https://github.com/1810-oct08-java-usf/auth-service'],
+    techStack: 'Full-Stack Java Developer', status: 'Approved', description: 'description of TopShelf'
+  },
+  {
+    id: 2, name: 'Kevin Craft Bacon', batch: '1810-oct08-java-usf', fullName: 'Wezley Singleton',
+    groupMembers: ['Sahil', 'Ryan', 'Jeffly', 'Sadiki'], screenShots: ['https://i.ytimg.com/vi/wRx3Uvcktm8/maxresdefault.jpg',
+      'https://gfnc1kn6pi-flywheel.netdna-ssl.com/wp-content/uploads/2018/06/best-food-for-pug-puppies-header.jpg',
+      'https://buzzsharer.com/wp-content/uploads/2016/04/pug-sleeping-upside.jpg',], zipLinks: ['https://github.com/1810-oct08-java-usf/ng-ui', 'https://github.com/1810-oct08-java-usf/auth-service'],
+    techStack: 'Full-Stack Java Developer', status: 'Approved', description: 'description of Kevin Craft Bacon'
+  },
+  {
+    id: 3, name: 'Tratior', batch: '1810-oct08-java-usf', fullName: 'Wezley Singleton',
+    groupMembers: ['Paul', 'Miles', 'Derek', 'Andrew'], screenShots: ['https://i.ytimg.com/vi/wRx3Uvcktm8/maxresdefault.jpg',
+      'https://gfnc1kn6pi-flywheel.netdna-ssl.com/wp-content/uploads/2018/06/best-food-for-pug-puppies-header.jpg',
+      'https://buzzsharer.com/wp-content/uploads/2016/04/pug-sleeping-upside.jpg',], zipLinks: ['https://github.com/1810-oct08-java-usf/ng-ui', 'https://github.com/1810-oct08-java-usf/auth-service'],
+    techStack: 'Full-Stack Java Developer', status: 'Approved', description: 'Description of Tratior'
+  },
 ];
 
 @Component({
@@ -80,7 +102,7 @@ const PROJECT_DATA: Project[] = [
   animations: [
     trigger('detailExpand', [
       state('collapsed', style({ height: '0px', minHeight: '0', display: 'none' })),
-      state('expanded', style({ height: '*' })),
+      state('expanded', style({ height: '35vh' })),
       transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
     ]),
   ],
@@ -95,7 +117,7 @@ export class ViewProjectsComponent implements OnInit, OnDestroy {
 
   projects: Project[];
   subscription: Subscription;
-  constructor(private viewProjectsService: ProjectService) { 
+  constructor(private router: Router, private viewProjectsService: ProjectService) { 
     // Assign the data to the data source for the table to render
     this.dataSource = new MatTableDataSource(PROJECT_DATA);
    }
@@ -130,5 +152,10 @@ export class ViewProjectsComponent implements OnInit, OnDestroy {
   // apply filter to the data source table by entering in any string
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  // route to the CodeBase page
+  viewCodeBase(id: number) {
+    console.log(id);
   }
 }

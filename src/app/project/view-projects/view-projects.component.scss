@@ -1,9 +1,13 @@
+#view-project-layout {
+    padding: 1%;
+}
+
 table {
     width: 100%;
   }
 
   .table-container {
-    height: 400px;
+    height: 70vh;
     overflow: auto;
   }
   
@@ -25,31 +29,33 @@ table {
   
   .project-detail {
     overflow: hidden;
-    display: flex;
+    // display: flex;
+    height: 100%;
+    width: 100%;
   }
   
-  .project-diagram {
-    min-width: 80px;
-    border: 2px solid black;
-    padding: 8px;
-    font-weight: lighter;
-    margin: 8px 0;
-    height: 104px;
-  }
+  // .project-diagram {
+  //   min-width: 80px;
+  //   border: 2px solid black;
+  //   padding: 8px;
+  //   font-weight: lighter;
+  //   margin: 8px 0;
+  //   height: 104px;
+  // }
   
  .project-image {
-    max-width: 200px; 
-    max-height: 200px;
+    max-width: 30vh; 
+    max-height: 30vh;
     border: 2px solid black;
     padding: 8px;
     margin: 8px 0;
  }
 
-  .project-name {
-    font-weight: bold;
-    font-size: 40px;
-    line-height: normal;
-  }
+  // .project-name {
+  //   font-weight: bold;
+  //   font-size: 40px;
+  //   line-height: normal;
+  // }
   
   .project-description {
     padding: 16px;
