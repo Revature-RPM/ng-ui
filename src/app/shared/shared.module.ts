@@ -22,9 +22,10 @@ import { MatJumbotronModule } from '@angular-material-extensions/jumbotron';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SliderModule } from 'angular-image-slider';
 import { MatSortModule } from '@angular/material/sort';
+import { AppLogoComponent } from './app-logo/app-logo.component';
 
 @NgModule({
-  declarations: [NavbarComponent],
+  declarations: [NavbarComponent, AppLogoComponent],
   imports: [
     CommonModule,
     FlexLayoutModule,
@@ -72,11 +73,11 @@ import { MatSortModule } from '@angular/material/sort';
     MatToolbarModule,
     MatTooltipModule,
     NavbarComponent,
+    AppLogoComponent,
     ReactiveFormsModule,
     RouterModule,
     ScrollDispatchModule,
     MatTooltipModule,
-    NavbarComponent,
     MatTableModule,
     SliderModule,
     MatSortModule
