@@ -20,9 +20,9 @@ export class AppLogoComponent implements OnInit {
 	 * @author Shawn Bickel (1810-Oct08-Java-USF)
 	 */
   constructor(private iconRegistry: MatIconRegistry, private sanitizer: DomSanitizer, private router: Router) { 
-    iconRegistry.addSvgIcon(
+    this.iconRegistry.addSvgIcon(
       'AppLogo',
-      sanitizer.bypassSecurityTrustResourceUrl('assets/img/round-cloud_upload-24px.svg'));
+      this.sanitizer.bypassSecurityTrustResourceUrl('assets/img/round-cloud_upload-24px.svg'));
   }
 
   ngOnInit() {

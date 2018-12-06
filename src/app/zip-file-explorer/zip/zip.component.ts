@@ -99,7 +99,7 @@ export class ZipComponent implements OnInit {
         .then(contents => {
           console.log(contents);
           //move to the sub folder inside the zip file: replace with pass paramater variables
-          const dirFolder = zip.folder(dataname);
+          let dirFolder = zip.folder(dataname);
           console.log(dirFolder);
           console.log(dirFolder.folder(/src\/main\/java/));
           if (dirFolder.folder(/src\/main\/java/).length) {
