@@ -30,7 +30,7 @@ export class ZipComponent implements OnInit {
   RenderFile: RenderFile[] = [];
   SelectedFile: RenderFile;
   OpenFile: RenderFile[] = [];
-  filepath = '';
+  filepath: string = '';
   /*Constructur: Injects Http Client into the component for use of resource request
   *@param HttpClient standard angular dependency to fire http request.
   *@param Location: Allows the page to redirect back to the last page it was opened from
@@ -68,11 +68,9 @@ use the second 🗁 (green) to open a local repo zip.
 ⌂ to return to the websites
       
 Currently can open and navigate to the src directory of Angular and Java Repositories
-
     `;
       return testfile;
   }
-  
   /*
    *Zip.goBack()
   * Redirects back to the last page
@@ -81,7 +79,6 @@ Currently can open and navigate to the src directory of Angular and Java Reposit
   goBack() {
     this.location.back();
   }
-  
   /*
   * Zip.sendRequest()
   * Fire off an http request to retrieve the zip file
@@ -93,7 +90,7 @@ Currently can open and navigate to the src directory of Angular and Java Reposit
     //reponse type is arraybuffer so the get request knows this is a oclet-array-stream request
     this.http.get(url,{ observe: 'response', responseType: 'blob'})
     .subscribe(blob => {
-      // after the array is retrieve. open the data with JSZip
+      //after the array is retrieve. open the data with JSZip
       console.log('got (ui8Arra)');
       console.log(blob);
       console.log(blob.body);
@@ -109,7 +106,6 @@ Currently can open and navigate to the src directory of Angular and Java Reposit
       }
     });
   }
-  
    /*
    *Zip.getFileNameFromHttpResponse()
   * splits content-dispotion header ; attachmenent file=filename.ext into file name
@@ -117,7 +113,7 @@ Currently can open and navigate to the src directory of Angular and Java Reposit
   * @author Andrew Mitchem (1810-Oct08-Java-USF)
   */
   getFileNameFromHttpResponse(contentDispositionHeader) {
-    const result = contentDispositionHeader.split(';')[1].trim().split('=')[1];
+    var result = contentDispositionHeader.split(';')[1].trim().split('=')[1];
     return result.replace(/"/g, '');
   }
   /*
@@ -172,14 +168,13 @@ Currently can open and navigate to the src directory of Angular and Java Reposit
           this.SelectedFile= this.errorFile("cannot determined repo language type");
           return;
         }
-        const fileArray = dirFolder.file(/^.*/); // get the array of all files in this subdirectory
-        for (let i = 0; i < fileArray.length; i++) {
-          const file = fileArray[i];
+        let fileArray = dirFolder.file(/^.*/) //get the array of all files in this subdirectory 
+        for(let i = 0; i < fileArray.length; i++){
+          let file = fileArray[i]
           this.parseFiles(file);
         }
-    });
-  }
-
+    })
+}
    /*
   * Zip.parseFiles(file)
   * opens and individual zip file. This method ignores files that are directories (ie. not files with contnet)
