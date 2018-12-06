@@ -22,7 +22,7 @@ Compodoc is a documentation generator for Angular applications. It provides a co
 [RPM Compodoc Angular Documentation](http://rpmdocs.s3-website.us-east-2.amazonaws.com)
 
 ## Contributing Information
-Information concerning submitting code for review or making pull requests can be found by reading our [contributing documentation](../docs/contributing.md)
+Information concerning submitting code for review or making pull requests can be found by reading our [contributing documentation](./docs/contributing.md)
 
 ## Current Authors
 **Sahil Makhijani**, **Ryan Beevers**, **Shawn Bickel**, **Jeffly Luctamar**, **Yuki Mano**, **Andrew Mitchem** 
