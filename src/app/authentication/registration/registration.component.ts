@@ -28,7 +28,7 @@ export class RegistrationComponent implements OnInit {
     this.userService.register(this.user).pipe(first()).subscribe((user) => {
       if (user) {
         localStorage.setItem('user', JSON.stringify(user));
-        this.router.navigate(['']);
+        this.router.navigate(['/auth/login']);
       }
     });
   }

@@ -1,5 +1,5 @@
 <div id="toolbar">
-    <mat-toolbar class="my-theme" color="accent">
+    <mat-toolbar class="my-theme" color="primary">
         <mat-toolbar-row>
                 <button (click)="homepageShortcut()" id="navbarTitle" mat-icon-button>RPM</button>
                 <!-- This fills the remaining space of the current row -->
@@ -10,10 +10,10 @@
                     </button>
                         <mat-menu  #accountMenu="matMenu">
                             <button (click)="userAccount()" mat-menu-item>
-                                <span>View Account</span>
+                                <span>Profile</span>
                             </button>
                             <button mat-menu-item  *ngIf="user.userRole == 'admin'">
-                                <span>Creat New Admin</span>
+                                <span>Create New Admin</span>
                             </button>
                             <button (click)="logout()" mat-menu-item>
                                 <span>Logout</span>
