@@ -12,6 +12,7 @@ $baseColor: rgb(29, 29, 29);
 .background{
   background-color: $baseColor;
    min-height:100vh;
+   font-family: monospace;
 }
 .container{
   min-height:100vh;
