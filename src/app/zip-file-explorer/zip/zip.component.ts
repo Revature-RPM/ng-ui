@@ -68,7 +68,6 @@ use the second 🗁 (green) to open a local repo zip.
 ⌂ to return to the websites
       
 Currently can open and navigate to the src directory of Angular and Java Repositories
-
     `;
       return testfile;
   }

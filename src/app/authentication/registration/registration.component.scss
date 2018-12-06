@@ -6,13 +6,16 @@ $light-grey: mat-color($mat-grey, 200);
 $black: mat-color($mat-grey,900);
 
 $font: 'Courier New', sans-serif;
-
+* {
+    font-family: 'Courier New', sans-serif !important; 
+    font-style: $black;
+  }
 #registration-container {
     background-color: #ff7f00;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 85%;
+    height: 100%;
     padding-top: 3%;
     padding-bottom: 9%;
     
