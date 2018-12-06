@@ -1,7 +1,9 @@
 <div id="toolbar">
     <mat-toolbar class="my-theme" color="primary">
         <mat-toolbar-row >
-                <button (click)="homepageShortcut()" id="navbarTitle" mat-icon-button>RPM</button>
+                <button (click)="homepageShortcut()" id="navbarTitle" mat-icon-button>
+                        <mat-icon svgIcon="logo"></mat-icon>
+                </button>
                 <!-- This fills the remaining space of the current row -->
                 <span class="example-fill-remaining-space"></span>
             <span *ngIf="user">
