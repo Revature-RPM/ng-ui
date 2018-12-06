@@ -13,8 +13,9 @@ import { map } from 'rxjs/operators';
 * ZipComponent is Reponsible for Unzipping and Rendering a file.zip
 *
 * If stream is unresovable error when ng serve and attempt to render
-* then in tsconfig.json (no .app.json or event tsoncif.spec.json. the top level tsconfig.json)
-* Do not manually go and change in node modules JSzip to readable-stream from stream....
+* then in tsconfig.json (not.app.json or tsoncif.spec.json. the top level tsconfig.json)
+* add the following code path to the file compileroptions
+* Do not manually go and change in node modules JSzip to readable-stream from stream
 * Git push ignores app modules but not tsconfig.json
 *
 * "paths": {
