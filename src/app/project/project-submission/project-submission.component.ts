@@ -15,6 +15,9 @@ export class ProjectSubmissionComponent implements OnInit {
   constructor(private router: Router, private projectService: ProjectService) {}
 
   ngOnInit() {
+    this.projectToUpload.groupMembers = [];
+    this.projectToUpload.screenShots = [];
+    this.projectToUpload.zipLinks = [];
   }
 
    /**
@@ -47,5 +50,8 @@ export class ProjectSubmissionComponent implements OnInit {
     this.projectService.createProject(formData).subscribe(project => {
        this.router.navigate(['/projects/home']);
     });
+
+
+    this.router.navigate(['/projects/home']);
   }
 }

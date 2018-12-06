@@ -6,15 +6,18 @@ $light-grey: mat-color($mat-grey, 200);
 $black: mat-color($mat-grey,900);
 
 $font: 'Courier New', sans-serif;
-
+* {
+    font-family: 'Courier New', sans-serif !important; 
+    font-style: $black;
+  }
 #registration-container {
     background-color: #ff7f00;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 85%;
-    padding-top: 3%;
-    padding-bottom: 9%;
+    height: 90%;
+    padding-top: 0%;
+    padding-bottom: 0%;
     
     mat-card {
         margin: 0 auto;
@@ -36,35 +39,6 @@ $font: 'Courier New', sans-serif;
                 color: $dark-grey;
                 font-family: $font;
                 font-size: 120%;
-            }
-
-            #email{
-                padding-left: 25%;
-                text-align: start;
-            }
-
-            button {
-                width: 100%;
-                color: $light-grey;
-                font-family: $font;
-                font-size: 120%;
-            }
-
-            button:hover {
-                text-decoration: none;
-            }
-
-            a {
-                margin-top: 2%;
-                width: 100%;
-                background-color: #091abd;
-                color: $light-grey;
-                font-family: $font;
-                font-size: 120%;
-            }
-
-            a:hover {
-                text-decoration: none;
             }
         }
     }
