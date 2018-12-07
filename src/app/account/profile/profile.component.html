@@ -32,7 +32,10 @@
               <div fxLayout.xs="column">
                 <mat-form-field>
                   <input matInput readonly={{setReadOnly}} id="inputFirstName" placeholder="First Name" formControlName="firstname"
-                    (blur)=formFilled() (mouseleave)=formFilled() required>
+                    (blur)=formFilled() (mouseleave)=formFilled() minlength="2" required>
+                  <mat-error *ngIf="form.get('firstname').hasError('minlength') && !form.get('firstname').hasError('required')">
+                    Must be at least <strong>2 characters</strong> long
+                  </mat-error>
                   <mat-error *ngIf="form.get('firstname').hasError('required')">
                     First name is <strong>required</strong>
                   </mat-error>
@@ -41,7 +44,10 @@
               <div fxLayout.xs="column">
                 <mat-form-field>
                   <input matInput readonly={{setReadOnly}} id="inputLastName" placeholder="Last Name" formControlName="lastname"
-                    (blur)=formFilled() (mouseleave)=formFilled() required>
+                    (blur)=formFilled() (mouseleave)=formFilled() minlength="2" required>
+                  <mat-error *ngIf="form.get('lastname').hasError('minlength') && !form.get('lastname').hasError('required')">
+                    Must be at least <strong>2 characters</strong> long
+                  </mat-error>
                   <mat-error *ngIf="form.get('lastname').hasError('required')">
                     Last name is <strong>required</strong>
                   </mat-error>
@@ -54,19 +60,19 @@
               <div fxLayout.xs="column">
                 <mat-form-field>
                   <input matInput readonly={{setReadOnly}} id="inputEmail" placeholder="Email" formControlName="email"
-                    (blur)=formFilled() (mouseleave)=formFilled() required>
-                  <mat-error *ngIf="form.get('email').hasError('email') && !form.get('email').hasError('required')">
-                    Please enter a valid email address
-                  </mat-error>
-                  <mat-error *ngIf="form.get('email').hasError('required')">
-                    Email is <strong>required</strong>
+                    (blur)=formFilled() (mouseleave)=formFilled() [pattern]="emailPattern" required>
+                  <mat-error *ngIf="form.controls.email.errors?.RevatureEmail">
+                    Must end with <strong>@revature.com</strong>
                   </mat-error>
                 </mat-form-field>
               </div>
               <div fxLayout.xs="column">
                 <mat-form-field>
                   <input matInput readonly={{setReadOnly}} id="inputUsername" placeholder="Username" formControlName="username"
-                    (blur)=formFilled() (mouseleave)=formFilled() required>
+                    (blur)=formFilled() (mouseleave)=formFilled() minlength="8" required>
+                  <mat-error *ngIf="form.get('username').hasError('minlength') && !form.get('username').hasError('required')">
+                    Must be at least <strong>8 characters</strong> long
+                  </mat-error>
                   <mat-error *ngIf="form.get('username').hasError('required')">
                     Username is <strong>required</strong>
                   </mat-error>
@@ -79,7 +85,10 @@
               <div fxLayout.xs="column">
                 <mat-form-field>
                   <input matInput readonly={{setReadOnly}} type="password" id="inputPassword" placeholder="Password"
-                    formControlName="password" (blur)=retypeConfirmPassword() required>
+                    formControlName="password" (blur)=retypeConfirmPassword() minlength="8" required>
+                  <mat-error *ngIf="form.get('password').hasError('minlength') && !form.get('password').hasError('required')">
+                    Must be at least <strong>8 characters</strong>
+                  </mat-error>
                   <mat-error *ngIf="form.get('password').hasError('required')">
                     Password is <strong>required</strong>
                   </mat-error>
