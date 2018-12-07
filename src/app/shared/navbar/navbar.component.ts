@@ -21,24 +21,23 @@ export class NavbarComponent implements OnInit {
    * @param router:        enables navigation to various views in the application
 	 * @author Shawn Bickel (1810-Oct08-Java-USF)
 	 */
-  constructor(private iconRegistry: MatIconRegistry, private sanitizer: DomSanitizer, private router: Router) { 
-   
+  constructor(private iconRegistry: MatIconRegistry, private sanitizer: DomSanitizer, private router: Router) {
   }
 
   goToRegister() {
-    this.router.navigate(['/auth/register']);
+    this.router.navigate(['auth','register']);
   }
 
   goToLogin() {
-    this.router.navigate(['/auth/login']);
+    this.router.navigate(['auth','login']);
   }
 
   userAccount() {
-    this.router.navigate(['/account/`${this.user.id}`']);
+    this.router.navigate(['account',this.user.id]);
   }
 
   logout() {
-    this.router.navigate(['auth/logout']);
+    this.router.navigate(['auth','logout']);
   }
 
   ngOnInit() {

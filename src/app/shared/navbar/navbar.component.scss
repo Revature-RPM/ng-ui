@@ -1,12 +1,5 @@
 @import '~@angular/material/theming';
 
-
-body { 
-  font-family: Roboto, Arial, sans-serif;
-  margin: 0;
-}
-
-
 .example-fill-remaining-space {
     /* This fills the remaining space, by using flexbox. 
        Every toolbar row uses a flexbox row layout. */
@@ -20,4 +13,14 @@ body {
 
 #toolbar{
    width: 100%;
+}
+
+#home-icon{
+    max-width: 64px;
+    max-height: 64px;
+}
+
+#icon {
+    width: 64px;
+    height: 64px;
 }

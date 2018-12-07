@@ -3,6 +3,9 @@ import { Router } from '@angular/router';
 
 import { Project } from 'src/app/core/models/Project';
 import { ProjectService } from 'src/app/core/services/project.service';
+import { isGitUrl } from 'is-git-url';
+import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
+
 
 @Component({
   selector: 'app-project-submission',
@@ -12,7 +15,8 @@ import { ProjectService } from 'src/app/core/services/project.service';
 export class ProjectSubmissionComponent implements OnInit {
 
   projectToUpload: Project = {};
-  constructor(private router: Router, private projectService: ProjectService) {}
+
+  constructor(private router: Router, private projectService: ProjectService, private formBuilder: FormBuilder) {}
 
   ngOnInit() {
     this.projectToUpload.groupMembers = [];
@@ -21,13 +25,18 @@ export class ProjectSubmissionComponent implements OnInit {
   }
 
    /**
-	 * This method is bound to the event that the form is submitted; all the data of the form is placed as key/value pairs into a FormData object;
-   * the keys and values are reprsentations of the form fields in the form and their values respectively; this FormData object is then sent to 
-   * the server as a post request to create a new project 
+	 * This method is bound to the event that the form is submitted;
+   * all the data of the form is placed as key/value pairs into a FormData object;
+   * the keys and values are reprsentations of the form fields in the form and their values respectively;
+   * this FormData object is then sent to the server as a post request to create a new project
 	 * @author Shawn Bickel (1810-Oct08-Java-USF)
 	 */
   submitForm() {
     const formData = new FormData();
+    console.log(formData);
+    console.log(this.projectToUpload.groupMembers);
+    console.log(this.projectToUpload.screenShots);
+    console.log(this.projectToUpload.zipLinks);
     formData.append('name', this.projectToUpload.name);
     formData.append('batch', this.projectToUpload.batch);
     formData.append('fullName', this.projectToUpload.fullName);
@@ -47,11 +56,17 @@ export class ProjectSubmissionComponent implements OnInit {
       formData.append('zipLinks', this.projectToUpload.zipLinks[k]);
     }
 
-    this.projectService.createProject(formData).subscribe(project => {
-       this.router.navigate(['/projects/home']);
-    });
+    // this.projectService.createProject(formData).subscribe(project => {
+    //    this.router.navigate(['/home']);
+    // });
 
 
-    this.router.navigate(['/projects/home']);
+    this.router.navigate(['/home']);
+  }
+
+  onFileSelected(e){
+    for (let i = 0; i < e.target.files.length; i++){
+      this.projectToUpload.screenShots.push(e.target.files[i]);
+    }
   }
 }

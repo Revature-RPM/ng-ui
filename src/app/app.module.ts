@@ -17,7 +17,7 @@ import { environment } from 'src/environments/environment';
   imports: [
     AppRoutingModule,
     BrowserAnimationsModule,
-    CoreModule,
+    CoreModule.forRoot(),
     HttpClientModule,
     ProjectModule,
     MatJumbotronModule.forRoot(),
