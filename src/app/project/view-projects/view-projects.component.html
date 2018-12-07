@@ -47,16 +47,16 @@
         <td mat-cell *matCellDef="let project" [attr.colspan]="displayedColumns.length">
           <div class="project-detail" [@detailExpand]="project == expandedProject ? 'expanded' : 'collapsed'">
 
-            <div class="container" fxLayout="row" fxLayoutGap="10%" fxLayoutAlign="center">
-              <div fxLayout.xs="column"></div>
+            <div id="expanded-row" class="container" fxLayout="row" fxLayoutGap="10%">
+              <!-- <div fxLayout.xs="column"></div> -->
               <div fxLayout.xs="column">
-                <button mat-icon-button mat-stroked-button color="primary" mat-button matTooltip="Previous"
-                  matTooltipPosition="left">
+                <button id="arrow-icon" mat-icon-button mat-stroked-button color="primary" mat-button matTooltip="Previous"
+                  matTooltipPosition="left" (click)="previousImage(project.screenShots.length)">
                   <mat-icon>skip_previous</mat-icon>
                 </button>
-                <img class="project-image" [src]="project.screenShots[0]">
-                <button mat-icon-button mat-stroked-button color="primary" mat-button matTooltip="Next"
-                  matTooltipPosition="right">
+                <img class="project-image" [src]="project.screenShots[imagePage%project.screenShots.length]">
+                <button id="arrow-icon" mat-icon-button mat-stroked-button color="primary" mat-button matTooltip="Next"
+                  matTooltipPosition="right" (click)="nextImage(); imagePage=imagePage%project.screenShots.length">
                   <mat-icon>skip_next</mat-icon>
                 </button>
               </div>

@@ -102,7 +102,7 @@ const PROJECT_DATA: Project[] = [
   animations: [
     trigger('detailExpand', [
       state('collapsed', style({ height: '0px', minHeight: '0', display: 'none' })),
-      state('expanded', style({ height: '35vh' })),
+      state('expanded', style({ height: '*' })),
       transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
     ]),
   ],
@@ -112,8 +112,9 @@ export class ViewProjectsComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['name', 'batch', 'fullName', 'techStack', 'status']; // change fullName to trainer
   dataSource: MatTableDataSource<Project>;
   @ViewChild(MatSort) sort: MatSort;
-
   expandedProject: Project | null;
+
+  imagePage = 0; 
 
   projects: Project[];
   subscription: Subscription;
@@ -154,8 +155,14 @@ export class ViewProjectsComponent implements OnInit, OnDestroy {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  // route to the CodeBase page
-  viewCodeBase(id: number) {
-    console.log(id);
+  nextImage() {
+    this.imagePage++;
+  }
+
+  previousImage(num: number) {
+    this.imagePage--;
+    if(this.imagePage<0){
+      this.imagePage=num;
+    }
   }
 }
