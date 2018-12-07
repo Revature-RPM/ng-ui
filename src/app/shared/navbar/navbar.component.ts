@@ -25,19 +25,19 @@ export class NavbarComponent implements OnInit {
   }
 
   goToRegister() {
-    this.router.navigate(['/auth/register']);
+    this.router.navigate(['auth','register']);
   }
 
   goToLogin() {
-    this.router.navigate(['/auth/login']);
+    this.router.navigate(['auth','login']);
   }
 
   userAccount() {
-    this.router.navigate(['/account/`${this.user.id}`']);
+    this.router.navigate(['account',this.user.id]);
   }
 
   logout() {
-    this.router.navigate(['auth/logout']);
+    this.router.navigate(['auth','logout']);
   }
 
   ngOnInit() {
