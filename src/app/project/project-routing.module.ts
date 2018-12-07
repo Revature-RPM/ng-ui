@@ -9,7 +9,7 @@ const routes: Routes = [
   { path: 'home', component: HomePageComponent },
   { path: 'project_submission', component: ProjectSubmissionComponent },
   // TODO { path: ':id/edit', component: EditProjectComponent },
-  { path: ':id/codebase', component: ZipComponent },
+  { path: ':id/codebase', component: ZipComponent }
   // { path: '**', redirectTo: 'home' }
 ];
 

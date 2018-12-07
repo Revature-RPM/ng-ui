@@ -20,11 +20,14 @@ export class ProjectService {
   constructor(private httpClient: HttpClient) { }
 
   getAllProjects(): Observable<Project[]> {
-    return this.httpClient.get<Project[]>('http://localhost:8080/spring-mvc/projects', HTTP_OPTIONS);
+    //return this.httpClient.get<Project[]>('http://localhost:8080/spring-mvc/projects', HTTP_OPTIONS);
+    return new Observable<Project[]>();
   }
 
   createProject(formData: FormData): Observable<Project> {
-    return this.httpClient.post('http://localhost:10001/add', formData);
+    // return this.httpClient.post('http://localhost:10001/add', formData);
+    return new Observable<Project>();
+
   }
   
   setCurrentProject(project: Project) {

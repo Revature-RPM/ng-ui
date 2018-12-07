@@ -25,15 +25,15 @@
             <td>
                 <mat-form-field class="example-full-width">
                     <mat-error *ngIf="!trainerName.valid || trainerName.pristine">Trainer name is required</mat-error>
-                    <textarea name="trainers" matInput placeholder="Trainer Name" [(ngModel)]="projectToUpload.fullName" 
-                    [ngModelOptions]="{standalone: true}" required #trainerName="ngModel"></textarea>
+                    <input type="text" name="trainers" matInput placeholder="Trainer Name" [(ngModel)]="projectToUpload.userFullName" 
+                    [ngModelOptions]="{standalone: true}" required #trainerName="ngModel">
                   </mat-form-field>
             </td>
             <td>
                 <mat-form-field class="example-full-width">
                     <mat-error *ngIf="!groupMembers.valid || groupMembers.pristine">Group members are required</mat-error>
-                  <textarea matInput name="groupMembers" placeholder="Group Members" [(ngModel)]="projectToUpload.groupMembers" 
-                    [ngModelOptions]="{standalone: true}" required #groupMembers="ngModel"></textarea>
+                  <input type="text" matInput name="groupMembers" placeholder="Group Members" [(ngModel)]="groupMemberString" 
+                    [ngModelOptions]="{standalone: true}" required #groupMembers="ngModel">
                   </mat-form-field>
             </td>
           </tr>
@@ -54,8 +54,8 @@
               <td>
                   <mat-form-field class="example-full-width">
                       <mat-error *ngIf="!zipLinks.valid || zipLinks.pristine">Github repository links are required</mat-error>
-                      <input type="text" name="repoLinks" matInput placeholder="Project Repository Links" [(ngModel)]="projectToUpload.zipLinks" 
-                      [ngModelOptions]="{standalone: true}" #zipLinks="ngModel" required pattern="https://github.com/[\d\w-]{2,20}\/[\d\w-]{2,20}$/i">
+                      <input type="text" name="repoLinks" matInput placeholder="Project Repository Links" [(ngModel)]="zipLinksString" 
+                      [ngModelOptions]="{standalone: true}" #zipLinks="ngModel" required>
                     </mat-form-field>
               </td>
               <td><mat-form-field class="example-full-width">
@@ -75,9 +75,9 @@
               </tr>
             </table>
             <br>
-           <button [disabled]="(!name.valid || name.pristine) || (!batch.valid || batch.pristine) || (!trainerName.valid || trainerName.pristine) || (!groupMembers.valid || groupMembers.pristine) || 
-           (!description.valid || description.pristine) || (!zipLinks.valid || zipLinks.pristine) || (!techStack.valid || techStack.pristine)" 
-           type="submit" id="submit" mat-flat-button color="accent">Submit Project</button>
+           <button [disabled]="(!name.valid || name.pristine) || (!batch.valid || batch.pristine) || (!trainerName.valid || trainerName.pristine) || 
+           (!groupMembers.valid || groupMembers.pristine) || (!description.valid || description.pristine) || (!zipLinks.valid || zipLinks.pristine) || 
+           (!techStack.valid || techStack.pristine) || !validForm" type="submit" id="submit" mat-flat-button color="accent">Submit Project</button>
       </form>
  </div>
  
