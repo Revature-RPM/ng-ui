@@ -25,9 +25,10 @@ export class ProjectSubmissionComponent implements OnInit {
   }
 
    /**
-	 * This method is bound to the event that the form is submitted; all the data of the form is placed as key/value pairs into a FormData object;
-   * the keys and values are reprsentations of the form fields in the form and their values respectively; this FormData object is then sent to 
-   * the server as a post request to create a new project 
+	 * This method is bound to the event that the form is submitted;
+   * all the data of the form is placed as key/value pairs into a FormData object;
+   * the keys and values are reprsentations of the form fields in the form and their values respectively;
+   * this FormData object is then sent to the server as a post request to create a new project
 	 * @author Shawn Bickel (1810-Oct08-Java-USF)
 	 */
   submitForm() {

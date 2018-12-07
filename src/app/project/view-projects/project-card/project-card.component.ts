@@ -1,9 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Project } from '../../../core/models/Project';
-import { User } from '../../../core/models/User';
-import { ProjectService } from '../../../core/services/project.service';
+import { Project } from 'src/app/core/models/Project';
+import { User } from 'src/app/core/models/User';
+import { ProjectService } from 'src/app/core/services/project.service';
 
 @Component({
   selector: 'app-project-card',
@@ -14,21 +14,21 @@ export class ProjectCardComponent implements OnInit {
 
   @Input() project: Project;
   admin = true;
-  approved = false;  
+  approved = false;
   loggedInUser: User;
   currentimage: string;
-  
+
   constructor(private projectservice: ProjectService, private router: Router) {
   }
 
   ngOnInit() {
     console.log(this.project.techStack[0]);
   }
-  
-  changeImage(){
+
+  changeImage() {
   }
-  
-  openCodeBase(){
+
+  openCodeBase() {
     this.projectservice.setCurrentProject(this.project);
     this.router.navigate(['projects/codebase']);
   }
