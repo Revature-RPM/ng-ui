@@ -88,6 +88,16 @@ Currently can open and navigate to the src directory of Angular and Java Reposit
   goBack() {
     this.location.back();
   }
+  openRenderFile(renderFile: RenderFile){
+    this.SelectedFile = renderFile;
+    if(!this.OpenFile.includes(renderFile))
+      this.OpenFile.push(renderFile)
+  }
+  closeRenderFile(renderFile: RenderFile){
+    this.OpenFile.splice(this.OpenFile.indexOf(renderFile),1)
+    if(this.OpenFile.length)
+    this.SelectedFile = this.defaultFile();
+  }
   /**
    * Zip.sendRequest()
    * Fire off an http request to retrieve the zip file
