@@ -17,6 +17,7 @@ export class ProfileComponent implements OnInit {
   setReadOnly = true;
   disableButton = true;
   filledPassword = true;
+  emailPattern = '^[a-zA-Z0-9_.+-]+(?:(?:[a-zA-Z0-9-]+\.)?[a-zA-Z]+\.)?@(revature)\.com$';
 
   // source: <https://scotch.io/@ibrahimalsurkhi/match-password-validation-with-angular-2>
   // enable validation error when password is not matched
@@ -30,6 +31,17 @@ export class ProfileComponent implements OnInit {
     }
   }
 
+  static RevatureEmail(AC: AbstractControl) {
+    const email = AC.get('email').value; // to get value in input tag
+    const emailPattern = '^[a-zA-Z0-9_.+-]+(?:(?:[a-zA-Z0-9-]+\.)?[a-zA-Z]+\.)?@(revature)\.com$'; // regex for Revature email
+    console.log(email.match(emailPattern));
+    if (!email.match(emailPattern)) {
+      AC.get('email').setErrors({ RevatureEmail: true });
+    } else {
+      return null;
+    }
+  }
+
   constructor(private router: Router, private fb: FormBuilder) { }
 
   ngOnInit() {
@@ -37,10 +49,10 @@ export class ProfileComponent implements OnInit {
       id: 1,
       firstname: 'Yuki',
       lastname: 'Mano',
-      username: 'ysm',
+      username: 'YukiMano',
       password: 'password',
       userRole: 'trainer',
-      email: 'ym@gmail.com',
+      email: 'ym@revature.com',
     };
 
     window.localStorage.setItem('user', JSON.stringify(tempUser));
@@ -86,14 +98,17 @@ export class ProfileComponent implements OnInit {
   // pre-fill the form
   fillFormGroup(firstname: string, lastname: string, email: string, username: string, password: string) {
     this.form = this.fb.group({
-      firstname: [firstname.trim(), Validators.required],
-      lastname: [lastname.trim(), Validators.required],
+      firstname: [firstname.trim(), [Validators.required, Validators.minLength]],
+      lastname: [lastname.trim(), [Validators.required, Validators.minLength]],
       email: [email.trim(), [Validators.required, Validators.email]],
-      username: [username.trim(), Validators.required],
-      password: [password, Validators.required],
-      confirmPassword: ['', Validators.required],
+      username: [username.trim(), [Validators.required, Validators.minLength]],
+      password: [password, [Validators.required, Validators.minLength]],
+      confirmPassword: ['', [Validators.required,Validators.minLength]],
     }, {
-        validator: ProfileComponent.MatchPassword // match password validation
+        validator: [
+          ProfileComponent.MatchPassword, // match password validation
+          ProfileComponent.RevatureEmail, // must be Revature email
+        ]
       });
   }
 

@@ -37,6 +37,10 @@
             <mat-form-field>
               <input matInput type="password" placeholder="Password" formControlName="password" required [(ngModel)]="user.password">
             </mat-form-field>
+            <br />
+            <mat-form-field>
+              <input matInput type="password" placeholder="Confirm Password" formControlName="confirmPassword" required [(ngModel)]="confirmPassword">
+            </mat-form-field>
             <div>
               <button mat-button matStepperPrevious>Back</button>
               <button mat-button matStepperNext type="submit" ng-disabled=!vm.form.$valid>Next</button>
