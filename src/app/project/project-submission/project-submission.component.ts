@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 
 import { Project } from 'src/app/core/models/Project';
 import { ProjectService } from 'src/app/core/services/project.service';
-import { isGitUrl } from 'is-git-url';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 
 
@@ -15,6 +14,7 @@ import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms'
 export class ProjectSubmissionComponent implements OnInit {
 
   projectToUpload: Project = {};
+  validForm: Boolean = false;
 
   constructor(private router: Router, private projectService: ProjectService, private formBuilder: FormBuilder) {}
 
@@ -37,6 +37,10 @@ export class ProjectSubmissionComponent implements OnInit {
     console.log(this.projectToUpload.groupMembers);
     console.log(this.projectToUpload.screenShots);
     console.log(this.projectToUpload.zipLinks);
+    if (this.projectToUpload.zipLinks.length == 0){
+      this.validForm = false;
+      return false;
+    }
     formData.append('name', this.projectToUpload.name);
     formData.append('batch', this.projectToUpload.batch);
     formData.append('fullName', this.projectToUpload.fullName);
@@ -66,7 +70,9 @@ export class ProjectSubmissionComponent implements OnInit {
 
   onFileSelected(e){
     for (let i = 0; i < e.target.files.length; i++){
+      console.log(e.target.files[i]);
       this.projectToUpload.screenShots.push(e.target.files[i]);
+      this.validForm = true;
     }
   }
 }

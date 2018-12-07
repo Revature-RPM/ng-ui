@@ -55,7 +55,7 @@
                   <mat-form-field class="example-full-width">
                       <mat-error *ngIf="!zipLinks.valid || zipLinks.pristine">Github repository links are required</mat-error>
                       <input type="text" name="repoLinks" matInput placeholder="Project Repository Links" [(ngModel)]="projectToUpload.zipLinks" 
-                      [ngModelOptions]="{standalone: true}" #zipLinks="ngModel" required pattern="https://github.com/[\d\w-]{2,20}\/[\d\w-]{2,20}$/i">
+                      [ngModelOptions]="{standalone: true}" #zipLinks="ngModel" required>
                     </mat-form-field>
               </td>
               <td><mat-form-field class="example-full-width">
@@ -75,9 +75,9 @@
               </tr>
             </table>
             <br>
-           <button [disabled]="(!name.valid || name.pristine) || (!batch.valid || batch.pristine) || (!trainerName.valid || trainerName.pristine) || (!groupMembers.valid || groupMembers.pristine) || 
-           (!description.valid || description.pristine) || (!zipLinks.valid || zipLinks.pristine) || (!techStack.valid || techStack.pristine)" 
-           type="submit" id="submit" mat-flat-button color="accent">Submit Project</button>
+           <button [disabled]="(!name.valid || name.pristine) || (!batch.valid || batch.pristine) || (!trainerName.valid || trainerName.pristine) || 
+           (!groupMembers.valid || groupMembers.pristine) || (!description.valid || description.pristine) || (!zipLinks.valid || zipLinks.pristine) || 
+           (!techStack.valid || techStack.pristine)" type="submit" id="submit" mat-flat-button color="accent">Submit Project</button>
       </form>
  </div>
  

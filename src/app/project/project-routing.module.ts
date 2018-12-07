@@ -9,8 +9,8 @@ const routes: Routes = [
   { path: 'home', component: HomePageComponent, pathMatch: 'full' },
   { path: 'project_submission', component: ProjectSubmissionComponent },
   // TODO { path: ':id/edit', component: EditProjectComponent },
-  { path: ':id/codebase', component: ZipComponent },
-  { path: '**', redirectTo: 'home' }
+  { path: ':id/codebase', component: ZipComponent }
+  // { path: '**', redirectTo: 'home' }
 ];
 
 @NgModule({

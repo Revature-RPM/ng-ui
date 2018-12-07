@@ -5,12 +5,12 @@ const routes: Routes = [
   { path: '', loadChildren: './project/project.module#ProjectModule' },
   { path: 'account', loadChildren: './account/account.module#AccountModule' },
   { path: 'auth', loadChildren: './authentication/authentication.module#AuthenticationModule' },
-  { path: 'projects', loadChildren: './project/project.module#ProjectModule' },
-  { path: '**', redirectTo: '' }
+  { path: 'projects', loadChildren: './project/project.module#ProjectModule' }
+  // { path: '**', redirectTo: '' }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })],
+  imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules, enableTracing: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
