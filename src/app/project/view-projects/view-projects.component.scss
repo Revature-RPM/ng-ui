@@ -4,6 +4,7 @@
 
 table {
     width: 100%;
+    cursor: default;
   }
 
   .table-container {
@@ -30,8 +31,6 @@ table {
   .project-detail {
     overflow: hidden;
     // display: flex;
-    height: 100%;
-    width: 100%;
   }
   
   // .project-diagram {

@@ -50,7 +50,15 @@
             <div class="container" fxLayout="row" fxLayoutGap="10%" fxLayoutAlign="center">
               <div fxLayout.xs="column"></div>
               <div fxLayout.xs="column">
+                <button mat-icon-button mat-stroked-button color="primary" mat-button matTooltip="Previous"
+                  matTooltipPosition="left">
+                  <mat-icon>skip_previous</mat-icon>
+                </button>
                 <img class="project-image" [src]="project.screenShots[0]">
+                <button mat-icon-button mat-stroked-button color="primary" mat-button matTooltip="Next"
+                  matTooltipPosition="right">
+                  <mat-icon>skip_next</mat-icon>
+                </button>
               </div>
               <div fxLayout.xs="column">
                 <div class="container" fxLayout="row">
