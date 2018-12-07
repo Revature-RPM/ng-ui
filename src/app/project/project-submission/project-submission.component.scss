@@ -4,6 +4,13 @@ $font: 'Courier New', sans-serif;
 $alignment: center;
 $minimal-padding: 1%;
 
+#grid{
+    height: 85%;
+    width: 100%;
+    margin: 0;
+    overflow: hidden;
+}
+
 #title{
     text-align: $alignment;
     padding: $minimal-padding;
@@ -20,6 +27,8 @@ form {
     width: 85%;
     text-align: $alignment;
     height: 85%;
+    max-width: 100%;
+    max-height: 100%;
     padding-left: 5%;
     padding-right: 5%;
   }
@@ -27,4 +36,6 @@ form {
   .example-full-width {
     width: 100%;
   }
+
+
   

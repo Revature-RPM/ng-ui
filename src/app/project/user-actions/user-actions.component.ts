@@ -31,7 +31,7 @@ export class UserActionsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.user = JSON.parse(localStorage.getItem('user'));
+    // this.user = JSON.parse(localStorage.getItem('user'));
     this.iconRegistry.addSvgIcon(
       'add_project',
       this.sanitizer.bypassSecurityTrustResourceUrl('assets/img/round-add-24px.svg'));
