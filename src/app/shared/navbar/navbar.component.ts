@@ -53,6 +53,6 @@ export class NavbarComponent implements OnInit {
   }
 
   homepageShortcut() {
-    this.router.navigate(['home']);
+    this.router.navigate(['projects','home']);
   }
 }

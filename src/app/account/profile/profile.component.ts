@@ -34,7 +34,6 @@ export class ProfileComponent implements OnInit {
   static RevatureEmail(AC: AbstractControl) {
     const email = AC.get('email').value; // to get value in input tag
     const emailPattern = '^[a-zA-Z0-9_.+-]+(?:(?:[a-zA-Z0-9-]+\.)?[a-zA-Z]+\.)?@(revature)\.com$'; // regex for Revature email
-    console.log(email.match(emailPattern));
     if (!email.match(emailPattern)) {
       AC.get('email').setErrors({ RevatureEmail: true });
     } else {
