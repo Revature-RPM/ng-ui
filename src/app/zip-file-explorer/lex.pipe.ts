@@ -142,6 +142,7 @@ export class LexPipe implements PipeTransform {
     this.lex['&lt']                               = /</g;
     // mild sanitization
     this.lex['&gt']                               = />/g;
+    this.lex[`<span class='token5'>\$&</span>`]   = /@[\w\d]+/g;
 }
 
 }
