@@ -6,6 +6,7 @@ import { catchError } from 'rxjs/operators';
 import { User } from '../models/User';
 import { environment } from '../../../environments/environment';
 
+
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json'
@@ -36,12 +37,19 @@ ${error.error}`
   login(user: User): Observable<User> {
     console.log(user)
     return this.http.post<User>(environment.url + 'login', user, httpOptions)
-    .pipe(catchError(this.handleError));
+      .pipe(catchError(this.handleError));
   }
 
   register(user: User): Observable<User> {
-    user.userRole = "user";
+    user.role = "user";
     return this.http.post<User>(environment.url + 'register', user, httpOptions)
-    .pipe(catchError(this.handleError));
+      .pipe(catchError(this.handleError));
+  }
+
+  updateProfile(user: User): Observable<User> {
+    // user.userRole = "user";
+
+    return this.http.put<User>('http://localhost:8762/auth/users', user, httpOptions)
+      .pipe(catchError(this.handleError));
   }
 }
