@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import * as JSZip from 'jszip';
-import { ProjectService } from 'src/app/core/services/project.service';
+import { NgMetaService } from 'ngmeta';
 
 @Component({
   selector: 'app-zip-component',
@@ -34,18 +35,27 @@ export class ZipComponent implements OnInit {
    * Constructur: Injects Http Client into the component for use of resource request
    * @param HttpClient standard angular dependency to fire http request.
    * @param Location: Allows the page to redirect back to the last page it was opened from
-   * @param ProjectService: Injects the project service to get the request url
+   * @param Router: Allows for redirection to login if the user has not yet logged in
+   * @param NgMetaService: Changes the value of <title> inside index.html
    * @author Andrew Mitchem (1810-Oct08-Java-USF)
    */
-  constructor(private http: HttpClient, private location: Location, private projectService: ProjectService) { }
+  constructor(private http: HttpClient,
+              private location: Location,
+              private router: Router,
+              private ngmeta: NgMetaService) { }
 
   ngOnInit() {
-    this.SelectedFile = this.defaultFile();
+    if (localStorage.getItem('user') === null) {
+      this.router.navigate(['/auth/login']);
+    } else {
+      this.ngmeta.setHead({ title: 'Code | RPM' });
+      this.SelectedFile = this.defaultFile();
+    }
   }
   /**
    * Zip.errorFile()
    * sets the defualt display for error messages
-   * @param message
+   * @param message: Error message
    * @author Andrew Mitchem (1810-Oct08-Java-USF)
    */
   errorFile(message: string): RenderFile {
@@ -184,22 +194,22 @@ Currently can open and navigate to the src directory of Angular and Java Reposit
   parseFiles(file) {
     // check if file is a directory
     if (!file.dir) {
-        let fileName = file.name;
-        // save ZipObject file name as once unzip into a  standard file  we loose acess to this data
-        fileName = fileName.replace(this.filepath, '');
-        fileName = fileName.substring(fileName.lastIndexOf('/') + 1);
-        // remove leading path in name
-        const helpme = file.async('uint8array').then(function (data) { // converts the ZipObject
-          let string = '';
-          string = new TextDecoder('utf-8').decode(data);
-          return string;
-        });
-        helpme.then(string => {
-          const file = new RenderFile();
-          file.fileName = fileName;
-          file.fileContent = string; // "file here is a string text readable format stored for rendering logic"
-          this.RenderFile.push(file);
-        });
+      let fileName = file.name;
+      // save ZipObject file name as once unzip into a  standard file  we loose acess to this data
+      fileName = fileName.replace(this.filepath, '');
+      fileName = fileName.substring(fileName.lastIndexOf('/') + 1);
+      // remove leading path in name
+      const helpme = file.async('uint8array').then(function (data) { // converts the ZipObject
+        let string = '';
+        string = new TextDecoder('utf-8').decode(data);
+        return string;
+      });
+      helpme.then(string => {
+        const file = new RenderFile();
+        file.fileName = fileName;
+        file.fileContent = string; // "file here is a string text readable format stored for rendering logic"
+        this.RenderFile.push(file);
+      });
     }
   }
 }
