@@ -109,7 +109,6 @@ Currently can open and navigate to the src directory of Angular and Java Reposit
     this.http.get(url, { observe: 'response', responseType: 'blob'})
     .subscribe(blob => {
       // after the array is retrieve. open the data with JSZip
-      console.log('got (ui8Arra)');
       console.log(blob);
       console.log(blob.body);
       console.log(blob.headers);
