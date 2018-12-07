@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { environment } from 'src/environments/environment';
 
+
 @NgModule({
   declarations: [
     AppComponent,
