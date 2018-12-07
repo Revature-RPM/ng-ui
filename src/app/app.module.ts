@@ -9,6 +9,8 @@ import { ProjectModule } from './project/project.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { environment } from 'src/environments/environment';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { jwtinterceptor } from 'src/app/core/services/jwtInterceptor.interceptor';
 
 @NgModule({
   declarations: [

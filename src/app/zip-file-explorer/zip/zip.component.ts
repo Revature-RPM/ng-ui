@@ -29,7 +29,6 @@ export class ZipComponent implements OnInit {
   RenderFile: RenderFile[] = [];
   SelectedFile: RenderFile;
   OpenFile: RenderFile[] = [];
-<<<<<<< HEAD
   filepath: string = '';
   browserSupported: boolean = true;
   /*Constructur: Injects Http Client into the component for use of resource request
@@ -39,17 +38,6 @@ export class ZipComponent implements OnInit {
   *@author Andrew Mitchem (1810-Oct08-Java-USF)
   */
   constructor(private http: HttpClient, private location: Location,private projectService: ProjectService) { }
-=======
-  filepath = '';
-  /**
-   * Constructur: Injects Http Client into the component for use of resource request
-   * @param HttpClient standard angular dependency to fire http request.
-   * @param Location: Allows the page to redirect back to the last page it was opened from
-   * @param ProjectService: Injects the project service to get the request url
-   * @author Andrew Mitchem (1810-Oct08-Java-USF)
-   */
-  constructor(private http: HttpClient, private location: Location, private projectService: ProjectService) { }
->>>>>>> c850c33aff7b75b61a3bd36aa88aa75a4e3c452a
 
   ngOnInit() {
     this.SelectedFile = this.defaultFile();
