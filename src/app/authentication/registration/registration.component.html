@@ -7,18 +7,20 @@
           <form ngNativeValidate [formGroup]="firstFormGroup">
             <ng-template matStepLabel>Fill out your name</ng-template>
             <mat-form-field>
-              <input matInput placeholder="First Name" formControlName="firstName" required minlength="1" [(ngModel)]="user.firstname">
+              <input matInput placeholder="First Name" formControlName="firstName" required minlength="2" [(ngModel)]="user.firstname">
             </mat-form-field>
             <br />
             <mat-form-field>
-              <input matInput placeholder="Last Name" formControlName="lastName" required minlength="1" [(ngModel)]="user.lastname">
+              <input matInput placeholder="Last Name" formControlName="lastName" required minlength="2" [(ngModel)]="user.lastname">
             </mat-form-field>
             <br />
             <mat-form-field>
               <input matInput type="email" placeholder="Revature Email" formControlName="email" required [(ngModel)]="user.email"
-                matTooltip="Must be valid @revature.com Email." [pattern]="emailPattern">
+                matTooltip="Must be a valid @revature.com email." [pattern]="emailPattern">
+                <mat-hint>@revature.com required</mat-hint>
             </mat-form-field>
             <div>
+              <br>
               <button mat-button matStepperNext type="submit" ng-disabled=!vm.form.$valid>Next</button>
               <a mat-button routerLink="/auth/login">Return to Login</a>
             </div>
@@ -35,7 +37,13 @@
             </mat-form-field>
             <br />
             <mat-form-field>
-              <input matInput type="password" placeholder="Password" formControlName="password" required [(ngModel)]="user.password">
+              <input matInput type="password" placeholder="Password" formControlName="password" id="inputPassword" required [(ngModel)]="user.password">
+              <mat-hint>Must be 8 characters</mat-hint>
+            </mat-form-field>
+            <br />
+            <mat-form-field>
+              <input matInput type="password" placeholder="Confirm Password" formControlName="confirmPassword" required minlength="8" [(ngModel)]="confirmPassword">
+              <mat-hint>Passwords must match</mat-hint>
             </mat-form-field>
             <div>
               <button mat-button matStepperPrevious>Back</button>
