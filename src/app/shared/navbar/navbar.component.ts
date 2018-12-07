@@ -21,8 +21,7 @@ export class NavbarComponent implements OnInit {
    * @param router:        enables navigation to various views in the application
 	 * @author Shawn Bickel (1810-Oct08-Java-USF)
 	 */
-  constructor(private iconRegistry: MatIconRegistry, private sanitizer: DomSanitizer, private router: Router) { 
-   
+  constructor(private iconRegistry: MatIconRegistry, private sanitizer: DomSanitizer, private router: Router) {
   }
 
   goToRegister() {

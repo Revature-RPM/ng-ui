@@ -44,10 +44,19 @@ export class ZipComponent implements OnInit {
     this.SelectedFile = this.defaultFile();
   }
   /*zip.errorFIle
-  * sets the defualt display for error messages
+  *sets the defualt display for error messages
   *@param message
   *@author Andrew Mitchem (1810-Oct08-Java-USF)
   */
+ openRenderFile(file: RenderFile){
+  this.SelectedFile = file; 
+  !this.OpenFile.includes(file) && this.OpenFile.push(file)
+ }
+ closeRenderFile(file: RenderFile){
+  this.OpenFile.splice( this.OpenFile.indexOf(file), 1 );
+  if(!this.OpenFile.length)
+   this.SelectedFile=this.defaultFile();
+ }
   errorFile(message: string): RenderFile{
     let testfile = new  RenderFile();
     testfile.fileName = "HELP";
@@ -103,7 +112,7 @@ Currently can open and navigate to the src directory of Angular and Java Reposit
       }else{
         let datafilename = url.substring(url.lastIndexOf("/")+1);
         this.openData(blob.body,datafilename);
-      }
+      } 
     });
   }
    /*

@@ -90,6 +90,14 @@ export class LexPipe implements PipeTransform {
       * DO NOT REORDER THESE WITHOUT EXTENSIVE TESTING.
       *
       */
+    let isLookBehindSupported = false;
+    try { isLookBehindSupported = !!new RegExp("(?<=)"); 
+    
+    } catch(e){
+
+    }
+    console.log(isLookBehindSupported)
+    if( isLookBehindSupported){
     this.lex['&lt']                               = /</g;
     // mild sanitization
     this.lex['&gt']                               = />/g;
@@ -101,28 +109,28 @@ export class LexPipe implements PipeTransform {
     // this property matches comments (//) no support for /* */ ones
     this.lex[`<span class='token15'>\$&</span>`]  = /(import[^s]|package).*/g;
     // Simply selects imports/packages. doesn't include items infront of them (i.e. Angular)
-    this.lex[`<span class='token16'>\$&</span>`]  = /(?<=(class ))\w+/g;
+    this.lex[`<span class='token16'>\$&</span>`]  = new RegExp("(?<=(class ))\w","g");
     // simply selects words preceed by reserved token class uses lookahead
-    this.lex[`<span class='token9'>\$&</span>`]   = /(?<=(public ))\w+/g;
+    this.lex[`<span class='token9'>\$&</span>`]   = new RegExp("(?<=(public ))\w+","g");
     // simply selects tokens preceeded by reserved token public uses lookahead
-    this.lex[`<span class='token10'>\$&</span>`]  = /(?<=(private ))\w+/g;
+    this.lex[`<span class='token10'>\$&</span>`]  = new RegExp("(?<=(private ))\w+","g");
     // simply selects tokens preceeded by reserved token private.uses lookahead
-    this.lex[`<span class='token11'>\$&</span>`]  = /(?<=(static ))\w+/g;
+    this.lex[`<span class='token11'>\$&</span>`]  = new RegExp("(?<=(static ))\w+","g");
     // simply selects tokens preceeded by reserved token static uses lookahead
-    this.lex[`<span class='token12'>\$&</span>`]  = /(?<=(protected ))\w+/g;
+    this.lex[`<span class='token12'>\$&</span>`]  = new RegExp("(?<=(protected ))\w+","g");
     // simply selects tokens preceeded by reserved token protected uses lookahead
     this.lex[`<span class='token2'>\$&</span>`]   = /public|private|protected|package/g;
     // simply selects reserved tokens public private protected package
-    this.lex[`<span class='token3'>\$&</span>`]   = /(?<!\w)(Integer|boolean|Boolean|int|String|Date|let|long|Long|byte|Byte|char|Char)(?!\w)/g;
+    this.lex[`<span class='token3'>\$&</span>`]   = new RegExp("(?<!\w)(Integer|boolean|Boolean|int|String|number|string|Observable|any|Date|let|long|Long|byte|Byte|char|Char)(?!\w)","g");
     // simply selects reserved tokens for base types and wrapper classes  uses negative lookahead and negative lookbehind
-    this.lex[`<span class='token4'>\$&</span>`]   = /(^(\s|\d){4})|((?<=\n<\/span>)(\s|\d){4})|(\n(\s|\d){4})/g;
+    this.lex[`<span class='token4'>\$&</span>`]   = new RegExp("(^(\s|\d){4})|((?<=\n<\/span>)(\s|\d){4})|(\n(\s|\d){4})","g");
     // simply selects the line numbers. checks for line numbers at start of text.
     // line numbers where a span clips the carriage return, and raw line numbers after carriage returns
     this.lex[`<span class='token5'>\$&</span>`]   = /@[\w\d]+/g;
     // simply selects @annotations and decorators
-    this.lex[`<span class='token6'>\$&</span>`]   = /(?<!\w)(if|for|new|return|void|extends|exports|imports|providers|constructor|declarations|implements|console|System|else|try|catch)(?!\w)/g;
+    this.lex[`<span class='token6'>\$&</span>`]   = new RegExp("(?<!\w)(if|for|new|return|void|extends|exports|imports|providers|constructor|declarations|implements|console|System|else|try|catch)(?!\w)","g");;
     //simply selects tokens that are reserved for flow control uses negative lookahead and lookbehind
-    this.lex[`<span class='token7'>\$&</span>`]   = /(?<!\w)(this|super|switch|null|case|selector|templateUrl|styleUrls|default|const|throws|export)(?!\w)/g;
+    this.lex[`<span class='token7'>\$&</span>`]   = new RegExp("(?<!\w)(this|super|switch|null|case|selector|templateUrl|styleUrls|default|const|throws|export)(?!\w)","g");
     // simply selects tokens that are reserved keywords (this|super|switch|null)
     this.lex[`<span class='token8'>\$&</span>`]   = /\.\w+/g;
     // simply selects tokens that are .operators. ie this.method()
@@ -130,5 +138,12 @@ export class LexPipe implements PipeTransform {
     // simply selects tokens that are strings. exludes escaped "" ie "string" "string are made by \" \" "
     // uses non capturing group with negative single character group to include \" in the result
     // this particular regex expression is from stackoverflow.
-  }
+  }else{
+    this.lex['&lt']                               = /</g;
+    // mild sanitization
+    this.lex['&gt']                               = />/g;
+}
+
+}
+
 }
