@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgMetaService } from 'ngmeta';
 
 import { Project } from 'src/app/core/models/Project';
-import { ProjectService } from 'src/app/core/services/project.service';
-import { isGitUrl } from 'is-git-url';
-import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 
 
 @Component({
@@ -13,15 +12,21 @@ import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms'
   styleUrls: ['./project-submission.component.scss']
 })
 export class ProjectSubmissionComponent implements OnInit {
-
   projectToUpload: Project = {};
 
-  constructor(private router: Router, private projectService: ProjectService, private formBuilder: FormBuilder) {}
+  constructor(private router: Router,
+              private formBuilder: FormBuilder,
+              private ngmeta: NgMetaService) {}
 
   ngOnInit() {
-    this.projectToUpload.groupMembers = [];
-    this.projectToUpload.screenShots = [];
-    this.projectToUpload.zipLinks = [];
+    if (localStorage.getItem('user') === null) {
+      this.router.navigate(['/auth/login']);
+    } else {
+      this.ngmeta.setHead({ title: 'Submit | RPM' });
+      this.projectToUpload.groupMembers = [];
+      this.projectToUpload.screenShots = [];
+      this.projectToUpload.zipLinks = [];
+    }
   }
 
    /**
@@ -56,16 +61,11 @@ export class ProjectSubmissionComponent implements OnInit {
       formData.append('zipLinks', this.projectToUpload.zipLinks[k]);
     }
 
-    // this.projectService.createProject(formData).subscribe(project => {
-    //    this.router.navigate(['/home']);
-    // });
-
-
-    this.router.navigate(['/home']);
+    this.router.navigate(['']);
   }
 
-  onFileSelected(e){
-    for (let i = 0; i < e.target.files.length; i++){
+  onFileSelected(e) {
+    for (let i = 0; i < e.target.files.length; i++) {
       this.projectToUpload.screenShots.push(e.target.files[i]);
     }
   }
