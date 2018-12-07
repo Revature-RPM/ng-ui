@@ -8,6 +8,8 @@ import { AppModule} from '../../app.module';
 import { RegistrationComponent } from './registration.component';
 import { AuthenticationModule } from '../authentication.module';
 
+
+//Testing the successful creation of the Registration component
 xdescribe('RegistrationComponent', () => {
   let component: RegistrationComponent;
   let fixture: ComponentFixture<RegistrationComponent>;

@@ -2,11 +2,11 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
-import { SharedModule } from '../../shared/shared.module';
 import { AppModule} from '../../app.module';
 
 
 import { LogoutComponent } from './logout.component';
+import { AuthenticationModule } from '../authentication.module';
 
 describe('LogoutComponent', () => {
   let component: LogoutComponent;
@@ -14,8 +14,8 @@ describe('LogoutComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LogoutComponent ],
-      imports: [SharedModule, RouterTestingModule, BrowserAnimationsModule, AppModule]      
+      declarations: [ ],
+      imports: [ RouterTestingModule, BrowserAnimationsModule, AppModule, AuthenticationModule]      
 
     })
     .compileComponents();
