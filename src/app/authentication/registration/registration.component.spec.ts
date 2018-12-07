@@ -1,17 +1,25 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RegistrationComponent } from './registration.component';
+import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { RouterTestingModule } from '@angular/router/testing';
+import { SharedModule } from '../../shared/shared.module';
+import { AppModule} from '../../app.module';
 
-describe('RegistrationComponent', () => {
+import { RegistrationComponent } from './registration.component';
+import { AuthenticationModule } from '../authentication.module';
+
+xdescribe('RegistrationComponent', () => {
   let component: RegistrationComponent;
   let fixture: ComponentFixture<RegistrationComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ RegistrationComponent ]
+      declarations: [ ],
+      imports: [SharedModule, RouterTestingModule, BrowserAnimationsModule, AppModule, AuthenticationModule]
+      
     })
     .compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(RegistrationComponent);

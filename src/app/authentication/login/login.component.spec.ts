@@ -1,5 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { RouterTestingModule } from '@angular/router/testing';
+import { SharedModule } from '../../shared/shared.module';
+import { AppModule} from '../../app.module';
+
 import { LoginComponent } from './login.component';
 
 describe('LoginComponent', () => {
@@ -8,7 +13,8 @@ describe('LoginComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LoginComponent ]
+      declarations: [ LoginComponent ],
+      imports: [SharedModule, RouterTestingModule, BrowserAnimationsModule, AppModule]      
     })
     .compileComponents();
   }));
