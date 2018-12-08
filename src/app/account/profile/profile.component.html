@@ -31,24 +31,24 @@
               <div fxLayout.xs="column"></div>
               <div fxLayout.xs="column">
                 <mat-form-field>
-                  <input matInput readonly={{setReadOnly}} id="inputFirstName" placeholder="First Name" formControlName="firstname"
+                  <input matInput readonly={{setReadOnly}} id="inputFirstName" placeholder="First Name" formControlName="firstName"
                     (blur)=formFilled() (mouseleave)=formFilled() minlength="2" required>
-                  <mat-error *ngIf="form.get('firstname').hasError('minlength') && !form.get('firstname').hasError('required')">
+                  <mat-error *ngIf="form.get('firstName').hasError('minlength') && !form.get('firstName').hasError('required')">
                     Must be at least <strong>2 characters</strong> long
                   </mat-error>
-                  <mat-error *ngIf="form.get('firstname').hasError('required')">
+                  <mat-error *ngIf="form.get('firstName').hasError('required')">
                     First name is <strong>required</strong>
                   </mat-error>
                 </mat-form-field>
               </div>
               <div fxLayout.xs="column">
                 <mat-form-field>
-                  <input matInput readonly={{setReadOnly}} id="inputLastName" placeholder="Last Name" formControlName="lastname"
+                  <input matInput readonly={{setReadOnly}} id="inputLastName" placeholder="Last Name" formControlName="lastName"
                     (blur)=formFilled() (mouseleave)=formFilled() minlength="2" required>
-                  <mat-error *ngIf="form.get('lastname').hasError('minlength') && !form.get('lastname').hasError('required')">
+                  <mat-error *ngIf="form.get('lastName').hasError('minlength') && !form.get('lastName').hasError('required')">
                     Must be at least <strong>2 characters</strong> long
                   </mat-error>
-                  <mat-error *ngIf="form.get('lastname').hasError('required')">
+                  <mat-error *ngIf="form.get('lastName').hasError('required')">
                     Last name is <strong>required</strong>
                   </mat-error>
                 </mat-form-field>

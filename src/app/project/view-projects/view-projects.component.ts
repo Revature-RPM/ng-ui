@@ -159,10 +159,10 @@ export class ViewProjectsComponent implements OnInit, OnDestroy {
     this.imagePage++;
   }
 
-  previousImage(num: number) {
+  previousImage(totalAmountOfScreenShots: number) {
     this.imagePage--;
     if(this.imagePage<0){
-      this.imagePage=num;
+      this.imagePage = totalAmountOfScreenShots;
     }
   }
 }
