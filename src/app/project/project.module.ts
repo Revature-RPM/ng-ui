@@ -11,6 +11,7 @@ import { ProjectCardComponent } from './view-projects/project-card/project-card.
 import { ProjectService } from '../core/services/project.service';
 import { SharedModule } from '../shared/shared.module';
 import { ZipFileExplorerModule } from '../zip-file-explorer/zip-file-explorer.module';
+import { InputDialogComponent } from './project-submission/input-dialog/input-dialog.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ZipFileExplorerModule } from '../zip-file-explorer/zip-file-explorer.mo
     ProjectCardComponent,
     ProjectSubmissionComponent,
     UserActionsComponent,
-    ViewProjectsComponent
+    ViewProjectsComponent,
+    InputDialogComponent
   ],
   imports: [
     CommonModule,
@@ -27,6 +29,7 @@ import { ZipFileExplorerModule } from '../zip-file-explorer/zip-file-explorer.mo
     ZipFileExplorerModule,
     MatDialogModule
   ],
+  entryComponents: [InputDialogComponent],
   providers: [ProjectService]
 })
 export class ProjectModule { }

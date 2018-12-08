@@ -1,17 +1,19 @@
 <app-navbar></app-navbar>
  <div class="my-theme">
     <h1 id="title">Submit a Project</h1>
-    <form  #projectForm="ngForm" (ngSubmit)="submitForm()" novalidate>
+    <form  #projectForm="ngForm" novalidate>
         <table class="example-full-width" cellspacing="5"><tr>
           <td>
-              <mat-form-field class="example-full-width">
+              <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Project Name</mat-label>
                   <mat-error *ngIf="!name.valid || name.pristine">Project name is required</mat-error>
                   <input id="project_name" name="projectName" type="text" matInput placeholder="Project Name" [(ngModel)]="projectToUpload.name" 
                   [ngModelOptions]="{standalone: true}" required #name="ngModel">
                 </mat-form-field>
           </td>
           <td>
-              <mat-form-field class="example-full-width">
+              <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Batch Name</mat-label>
                   <mat-error *ngIf="!batch.valid || batch.pristine">Batch name is required</mat-error>
                   <input type="text" name="batchName" matInput placeholder="Batch Name" [(ngModel)]="projectToUpload.batch" 
                   [ngModelOptions]="{standalone: true}" required #batch="ngModel">
@@ -23,17 +25,19 @@
         <table class="example-full-width" cellspacing="5">
           <tr>
             <td>
-                <mat-form-field class="example-full-width">
+                <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Trainer Name</mat-label>
                     <mat-error *ngIf="!trainerName.valid || trainerName.pristine">Trainer name is required</mat-error>
                     <input type="text" name="trainers" matInput placeholder="Trainer Name" [(ngModel)]="projectToUpload.userFullName" 
                     [ngModelOptions]="{standalone: true}" required #trainerName="ngModel">
                   </mat-form-field>
             </td>
             <td>
-                <mat-form-field class="example-full-width">
+                <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Group Members</mat-label>
                     <mat-error *ngIf="!groupMembers.valid || groupMembers.pristine">Group members are required</mat-error>
-                  <input type="text" matInput name="groupMembers" placeholder="Group Members" [(ngModel)]="groupMemberString" 
-                    [ngModelOptions]="{standalone: true}" required #groupMembers="ngModel">
+                  <input type="text" id="inputGroupMembers" matInput name="groupMembers" placeholder="Group Members" readonly [(ngModel)]="groupMemberString" 
+                    [ngModelOptions]="{standalone: true}" (click)="openDialog($event)" required #groupMembers="ngModel">
                   </mat-form-field>
             </td>
           </tr>
@@ -41,7 +45,8 @@
     
         <table class="example-full-width" cellspacing="5"><tr>
             <td>
-                <mat-form-field class="example-full-width">
+                <mat-form-field class="example-full-width"  appearance="outline">
+                        <mat-label>Description</mat-label>
                     <mat-error *ngIf="!description.valid || description.pristine">Description is required</mat-error>
                     <textarea matInput name="description" placeholder="Project Description" [(ngModel)]="projectToUpload.description" 
                     [ngModelOptions]="{standalone: true}" #description="ngModel" required></textarea>
@@ -52,13 +57,15 @@
         <table class="example-full-width" cellspacing="5">
             <tr>
               <td>
-                  <mat-form-field class="example-full-width">
+                  <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Repository Links</mat-label>
                       <mat-error *ngIf="!zipLinks.valid || zipLinks.pristine">Github repository links are required</mat-error>
-                      <input type="text" name="repoLinks" matInput placeholder="Project Repository Links" [(ngModel)]="zipLinksString" 
-                      [ngModelOptions]="{standalone: true}" #zipLinks="ngModel" required>
+                      <input type="text" id="inputGithubLink" name="repoLinks" readonly matInput placeholder="Project Repository Links" [(ngModel)]="zipLinksString" 
+                      [ngModelOptions]="{standalone: true}" [pattern]="githubURLRegex" (click)="openDialog($event)" #zipLinks="ngModel" required>
                     </mat-form-field>
               </td>
-              <td><mat-form-field class="example-full-width">
+              <td><mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Tecknology Stack</mat-label>
                   <mat-error *ngIf="!techStack.valid || techStack.pristine">Technology stack is required</mat-error>
                   <input type=text matInput name="stack" placeholder="Project Technology Stack" [(ngModel)]="projectToUpload.techStack" 
                   [ngModelOptions]="{standalone: true}" required #techStack="ngModel">
@@ -69,15 +76,19 @@
           <table class="example-full-width" cellspacing="5">
               <tr>
                 <td>
-                    <label for="screenShots">Choose Project Screenshots:  </label>
-                    <input id="screenShots" type="file" (change)="onFileSelected($event)" accept="image/*" multiple required>
+                    <span id="requiredScreenShotButton">* </span>
+                    <button id="buttonScreenshotTrigger" mat-flat-button color="accent" (click)="uploadScreenshots.click()">Choose Project Screenshots: </button>
+                    <span *ngFor="let screenshot of projectToUpload.screenShots"> 
+                        <span> {{ screenshot.name }} </span>
+                    </span>
                 </td>
               </tr>
             </table>
             <br>
-           <button [disabled]="(!name.valid || name.pristine) || (!batch.valid || batch.pristine) || (!trainerName.valid || trainerName.pristine) || 
-           (!groupMembers.valid || groupMembers.pristine) || (!description.valid || description.pristine) || (!zipLinks.valid || zipLinks.pristine) || 
-           (!techStack.valid || techStack.pristine) || !validForm" type="submit" id="submit" mat-flat-button color="accent">Submit Project</button>
+           <button (click)="submitForm()" [disabled]="(!name.valid || name.pristine) || (!batch.valid || batch.pristine) || (!trainerName.valid || trainerName.pristine) || 
+           (!groupMembers.valid) || (!description.valid || description.pristine) || (!zipLinks.valid) || 
+           (!techStack.valid || techStack.pristine) || !validForm || !validGithubURL" type="submit" id="submit" mat-flat-button color="accent">Submit Project</button>
+           <input id="screenShots" #uploadScreenshots hidden type="file" (change)="onFileSelected($event)" accept="image/*" multiple required/>
       </form>
  </div>
  

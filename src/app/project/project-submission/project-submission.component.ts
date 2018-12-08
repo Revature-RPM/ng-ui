@@ -5,7 +5,14 @@ import { Project } from 'src/app/core/models/Project';
 import { ProjectService } from 'src/app/core/services/project.service';
 
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { MatDialog } from '@angular/material';
+import { InputDialogComponent } from './input-dialog/input-dialog.component';
 
+export interface DialogData {
+  title: string;
+  questionType: string;
+  result: string;
+}
 
 @Component({
   selector: 'app-project-submission',
@@ -15,16 +22,62 @@ import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms'
 export class ProjectSubmissionComponent implements OnInit {
 
   projectToUpload: Project = {};
-  validForm: Boolean = false;
-  groupMemberString: String;
-  zipLinksString: String;
+  validForm: boolean = false;
+  validGithubURL: boolean = false;
+  title: string;
+  questionType: string;
+  result: string;
+  groupMemberString: string;
+  zipLinksString: string;
+  githubURLRegex: RegExp;
 
-  constructor(private router: Router, private projectService: ProjectService, private formBuilder: FormBuilder) {}
+  constructor(private router: Router, private projectService: ProjectService, public dialog: MatDialog) {}
 
   ngOnInit() {
     this.projectToUpload.groupMembers = [];
     this.projectToUpload.screenShots = [];
     this.projectToUpload.zipLinks = [];
+    this.groupMemberString = '';
+    this.zipLinksString = '';
+    this.githubURLRegex = new RegExp('^(https:)\/\/(github\.com)\/\w*\/\w*$/i');  
+  }
+
+  /**
+   * this method opens the dialog defined in the input-dialog component; 
+   *    after the dialog is closed the user's data is placed in the groupMembers array or the zipLinks array depending on which field was clicked
+   * @author Shawn Bickel (1810-Oct08-Java-USF)
+   */
+  openDialog(e): void {
+    if (e.target.id == 'inputGroupMembers'){
+      this.title = "New Group Member";
+      this.questionType = "Enter the name of the group member";
+    }else{
+      this.title = "New Github Repository Link";
+      this.questionType = "Enter the Github URL of your repository";
+    }
+    const dialogRef = this.dialog.open(InputDialogComponent, {
+      width: '250px',
+      data: {title: this.title, questionType: this.questionType, result: this.result}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result !== undefined && result !== null){
+        if (e.target.id == 'inputGroupMembers'){
+          this.projectToUpload.groupMembers.push(result);
+          this.groupMemberString += ' ' + result;
+        }else{
+          console.log(this.githubURLRegex);
+          console.log(this.githubURLRegex.test(result));
+          // if (this.githubURLRegex.test(result) == false){
+          //   this.validGithubURL = false;
+          //   return;
+          // }
+          this.validGithubURL = true;
+          this.projectToUpload.zipLinks.push(result);
+          this.zipLinksString += ' ' + result;
+        }
+      }
+    });
   }
 
    /**
@@ -35,15 +88,9 @@ export class ProjectSubmissionComponent implements OnInit {
 	 * @author Shawn Bickel (1810-Oct08-Java-USF)
 	 */
   submitForm() {
-    // var isGithubUrl = require('is-github-url');
-    // console.log("validating a github url");
-    // console.log(isGithubUrl('https://github.com/IDontthinkthisexists', { strict: true }));
     const formData = new FormData();
-
-    if (this.projectToUpload.screenShots.length == 0){
-      this.validForm = false;
-      return false;
-    }
+   
+    
     formData.append('name', this.projectToUpload.name);
     formData.append('batch', this.projectToUpload.batch);
     formData.append('userFullName', this.projectToUpload.userFullName);
@@ -51,25 +98,26 @@ export class ProjectSubmissionComponent implements OnInit {
     formData.append('description', this.projectToUpload.description);
     formData.append('status', 'pending');
 
-    this.projectToUpload.groupMembers = this.groupMemberString.split(',');
-    this.projectToUpload.zipLinks = this.zipLinksString.split(',');
-
-    for (let i = 0; i < this.projectToUpload.groupMembers.length; i++) { // needs work
-      formData.append('groupMembers', this.projectToUpload.groupMembers[i]);
-    }
-
-    for (let j = 0; j < this.projectToUpload.screenShots.length; j++) { // this should work
-      formData.append('screenShots', this.projectToUpload.screenShots[j]);
-    }
-
-    for (let k = 0; k < this.projectToUpload.zipLinks.length; k++) { //needs work
-      formData.append('zipLinks', this.projectToUpload.zipLinks[k]);
-    }
-
     console.log(this.projectToUpload.groupMembers);
     console.log(this.projectToUpload.zipLinks);
     console.log(this.projectToUpload.screenShots);
-    console.log(formData.get('groupMembers'));
+
+
+    for (let i = 0; i < this.projectToUpload.groupMembers.length; i++) { 
+      formData.append('groupMembers', this.projectToUpload.groupMembers[i]);
+    }
+
+    for (let j = 0; j < this.projectToUpload.screenShots.length; j++) { 
+      formData.append('screenShots', this.projectToUpload.screenShots[j]);
+    }
+
+    for (let k = 0; k < this.projectToUpload.zipLinks.length; k++) { 
+      formData.append('zipLinks', this.projectToUpload.zipLinks[k]);
+    }
+   
+    console.log(this.projectToUpload.groupMembers);
+    console.log(this.projectToUpload.zipLinks);
+    console.log(this.projectToUpload.screenShots);
 
     // this.projectService.createProject(formData).subscribe(project => {
     //    this.router.navigate(['/home']);
