@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgMetaService } from 'ngmeta';
 
 import { Project } from 'src/app/core/models/Project';
-import { ProjectService } from 'src/app/core/services/project.service';
+
 
 @Component({
   selector: 'app-project-submission',
@@ -10,14 +12,21 @@ import { ProjectService } from 'src/app/core/services/project.service';
   styleUrls: ['./project-submission.component.scss']
 })
 export class ProjectSubmissionComponent implements OnInit {
-
   projectToUpload: Project = {};
-  constructor(private router: Router, private projectService: ProjectService) {}
+
+  constructor(private router: Router,
+              private formBuilder: FormBuilder,
+              private ngmeta: NgMetaService) {}
 
   ngOnInit() {
-    this.projectToUpload.groupMembers = [];
-    this.projectToUpload.screenShots = [];
-    this.projectToUpload.zipLinks = [];
+    if (localStorage.getItem('user') === null) {
+      this.router.navigate(['/auth/login']);
+    } else {
+      this.ngmeta.setHead({ title: 'Submit | RPM' });
+      this.projectToUpload.groupMembers = [];
+      this.projectToUpload.screenShots = [];
+      this.projectToUpload.zipLinks = [];
+    }
   }
 
    /**
@@ -29,6 +38,10 @@ export class ProjectSubmissionComponent implements OnInit {
 	 */
   submitForm() {
     const formData = new FormData();
+    console.log(formData);
+    console.log(this.projectToUpload.groupMembers);
+    console.log(this.projectToUpload.screenShots);
+    console.log(this.projectToUpload.zipLinks);
     formData.append('name', this.projectToUpload.name);
     formData.append('batch', this.projectToUpload.batch);
     formData.append('fullName', this.projectToUpload.fullName);
@@ -48,11 +61,12 @@ export class ProjectSubmissionComponent implements OnInit {
       formData.append('zipLinks', this.projectToUpload.zipLinks[k]);
     }
 
-    this.projectService.createProject(formData).subscribe(project => {
-       this.router.navigate(['/projects/home']);
-    });
+    this.router.navigate(['']);
+  }
 
-
-    this.router.navigate(['/projects/home']);
+  onFileSelected(e) {
+    for (let i = 0; i < e.target.files.length; i++) {
+      this.projectToUpload.screenShots.push(e.target.files[i]);
+    }
   }
 }
