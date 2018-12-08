@@ -61,7 +61,7 @@
                         <mat-label>Repository Links</mat-label>
                       <mat-error *ngIf="!zipLinks.valid || zipLinks.pristine">Github repository links are required</mat-error>
                       <input type="text" id="inputGithubLink" name="repoLinks" readonly matInput placeholder="Project Repository Links" [(ngModel)]="zipLinksString" 
-                      [ngModelOptions]="{standalone: true}" [pattern]="githubURLRegex" (click)="openDialog($event)" #zipLinks="ngModel" required>
+                      [ngModelOptions]="{standalone: true}" (click)="openDialog($event)" #zipLinks="ngModel" required>
                     </mat-form-field>
               </td>
               <td><mat-form-field class="example-full-width" appearance="outline">
