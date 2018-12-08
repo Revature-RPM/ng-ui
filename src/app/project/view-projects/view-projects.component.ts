@@ -73,21 +73,21 @@ const PROJECT_DATA: Project[] = [
     techStack: 'Full-Stack Java Developer', status: 'Approved', description: 'Description of Tratior'
   },
   {
-    id: 1, name: 'TopShelf', batch: '1810-oct08-java-usf', fullName: 'Wezley Singleton',
+    id: 1, name: 'TopShelf', batch: '1810-oct08-java-usf', userFullName: 'Wezley Singleton',
     groupMembers: ['Yuki Mano', 'Caleb Massey', 'Shawn Bickel'], screenShots: ['https://i.ytimg.com/vi/wRx3Uvcktm8/maxresdefault.jpg',
       'https://gfnc1kn6pi-flywheel.netdna-ssl.com/wp-content/uploads/2018/06/best-food-for-pug-puppies-header.jpg',
       'https://buzzsharer.com/wp-content/uploads/2016/04/pug-sleeping-upside.jpg',], zipLinks: ['https://github.com/1810-oct08-java-usf/ng-ui', 'https://github.com/1810-oct08-java-usf/auth-service'],
     techStack: 'Full-Stack Java Developer', status: 'Approved', description: 'description of TopShelf'
   },
   {
-    id: 2, name: 'Kevin Craft Bacon', batch: '1810-oct08-java-usf', fullName: 'Wezley Singleton',
+    id: 2, name: 'Kevin Craft Bacon', batch: '1810-oct08-java-usf', userFullName: 'Wezley Singleton',
     groupMembers: ['Sahil', 'Ryan', 'Jeffly', 'Sadiki'], screenShots: ['https://i.ytimg.com/vi/wRx3Uvcktm8/maxresdefault.jpg',
       'https://gfnc1kn6pi-flywheel.netdna-ssl.com/wp-content/uploads/2018/06/best-food-for-pug-puppies-header.jpg',
       'https://buzzsharer.com/wp-content/uploads/2016/04/pug-sleeping-upside.jpg',], zipLinks: ['https://github.com/1810-oct08-java-usf/ng-ui', 'https://github.com/1810-oct08-java-usf/auth-service'],
     techStack: 'Full-Stack Java Developer', status: 'Approved', description: 'description of Kevin Craft Bacon'
   },
   {
-    id: 3, name: 'Tratior', batch: '1810-oct08-java-usf', fullName: 'Wezley Singleton',
+    id: 3, name: 'Tratior', batch: '1810-oct08-java-usf', userFullName: 'Wezley Singleton',
     groupMembers: ['Paul', 'Miles', 'Derek', 'Andrew'], screenShots: ['https://i.ytimg.com/vi/wRx3Uvcktm8/maxresdefault.jpg',
       'https://gfnc1kn6pi-flywheel.netdna-ssl.com/wp-content/uploads/2018/06/best-food-for-pug-puppies-header.jpg',
       'https://buzzsharer.com/wp-content/uploads/2016/04/pug-sleeping-upside.jpg',], zipLinks: ['https://github.com/1810-oct08-java-usf/ng-ui', 'https://github.com/1810-oct08-java-usf/auth-service'],
