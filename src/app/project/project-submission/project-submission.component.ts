@@ -30,6 +30,7 @@ export class ProjectSubmissionComponent implements OnInit {
   groupMemberString: string;
   zipLinksString: string;
   githubURLRegex: RegExp;
+  githubURL: string;
 
   constructor(private router: Router, private projectService: ProjectService, public dialog: MatDialog) {}
 
@@ -39,7 +40,8 @@ export class ProjectSubmissionComponent implements OnInit {
     this.projectToUpload.zipLinks = [];
     this.groupMemberString = '';
     this.zipLinksString = '';
-    this.githubURLRegex = new RegExp('^(https:)\/\/(github\.com)\/\w*\/\w*$/i');  
+    // (\/[\d\w-]+)(\/[\d\w-]+)(\/){0,0}
+    this.githubURLRegex = new RegExp('^(https:\/\/github\.com\/[^/]+\/[^/]+)');  
   }
 
   /**
@@ -52,7 +54,7 @@ export class ProjectSubmissionComponent implements OnInit {
       this.title = "New Group Member";
       this.questionType = "Enter the name of the group member";
     }else{
-      this.title = "New Github Repository Link";
+      this.title = "Repository Link";
       this.questionType = "Enter the Github URL of your repository";
     }
     const dialogRef = this.dialog.open(InputDialogComponent, {
@@ -66,12 +68,16 @@ export class ProjectSubmissionComponent implements OnInit {
           this.projectToUpload.groupMembers.push(result);
           this.groupMemberString += ' ' + result;
         }else{
-          console.log(this.githubURLRegex);
-          console.log(this.githubURLRegex.test(result));
-          // if (this.githubURLRegex.test(result) == false){
-          //   this.validGithubURL = false;
-          //   return;
-          // }
+         this.githubURL = result;
+         console.log(this.githubURL);
+         let regexArr = this.githubURL.match('^(https:\/\/github\.com\/[^/]+\/[^/]+)');
+         console.log(regexArr);
+         console.log(this.githubURLRegex.test(this.githubURL));
+          if (this.githubURLRegex.test(this.githubURL) == false || this.githubURL.length != regexArr[0].length){
+            this.validGithubURL = false;
+            return;
+          }
+          console.log("this is a correctly formatted link");
           this.validGithubURL = true;
           this.projectToUpload.zipLinks.push(result);
           this.zipLinksString += ' ' + result;

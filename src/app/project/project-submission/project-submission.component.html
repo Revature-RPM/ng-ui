@@ -88,7 +88,7 @@
            <button (click)="submitForm()" [disabled]="(!name.valid || name.pristine) || (!batch.valid || batch.pristine) || (!trainerName.valid || trainerName.pristine) || 
            (!groupMembers.valid) || (!description.valid || description.pristine) || (!zipLinks.valid) || 
            (!techStack.valid || techStack.pristine) || !validForm || !validGithubURL" type="submit" id="submit" mat-flat-button color="accent">Submit Project</button>
-           <input id="screenShots" #uploadScreenshots hidden type="file" (change)="onFileSelected($event)" accept="image/*" multiple required/>
+           <input id="screenShots" name="screenShotFiles" #uploadScreenshots hidden type="file" (change)="onFileSelected($event)" accept="image/*" multiple required/>
       </form>
  </div>
  
