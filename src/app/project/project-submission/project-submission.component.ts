@@ -27,6 +27,7 @@ export class ProjectSubmissionComponent implements OnInit {
   // validScreenshots and validGithubURL determine if information has been entered correctly and if the form can be submitted
   validScreenshots: boolean = false;
   validGithubURL: boolean = false;
+  invalidLink: boolean = false; // triggers an error message is set to true
 
   /**
    * title, questionType, and result are all passed to a dialog when the user chooses either the group member or the links input field
@@ -114,15 +115,23 @@ export class ProjectSubmissionComponent implements OnInit {
           * If the string contains no matches related to the regex or if the length of the input is greater than the match, then the link is not valid.
           * If the matched portion of the URL is only a subset of the entire URL, then we know that the URL is not valid.
           * The length of a valid URL will equal the length of the match found in the string corresponding the the regular expression.
+          * All links are unique
           */
           if (this.githubURLRegex.test(this.githubURL) == false || this.githubURL.length != regexArr[0].length){
-            this.validGithubURL = false;
+            this.invalidLink = true;
             return;
           }
+
+          //  All links are unique
+          if (this.projectToUpload.zipLinks.includes(result)){
+            return;
+          }
+
           console.log("this is a correctly formatted link");
 
           // at this point, the URL will be valid and will be placed in the array corresponding to the zip links array of the project to be submitted
           this.validGithubURL = true;
+          this.invalidLink = false;
           this.projectToUpload.zipLinks.push(result);
           this.zipLinksString += ' ' + result;
         }

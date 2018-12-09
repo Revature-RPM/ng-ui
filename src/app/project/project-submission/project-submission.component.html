@@ -60,16 +60,15 @@
                   <mat-form-field class="example-full-width" appearance="outline">
                         <mat-label>Repository Links</mat-label>
                       <mat-error *ngIf="!zipLinks.valid || zipLinks.pristine">Github repository links are required</mat-error>
+                      <div *ngIf="invalidLink && projectToUpload.zipLinks.length > 0" style="color: red;">Format: https://github.com/[Github username]/[Repository Name]</div>
                       <input type="text" id="inputGithubLink" name="repoLinks" readonly matInput placeholder="Project Repository Links" [(ngModel)]="zipLinksString" 
-                      [ngModelOptions]="{standalone: true}" (click)="openDialog($event)" #zipLinks="ngModel" required>
-                    </mat-form-field>
+                      [ngModelOptions]="{standalone: true}" (click)="openDialog($event)" #zipLinks="ngModel" required>                    </mat-form-field>
               </td>
               <td><mat-form-field class="example-full-width" appearance="outline">
                     <mat-label>Tecknology Stack</mat-label>
                   <mat-error *ngIf="!techStack.valid || techStack.pristine">Technology stack is required</mat-error>
                   <input type=text matInput name="stack" placeholder="Project Technology Stack" [(ngModel)]="projectToUpload.techStack" 
                   [ngModelOptions]="{standalone: true}" required #techStack="ngModel">
-                  <!-- <div *ngIf="" -->
                 </mat-form-field></td>
             </tr>
           </table>
