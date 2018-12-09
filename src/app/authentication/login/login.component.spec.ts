@@ -7,7 +7,7 @@ import { AppModule} from '../../app.module';
 
 import { LoginComponent } from './login.component';
 import { UserService } from '../../core/services/user.service';
-import { DebugElement, ViewChild } from '@angular/core';
+import { DebugElement, ViewChild, ElementRef } from '@angular/core';
 import { AuthenticationModule } from '../authentication.module';
 import { By } from '@angular/platform-browser';
 import { HttpClient } from '@angular/common/http';
@@ -51,10 +51,13 @@ describe('LoginComponent', () => {
   });
 
 
-  //Testing the fuctionality of the login method
-  it('should make a call to the UserService',  () =>{
 
-    //set up login environment
+  /**
+   * Testing the fuctionality of the login method
+   */
+  it('should make a call to the UserService',  () =>{
+  
+    //Arrange the login environment
     const debugElement = fixture.debugElement;
     let userService = debugElement.injector.get(UserService);
     
@@ -67,60 +70,31 @@ describe('LoginComponent', () => {
     expect(serviceSpy).toHaveBeenCalled();
   });
 
-  //Testing the fuctionality of the login method button click event
-  xit('Login button click should make a call to the UserService', () =>{
-      console.log("");
-      //set up login environment
-      let loginElement: DebugElement;
-      let debugElement = fixture.debugElement;
-      let userService = debugElement.injector.get(UserService);
-      console.log("Line 2: userService: "+ userService);
-      
-  
-      //Spy on the user service login method
-      let serviceSpy = spyOn(userService, 'login' ).and.callThrough();
-      console.log("Line 3" + serviceSpy );
+
+  /**
+   * Testing the fuctionality of the login method,
+   * Specifically button click event, which call the login
+   * methods in both the Login Component and the User service  
+   */
+  it('Login button click should make a call to the UserService', () =>{
      
-      //simulate a form submission
-      loginElement = fixture.debugElement.query(By.css('form'));
-      console.log("After loginElement assignment");
-      console.log(loginElement);
+    //Arrange the login environment
+    let debugElement = fixture.debugElement;
+    let userService = debugElement.injector.get(UserService);
+    let serviceSpy = spyOn(userService, 'login').and.callThrough(); //Spy on the user service login method
     
+    //simulate a form submission
+    const loginElement = fixture.debugElement.query(By.css('form')); //Capture the template for inside of a variable for mocking
+    component.user.firstname = "Admin"; //Mock up the username input field
+    component.user.lastname = "Testing"; //Mock up the password input field
 
-      //submit 
-      console.log("After Submit event: " +  loginElement.triggerEventHandler('click', null));
-      loginElement.triggerEventHandler('onclick', null);
+    fixture.detectChanges();
+    loginElement.nativeElement[2].click(); //Simulate a button click
       
-      console.log("After Submit event" );
-  
-      //the user service login method should be called with the passed credentials 
-      expect(serviceSpy).toHaveBeenCalled();
-  });
-
-
-
-    //Testing the fuctionality of the login method button click event
-    xit('should make a call to the UserService', () =>{
-      console.log("Line 1");
-     
-      //set up login environment
-      let button;
-      let debugElement = fixture.debugElement;
-    
-      //Spy on the user service login method  
-      let userService = debugElement.injector.get(UserService);
-      let serviceSpy = spyOn(component, 'login' ).and.callThrough();
-
-      //simulate a form submission
-      button = fixture.debugElement.nativeElement.querySelector('button');
-    
-      button.click();
-    
+    //the user service login method should be called with the passed credentials 
+    expect(serviceSpy).toHaveBeenCalled();     
       
-      expect(serviceSpy).toHaveBeenCalled();
   });
-
-
 
 
 });

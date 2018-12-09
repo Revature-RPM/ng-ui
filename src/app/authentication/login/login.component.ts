@@ -12,8 +12,9 @@ import { UserService } from 'src/app/core/services/user.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  user: User = {};
-
+  user: User = { };
+  
+ 
   constructor(private userService: UserService, private router: Router, private ngmeta: NgMetaService) { }
 
   ngOnInit() {

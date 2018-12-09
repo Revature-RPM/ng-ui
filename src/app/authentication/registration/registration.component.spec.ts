@@ -8,6 +8,7 @@ import { AppModule} from '../../app.module';
 import { RegistrationComponent } from './registration.component';
 import { AuthenticationModule } from '../authentication.module';
 import { UserService } from 'src/app/core/services/user.service';
+import { By } from '@angular/platform-browser';
 
 /** 
  * This test suite serves to check the proper creation of the registration
@@ -20,7 +21,7 @@ import { UserService } from 'src/app/core/services/user.service';
 
 
 //Testing the successful creation of the Registration component
-describe('RegistrationComponent', () => {
+fdescribe('RegistrationComponent', () => {
   let component: RegistrationComponent;
   let fixture: ComponentFixture<RegistrationComponent>;
 
@@ -39,9 +40,11 @@ describe('RegistrationComponent', () => {
     fixture.detectChanges();
   });
 
+  //Testing the successful creation of the registration componenet
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
 
   //test components call to the user service ts file
   it('Should call service level register method', ()=> {
@@ -57,4 +60,39 @@ describe('RegistrationComponent', () => {
     expect(serviceSpy).toHaveBeenCalledTimes(1);
   })
 
+
+  /**
+   * Testing the fuctionality of the registration components
+   * button click event. Upon a succesful form submission, the button click,
+   * should trigger an indirect call to user service class
+   */
+  it('Registration button click event should make a call to the UserService', () =>{
+     
+    //Arrange the registration environment
+    let debugElement = fixture.debugElement;
+    let userService = debugElement.injector.get(UserService);
+    let serviceSpy = spyOn(userService, 'register').and.callThrough(); //Spy on the user service login method
+    
+    //simulate a form submission 
+    component.user.firstname = "Tester";
+    component.user.lastname = "Testing";
+    component.user.email = "test@revature.com";
+    component.user.username = "test";
+    component.user.password = "ing";
+    const registrationElement = fixture.debugElement.query(By.css('[id = "registration-container"]')); //Capture the template for inside of a variable for mocking
+    fixture.detectChanges();
+    //Gain access to button element within the template to trigger a click event
+    let button = registrationElement.nativeElement.childNodes[0].childNodes[0].childNodes[0]
+                  .childNodes[1].childNodes[1].childNodes[3].childNodes[1].childNodes[0].childNodes[0]
+                      .childNodes[2].childNodes[1];
+    button.click(); //Simulate a button click
+
+      
+    //the user service register method should be called with the passed credentials 
+    expect(serviceSpy).toHaveBeenCalled();     
+      
+  });
+
 });
+
+
