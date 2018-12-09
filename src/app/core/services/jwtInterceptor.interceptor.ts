@@ -11,12 +11,11 @@ import { Observable } from 'rxjs';
 export class jwtinterceptor implements HttpInterceptor {
   constructor(public auth: UserService) {}
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    console.log("heloehelehoeheheoeheoheoeheho i'm an annoying interceptor")
     console.log(request.url)
     if(this.protectedEndPoints(request.url)>0)
-    console.log("YOU ARE WELECOME")
+    console.log("jwinterceptor if block")
     else
-    console.log("GET LOST")
+    console.log("jwinterceptor else block")
     request = request.clone({
       setHeaders: {
       }
@@ -24,8 +23,8 @@ export class jwtinterceptor implements HttpInterceptor {
     return next.handle(request);
   }
   protectedEndPoints(url: string): number{
-      console.log(url.indexOf('http://localhost:4200/login'))
-      return url.indexOf('http://localhost:4200/login');
+      console.log(url.indexOf('http://localhost:4200/auth/'))
+      return url.indexOf('http://localhost:4200/auth/');
       
   }
 }
