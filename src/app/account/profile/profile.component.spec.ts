@@ -22,13 +22,13 @@ describe('ProfileComponent', () => {
   let component: ProfileComponent;
   let fixture: ComponentFixture<ProfileComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(()=> {
     TestBed.configureTestingModule({
       declarations: [ ProfileComponent],
       imports: [SharedModule, RouterTestingModule, BrowserAnimationsModule, AppModule]
     })
     .compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ProfileComponent);
@@ -42,7 +42,7 @@ describe('ProfileComponent', () => {
 
 
   //Tests conditions for an invalid form(ie. missing field values)
-  it('Should be invalid', () =>{
+  it('Should produce an invalid form', () =>{
 
     component.form.controls['firstname'].setValue(''); 
     component.form.controls['lastname'].setValue('');
@@ -54,8 +54,8 @@ describe('ProfileComponent', () => {
 
   })
 
-  //Tests conditions for an valid form(ie. )
-  it('Should be valid', () =>{
+  //Tests conditions for an valid form(ie. when all fields are present )
+  it('Should produce a valid form', () =>{
 
     component.form.controls['firstname'].setValue('Tester');
     component.form.controls['lastname'].setValue('Test');
