@@ -69,6 +69,7 @@
                   <mat-error *ngIf="!techStack.valid || techStack.pristine">Technology stack is required</mat-error>
                   <input type=text matInput name="stack" placeholder="Project Technology Stack" [(ngModel)]="projectToUpload.techStack" 
                   [ngModelOptions]="{standalone: true}" required #techStack="ngModel">
+                  <!-- <div *ngIf="" -->
                 </mat-form-field></td>
             </tr>
           </table>
@@ -87,7 +88,7 @@
             <br>
            <button (click)="submitForm()" [disabled]="(!name.valid || name.pristine) || (!batch.valid || batch.pristine) || (!trainerName.valid || trainerName.pristine) || 
            (!groupMembers.valid) || (!description.valid || description.pristine) || (!zipLinks.valid) || 
-           (!techStack.valid || techStack.pristine) || !validForm || !validGithubURL" type="submit" id="submit" mat-flat-button color="accent">Submit Project</button>
+           (!techStack.valid || techStack.pristine) || !validScreenshots || !validGithubURL" type="submit" id="submit" mat-flat-button color="accent">Submit Project</button>
            <input id="screenShots" name="screenShotFiles" #uploadScreenshots hidden type="file" (change)="onFileSelected($event)" accept="image/*" multiple required/>
       </form>
  </div>
