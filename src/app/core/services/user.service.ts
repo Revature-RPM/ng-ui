@@ -37,20 +37,20 @@ ${error.error}`
   // URI need to match the expected endpoint!!!
   login(user: User): Observable<User> {
     console.log(user)
-    return this.http.post<User>(environment.url + 'login', user, httpOptions)
+    return this.http.post<User>(environment.url + '/auth', user, httpOptions)
       .pipe(catchError(this.handleError));
   }
 
   // URI need to match the expected endpoint!!!
   register(user: User): Observable<User> {
     user.role = "user";
-    return this.http.post<User>(environment.url + 'register', user, httpOptions)
+    return this.http.post<User>(environment.url + '/auth/users', user, httpOptions)
       .pipe(catchError(this.handleError));
   }
 
   // URI need to match the expected endpoint!!!
   updateProfile(user: User): Observable<User> {
-    return this.http.put<User>('http://localhost:8762/auth/users', user, httpOptions)
+    return this.http.put<User>(environment.url+ '/auth/users', user, httpOptions)
       .pipe(catchError(this.handleError));
   }
 }
