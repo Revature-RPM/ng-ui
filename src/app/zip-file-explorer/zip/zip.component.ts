@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import * as JSZip from 'jszip';
 import { NgMetaService } from 'ngmeta';
 
+import { ProjectService } from 'src/app/core/services/project.service';
+
 @Component({
   selector: 'app-zip-component',
   templateUrl: './zip.component.html',
@@ -33,6 +35,7 @@ export class ZipComponent implements OnInit {
   fileName = '';
   filepath = '';
   browserSupported = true;
+  availableUrls: string []=[];
   /**
    * Constructur: Injects Http Client into the component for use of resource request
    * @param HttpClient standard angular dependency to fire http request.
@@ -47,16 +50,20 @@ export class ZipComponent implements OnInit {
               private ngmeta: NgMetaService) { }
 
   ngOnInit() {
-    if (localStorage.getItem('user') === null) {
-      this.router.navigate(['/auth/login']);
-    } else {
-      this.ngmeta.setHead({ title: 'Code | RPM' });
-      this.SelectedFile = this.defaultFile();
-      let isTextDecoderSupported = false;
-      try {
-        isTextDecoderSupported  = !!new TextDecoder('utf-8');
-      } catch (e) { }
-      this.browserSupported = isTextDecoderSupported;
+    this.SelectedFile = this.defaultFile();
+    let isTextDecoderSupported = false;
+    try { isTextDecoderSupported  = !!new TextDecoder('utf-8') 
+          
+          } catch(e){
+      
+          }
+         
+    this.browserSupported = isTextDecoderSupported
+    if(this.projectService.CurrentProject)
+    this.availableUrls = this.projectService.CurrentProject.zipLinks;
+    else { //test block
+      this.availableUrls.push('https://s3.us-east-2.amazonaws.com/zip-test-bucket/reflections-mafia-client-master.zip');
+      this.availableUrls.push('not an url')
     }
   }
   /**
@@ -89,6 +96,9 @@ Currently can open and navigate to the src directory of Angular and Java Reposit
     `;
     return testfile;
   }
+  safeTitle(link:string){
+    return link.substring(link.lastIndexOf("/")+1);
+  }
   /**
    * Zip.goBack()
    * Redirects back to the last page
@@ -114,8 +124,8 @@ Currently can open and navigate to the src directory of Angular and Java Reposit
    * Fire off an http request to retrieve the zip file
    * @author Andrew Mitchem (1810-Oct08-Java-USF)
    */
-  sendRequest() {
-    const url = 'https://s3.us-east-2.amazonaws.com/zip-test-bucket/reflections-mafia-client-master.zip';
+  sendRequest(url:string) {
+   
     // reponse type is arraybuffer so the get request knows this is a oclet-array-stream request
     this.http.get(url, { observe: 'response', responseType: 'blob'})
     .subscribe(blob => {
@@ -132,6 +142,8 @@ Currently can open and navigate to the src directory of Angular and Java Reposit
         const datafilename = url.substring(url.lastIndexOf('/') + 1);
         this.openData(blob.body, datafilename);
       }
+    },error => {
+      this.SelectedFile = this.errorFile("Yeah we couldn't find this file: we're Sorry")
     });
   }
   /**
@@ -212,10 +224,10 @@ Currently can open and navigate to the src directory of Angular and Java Reposit
   parseFiles(file) {
     // check if file is a directory
     if (!file.dir) {
-      this.fileName = file.name;
+      let fileName = file.name;
       // save ZipObject file name as once unzip into a  standard file  we loose acess to this data
-      this.fileName = this.fileName.replace(this.filepath, '');
-      this.fileName = this.fileName.substring(this.fileName.lastIndexOf('/') + 1);
+      fileName = fileName.replace(this.filepath, '');
+      fileName = fileName.substring(fileName.lastIndexOf('/') + 1);
       // remove leading path in name
       const helpme = file.async('uint8array').then(function (data) { // converts the ZipObject
         let string = 'Placeholder Text \n we are sorry your browser may not be supported';
@@ -224,12 +236,12 @@ Currently can open and navigate to the src directory of Angular and Java Reposit
       });
       helpme.then(string => {
         const file = new RenderFile();
-        file.fileName = this.fileName;
+        file.fileName = fileName;
         file.fileContent = string; // "file here is a string text readable format stored for rendering logic"
         this.RenderFile.push(file);
       });
     } else {
-      file.fileName = this.fileName;
+      file.fileName = "Error";
             file.fileContent = `Sorry @Browser not currently supported
             ≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈
 ≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈████≈
