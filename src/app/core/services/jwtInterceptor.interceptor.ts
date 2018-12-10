@@ -9,7 +9,7 @@ export function jwtOptionsFactory() {
        return localStorage.getItem("jwt")
     },
     whitelistedDomains: [environment.url+"/auth/users"],
-    blacklistedRoutes: [environment.url+"/auth", environment.url+"/auth/users"]
+    blacklistedRoutes: [environment.url+"/auth"]
     //according to libary document. whitelisted domains will have headers ATTACHED
     //but blacklisted will not have the headers REPLACED
     // ? hopefully -- 
