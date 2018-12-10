@@ -1,14 +1,15 @@
 <div class="background">
   <div class="header"><span> Code Base Viewer</span></div>
     <div class="btn-container">
-      <button  class="btn-open btn-side"(click)='sendRequest()'>🗁</button>
-      <button class="btn-home btn-side"(click)='goBack()'>⌂</button>
-      <label class="fileContainer"> 🗁
-      <input #fileOpener type="file" class="" (change)='openData(fileOpener.files[0])'>
-      </label>
+      <button *ngFor="let link of availableUrls" class="btn-open btn-side"(click)='sendRequest(link)' [title]="safeTitle(link)">🗁</button>
+      <label class="fileContainer" title="Open Local File"> 🗁
+        <input #fileOpener type="file" class="" (change)='openData(fileOpener.files[0])' >
+        </label>
+      <button class="btn-home btn-side"(click)='goBack()' title="Home">⌂</button>
+    
       <h4 class="display-text"> &#x25b7; Explorer</h4>
       <div>
-      <p *ngFor="let help of RenderFile" [class.selected_p]="SelectedFile === help"  (click)="SelectedFile = help; !OpenFile.includes(help) && OpenFile.push(help)">{{help.fileName}}</p>
+      <p *ngFor="let help of RenderFile" [class.selected_p]="SelectedFile === help"  (click)="openRenderFile(help)">{{help.fileName}}</p>
     </div>
     </div>
   <div class="container_div">
@@ -17,7 +18,7 @@
                 (click)="SelectedFile = help" 
                 [class.selected_btn]="SelectedFile === help" 
                 *ngFor="let help of OpenFile">
-                <div class="x" (click)="OpenFile.splice( OpenFile.indexOf(help), 1 );">X</div>
+                <div class="x" (click)="closeRenderFile(help)">X</div>
                   {{help.fileName}}
                   
       </button>

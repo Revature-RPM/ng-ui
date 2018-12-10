@@ -7,11 +7,11 @@
           <form ngNativeValidate [formGroup]="firstFormGroup">
             <ng-template matStepLabel>Fill out your name</ng-template>
             <mat-form-field>
-              <input matInput placeholder="First Name" formControlName="firstName" required minlength="2" [(ngModel)]="user.firstname">
+              <input matInput placeholder="First Name" formControlName="firstName" required minlength="2" [(ngModel)]="user.firstName">
             </mat-form-field>
             <br />
             <mat-form-field>
-              <input matInput placeholder="Last Name" formControlName="lastName" required minlength="2" [(ngModel)]="user.lastname">
+              <input matInput placeholder="Last Name" formControlName="lastName" required minlength="2" [(ngModel)]="user.lastName">
             </mat-form-field>
             <br />
             <mat-form-field>
@@ -44,6 +44,10 @@
             <mat-form-field>
               <input matInput type="password" placeholder="Confirm Password" formControlName="confirmPassword" required minlength="8" [(ngModel)]="confirmPassword">
               <mat-hint>Passwords must match</mat-hint>
+            </mat-form-field>
+            <br />
+            <mat-form-field>
+              <input matInput type="password" placeholder="Confirm Password" formControlName="confirmPassword" required [(ngModel)]="confirmPassword">
             </mat-form-field>
             <div>
               <button mat-button matStepperPrevious>Back</button>

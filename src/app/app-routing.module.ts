@@ -2,11 +2,9 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 
 const routes: Routes = [
-  { path: 'home', loadChildren: './project/project.module#ProjectModule' },
+  { path: '', loadChildren: './project/project.module#ProjectModule', pathMatch: 'full' },
   { path: 'account', loadChildren: './account/account.module#AccountModule' },
-  { path: 'auth', loadChildren: './authentication/authentication.module#AuthenticationModule' },
-  { path: 'projects', loadChildren: './project/project.module#ProjectModule' },
-  { path: '**', redirectTo: 'home' }
+  { path: 'auth', loadChildren: './authentication/authentication.module#AuthenticationModule' }
 ];
 
 @NgModule({

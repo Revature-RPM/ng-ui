@@ -1,6 +1,14 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { RouterTestingModule } from '@angular/router/testing';
+import { SharedModule } from '../../shared/shared.module';
+import { AppModule } from '../../app.module';
+
+
+
 import { ProfileComponent } from './profile.component';
+
 
 describe('ProfileComponent', () => {
   let component: ProfileComponent;
@@ -8,7 +16,8 @@ describe('ProfileComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProfileComponent ]
+      declarations: [ ProfileComponent],
+      imports: [SharedModule, RouterTestingModule, BrowserAnimationsModule, AppModule]
     })
     .compileComponents();
   }));
@@ -22,4 +31,8 @@ describe('ProfileComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+   // it('should have a valid email', () =>{ }) 
+
+
 });

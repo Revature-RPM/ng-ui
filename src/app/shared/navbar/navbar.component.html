@@ -1,41 +1,29 @@
 <div id="toolbar">
     <mat-toolbar class="my-theme" color="primary">
-        <mat-toolbar-row >
-                <button (click)="homepageShortcut()" id="navbarTitle" mat-icon-button>
-                        <mat-icon svgIcon="logo"></mat-icon>
-                </button>
-                <!-- This fills the remaining space of the current row -->
-                <span class="example-fill-remaining-space"></span>
+        <mat-toolbar-row>
+            <button id="icon" mat-icon-button mat-stroked-button mat-button matTooltip="Home" matTooltipPosition="right"
+                (click)="homepageShortcut()">
+                <img id="home-icon" src="../../../assets/icons/RPM_Logo.png">
+            </button>
+            <!-- This fills the remaining space of the current row -->
+            <span class="example-fill-remaining-space"></span>
             <span *ngIf="user">
-                    <button mat-icon-button [matMenuTriggerFor]="accountMenu">
-                            <mat-icon svgIcon="account"></mat-icon>
+                <button id="icon" mat-icon-button mat-stroked-button [matMenuTriggerFor]="accountMenu">
+                    <mat-icon id="profile-icon">account_circle</mat-icon>
+                </button>
+                <mat-menu #accountMenu="matMenu">
+                    <button (click)="userAccount()" mat-menu-item>
+                        <span>Profile</span>
                     </button>
-                        <mat-menu  #accountMenu="matMenu">
-                            <button (click)="userAccount()" mat-menu-item>
-                                <span>Profile</span>
-                            </button>
-                            <button mat-menu-item  *ngIf="user.userRole == 'admin'">
-                                <span>Create New Admin</span>
-                            </button>
-                            <button (click)="logout()" mat-menu-item>
-                                <span>Logout</span>
-                            </button>
-                        </mat-menu>
-            </span>
-            <span *ngIf="!user">
-                    <button mat-icon-button [matMenuTriggerFor]="accountMenu">
-                            <mat-icon svgIcon="account"></mat-icon>
+                    <button mat-menu-item *ngIf="user.role == 'admin'">
+                        <span>Create New Admin</span>
                     </button>
-                        <mat-menu  #accountMenu="matMenu">
-                            <button (click)="goToLogin()" mat-menu-item>
-                                <span>Log In</span>
-                            </button>
-                            <button (click)="goToRegister()" mat-menu-item>
-                                <span>Register</span>
-                            </button>
-                        </mat-menu>
+                    <button (click)="logout()" mat-menu-item>
+                        <span>Logout</span>
+                    </button>
+                </mat-menu>
             </span>
         </mat-toolbar-row>
         <mat-divider></mat-divider>
-      </mat-toolbar>
+    </mat-toolbar>
 </div>
