@@ -87,6 +87,9 @@ Currently can open and navigate to the src directory of Angular and Java Reposit
     `;
       return testfile;
   }
+  safeTitle(link:string){
+    return link.substring(link.lastIndexOf("/")+1);
+  }
   /**
    * Zip.goBack()
    * Redirects back to the last page
