@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { Router, ActivatedRoute } from '@angular/router';
+import { NgMetaService } from 'ngmeta';
 import { Subscription } from 'rxjs';
 
 import { Project } from 'src/app/core/models/Project';
@@ -61,15 +62,24 @@ export class EditProjectComponent implements OnInit, OnDestroy {
 
   subscription: Subscription; // will be used to subscribe to the results of an observable
 
-  constructor(private router: Router, private projectService: ProjectService, private route: ActivatedRoute, public dialog: MatDialog) {}
+  constructor(private router: Router,
+              private ngmeta: NgMetaService,
+              private projectService: ProjectService,
+              private route: ActivatedRoute,
+              public dialog: MatDialog) {}
 
   ngOnInit() {
-    this.projectToUpdate.groupMembers = [];
-    this.projectToUpdate.screenShots = [];
-    this.projectToUpdate.zipLinks = [];
-    this.groupMemberString = '';
-    this.zipLinksString = '';
-    this.githubURLRegex = new RegExp('^(https:\/\/github\.com\/[^/]+\/[^/]+)');
+    if (localStorage.getItem('user') === null) {
+      this.router.navigate(['/auth/login']);
+    } else {
+      this.ngmeta.setHead({ title: 'Edit Project | RPM' });
+      this.projectToUpdate.groupMembers = [];
+      this.projectToUpdate.screenShots = [];
+      this.projectToUpdate.zipLinks = [];
+      this.groupMemberString = '';
+      this.zipLinksString = '';
+      this.githubURLRegex = new RegExp('^(https:\/\/github\.com\/[^/]+\/[^/]+)');
+    }
 
     /**
      * This will retrieve the path variable which corresponds to the id of the project to be edited.
