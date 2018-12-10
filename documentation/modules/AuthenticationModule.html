@@ -214,14 +214,13 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { CommonModule } from &#x27;@angular/common&#x27;;
 import { NgModule } from &#x27;@angular/core&#x27;;
-import { FormsModule } from &#x27;@angular/forms&#x27;;
+import { MatStepperModule } from &#x27;@angular/material/stepper&#x27;;
 
-import { AuthenticationRoutingModule } from &#x27;./authentication-routing.module&#x27;;
-import { LoginComponent } from &#x27;./login/login.component&#x27;;
-import { LogoutComponent } from &#x27;./logout/logout.component&#x27;;
-import { RegistrationComponent } from &#x27;./registration/registration.component&#x27;;
-import { SharedModule } from &#x27;../shared/shared.module&#x27;;
-import { MatJumbotronModule } from &#x27;@angular-material-extensions/jumbotron&#x27;;
+import { AuthenticationRoutingModule } from &#x27;src/app/authentication/authentication-routing.module&#x27;;
+import { LoginComponent } from &#x27;src/app/authentication/login/login.component&#x27;;
+import { LogoutComponent } from &#x27;src/app/authentication/logout/logout.component&#x27;;
+import { RegistrationComponent } from &#x27;src/app/authentication/registration/registration.component&#x27;;
+import { SharedModule } from &#x27;src/app/shared/shared.module&#x27;;
 
 @NgModule({
   declarations: [
@@ -232,9 +231,8 @@ import { MatJumbotronModule } from &#x27;@angular-material-extensions/jumbotron&
   imports: [
     CommonModule,
     AuthenticationRoutingModule,
-    FormsModule,
-    SharedModule,
-    MatJumbotronModule
+    MatStepperModule,
+    SharedModule
   ]
 })
 export class AuthenticationModule { }

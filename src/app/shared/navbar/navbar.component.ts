@@ -37,19 +37,14 @@ export class NavbarComponent implements OnInit {
   }
 
   logout() {
-    this.router.navigate(['auth','logout']);
+    this.router.navigate(['auth','login']);
   }
 
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem('user'));
-
-    this.iconRegistry.addSvgIcon(
-      'account',
-      this.sanitizer.bypassSecurityTrustResourceUrl('assets/img/round-account_circle-24px.svg'));
-
-      this.iconRegistry.addSvgIcon(
-        'logo',
-        this.sanitizer.bypassSecurityTrustResourceUrl('assets/img/round-cloud_upload-24px.svg'));
+    // if(!this.user){
+    //   this.router.navigate(['auth','login']);
+    // }
   }
 
   homepageShortcut() {
