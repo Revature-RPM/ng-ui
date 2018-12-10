@@ -5,6 +5,16 @@ import { first } from 'rxjs/operators';
 
 import { User } from 'src/app/core/models/User';
 import { UserService } from 'src/app/core/services/user.service';
+   
+  /**
+	 * This component was built to allow registration and validation for registering users.
+   * The validation that is performed is to ensure there are no characters in the username,
+   * no underscores at the beginning or end of the username, the email is an @revature.com email,
+   * names are at least 2 characters long, and passwords are validated by typing twice and ensuring
+   * they match. Usernames and passwords must be at least 8 characters long. No next buttons 
+   * can be hit unless the forms are valid.
+	 * @author Ryan Beevers (1810-Oct08-Java-USF)
+	 */
 
 @Component({
   selector: 'app-registration',

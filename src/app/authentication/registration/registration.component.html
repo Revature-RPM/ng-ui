@@ -32,7 +32,7 @@
             <mat-form-field>
               <input matInput placeholder="Username" formControlName="username" required 
                 [pattern]="usernamePattern"
-                matTooltip="No underscores at beginning or end of username. Must be at least 8 characters"
+                matTooltip="No underscores at beginning or end of username. No other characters. Must be at least 8 characters"
                 [(ngModel)]="user.username">
             </mat-form-field>
             <br />

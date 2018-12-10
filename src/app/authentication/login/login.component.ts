@@ -5,6 +5,13 @@ import { first } from 'rxjs/operators';
 import { User } from 'src/app/core/models/User';
 import { UserService } from 'src/app/core/services/user.service';
 
+  /**
+	 * Login component takes in a username and password and checks to see if user exists. If 
+   * user exists, user is successfully logged in. Validation includes not letting user hit
+   * login until form is entirely filled out
+	 * @author Ryan Beevers (1810-Oct08-Java-USF)
+	 */
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
