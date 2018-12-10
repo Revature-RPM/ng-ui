@@ -34,6 +34,7 @@ ${error.error}`
 
     return throwError('Something went wrong; please try again later.');
   }
+  //user.logout()... remove the user information from app and storge.
   logout(){
     localStorage.removeItem('jwt')
     localStorage.removeItem('user')
@@ -41,6 +42,9 @@ ${error.error}`
     this.user = null;
   }
   //only use environment.url for the base url and concat any restful endpoints
+  //user.login(user). login the user and retrieve the jwt token from the header
+  //@param user
+  //
   login(user: User): Observable<any> {
     console.log(user)
     return this.http.post(environment.url + '/auth', user, { observe: 'response'})
@@ -48,7 +52,7 @@ ${error.error}`
         if(reponse.body && reponse.headers.get('Authorization')){
           this.user = reponse.body;
           this.jwtauthtoken = reponse.headers.get('Authorization').split(" ")[1];
-          console.log(this.jwtauthtoken)
+          //console.log(this.jwtauthtoken)
           localStorage.setItem('user', JSON.stringify(reponse.body));
           localStorage.setItem('jwt', this.jwtauthtoken)
           return reponse.body;
