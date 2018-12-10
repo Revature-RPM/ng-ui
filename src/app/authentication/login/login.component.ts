@@ -26,10 +26,7 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.userService.login(this.user).pipe(first()).subscribe((user) => {
-      if (user) {
-        localStorage.setItem('user', JSON.stringify(user));
         this.router.navigate(['/home']);
-      }
-    });
+    },(error)=>{ alert("ERROR LOGGING IN")});
   }
 }

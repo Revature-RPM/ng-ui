@@ -84,6 +84,9 @@
                             <li>
                                 <a href="#register">register</a>
                             </li>
+                            <li>
+                                <a href="#updateProfile">updateProfile</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -174,7 +177,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/core/services/user.service.ts:23</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/core/services/user.service.ts:24</a></div>
                             </td>
                         </tr>
 
@@ -243,7 +246,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/core/services/user.service.ts:36</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/core/services/user.service.ts:38</a></div>
                             </td>
                         </tr>
 
@@ -312,7 +315,76 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/core/services/user.service.ts:41</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/core/services/user.service.ts:45</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>user</td>
+                                                        <td>
+                                                                    <code><a href="../interfaces/User.html" target="_self" >User</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="../interfaces/User.html" target="_self" >Observable&lt;User&gt;</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="updateProfile"></a>
+                        <span class="name">
+                            <b>
+                            updateProfile
+                            </b>
+                            <a href="#updateProfile"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>updateProfile(user: <a href="../interfaces/User.html">User</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/core/services/user.service.ts:52</a></div>
                             </td>
                         </tr>
 
@@ -372,8 +444,8 @@ import { BehaviorSubject, Observable, throwError } from &#x27;rxjs&#x27;;
 import { catchError } from &#x27;rxjs/operators&#x27;;
 
 import { User } from &#x27;../models/User&#x27;;
-
 import { environment } from &#x27;../../../environments/environment&#x27;;
+
 
 const httpOptions &#x3D; {
   headers: new HttpHeaders({
@@ -388,6 +460,7 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
+  // TODO clean this up
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       console.error(&#x27;Aw, Snap!\n&#x27; + error.error.message);
@@ -401,23 +474,25 @@ ${error.error}&#x60;
     return throwError(&#x27;Something went wrong; please try again later.&#x27;);
   }
 
+  // URI need to match the expected endpoint!!!
   login(user: User): Observable&lt;User&gt; {
+    console.log(user)
     return this.http.post&lt;User&gt;(environment.url + &#x27;login&#x27;, user, httpOptions)
-    .pipe(catchError(this.handleError));
+      .pipe(catchError(this.handleError));
   }
 
+  // URI need to match the expected endpoint!!!
   register(user: User): Observable&lt;User&gt; {
+    user.role &#x3D; &quot;user&quot;;
     return this.http.post&lt;User&gt;(environment.url + &#x27;register&#x27;, user, httpOptions)
-    .pipe(catchError(this.handleError));
+      .pipe(catchError(this.handleError));
   }
-}
 
-@Injectable({
-  providedIn: &#x27;root&#x27;
-})
-export class LoggedInService {
-  userExists &#x3D; Boolean(localStorage.getItem(&#x27;user&#x27;));
-  public loggedIn: BehaviorSubject&lt;boolean&gt; &#x3D; new BehaviorSubject&lt;boolean&gt;(this.userExists);
+  // URI need to match the expected endpoint!!!
+  updateProfile(user: User): Observable&lt;User&gt; {
+    return this.http.put&lt;User&gt;(&#x27;http://localhost:8762/auth/users&#x27;, user, httpOptions)
+      .pipe(catchError(this.handleError));
+  }
 }</code></pre>
     </div>
 

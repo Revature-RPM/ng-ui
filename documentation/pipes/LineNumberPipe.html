@@ -242,7 +242,7 @@
 })
 /*
   * Class lineNumberPipe
-  * A pipe to insert line numbers. 
+  * A pipe to insert line numbers.
   * @author Andrew Mitchem (1810-Oct08-Java-USF)
   */
 export class LineNumberPipe implements PipeTransform {
@@ -250,15 +250,16 @@ export class LineNumberPipe implements PipeTransform {
   transform(value: string, args?: any): string {
     return this.splitMethod(value);
   }
-  splitMethod(value){
-    let lines &#x3D; value.split(&quot;\n&quot;)
-    let returnValue &#x3D; &quot;&quot;
-    for(let i &#x3D; 0; i &lt;lines.length;i++){
-      returnValue +&#x3D;  &quot; &quot;+(i+1).toString().padStart(3, &#x27; &#x27;) +&quot;   &quot; + lines[i] + &quot;\n&quot;
+  splitMethod(value) {
+    const lines &#x3D; value.split(&#x27;\n&#x27;);
+    let returnValue &#x3D; &#x27;&#x27;;
+    for (let i &#x3D; 0; i &lt; lines.length; i++) {
+      returnValue +&#x3D;  &#x27; &#x27; + (i + 1).toString().padStart(3, &#x27; &#x27;) + &#x27;   &#x27; + lines[i] + &#x27;\n&#x27;;
     }
     return returnValue;
   }
-}</code></pre>
+}
+</code></pre>
     </div>
 
 </div>

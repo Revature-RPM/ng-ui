@@ -4,12 +4,13 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomePageComponent } from './home-page/home-page.component';
 import { ProjectSubmissionComponent } from './project-submission/project-submission.component';
 import { ZipComponent } from '../zip-file-explorer/zip/zip.component';
+import { EditProjectComponent } from './edit-project/edit-project.component';
 
 const routes: Routes = [
   { path: 'home', component: HomePageComponent },
   { path: 'project_submission', component: ProjectSubmissionComponent },
-  // TODO { path: ':id/edit', component: EditProjectComponent },
-  { path: ':id/codebase', component: ZipComponent },
+  { path: ':id/edit', component: EditProjectComponent },
+  { path: ':id/codebase', component: ZipComponent }
   // { path: '**', redirectTo: 'home' }
 ];
 

@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgMetaService } from 'ngmeta';
+import { first } from 'rxjs/operators';
 
 import { User } from 'src/app/core/models/User';
+import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
   selector: 'app-profile',
@@ -17,6 +19,7 @@ export class ProfileComponent implements OnInit {
   setReadOnly = true;
   disableButton = true;
   filledPassword = true;
+  emailPattern = '^[a-zA-Z0-9_.+-]+(?:(?:[a-zA-Z0-9-]+\.)?[a-zA-Z]+\.)?@(revature)\.com$';
 
   // source: <https://scotch.io/@ibrahimalsurkhi/match-password-validation-with-angular-2>
   // enable validation error when password is not matched
@@ -30,7 +33,17 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  constructor(private router: Router, private fb: FormBuilder, private ngmeta: NgMetaService) { }
+  static RevatureEmail(AC: AbstractControl) {
+    const email = AC.get('email').value; // to get value in input tag
+    const emailPattern = '^[a-zA-Z0-9_.+-]+(?:(?:[a-zA-Z0-9-]+\.)?[a-zA-Z]+\.)?@(revature)\.com$'; // regex for Revature email
+    if (!email.match(emailPattern)) {
+      AC.get('email').setErrors({ RevatureEmail: true });
+    } else {
+      return null;
+    }
+  }
+
+  constructor(private userService: UserService, private router: Router, private fb: FormBuilder, private ngmeta: NgMetaService) { }
 
   ngOnInit() {
     if (localStorage.getItem('user') === null) {
@@ -41,12 +54,12 @@ export class ProfileComponent implements OnInit {
 
     const tempUser: User = {
       id: 1,
-      firstname: 'Yuki',
-      lastname: 'Mano',
-      username: 'ysm',
+      firstName: 'Yuki',
+      lastName: 'Mano',
+      username: 'YukiMano',
       password: 'password',
-      userRole: 'trainer',
-      email: 'ym@gmail.com',
+      role: 'trainer',
+      email: 'ym@revature.com',
     };
 
     window.localStorage.setItem('user', JSON.stringify(tempUser));
@@ -54,7 +67,7 @@ export class ProfileComponent implements OnInit {
     // pre-fill the profile information with logged-in user information
     this.user = JSON.parse(window.localStorage.getItem('user'));
 
-    this.fillFormGroup(this.user.firstname, this.user.lastname, this.user.email, this.user.username, this.user.password);
+    this.fillFormGroup(this.user.firstName, this.user.lastName, this.user.email, this.user.username, this.user.password);
   }
 
   // call user-service to update the profile information
@@ -62,21 +75,31 @@ export class ProfileComponent implements OnInit {
     if (this.form.valid) {
       const updatedUserInfo: User = {
         id: this.user.id,
-        firstname: this.form.get('firstname').value.trim(),
-        lastname: this.form.get('lastname').value.trim(),
+        firstName: this.form.get('firstName').value.trim(),
+        lastName: this.form.get('lastName').value.trim(),
         email: this.form.get('email').value.trim(),
         username: this.form.get('username').value.trim(),
         password: this.form.get('password').value,
-        userRole: this.user.userRole,
+        role: this.user.role,
       };
 
       // this line should be put in user service
-      window.localStorage.setItem('user', JSON.stringify(updatedUserInfo));
-      this.user = JSON.parse(window.localStorage.getItem('user'));
+      // window.localStorage.setItem('user', JSON.stringify(updatedUserInfo));
+      // this.user = JSON.parse(window.localStorage.getItem('user'));
 
-      this.fillFormGroup(this.user.firstname, this.user.lastname, this.user.email, this.user.username, this.user.password);
+      // this.fillFormGroup(this.user.firstName, this.user.lastName, this.user.email, this.user.username, this.user.password);
 
       console.log(updatedUserInfo);
+
+
+      this.userService.updateProfile(updatedUserInfo).pipe(first()).subscribe((user) => {
+        if (user) {
+          localStorage.setItem('user', JSON.stringify(user));
+          this.fillFormGroup(this.user.firstName, this.user.lastName, this.user.email, this.user.username, this.user.password);
+          console.log(this.user);
+        }
+      });
+
     }
   }
 
@@ -86,20 +109,23 @@ export class ProfileComponent implements OnInit {
 
     this.user = JSON.parse(window.localStorage.getItem('user'));
 
-    this.fillFormGroup(this.user.firstname, this.user.lastname, this.user.email, this.user.username, this.user.password);
+    this.fillFormGroup(this.user.firstName, this.user.lastName, this.user.email, this.user.username, this.user.password);
   }
 
   // pre-fill the form
-  fillFormGroup(firstname: string, lastname: string, email: string, username: string, password: string) {
+  fillFormGroup(firstName: string, lastName: string, email: string, username: string, password: string) {
     this.form = this.fb.group({
-      firstname: [firstname.trim(), Validators.required],
-      lastname: [lastname.trim(), Validators.required],
+      firstName: [firstName.trim(), [Validators.required, Validators.minLength]],
+      lastName: [lastName.trim(), [Validators.required, Validators.minLength]],
       email: [email.trim(), [Validators.required, Validators.email]],
-      username: [username.trim(), Validators.required],
-      password: [password, Validators.required],
-      confirmPassword: ['', Validators.required],
+      username: [username.trim(), [Validators.required, Validators.minLength]],
+      password: [password, [Validators.required, Validators.minLength]],
+      confirmPassword: ['', [Validators.required, Validators.minLength]],
     }, {
-        validator: ProfileComponent.MatchPassword // match password validation
+        validator: [
+          ProfileComponent.MatchPassword, // match password validation
+          ProfileComponent.RevatureEmail, // must be Revature email
+        ]
       });
   }
 

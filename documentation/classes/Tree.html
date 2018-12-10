@@ -63,9 +63,22 @@
             <code>src/app/zip-file-explorer/zip/zip.component.ts</code>
         </p>
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Tree
+SubClass for storing render related structure</p>
+
+            </p>
 
 
 
+            <p class="comment">
+                <h3>Example</h3>
+            </p>
+            <div class="io-description">
+            </div>
 
             <section>
     <h3 id="index">Index</h3>
@@ -122,13 +135,13 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <code>files:     <code><a href="../classes/File.html" target="_self" >File[]</a></code>
+                        <code>files:     <code>File[]</code>
 </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>    <code><a href="../classes/File.html" target="_self" >File[]</a></code>
+                            <i>Type : </i>    <code>File[]</code>
 
                         </td>
                     </tr>
@@ -139,7 +152,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="127" class="link-to-prism">src/app/zip-file-explorer/zip/zip.component.ts:127</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="297" class="link-to-prism">src/app/zip-file-explorer/zip/zip.component.ts:297</a></div>
                             </td>
                         </tr>
 
@@ -173,7 +186,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="126" class="link-to-prism">src/app/zip-file-explorer/zip/zip.component.ts:126</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="296" class="link-to-prism">src/app/zip-file-explorer/zip/zip.component.ts:296</a></div>
                             </td>
                         </tr>
 
@@ -212,7 +225,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="128" class="link-to-prism">src/app/zip-file-explorer/zip/zip.component.ts:128</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="298" class="link-to-prism">src/app/zip-file-explorer/zip/zip.component.ts:298</a></div>
                             </td>
                         </tr>
 
@@ -231,145 +244,314 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { HttpClient } from &#x27;@angular/common/http&#x27;;
+import { Location } from &#x27;@angular/common&#x27;;
+import { Component, OnInit } from &#x27;@angular/core&#x27;;
 import * as JSZip from &#x27;jszip&#x27;;
-import { HttpClient } from &#x27;@angular/common/http&#x27;;
-import { map } from &#x27;rxjs/operators&#x27;;
-import { Observable, Subject } from &#x27;rxjs&#x27;;
+import { ProjectService } from &#x27;src/app/core/services/project.service&#x27;;
+
 @Component({
   selector: &#x27;app-zip-component&#x27;,
   templateUrl: &#x27;./zip.component.html&#x27;,
   styleUrls: [&#x27;./zip.component.scss&#x27;]
 })
-/*
-* ZipComponent is Reponsible for Unzipping and Rendering a file.zip
-*
-* If stream is unresovable error when ng serve and attempt to render
-* then in tsconfig.json (no .app.json or event tsoncif.spec.json. the top level tsconfig.json)
-* Do not manually go and change in node modules JSzip to readable-stream from stream....
-* Git push ignores app modules but not tsconfig.json
-*
-* &quot;paths&quot;: {
-      &quot;jszip&quot;: [
-        &quot;node_modules/jszip/dist/jszip.min.js&quot;
-      ]
-    },
-* @author Andrew Mitchem (1810-Oct08-Java-USF)
-*/
+/**
+ * ZipComponent is Reponsible for Unzipping and Rendering a file.zip
+ *
+ * If stream is unresovable error when ng serve and attempt to render
+ * then in tsconfig.json (not.app.json or tsoncif.spec.json. the top level tsconfig.json)
+ * add the following code path to the file compileroptions
+ * Do not manually go and change in node modules JSzip to readable-stream from stream
+ * Git push ignores app modules but not tsconfig.json
+ *
+ * &quot;paths&quot;: {
+       &quot;jszip&quot;: [
+         &quot;node_modules/jszip/dist/jszip.min.js&quot;
+       ]
+     },
+ * @author Andrew Mitchem (1810-Oct08-Java-USF)
+ */
 export class ZipComponent implements OnInit {
-  RenderFile: File[] &#x3D; [];
-  SelectedFile: File;
+  RenderFile: RenderFile[] &#x3D; [];
+  SelectedFile: RenderFile;
+  OpenFile: RenderFile[] &#x3D; [];
+  filepath: string &#x3D; &#x27;&#x27;;
+  browserSupported: boolean &#x3D; true;
   /*Constructur: Injects Http Client into the component for use of resource request
   *@param HttpClient standard angular dependency to fire http request.
-  *
+  *@param Location: Allows the page to redirect back to the last page it was opened from
+  *@param ProjectService: Injects the project service to get the request url
+  *@author Andrew Mitchem (1810-Oct08-Java-USF)
   */
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private location: Location,private projectService: ProjectService) { }
+
   ngOnInit() {
-    let testfile &#x3D; new File();
-    testfile.fileName &#x3D; &quot;HELP&quot;;
-    testfile.fileContent &#x3D; &quot;HELLO&quot;;
-    this.SelectedFile &#x3D; testfile;
+    this.SelectedFile &#x3D; this.defaultFile();
+    let isTextDecoderSupported &#x3D; false;
+    try { isTextDecoderSupported  &#x3D; !!new TextDecoder(&#x27;utf-8&#x27;) 
+          
+          } catch(e){
+      
+          }
+         
+    this.browserSupported &#x3D; isTextDecoderSupported
   }
-  /*
-  * ZipComponent.sendRequest()
-  * Fire off an http request for given request. 
-  * @author Andrew Mitchem (1810-Oct08-Java-USF)
-  * 
-  */
-  sendRequest(){
-    //reponse type is arraybuffer so the get request knows this is a oclet-array-stream request
-    this.http.get(&#x27;http://localhost:8080/spring-mvc/files&#x27;, {responseType: &#x27;arraybuffer&#x27;})
-    .pipe(
-      map(arrayBuffer &#x3D;&gt; new Uint8Array(arrayBuffer))
-    )
-    .subscribe(ui8Array &#x3D;&gt; {
-      //after the array is retrieve. open the data with JSZip
-      console.log(&quot;got (ui8Arra)&quot;)
-      this.openData(ui8Array);
+  /**
+   * Zip.errorFile()
+   * sets the defualt display for error messages
+   * @param message
+   * @author Andrew Mitchem (1810-Oct08-Java-USF)
+   */
+  errorFile(message: string): RenderFile {
+    const testfile &#x3D; new  RenderFile();
+    testfile.fileName &#x3D; &#x27;HELP&#x27;;
+    testfile.fileContent &#x3D;
+    &#x60;ERROR:${message}&#x60;;
+    return testfile;
+  }
+  /**
+   * Zip.defualtFile()
+   * sets the defualt display message as a helpme file
+   * @author Andrew Mitchem (1810-Oct08-Java-USF)
+   */
+  defaultFile(): RenderFile {
+    const testfile &#x3D; new  RenderFile();
+    testfile.fileName &#x3D; &#x27;HELP&#x27;;
+    testfile.fileContent &#x3D;
+    &#x60;HELPME: use the first 🗁 (blue) to import the remote saved codebase zip.
+use the second 🗁 (green) to open a local repo zip.
+⌂ to return to the websites
+
+Currently can open and navigate to the src directory of Angular and Java Repositories
+    &#x60;;
+      return testfile;
+  }
+  /**
+   * Zip.goBack()
+   * Redirects back to the last page
+   * @author Andrew Mitchem (1810-Oct08-Java-USF)
+   */
+  goBack() {
+    this.location.back();
+  }
+  openRenderFile(renderFile: RenderFile){
+    this.SelectedFile &#x3D; renderFile;
+    if(!this.OpenFile.includes(renderFile))
+      this.OpenFile.push(renderFile)
+  }
+  closeRenderFile(renderFile: RenderFile){
+    this.OpenFile.splice(this.OpenFile.indexOf(renderFile),1)
+    if(this.OpenFile.length)
+    this.SelectedFile &#x3D; this.defaultFile();
+  }
+  /**
+   * Zip.sendRequest()
+   * Fire off an http request to retrieve the zip file
+   * @author Andrew Mitchem (1810-Oct08-Java-USF)
+   */
+  sendRequest() {
+    const url &#x3D; &#x27;https://s3.us-east-2.amazonaws.com/zip-test-bucket/reflections-mafia-client-master.zip&#x27;;
+    // reponse type is arraybuffer so the get request knows this is a oclet-array-stream request
+    this.http.get(url, { observe: &#x27;response&#x27;, responseType: &#x27;blob&#x27;})
+    .subscribe(blob &#x3D;&gt; {
+      // after the array is retrieve. open the data with JSZip
+      console.log(blob);
+      console.log(blob.body);
+      console.log(blob.headers);
+      console.log(blob.headers.get(&#x27;content-disposition&#x27;));
+      if (blob.headers.get(&#x27;content-disposition&#x27;)) {
+        const datafilename &#x3D; this.getFileNameFromHttpResponse(blob.headers.get(&#x27;content-disposition&#x27;));
+        console.log(datafilename);
+        this.openData(blob.body, datafilename);
+      } else {
+        const datafilename &#x3D; url.substring(url.lastIndexOf(&#x27;/&#x27;) + 1);
+        this.openData(blob.body, datafilename);
+      }
     });
   }
-  /*
-  * ZipComponent.sendRequest()
-  * unpacks a zip blob(ui8array) and opens with JSZip (zip is the reference variable)
-  * @param data. ui8array blob object that &quot;is&quot; a valid zip file. 
-  * @author Andrew Mitchem (1810-Oct08-Java-USF)
-  */
-  openData(data){
-     let zip &#x3D; new JSZip(); 
-     //new instance of JSZip. note this object lifecycle needs to be undone after rendering
-     //as such it not a class member but function member only for the scope of this function closure
-     zip.loadAsync(data)
-        .then(contents&#x3D;&gt;{
-          //console.log(this.RenderStrings)
-          //move to the sub folder inside the zip file: replace with pass paramater variables
-          let dirFolder &#x3D;  zip.folder(&#x27;reflections-mafia-server-master/src/main/java&#x27;)
-          let fileArray &#x3D; dirFolder.file(/^.*/) //get the array of all files in this subdirectory 
-          for(let i &#x3D; 0; i &lt; fileArray.length; i++){
-            let file &#x3D; fileArray[i]
-            this.parseFiles(file);
-          }
-      })
-      // .then(()&#x3D;&gt;{
-      //   console.log(&quot;um help&quot;);
-      //   this.RenderStrings.next(this.tempString);
-      //   console.log(this.tempString)
-      //   this.tempString &#x3D; []
-      //   console.log(this.RenderStrings)
-      // })
+  /**
+   * Zip.getFileNameFromHttpResponse()
+   * splits content-dispotion header ; attachmenent file&#x3D;filename.ext into file name
+   * from stack overflow
+   * @author Andrew Mitchem (1810-Oct08-Java-USF)
+   */
+  getFileNameFromHttpResponse(contentDispositionHeader) {
+    const result &#x3D; contentDispositionHeader.split(&#x27;;&#x27;)[1].trim().split(&#x27;&#x3D;&#x27;)[1];
+    return result.replace(/&quot;/g, &#x27;&#x27;);
   }
-   /*
-  * ZipComponent.parseFiles(file)
-  * opens and individual zip file. This method ignores files that are directories (ie. not files with contnet)
-  * @param file. ZipObject (class of JSzip) to be unpacked into a normal blob object
-  * @author Andrew Mitchem (1810-Oct08-Java-USF)
-  */
-  parseFiles(file){
-    // console.log(&quot;iterating over&quot;, file.name);
-    // console.log(file)
-    //check if file is a directory
-    if(!file.dir){
-        let fileName &#x3D; file.name; 
-        //save ZipObject file name as once unzip into a  standardfile  we loose acess to this data
-        fileName &#x3D; fileName.replace(&quot;reflections-mafia-server-master/src/main/java&quot;,&quot;&quot;) 
-        fileName &#x3D; fileName.substring(fileName.lastIndexOf(&quot;/&quot;)+1)
-        //remove leading path
-        let helpme &#x3D; file.async(&quot;uint8array&quot;).then(function (data) { //converts the ZipObject 
-          let string &#x3D; &#x27;&#x27;;
-          string &#x3D; new TextDecoder(&quot;utf-8&quot;).decode(data);
-          //if(string) --&lt; this section is to prevent error. uncomment if oddities arise
-          return string
-        });
-        helpme.then(string&#x3D;&gt;{ 
-          //promise to unrwap the string. not prvious function has no concept of component namespace due to closur
-          //console.log(string)
-          let file &#x3D; new File();
+  /**
+   * Zip.openData()
+   * unpacks a zip blob(ui8array) and opens with JSZip (zip is the reference variable)
+   * @param data. ui8array blob object that &quot;is&quot; a valid zip file.
+   * @param datafilename, optional. passed in file name.
+   * @author Andrew Mitchem (1810-Oct08-Java-USF)
+   */
+  openData(data , datafilename?) {
+    console.log(&#x27;This is your data file: &#x27; + datafilename);
+    this.RenderFile &#x3D; [];
+    this.SelectedFile &#x3D; this.defaultFile();
+    this.OpenFile &#x3D; [];
+    // console.log(&quot;hi&quot;)
+    console.log(&#x27;This is your data: &#x27;);
+    console.log(data);
+    let dataname &#x3D; &#x27;&#x27;;
+    if (data.name) {
+        dataname &#x3D; data.name.substring(0, data.name.lastIndexOf(&#x27;.&#x27;));
+    } else {
+        dataname &#x3D; datafilename.substring(0, datafilename.lastIndexOf(&#x27;.&#x27;));
+    }
+    console.log(dataname);
+    const zip &#x3D; new JSZip();
+    // new instance of JSZip. note this object lifecycle needs to be undone after rendering
+    // as such it not a class member but function member only for the scope of this function closure
+    zip.loadAsync(data)
+    .then(contents &#x3D;&gt; {
+      console.log(contents);
+      // move to the sub folder inside the zip file: replace with pass paramater variables
+      if (!zip.folder(new RegExp(dataname)).length) {
+        console.log(&#x27;malformed package&#x27;);
+        this.SelectedFile &#x3D; this.errorFile(&#x27;Package didn\&#x27;t match zip filename&#x27;);
+        return;
+      }
+      let dirFolder &#x3D;  zip.folder(dataname);
+      console.log(dirFolder);
+      console.log(dirFolder.folder(/src\/main\/java/));
+      if (dirFolder.folder(/src\/main\/java/).length) {
+        console.log(&#x27;Hi&#x27;);
+        dirFolder &#x3D;  dirFolder.folder(&#x27;src/main/java&#x27;);
+        console.log(dirFolder);
+        this.filepath &#x3D; dataname + &#x27;/src/main/java&#x27;;
+      } else if (dirFolder.folder(/src\/app/).length) {
+        console.log(&#x27;Hello&#x27;);
+        dirFolder &#x3D;  dirFolder.folder(&#x27;src/app&#x27;);
+        console.log(dirFolder);
+        this.filepath &#x3D; dataname + &#x27;/src/app&#x27;;
+      } else {
+        console.log(&#x27;malformed package. not angular or java&#x27;);
+        this.SelectedFile &#x3D; this.errorFile(&#x27;cannot determined repo language type&#x27;);
+        return;
+      }
+      const fileArray &#x3D; dirFolder.file(/^.*/); // get the array of all files in this subdirectory
+      for (let i &#x3D; 0; i &lt; fileArray.length; i++) {
+        const file &#x3D; fileArray[i];
+        this.parseFiles(file);
+      }
+    });
+  }
+  /**
+   * Zip.parseFiles(file)
+   * opens and individual zip file. This method ignores files that are directories (ie. not files with contnet)
+   * @param file. ZipObject (class of JSzip) to be unpacked into a normal blob object
+   * @author Andrew Mitchem (1810-Oct08-Java-USF)
+   */
+  parseFiles(file) {
+    // check if file is a directory
+    if (!file.dir) {
+        let fileName &#x3D; file.name;
+        // save ZipObject file name as once unzip into a  standard file  we loose acess to this data
+        fileName &#x3D; fileName.replace(this.filepath, &#x27;&#x27;);
+        fileName &#x3D; fileName.substring(fileName.lastIndexOf(&#x27;/&#x27;) + 1);
+        // remove leading path in name
+        if(this.browserSupported){
+          let helpme &#x3D; file.async(&#x27;uint8array&#x27;).then(function (data) { // converts the ZipObject
+            let string &#x3D; &#x27;Placeholder Text \n we are sorry your browser may not be supported&#x27;;
+            
+            
+            string &#x3D; new TextDecoder(&#x27;utf-8&#x27;).decode(data);
+            return string;
+          });
+          helpme.then(string &#x3D;&gt; {
+            const file &#x3D; new RenderFile();
+            file.fileName &#x3D; fileName;
+            file.fileContent &#x3D; string; // &quot;file here is a string text readable format stored for rendering logic&quot;
+            this.RenderFile.push(file);
+          });
+        }else{
           file.fileName &#x3D; fileName;
-          file.fileContent &#x3D; string; // &quot;file here is a string text readable format stored for rendering logic&quot;
-          this.RenderFile.push(file);
-        });
+            file.fileContent &#x3D; &#x60;Sorry @Browser not currently supported
+            ≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈
+≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈████≈
+≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈█████≈
+≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈███████
+≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈████████
+≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈█████████
+≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈███▒▒████
+≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈████▒▒▒███
+≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈███▒▒▒▒▒██
+≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈███▒▒▒▒▒▒██
+≈≈≈≈≈≈████████≈≈≈≈≈≈≈≈≈≈≈≈██▒▒▒▒▒▒▒██
+≈≈≈≈███████████≈≈≈≈≈≈≈≈≈≈≈██▒▒▒▒▒▒▒██
+≈≈██████████████≈≈≈≈≈≈≈≈≈≈█▒▒▒▒▒▒▒▒██
+███████████▒▒▒▒██≈≈≈≈≈≈≈≈≈█▒▒▒▒▒▒▒▒██
+████████▒▒▒▒▒▒▒▒██≈≈≈≈≈≈≈≈█▒▒▒▒▒▒▒▒██
+██████▒▒▒▒▒▒▒▒▒▒▒█≈≈████≈≈██▒▒▒▒▒▒▒██
+███████▒▒▒▒▒▒▒▒▒▒███████████▒▒▒▒▒▒▒██
+███████▒▒▒▒▒▒▒▒▒▒██▒▒▒▒▒▒▒██▒▒▒▒▒▒▒██
+≈█████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██≈
+≈≈█████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██≈≈
+≈≈≈█████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██≈≈≈
+≈≈≈≈██████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██≈≈≈≈
+≈≈≈≈≈██████▒▒▒▒▒▒██▒▒▒▒▒▒▒▒▒██▒██≈≈≈≈
+≈≈≈≈≈≈████████▒▒█▌▐█▒▒▒▒▒▒▒█▌▐█▒█≈≈≈≈
+≈≈≈≈≈≈≈≈█████▒▒▒█▌▐█▒▒▒▒▒▒▒█▌▐█▒█≈≈≈≈
+≈≈≈≈≈≈≈≈≈≈≈≈█▒▒▒████▒▒▒▒▒▒▒████▒██≈≈≈
+≈≈≈≈≈≈≈≈≈≈≈≈█▒▒▒████▒▒▒▒█▒▒████▒██≈≈≈
+≈≈≈≈≈≈≈≈≈≈≈██▒▒▒███▒▒▒▒▒▒▒▒▒███▒▒█≈≈≈
+≈≈≈≈≈≈≈≈≈≈≈██▒▒▒▒▒▒▒▒██████▒▒▒▒▒▒█≈≈≈
+≈≈≈≈≈≈≈≈≈≈≈██▒███▒▒▒▒██████▒▒▒████≈≈≈
+≈≈≈≈≈≈≈≈≈≈≈████▒██▒▒▒██████▒▒█▒▒██≈≈≈
+≈≈≈≈≈≈≈≈≈≈≈≈██▒▒▒█▒▒▒██████▒▒█▒▒██≈≈≈
+≈≈≈≈≈≈≈≈≈≈≈≈██▒▒▒█▒▒▒██████▒▒█▒▒█≈≈≈≈
+≈≈≈≈≈≈≈≈≈≈≈≈██▒▒▒█▒▒▒██████▒▒█▒▒█≈≈≈≈
+≈≈≈≈≈≈≈≈≈≈≈≈≈██▒██▒▒▒▒████▒▒▒█▒█≈≈≈≈≈
+≈≈≈≈≈≈≈≈≈≈≈≈████▒▒▒▒▒▒▒▒▒▒▒▒▒▒██≈≈≈≈≈
+≈≈≈≈≈≈≈≈≈≈██████▒▒▒▒▒▒▒▒▒▒▒▒▒██≈≈≈≈≈≈
+≈≈≈≈≈≈≈≈≈≈██▒▒▒▒█▒▒▒▒▒▒▒▒▒▒▒█████≈≈≈≈
+≈≈≈≈≈≈≈≈≈███▒▒▒▒▒██▒▒▒▒▒▒▒██▒▒▒███≈≈≈
+≈≈≈≈≈≈≈≈≈≈█▒▒▒▒▒▒██████████▒▒▒▒▒██≈≈≈
+≈≈≈≈≈≈≈≈≈≈██▒▒▒▒▒▒█████████▒▒▒▒▒██≈≈≈
+≈≈≈≈≈≈≈≈≈████▒▒▒▒▒█████████▒▒▒▒██≈≈≈≈
+≈≈≈≈≈≈≈≈███████▒▒▒███▒████▒▒▒▒██≈≈≈≈≈
+≈≈≈≈≈≈███████████▒▒██▒▒▒█▒▒▒███≈≈≈≈≈≈
+≈≈≈≈≈██████████▒▒▒▒█▒▒▒▒█▒███≈≈≈≈≈≈≈≈
+≈≈≈≈███████████▒▒▒▒▒▒▒▒▒▒▒██≈≈≈≈≈≈≈≈≈
+≈≈≈≈████████≈≈██▒▒▒▒▒▒▒▒▒▒█≈≈≈≈≈≈≈≈≈≈
+≈≈≈≈≈██████≈≈███▒▒▒▒▒▒▒▒▒▒█≈≈≈≈≈≈≈≈≈≈
+≈≈≈≈≈≈████≈≈██▒▒█▒▒▒▒▒▒▒▒▒█≈≈≈≈≈≈≈≈≈≈
+≈≈≈≈≈≈███≈≈██▒▒▒▒█▒▒▒▒▒▒▒██≈≈≈≈≈≈≈≈≈≈
+≈≈≈≈≈≈≈≈≈≈≈██▒▒▒▒████▒▒▒█▒█≈≈≈≈≈≈≈≈≈≈
+≈≈≈≈≈≈≈≈≈≈≈█▒▒▒▒▒█≈≈████▒▒██≈≈≈≈≈≈≈≈≈
+≈≈≈≈≈≈≈≈≈≈≈█▒█▒█▒█≈≈≈≈█▒▒▒▒█≈≈≈≈≈≈≈≈≈
+≈≈≈≈≈≈≈≈≈≈≈≈█████≈≈≈≈≈█▒▒▒▒█≈≈≈≈≈≈≈≈≈
+≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈█▒▒▒▒█≈≈≈≈≈≈≈≈≈
+≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈█▒▒▒▒█≈≈≈≈≈≈≈≈≈
+≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈█▒█▒█≈≈≈≈≈≈≈≈≈
+≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈███≈≈≈≈≈≈≈≈≈≈
+            &#x60;; 
+            this.RenderFile.push(file);
+        }
     }
   }
 }
- /*
-  * Tree
-  * SubClass for storing render related structure
-  * @author Andrew Mitchem (1810-Oct08-Java-USF)
-  */
-class Tree{
+/**
+* Tree
+* SubClass for storing render related structure
+* @author Andrew Mitchem (1810-Oct08-Java-USF)
+*/
+class Tree {
   name: string;
   files: File[] &#x3D; [];
   tree: Tree[] &#x3D; [];
 }
- /*
-  * File 
-  * SubClass for storing render related structure
-  * @author Andrew Mitchem (1810-Oct08-Java-USF)
-  */
-class File{
+/**
+* RenderFile
+* SubClass for storing render related structure
+* @author Andrew Mitchem (1810-Oct08-Java-USF)
+*/
+class RenderFile {
   fileName: String;
   fileContent: String;
 }
-
 </code></pre>
     </div>
 </div>

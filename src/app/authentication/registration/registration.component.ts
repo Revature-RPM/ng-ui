@@ -20,15 +20,14 @@ export class RegistrationComponent implements OnInit {
   secondFormGroup: FormGroup;
   emailPattern = '^[a-zA-Z0-9_.+-]+(?:(?:[a-zA-Z0-9-]+\.)?[a-zA-Z]+\.)?@(revature)\.com$';
   usernamePattern = '^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$';
+  confirmPassword: string; 
 
   static MatchPassword(AC: AbstractControl) {
     const password = AC.get('password').value; // to get value in input tag
-    const confirmPassword = AC.get('verifiedPassword').value; // to get value in input tag
+    const confirmPassword = AC.get('confirmPassword').value; // to get value in input tag
     if (password != confirmPassword) {
-      console.log('false');
-      AC.get('verifiedPassword').setErrors( {MatchPassword: true} );
+      AC.get('confirmPassword').setErrors({ MatchPassword: true });
     } else {
-      console.log('true');
       return null;
     }
   }
@@ -66,7 +65,13 @@ export class RegistrationComponent implements OnInit {
       password: [
         Validators.required,
         Validators.minLength
+      ],
+      confirmPassword: [
+        Validators.required,
+        Validators.minLength
       ]
+    }, {
+      validator: RegistrationComponent.MatchPassword // match password validation
     });
   }
 

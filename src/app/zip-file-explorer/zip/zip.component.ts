@@ -30,7 +30,6 @@ export class ZipComponent implements OnInit {
   RenderFile: RenderFile[] = [];
   SelectedFile: RenderFile;
   OpenFile: RenderFile[] = [];
-  fileName = '';
   filepath = '';
   browserSupported = true;
   /**
@@ -97,6 +96,16 @@ Currently can open and navigate to the src directory of Angular and Java Reposit
   goBack() {
     this.location.back();
   }
+  openRenderFile(renderFile: RenderFile){
+    this.SelectedFile = renderFile;
+    if(!this.OpenFile.includes(renderFile))
+      this.OpenFile.push(renderFile)
+  }
+  closeRenderFile(renderFile: RenderFile){
+    this.OpenFile.splice(this.OpenFile.indexOf(renderFile),1)
+    if(this.OpenFile.length)
+    this.SelectedFile = this.defaultFile();
+  }
   /**
    * Zip.sendRequest()
    * Fire off an http request to retrieve the zip file
@@ -108,7 +117,6 @@ Currently can open and navigate to the src directory of Angular and Java Reposit
     this.http.get(url, { observe: 'response', responseType: 'blob'})
     .subscribe(blob => {
       // after the array is retrieve. open the data with JSZip
-      console.log('got (ui8Arra)');
       console.log(blob);
       console.log(blob.body);
       console.log(blob.headers);
