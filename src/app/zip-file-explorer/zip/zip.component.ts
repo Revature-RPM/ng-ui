@@ -30,6 +30,7 @@ export class ZipComponent implements OnInit {
   RenderFile: RenderFile[] = [];
   SelectedFile: RenderFile;
   OpenFile: RenderFile[] = [];
+  fileName = '';
   filepath = '';
   browserSupported = true;
   /**
@@ -96,15 +97,17 @@ Currently can open and navigate to the src directory of Angular and Java Reposit
   goBack() {
     this.location.back();
   }
-  openRenderFile(renderFile: RenderFile){
+  openRenderFile(renderFile: RenderFile) {
     this.SelectedFile = renderFile;
-    if(!this.OpenFile.includes(renderFile))
-      this.OpenFile.push(renderFile)
+    if (!this.OpenFile.includes(renderFile)) {
+      this.OpenFile.push(renderFile);
+    }
   }
-  closeRenderFile(renderFile: RenderFile){
-    this.OpenFile.splice(this.OpenFile.indexOf(renderFile),1)
-    if(this.OpenFile.length)
-    this.SelectedFile = this.defaultFile();
+  closeRenderFile(renderFile: RenderFile) {
+    this.OpenFile.splice(this.OpenFile.indexOf(renderFile), 1);
+    if (this.OpenFile.length) {
+      this.SelectedFile = this.defaultFile();
+    }
   }
   /**
    * Zip.sendRequest()
