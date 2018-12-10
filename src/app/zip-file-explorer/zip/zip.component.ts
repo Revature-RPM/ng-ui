@@ -32,7 +32,6 @@ export class ZipComponent implements OnInit {
   RenderFile: RenderFile[] = [];
   SelectedFile: RenderFile;
   OpenFile: RenderFile[] = [];
-  fileName = '';
   filepath = '';
   browserSupported = true;
   availableUrls: string [] = [];
