@@ -32,10 +32,9 @@ export class ZipComponent implements OnInit {
   RenderFile: RenderFile[] = [];
   SelectedFile: RenderFile;
   OpenFile: RenderFile[] = [];
-  fileName = '';
   filepath = '';
   browserSupported = true;
-  availableUrls: string []=[];
+  availableUrls: string [] = [];
   /**
    * Constructur: Injects Http Client into the component for use of resource request
    * @param HttpClient standard angular dependency to fire http request.
@@ -46,24 +45,29 @@ export class ZipComponent implements OnInit {
    */
   constructor(private http: HttpClient,
               private location: Location,
-              private router: Router,
-              private ngmeta: NgMetaService) { }
+              private ngmeta: NgMetaService,
+              private projectService: ProjectService,
+              private router: Router) { }
 
   ngOnInit() {
-    this.SelectedFile = this.defaultFile();
-    let isTextDecoderSupported = false;
-    try { isTextDecoderSupported  = !!new TextDecoder('utf-8') 
-          
-          } catch(e){
-      
-          }
-         
-    this.browserSupported = isTextDecoderSupported
-    if(this.projectService.CurrentProject)
-    this.availableUrls = this.projectService.CurrentProject.zipLinks;
-    else { //test block
-      this.availableUrls.push('https://s3.us-east-2.amazonaws.com/zip-test-bucket/reflections-mafia-client-master.zip');
-      this.availableUrls.push('not an url')
+    if (localStorage.getItem('user') === null) {
+      this.router.navigate(['/auth/login']);
+    } else {
+      this.ngmeta.setHead({ title: 'Code | RPM' });
+      this.SelectedFile = this.defaultFile();
+      let isTextDecoderSupported = false;
+      try {
+        isTextDecoderSupported  = !!new TextDecoder('utf-8');
+      } catch (e) {
+      }
+
+      this.browserSupported = isTextDecoderSupported;
+      if (this.projectService.CurrentProject) {
+        this.availableUrls = this.projectService.CurrentProject.zipLinks;
+      } else { // test block
+        this.availableUrls.push('https://s3.us-east-2.amazonaws.com/zip-test-bucket/reflections-mafia-client-master.zip');
+        this.availableUrls.push('not an url');
+      }
     }
   }
   /**
@@ -96,8 +100,8 @@ Currently can open and navigate to the src directory of Angular and Java Reposit
     `;
     return testfile;
   }
-  safeTitle(link:string){
-    return link.substring(link.lastIndexOf("/")+1);
+  safeTitle(link: string) {
+    return link.substring(link.lastIndexOf('/') + 1);
   }
   /**
    * Zip.goBack()
@@ -124,8 +128,8 @@ Currently can open and navigate to the src directory of Angular and Java Reposit
    * Fire off an http request to retrieve the zip file
    * @author Andrew Mitchem (1810-Oct08-Java-USF)
    */
-  sendRequest(url:string) {
-   
+  sendRequest(url: string) {
+
     // reponse type is arraybuffer so the get request knows this is a oclet-array-stream request
     this.http.get(url, { observe: 'response', responseType: 'blob'})
     .subscribe(blob => {
@@ -142,8 +146,8 @@ Currently can open and navigate to the src directory of Angular and Java Reposit
         const datafilename = url.substring(url.lastIndexOf('/') + 1);
         this.openData(blob.body, datafilename);
       }
-    },error => {
-      this.SelectedFile = this.errorFile("Yeah we couldn't find this file: we're Sorry")
+    }, error => {
+      this.SelectedFile = this.errorFile('Yeah we couldn\'t find this file: we\'re Sorry');
     });
   }
   /**
@@ -241,7 +245,7 @@ Currently can open and navigate to the src directory of Angular and Java Reposit
         this.RenderFile.push(file);
       });
     } else {
-      file.fileName = "Error";
+      file.fileName = 'Error';
             file.fileContent = `Sorry @Browser not currently supported
             ≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈
 ≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈████≈
