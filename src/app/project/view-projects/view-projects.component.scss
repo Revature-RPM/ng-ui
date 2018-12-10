@@ -51,10 +51,12 @@ table {
   // }
   
  .project-image {
-    max-width: 30vh; 
-    max-height: 30vh;
+    max-width: 40vh; 
+    max-height: 40vh;
+    min-width: 40vh; 
+    min-height: 40vh;
     border: 2px solid black;
-    padding: 8px;
+    padding: 16px;
     margin: 8px 0;
  }
 
@@ -64,8 +66,14 @@ table {
   //   line-height: normal;
   // }
   
+  .project-members {
+    padding: 30px;
+    text-align: left;
+  }
+
   .project-description {
     padding: 16px;
+    text-align: left;
   }
   
   .project-description-attribution {

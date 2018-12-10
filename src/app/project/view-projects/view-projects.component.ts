@@ -182,8 +182,8 @@ export class ViewProjectsComponent implements OnInit, OnDestroy {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  nextImage() {
-    this.imagePage++;
+  nextImage(totalAmountOfScreenShots: number) {
+    this.imagePage = (this.imagePage + 1)%totalAmountOfScreenShots;
   }
 
   previousImage(totalAmountOfScreenShots: number) {
