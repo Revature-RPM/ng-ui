@@ -20,7 +20,7 @@ export class RegistrationComponent implements OnInit {
   secondFormGroup: FormGroup;
   emailPattern = '^[a-zA-Z0-9_.+-]+(?:(?:[a-zA-Z0-9-]+\.)?[a-zA-Z]+\.)?@(revature)\.com$';
   usernamePattern = '^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$';
-  confirmPassword: string; 
+  confirmPassword: string;
 
   static MatchPassword(AC: AbstractControl) {
     const password = AC.get('password').value; // to get value in input tag

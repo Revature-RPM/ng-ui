@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
 import { NgMetaService } from 'ngmeta';
 
 import { InputDialogComponent } from './input-dialog/input-dialog.component';
 import { Project } from 'src/app/core/models/Project';
-import { ProjectService } from 'src/app/core/services/project.service';
 
 export interface DialogData {
   title: string;
@@ -24,9 +22,9 @@ export class ProjectSubmissionComponent implements OnInit {
   projectToUpload: Project = {};
 
   // validScreenshots and validGithubURL determine if information has been entered correctly and if the form can be submitted
-  validScreenshots: boolean = false;
-  validGithubURL: boolean = false;
-  invalidLink: boolean = false; // triggers an error message is set to true
+  validScreenshots = false;
+  validGithubURL = false;
+  invalidLink = false; // triggers an error message is set to true
 
   /**
    * title, questionType, and result are all passed to a dialog when the user chooses either the group member or the links input field
@@ -59,31 +57,38 @@ export class ProjectSubmissionComponent implements OnInit {
   githubURLRegex: RegExp;
   githubURL: string;
 
-  constructor(private router: Router, private projectService: ProjectService, private dialog: MatDialog) {}
+  constructor(private router: Router,
+              private ngmeta: NgMetaService,
+              private dialog: MatDialog) {}
 
   ngOnInit() {
-    this.projectToUpload.groupMembers = [];
-    this.projectToUpload.screenShots = [];
-    this.projectToUpload.zipLinks = [];
-    this.groupMemberString = '';
-    this.zipLinksString = '';
-    this.githubURLRegex = new RegExp('^(https:\/\/github\.com\/[^/]+\/[^/]+)');  
+    if (localStorage.getItem('user') === null) {
+      this.router.navigate(['/auth/login']);
+    } else {
+      this.ngmeta.setHead({ title: 'Submit | RPM' });
+      this.projectToUpload.groupMembers = [];
+      this.projectToUpload.screenShots = [];
+      this.projectToUpload.zipLinks = [];
+      this.groupMemberString = '';
+      this.zipLinksString = '';
+      this.githubURLRegex = new RegExp('^(https:\/\/github\.com\/[^/]+\/[^/]+)');
+    }
   }
 
   /**
-   * this method opens the dialog defined in the input-dialog component; 
+   * this method opens the dialog defined in the input-dialog component;
    *    after the dialog is closed the user's data is placed in the groupMembers array or the zipLinks array depending on which field was clicked
    * @param e: the event of clicking either the group member or zip links fields, which both trigger the dialog to open
    * @author Shawn Bickel (1810-Oct08-Java-USF)
    */
   openDialog(e): void {
     // determine which input was clicked, the group members field or the zip links field
-    if (e.target.id == 'inputGroupMembers'){
-      this.title = "New Group Member";
-      this.questionType = "Enter the name of the group member";
-    }else{
-      this.title = "Repository Link";
-      this.questionType = "Enter the Github URL of your repository";
+    if (e.target.id == 'inputGroupMembers') {
+      this.title = 'New Group Member';
+      this.questionType = 'Enter the name of the group member';
+    } else {
+      this.title = 'Repository Link';
+      this.questionType = 'Enter the Github URL of your repository';
     }
 
     // open the dialog contained in the InputDialogComponent passing the data to be displayed in the dialog
@@ -95,18 +100,18 @@ export class ProjectSubmissionComponent implements OnInit {
     // when the dialog is closed, the data is returned as an observable
     dialogRef.afterClosed().subscribe(result => {
       // only proceed if the user entered information
-      if (result !== undefined && result !== null){
+      if (result !== undefined && result !== null) {
 
         // if the user chose to add a group member, then place the input into the groupMembers array corresponding to the project to submit
-        if (e.target.id == 'inputGroupMembers'){
+        if (e.target.id == 'inputGroupMembers') {
           this.projectToUpload.groupMembers.push(result);
           this.groupMemberString += ' ' + result;
-        }else{
+        } else {
          this.githubURL = result;
          console.log(this.githubURL);
 
          // find the exact match in the string corresponding to the github repository regular expression
-         let regexArr = this.githubURL.match(this.githubURLRegex);
+         const regexArr = this.githubURL.match(this.githubURLRegex);
          console.log(regexArr);
          console.log(this.githubURLRegex.test(this.githubURL));
 
@@ -117,17 +122,17 @@ export class ProjectSubmissionComponent implements OnInit {
           * The length of a valid URL will equal the length of the match found in the string corresponding the the regular expression.
           * All links are unique
           */
-          if (this.githubURLRegex.test(this.githubURL) == false || this.githubURL.length != regexArr[0].length){
+          if (this.githubURLRegex.test(this.githubURL) == false || this.githubURL.length != regexArr[0].length) {
             this.invalidLink = true;
             return;
           }
 
           //  All links are unique
-          if (this.projectToUpload.zipLinks.includes(result)){
+          if (this.projectToUpload.zipLinks.includes(result)) {
             return;
           }
 
-          console.log("this is a correctly formatted link");
+          console.log('this is a correctly formatted link');
 
           // at this point, the URL will be valid and will be placed in the array corresponding to the zip links array of the project to be submitted
           this.validGithubURL = true;
@@ -148,7 +153,7 @@ export class ProjectSubmissionComponent implements OnInit {
   submitForm() {
     // FormData is used to hold form fields and their values as key/value pairs to easily transfer data in a form 
     const formData = new FormData();
-   
+
     // append the data of the form as key/value pairs using field names on the server as keys and data in the form as values
     formData.append('name', this.projectToUpload.name);
     formData.append('batch', this.projectToUpload.batch);
@@ -163,18 +168,18 @@ export class ProjectSubmissionComponent implements OnInit {
 
 
     // elements of an array are appended to the FormData object using the same key name
-    for (let i = 0; i < this.projectToUpload.groupMembers.length; i++) { 
+    for (let i = 0; i < this.projectToUpload.groupMembers.length; i++) {
       formData.append('groupMembers', this.projectToUpload.groupMembers[i]);
     }
 
-    for (let j = 0; j < this.projectToUpload.screenShots.length; j++) { 
+    for (let j = 0; j < this.projectToUpload.screenShots.length; j++) {
       formData.append('screenShots', this.projectToUpload.screenShots[j]);
     }
 
-    for (let k = 0; k < this.projectToUpload.zipLinks.length; k++) { 
+    for (let k = 0; k < this.projectToUpload.zipLinks.length; k++) {
       formData.append('zipLinks', this.projectToUpload.zipLinks[k]);
     }
-   
+
     console.log(this.projectToUpload.groupMembers);
     console.log(this.projectToUpload.zipLinks);
     console.log(this.projectToUpload.screenShots);
@@ -191,12 +196,12 @@ export class ProjectSubmissionComponent implements OnInit {
   /**
    * When the file input is triggered, the event is passed to this method which uses the properties of the event to retrieve the files chosen and place them in the 
    *      array corresponding to the screenShots array of the project to be submitted
-   * 
+   *
    * @param e the event corresponding to the user choosing a screenshot to uplodad
    */
-  onFileSelected(e){
+  onFileSelected(e) {
     console.log(e);
-    for (let i = 0; i < e.target.files.length; i++){
+    for (let i = 0; i < e.target.files.length; i++) {
       this.projectToUpload.screenShots.push(e.target.files[i]);
       this.validScreenshots = true;
     }

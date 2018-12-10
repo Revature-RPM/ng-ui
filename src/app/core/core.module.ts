@@ -8,8 +8,7 @@ import { UserService } from './services/user.service';
 @NgModule({
   declarations: [],
   imports: [
-    CommonModule,
-    
+    CommonModule
   ],
   providers: [
     ProjectService,
