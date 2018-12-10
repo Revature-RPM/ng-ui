@@ -29,7 +29,7 @@ export class NavbarComponent implements OnInit {
   }
 
   logout() {
-    this.router.navigate(['auth','login']);
+    this.router.navigate(['auth','logout']);
   }
 
   ngOnInit() {
