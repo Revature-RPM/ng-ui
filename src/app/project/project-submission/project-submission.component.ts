@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
 import { NgMetaService } from 'ngmeta';
 
 import { InputDialogComponent } from './input-dialog/input-dialog.component';
 import { Project } from 'src/app/core/models/Project';
-import { ProjectService } from 'src/app/core/services/project.service';
 
 export interface DialogData {
   title: string;
@@ -61,7 +59,6 @@ export class ProjectSubmissionComponent implements OnInit {
 
   constructor(private router: Router,
               private ngmeta: NgMetaService,
-              private projectService: ProjectService,
               private dialog: MatDialog) {}
 
   ngOnInit() {

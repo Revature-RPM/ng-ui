@@ -1,13 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 import { Project } from 'src/app/core/models/Project';
 import { ProjectService } from 'src/app/core/services/project.service';
-
-import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
-import { MatDialog } from '@angular/material';
 import { InputDialogComponent } from '../project-submission/input-dialog/input-dialog.component';
-import { Subscription } from 'rxjs';
 
 export interface DialogData {
   title: string;

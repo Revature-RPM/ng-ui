@@ -14,84 +14,96 @@ const PROJECT_DATA: Project[] = [
     groupMembers: ['Yuki Mano', 'Caleb Massey', 'Shawn Bickel'],
     screenShots: ['https://i.ytimg.com/vi/wRx3Uvcktm8/maxresdefault.jpg',
       'https://gfnc1kn6pi-flywheel.netdna-ssl.com/wp-content/uploads/2018/06/best-food-for-pug-puppies-header.jpg',
-      'https://buzzsharer.com/wp-content/uploads/2016/04/pug-sleeping-upside.jpg',], zipLinks: ['https://github.com/1810-oct08-java-usf/ng-ui', 'https://github.com/1810-oct08-java-usf/auth-service'],
+      'https://buzzsharer.com/wp-content/uploads/2016/04/pug-sleeping-upside.jpg', ],
+      zipLinks: ['https://github.com/1810-oct08-java-usf/ng-ui', 'https://github.com/1810-oct08-java-usf/auth-service'],
     techStack: 'Full-Stack Java Developer', status: 'Approved', description: 'description of TopShelf'
   },
   {
     id: 2, name: 'Kevin Craft Bacon', batch: '1810-oct08-java-usf', userFullName: 'Wezley Singleton',
     groupMembers: ['Sahil', 'Ryan', 'Jeffly', 'Sadiki'], screenShots: ['https://i.ytimg.com/vi/wRx3Uvcktm8/maxresdefault.jpg',
       'https://gfnc1kn6pi-flywheel.netdna-ssl.com/wp-content/uploads/2018/06/best-food-for-pug-puppies-header.jpg',
-      'https://buzzsharer.com/wp-content/uploads/2016/04/pug-sleeping-upside.jpg',], zipLinks: ['https://github.com/1810-oct08-java-usf/ng-ui', 'https://github.com/1810-oct08-java-usf/auth-service'],
+      'https://buzzsharer.com/wp-content/uploads/2016/04/pug-sleeping-upside.jpg', ],
+      zipLinks: ['https://github.com/1810-oct08-java-usf/ng-ui', 'https://github.com/1810-oct08-java-usf/auth-service'],
     techStack: 'Full-Stack Java Developer', status: 'Approved', description: 'description of Kevin Craft Bacon'
   },
   {
     id: 3, name: 'Tratior', batch: '1810-oct08-java-usf', userFullName: 'Wezley Singleton',
     groupMembers: ['Paul', 'Miles', 'Derek', 'Andrew'], screenShots: ['https://i.ytimg.com/vi/wRx3Uvcktm8/maxresdefault.jpg',
       'https://gfnc1kn6pi-flywheel.netdna-ssl.com/wp-content/uploads/2018/06/best-food-for-pug-puppies-header.jpg',
-      'https://buzzsharer.com/wp-content/uploads/2016/04/pug-sleeping-upside.jpg',], zipLinks: ['https://github.com/1810-oct08-java-usf/ng-ui', 'https://github.com/1810-oct08-java-usf/auth-service'],
+      'https://buzzsharer.com/wp-content/uploads/2016/04/pug-sleeping-upside.jpg', ],
+      zipLinks: ['https://github.com/1810-oct08-java-usf/ng-ui', 'https://github.com/1810-oct08-java-usf/auth-service'],
     techStack: 'Full-Stack Java Developer', status: 'Pending', description: 'Description of Tratior'
   },
   {
     id: 1, name: 'TopShelf', batch: '1810-oct08-java-usf', userFullName: 'Wezley Singleton',
     groupMembers: ['Yuki Mano', 'Caleb Massey', 'Shawn Bickel'], screenShots: ['https://i.ytimg.com/vi/wRx3Uvcktm8/maxresdefault.jpg',
       'https://gfnc1kn6pi-flywheel.netdna-ssl.com/wp-content/uploads/2018/06/best-food-for-pug-puppies-header.jpg',
-      'https://buzzsharer.com/wp-content/uploads/2016/04/pug-sleeping-upside.jpg',], zipLinks: ['https://github.com/1810-oct08-java-usf/ng-ui', 'https://github.com/1810-oct08-java-usf/auth-service'],
+      'https://buzzsharer.com/wp-content/uploads/2016/04/pug-sleeping-upside.jpg', ],
+      zipLinks: ['https://github.com/1810-oct08-java-usf/ng-ui', 'https://github.com/1810-oct08-java-usf/auth-service'],
     techStack: 'Full-Stack Java Developer', status: 'Pending', description: 'description of TopShelf'
   },
   {
     id: 2, name: 'Kevin Craft Bacon', batch: '1810-oct08-java-usf', userFullName: 'Wezley Singleton',
     groupMembers: ['Sahil', 'Ryan', 'Jeffly', 'Sadiki'], screenShots: ['https://i.ytimg.com/vi/wRx3Uvcktm8/maxresdefault.jpg',
       'https://gfnc1kn6pi-flywheel.netdna-ssl.com/wp-content/uploads/2018/06/best-food-for-pug-puppies-header.jpg',
-      'https://buzzsharer.com/wp-content/uploads/2016/04/pug-sleeping-upside.jpg',], zipLinks: ['https://github.com/1810-oct08-java-usf/ng-ui', 'https://github.com/1810-oct08-java-usf/auth-service'],
+      'https://buzzsharer.com/wp-content/uploads/2016/04/pug-sleeping-upside.jpg', ],
+      zipLinks: ['https://github.com/1810-oct08-java-usf/ng-ui', 'https://github.com/1810-oct08-java-usf/auth-service'],
     techStack: 'Full-Stack Java Developer', status: 'Approved', description: 'description of Kevin Craft Bacon'
   },
   {
     id: 3, name: 'Tratior', batch: '1810-oct08-java-usf', userFullName: 'Wezley Singleton',
     groupMembers: ['Paul', 'Miles', 'Derek', 'Andrew'], screenShots: ['https://i.ytimg.com/vi/wRx3Uvcktm8/maxresdefault.jpg',
       'https://gfnc1kn6pi-flywheel.netdna-ssl.com/wp-content/uploads/2018/06/best-food-for-pug-puppies-header.jpg',
-      'https://buzzsharer.com/wp-content/uploads/2016/04/pug-sleeping-upside.jpg',], zipLinks: ['https://github.com/1810-oct08-java-usf/ng-ui', 'https://github.com/1810-oct08-java-usf/auth-service'],
+      'https://buzzsharer.com/wp-content/uploads/2016/04/pug-sleeping-upside.jpg', ],
+      zipLinks: ['https://github.com/1810-oct08-java-usf/ng-ui', 'https://github.com/1810-oct08-java-usf/auth-service'],
     techStack: 'Full-Stack Java Developer', status: 'Approved', description: 'Description of Tratior'
   },
   {
     id: 1, name: 'TopShelf', batch: '1810-oct08-java-usf', userFullName: 'Wezley Singleton',
     groupMembers: ['Yuki Mano', 'Caleb Massey', 'Shawn Bickel'], screenShots: ['https://i.ytimg.com/vi/wRx3Uvcktm8/maxresdefault.jpg',
       'https://gfnc1kn6pi-flywheel.netdna-ssl.com/wp-content/uploads/2018/06/best-food-for-pug-puppies-header.jpg',
-      'https://buzzsharer.com/wp-content/uploads/2016/04/pug-sleeping-upside.jpg',], zipLinks: ['https://github.com/1810-oct08-java-usf/ng-ui', 'https://github.com/1810-oct08-java-usf/auth-service'],
+      'https://buzzsharer.com/wp-content/uploads/2016/04/pug-sleeping-upside.jpg', ],
+      zipLinks: ['https://github.com/1810-oct08-java-usf/ng-ui', 'https://github.com/1810-oct08-java-usf/auth-service'],
     techStack: 'Full-Stack Java Developer', status: 'Approved', description: 'description of TopShelf'
   },
   {
     id: 2, name: 'Kevin Craft Bacon', batch: '1810-oct08-java-usf', userFullName: 'Wezley Singleton',
     groupMembers: ['Sahil', 'Ryan', 'Jeffly', 'Sadiki'], screenShots: ['https://i.ytimg.com/vi/wRx3Uvcktm8/maxresdefault.jpg',
       'https://gfnc1kn6pi-flywheel.netdna-ssl.com/wp-content/uploads/2018/06/best-food-for-pug-puppies-header.jpg',
-      'https://buzzsharer.com/wp-content/uploads/2016/04/pug-sleeping-upside.jpg',], zipLinks: ['https://github.com/1810-oct08-java-usf/ng-ui', 'https://github.com/1810-oct08-java-usf/auth-service'],
+      'https://buzzsharer.com/wp-content/uploads/2016/04/pug-sleeping-upside.jpg', ],
+      zipLinks: ['https://github.com/1810-oct08-java-usf/ng-ui', 'https://github.com/1810-oct08-java-usf/auth-service'],
     techStack: 'Full-Stack Java Developer', status: 'Approved', description: 'description of Kevin Craft Bacon'
   },
   {
     id: 3, name: 'Tratior', batch: '1810-oct08-java-usf', userFullName: 'Wezley Singleton',
     groupMembers: ['Paul', 'Miles', 'Derek', 'Andrew'], screenShots: ['https://i.ytimg.com/vi/wRx3Uvcktm8/maxresdefault.jpg',
       'https://gfnc1kn6pi-flywheel.netdna-ssl.com/wp-content/uploads/2018/06/best-food-for-pug-puppies-header.jpg',
-      'https://buzzsharer.com/wp-content/uploads/2016/04/pug-sleeping-upside.jpg',], zipLinks: ['https://github.com/1810-oct08-java-usf/ng-ui', 'https://github.com/1810-oct08-java-usf/auth-service'],
+      'https://buzzsharer.com/wp-content/uploads/2016/04/pug-sleeping-upside.jpg', ],
+      zipLinks: ['https://github.com/1810-oct08-java-usf/ng-ui', 'https://github.com/1810-oct08-java-usf/auth-service'],
     techStack: 'Full-Stack Java Developer', status: 'Approved', description: 'Description of Tratior'
   },
   {
     id: 1, name: 'TopShelf', batch: '1810-oct08-java-usf', userFullName: 'Wezley Singleton',
     groupMembers: ['Yuki Mano', 'Caleb Massey', 'Shawn Bickel'], screenShots: ['https://i.ytimg.com/vi/wRx3Uvcktm8/maxresdefault.jpg',
       'https://gfnc1kn6pi-flywheel.netdna-ssl.com/wp-content/uploads/2018/06/best-food-for-pug-puppies-header.jpg',
-      'https://buzzsharer.com/wp-content/uploads/2016/04/pug-sleeping-upside.jpg',], zipLinks: ['https://github.com/1810-oct08-java-usf/ng-ui', 'https://github.com/1810-oct08-java-usf/auth-service'],
+      'https://buzzsharer.com/wp-content/uploads/2016/04/pug-sleeping-upside.jpg', ],
+      zipLinks: ['https://github.com/1810-oct08-java-usf/ng-ui', 'https://github.com/1810-oct08-java-usf/auth-service'],
     techStack: 'Full-Stack Java Developer', status: 'Approved', description: 'description of TopShelf'
   },
   {
     id: 2, name: 'Kevin Craft Bacon', batch: '1810-oct08-java-usf', userFullName: 'Wezley Singleton',
     groupMembers: ['Sahil', 'Ryan', 'Jeffly', 'Sadiki'], screenShots: ['https://i.ytimg.com/vi/wRx3Uvcktm8/maxresdefault.jpg',
       'https://gfnc1kn6pi-flywheel.netdna-ssl.com/wp-content/uploads/2018/06/best-food-for-pug-puppies-header.jpg',
-      'https://buzzsharer.com/wp-content/uploads/2016/04/pug-sleeping-upside.jpg',], zipLinks: ['https://github.com/1810-oct08-java-usf/ng-ui', 'https://github.com/1810-oct08-java-usf/auth-service'],
+      'https://buzzsharer.com/wp-content/uploads/2016/04/pug-sleeping-upside.jpg', ],
+      zipLinks: ['https://github.com/1810-oct08-java-usf/ng-ui', 'https://github.com/1810-oct08-java-usf/auth-service'],
     techStack: 'Full-Stack Java Developer', status: 'Approved', description: 'description of Kevin Craft Bacon'
   },
   {
     id: 3, name: 'Tratior', batch: '1810-oct08-java-usf', userFullName: 'Wezley Singleton',
     groupMembers: ['Paul', 'Miles', 'Derek', 'Andrew'], screenShots: ['https://i.ytimg.com/vi/wRx3Uvcktm8/maxresdefault.jpg',
       'https://gfnc1kn6pi-flywheel.netdna-ssl.com/wp-content/uploads/2018/06/best-food-for-pug-puppies-header.jpg',
-      'https://buzzsharer.com/wp-content/uploads/2016/04/pug-sleeping-upside.jpg',], zipLinks: ['https://github.com/1810-oct08-java-usf/ng-ui', 'https://github.com/1810-oct08-java-usf/auth-service'],
+      'https://buzzsharer.com/wp-content/uploads/2016/04/pug-sleeping-upside.jpg', ],
+      zipLinks: ['https://github.com/1810-oct08-java-usf/ng-ui', 'https://github.com/1810-oct08-java-usf/auth-service'],
     techStack: 'Full-Stack Java Developer', status: 'Approved', description: 'Description of Tratior'
   },
 ];
@@ -110,18 +122,18 @@ const PROJECT_DATA: Project[] = [
 })
 
 export class ViewProjectsComponent implements OnInit, OnDestroy {
-  trainerCanEdit: boolean = false;
+  trainerCanEdit = false;
   currentUser: User;
   displayedColumns: string[] = ['name', 'batch', 'userFullName', 'techStack', 'status']; // change userFullName to trainer
   dataSource: MatTableDataSource<Project>;
   @ViewChild(MatSort) sort: MatSort;
   expandedProject: Project | null;
 
-  imagePage = 0; 
+  imagePage = 0;
 
   projects: Project[];
   subscription: Subscription;
-  constructor(private router: Router, private viewProjectsService: ProjectService) { 
+  constructor(private router: Router, private viewProjectsService: ProjectService) {
     // Assign the data to the data source for the table to render
     this.dataSource = new MatTableDataSource(PROJECT_DATA);
    }
@@ -150,17 +162,17 @@ export class ViewProjectsComponent implements OnInit, OnDestroy {
    * @param rowClick : the event when a row is clicked and expanded
    * @author Shawn Bickel (1810-Oct08-Java-USF)
    */
-  canEdit(rowClick){
+  canEdit(rowClick) {
     console.log();
    // retrieve the trainer displayed in the table row
-    let trainer = rowClick.path[1].cells[2].innerHTML.trim();
+    const trainer = rowClick.path[1].cells[2].innerHTML.trim();
 
      // Retrieve the user from local storage and ensure that the user can edit the project if the user submitted the project
      this.currentUser = JSON.parse(localStorage.getItem('user'));
-     let trainerFullName = this.currentUser.firstName + ' ' + this.currentUser.lastName;
-     if (trainerFullName === trainer){
+     const trainerFullName = this.currentUser.firstName + ' ' + this.currentUser.lastName;
+     if (trainerFullName === trainer) {
         this.trainerCanEdit = true;
-     }else{
+     } else {
        this.trainerCanEdit = false;
      }
   }
@@ -187,7 +199,7 @@ export class ViewProjectsComponent implements OnInit, OnDestroy {
 
   previousImage(totalAmountOfScreenShots: number) {
     this.imagePage--;
-    if(this.imagePage<0){
+    if (this.imagePage < 0) {
       this.imagePage = totalAmountOfScreenShots;
     }
   }
