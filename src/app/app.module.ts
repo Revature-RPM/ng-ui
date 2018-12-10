@@ -9,6 +9,8 @@ import { ProjectModule } from './project/project.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { environment } from 'src/environments/environment';
+import { jwtOptionsFactory } from 'src/app/core/services/jwtInterceptor.interceptor';
+import { JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
 
 
 @NgModule({
@@ -22,7 +24,14 @@ import { environment } from 'src/environments/environment';
     HttpClientModule,
     ProjectModule,
     MatJumbotronModule.forRoot(),
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    JwtModule.forRoot({
+      jwtOptionsProvider: {
+        provide: JWT_OPTIONS,
+        useFactory: jwtOptionsFactory 
+      }
+
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -34,8 +34,13 @@ ${error.error}`
 
     return throwError('Something went wrong; please try again later.');
   }
-
-  // URI need to match the expected endpoint!!!
+  logout(){
+    localStorage.removeItem('jwt')
+    localStorage.removeItem('user')
+    this.jwtauthtoken = null;
+    this.user = null;
+  }
+  //only use environment.url for the base url and concat any restful endpoints
   login(user: User): Observable<any> {
     console.log(user)
     return this.http.post(environment.url + '/auth', user, { observe: 'response'})
@@ -56,14 +61,14 @@ ${error.error}`
       }),catchError(this.handleError))
   }
 
-  // URI need to match the expected endpoint!!!
+    //only use environment.url for the base url and concat any restful endpoints
   register(user: User): Observable<User> {
     user.role = "user";
     return this.http.post<User>(environment.url + '/auth/users', user, httpOptions)
       .pipe(catchError(this.handleError));
   }
 
-  // URI need to match the expected endpoint!!!
+    //only use environment.url for the base url and concat any restful endpoints
   updateProfile(user: User): Observable<User> {
     return this.http.put<User>(environment.url+ '/auth/users', user, httpOptions)
       .pipe(catchError(this.handleError));
