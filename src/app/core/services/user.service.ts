@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError ,map} from 'rxjs/operators';
 
 import { User } from '../models/User';
 import { environment } from '../../../environments/environment';
@@ -17,7 +17,8 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class UserService {
-
+  jwtauthtoken: string;
+  user: User;
   constructor(private http: HttpClient) { }
 
   // TODO clean this up
@@ -35,10 +36,24 @@ ${error.error}`
   }
 
   // URI need to match the expected endpoint!!!
-  login(user: User): Observable<User> {
+  login(user: User): Observable<any> {
     console.log(user)
-    return this.http.post<User>(environment.url + '/auth', user, httpOptions)
-      .pipe(catchError(this.handleError));
+    return this.http.post(environment.url + '/auth', user, { observe: 'response'})
+      .pipe(map(reponse=>{
+        if(reponse.body && reponse.headers.get('Authorization')){
+          this.user = reponse.body;
+          this.jwtauthtoken = reponse.headers.get('Authorization').split(" ")[1];
+          console.log(this.jwtauthtoken)
+          localStorage.setItem('user', JSON.stringify(reponse.body));
+          localStorage.setItem('jwt', this.jwtauthtoken)
+          return reponse.body;
+        }else 
+        console.log("throwerror?")
+        throwError // do something with this
+     
+        
+        
+      }),catchError(this.handleError))
   }
 
   // URI need to match the expected endpoint!!!
