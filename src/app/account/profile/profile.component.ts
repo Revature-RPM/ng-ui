@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UserService } from 'src/app/core/services/user.service';
+import { NgMetaService } from 'ngmeta';
 import { first } from 'rxjs/operators';
 
 import { User } from 'src/app/core/models/User';
+import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
   selector: 'app-profile',
@@ -13,7 +14,6 @@ import { User } from 'src/app/core/models/User';
 })
 
 export class ProfileComponent implements OnInit {
-
   form: FormGroup;
   user: User;
   setReadOnly = true;
@@ -43,9 +43,15 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  constructor(private userService: UserService, private router: Router, private fb: FormBuilder) { }
+  constructor(private userService: UserService, private router: Router, private fb: FormBuilder, private ngmeta: NgMetaService) { }
 
   ngOnInit() {
+    if (localStorage.getItem('user') === null) {
+      this.router.navigate(['/auth/login']);
+    } else {
+      this.ngmeta.setHead({ title: 'Profile | RPM' });
+    }
+
     const tempUser: User = {
       id: 1,
       firstName: 'Yuki',

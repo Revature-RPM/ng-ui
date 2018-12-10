@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { MatJumbotronModule } from '@angular-material-extensions/jumbotron';
+import { NgMetaModule } from 'ngmeta';
 
 import { AppRoutingModule } from './app-routing.module';
 import { ProjectModule } from './project/project.module';
@@ -24,13 +25,13 @@ import { JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
     HttpClientModule,
     ProjectModule,
     MatJumbotronModule.forRoot(),
+    NgMetaModule.forRoot(),
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     JwtModule.forRoot({
       jwtOptionsProvider: {
         provide: JWT_OPTIONS,
         useFactory: jwtOptionsFactory 
       }
-
     })
   ],
   providers: [],

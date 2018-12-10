@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import * as JSZip from 'jszip';
-import { ProjectService } from 'src/app/core/services/project.service';
+import { NgMetaService } from 'ngmeta';
 
 @Component({
   selector: 'app-zip-component',
@@ -29,31 +30,38 @@ export class ZipComponent implements OnInit {
   RenderFile: RenderFile[] = [];
   SelectedFile: RenderFile;
   OpenFile: RenderFile[] = [];
-  filepath: string = '';
-  browserSupported: boolean = true;
-  /*Constructur: Injects Http Client into the component for use of resource request
-  *@param HttpClient standard angular dependency to fire http request.
-  *@param Location: Allows the page to redirect back to the last page it was opened from
-  *@param ProjectService: Injects the project service to get the request url
-  *@author Andrew Mitchem (1810-Oct08-Java-USF)
-  */
-  constructor(private http: HttpClient, private location: Location,private projectService: ProjectService) { }
+  filepath = '';
+  browserSupported = true;
+  /**
+   * Constructur: Injects Http Client into the component for use of resource request
+   * @param HttpClient standard angular dependency to fire http request.
+   * @param Location: Allows the page to redirect back to the last page it was opened from
+   * @param Router: Allows for redirection to login if the user has not yet logged in
+   * @param NgMetaService: Changes the value of <title> inside index.html
+   * @author Andrew Mitchem (1810-Oct08-Java-USF)
+   */
+  constructor(private http: HttpClient,
+              private location: Location,
+              private router: Router,
+              private ngmeta: NgMetaService) { }
 
   ngOnInit() {
-    this.SelectedFile = this.defaultFile();
-    let isTextDecoderSupported = false;
-    try { isTextDecoderSupported  = !!new TextDecoder('utf-8') 
-          
-          } catch(e){
-      
-          }
-         
-    this.browserSupported = isTextDecoderSupported
+    if (localStorage.getItem('user') === null) {
+      this.router.navigate(['/auth/login']);
+    } else {
+      this.ngmeta.setHead({ title: 'Code | RPM' });
+      this.SelectedFile = this.defaultFile();
+      let isTextDecoderSupported = false;
+      try {
+        isTextDecoderSupported  = !!new TextDecoder('utf-8');
+      } catch (e) { }
+      this.browserSupported = isTextDecoderSupported;
+    }
   }
   /**
    * Zip.errorFile()
    * sets the defualt display for error messages
-   * @param message
+   * @param message: Error message
    * @author Andrew Mitchem (1810-Oct08-Java-USF)
    */
   errorFile(message: string): RenderFile {
@@ -78,7 +86,7 @@ use the second 🗁 (green) to open a local repo zip.
 
 Currently can open and navigate to the src directory of Angular and Java Repositories
     `;
-      return testfile;
+    return testfile;
   }
   /**
    * Zip.goBack()
@@ -201,27 +209,24 @@ Currently can open and navigate to the src directory of Angular and Java Reposit
   parseFiles(file) {
     // check if file is a directory
     if (!file.dir) {
-        let fileName = file.name;
-        // save ZipObject file name as once unzip into a  standard file  we loose acess to this data
-        fileName = fileName.replace(this.filepath, '');
-        fileName = fileName.substring(fileName.lastIndexOf('/') + 1);
-        // remove leading path in name
-        if(this.browserSupported){
-          let helpme = file.async('uint8array').then(function (data) { // converts the ZipObject
-            let string = 'Placeholder Text \n we are sorry your browser may not be supported';
-            
-            
-            string = new TextDecoder('utf-8').decode(data);
-            return string;
-          });
-          helpme.then(string => {
-            const file = new RenderFile();
-            file.fileName = fileName;
-            file.fileContent = string; // "file here is a string text readable format stored for rendering logic"
-            this.RenderFile.push(file);
-          });
-        }else{
-          file.fileName = fileName;
+      this.fileName = file.name;
+      // save ZipObject file name as once unzip into a  standard file  we loose acess to this data
+      this.fileName = this.fileName.replace(this.filepath, '');
+      this.fileName = this.fileName.substring(this.fileName.lastIndexOf('/') + 1);
+      // remove leading path in name
+      const helpme = file.async('uint8array').then(function (data) { // converts the ZipObject
+        let string = 'Placeholder Text \n we are sorry your browser may not be supported';
+        string = new TextDecoder('utf-8').decode(data);
+        return string;
+      });
+      helpme.then(string => {
+        const file = new RenderFile();
+        file.fileName = this.fileName;
+        file.fileContent = string; // "file here is a string text readable format stored for rendering logic"
+        this.RenderFile.push(file);
+      });
+    } else {
+      file.fileName = this.fileName;
             file.fileContent = `Sorry @Browser not currently supported
             ≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈
 ≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈████≈
@@ -281,28 +286,27 @@ Currently can open and navigate to the src directory of Angular and Java Reposit
 ≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈█▒▒▒▒█≈≈≈≈≈≈≈≈≈
 ≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈█▒█▒█≈≈≈≈≈≈≈≈≈
 ≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈███≈≈≈≈≈≈≈≈≈≈
-            `; 
-            this.RenderFile.push(file);
-        }
+            `;
+        this.RenderFile.push(file);
+      }
     }
   }
-}
-/**
-* Tree
-* SubClass for storing render related structure
-* @author Andrew Mitchem (1810-Oct08-Java-USF)
-*/
-class Tree {
-  name: string;
-  files: File[] = [];
-  tree: Tree[] = [];
-}
-/**
-* RenderFile
-* SubClass for storing render related structure
-* @author Andrew Mitchem (1810-Oct08-Java-USF)
-*/
-class RenderFile {
-  fileName: String;
-  fileContent: String;
-}
+  /**
+  * Tree
+  * SubClass for storing render related structure
+  * @author Andrew Mitchem (1810-Oct08-Java-USF)
+  */
+  class Tree {
+    name: string;
+    files: File[] = [];
+    tree: Tree[] = [];
+  }
+  /**
+  * RenderFile
+  * SubClass for storing render related structure
+  * @author Andrew Mitchem (1810-Oct08-Java-USF)
+  */
+  class RenderFile {
+    fileName: String;
+    fileContent: String;
+  }
