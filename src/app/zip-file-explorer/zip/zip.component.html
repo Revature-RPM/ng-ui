@@ -1,7 +1,7 @@
 <div class="background">
   <div class="header"><span> Code Base Viewer</span></div>
     <div class="btn-container">
-      <button  class="btn-open btn-side"(click)='sendRequest()'>🗁</button>
+      <button *ngFor="let link of availableUrls" class="btn-open btn-side"(click)='sendRequest(link)'>🗁</button>
       <label class="fileContainer"> 🗁
         <input #fileOpener type="file" class="" (change)='openData(fileOpener.files[0])'>
         </label>

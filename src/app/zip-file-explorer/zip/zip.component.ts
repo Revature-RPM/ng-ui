@@ -31,6 +31,7 @@ export class ZipComponent implements OnInit {
   OpenFile: RenderFile[] = [];
   filepath: string = '';
   browserSupported: boolean = true;
+  availableUrls: string []=[];
   /*Constructur: Injects Http Client into the component for use of resource request
   *@param HttpClient standard angular dependency to fire http request.
   *@param Location: Allows the page to redirect back to the last page it was opened from
@@ -49,6 +50,12 @@ export class ZipComponent implements OnInit {
           }
          
     this.browserSupported = isTextDecoderSupported
+    if(this.projectService.CurrentProject)
+    this.availableUrls = this.projectService.CurrentProject.zipLinks;
+    else { //test block
+      this.availableUrls.push('https://s3.us-east-2.amazonaws.com/zip-test-bucket/reflections-mafia-client-master.zip');
+      this.availableUrls.push('not an url')
+    }
   }
   /**
    * Zip.errorFile()
@@ -103,8 +110,8 @@ Currently can open and navigate to the src directory of Angular and Java Reposit
    * Fire off an http request to retrieve the zip file
    * @author Andrew Mitchem (1810-Oct08-Java-USF)
    */
-  sendRequest() {
-    const url = 'https://s3.us-east-2.amazonaws.com/zip-test-bucket/reflections-mafia-client-master.zip';
+  sendRequest(url:string) {
+   
     // reponse type is arraybuffer so the get request knows this is a oclet-array-stream request
     this.http.get(url, { observe: 'response', responseType: 'blob'})
     .subscribe(blob => {
@@ -121,6 +128,8 @@ Currently can open and navigate to the src directory of Angular and Java Reposit
         const datafilename = url.substring(url.lastIndexOf('/') + 1);
         this.openData(blob.body, datafilename);
       }
+    },error => {
+      this.SelectedFile = this.errorFile("Yeah we couldn't find this file: we're Sorry")
     });
   }
   /**
