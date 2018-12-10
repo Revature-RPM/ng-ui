@@ -27,8 +27,8 @@ export class ProjectService {
     return this.httpClient.get<Project>(environment.url + `/projects/${id}`, HTTP_OPTIONS);
   }
 
-  updateProject(formData: FormData): Observable<Project>{
-    return this.httpClient.put(environment.url + '/projects', formData);
+  updateProject(formData: FormData, id): Observable<Project>{
+    return this.httpClient.put(environment.url + `/projects/${id}`, formData);
   }
 
   createProject(formData: FormData): Observable<Project> {
