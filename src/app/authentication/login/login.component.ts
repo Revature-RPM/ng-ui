@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgMetaService } from 'ngmeta';
 import { first } from 'rxjs/operators';
 
 import { User } from 'src/app/core/models/User';
@@ -11,14 +12,15 @@ import { UserService } from 'src/app/core/services/user.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  sessionUser = localStorage.getItem('user');
   user: User = {};
 
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(private userService: UserService, private router: Router, private ngmeta: NgMetaService) { }
 
   ngOnInit() {
-    if (this.sessionUser !== null) {
-      this.router.navigate(['/home']);
+    if (localStorage.getItem('user') !== null) {
+      this.router.navigate(['']);
+    } else {
+      this.ngmeta.setHead({ title: 'Login | RPM' });
     }
   }
 

@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
+import { NgMetaService } from 'ngmeta';
 
+import { InputDialogComponent } from './input-dialog/input-dialog.component';
 import { Project } from 'src/app/core/models/Project';
 import { ProjectService } from 'src/app/core/services/project.service';
-
-import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
-import { MatDialog } from '@angular/material';
-import { InputDialogComponent } from './input-dialog/input-dialog.component';
 
 export interface DialogData {
   title: string;
@@ -20,7 +20,6 @@ export interface DialogData {
   styleUrls: ['./project-submission.component.scss']
 })
 export class ProjectSubmissionComponent implements OnInit {
-
   // projectToUpload is bound to the information that users enter in the form
   projectToUpload: Project = {};
 

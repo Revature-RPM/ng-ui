@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgMetaService } from 'ngmeta';
 import { first } from 'rxjs/operators';
 
 import { User } from 'src/app/core/models/User';
@@ -13,7 +14,6 @@ import { UserService } from 'src/app/core/services/user.service';
 })
 
 export class RegistrationComponent implements OnInit {
-  sessionUser = localStorage.getItem('user');
   user: User = {};
   isLinear = true;
   firstFormGroup: FormGroup;
@@ -34,11 +34,14 @@ export class RegistrationComponent implements OnInit {
 
   constructor(private userService: UserService,
               private router: Router,
-              private _formBuilder: FormBuilder) { }
+              private _formBuilder: FormBuilder,
+              private ngmeta: NgMetaService) { }
 
   ngOnInit() {
-    if (this.sessionUser !== null) {
+    if (localStorage.getItem('user') !== null) {
       this.router.navigate(['']);
+    } else {
+      this.ngmeta.setHead({ title: 'Register | RPM' });
     }
     this.firstFormGroup = this._formBuilder.group({
       firstName: [
