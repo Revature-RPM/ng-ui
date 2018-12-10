@@ -43,7 +43,10 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  constructor(private userService: UserService, private router: Router, private fb: FormBuilder, private ngmeta: NgMetaService) { }
+  constructor(private userService: UserService,
+              private router: Router,
+              private fb: FormBuilder,
+              private ngmeta: NgMetaService) { }
 
   ngOnInit() {
     if (localStorage.getItem('user') === null) {
@@ -99,7 +102,6 @@ export class ProfileComponent implements OnInit {
           console.log(this.user);
         }
       });
-
     }
   }
 
@@ -141,7 +143,6 @@ export class ProfileComponent implements OnInit {
   retypeConfirmPassword() {
     this.form.get('confirmPassword').setValue('');
   }
-
 }
 
 /*
