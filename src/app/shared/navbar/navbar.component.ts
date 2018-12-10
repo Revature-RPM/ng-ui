@@ -12,16 +12,8 @@ import { User } from 'src/app/core/models/User';
 })
 export class NavbarComponent implements OnInit {
   user: User = {};
-  /**
-	 * the constructor is called when an instance of the class is created
-	 *
-	 * @param iconRegistry:  a service to register icons so they can be used with the mat-icon component from Angular Materials
-   * @param sanitizer:     prevents cross-site scripting attacks by filtering values to be used in the DOM; in this case it is bypassing
-   *                         Angular's default security to use image assets as icons
-   * @param router:        enables navigation to various views in the application
-	 * @author Shawn Bickel (1810-Oct08-Java-USF)
-	 */
-  constructor(private iconRegistry: MatIconRegistry, private sanitizer: DomSanitizer, private router: Router) {
+
+  constructor(private router: Router) {
   }
 
   goToRegister() {
