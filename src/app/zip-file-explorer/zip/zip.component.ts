@@ -3,6 +3,8 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import * as JSZip from 'jszip';
+import { NgMetaService } from 'ngmeta';
+
 import { ProjectService } from 'src/app/core/services/project.service';
 
 @Component({
@@ -30,16 +32,22 @@ export class ZipComponent implements OnInit {
   RenderFile: RenderFile[] = [];
   SelectedFile: RenderFile;
   OpenFile: RenderFile[] = [];
-  filepath: string = '';
-  browserSupported: boolean = true;
+  fileName = '';
+  filepath = '';
+  browserSupported = true;
   availableUrls: string []=[];
-  /*Constructur: Injects Http Client into the component for use of resource request
-  *@param HttpClient standard angular dependency to fire http request.
-  *@param Location: Allows the page to redirect back to the last page it was opened from
-  *@param ProjectService: Injects the project service to get the request url
-  *@author Andrew Mitchem (1810-Oct08-Java-USF)
-  */
-  constructor(private http: HttpClient, private location: Location,private projectService: ProjectService) { }
+  /**
+   * Constructur: Injects Http Client into the component for use of resource request
+   * @param HttpClient standard angular dependency to fire http request.
+   * @param Location: Allows the page to redirect back to the last page it was opened from
+   * @param Router: Allows for redirection to login if the user has not yet logged in
+   * @param NgMetaService: Changes the value of <title> inside index.html
+   * @author Andrew Mitchem (1810-Oct08-Java-USF)
+   */
+  constructor(private http: HttpClient,
+              private location: Location,
+              private router: Router,
+              private ngmeta: NgMetaService) { }
 
   ngOnInit() {
     this.SelectedFile = this.defaultFile();
@@ -99,15 +107,17 @@ Currently can open and navigate to the src directory of Angular and Java Reposit
   goBack() {
     this.location.back();
   }
-  openRenderFile(renderFile: RenderFile){
+  openRenderFile(renderFile: RenderFile) {
     this.SelectedFile = renderFile;
-    if(!this.OpenFile.includes(renderFile))
-      this.OpenFile.push(renderFile)
+    if (!this.OpenFile.includes(renderFile)) {
+      this.OpenFile.push(renderFile);
+    }
   }
-  closeRenderFile(renderFile: RenderFile){
-    this.OpenFile.splice(this.OpenFile.indexOf(renderFile),1)
-    if(this.OpenFile.length)
-    this.SelectedFile = this.defaultFile();
+  closeRenderFile(renderFile: RenderFile) {
+    this.OpenFile.splice(this.OpenFile.indexOf(renderFile), 1);
+    if (this.OpenFile.length) {
+      this.SelectedFile = this.defaultFile();
+    }
   }
   /**
    * Zip.sendRequest()
