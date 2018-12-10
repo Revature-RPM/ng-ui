@@ -88,10 +88,6 @@
                                 </li>
                                 <li>
                                             <span class="modifier">Optional</span>
-                                        <a href="#fullName">fullName</a>
-                                </li>
-                                <li>
-                                            <span class="modifier">Optional</span>
                                         <a href="#groupMembers">groupMembers</a>
                                 </li>
                                 <li>
@@ -113,6 +109,10 @@
                                 <li>
                                             <span class="modifier">Optional</span>
                                         <a href="#techStack">techStack</a>
+                                </li>
+                                <li>
+                                            <span class="modifier">Optional</span>
+                                        <a href="#userFullName">userFullName</a>
                                 </li>
                                 <li>
                                             <span class="modifier">Optional</span>
@@ -201,47 +201,13 @@
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
-                                        <a name="fullName"></a>
-                                        <span class="name"><b>fullName</b><a href="#fullName"><span class="icon ion-ios-link"></span></a></span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <code>fullName:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-</code>
-                                    </td>
-                                </tr>
-
-
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Optional</i>
-                                        </td>
-                                    </tr>
-
-
-
-
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                                <tr>
-                                    <td class="col-md-4">
                                         <a name="groupMembers"></a>
                                         <span class="name"><b>groupMembers</b><a href="#groupMembers"><span class="icon ion-ios-link"></span></a></span>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>groupMembers:     <code>string[]</code>
+                                        <code>groupMembers:     <code>any[]</code>
 </code>
                                     </td>
                                 </tr>
@@ -249,7 +215,7 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <i>Type : </i>    <code>string[]</code>
+                                            <i>Type : </i>    <code>any[]</code>
 
                                         </td>
                                     </tr>
@@ -343,7 +309,7 @@
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>screenShots:     <code>string[]</code>
+                                        <code>screenShots:     <code>any[]</code>
 </code>
                                     </td>
                                 </tr>
@@ -351,7 +317,7 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <i>Type : </i>    <code>string[]</code>
+                                            <i>Type : </i>    <code>any[]</code>
 
                                         </td>
                                     </tr>
@@ -439,13 +405,13 @@
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
-                                        <a name="zipLinks"></a>
-                                        <span class="name"><b>zipLinks</b><a href="#zipLinks"><span class="icon ion-ios-link"></span></a></span>
+                                        <a name="userFullName"></a>
+                                        <span class="name"><b>userFullName</b><a href="#userFullName"><span class="icon ion-ios-link"></span></a></span>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>zipLinks:     <code>string[]</code>
+                                        <code>userFullName:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 </code>
                                     </td>
                                 </tr>
@@ -453,7 +419,41 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <i>Type : </i>    <code>string[]</code>
+                                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="zipLinks"></a>
+                                        <span class="name"><b>zipLinks</b><a href="#zipLinks"><span class="icon ion-ios-link"></span></a></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>zipLinks:     <code>any[]</code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>    <code>any[]</code>
 
                                         </td>
                                     </tr>
@@ -474,16 +474,14 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { User } from &#x27;./User&#x27;;
-
-export interface Project {
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export interface Project {
     id?: number;
     name?: string;
     batch?: string;
-    fullName?: string;
-    groupMembers?: string[];
-    screenShots?: string[];
-    zipLinks?: string[];
+    userFullName?: string;
+    groupMembers?: any[];
+    screenShots?: any[];
+    zipLinks?: any[];
     techStack?: string;
     status?: string;
     description?: string;

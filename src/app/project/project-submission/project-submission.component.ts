@@ -60,7 +60,7 @@ export class ProjectSubmissionComponent implements OnInit {
   githubURLRegex: RegExp;
   githubURL: string;
 
-  constructor(private router: Router, private projectService: ProjectService, public dialog: MatDialog) {}
+  constructor(private router: Router, private projectService: ProjectService, private dialog: MatDialog) {}
 
   ngOnInit() {
     this.projectToUpload.groupMembers = [];
@@ -74,6 +74,7 @@ export class ProjectSubmissionComponent implements OnInit {
   /**
    * this method opens the dialog defined in the input-dialog component; 
    *    after the dialog is closed the user's data is placed in the groupMembers array or the zipLinks array depending on which field was clicked
+   * @param e: the event of clicking either the group member or zip links fields, which both trigger the dialog to open
    * @author Shawn Bickel (1810-Oct08-Java-USF)
    */
   openDialog(e): void {

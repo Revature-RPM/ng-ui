@@ -133,6 +133,9 @@
                                 <a href="#disableButton">disableButton</a>
                             </li>
                             <li>
+                                <a href="#emailPattern">emailPattern</a>
+                            </li>
+                            <li>
                                 <a href="#filledPassword">filledPassword</a>
                             </li>
                             <li>
@@ -176,6 +179,10 @@
                                 <a href="#retypeConfirmPassword">retypeConfirmPassword</a>
                             </li>
                             <li>
+                                    <span class="modifier">Static</span>
+                                <a href="#RevatureEmail">RevatureEmail</a>
+                            </li>
+                            <li>
                                 <a href="#updateProfile">updateProfile</a>
                             </li>
                         </ul>
@@ -196,12 +203,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, fb: <a href="https://angular.io/api/forms/FormBuilder" target="_blank">FormBuilder</a>)</code>
+<code>constructor(userService: <a href="../injectables/UserService.html">UserService</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, fb: <a href="https://angular.io/api/forms/FormBuilder" target="_blank">FormBuilder</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/account/profile/profile.component.ts:19</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/account/profile/profile.component.ts:44</a></div>
                             </td>
                         </tr>
 
@@ -218,6 +225,18 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                                <tr>
+                                                        <td>userService</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="../injectables/UserService.html" target="_self" >UserService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
                                                 <tr>
                                                         <td>router</td>
                                                   
@@ -282,7 +301,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/app/account/profile/profile.component.ts:66</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/app/account/profile/profile.component.ts:101</a></div>
                             </td>
                         </tr>
 
@@ -313,14 +332,14 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-<code>fillFormGroup(firstname: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, lastname: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, email: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, username: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, password: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>fillFormGroup(firstName: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, lastName: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, email: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, username: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, password: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                     </td>
                 </tr>
 
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/app/account/profile/profile.component.ts:75</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="110" class="link-to-prism">src/app/account/profile/profile.component.ts:110</a></div>
                             </td>
                         </tr>
 
@@ -340,7 +359,7 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>firstname</td>
+                                                        <td>firstName</td>
                                                         <td>
                                                                     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                                         </td>
@@ -352,7 +371,7 @@
 
                                                 </tr>
                                                 <tr>
-                                                        <td>lastname</td>
+                                                        <td>lastName</td>
                                                         <td>
                                                                     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                                         </td>
@@ -437,7 +456,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/app/account/profile/profile.component.ts:89</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="127" class="link-to-prism">src/app/account/profile/profile.component.ts:127</a></div>
                             </td>
                         </tr>
 
@@ -477,7 +496,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="100" class="link-to-prism">src/app/account/profile/profile.component.ts:100</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/account/profile/profile.component.ts:26</a></div>
                             </td>
                         </tr>
 
@@ -546,7 +565,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/account/profile/profile.component.ts:23</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/account/profile/profile.component.ts:48</a></div>
                             </td>
                         </tr>
 
@@ -584,7 +603,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="110" class="link-to-prism">src/app/account/profile/profile.component.ts:110</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="135" class="link-to-prism">src/app/account/profile/profile.component.ts:135</a></div>
                             </td>
                         </tr>
 
@@ -596,6 +615,77 @@
                                 <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                             </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="RevatureEmail"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Static</span>
+                            RevatureEmail
+                            </b>
+                            <a href="#RevatureEmail"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                            <span class="modifier-icon icon ion-ios-reset"></span>
+                        <code>RevatureEmail(AC: <a href="https://angular.io/api/forms/AbstractControl" target="_blank">AbstractControl</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/account/profile/profile.component.ts:36</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>AC</td>
+                                                        <td>
+                                                                    <code><a href="https://angular.io/api/forms/AbstractControl" target="_blank" >AbstractControl</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
                     </td>
                 </tr>
             </tbody>
@@ -622,7 +712,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/account/profile/profile.component.ts:43</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/app/account/profile/profile.component.ts:68</a></div>
                             </td>
                         </tr>
 
@@ -660,16 +750,10 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <code>disableButton:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                        <code>disableButton:     <code></code>
 </code>
                     </td>
                 </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                        </td>
-                    </tr>
                     <tr>
                         <td class="col-md-4">
                             <i>Default value : </i><code>true</code>
@@ -677,7 +761,46 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/account/profile/profile.component.ts:18</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/account/profile/profile.component.ts:20</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="emailPattern"></a>
+                        <span class="name">
+                            <b>
+                            emailPattern
+                            </b>
+                            <a href="#emailPattern"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>emailPattern:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>&#x27;^[a-zA-Z0-9_.+-]+(?:(?:[a-zA-Z0-9-]+\.)?[a-zA-Z]+\.)?@(revature)\.com$&#x27;</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/account/profile/profile.component.ts:22</a></div>
                             </td>
                         </tr>
 
@@ -699,16 +822,10 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <code>filledPassword:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                        <code>filledPassword:     <code></code>
 </code>
                     </td>
                 </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                        </td>
-                    </tr>
                     <tr>
                         <td class="col-md-4">
                             <i>Default value : </i><code>true</code>
@@ -716,7 +833,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/account/profile/profile.component.ts:19</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/account/profile/profile.component.ts:21</a></div>
                             </td>
                         </tr>
 
@@ -750,7 +867,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/account/profile/profile.component.ts:15</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/account/profile/profile.component.ts:17</a></div>
                             </td>
                         </tr>
 
@@ -772,16 +889,10 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <code>setReadOnly:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                        <code>setReadOnly:     <code></code>
 </code>
                     </td>
                 </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                        </td>
-                    </tr>
                     <tr>
                         <td class="col-md-4">
                             <i>Default value : </i><code>true</code>
@@ -789,7 +900,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/account/profile/profile.component.ts:17</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/account/profile/profile.component.ts:19</a></div>
                             </td>
                         </tr>
 
@@ -823,7 +934,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/account/profile/profile.component.ts:16</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/account/profile/profile.component.ts:18</a></div>
                             </td>
                         </tr>
 
@@ -837,10 +948,12 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
-import { User } from &#x27;src/app/core/models/User&#x27;;
-
-import { FormBuilder, FormGroup, Validators, AbstractControl } from &#x27;@angular/forms&#x27;;
+import { AbstractControl, FormBuilder, FormGroup, Validators } from &#x27;@angular/forms&#x27;;
 import { Router } from &#x27;@angular/router&#x27;;
+import { UserService } from &#x27;src/app/core/services/user.service&#x27;;
+import { first } from &#x27;rxjs/operators&#x27;;
+
+import { User } from &#x27;src/app/core/models/User&#x27;;
 
 @Component({
   selector: &#x27;app-profile&#x27;,
@@ -852,51 +965,84 @@ export class ProfileComponent implements OnInit {
 
   form: FormGroup;
   user: User;
-  setReadOnly: boolean &#x3D; true;
-  disableButton: boolean &#x3D; true;
-  filledPassword: boolean &#x3D; true;
+  setReadOnly &#x3D; true;
+  disableButton &#x3D; true;
+  filledPassword &#x3D; true;
+  emailPattern &#x3D; &#x27;^[a-zA-Z0-9_.+-]+(?:(?:[a-zA-Z0-9-]+\.)?[a-zA-Z]+\.)?@(revature)\.com$&#x27;;
 
-  constructor(private router: Router, private fb: FormBuilder) { }
+  // source: &lt;https://scotch.io/@ibrahimalsurkhi/match-password-validation-with-angular-2&gt;
+  // enable validation error when password is not matched
+  static MatchPassword(AC: AbstractControl) {
+    const password &#x3D; AC.get(&#x27;password&#x27;).value; // to get value in input tag
+    const confirmPassword &#x3D; AC.get(&#x27;confirmPassword&#x27;).value; // to get value in input tag
+    if (password !&#x3D; confirmPassword) {
+      AC.get(&#x27;confirmPassword&#x27;).setErrors({ MatchPassword: true });
+    } else {
+      return null;
+    }
+  }
+
+  static RevatureEmail(AC: AbstractControl) {
+    const email &#x3D; AC.get(&#x27;email&#x27;).value; // to get value in input tag
+    const emailPattern &#x3D; &#x27;^[a-zA-Z0-9_.+-]+(?:(?:[a-zA-Z0-9-]+\.)?[a-zA-Z]+\.)?@(revature)\.com$&#x27;; // regex for Revature email
+    if (!email.match(emailPattern)) {
+      AC.get(&#x27;email&#x27;).setErrors({ RevatureEmail: true });
+    } else {
+      return null;
+    }
+  }
+
+  constructor(private userService: UserService, private router: Router, private fb: FormBuilder) { }
 
   ngOnInit() {
-    let tempUser: User &#x3D; {
+    const tempUser: User &#x3D; {
       id: 1,
-      firstname: &#x27;Yuki&#x27;,
-      lastname: &#x27;Mano&#x27;,
-      username: &#x27;ysm&#x27;,
+      firstName: &#x27;Yuki&#x27;,
+      lastName: &#x27;Mano&#x27;,
+      username: &#x27;YukiMano&#x27;,
       password: &#x27;password&#x27;,
-      userRole: &#x27;trainer&#x27;,
-      email: &#x27;ym@gmail.com&#x27;,
-    }
+      role: &#x27;trainer&#x27;,
+      email: &#x27;ym@revature.com&#x27;,
+    };
 
     window.localStorage.setItem(&#x27;user&#x27;, JSON.stringify(tempUser));
 
-    // pre-fill the profile information with logged-in user information 
+    // pre-fill the profile information with logged-in user information
     this.user &#x3D; JSON.parse(window.localStorage.getItem(&#x27;user&#x27;));
 
-    this.fillFormGroup(this.user.firstname, this.user.lastname, this.user.email, this.user.username, this.user.password);
+    this.fillFormGroup(this.user.firstName, this.user.lastName, this.user.email, this.user.username, this.user.password);
   }
 
-  // call user-service to update the profile information 
+  // call user-service to update the profile information
   updateProfile() {
     if (this.form.valid) {
-      let updatedUserInfo: User &#x3D; {
+      const updatedUserInfo: User &#x3D; {
         id: this.user.id,
-        firstname: this.form.get(&#x27;firstname&#x27;).value.trim(),
-        lastname: this.form.get(&#x27;lastname&#x27;).value.trim(),
+        firstName: this.form.get(&#x27;firstName&#x27;).value.trim(),
+        lastName: this.form.get(&#x27;lastName&#x27;).value.trim(),
         email: this.form.get(&#x27;email&#x27;).value.trim(),
         username: this.form.get(&#x27;username&#x27;).value.trim(),
         password: this.form.get(&#x27;password&#x27;).value,
-        userRole: this.user.userRole,
+        role: this.user.role,
       };
 
-      // this line should be put in user service 
-      window.localStorage.setItem(&#x27;user&#x27;, JSON.stringify(updatedUserInfo));
-      this.user &#x3D; JSON.parse(window.localStorage.getItem(&#x27;user&#x27;));
+      // this line should be put in user service
+      // window.localStorage.setItem(&#x27;user&#x27;, JSON.stringify(updatedUserInfo));
+      // this.user &#x3D; JSON.parse(window.localStorage.getItem(&#x27;user&#x27;));
 
-      this.fillFormGroup(this.user.firstname, this.user.lastname, this.user.email, this.user.username, this.user.password);
+      // this.fillFormGroup(this.user.firstName, this.user.lastName, this.user.email, this.user.username, this.user.password);
 
       console.log(updatedUserInfo);
+
+
+      this.userService.updateProfile(updatedUserInfo).pipe(first()).subscribe((user) &#x3D;&gt; {
+        if (user) {
+          localStorage.setItem(&#x27;user&#x27;, JSON.stringify(user));
+          this.fillFormGroup(this.user.firstName, this.user.lastName, this.user.email, this.user.username, this.user.password);
+          console.log(this.user);
+        }
+      });
+
     }
   }
 
@@ -906,20 +1052,23 @@ export class ProfileComponent implements OnInit {
 
     this.user &#x3D; JSON.parse(window.localStorage.getItem(&#x27;user&#x27;));
 
-    this.fillFormGroup(this.user.firstname, this.user.lastname, this.user.email, this.user.username, this.user.password);
+    this.fillFormGroup(this.user.firstName, this.user.lastName, this.user.email, this.user.username, this.user.password);
   }
 
-  // pre-fill the form  
-  fillFormGroup(firstname: string, lastname: string, email: string, username: string, password: string) {
+  // pre-fill the form
+  fillFormGroup(firstName: string, lastName: string, email: string, username: string, password: string) {
     this.form &#x3D; this.fb.group({
-      firstname: [firstname.trim(), Validators.required],
-      lastname: [lastname.trim(), Validators.required],
+      firstName: [firstName.trim(), [Validators.required, Validators.minLength]],
+      lastName: [lastName.trim(), [Validators.required, Validators.minLength]],
       email: [email.trim(), [Validators.required, Validators.email]],
-      username: [username.trim(), Validators.required],
-      password: [password, Validators.required],
-      confirmPassword: [&#x27;&#x27;, Validators.required],
+      username: [username.trim(), [Validators.required, Validators.minLength]],
+      password: [password, [Validators.required, Validators.minLength]],
+      confirmPassword: [&#x27;&#x27;, [Validators.required, Validators.minLength]],
     }, {
-        validator: ProfileComponent.MatchPassword // match password validation
+        validator: [
+          ProfileComponent.MatchPassword, // match password validation
+          ProfileComponent.RevatureEmail, // must be Revature email
+        ]
       });
   }
 
@@ -927,21 +1076,8 @@ export class ProfileComponent implements OnInit {
   formFilled() {
     if (this.form.valid) {
       this.disableButton &#x3D; false;
-    }
-    else {
-      this.disableButton &#x3D; true;
-    }
-  }
-
-  // source: &lt;https://scotch.io/@ibrahimalsurkhi/match-password-validation-with-angular-2&gt;
-  // enable validation error when password is not matched 
-  static MatchPassword(AC: AbstractControl) {
-    let password &#x3D; AC.get(&#x27;password&#x27;).value; // to get value in input tag
-    let confirmPassword &#x3D; AC.get(&#x27;confirmPassword&#x27;).value; // to get value in input tag
-    if (password !&#x3D; confirmPassword) {
-      AC.get(&#x27;confirmPassword&#x27;).setErrors({ MatchPassword: true })
     } else {
-      return null
+      this.disableButton &#x3D; true;
     }
   }
 
@@ -954,19 +1090,22 @@ export class ProfileComponent implements OnInit {
 /*
 TO-DO
 
-- usernme must be uniqued (call to the db) --&gt; mat-error when username is not uniqued 
-- email must be uniqued (call to the db) *not required* --&gt; mat-error when email is not uniqued 
+- usernme must be uniqued (call to the db) --&gt; mat-error when username is not uniqued
+- email must be uniqued (call to the db) *not required* --&gt; mat-error when email is not uniqued
 
 - create a function in user-service which call to the server side and set the data into local storage
 
 + more space in between inputs for mat-error (optional)
 + min-length &amp;&amp; maxlength validation for username and password (optional)
 + email must be @revature.com (optional)
-*/</code></pre>
+*/
+</code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;mat-grid-list cols&#x3D;&quot;8&quot; height&#x3D;&quot;100%&quot; width&#x3D;&quot;100%&quot;&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;app-navbar&gt;&lt;/app-navbar&gt;
+
+&lt;mat-grid-list class&#x3D;&quot;my-theme&quot; cols&#x3D;&quot;8&quot; height&#x3D;&quot;100%&quot; width&#x3D;&quot;100%&quot;&gt;
   &lt;mat-grid-tile colspan&#x3D;1 rowspan&#x3D;1&gt;&lt;/mat-grid-tile&gt;
 
   &lt;mat-grid-tile colspan&#x3D;6 rowspan&#x3D;3.5&gt;
@@ -982,7 +1121,7 @@ TO-DO
               &lt;h1 id&#x3D;&quot;profile-header&quot;&gt;&lt;strong&gt;Profile&lt;/strong&gt;&lt;/h1&gt;
             &lt;/div&gt;
             &lt;div fxLayout.xs&#x3D;&quot;column&quot;&gt;
-              &lt;h3 id&#x3D;&quot;user-role&quot;&gt;{{user.userRole}}&lt;/h3&gt;
+              &lt;h3 id&#x3D;&quot;user-role&quot;&gt;{{user.role}}&lt;/h3&gt;
             &lt;/div&gt;
           &lt;/div&gt;
 
@@ -997,18 +1136,24 @@ TO-DO
               &lt;div fxLayout.xs&#x3D;&quot;column&quot;&gt;&lt;/div&gt;
               &lt;div fxLayout.xs&#x3D;&quot;column&quot;&gt;
                 &lt;mat-form-field&gt;
-                  &lt;input matInput readonly&#x3D;{{setReadOnly}} id&#x3D;&quot;inputFirstName&quot; placeholder&#x3D;&quot;First Name&quot; formControlName&#x3D;&quot;firstname&quot;
-                    (blur)&#x3D;formFilled() (mouseleave)&#x3D;formFilled() required&gt;
-                  &lt;mat-error *ngIf&#x3D;&quot;form.get(&#x27;firstname&#x27;).hasError(&#x27;required&#x27;)&quot;&gt;
+                  &lt;input matInput readonly&#x3D;{{setReadOnly}} id&#x3D;&quot;inputFirstName&quot; placeholder&#x3D;&quot;First Name&quot; formControlName&#x3D;&quot;firstName&quot;
+                    (blur)&#x3D;formFilled() (mouseleave)&#x3D;formFilled() minlength&#x3D;&quot;2&quot; required&gt;
+                  &lt;mat-error *ngIf&#x3D;&quot;form.get(&#x27;firstName&#x27;).hasError(&#x27;minlength&#x27;) &amp;&amp; !form.get(&#x27;firstName&#x27;).hasError(&#x27;required&#x27;)&quot;&gt;
+                    Must be at least &lt;strong&gt;2 characters&lt;/strong&gt; long
+                  &lt;/mat-error&gt;
+                  &lt;mat-error *ngIf&#x3D;&quot;form.get(&#x27;firstName&#x27;).hasError(&#x27;required&#x27;)&quot;&gt;
                     First name is &lt;strong&gt;required&lt;/strong&gt;
                   &lt;/mat-error&gt;
                 &lt;/mat-form-field&gt;
               &lt;/div&gt;
               &lt;div fxLayout.xs&#x3D;&quot;column&quot;&gt;
                 &lt;mat-form-field&gt;
-                  &lt;input matInput readonly&#x3D;{{setReadOnly}} id&#x3D;&quot;inputLastName&quot; placeholder&#x3D;&quot;Last Name&quot; formControlName&#x3D;&quot;lastname&quot;
-                    (blur)&#x3D;formFilled() (mouseleave)&#x3D;formFilled() required&gt;
-                  &lt;mat-error *ngIf&#x3D;&quot;form.get(&#x27;lastname&#x27;).hasError(&#x27;required&#x27;)&quot;&gt;
+                  &lt;input matInput readonly&#x3D;{{setReadOnly}} id&#x3D;&quot;inputLastName&quot; placeholder&#x3D;&quot;Last Name&quot; formControlName&#x3D;&quot;lastName&quot;
+                    (blur)&#x3D;formFilled() (mouseleave)&#x3D;formFilled() minlength&#x3D;&quot;2&quot; required&gt;
+                  &lt;mat-error *ngIf&#x3D;&quot;form.get(&#x27;lastName&#x27;).hasError(&#x27;minlength&#x27;) &amp;&amp; !form.get(&#x27;lastName&#x27;).hasError(&#x27;required&#x27;)&quot;&gt;
+                    Must be at least &lt;strong&gt;2 characters&lt;/strong&gt; long
+                  &lt;/mat-error&gt;
+                  &lt;mat-error *ngIf&#x3D;&quot;form.get(&#x27;lastName&#x27;).hasError(&#x27;required&#x27;)&quot;&gt;
                     Last name is &lt;strong&gt;required&lt;/strong&gt;
                   &lt;/mat-error&gt;
                 &lt;/mat-form-field&gt;
@@ -1020,19 +1165,19 @@ TO-DO
               &lt;div fxLayout.xs&#x3D;&quot;column&quot;&gt;
                 &lt;mat-form-field&gt;
                   &lt;input matInput readonly&#x3D;{{setReadOnly}} id&#x3D;&quot;inputEmail&quot; placeholder&#x3D;&quot;Email&quot; formControlName&#x3D;&quot;email&quot;
-                    (blur)&#x3D;formFilled() (mouseleave)&#x3D;formFilled() required&gt;
-                  &lt;mat-error *ngIf&#x3D;&quot;form.get(&#x27;email&#x27;).hasError(&#x27;email&#x27;) &amp;&amp; !form.get(&#x27;email&#x27;).hasError(&#x27;required&#x27;)&quot;&gt;
-                    Please enter a valid email address
-                  &lt;/mat-error&gt;
-                  &lt;mat-error *ngIf&#x3D;&quot;form.get(&#x27;email&#x27;).hasError(&#x27;required&#x27;)&quot;&gt;
-                    Email is &lt;strong&gt;required&lt;/strong&gt;
+                    (blur)&#x3D;formFilled() (mouseleave)&#x3D;formFilled() [pattern]&#x3D;&quot;emailPattern&quot; required&gt;
+                  &lt;mat-error *ngIf&#x3D;&quot;form.controls.email.errors?.RevatureEmail&quot;&gt;
+                    Must end with &lt;strong&gt;@revature.com&lt;/strong&gt;
                   &lt;/mat-error&gt;
                 &lt;/mat-form-field&gt;
               &lt;/div&gt;
               &lt;div fxLayout.xs&#x3D;&quot;column&quot;&gt;
                 &lt;mat-form-field&gt;
                   &lt;input matInput readonly&#x3D;{{setReadOnly}} id&#x3D;&quot;inputUsername&quot; placeholder&#x3D;&quot;Username&quot; formControlName&#x3D;&quot;username&quot;
-                    (blur)&#x3D;formFilled() (mouseleave)&#x3D;formFilled() required&gt;
+                    (blur)&#x3D;formFilled() (mouseleave)&#x3D;formFilled() minlength&#x3D;&quot;8&quot; required&gt;
+                  &lt;mat-error *ngIf&#x3D;&quot;form.get(&#x27;username&#x27;).hasError(&#x27;minlength&#x27;) &amp;&amp; !form.get(&#x27;username&#x27;).hasError(&#x27;required&#x27;)&quot;&gt;
+                    Must be at least &lt;strong&gt;8 characters&lt;/strong&gt; long
+                  &lt;/mat-error&gt;
                   &lt;mat-error *ngIf&#x3D;&quot;form.get(&#x27;username&#x27;).hasError(&#x27;required&#x27;)&quot;&gt;
                     Username is &lt;strong&gt;required&lt;/strong&gt;
                   &lt;/mat-error&gt;
@@ -1045,7 +1190,10 @@ TO-DO
               &lt;div fxLayout.xs&#x3D;&quot;column&quot;&gt;
                 &lt;mat-form-field&gt;
                   &lt;input matInput readonly&#x3D;{{setReadOnly}} type&#x3D;&quot;password&quot; id&#x3D;&quot;inputPassword&quot; placeholder&#x3D;&quot;Password&quot;
-                    formControlName&#x3D;&quot;password&quot; (blur)&#x3D;retypeConfirmPassword() required&gt;
+                    formControlName&#x3D;&quot;password&quot; (blur)&#x3D;retypeConfirmPassword() minlength&#x3D;&quot;8&quot; required&gt;
+                  &lt;mat-error *ngIf&#x3D;&quot;form.get(&#x27;password&#x27;).hasError(&#x27;minlength&#x27;) &amp;&amp; !form.get(&#x27;password&#x27;).hasError(&#x27;required&#x27;)&quot;&gt;
+                    Must be at least &lt;strong&gt;8 characters&lt;/strong&gt;
+                  &lt;/mat-error&gt;
                   &lt;mat-error *ngIf&#x3D;&quot;form.get(&#x27;password&#x27;).hasError(&#x27;required&#x27;)&quot;&gt;
                     Password is &lt;strong&gt;required&lt;/strong&gt;
                   &lt;/mat-error&gt;
@@ -1127,8 +1275,8 @@ TO-DO
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><mat-grid-list cols="8" height="100%" width="100%">  <mat-grid-tile colspan=1 rowspan=1></mat-grid-tile>  <mat-grid-tile colspan=6 rowspan=3.5>    <div class="container" fxLayout.xs="column" fxLayoutAlign="center">      <mat-jumbotron>        <mat-jumbotron-content>          <div class="container" fxLayout="row" fxLayoutGap="75%" fxLayoutGap.xs="0">            <div fxLayout.xs="column">              <button mat-icon-button mat-stroked-button color="primary" mat-button routerLink="/projects/home"                matTooltip="Home" matTooltipPosition="right">                <mat-icon>home</mat-icon>              </button>              <h1 id="profile-header"><strong>Profile</strong></h1>            </div>            <div fxLayout.xs="column">              <h3 id="user-role">{{user.userRole}}</h3>            </div>          </div>          <div class="container" fxLayout="row" fxLayout.xs="column">            <p id="profile-text">Edit your profile information, and then press the \'Save\' button to update your              information.</p>          </div>          <form [formGroup]="form">            <hr>            <div class="container" fxLayout="row" fxLayoutGap="10%" fxLayoutGap.xs="0">              <div fxLayout.xs="column"></div>              <div fxLayout.xs="column">                <mat-form-field>                  <input matInput readonly={{setReadOnly}} id="inputFirstName" placeholder="First Name" formControlName="firstname"                    (blur)=formFilled() (mouseleave)=formFilled() required>                  <mat-error *ngIf="form.get(\'firstname\').hasError(\'required\')">                    First name is <strong>required</strong>                  </mat-error>                </mat-form-field>              </div>              <div fxLayout.xs="column">                <mat-form-field>                  <input matInput readonly={{setReadOnly}} id="inputLastName" placeholder="Last Name" formControlName="lastname"                    (blur)=formFilled() (mouseleave)=formFilled() required>                  <mat-error *ngIf="form.get(\'lastname\').hasError(\'required\')">                    Last name is <strong>required</strong>                  </mat-error>                </mat-form-field>              </div>            </div>            <div class="container" fxLayout="row" fxLayoutGap="10%" fxLayoutGap.xs="0">              <div fxLayout.xs="column"></div>              <div fxLayout.xs="column">                <mat-form-field>                  <input matInput readonly={{setReadOnly}} id="inputEmail" placeholder="Email" formControlName="email"                    (blur)=formFilled() (mouseleave)=formFilled() required>                  <mat-error *ngIf="form.get(\'email\').hasError(\'email\') && !form.get(\'email\').hasError(\'required\')">                    Please enter a valid email address                  </mat-error>                  <mat-error *ngIf="form.get(\'email\').hasError(\'required\')">                    Email is <strong>required</strong>                  </mat-error>                </mat-form-field>              </div>              <div fxLayout.xs="column">                <mat-form-field>                  <input matInput readonly={{setReadOnly}} id="inputUsername" placeholder="Username" formControlName="username"                    (blur)=formFilled() (mouseleave)=formFilled() required>                  <mat-error *ngIf="form.get(\'username\').hasError(\'required\')">                    Username is <strong>required</strong>                  </mat-error>                </mat-form-field>              </div>            </div>            <div class="container" fxLayout="row" fxLayoutGap="10%" fxLayoutGap.xs="0">              <div fxLayout.xs="column"></div>              <div fxLayout.xs="column">                <mat-form-field>                  <input matInput readonly={{setReadOnly}} type="password" id="inputPassword" placeholder="Password"                    formControlName="password" (blur)=retypeConfirmPassword() required>                  <mat-error *ngIf="form.get(\'password\').hasError(\'required\')">                    Password is <strong>required</strong>                  </mat-error>                </mat-form-field>              </div>              <div fxLayout.xs="column">                <mat-form-field *ngIf="!setReadOnly">                  <input matInput type="password" id="inputConfirmPassword" placeholder="Confirm Password"                    formControlName="confirmPassword" (blur)=formFilled() (mouseleave)=formFilled() required>                  <mat-error *ngIf="form.controls.confirmPassword.errors?.MatchPassword">                    Password must <strong>match</strong>                  </mat-error>                </mat-form-field>              </div>            </div>            <div class="container" fxLayout="row" fxLayoutGap="10%" fxLayoutGap.xs="0">              <div fxLayout.xs="column"></div>              <div fxLayout.xs="column">                <button *ngIf="setReadOnly" type="button" mat-stroked-button color="primary" (click)="setReadOnly=false">Edit</button>                <button *ngIf="!setReadOnly" type="button" mat-stroked-button color="primary" [disabled]="disableButton"                  (click)="setReadOnly=true; updateProfile()">Save</button>                <button *ngIf="!setReadOnly" type="button" mat-stroked-button color="primary" (click)="setReadOnly=true; cancelEditProfile()">Cancel</button>              </div>            </div>          </form>        </mat-jumbotron-content>      </mat-jumbotron>    </div>  </mat-grid-tile>  <mat-grid-tile colspan=1 rowspan=1></mat-grid-tile></mat-grid-list></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'HomePageComponent', 'selector': 'app-home-page'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LogoutComponent', 'selector': 'app-logout'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'ProfileComponent', 'selector': 'app-profile'},{'name': 'ProjectCardComponent', 'selector': 'app-project-card'},{'name': 'ProjectSubmissionComponent', 'selector': 'app-project-submission'},{'name': 'RegistrationComponent', 'selector': 'app-registration'},{'name': 'UserActionsComponent', 'selector': 'app-user-actions'},{'name': 'ViewProjectsComponent', 'selector': 'app-view-projects'},{'name': 'ZipComponentComponent', 'selector': 'app-zip-component'}];
+        var COMPONENT_TEMPLATE = '<div><app-navbar></app-navbar><mat-grid-list class="my-theme" cols="8" height="100%" width="100%">  <mat-grid-tile colspan=1 rowspan=1></mat-grid-tile>  <mat-grid-tile colspan=6 rowspan=3.5>    <div class="container" fxLayout.xs="column" fxLayoutAlign="center">      <mat-jumbotron>        <mat-jumbotron-content>          <div class="container" fxLayout="row" fxLayoutGap="75%" fxLayoutGap.xs="0">            <div fxLayout.xs="column">              <button mat-icon-button mat-stroked-button color="primary" mat-button routerLink="/projects/home"                matTooltip="Home" matTooltipPosition="right">                <mat-icon>home</mat-icon>              </button>              <h1 id="profile-header"><strong>Profile</strong></h1>            </div>            <div fxLayout.xs="column">              <h3 id="user-role">{{user.role}}</h3>            </div>          </div>          <div class="container" fxLayout="row" fxLayout.xs="column">            <p id="profile-text">Edit your profile information, and then press the \'Save\' button to update your              information.</p>          </div>          <form [formGroup]="form">            <hr>            <div class="container" fxLayout="row" fxLayoutGap="10%" fxLayoutGap.xs="0">              <div fxLayout.xs="column"></div>              <div fxLayout.xs="column">                <mat-form-field>                  <input matInput readonly={{setReadOnly}} id="inputFirstName" placeholder="First Name" formControlName="firstName"                    (blur)=formFilled() (mouseleave)=formFilled() minlength="2" required>                  <mat-error *ngIf="form.get(\'firstName\').hasError(\'minlength\') && !form.get(\'firstName\').hasError(\'required\')">                    Must be at least <strong>2 characters</strong> long                  </mat-error>                  <mat-error *ngIf="form.get(\'firstName\').hasError(\'required\')">                    First name is <strong>required</strong>                  </mat-error>                </mat-form-field>              </div>              <div fxLayout.xs="column">                <mat-form-field>                  <input matInput readonly={{setReadOnly}} id="inputLastName" placeholder="Last Name" formControlName="lastName"                    (blur)=formFilled() (mouseleave)=formFilled() minlength="2" required>                  <mat-error *ngIf="form.get(\'lastName\').hasError(\'minlength\') && !form.get(\'lastName\').hasError(\'required\')">                    Must be at least <strong>2 characters</strong> long                  </mat-error>                  <mat-error *ngIf="form.get(\'lastName\').hasError(\'required\')">                    Last name is <strong>required</strong>                  </mat-error>                </mat-form-field>              </div>            </div>            <div class="container" fxLayout="row" fxLayoutGap="10%" fxLayoutGap.xs="0">              <div fxLayout.xs="column"></div>              <div fxLayout.xs="column">                <mat-form-field>                  <input matInput readonly={{setReadOnly}} id="inputEmail" placeholder="Email" formControlName="email"                    (blur)=formFilled() (mouseleave)=formFilled() [pattern]="emailPattern" required>                  <mat-error *ngIf="form.controls.email.errors?.RevatureEmail">                    Must end with <strong>@revature.com</strong>                  </mat-error>                </mat-form-field>              </div>              <div fxLayout.xs="column">                <mat-form-field>                  <input matInput readonly={{setReadOnly}} id="inputUsername" placeholder="Username" formControlName="username"                    (blur)=formFilled() (mouseleave)=formFilled() minlength="8" required>                  <mat-error *ngIf="form.get(\'username\').hasError(\'minlength\') && !form.get(\'username\').hasError(\'required\')">                    Must be at least <strong>8 characters</strong> long                  </mat-error>                  <mat-error *ngIf="form.get(\'username\').hasError(\'required\')">                    Username is <strong>required</strong>                  </mat-error>                </mat-form-field>              </div>            </div>            <div class="container" fxLayout="row" fxLayoutGap="10%" fxLayoutGap.xs="0">              <div fxLayout.xs="column"></div>              <div fxLayout.xs="column">                <mat-form-field>                  <input matInput readonly={{setReadOnly}} type="password" id="inputPassword" placeholder="Password"                    formControlName="password" (blur)=retypeConfirmPassword() minlength="8" required>                  <mat-error *ngIf="form.get(\'password\').hasError(\'minlength\') && !form.get(\'password\').hasError(\'required\')">                    Must be at least <strong>8 characters</strong>                  </mat-error>                  <mat-error *ngIf="form.get(\'password\').hasError(\'required\')">                    Password is <strong>required</strong>                  </mat-error>                </mat-form-field>              </div>              <div fxLayout.xs="column">                <mat-form-field *ngIf="!setReadOnly">                  <input matInput type="password" id="inputConfirmPassword" placeholder="Confirm Password"                    formControlName="confirmPassword" (blur)=formFilled() (mouseleave)=formFilled() required>                  <mat-error *ngIf="form.controls.confirmPassword.errors?.MatchPassword">                    Password must <strong>match</strong>                  </mat-error>                </mat-form-field>              </div>            </div>            <div class="container" fxLayout="row" fxLayoutGap="10%" fxLayoutGap.xs="0">              <div fxLayout.xs="column"></div>              <div fxLayout.xs="column">                <button *ngIf="setReadOnly" type="button" mat-stroked-button color="primary" (click)="setReadOnly=false">Edit</button>                <button *ngIf="!setReadOnly" type="button" mat-stroked-button color="primary" [disabled]="disableButton"                  (click)="setReadOnly=true; updateProfile()">Save</button>                <button *ngIf="!setReadOnly" type="button" mat-stroked-button color="primary" (click)="setReadOnly=true; cancelEditProfile()">Cancel</button>              </div>            </div>          </form>        </mat-jumbotron-content>      </mat-jumbotron>    </div>  </mat-grid-tile>  <mat-grid-tile colspan=1 rowspan=1></mat-grid-tile></mat-grid-list></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AppLogoComponent', 'selector': 'app-app-logo'},{'name': 'HomePageComponent', 'selector': 'app-home-page'},{'name': 'InputDialogComponent', 'selector': 'app-input-dialog'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LogoutComponent', 'selector': 'app-logout'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'ProfileComponent', 'selector': 'app-profile'},{'name': 'ProjectCardComponent', 'selector': 'app-project-card'},{'name': 'ProjectSubmissionComponent', 'selector': 'app-project-submission'},{'name': 'RegistrationComponent', 'selector': 'app-registration'},{'name': 'UserActionsComponent', 'selector': 'app-user-actions'},{'name': 'ViewProjectsComponent', 'selector': 'app-view-projects'},{'name': 'ZipComponent', 'selector': 'app-zip-component'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'ProfileComponent'};
 </script>

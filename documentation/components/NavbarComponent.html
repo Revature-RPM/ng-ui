@@ -61,7 +61,7 @@
     <h3>File</h3>
 </p>
 <p class="comment">
-    <code>src/app/project/navbar/navbar.component.ts</code>
+    <code>src/app/shared/navbar/navbar.component.ts</code>
 </p>
 
 
@@ -130,7 +130,7 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#isAdministrator">isAdministrator</a>
+                                <a href="#user">user</a>
                             </li>
                         </ul>
                     </td>
@@ -145,7 +145,22 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#goToLogin">goToLogin</a>
+                            </li>
+                            <li>
+                                <a href="#goToRegister">goToRegister</a>
+                            </li>
+                            <li>
+                                <a href="#homepageShortcut">homepageShortcut</a>
+                            </li>
+                            <li>
+                                <a href="#logout">logout</a>
+                            </li>
+                            <li>
                                 <a href="#ngOnInit">ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#userAccount">userAccount</a>
                             </li>
                         </ul>
                     </td>
@@ -165,12 +180,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(iconRegistry: MatIconRegistry, sanitizer: <a href="https://angular.io/api/platform-browser/DomSanitizer" target="_blank">DomSanitizer</a>)</code>
+<code>constructor(iconRegistry: MatIconRegistry, sanitizer: <a href="https://angular.io/api/platform-browser/DomSanitizer" target="_blank">DomSanitizer</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/project/navbar/navbar.component.ts:12</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/shared/navbar/navbar.component.ts:14</a></div>
                             </td>
                         </tr>
 
@@ -218,8 +233,24 @@
                                                     </td>
                                                     
                                                         <td>
-                                                                <code><p>: prevents cross-site scripting attacks by filtering values to be used in the DOM; in this case it is bypassing
-         Angular&#39;s default security to use this image asset</p>
+                                                                <code><p>:     prevents cross-site scripting attacks by filtering values to be used in the DOM; in this case it is bypassing
+         Angular&#39;s default security to use image assets as icons</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <code><p>:        enables navigation to various views in the application</p>
 </code>
                                                         </td>
                                                 </tr>
@@ -245,6 +276,158 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
+                        <a name="goToLogin"></a>
+                        <span class="name">
+                            <b>
+                            goToLogin
+                            </b>
+                            <a href="#goToLogin"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>goToLogin()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/shared/navbar/navbar.component.ts:31</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="goToRegister"></a>
+                        <span class="name">
+                            <b>
+                            goToRegister
+                            </b>
+                            <a href="#goToRegister"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>goToRegister()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/shared/navbar/navbar.component.ts:27</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="homepageShortcut"></a>
+                        <span class="name">
+                            <b>
+                            homepageShortcut
+                            </b>
+                            <a href="#homepageShortcut"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>homepageShortcut()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/shared/navbar/navbar.component.ts:55</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="logout"></a>
+                        <span class="name">
+                            <b>
+                            logout
+                            </b>
+                            <a href="#logout"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>logout()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/shared/navbar/navbar.component.ts:39</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
                         <a name="ngOnInit"></a>
                         <span class="name">
                             <b>
@@ -263,7 +446,45 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/project/navbar/navbar.component.ts:27</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/shared/navbar/navbar.component.ts:43</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="userAccount"></a>
+                        <span class="name">
+                            <b>
+                            userAccount
+                            </b>
+                            <a href="#userAccount"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>userAccount()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/shared/navbar/navbar.component.ts:35</a></div>
                             </td>
                         </tr>
 
@@ -290,35 +511,35 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="isAdministrator"></a>
+                        <a name="user"></a>
                         <span class="name">
                             <b>
-                            isAdministrator
+                            user
                             </b>
-                            <a href="#isAdministrator"><span class="icon ion-ios-link"></span></a>
+                            <a href="#user"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <code>isAdministrator:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" target="_blank" >Boolean</a></code>
+                        <code>user:     <code><a href="../interfaces/User.html" target="_self" >User</a></code>
 </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" target="_blank" >Boolean</a></code>
+                            <i>Type : </i>    <code><a href="../interfaces/User.html" target="_self" >User</a></code>
 
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>true</code>
+                            <i>Default value : </i><code>{}</code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/project/navbar/navbar.component.ts:12</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/shared/navbar/navbar.component.ts:14</a></div>
                             </td>
                         </tr>
 
@@ -334,6 +555,9 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
 import { MatIconRegistry } from &#x27;@angular/material/icon&#x27;;
 import { DomSanitizer } from &#x27;@angular/platform-browser&#x27;;
+import { Router } from &#x27;@angular/router&#x27;;
+
+import { User } from &#x27;src/app/core/models/User&#x27;;
 
 @Component({
   selector: &#x27;app-navbar&#x27;,
@@ -341,55 +565,96 @@ import { DomSanitizer } from &#x27;@angular/platform-browser&#x27;;
   styleUrls: [&#x27;./navbar.component.scss&#x27;]
 })
 export class NavbarComponent implements OnInit {
-
-  isAdministrator: Boolean &#x3D; true;
+  user: User &#x3D; {};
   /**
 	 * the constructor is called when an instance of the class is created
-	 * 
+	 *
 	 * @param iconRegistry:  a service to register icons so they can be used with the mat-icon component from Angular Materials
-   * @param sanitizer: prevents cross-site scripting attacks by filtering values to be used in the DOM; in this case it is bypassing
-   *                         Angular&#x27;s default security to use this image asset
+   * @param sanitizer:     prevents cross-site scripting attacks by filtering values to be used in the DOM; in this case it is bypassing
+   *                         Angular&#x27;s default security to use image assets as icons
+   * @param router:        enables navigation to various views in the application
 	 * @author Shawn Bickel (1810-Oct08-Java-USF)
 	 */
-  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) { 
-    iconRegistry.addSvgIcon(
-      &#x27;account&#x27;,
-      sanitizer.bypassSecurityTrustResourceUrl(&#x27;assets/img/round-account_circle-24px.svg&#x27;));
+  constructor(private iconRegistry: MatIconRegistry, private sanitizer: DomSanitizer, private router: Router) {
+  }
+
+  goToRegister() {
+    this.router.navigate([&#x27;auth&#x27;,&#x27;register&#x27;]);
+  }
+
+  goToLogin() {
+    this.router.navigate([&#x27;auth&#x27;,&#x27;login&#x27;]);
+  }
+
+  userAccount() {
+    this.router.navigate([&#x27;account&#x27;,this.user.id]);
+  }
+
+  logout() {
+    this.router.navigate([&#x27;auth&#x27;,&#x27;logout&#x27;]);
   }
 
   ngOnInit() {
+    this.user &#x3D; JSON.parse(localStorage.getItem(&#x27;user&#x27;));
+
+    this.iconRegistry.addSvgIcon(
+      &#x27;account&#x27;,
+      this.sanitizer.bypassSecurityTrustResourceUrl(&#x27;assets/img/round-account_circle-24px.svg&#x27;));
+
+      this.iconRegistry.addSvgIcon(
+        &#x27;logo&#x27;,
+        this.sanitizer.bypassSecurityTrustResourceUrl(&#x27;assets/img/round-cloud_upload-24px.svg&#x27;));
   }
 
+  homepageShortcut() {
+    this.router.navigate([&#x27;projects&#x27;,&#x27;home&#x27;]);
+  }
 }
 </code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-templateData">
         <pre class="line-numbers"><code class="language-html">&lt;div id&#x3D;&quot;toolbar&quot;&gt;
-    &lt;mat-toolbar color&#x3D;&quot;accent&quot;&gt;
+    &lt;mat-toolbar class&#x3D;&quot;my-theme&quot; color&#x3D;&quot;primary&quot;&gt;
         &lt;mat-toolbar-row&gt;
-                &lt;button id&#x3D;&quot;navbarTitle&quot; mat-icon-button&gt;NPG&lt;/button&gt;
-                &lt;!-- This fills the remaining space of the current row --&gt;
-                &lt;span class&#x3D;&quot;example-fill-remaining-space&quot;&gt;&lt;/span&gt;
-            &lt;span&gt;
-                    &lt;button mat-icon-button [matMenuTriggerFor]&#x3D;&quot;accountMenu&quot;&gt;
-                            &lt;mat-icon svgIcon&#x3D;&quot;account&quot;&gt;&lt;/mat-icon&gt;
+            &lt;button id&#x3D;&quot;icon&quot; mat-icon-button mat-stroked-button mat-button matTooltip&#x3D;&quot;Home&quot; matTooltipPosition&#x3D;&quot;right&quot;
+                (click)&#x3D;&quot;homepageShortcut()&quot;&gt;
+                &lt;img id&#x3D;&quot;home-icon&quot; src&#x3D;&quot;../../../assets/icons/RPM_Logo.png&quot;&gt;
+            &lt;/button&gt;
+            &lt;!-- This fills the remaining space of the current row --&gt;
+            &lt;span class&#x3D;&quot;example-fill-remaining-space&quot;&gt;&lt;/span&gt;
+            &lt;span *ngIf&#x3D;&quot;user&quot;&gt;
+                &lt;button id&#x3D;&quot;icon&quot; mat-icon-button mat-stroked-button [matMenuTriggerFor]&#x3D;&quot;accountMenu&quot;&gt;
+                    &lt;mat-icon id&#x3D;&quot;profile-icon&quot;&gt;account_circle&lt;/mat-icon&gt;
+                &lt;/button&gt;
+                &lt;mat-menu #accountMenu&#x3D;&quot;matMenu&quot;&gt;
+                    &lt;button (click)&#x3D;&quot;userAccount()&quot; mat-menu-item&gt;
+                        &lt;span&gt;Profile&lt;/span&gt;
                     &lt;/button&gt;
-                        &lt;mat-menu  #accountMenu&#x3D;&quot;matMenu&quot;&gt;
-                            &lt;button mat-menu-item&gt;
-                                &lt;span&gt;View Account&lt;/span&gt;
-                            &lt;/button&gt;
-                            &lt;button mat-menu-item  *ngIf&#x3D;&quot;isAdministrator&quot;&gt;
-                                &lt;span&gt;Creat New Admin&lt;/span&gt;
-                            &lt;/button&gt;
-                            &lt;button mat-menu-item&gt;
-                                &lt;span&gt;Logout&lt;/span&gt;
-                            &lt;/button&gt;
-                        &lt;/mat-menu&gt;
+                    &lt;button mat-menu-item *ngIf&#x3D;&quot;user.userRole &#x3D;&#x3D; &#x27;admin&#x27;&quot;&gt;
+                        &lt;span&gt;Create New Admin&lt;/span&gt;
+                    &lt;/button&gt;
+                    &lt;button (click)&#x3D;&quot;logout()&quot; mat-menu-item&gt;
+                        &lt;span&gt;Logout&lt;/span&gt;
+                    &lt;/button&gt;
+                &lt;/mat-menu&gt;
+            &lt;/span&gt;
+            &lt;span *ngIf&#x3D;&quot;!user&quot;&gt;
+                &lt;button mat-icon-button [matMenuTriggerFor]&#x3D;&quot;accountMenu&quot;&gt;
+                    &lt;mat-icon svgIcon&#x3D;&quot;account&quot;&gt;&lt;/mat-icon&gt;
+                &lt;/button&gt;
+                &lt;mat-menu #accountMenu&#x3D;&quot;matMenu&quot;&gt;
+                    &lt;button (click)&#x3D;&quot;goToLogin()&quot; mat-menu-item&gt;
+                        &lt;span&gt;Log In&lt;/span&gt;
+                    &lt;/button&gt;
+                    &lt;button (click)&#x3D;&quot;goToRegister()&quot; mat-menu-item&gt;
+                        &lt;span&gt;Register&lt;/span&gt;
+                    &lt;/button&gt;
+                &lt;/mat-menu&gt;
             &lt;/span&gt;
         &lt;/mat-toolbar-row&gt;
         &lt;mat-divider&gt;&lt;/mat-divider&gt;
-      &lt;/mat-toolbar&gt;
+    &lt;/mat-toolbar&gt;
 &lt;/div&gt;</code></pre>
     </div>
 
@@ -397,17 +662,38 @@ export class NavbarComponent implements OnInit {
                 <p class="comment">
                     <code>./navbar.component.scss</code>
                 </p>
-                <pre class="line-numbers"><code class="language-scss">
+                <pre class="line-numbers"><code class="language-scss">@import &#x27;~@angular/material/theming&#x27;;
+
 .example-fill-remaining-space {
-    /* This fills the remaining space, by using flexbox. 
-       Every toolbar row uses a flexbox row layout. */
+    /* The css flex property determines how flexible items will appear in relation to each other;
+        It is used to specify flex-grow, flex-shrink, and flex-basis properties
+            - flex-grow: determines how a specified element will increase in size in relation to other flexible elements
+            - flex-shrink: determines how an element will decrease in size relative to other flexible elements 
+            - flex-basis: determines the initial length of a flexible item 
+                - auto: the length will be equal to the length of the item; if the item has no length, the length will be determined by the content 
+                - initial: sets the length to the default value, which is auto */
     flex: 1 1 auto;
   }
 
  #navbarTitle{
     border: none;
     font-size: 16px;
-}</code></pre>
+}
+
+#toolbar{
+   width: 100%;
+}
+
+#home-icon{
+    max-width: 64px;
+    max-height: 64px;
+}
+
+#icon {
+    width: 64px;
+    height: 64px;
+}
+</code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-tree">
@@ -435,8 +721,8 @@ export class NavbarComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div id="toolbar">    <mat-toolbar color="accent">        <mat-toolbar-row>                <button id="navbarTitle" mat-icon-button>NPG</button>                <!-- This fills the remaining space of the current row -->                <span class="example-fill-remaining-space"></span>            <span>                    <button mat-icon-button [matMenuTriggerFor]="accountMenu">                            <mat-icon svgIcon="account"></mat-icon>                    </button>                        <mat-menu  #accountMenu="matMenu">                            <button mat-menu-item>                                <span>View Account</span>                            </button>                            <button mat-menu-item  *ngIf="isAdministrator">                                <span>Creat New Admin</span>                            </button>                            <button mat-menu-item>                                <span>Logout</span>                            </button>                        </mat-menu>            </span>        </mat-toolbar-row>        <mat-divider></mat-divider>      </mat-toolbar></div></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'HomePageComponent', 'selector': 'app-home-page'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LogoutComponent', 'selector': 'app-logout'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'ProfileComponent', 'selector': 'app-profile'},{'name': 'ProjectCardComponent', 'selector': 'app-project-card'},{'name': 'ProjectSubmissionComponent', 'selector': 'app-project-submission'},{'name': 'RegistrationComponent', 'selector': 'app-registration'},{'name': 'UserActionsComponent', 'selector': 'app-user-actions'},{'name': 'ViewProjectsComponent', 'selector': 'app-view-projects'},{'name': 'ZipComponentComponent', 'selector': 'app-zip-component'}];
+        var COMPONENT_TEMPLATE = '<div><div id="toolbar">    <mat-toolbar class="my-theme" color="primary">        <mat-toolbar-row>            <button id="icon" mat-icon-button mat-stroked-button mat-button matTooltip="Home" matTooltipPosition="right"                (click)="homepageShortcut()">                <img id="home-icon" src="../../../assets/icons/RPM_Logo.png">            </button>            <!-- This fills the remaining space of the current row -->            <span class="example-fill-remaining-space"></span>            <span *ngIf="user">                <button id="icon" mat-icon-button mat-stroked-button [matMenuTriggerFor]="accountMenu">                    <mat-icon id="profile-icon">account_circle</mat-icon>                </button>                <mat-menu #accountMenu="matMenu">                    <button (click)="userAccount()" mat-menu-item>                        <span>Profile</span>                    </button>                    <button mat-menu-item *ngIf="user.userRole == \'admin\'">                        <span>Create New Admin</span>                    </button>                    <button (click)="logout()" mat-menu-item>                        <span>Logout</span>                    </button>                </mat-menu>            </span>            <span *ngIf="!user">                <button mat-icon-button [matMenuTriggerFor]="accountMenu">                    <mat-icon svgIcon="account"></mat-icon>                </button>                <mat-menu #accountMenu="matMenu">                    <button (click)="goToLogin()" mat-menu-item>                        <span>Log In</span>                    </button>                    <button (click)="goToRegister()" mat-menu-item>                        <span>Register</span>                    </button>                </mat-menu>            </span>        </mat-toolbar-row>        <mat-divider></mat-divider>    </mat-toolbar></div></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AppLogoComponent', 'selector': 'app-app-logo'},{'name': 'HomePageComponent', 'selector': 'app-home-page'},{'name': 'InputDialogComponent', 'selector': 'app-input-dialog'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LogoutComponent', 'selector': 'app-logout'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'ProfileComponent', 'selector': 'app-profile'},{'name': 'ProjectCardComponent', 'selector': 'app-project-card'},{'name': 'ProjectSubmissionComponent', 'selector': 'app-project-submission'},{'name': 'RegistrationComponent', 'selector': 'app-registration'},{'name': 'UserActionsComponent', 'selector': 'app-user-actions'},{'name': 'ViewProjectsComponent', 'selector': 'app-view-projects'},{'name': 'ZipComponent', 'selector': 'app-zip-component'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'NavbarComponent'};
 </script>

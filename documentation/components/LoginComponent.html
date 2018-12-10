@@ -171,12 +171,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(loggedIn: <a href="../injectables/LoggedInService.html">LoggedInService</a>, userService: <a href="../injectables/UserService.html">UserService</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>)</code>
+<code>constructor(userService: <a href="../injectables/UserService.html">UserService</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/authentication/login/login.component.ts:16</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/authentication/login/login.component.ts:15</a></div>
                             </td>
                         </tr>
 
@@ -193,18 +193,6 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                                <tr>
-                                                        <td>loggedIn</td>
-                                                  
-                                                        <td>
-                                                                    <code><a href="../injectables/LoggedInService.html" target="_self" >LoggedInService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
                                                 <tr>
                                                         <td>userService</td>
                                                   
@@ -269,7 +257,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/authentication/login/login.component.ts:28</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/authentication/login/login.component.ts:25</a></div>
                             </td>
                         </tr>
 
@@ -307,7 +295,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/authentication/login/login.component.ts:22</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/authentication/login/login.component.ts:19</a></div>
                             </td>
                         </tr>
 
@@ -351,12 +339,12 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>false</code>
+                            <i>Default value : </i><code>localStorage.getItem(&#x27;user&#x27;)</code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/authentication/login/login.component.ts:15</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/authentication/login/login.component.ts:14</a></div>
                             </td>
                         </tr>
 
@@ -395,7 +383,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/authentication/login/login.component.ts:16</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/authentication/login/login.component.ts:15</a></div>
                             </td>
                         </tr>
 
@@ -413,7 +401,7 @@ import { Router } from &#x27;@angular/router&#x27;;
 import { first } from &#x27;rxjs/operators&#x27;;
 
 import { User } from &#x27;src/app/core/models/User&#x27;;
-import { LoggedInService, UserService } from &#x27;../../core/services/user.service&#x27;;
+import { UserService } from &#x27;src/app/core/services/user.service&#x27;;
 
 @Component({
   selector: &#x27;app-login&#x27;,
@@ -421,17 +409,14 @@ import { LoggedInService, UserService } from &#x27;../../core/services/user.serv
   styleUrls: [&#x27;./login.component.scss&#x27;]
 })
 export class LoginComponent implements OnInit {
-  // sessionUser &#x3D; localStorage.getItem(&#x27;user&#x27;);
-  sessionUser &#x3D; false;
+  sessionUser &#x3D; localStorage.getItem(&#x27;user&#x27;);
   user: User &#x3D; {};
 
-  constructor(private loggedIn: LoggedInService,
-              private userService: UserService,
-              private router: Router) { }
+  constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit() {
-    if (this.sessionUser) {
-      this.router.navigate([&#x27;&#x27;]);
+    if (this.sessionUser !&#x3D;&#x3D; null) {
+      this.router.navigate([&#x27;/home&#x27;]);
     }
   }
 
@@ -439,8 +424,7 @@ export class LoginComponent implements OnInit {
     this.userService.login(this.user).pipe(first()).subscribe((user) &#x3D;&gt; {
       if (user) {
         localStorage.setItem(&#x27;user&#x27;, JSON.stringify(user));
-        this.loggedIn.loggedIn.next(true);
-        this.router.navigate([&#x27;&#x27;]);
+        this.router.navigate([&#x27;/home&#x27;]);
       }
     });
   }
@@ -449,35 +433,36 @@ export class LoginComponent implements OnInit {
     </div>
 
     <div class="tab-pane fade " id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;div id&#x3D;&quot;login-container&quot;&gt;
-  &lt;mat-jumbotron id&#x3D;&quot;jumbotron&quot;&gt;
-    &lt;mat-jumbotron-content id&#x3D;&quot;content&quot;&gt;      
-      &lt;mat-card&gt;
-        &lt;mat-card-header&gt;
-          &lt;mat-card-title&gt;Login&lt;/mat-card-title&gt;
-        &lt;/mat-card-header&gt;
-
-        &lt;mat-card-content&gt;
-          &lt;br/&gt;
-          &lt;br/&gt;
-          &lt;mat-form-field appearance&#x3D;&quot;outline&quot;&gt;
-            &lt;input matInput type&#x3D;&quot;text&quot; placeholder&#x3D;&quot;Username&quot; id&#x3D;&quot;username&quot;&gt;
-          &lt;/mat-form-field&gt;
-          &lt;br /&gt;
-          &lt;mat-form-field appearance&#x3D;&quot;outline&quot;&gt;
-            &lt;input matInput type&#x3D;&quot;password&quot; placeholder&#x3D;&quot;Password&quot; id&#x3D;&quot;password&quot;&gt;
-          &lt;/mat-form-field&gt;
-          &lt;br /&gt;
-          &lt;br /&gt;
-          &lt;button mat-flat-button type&#x3D;&quot;button&quot; (click)&#x3D;&quot;login()&quot;&gt;Login&lt;/button&gt;
-
-          &lt;a mat-button routerLink&#x3D;&quot;/auth/register&quot;&gt;Register&lt;/a&gt;
-        &lt;/mat-card-content&gt;
-      &lt;/mat-card&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;app-app-logo&gt;&lt;/app-app-logo&gt;
+&lt;div class&#x3D;&quot;my-theme&quot; id&#x3D;&quot;login-container&quot;&gt;
+  &lt;mat-jumbotron color&#x3D;&quot;accent&quot; id&#x3D;&quot;jumbotron&quot;&gt;
+    &lt;mat-jumbotron-content id&#x3D;&quot;content&quot;&gt;
+      &lt;form #formcontrol&#x3D;&quot;ngForm&quot;&gt;
+        &lt;mat-card&gt;
+          &lt;mat-card-header&gt;
+            &lt;mat-card-title&gt;Login&lt;/mat-card-title&gt;
+          &lt;/mat-card-header&gt;
+          &lt;mat-card-content&gt;
+            &lt;br /&gt;
+            &lt;mat-form-field appearance&#x3D;&quot;outline&quot;&gt;
+              &lt;input matInput type&#x3D;&quot;text&quot; class&#x3D;&quot;form-control&quot; placeholder&#x3D;&quot;Username&quot; name&#x3D;&quot;username&quot; [(ngModel)]&#x3D;&quot;user.username&quot;
+                required&gt;
+            &lt;/mat-form-field&gt;
+            &lt;br /&gt;
+            &lt;mat-form-field appearance&#x3D;&quot;outline&quot;&gt;
+              &lt;input matInput type&#x3D;&quot;password&quot; class&#x3D;&quot;form-control&quot; placeholder&#x3D;&quot;Password&quot; name&#x3D;&quot;password&quot; [(ngModel)]&#x3D;&quot;user.password&quot;
+                required&gt;
+            &lt;/mat-form-field&gt;
+            &lt;br /&gt;
+            &lt;mat-error *ngIf&#x3D;&quot;!formcontrol.form.valid&quot;&gt;Please enter all fields&lt;/mat-error&gt;
+            &lt;button color&#x3D;&quot;accent&quot; mat-flat-button type&#x3D;&quot;button&quot; [disabled]&#x3D;&quot;!formcontrol.form.valid&quot; (click)&#x3D;&quot;login()&quot;&gt;Login&lt;/button&gt;
+            &lt;a mat-button routerLink&#x3D;&quot;/auth/register&quot;&gt;Register&lt;/a&gt;
+          &lt;/mat-card-content&gt;
+        &lt;/mat-card&gt;
+      &lt;/form&gt;
     &lt;/mat-jumbotron-content&gt;
   &lt;/mat-jumbotron&gt;
-&lt;/div&gt;
-</code></pre>
+&lt;/div&gt;</code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-styleData">
@@ -495,17 +480,18 @@ $black: mat-color($mat-grey,900);
 $font: &#x27;Courier New&#x27;, sans-serif;
 
 #login-container {
-    background-color: $black;
+    background-color: #ff7f00;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 85%;
-    padding-top: 3%;
-    padding-bottom: 9%;
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+    min-height: 100%;
 
     mat-card {
         margin: 0 auto;
-
+       
         mat-card-header {
             justify-content: center;
 
@@ -527,28 +513,23 @@ $font: &#x27;Courier New&#x27;, sans-serif;
 
             button {
                 width: 100%;
-                background-color: $dark-grey;
                 color: $light-grey;
                 font-family: $font;
                 font-size: 120%;
                 margin-top: 23%;
             }
 
-            button:hover {
-                background-color: $black;
-            }
-
             a {
                 margin-top: 2%;
                 width: 100%;
-                background: $dark-grey;
+                background-color: #091abd;
                 color: $light-grey;
                 font-family: $font;
                 font-size: 120%;
             }
 
             a:hover {
-                background-color: $black;
+                background-color: #091abd;
                 text-decoration: none;
             }
         }
@@ -581,8 +562,8 @@ $font: &#x27;Courier New&#x27;, sans-serif;
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div id="login-container">  <mat-jumbotron id="jumbotron">    <mat-jumbotron-content id="content">            <mat-card>        <mat-card-header>          <mat-card-title>Login</mat-card-title>        </mat-card-header>        <mat-card-content>          <br/>          <br/>          <mat-form-field appearance="outline">            <input matInput type="text" placeholder="Username" id="username">          </mat-form-field>          <br />          <mat-form-field appearance="outline">            <input matInput type="password" placeholder="Password" id="password">          </mat-form-field>          <br />          <br />          <button mat-flat-button type="button" (click)="login()">Login</button>          <a mat-button routerLink="/auth/register">Register</a>        </mat-card-content>      </mat-card>    </mat-jumbotron-content>  </mat-jumbotron></div></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'HomePageComponent', 'selector': 'app-home-page'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LogoutComponent', 'selector': 'app-logout'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'ProfileComponent', 'selector': 'app-profile'},{'name': 'ProjectCardComponent', 'selector': 'app-project-card'},{'name': 'ProjectSubmissionComponent', 'selector': 'app-project-submission'},{'name': 'RegistrationComponent', 'selector': 'app-registration'},{'name': 'UserActionsComponent', 'selector': 'app-user-actions'},{'name': 'ViewProjectsComponent', 'selector': 'app-view-projects'},{'name': 'ZipComponentComponent', 'selector': 'app-zip-component'}];
+        var COMPONENT_TEMPLATE = '<div><app-app-logo></app-app-logo><div class="my-theme" id="login-container">  <mat-jumbotron color="accent" id="jumbotron">    <mat-jumbotron-content id="content">      <form #formcontrol="ngForm">        <mat-card>          <mat-card-header>            <mat-card-title>Login</mat-card-title>          </mat-card-header>          <mat-card-content>            <br />            <mat-form-field appearance="outline">              <input matInput type="text" class="form-control" placeholder="Username" name="username" [(ngModel)]="user.username"                required>            </mat-form-field>            <br />            <mat-form-field appearance="outline">              <input matInput type="password" class="form-control" placeholder="Password" name="password" [(ngModel)]="user.password"                required>            </mat-form-field>            <br />            <mat-error *ngIf="!formcontrol.form.valid">Please enter all fields</mat-error>            <button color="accent" mat-flat-button type="button" [disabled]="!formcontrol.form.valid" (click)="login()">Login</button>            <a mat-button routerLink="/auth/register">Register</a>          </mat-card-content>        </mat-card>      </form>    </mat-jumbotron-content>  </mat-jumbotron></div></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AppLogoComponent', 'selector': 'app-app-logo'},{'name': 'HomePageComponent', 'selector': 'app-home-page'},{'name': 'InputDialogComponent', 'selector': 'app-input-dialog'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LogoutComponent', 'selector': 'app-logout'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'ProfileComponent', 'selector': 'app-profile'},{'name': 'ProjectCardComponent', 'selector': 'app-project-card'},{'name': 'ProjectSubmissionComponent', 'selector': 'app-project-submission'},{'name': 'RegistrationComponent', 'selector': 'app-registration'},{'name': 'UserActionsComponent', 'selector': 'app-user-actions'},{'name': 'ViewProjectsComponent', 'selector': 'app-view-projects'},{'name': 'ZipComponent', 'selector': 'app-zip-component'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'LoginComponent'};
 </script>

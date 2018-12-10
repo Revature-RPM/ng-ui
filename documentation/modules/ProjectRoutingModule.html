@@ -72,19 +72,17 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &#x27;@angular/core&#x27;;
 import { Routes, RouterModule } from &#x27;@angular/router&#x27;;
-import { NavbarComponent } from &#x27;./navbar/navbar.component&#x27;;
+
 import { HomePageComponent } from &#x27;./home-page/home-page.component&#x27;;
 import { ProjectSubmissionComponent } from &#x27;./project-submission/project-submission.component&#x27;;
-import { ZipComponentComponent } from &#x27;../zip-file-explorer/zip-component/zip-component.component&#x27;
+import { ZipComponent } from &#x27;../zip-file-explorer/zip/zip.component&#x27;;
 
 const routes: Routes &#x3D; [
-  { path: &#x27;home&#x27;, component: HomePageComponent }, // home component
-  {path: &#x27;home/project_submission&#x27;, component: ProjectSubmissionComponent},
-  // { path: &#x27;:id&#x27;, component:  }, // view project metadata
-  // { path: &#x27;:id/code&#x27;, component:  }, // view project codebase
-  // { path: &#x27;:id/edit&#x27;, component:  }, // make project edits
+  { path: &#x27;home&#x27;, component: HomePageComponent },
+  { path: &#x27;project_submission&#x27;, component: ProjectSubmissionComponent },
+  // TODO { path: &#x27;:id/edit&#x27;, component: EditProjectComponent },
+  { path: &#x27;:id/codebase&#x27;, component: ZipComponent }
   // { path: &#x27;**&#x27;, redirectTo: &#x27;home&#x27; }
-  { path: &#x27;codebase&#x27;, component: ZipComponentComponent}
 ];
 
 @NgModule({
