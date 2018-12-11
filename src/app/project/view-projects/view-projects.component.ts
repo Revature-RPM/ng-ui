@@ -10,7 +10,7 @@ import { User } from 'src/app/core/models/User';
 
 const PROJECT_DATA: Project[] = [
   {
-    id: 1, name: 'TopShelf', batch: '1810-oct08-java-usf', userFullName: 'Yuki Mano',
+    id: 1, name: 'TopShelf', batch: '1810-oct08-java-usf', trainer: 'Yuki Mano',
     groupMembers: ['Yuki Mano', 'Caleb Massey', 'Shawn Bickel'],
     screenShots: ['https://i.ytimg.com/vi/wRx3Uvcktm8/maxresdefault.jpg',
       'https://gfnc1kn6pi-flywheel.netdna-ssl.com/wp-content/uploads/2018/06/best-food-for-pug-puppies-header.jpg',
@@ -19,7 +19,7 @@ const PROJECT_DATA: Project[] = [
     techStack: 'Full-Stack Java Developer', status: 'Approved', description: 'description of TopShelf'
   },
   {
-    id: 2, name: 'Kevin Craft Bacon', batch: '1810-oct08-java-usf', userFullName: 'Wezley Singleton',
+    id: 2, name: 'Kevin Craft Bacon', batch: '1810-oct08-java-usf', trainer: 'Wezley Singleton',
     groupMembers: ['Sahil', 'Ryan', 'Jeffly', 'Sadiki'], screenShots: ['https://i.ytimg.com/vi/wRx3Uvcktm8/maxresdefault.jpg',
       'https://gfnc1kn6pi-flywheel.netdna-ssl.com/wp-content/uploads/2018/06/best-food-for-pug-puppies-header.jpg',
       'https://buzzsharer.com/wp-content/uploads/2016/04/pug-sleeping-upside.jpg', ],
@@ -27,7 +27,7 @@ const PROJECT_DATA: Project[] = [
     techStack: 'Full-Stack Java Developer', status: 'Approved', description: 'description of Kevin Craft Bacon'
   },
   {
-    id: 3, name: 'Tratior', batch: '1810-oct08-java-usf', userFullName: 'Wezley Singleton',
+    id: 3, name: 'Tratior', batch: '1810-oct08-java-usf', trainer: 'Wezley Singleton',
     groupMembers: ['Paul', 'Miles', 'Derek', 'Andrew'], screenShots: ['https://i.ytimg.com/vi/wRx3Uvcktm8/maxresdefault.jpg',
       'https://gfnc1kn6pi-flywheel.netdna-ssl.com/wp-content/uploads/2018/06/best-food-for-pug-puppies-header.jpg',
       'https://buzzsharer.com/wp-content/uploads/2016/04/pug-sleeping-upside.jpg', ],
@@ -35,7 +35,7 @@ const PROJECT_DATA: Project[] = [
     techStack: 'Full-Stack Java Developer', status: 'Pending', description: 'Description of Tratior'
   },
   {
-    id: 1, name: 'TopShelf', batch: '1810-oct08-java-usf', userFullName: 'Wezley Singleton',
+    id: 1, name: 'TopShelf', batch: '1810-oct08-java-usf', trainer: 'Wezley Singleton',
     groupMembers: ['Yuki Mano', 'Caleb Massey', 'Shawn Bickel'], screenShots: ['https://i.ytimg.com/vi/wRx3Uvcktm8/maxresdefault.jpg',
       'https://gfnc1kn6pi-flywheel.netdna-ssl.com/wp-content/uploads/2018/06/best-food-for-pug-puppies-header.jpg',
       'https://buzzsharer.com/wp-content/uploads/2016/04/pug-sleeping-upside.jpg', ],
@@ -43,7 +43,7 @@ const PROJECT_DATA: Project[] = [
     techStack: 'Full-Stack Java Developer', status: 'Pending', description: 'description of TopShelf'
   },
   {
-    id: 2, name: 'Kevin Craft Bacon', batch: '1810-oct08-java-usf', userFullName: 'Wezley Singleton',
+    id: 2, name: 'Kevin Craft Bacon', batch: '1810-oct08-java-usf', trainer: 'Wezley Singleton',
     groupMembers: ['Sahil', 'Ryan', 'Jeffly', 'Sadiki'], screenShots: ['https://i.ytimg.com/vi/wRx3Uvcktm8/maxresdefault.jpg',
       'https://gfnc1kn6pi-flywheel.netdna-ssl.com/wp-content/uploads/2018/06/best-food-for-pug-puppies-header.jpg',
       'https://buzzsharer.com/wp-content/uploads/2016/04/pug-sleeping-upside.jpg', ],
@@ -51,7 +51,7 @@ const PROJECT_DATA: Project[] = [
     techStack: 'Full-Stack Java Developer', status: 'Approved', description: 'description of Kevin Craft Bacon'
   },
   {
-    id: 3, name: 'Tratior', batch: '1810-oct08-java-usf', userFullName: 'Wezley Singleton',
+    id: 3, name: 'Tratior', batch: '1810-oct08-java-usf', trainer: 'Wezley Singleton',
     groupMembers: ['Paul', 'Miles', 'Derek', 'Andrew'], screenShots: ['https://i.ytimg.com/vi/wRx3Uvcktm8/maxresdefault.jpg',
       'https://gfnc1kn6pi-flywheel.netdna-ssl.com/wp-content/uploads/2018/06/best-food-for-pug-puppies-header.jpg',
       'https://buzzsharer.com/wp-content/uploads/2016/04/pug-sleeping-upside.jpg', ],
@@ -59,7 +59,7 @@ const PROJECT_DATA: Project[] = [
     techStack: 'Full-Stack Java Developer', status: 'Approved', description: 'Description of Tratior'
   },
   {
-    id: 1, name: 'TopShelf', batch: '1810-oct08-java-usf', userFullName: 'Wezley Singleton',
+    id: 1, name: 'TopShelf', batch: '1810-oct08-java-usf', trainer: 'Wezley Singleton',
     groupMembers: ['Yuki Mano', 'Caleb Massey', 'Shawn Bickel'], screenShots: ['https://i.ytimg.com/vi/wRx3Uvcktm8/maxresdefault.jpg',
       'https://gfnc1kn6pi-flywheel.netdna-ssl.com/wp-content/uploads/2018/06/best-food-for-pug-puppies-header.jpg',
       'https://buzzsharer.com/wp-content/uploads/2016/04/pug-sleeping-upside.jpg', ],
@@ -67,7 +67,7 @@ const PROJECT_DATA: Project[] = [
     techStack: 'Full-Stack Java Developer', status: 'Approved', description: 'description of TopShelf'
   },
   {
-    id: 2, name: 'Kevin Craft Bacon', batch: '1810-oct08-java-usf', userFullName: 'Wezley Singleton',
+    id: 2, name: 'Kevin Craft Bacon', batch: '1810-oct08-java-usf', trainer: 'Wezley Singleton',
     groupMembers: ['Sahil', 'Ryan', 'Jeffly', 'Sadiki'], screenShots: ['https://i.ytimg.com/vi/wRx3Uvcktm8/maxresdefault.jpg',
       'https://gfnc1kn6pi-flywheel.netdna-ssl.com/wp-content/uploads/2018/06/best-food-for-pug-puppies-header.jpg',
       'https://buzzsharer.com/wp-content/uploads/2016/04/pug-sleeping-upside.jpg', ],
@@ -75,7 +75,7 @@ const PROJECT_DATA: Project[] = [
     techStack: 'Full-Stack Java Developer', status: 'Approved', description: 'description of Kevin Craft Bacon'
   },
   {
-    id: 3, name: 'Tratior', batch: '1810-oct08-java-usf', userFullName: 'Wezley Singleton',
+    id: 3, name: 'Tratior', batch: '1810-oct08-java-usf', trainer: 'Wezley Singleton',
     groupMembers: ['Paul', 'Miles', 'Derek', 'Andrew'], screenShots: ['https://i.ytimg.com/vi/wRx3Uvcktm8/maxresdefault.jpg',
       'https://gfnc1kn6pi-flywheel.netdna-ssl.com/wp-content/uploads/2018/06/best-food-for-pug-puppies-header.jpg',
       'https://buzzsharer.com/wp-content/uploads/2016/04/pug-sleeping-upside.jpg', ],
@@ -83,7 +83,7 @@ const PROJECT_DATA: Project[] = [
     techStack: 'Full-Stack Java Developer', status: 'Approved', description: 'Description of Tratior'
   },
   {
-    id: 1, name: 'TopShelf', batch: '1810-oct08-java-usf', userFullName: 'Wezley Singleton',
+    id: 1, name: 'TopShelf', batch: '1810-oct08-java-usf', trainer: 'Wezley Singleton',
     groupMembers: ['Yuki Mano', 'Caleb Massey', 'Shawn Bickel'], screenShots: ['https://i.ytimg.com/vi/wRx3Uvcktm8/maxresdefault.jpg',
       'https://gfnc1kn6pi-flywheel.netdna-ssl.com/wp-content/uploads/2018/06/best-food-for-pug-puppies-header.jpg',
       'https://buzzsharer.com/wp-content/uploads/2016/04/pug-sleeping-upside.jpg', ],
@@ -91,7 +91,7 @@ const PROJECT_DATA: Project[] = [
     techStack: 'Full-Stack Java Developer', status: 'Approved', description: 'description of TopShelf'
   },
   {
-    id: 2, name: 'Kevin Craft Bacon', batch: '1810-oct08-java-usf', userFullName: 'Wezley Singleton',
+    id: 2, name: 'Kevin Craft Bacon', batch: '1810-oct08-java-usf', trainer: 'Wezley Singleton',
     groupMembers: ['Sahil', 'Ryan', 'Jeffly', 'Sadiki'], screenShots: ['https://i.ytimg.com/vi/wRx3Uvcktm8/maxresdefault.jpg',
       'https://gfnc1kn6pi-flywheel.netdna-ssl.com/wp-content/uploads/2018/06/best-food-for-pug-puppies-header.jpg',
       'https://buzzsharer.com/wp-content/uploads/2016/04/pug-sleeping-upside.jpg', ],
@@ -99,7 +99,7 @@ const PROJECT_DATA: Project[] = [
     techStack: 'Full-Stack Java Developer', status: 'Approved', description: 'description of Kevin Craft Bacon'
   },
   {
-    id: 3, name: 'Tratior', batch: '1810-oct08-java-usf', userFullName: 'Wezley Singleton',
+    id: 3, name: 'Tratior', batch: '1810-oct08-java-usf', trainer: 'Wezley Singleton',
     groupMembers: ['Paul', 'Miles', 'Derek', 'Andrew'], screenShots: ['https://i.ytimg.com/vi/wRx3Uvcktm8/maxresdefault.jpg',
       'https://gfnc1kn6pi-flywheel.netdna-ssl.com/wp-content/uploads/2018/06/best-food-for-pug-puppies-header.jpg',
       'https://buzzsharer.com/wp-content/uploads/2016/04/pug-sleeping-upside.jpg', ],
@@ -124,7 +124,7 @@ const PROJECT_DATA: Project[] = [
 export class ViewProjectsComponent implements OnInit, OnDestroy {
   trainerCanEdit = false;
   currentUser: User;
-  displayedColumns: string[] = ['name', 'batch', 'fullName', 'techStack', 'status']; // change userFullName to trainer
+  displayedColumns: string[] = ['name', 'batch', 'fullName', 'techStack', 'status']; // change trainer to trainer
   dataSource: MatTableDataSource<Project>;
   @ViewChild(MatSort) sort: MatSort;
   expandedProject: Project | null;

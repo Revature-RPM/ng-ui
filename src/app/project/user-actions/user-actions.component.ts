@@ -16,7 +16,7 @@ export class UserActionsComponent implements OnInit {
   }
 
   submitProject() {
-    this.router.navigate(['/projects/project_submission']);
+    this.router.navigate(['/project_submission']);
   }
 
   ngOnInit() {

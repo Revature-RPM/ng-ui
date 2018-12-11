@@ -65,9 +65,9 @@ export class ProjectSubmissionComponent implements OnInit {
               private projectService: ProjectService) {}
 
   ngOnInit() {
-    if (localStorage.getItem('user') === null) {
-      this.router.navigate(['/auth/login']);
-    } else {
+    // if (localStorage.getItem('user') === null) {
+    //   this.router.navigate(['/auth/login']);
+    // } else {
       this.ngmeta.setHead({ title: 'Submit | RPM' });
       this.projectToUpload.groupMembers = [];
       this.projectToUpload.screenShots = [];
@@ -75,7 +75,7 @@ export class ProjectSubmissionComponent implements OnInit {
       this.groupMemberString = '';
       this.zipLinksString = '';
       this.githubURLRegex = new RegExp('^(https:\/\/github\.com\/[^/]+\/[^/]+)');
-    }
+    // }
   }
 
   /**
@@ -161,7 +161,7 @@ export class ProjectSubmissionComponent implements OnInit {
     // append the data of the form as key/value pairs using field names on the server as keys and data in the form as values
     formData.append('name', this.projectToUpload.name);
     formData.append('batch', this.projectToUpload.batch);
-    formData.append('userFullName', this.projectToUpload.userFullName);
+    formData.append('trainer', this.projectToUpload.trainer);
     formData.append('techStack', this.projectToUpload.techStack);
     formData.append('description', this.projectToUpload.description);
     formData.append('status', 'pending');

@@ -85,23 +85,23 @@ export class ProfileComponent implements OnInit {
         password: this.form.get('password').value,
         role: this.user.role,
       };
-
+      this.user = updatedUserInfo;
       // this line should be put in user service
       // window.localStorage.setItem('user', JSON.stringify(updatedUserInfo));
       // this.user = JSON.parse(window.localStorage.getItem('user'));
 
-      // this.fillFormGroup(this.user.firstName, this.user.lastName, this.user.email, this.user.username, this.user.password);
+      this.fillFormGroup(this.user.firstName, this.user.lastName, this.user.email, this.user.username, this.user.password);
 
       console.log(updatedUserInfo);
 
 
-      this.userService.updateProfile(updatedUserInfo).pipe(first()).subscribe((user) => {
-        if (user) {
-          localStorage.setItem('user', JSON.stringify(user));
-          this.fillFormGroup(this.user.firstName, this.user.lastName, this.user.email, this.user.username, this.user.password);
-          console.log(this.user);
-        }
-      });
+      // this.userService.updateProfile(updatedUserInfo).pipe(first()).subscribe((user) => {
+      //   if (user) {
+      //     localStorage.setItem('user', JSON.stringify(user));
+      //     this.fillFormGroup(this.user.firstName, this.user.lastName, this.user.email, this.user.username, this.user.password);
+      //     console.log(this.user);
+      //   }
+      // });
     }
   }
 

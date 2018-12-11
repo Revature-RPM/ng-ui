@@ -124,7 +124,7 @@ submitForm() {
   // append the data of the form as key/value pairs using field names on the server as keys and data in the form as values
   formData.append('name', this.projectToUpdate.name);
   formData.append('batch', this.projectToUpdate.batch);
-  formData.append('fullName', this.projectToUpdate.userFullName);
+  formData.append('fullName', this.projectToUpdate.trainer);
   formData.append('techStack', this.projectToUpdate.techStack);
   formData.append('description', this.projectToUpdate.description);
   formData.append('status', 'pending');

@@ -79,13 +79,13 @@
               </div>
               <div fxLayout.xs="column">
                 <div class="container" fxLayout="row">
-                  <a target="_blank" [routerLink]="['/projects', project.id, 'codebase']">
+                  <a target="_blank" [routerLink]="['codebase']">
                     <button mat-icon-button mat-stroked-button color="primary" mat-button matTooltip="Codebase"
                       matTooltipPosition="left">
                       <mat-icon>folder_special</mat-icon>
                     </button>
                   </a>
-                  <a [routerLink]="['/projects', project.id, 'edit']">
+                  <a [routerLink]="[project.id, 'edit']">
                     <button id="icon" mat-icon-button mat-stroked-button color="primary" matTooltip="Edit"
                       matTooltipPosition="right">
                       <mat-icon id="profile-icon">edit</mat-icon>
