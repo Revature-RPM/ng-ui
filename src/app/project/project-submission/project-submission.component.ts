@@ -61,7 +61,7 @@ export class ProjectSubmissionComponent implements OnInit {
 
   constructor(private router: Router,
               private ngmeta: NgMetaService,
-              private dialog: MatDialog, private projectService: ProjectService) {}
+              public dialog: MatDialog, private projectService: ProjectService) {}
 
   ngOnInit() {
     if (localStorage.getItem('user') === null) {
