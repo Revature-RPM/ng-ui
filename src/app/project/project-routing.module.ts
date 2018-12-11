@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: 'home', component: HomePageComponent },
   { path: 'project_submission', component: ProjectSubmissionComponent },
   { path: ':id/edit', component: EditProjectComponent },
-  { path: ':id/codebase', component: ZipComponent },
+  { path: 'codebase', component: ZipComponent },
   { path: '**', redirectTo: 'home' }
 ];
 

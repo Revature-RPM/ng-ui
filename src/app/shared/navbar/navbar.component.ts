@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { MatIconRegistry } from '@angular/material/icon';
-import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 
 import { User } from 'src/app/core/models/User';
+import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
   selector: 'app-navbar',
@@ -13,33 +12,31 @@ import { User } from 'src/app/core/models/User';
 export class NavbarComponent implements OnInit {
   user: User = {};
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private userservice: UserService) {
   }
 
   goToRegister() {
-    this.router.navigate(['auth','register']);
+    this.router.navigate(['auth', 'register']);
   }
 
   goToLogin() {
-    this.router.navigate(['auth','login']);
+    this.router.navigate(['auth', 'login']);
   }
 
   userAccount() {
-    this.router.navigate(['account',this.user.id]);
+    this.router.navigate(['account', this.user.id]);
   }
 
   logout() {
-    this.router.navigate(['auth','logout']);
+    this.userservice.logout()
+    this.router.navigate(['auth/login']);
   }
 
   ngOnInit() {
-    this.user = JSON.parse(localStorage.getItem('user'));
-    // if(!this.user){
-    //   this.router.navigate(['auth','login']);
-    // }
+    this.user = this.userservice.user;
   }
 
   homepageShortcut() {
-    this.router.navigate(['projects','home']);
+    this.router.navigate(['projects', 'home']);
   }
 }

@@ -124,7 +124,7 @@ const PROJECT_DATA: Project[] = [
 export class ViewProjectsComponent implements OnInit, OnDestroy {
   trainerCanEdit = false;
   currentUser: User;
-  displayedColumns: string[] = ['name', 'batch', 'userFullName', 'techStack', 'status']; // change userFullName to trainer
+  displayedColumns: string[] = ['name', 'batch', 'fullName', 'techStack', 'status']; // change userFullName to trainer
   dataSource: MatTableDataSource<Project>;
   @ViewChild(MatSort) sort: MatSort;
   expandedProject: Project | null;
@@ -133,9 +133,8 @@ export class ViewProjectsComponent implements OnInit, OnDestroy {
 
   projects: Project[];
   subscription: Subscription;
-  constructor(private router: Router, private viewProjectsService: ProjectService) {
-    // Assign the data to the data source for the table to render
-    this.dataSource = new MatTableDataSource(PROJECT_DATA);
+  constructor(private router: Router, private viewProjectsService: ProjectService) { 
+
    }
 
   /**
@@ -147,12 +146,14 @@ export class ViewProjectsComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.subscription = this.viewProjectsService.getAllProjects()
       .subscribe((projectResponse) => {
-        this.projects = projectResponse;
-        console.log('got projects');
         console.log(projectResponse);
+        this.projects = projectResponse;
+        // Assign the data to the data source for the table to render
+        this.dataSource = new MatTableDataSource(this.projects);
+        this.dataSource.sort = this.sort;
+        console.log('got projects');
+        console.log(this.projects);
       });
-
-      this.dataSource.sort = this.sort;
   }
 
   /**
@@ -193,8 +194,8 @@ export class ViewProjectsComponent implements OnInit, OnDestroy {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  nextImage() {
-    this.imagePage++;
+  nextImage(totalAmountOfScreenShots: number) {
+    this.imagePage = (this.imagePage + 1)%totalAmountOfScreenShots;
   }
 
   previousImage(totalAmountOfScreenShots: number) {

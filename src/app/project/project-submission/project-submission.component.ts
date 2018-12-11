@@ -5,7 +5,9 @@ import { NgMetaService } from 'ngmeta';
 
 import { InputDialogComponent } from './input-dialog/input-dialog.component';
 import { Project } from 'src/app/core/models/Project';
+import { ProjectService } from 'src/app/core/services/project.service';
 
+// this interface represents data to be held and returned from an input dialog
 export interface DialogData {
   title: string;
   questionType: string;
@@ -22,9 +24,9 @@ export class ProjectSubmissionComponent implements OnInit {
   projectToUpload: Project = {};
 
   // validScreenshots and validGithubURL determine if information has been entered correctly and if the form can be submitted
-  validScreenshots = false;
-  validGithubURL = false;
-  invalidLink = false; // triggers an error message is set to true
+  validScreenshots: boolean = false;
+  validGithubURL: boolean = false;
+  invalidLink: boolean = false; // triggers an error message if set to true
 
   /**
    * title, questionType, and result are all passed to a dialog when the user chooses either the group member or the links input field
@@ -59,7 +61,8 @@ export class ProjectSubmissionComponent implements OnInit {
 
   constructor(private router: Router,
               private ngmeta: NgMetaService,
-              private dialog: MatDialog) {}
+              private dialog: MatDialog,
+              private projectService: ProjectService) {}
 
   ngOnInit() {
     if (localStorage.getItem('user') === null) {
@@ -105,8 +108,9 @@ export class ProjectSubmissionComponent implements OnInit {
         // if the user chose to add a group member, then place the input into the groupMembers array corresponding to the project to submit
         if (e.target.id == 'inputGroupMembers') {
           this.projectToUpload.groupMembers.push(result);
-          this.groupMemberString += ' ' + result;
-        } else {
+          
+          this.groupMemberString += result + ' ';
+        }else{
          this.githubURL = result;
          console.log(this.githubURL);
 
@@ -138,7 +142,7 @@ export class ProjectSubmissionComponent implements OnInit {
           this.validGithubURL = true;
           this.invalidLink = false;
           this.projectToUpload.zipLinks.push(result);
-          this.zipLinksString += ' ' + result;
+          this.zipLinksString += result + ' ';
         }
       }
     });
@@ -185,12 +189,10 @@ export class ProjectSubmissionComponent implements OnInit {
     console.log(this.projectToUpload.screenShots);
 
     // the FormData object is then sent to a service where it is submitted to the server as an http post request
-    // this.projectService.createProject(formData).subscribe(project => {
-    //    this.router.navigate(['/home']);
-    // });
+    this.projectService.createProject(formData).subscribe(project => {
+       this.router.navigate(['/home']);
+    });
 
-
-    // this.router.navigate(['/home']);
   }
 
   /**
