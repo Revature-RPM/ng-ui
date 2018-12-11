@@ -46,17 +46,18 @@ describe('RegistrationComponent', () => {
   });
 
 
-  //test components call to the user service ts file
+  //Test component's call to the user service ts file
   it('Should call service level register method', ()=> {
     
+    //Arrange
     const debugElement = fixture.debugElement;
     let userService = debugElement.injector.get(UserService);
-
-    //Set a spy on the service class
-    let serviceSpy = spyOn(userService, 'register').and.callThrough();
+    let serviceSpy = spyOn(userService, 'register').and.callThrough();//Set a spy on the service class
     
+    //Act
     component.register();
 
+    //Assert
     expect(serviceSpy).toHaveBeenCalledTimes(1);
   })
 
@@ -74,8 +75,8 @@ describe('RegistrationComponent', () => {
     let serviceSpy = spyOn(userService, 'register').and.callThrough(); //Spy on the user service login method
     
     //simulate a form submission 
-    component.user.firstname = "Tester";
-    component.user.lastname = "Testing";
+    component.user.firstName = "Tester";
+    component.user.lastName = "Testing";
     component.user.email = "test@revature.com";
     component.user.username = "test";
     component.user.password = "ing";

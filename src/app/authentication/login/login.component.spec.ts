@@ -78,20 +78,22 @@ describe('LoginComponent', () => {
    */
   it('Login button click should make a call to the UserService', () =>{
      
-    //Arrange the login environment
+    //Arrange
     let debugElement = fixture.debugElement;
     let userService = debugElement.injector.get(UserService);
     let serviceSpy = spyOn(userService, 'login').and.callThrough(); //Spy on the user service login method
     
-    //simulate a form submission
     const loginElement = fixture.debugElement.query(By.css('form')); //Capture the template for inside of a variable for mocking
-    component.user.firstname = "Admin"; //Mock up the username input field
-    component.user.lastname = "Testing"; //Mock up the password input field
+    component.user.firstName = "Admin"; //Mock up the username input field
+    component.user.lastName = "Testing"; //Mock up the password input field
 
+
+    //Act
     fixture.detectChanges();
     loginElement.nativeElement[2].click(); //Simulate a button click
       
-    //the user service login method should be called with the passed credentials 
+
+    //Assert
     expect(serviceSpy).toHaveBeenCalled();     
       
   });
