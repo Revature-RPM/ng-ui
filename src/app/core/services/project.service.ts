@@ -20,14 +20,14 @@ export class ProjectService {
   constructor(private httpClient: HttpClient) { }
 
   getAllProjects(): Observable<Project[]> {
-    return this.httpClient.get<Project[]>(environment.url+"/projects", HTTP_OPTIONS);
+    return this.httpClient.get<Project[]>(environment.url + '/projects', HTTP_OPTIONS);
   }
 
-  getProjectById(id): Observable<Project>{
+  getProjectById(id): Observable<Project> {
     return this.httpClient.get<Project>(environment.url + `/projects/${id}`, HTTP_OPTIONS);
   }
 
-  updateProject(formData: FormData, id): Observable<Project>{
+  updateProject(formData: FormData, id): Observable<Project> {
     return this.httpClient.put(environment.url + `/projects/${id}`, formData);
   }
 
