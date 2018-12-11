@@ -7,6 +7,7 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { UserService } from './user.service';
+import { environment} from 'src/environments/environment'
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
@@ -14,7 +15,7 @@ export class TokenInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     
-    if(window.localStorage.getItem("jwt")){
+    if(request.url.indexOf(environment.url)>0 && window.localStorage.getItem("jwt")){
     // console.log("attaching headers")
     //check uri later
     // console.log("attaching: "   + window.localStorage.getItem("jwt"))
