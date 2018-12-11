@@ -44,8 +44,10 @@ ${error.error}`
   getUser() {
     if (this.user) {
       return this.user;
-    } else if (window.localStorage.get('user') && window.localStorage.get('jwt')) {
-      this.user = window.localStorage.get('user');
+    } else if (window.localStorage.getItem('user') && window.localStorage.getItem('jwt')) {
+      this.user = JSON.parse(window.localStorage.getItem('user'));
+    }else{
+      return null;
     }
     return this.user;
   }
@@ -55,10 +57,13 @@ ${error.error}`
   //
   login(user: User): Observable<any> {
     return this.http.post(environment.url + '/auth/', user, { observe: 'response'})
-      .pipe(map(reponse => {
-        if (reponse.headers.get('Authorization')) {
+      .pipe(map(reponse=>{
+        if(reponse.headers.get('Authorization')){
+          // console.log("reponse body seen")
+          // console.log(reponse.body)
           this.user = reponse.body;
-          this.jwtauthtoken = reponse.headers.get('Authorization').split(' ')[1];
+          this.jwtauthtoken = reponse.headers.get('Authorization').split(" ")[1];
+          // console.log(this.jwtauthtoken)
           localStorage.setItem('user', JSON.stringify(reponse.body));
           localStorage.setItem('jwt', this.jwtauthtoken);
           return reponse.body;
