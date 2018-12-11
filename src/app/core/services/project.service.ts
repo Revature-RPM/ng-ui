@@ -16,7 +16,7 @@ const HTTP_OPTIONS = {
 })
 export class ProjectService {
   CurrentProject: Project;
-  
+
   constructor(private httpClient: HttpClient) { }
 
   getAllProjects(): Observable<Project[]> {

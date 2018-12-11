@@ -1,13 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material';
 import { Router, ActivatedRoute } from '@angular/router';
+import { NgMetaService } from 'ngmeta';
+import { Subscription } from 'rxjs';
 
 import { Project } from 'src/app/core/models/Project';
 import { ProjectService } from 'src/app/core/services/project.service';
-
-import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
-import { MatDialog } from '@angular/material';
 import { InputDialogComponent } from '../project-submission/input-dialog/input-dialog.component';
-import { Subscription } from 'rxjs';
 
 export interface DialogData {
   title: string;
@@ -37,33 +36,31 @@ result: string;
 
 
 /**
- * groupMemberString and zipLinkString are both bound to the user's input of the group member field and the zip links field
- * When a new group member or zip link is added, then that information is concatenated to the string. 
- * Because of two-way binding, the result is placed in either the group member field or the zip links field
+ * groupMemberString is bound to the user's input of the group member field 
+ * When a new group memberk is added, then that information is concatenated to the string. 
+ * Because of two-way binding, the result is placed in the group member field 
  * @author Shawn Bickel (1810-Oct08-Java-USF)
  */
 groupMemberString: string;
 
-/**
-* githubURLRegex: holds the regular expression to validate that an entered link is formatted correctly
-*    - a valid link is of the format: https://github.com/<github username>/<repository name>
-*    - the regular expression used to validate this is: ^(https:\/\/github\.com\/[^/]+\/[^/]+)
-*    - this expression is checking that the link contains https://github.com/at least one of <any character but a '/'>/at least one of <any character but a '/'>`
-* githubURL: a string to hold the user's input from the dialog
-*  @author Shawn Bickel (1810-Oct08-Java-USF)
-*/
-githubURLRegex: RegExp;
-githubURL: string;
-
 subscription: Subscription; // will be used to subscribe to the results of an observable
 
-constructor(private router: Router, private projectService: ProjectService, private route: ActivatedRoute, public dialog: MatDialog) {}
+constructor(private router: Router,
+  private ngmeta: NgMetaService,
+  private projectService: ProjectService,
+  private route: ActivatedRoute,
+  public dialog: MatDialog) {}
 
 ngOnInit() {
-  this.projectToUpdate.groupMembers = [];
-  this.projectToUpdate.screenShots = [];
-  this.projectToUpdate.zipLinks = [];
-  this.groupMemberString = '';
+  if (localStorage.getItem('user') === null) {
+    this.router.navigate(['/auth/login']);
+  } else {
+    this.ngmeta.setHead({ title: 'Edit Project | RPM' });
+    this.projectToUpdate.groupMembers = [];
+    this.projectToUpdate.screenShots = [];
+    this.projectToUpdate.zipLinks = [];
+    this.groupMemberString = '';
+  }
    /**
    * This will retrieve the path variable which corresponds to the id of the project to be edited.
    * ActivatedRoute has an observable called 'params' which provides a means to do this.
@@ -156,5 +153,7 @@ submitForm() {
 
 }
 }
+
+
 
 
