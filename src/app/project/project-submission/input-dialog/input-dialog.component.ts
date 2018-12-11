@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+
 import { ProjectSubmissionComponent, DialogData } from '../project-submission.component';
 
 @Component({
@@ -10,11 +11,11 @@ import { ProjectSubmissionComponent, DialogData } from '../project-submission.co
 export class InputDialogComponent implements OnInit {
 
   /**
-   * 
+   *
    * @param dialogRef : injects a reference to the dialog defined in the class of the project submission component
    * @param data : the data passed to the dialog
-   * 
-   * @author Shawn Bickel (1810-Oct08-Java-USF) 
+   *
+   * @author Shawn Bickel (1810-Oct08-Java-USF)
    */
   constructor(public dialogRef: MatDialogRef<ProjectSubmissionComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData) { }

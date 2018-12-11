@@ -22,7 +22,6 @@ export class ProjectCardComponent implements OnInit {
   }
 
   ngOnInit() {
-    //console.log(this.project.techStack[0]);
   }
 
   changeImage() {
