@@ -44,8 +44,10 @@ ${error.error}`
   getUser() {
     if (this.user) {
       return this.user;
-    } else if (window.localStorage.get('user') && window.localStorage.get('jwt')) {
-      this.user = window.localStorage.get('user');
+    } else if (window.localStorage.getItem('user') && window.localStorage.getItem('jwt')) {
+      this.user = JSON.parse(window.localStorage.getItem('user'));
+    }else{
+      return null;
     }
     return this.user;
   }

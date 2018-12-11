@@ -66,7 +66,7 @@ export class ProfileComponent implements OnInit {
 
     // pre-fill the profile information with logged-in user information
     this.user = this.userService.getUser();
-
+    if(!this.user)this.router.navigate(['/auth/login']);
     this.fillFormGroup(this.user.firstName, this.user.lastName, this.user.email, this.user.username, this.user.password);
   }
 
@@ -94,9 +94,12 @@ export class ProfileComponent implements OnInit {
 
       this.userService.updateProfile(updatedUserInfo).pipe(first()).subscribe((user) => {
         if (user) {
-          localStorage.setItem('user', JSON.stringify(user));
+          this.userService.user = user;
+          alert("profile updated")
           this.fillFormGroup(this.user.firstName, this.user.lastName, this.user.email, this.user.username, this.user.password);
         }
+      }, (error)=>{
+          alert("error updating profile")
       });
     }
   }
