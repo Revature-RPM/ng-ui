@@ -24,9 +24,9 @@ export class ProjectSubmissionComponent implements OnInit {
   projectToUpload: Project = {};
 
   // validScreenshots and validGithubURL determine if information has been entered correctly and if the form can be submitted
-  validScreenshots: boolean = false;
-  validGithubURL: boolean = false;
-  invalidLink: boolean = false; // triggers an error message if set to true
+  validScreenshots = false;
+  validGithubURL = false;
+  invalidLink = false; // triggers an error message if set to true
 
   /**
    * title, questionType, and result are all passed to a dialog when the user chooses either the group member or the links input field
@@ -109,15 +109,11 @@ export class ProjectSubmissionComponent implements OnInit {
         if (e.target.id == 'inputGroupMembers') {
           this.projectToUpload.groupMembers.push(result);
           this.groupMemberString = this.projectToUpload.groupMembers.join(', '); 
-        }else{
-         this.githubURL = result;
-         console.log(this.githubURL);
+        } else {
+          this.githubURL = result;
 
          // find the exact match in the string corresponding to the github repository regular expression
          const regexArr = this.githubURL.match(this.githubURLRegex);
-         console.log(regexArr);
-         console.log(this.githubURLRegex.test(this.githubURL));
-
 
          /**
           * If the string contains no matches related to the regex or if the length of the input is greater than the match, then the link is not valid.
@@ -165,11 +161,6 @@ export class ProjectSubmissionComponent implements OnInit {
     formData.append('description', this.projectToUpload.description);
     formData.append('status', 'pending');
 
-    console.log(this.projectToUpload.groupMembers);
-    console.log(this.projectToUpload.zipLinks);
-    console.log(this.projectToUpload.screenShots);
-
-
     // elements of an array are appended to the FormData object using the same key name
     for (let i = 0; i < this.projectToUpload.groupMembers.length; i++) {
       formData.append('groupMembers', this.projectToUpload.groupMembers[i]);
@@ -183,15 +174,10 @@ export class ProjectSubmissionComponent implements OnInit {
       formData.append('zipLinks', this.projectToUpload.zipLinks[k]);
     }
 
-    console.log(this.projectToUpload.groupMembers);
-    console.log(this.projectToUpload.zipLinks);
-    console.log(this.projectToUpload.screenShots);
-
     // the FormData object is then sent to a service where it is submitted to the server as an http post request
     this.projectService.createProject(formData).subscribe(project => {
        this.router.navigate(['/home']);
     });
-
   }
 
   /**
@@ -201,7 +187,6 @@ export class ProjectSubmissionComponent implements OnInit {
    * @param e the event corresponding to the user choosing a screenshot to uplodad
    */
   onFileSelected(e) {
-    console.log(e);
     for (let i = 0; i < e.target.files.length; i++) {
       this.projectToUpload.screenShots.push(e.target.files[i]);
       this.validScreenshots = true;
