@@ -11,6 +11,8 @@ import { UserService } from './user.service';
 export class TokenInterceptor implements HttpInterceptor {
   constructor(private userService: UserService) {}
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    
+    if(window.localStorage.getItem("jwt")){
     console.log("attaching headers")
     console.log("attaching: "   + window.localStorage.getItem("jwt"))
     request = request.clone({
@@ -19,6 +21,8 @@ export class TokenInterceptor implements HttpInterceptor {
       }
     });
     console.log(request.headers.get('authorization'))
+  }
+  
     return next.handle(request);
   }
 }
