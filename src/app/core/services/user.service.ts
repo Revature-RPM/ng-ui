@@ -41,6 +41,13 @@ ${error.error}`
     this.jwtauthtoken = null;
     this.user = null;
   }
+  getUser(){
+    if(this.user)
+    return this.user
+    else if(window.localStorage.get('user') && window.localStorage.get('jwt'))
+    this.user = window.localStorage.get('user')
+    return this.user;
+  }
   //only use environment.url for the base url and concat any restful endpoints
   //user.login(user). login the user and retrieve the jwt token from the header
   //@param user

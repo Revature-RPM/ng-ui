@@ -33,7 +33,7 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.user = null
+    this.user = this.userservice.user;
   }
 
   homepageShortcut() {
