@@ -1,8 +1,13 @@
 @import '~@angular/material/theming';
 
 .example-fill-remaining-space {
-    /* This fills the remaining space, by using flexbox. 
-       Every toolbar row uses a flexbox row layout. */
+    /* The css flex property determines how flexible items will appear in relation to each other;
+        It is used to specify flex-grow, flex-shrink, and flex-basis properties
+            - flex-grow: determines how a specified element will increase in size in relation to other flexible elements
+            - flex-shrink: determines how an element will decrease in size relative to other flexible elements 
+            - flex-basis: determines the initial length of a flexible item 
+                - auto: the length will be equal to the length of the item; if the item has no length, the length will be determined by the content 
+                - initial: sets the length to the default value, which is auto */
     flex: 1 1 auto;
   }
 

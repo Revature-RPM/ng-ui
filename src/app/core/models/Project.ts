@@ -2,11 +2,12 @@ export interface Project {
     id?: number;
     name?: string;
     batch?: string;
-    fullName?: string;
-    groupMembers?: string[];
-    screenShots?: string[];
-    zipLinks?: string[];
+    userFullName?: string;
+    groupMembers?: any[];
+    screenShots?: any[];
+    zipLinks?: any[];
     techStack?: string;
     status?: string;
     description?: string;
+    FullName?: string;
  }
