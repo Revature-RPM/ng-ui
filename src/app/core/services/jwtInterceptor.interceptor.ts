@@ -3,14 +3,15 @@ import { environment } from 'src/environments/environment';
 // you can export functions in the module.ts. but this will allow future dependency injection
 export function jwtOptionsFactory() {
   return {
-      tokenGetter: () => {
-        console.log('tokenGetter in core.module.ts');
-       return localStorage.getItem('jwt');
+      tokenGetter: ()=> {
+        console.log("tokenGetter in core.module.ts")
+        console.log(window.localStorage.getItem("jwt"))
+       return window.localStorage.getItem("jwt")
     },
-    whitelistedDomains: [environment.url + '/auth/users'],
-    blacklistedRoutes: [environment.url + '/auth']
-    // according to libary document. whitelisted domains will have headers ATTACHED
-    // but blacklisted will not have the headers REPLACED
-    // ? hopefully --
-  };
+    whitelistedDomains: [environment.url],
+    blacklistedRoutes: [environment.url+"/auth/"]
+    //according to libary document. whitelisted domains will have headers ATTACHED
+    //but blacklisted will not have the headers REPLACED
+    // ? hopefully -- 
+  }
 }

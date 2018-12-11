@@ -41,15 +41,24 @@ ${error.error}`
     this.jwtauthtoken = null;
     this.user = null;
   }
+  getUser(){
+    if(this.user)
+    return this.user
+    else if(window.localStorage.get('user') && window.localStorage.get('jwt'))
+    this.user = window.localStorage.get('user')
+    return this.user;
+  }
   //only use environment.url for the base url and concat any restful endpoints
   //user.login(user). login the user and retrieve the jwt token from the header
   //@param user
   //
   login(user: User): Observable<any> {
     console.log(user)
-    return this.http.post(environment.url + '/auth', user, { observe: 'response'})
+    return this.http.post(environment.url + '/auth/', user, { observe: 'response'})
       .pipe(map(reponse=>{
-        if(reponse.body && reponse.headers.get('Authorization')){
+        if(reponse.headers.get('Authorization')){
+          console.log("reponse body seen")
+          console.log(reponse.body)
           this.user = reponse.body;
           this.jwtauthtoken = reponse.headers.get('Authorization').split(" ")[1];
           //console.log(this.jwtauthtoken)
@@ -57,24 +66,20 @@ ${error.error}`
           localStorage.setItem('jwt', this.jwtauthtoken)
           return reponse.body;
         }else 
-        console.log("throwerror?")
-        throwError // do something with this
-     
-        
-        
+          return null; //this should throwerror
       }),catchError(this.handleError))
   }
 
     //only use environment.url for the base url and concat any restful endpoints
   register(user: User): Observable<User> {
     user.role = "user";
-    return this.http.post<User>(environment.url + '/auth/users', user, httpOptions)
+    return this.http.post<User>(environment.url+ '/auth/users/', user, httpOptions)
       .pipe(catchError(this.handleError));
   }
 
     //only use environment.url for the base url and concat any restful endpoints
   updateProfile(user: User): Observable<User> {
-    return this.http.put<User>(environment.url+ '/auth/users', user, httpOptions)
+    return this.http.put<User>(environment.url+ '/auth/users/', user, httpOptions)
       .pipe(catchError(this.handleError));
   }
 }
