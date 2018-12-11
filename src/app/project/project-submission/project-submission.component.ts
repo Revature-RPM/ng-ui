@@ -41,7 +41,7 @@ export class ProjectSubmissionComponent implements OnInit {
 
   /**
    * groupMemberString and zipLinkString are both bound to the user's input of the group member field and the zip links field
-   * When a new group member or zip link is added, then that information is concatenated to the string. 
+   * When a new group member or zip link is added, then that information is concatenated to the string.
    * Because of two-way binding, the result is placed in either the group member field or the zip links field
    * @author Shawn Bickel (1810-Oct08-Java-USF)
    */
@@ -80,7 +80,8 @@ export class ProjectSubmissionComponent implements OnInit {
 
   /**
    * this method opens the dialog defined in the input-dialog component;
-   *    after the dialog is closed the user's data is placed in the groupMembers array or the zipLinks array depending on which field was clicked
+   * after the dialog is closed the user's data is placed in the groupMembers array
+   * or the zipLinks array depending on which field was clicked
    * @param e: the event of clicking either the group member or zip links fields, which both trigger the dialog to open
    * @author Shawn Bickel (1810-Oct08-Java-USF)
    */
@@ -108,7 +109,7 @@ export class ProjectSubmissionComponent implements OnInit {
         // if the user chose to add a group member, then place the input into the groupMembers array corresponding to the project to submit
         if (e.target.id == 'inputGroupMembers') {
           this.projectToUpload.groupMembers.push(result);
-          this.groupMemberString = this.projectToUpload.groupMembers.join(', '); 
+          this.groupMemberString = this.projectToUpload.groupMembers.join(', ');
         } else {
           this.githubURL = result;
 
@@ -116,7 +117,8 @@ export class ProjectSubmissionComponent implements OnInit {
          const regexArr = this.githubURL.match(this.githubURLRegex);
 
          /**
-          * If the string contains no matches related to the regex or if the length of the input is greater than the match, then the link is not valid.
+          * If the string contains no matches related to the regex or
+          * if the length of the input is greater than the match, then the link is not valid.
           * If the matched portion of the URL is only a subset of the entire URL, then we know that the URL is not valid.
           * The length of a valid URL will equal the length of the match found in the string corresponding the the regular expression.
           * All links are unique
@@ -133,7 +135,8 @@ export class ProjectSubmissionComponent implements OnInit {
 
           console.log('this is a correctly formatted link');
 
-          // at this point, the URL will be valid and will be placed in the array corresponding to the zip links array of the project to be submitted
+          // at this point, the URL will be valid and will be placed in the array
+          // corresponding to the zip links array of the project to be submitted
           this.validGithubURL = true;
           this.invalidLink = false;
           this.projectToUpload.zipLinks.push(result);
@@ -150,7 +153,7 @@ export class ProjectSubmissionComponent implements OnInit {
 	 * @author Shawn Bickel (1810-Oct08-Java-USF)
 	 */
   submitForm() {
-    // FormData is used to hold form fields and their values as key/value pairs to easily transfer data in a form 
+    // FormData is used to hold form fields and their values as key/value pairs to easily transfer data in a form
     const formData = new FormData();
 
     // append the data of the form as key/value pairs using field names on the server as keys and data in the form as values
@@ -181,8 +184,9 @@ export class ProjectSubmissionComponent implements OnInit {
   }
 
   /**
-   * When the file input is triggered, the event is passed to this method which uses the properties of the event to retrieve the files chosen and place them in the 
-   *      array corresponding to the screenShots array of the project to be submitted
+   * When the file input is triggered, the event is passed to this method
+   * which uses the properties of the event to retrieve the files chosen and
+   * place them in the array corresponding to the screenShots array of the project to be submitted
    *
    * @param e the event corresponding to the user choosing a screenshot to uplodad
    */

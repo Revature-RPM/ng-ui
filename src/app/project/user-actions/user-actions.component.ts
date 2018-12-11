@@ -11,7 +11,6 @@ import { User } from 'src/app/core/models/User';
 export class UserActionsComponent implements OnInit {
   user: User = {};
 
-
   constructor(private router: Router) {
   }
 
@@ -21,5 +20,4 @@ export class UserActionsComponent implements OnInit {
 
   ngOnInit() {
   }
-
 }

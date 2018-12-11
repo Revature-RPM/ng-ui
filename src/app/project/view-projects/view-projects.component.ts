@@ -134,16 +134,14 @@ export class ViewProjectsComponent implements OnInit, OnDestroy {
 
   projects: Project[];
   subscription: Subscription;
-  constructor(private router: Router, private viewProjectsService: ProjectService) { 
-
-   }
+  constructor(private router: Router, private viewProjectsService: ProjectService) { }
 
   /**
- * this is a lifecycle method called once by Angular after ngOnChanges(); it should be used to perform intialization logic; 
- * the content of the method includes a call to a service to consume information from an endpoint concerning projects; an observable 
- * is subscribed to and the returned projects are placed in an array to be displayed in a grid view.
- * @author Shawn Bickel (1810-Oct08-Java-USF)
- */
+   * this is a lifecycle method called once by Angular after ngOnChanges(); it should be used to perform intialization logic;
+   * the content of the method includes a call to a service to consume information from an endpoint concerning projects; an observable
+   * is subscribed to and the returned projects are placed in an array to be displayed in a grid view.
+   * @author Shawn Bickel (1810-Oct08-Java-USF)
+   */
   ngOnInit() {
     this.subscription = this.viewProjectsService.getAllProjects()
       .subscribe((projectResponse) => {
@@ -159,8 +157,8 @@ export class ViewProjectsComponent implements OnInit, OnDestroy {
 
   /**
    * This method determines if a trainer can edit a project; a trainer can only edit a project if the project was submitted by the trainer.
-   * The click event of this method is used to find the name of the trainer displayed in the row; if the trainer in the row is the same as the 
-   *        currently logged in user, then the trainer can edit the project
+   * The click event of this method is used to find the name of the trainer displayed in the row;
+   * if the trainer in the row is the same as the currently logged in user, then the trainer can edit the project
    * @param rowClick : the event when a row is clicked and expanded
    * @author Shawn Bickel (1810-Oct08-Java-USF)
    */
@@ -190,8 +188,8 @@ export class ViewProjectsComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * This function is used to filter the table based on the inputted string. 
-   * It is binded as an event listener. 
+   * This function is used to filter the table based on the inputted string.
+   * It is binded as an event listener.
    * @param filterValue : a string value that is used to filter the dataSource for the MatTable
    * @author Yuki Mano (1810-Oct08-Java-USF)
    */
@@ -201,17 +199,17 @@ export class ViewProjectsComponent implements OnInit, OnDestroy {
 
   /**
    * This function is used to increment the page index of the project's screenshot.
-   * Incrementing the page index will render the next project's screenshot. 
+   * Incrementing the page index will render the next project's screenshot.
    * @param totalAmountOfScreenShots : a number value that contains the total number of screenshots for a particular project
    * @author Yuki Mano (1810-Oct08-Java-USF)
    */
   nextImage(totalAmountOfScreenShots: number) {
-    this.imagePage = (this.imagePage + 1)%totalAmountOfScreenShots;
+    this.imagePage = (this.imagePage + 1) % totalAmountOfScreenShots;
   }
 
   /**
    * This function is used to decrement the page index of the project's screenshot.
-   * Decrementing the page index will render the next project's screenshot. 
+   * Decrementing the page index will render the next project's screenshot.
    * @param totalAmountOfScreenShots : a number value that contains the total number of screenshots for a particular project
    * @author Yuki Mano (1810-Oct08-Java-USF)
    */
