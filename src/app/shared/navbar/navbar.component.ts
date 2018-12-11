@@ -28,20 +28,12 @@ export class NavbarComponent implements OnInit {
   }
 
   logout() {
-<<<<<<< HEAD
     this.userservice.logout()
     this.router.navigate(['auth/login']);
   }
 
   ngOnInit() {
     this.user = null
-=======
-    this.router.navigate(['auth', 'logout']);
-  }
-
-  ngOnInit() {
-    this.user = JSON.parse(localStorage.getItem('user'));
->>>>>>> 52fa21909250087baa3b7994453e89b0d6a56015
   }
 
   homepageShortcut() {

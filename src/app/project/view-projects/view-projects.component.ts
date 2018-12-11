@@ -133,14 +133,8 @@ export class ViewProjectsComponent implements OnInit, OnDestroy {
 
   projects: Project[];
   subscription: Subscription;
-<<<<<<< HEAD
   constructor(private router: Router, private viewProjectsService: ProjectService) { 
 
-=======
-  constructor(private router: Router, private viewProjectsService: ProjectService) {
-    // Assign the data to the data source for the table to render
-    this.dataSource = new MatTableDataSource(PROJECT_DATA);
->>>>>>> 52fa21909250087baa3b7994453e89b0d6a56015
    }
 
   /**
