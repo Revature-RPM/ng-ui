@@ -6,10 +6,11 @@ export function jwtOptionsFactory() {
   return {
       tokenGetter: ()=> {
         console.log("tokenGetter in core.module.ts")
+        console.log(localStorage.getItem("jwt"))
        return localStorage.getItem("jwt")
     },
-    whitelistedDomains: [environment.url+"/auth/users"],
-    blacklistedRoutes: [environment.url+"/auth"]
+    whitelistedDomains: [environment.url+"/auth/users",environment.url+"/projects"],
+    blacklistedRoutes: [environment.url+"/auth/"]
     //according to libary document. whitelisted domains will have headers ATTACHED
     //but blacklisted will not have the headers REPLACED
     // ? hopefully -- 

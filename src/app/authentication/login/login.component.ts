@@ -26,7 +26,11 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.userService.login(this.user).pipe(first()).subscribe((user) => {
+      if(user){
         this.router.navigate(['/home']);
+      }else{
+        alert("Error Loggin in");
+      }
     },(error)=>{ alert("ERROR LOGGING IN")});
   }
 }

@@ -4,6 +4,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 
 import { User } from 'src/app/core/models/User';
+import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
   selector: 'app-navbar',
@@ -13,7 +14,7 @@ import { User } from 'src/app/core/models/User';
 export class NavbarComponent implements OnInit {
   user: User = {};
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private userservice: UserService) {
   }
 
   goToRegister() {
@@ -29,14 +30,12 @@ export class NavbarComponent implements OnInit {
   }
 
   logout() {
-    this.router.navigate(['auth','logout']);
+    this.userservice.logout()
+    this.router.navigate(['auth/login']);
   }
 
   ngOnInit() {
-    this.user = JSON.parse(localStorage.getItem('user'));
-    // if(!this.user){
-    //   this.router.navigate(['auth','login']);
-    // }
+    this.user = null
   }
 
   homepageShortcut() {
