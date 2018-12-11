@@ -108,8 +108,7 @@ export class ProjectSubmissionComponent implements OnInit {
         // if the user chose to add a group member, then place the input into the groupMembers array corresponding to the project to submit
         if (e.target.id == 'inputGroupMembers') {
           this.projectToUpload.groupMembers.push(result);
-          
-          this.groupMemberString += result + ' ';
+          this.groupMemberString = this.projectToUpload.groupMembers.join(', '); 
         }else{
          this.githubURL = result;
          console.log(this.githubURL);

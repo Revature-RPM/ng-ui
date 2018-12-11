@@ -21,8 +21,12 @@ export class ProfileComponent implements OnInit {
   filledPassword = true;
   emailPattern = '^[a-zA-Z0-9_.+-]+(?:(?:[a-zA-Z0-9-]+\.)?[a-zA-Z]+\.)?@(revature)\.com$';
 
-  // source: <https://scotch.io/@ibrahimalsurkhi/match-password-validation-with-angular-2>
-  // enable validation error when password is not matched
+  /**
+   * source: <https://scotch.io/@ibrahimalsurkhi/match-password-validation-with-angular-2>
+   * Enable validation error when password is not matched with confirmPassword
+   * @param AC : grab the form that uses this function's validation
+   * @author Yuki Mano (1810-Oct08-Java-USF)
+   */
   static MatchPassword(AC: AbstractControl) {
     const password = AC.get('password').value; // to get value in input tag
     const confirmPassword = AC.get('confirmPassword').value; // to get value in input tag
@@ -33,6 +37,11 @@ export class ProfileComponent implements OnInit {
     }
   }
 
+  /**
+   * Enable validation error when email does not end with '@revature.com' 
+   * @param AC : grab the form that uses this function's validation
+   * @author Yuki Mano (1810-Oct08-Java-USF)
+   */
   static RevatureEmail(AC: AbstractControl) {
     const email = AC.get('email').value; // to get value in input tag
     const emailPattern = '^[a-zA-Z0-9_.+-]+(?:(?:[a-zA-Z0-9-]+\.)?[a-zA-Z]+\.)?@(revature)\.com$'; // regex for Revature email
@@ -57,12 +66,15 @@ export class ProfileComponent implements OnInit {
 
 
     // pre-fill the profile information with logged-in user information
-    this.user = this.userService.user;
+    this.user = this.userService.getUser();
 
     this.fillFormGroup(this.user.firstName, this.user.lastName, this.user.email, this.user.username, this.user.password);
   }
 
-  // call user-service to update the profile information
+  /**
+   * This function will call the user-service to update user's profile information
+   * @author Yuki Mano (1810-Oct08-Java-USF)
+   */
   updateProfile() {
     if (this.form.valid) {
       const updatedUserInfo: User = {
@@ -81,8 +93,7 @@ export class ProfileComponent implements OnInit {
 
       // this.fillFormGroup(this.user.firstName, this.user.lastName, this.user.email, this.user.username, this.user.password);
 
-      console.log(updatedUserInfo);
-
+      // console.log(updatedUserInfo);
 
       this.userService.updateProfile(updatedUserInfo).pipe(first()).subscribe((user) => {
         if (user) {
@@ -94,7 +105,10 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  // pre-fill the form with intial inputs
+  /**
+   * This function will pre-fill the form with user's profile information
+   * @author Yuki Mano (1810-Oct08-Java-USF)
+   */
   cancelEditProfile() {
     this.disableButton = true;
 
@@ -103,7 +117,15 @@ export class ProfileComponent implements OnInit {
     this.fillFormGroup(this.user.firstName, this.user.lastName, this.user.email, this.user.username, this.user.password);
   }
 
-  // pre-fill the form
+  /**
+   * This function pre-fills the form, which contains the neccessary input validations
+   * @param firstName : input firstname to fill out the form
+   * @param lastName : input lastnme to fill out the form
+   * @param email : input email to fill out the form
+   * @param username : input username to fill out the form
+   * @param password : input password to fill out the form
+   * @author Yuki Mano (1810-Oct08-Java-USF)
+   */
   fillFormGroup(firstName: string, lastName: string, email: string, username: string, password: string) {
     this.form = this.fb.group({
       firstName: [firstName.trim(), [Validators.required, Validators.minLength]],
@@ -120,7 +142,10 @@ export class ProfileComponent implements OnInit {
       });
   }
 
-  // disable button if all input validations of the form are not satisfied
+  /**
+   * This function will disable button if all input validations of the form are not satisfied
+   * @author Yuki Mano (1810-Oct08-Java-USF)
+   */
   formFilled() {
     if (this.form.valid) {
       this.disableButton = false;
@@ -129,6 +154,10 @@ export class ProfileComponent implements OnInit {
     }
   }
 
+  /**
+   * This function will force the user's to retype the input field for confirming password
+   * @author Yuki Mano (1810-Oct08-Java-USF)
+   */
   retypeConfirmPassword() {
     this.form.get('confirmPassword').setValue('');
   }
@@ -136,13 +165,6 @@ export class ProfileComponent implements OnInit {
 
 /*
 TO-DO
-
-- usernme must be uniqued (call to the db) --> mat-error when username is not uniqued
-- email must be uniqued (call to the db) *not required* --> mat-error when email is not uniqued
-
-- create a function in user-service which call to the server side and set the data into local storage
-
-+ more space in between inputs for mat-error (optional)
-+ min-length && maxlength validation for username and password (optional)
-+ email must be @revature.com (optional)
+- (optional) usernme must be uniqued (call to the db) --> mat-error when username is not uniqued
+- (optional) email must be uniqued (call to the db) --> mat-error when email is not uniqued
 */
