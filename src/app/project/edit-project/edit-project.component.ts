@@ -1,13 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material';
 import { Router, ActivatedRoute } from '@angular/router';
+import { NgMetaService } from 'ngmeta';
+import { Subscription } from 'rxjs';
 
 import { Project } from 'src/app/core/models/Project';
 import { ProjectService } from 'src/app/core/services/project.service';
-
-import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
-import { MatDialog } from '@angular/material';
 import { InputDialogComponent } from '../project-submission/input-dialog/input-dialog.component';
-import { Subscription } from 'rxjs';
 
 export interface DialogData {
   title: string;
@@ -110,10 +109,9 @@ openDialog(e): void {
       // if the user chose to add a group member, then place the input into the groupMembers array corresponding to the project to submit
       this.projectToUpdate.groupMembers.push(result);
       this.groupMemberString += result + ' ';
-    }
+    } 
   });
 }
-
  /**
  * This method is bound to the event that the form is submitted;
  * all the data of the form is placed as key/value pairs into a FormData object;
@@ -141,20 +139,14 @@ submitForm() {
     formData.append('groupMembers', this.projectToUpdate.groupMembers[i]);
   }
 
-  for (let j = 0; j < this.projectToUpdate.screenShots.length; j++) { 
-    formData.append('screenShots', this.projectToUpdate.screenShots[j]);
+    // the FormData object is then sent to a service where it is submitted to the server as an http post request
+    this.projectService.updateProject(formData,this.projectToUpdate.id).subscribe(project => {
+      this.router.navigate(['/home']);
+    });
+
   }
 
-  for (let k = 0; k < this.projectToUpdate.zipLinks.length; k++) { 
-    formData.append('zipLinks', this.projectToUpdate.zipLinks[k]);
-  }
-
-  // the FormData object is then sent to a service where it is submitted to the server as an http post request
-  this.projectService.updateProject(formData, this.projectToUpdate.id).subscribe(project => {
-     this.router.navigate(['/home']);
-  });
-
 }
-}
+
 
 

@@ -16,10 +16,11 @@ const HTTP_OPTIONS = {
 })
 export class ProjectService {
   CurrentProject: Project;
-  
+
   constructor(private httpClient: HttpClient) { }
 
   getAllProjects(): Observable<Project[]> {
+<<<<<<< HEAD
     return this.httpClient.get<Project[]>(environment.url+"/projects", HTTP_OPTIONS);
   }
 
@@ -29,6 +30,17 @@ export class ProjectService {
 
   updateProject(formData: FormData, id): Observable<Project>{
     return this.httpClient.put(environment.url + `/projects/${id}`, formData);
+=======
+    return this.httpClient.get<Project[]>(environment.url + '/projects/', HTTP_OPTIONS);
+  }
+
+  getProjectById(id): Observable<Project> {
+    return this.httpClient.get<Project>(environment.url + `/${id}`, HTTP_OPTIONS);
+  }
+
+  updateProject(formData: FormData): Observable<Project> {
+    return this.httpClient.put(environment.url, formData);
+>>>>>>> 52fa21909250087baa3b7994453e89b0d6a56015
   }
 
   createProject(formData: FormData): Observable<Project> {
