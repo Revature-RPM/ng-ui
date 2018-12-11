@@ -57,11 +57,11 @@ ${error.error}`
     return this.http.post(environment.url + '/auth/', user, { observe: 'response'})
       .pipe(map(reponse=>{
         if(reponse.headers.get('Authorization')){
-          console.log("reponse body seen")
-          console.log(reponse.body)
+          // console.log("reponse body seen")
+          // console.log(reponse.body)
           this.user = reponse.body;
           this.jwtauthtoken = reponse.headers.get('Authorization').split(" ")[1];
-          console.log(this.jwtauthtoken)
+          // console.log(this.jwtauthtoken)
           localStorage.setItem('user', JSON.stringify(reponse.body));
           localStorage.setItem('jwt', this.jwtauthtoken)
           return reponse.body;

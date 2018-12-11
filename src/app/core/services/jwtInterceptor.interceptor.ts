@@ -13,14 +13,15 @@ export class TokenInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     
     if(window.localStorage.getItem("jwt")){
-    console.log("attaching headers")
-    console.log("attaching: "   + window.localStorage.getItem("jwt"))
+    // console.log("attaching headers")
+    //check uri later
+    // console.log("attaching: "   + window.localStorage.getItem("jwt"))
     request = request.clone({
       setHeaders: {
         Authorization: `Bearer ${window.localStorage.getItem("jwt")}`
       }
     });
-    console.log(request.headers.get('authorization'))
+    // console.log(request.headers.get('authorization'))
   }
   
     return next.handle(request);
