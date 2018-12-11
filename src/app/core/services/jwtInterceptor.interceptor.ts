@@ -4,8 +4,8 @@ import { environment } from 'src/environments/environment';
 export function jwtOptionsFactory() {
   return {
       tokenGetter: ()=> {
-        console.log("tokenGetter in core.module.ts")
-        console.log(window.localStorage.getItem("jwt"))
+        // console.log("tokenGetter in core.module.ts")
+        // console.log(window.localStorage.getItem("jwt"))
        return window.localStorage.getItem("jwt")
     },
     whitelistedDomains: [environment.url],
