@@ -38,7 +38,7 @@ export class ProfileComponent implements OnInit {
   }
 
   /**
-   * Enable validation error when email does not end with '@revature.com' 
+   * Enable validation error when email does not end with '@revature.com'
    * @param AC : grab the form that uses this function's validation
    * @author Yuki Mano (1810-Oct08-Java-USF)
    */
