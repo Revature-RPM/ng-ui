@@ -55,20 +55,9 @@ export class ProfileComponent implements OnInit {
       this.ngmeta.setHead({ title: 'Profile | RPM' });
     }
 
-    const tempUser: User = {
-      id: 1,
-      firstName: 'Yuki',
-      lastName: 'Mano',
-      username: 'YukiMano',
-      password: 'password',
-      role: 'trainer',
-      email: 'ym@revature.com',
-    };
-
-    window.localStorage.setItem('user', JSON.stringify(tempUser));
 
     // pre-fill the profile information with logged-in user information
-    this.user = JSON.parse(window.localStorage.getItem('user'));
+    this.user = this.userService.user;
 
     this.fillFormGroup(this.user.firstName, this.user.lastName, this.user.email, this.user.username, this.user.password);
   }
