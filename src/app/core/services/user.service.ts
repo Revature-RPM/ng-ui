@@ -55,7 +55,6 @@ ${error.error}`
   //
   login(user: User): Observable<any> {
     return this.http.post(environment.url + '/auth/', user, { observe: 'response'})
-<<<<<<< HEAD
       .pipe(map(reponse=>{
         if(reponse.headers.get('Authorization')){
           // console.log("reponse body seen")
@@ -63,12 +62,6 @@ ${error.error}`
           this.user = reponse.body;
           this.jwtauthtoken = reponse.headers.get('Authorization').split(" ")[1];
           // console.log(this.jwtauthtoken)
-=======
-      .pipe(map(reponse => {
-        if (reponse.headers.get('Authorization')) {
-          this.user = reponse.body;
-          this.jwtauthtoken = reponse.headers.get('Authorization').split(' ')[1];
->>>>>>> a948f1f7cce09ade57240646b5379009f0e73bb4
           localStorage.setItem('user', JSON.stringify(reponse.body));
           localStorage.setItem('jwt', this.jwtauthtoken);
           return reponse.body;
