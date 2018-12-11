@@ -64,7 +64,6 @@ export class ProfileComponent implements OnInit {
       this.ngmeta.setHead({ title: 'Profile | RPM' });
     }
 
-
     // pre-fill the profile information with logged-in user information
     this.user = this.userService.getUser();
 
@@ -93,13 +92,10 @@ export class ProfileComponent implements OnInit {
 
       // this.fillFormGroup(this.user.firstName, this.user.lastName, this.user.email, this.user.username, this.user.password);
 
-      // console.log(updatedUserInfo);
-
       this.userService.updateProfile(updatedUserInfo).pipe(first()).subscribe((user) => {
         if (user) {
           localStorage.setItem('user', JSON.stringify(user));
           this.fillFormGroup(this.user.firstName, this.user.lastName, this.user.email, this.user.username, this.user.password);
-          console.log(this.user);
         }
       });
     }
@@ -111,9 +107,7 @@ export class ProfileComponent implements OnInit {
    */
   cancelEditProfile() {
     this.disableButton = true;
-
     this.user = JSON.parse(window.localStorage.getItem('user'));
-
     this.fillFormGroup(this.user.firstName, this.user.lastName, this.user.email, this.user.username, this.user.password);
   }
 
@@ -164,7 +158,7 @@ export class ProfileComponent implements OnInit {
 }
 
 /*
-TO-DO
+TODO
 - (optional) usernme must be uniqued (call to the db) --> mat-error when username is not uniqued
 - (optional) email must be uniqued (call to the db) --> mat-error when email is not uniqued
 */
