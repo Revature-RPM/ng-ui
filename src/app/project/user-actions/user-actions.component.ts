@@ -11,15 +11,13 @@ import { User } from 'src/app/core/models/User';
 export class UserActionsComponent implements OnInit {
   user: User = {};
 
-
   constructor(private router: Router) {
   }
 
   submitProject() {
-    this.router.navigate(['/projects/project_submission']);
+    this.router.navigate(['/project_submission']);
   }
 
   ngOnInit() {
   }
-
 }
