@@ -107,10 +107,9 @@ openDialog(e): void {
       // if the user chose to add a group member, then place the input into the groupMembers array corresponding to the project to submit
       this.projectToUpdate.groupMembers.push(result);
       this.groupMemberString += result + ' ';
-    }
+    } 
   });
 }
-
  /**
  * This method is bound to the event that the form is submitted;
  * all the data of the form is placed as key/value pairs into a FormData object;
@@ -118,6 +117,7 @@ openDialog(e): void {
  * @author Shawn Bickel (1810-Oct08-Java-USF)
  */
 submitForm() {
+
   // FormData is used to hold form fields and their values as key/value pairs to easily transfer data in a form 
   const formData = new FormData();
  
@@ -150,10 +150,7 @@ submitForm() {
   this.projectService.updateProject(formData, this.projectToUpdate.id).subscribe(project => {
      this.router.navigate(['/home']);
   });
-
 }
 }
-
-
 
 
