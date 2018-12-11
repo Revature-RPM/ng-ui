@@ -38,7 +38,6 @@ export class ProjectSubmissionComponent implements OnInit {
   questionType: string;
   result: string;
 
-
   /**
    * groupMemberString and zipLinkString are both bound to the user's input of the group member field and the zip links field
    * When a new group member or zip link is added, then that information is concatenated to the string.
@@ -48,14 +47,14 @@ export class ProjectSubmissionComponent implements OnInit {
   groupMemberString: string;
   zipLinksString: string;
 
-/**
- * githubURLRegex: holds the regular expression to validate that an entered link is formatted correctly
- *    - a valid link is of the format: https://github.com/<github username>/<repository name>
- *    - the regular expression used to validate this is: ^(https:\/\/github\.com\/[^/]+\/[^/]+)
- *    - this expression is checking that the link contains https://github.com/at least one of <any character but a '/'>/at least one of <any character but a '/'>`
- * githubURL: a string to hold the user's input from the dialog
- *  @author Shawn Bickel (1810-Oct08-Java-USF)
- */
+  /**
+   * githubURLRegex: holds the regular expression to validate that an entered link is formatted correctly
+   *    - a valid link is of the format: https://github.com/<github username>/<repository name>
+   *    - the regular expression used to validate this is: ^(https:\/\/github\.com\/[^/]+\/[^/]+)
+   *    - this expression is checking that the link contains https://github.com/at least one of <any character but a '/'>/at least one of <any character but a '/'>`
+   * githubURL: a string to hold the user's input from the dialog
+   *  @author Shawn Bickel (1810-Oct08-Java-USF)
+   */
   githubURLRegex: RegExp;
   githubURL: string;
 
@@ -133,8 +132,6 @@ export class ProjectSubmissionComponent implements OnInit {
             return;
           }
 
-          console.log('this is a correctly formatted link');
-
           // at this point, the URL will be valid and will be placed in the array
           // corresponding to the zip links array of the project to be submitted
           this.validGithubURL = true;
@@ -146,12 +143,12 @@ export class ProjectSubmissionComponent implements OnInit {
     });
   }
 
-   /**
-	 * This method is bound to the event that the form is submitted;
+  /**
+   * This method is bound to the event that the form is submitted;
    * all the data of the form is placed as key/value pairs into a FormData object;
    * this FormData object is then sent to the server as a post request to create a new project
-	 * @author Shawn Bickel (1810-Oct08-Java-USF)
-	 */
+   * @author Shawn Bickel (1810-Oct08-Java-USF)
+   */
   submitForm() {
     // FormData is used to hold form fields and their values as key/value pairs to easily transfer data in a form
     const formData = new FormData();
@@ -179,7 +176,7 @@ export class ProjectSubmissionComponent implements OnInit {
 
     // the FormData object is then sent to a service where it is submitted to the server as an http post request
     this.projectService.createProject(formData).subscribe(project => {
-       this.router.navigate(['/home']);
+      this.router.navigate(['/home']);
     });
   }
 

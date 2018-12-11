@@ -145,13 +145,10 @@ export class ViewProjectsComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.subscription = this.viewProjectsService.getAllProjects()
       .subscribe((projectResponse) => {
-        console.log(projectResponse);
         this.projects = projectResponse;
         // Assign the data to the data source for the table to render
         this.dataSource = new MatTableDataSource(this.projects);
         this.dataSource.sort = this.sort;
-        console.log('got projects');
-        console.log(this.projects);
       });
   }
 
@@ -163,18 +160,17 @@ export class ViewProjectsComponent implements OnInit, OnDestroy {
    * @author Shawn Bickel (1810-Oct08-Java-USF)
    */
   canEdit(rowClick) {
-    console.log();
-   // retrieve the trainer displayed in the table row
+    // retrieve the trainer displayed in the table row
     const trainer = rowClick.path[1].cells[2].innerHTML.trim();
 
-     // Retrieve the user from local storage and ensure that the user can edit the project if the user submitted the project
-     this.currentUser = JSON.parse(localStorage.getItem('user'));
-     const trainerFullName = this.currentUser.firstName + ' ' + this.currentUser.lastName;
-     if (trainerFullName === trainer) {
-        this.trainerCanEdit = true;
-     } else {
-       this.trainerCanEdit = false;
-     }
+    // Retrieve the user from local storage and ensure that the user can edit the project if the user submitted the project
+    this.currentUser = JSON.parse(localStorage.getItem('user'));
+    const trainerFullName = this.currentUser.firstName + ' ' + this.currentUser.lastName;
+    if (trainerFullName === trainer) {
+      this.trainerCanEdit = true;
+    } else {
+      this.trainerCanEdit = false;
+    }
   }
 
   /**

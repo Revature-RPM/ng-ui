@@ -35,7 +35,6 @@ export class EditProjectComponent implements OnInit {
   questionType = 'Enter the name of the group member';
   result: string;
 
-
   /**
    * groupMemberString and zipLinkString are both bound to the user's input of the group member field and the zip links field
    * When a new group member or zip link is added, then that information is concatenated to the string.
@@ -82,12 +81,13 @@ export class EditProjectComponent implements OnInit {
         const dummyFile = new File(['foo'], 'dummy.txt');
         this.projectToUpdate.screenShots.push(dummyFile);
       });
-  });
+    });
   }
 
   /**
    * this method opens the dialog defined in the input-dialog component;
-   * after the dialog is closed the user's data is placed in the groupMembers array or the zipLinks array depending on which field was clicked
+   * after the dialog is closed the user's data is placed in the groupMembers array
+   * or the zipLinks array depending on which field was clicked
    * @param e: the event of clicking either the group member or zip links fields, which both trigger the dialog to open
    * @author Shawn Bickel (1810-Oct08-Java-USF)
    */
