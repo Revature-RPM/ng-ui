@@ -8,6 +8,7 @@ import { ProjectService } from 'src/app/core/services/project.service';
 import { Router } from '@angular/router';
 import { User } from 'src/app/core/models/User';
 
+// hardcoded Project data ... should be deleted later
 const PROJECT_DATA: Project[] = [
   {
     id: 1, name: 'TopShelf', batch: '1810-oct08-java-usf', trainer: 'Yuki Mano',
@@ -178,7 +179,6 @@ export class ViewProjectsComponent implements OnInit, OnDestroy {
      }
   }
 
-
   /**
   * this is a lifecycle method called once by Angular before the component is destroyed;
   * it is usually used to close resources such as unsubscribing from the observable's data stream;
@@ -189,15 +189,32 @@ export class ViewProjectsComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  // apply filter to the data source table by entering in any string
+  /**
+   * This function is used to filter the table based on the inputted string. 
+   * It is binded as an event listener. 
+   * @param filterValue : a string value that is used to filter the dataSource for the MatTable
+   * @author Yuki Mano (1810-Oct08-Java-USF)
+   */
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
+  /**
+   * This function is used to increment the page index of the project's screenshot.
+   * Incrementing the page index will render the next project's screenshot. 
+   * @param totalAmountOfScreenShots : a number value that contains the total number of screenshots for a particular project
+   * @author Yuki Mano (1810-Oct08-Java-USF)
+   */
   nextImage(totalAmountOfScreenShots: number) {
     this.imagePage = (this.imagePage + 1)%totalAmountOfScreenShots;
   }
 
+  /**
+   * This function is used to decrement the page index of the project's screenshot.
+   * Decrementing the page index will render the next project's screenshot. 
+   * @param totalAmountOfScreenShots : a number value that contains the total number of screenshots for a particular project
+   * @author Yuki Mano (1810-Oct08-Java-USF)
+   */
   previousImage(totalAmountOfScreenShots: number) {
     this.imagePage--;
     if (this.imagePage < 0) {

@@ -28,7 +28,7 @@
                 <mat-form-field class="example-full-width" appearance="outline">
                         <mat-label>Trainer Name</mat-label>
                     <mat-error *ngIf="!trainerName.valid">Trainer name is required</mat-error>
-                    <input type="text" name="trainers" matInput placeholder="Trainer Name" [(ngModel)]="projectToUpdate.trainer" 
+                    <input type="text" name="trainers" matInput placeholder="Trainer Name" [(ngModel)]="projectToUpdate.userFullName" 
                     [ngModelOptions]="{standalone: true}" required #trainerName="ngModel">
                   </mat-form-field>
             </td>
