@@ -19,6 +19,7 @@ const httpOptions = {
 export class UserService {
   jwtauthtoken: string;
   user: User;
+
   constructor(private http: HttpClient) { }
 
   // TODO clean this up
@@ -46,7 +47,7 @@ ${error.error}`
       return this.user;
     } else if (window.localStorage.getItem('user') && window.localStorage.getItem('jwt')) {
       this.user = JSON.parse(window.localStorage.getItem('user'));
-    }else{
+    } else {
       return null;
     }
     return this.user;
@@ -57,13 +58,10 @@ ${error.error}`
   //
   login(user: User): Observable<any> {
     return this.http.post(environment.url + '/auth/', user, { observe: 'response'})
-      .pipe(map(reponse=>{
-        if(reponse.headers.get('Authorization')){
-          // console.log("reponse body seen")
-          // console.log(reponse.body)
+      .pipe(map(reponse => {
+        if (reponse.headers.get('Authorization')) {
           this.user = reponse.body;
-          this.jwtauthtoken = reponse.headers.get('Authorization').split(" ")[1];
-          // console.log(this.jwtauthtoken)
+          this.jwtauthtoken = reponse.headers.get('Authorization').split(' ')[1];
           localStorage.setItem('user', JSON.stringify(reponse.body));
           localStorage.setItem('jwt', this.jwtauthtoken);
           return reponse.body;
