@@ -35,11 +35,13 @@
             </mat-form-field>
             <br />
             <mat-form-field>
-              <input matInput type="password" placeholder="Password" formControlName="password" minlength="8" required [(ngModel)]="user.password">
+              <input matInput type="password" placeholder="Password" formControlName="password" id="inputPassword" required minlength="8" [(ngModel)]="user.password">
+              <mat-hint>Must be 8 characters</mat-hint>
             </mat-form-field>
             <br />
             <mat-form-field>
-              <input matInput type="password" placeholder="Confirm Password" formControlName="confirmPassword" required [(ngModel)]="confirmPassword">
+              <input matInput type="password" placeholder="Confirm Password" formControlName="confirmPassword" required minlength="8" [(ngModel)]="confirmPassword">
+              <mat-hint>Passwords must match</mat-hint>
             </mat-form-field>
             <div>
               <button mat-button matStepperPrevious>Back</button>

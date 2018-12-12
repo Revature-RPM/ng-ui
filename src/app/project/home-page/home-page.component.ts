@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { User } from 'src/app/core/models/User';
+import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
   selector: 'app-home-page',
@@ -9,8 +9,11 @@ import { User } from 'src/app/core/models/User';
 })
 export class HomePageComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private userService: UserService) { }
 
   ngOnInit() {
+    if (this.userService.getUser() === null) {
+      this.router.navigate(['/auth/login']);
+    }
   }
 }
