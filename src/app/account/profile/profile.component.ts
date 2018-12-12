@@ -38,7 +38,7 @@ export class ProfileComponent implements OnInit {
   }
 
   /**
-   * Enable validation error when email does not end with '@revature.com' 
+   * Enable validation error when email does not end with '@revature.com'
    * @param AC : grab the form that uses this function's validation
    * @author Yuki Mano (1810-Oct08-Java-USF)
    */
@@ -58,15 +58,12 @@ export class ProfileComponent implements OnInit {
               private ngmeta: NgMetaService) { }
 
   ngOnInit() {
-    if (localStorage.getItem('user') === null) {
-      this.router.navigate(['/auth/login']);
-    } else {
-      this.ngmeta.setHead({ title: 'Profile | RPM' });
-    }
-
     // pre-fill the profile information with logged-in user information
     this.user = this.userService.getUser();
-    if(!this.user)this.router.navigate(['/auth/login']);
+    if (!this.user) {
+      this.router.navigate(['/auth/login']);
+    }
+    this.ngmeta.setHead({ title: 'Profile | RPM' });
     this.fillFormGroup(this.user.firstName, this.user.lastName, this.user.email, this.user.username, this.user.password);
   }
 
@@ -95,11 +92,11 @@ export class ProfileComponent implements OnInit {
       this.userService.updateProfile(updatedUserInfo).pipe(first()).subscribe((user) => {
         if (user) {
           this.userService.user = user;
-          alert("profile updated")
+          alert('profile updated');
           this.fillFormGroup(this.user.firstName, this.user.lastName, this.user.email, this.user.username, this.user.password);
         }
-      }, (error)=>{
-          alert("error updating profile")
+      }, (error) => {
+          alert('error updating profile');
       });
     }
   }

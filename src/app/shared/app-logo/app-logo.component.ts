@@ -7,11 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppLogoComponent implements OnInit {
 
-  constructor() {
-
-  }
+  constructor() { }
 
   ngOnInit() {
   }
-
 }
