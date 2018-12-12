@@ -126,7 +126,6 @@ Currently can open and navigate to the src directory of Angular and Java Reposit
    * @author Andrew Mitchem (1810-Oct08-Java-USF)
    */
   sendRequest(url: string) {
-
     // reponse type is arraybuffer so the get request knows this is a oclet-array-stream request
     this.http.get(url, { observe: 'response', responseType: 'blob'})
     .subscribe(blob => {
