@@ -112,7 +112,7 @@
                     </button>
                   </a>
                   <a>
-                    <button (click)="edit(project)" id="icon" mat-icon-button mat-stroked-button color="primary" matTooltip="Edit"
+                    <button *ngIf="trainerCanEdit"  (click)="edit(project)" id="icon" mat-icon-button mat-stroked-button color="primary" matTooltip="Edit"
                       matTooltipPosition="right">
                       <mat-icon id="profile-icon">edit</mat-icon>
                     </button>

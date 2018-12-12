@@ -147,6 +147,7 @@ export class ViewProjectsComponent implements OnInit, OnDestroy {
  */
   ngOnInit() {
     this.currentUser = JSON.parse(localStorage.getItem('user'));
+    
     const trainerFullName = this.currentUser.firstName + ' ' + this.currentUser.lastName;
     this.subscription = this.viewProjectsService.getAllProjects()
     .subscribe((projectResponse) => {
