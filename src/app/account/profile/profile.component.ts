@@ -83,9 +83,6 @@ export class ProfileComponent implements OnInit {
         role: this.user.role,
       };
       this.user = updatedUserInfo;
-      // this line should be put in user service
-      // window.localStorage.setItem('user', JSON.stringify(updatedUserInfo));
-      // this.user = JSON.parse(window.localStorage.getItem('user'));
 
       this.fillFormGroup(this.user.firstName, this.user.lastName, this.user.email, this.user.username, this.user.password);
 
@@ -108,7 +105,7 @@ export class ProfileComponent implements OnInit {
    */
   cancelEditProfile() {
     this.disableButton = true;
-    this.user = JSON.parse(window.localStorage.getItem('user'));
+    this.user = this.userService.getUser();
     this.fillFormGroup(this.user.firstName, this.user.lastName, this.user.email, this.user.username, this.user.password);
   }
 
