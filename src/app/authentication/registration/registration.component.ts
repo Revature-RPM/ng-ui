@@ -53,7 +53,7 @@ export class RegistrationComponent implements OnInit {
               private ngmeta: NgMetaService) { }
 
   ngOnInit() {
-    if (localStorage.getItem('user') !== null) {
+    if (this.userService.getUser() !== null) {
       this.router.navigate(['']);
     } else {
       this.ngmeta.setHead({ title: 'Register | RPM' });
