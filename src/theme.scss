@@ -68,28 +68,28 @@ $bluePallete: (
     )
 );
 
-$greenPallete: (
-    50 : #e0f8f1,
-    100 : #b3eedc,
-    200 : #80e2c4,
-    300 : #4dd6ac,
-    400 : #26ce9b,
-    500 : #00c589,
-    600 : #00bf81,
-    700 : #00b876,
-    800 : #00b06c,
-    900 : #00a359,
-    A100 : #ceffe5,
-    A200 : #9bffcb,
-    A400 : #68ffb0,
-    A700 : #4effa3,
+$redPallete: (
+    50 : #ffe0e0,
+    100 : #ffb3b3,
+    200 : #ff8080,
+    300 : #ff4d4d,
+    400 : #ff2626,
+    500 : #ff0000,
+    600 : #ff0000,
+    700 : #ff0000,
+    800 : #ff0000,
+    900 : #ff0000,
+    A100 : #ffffff,
+    A200 : #fff2f2,
+    A400 : #ffbfbf,
+    A700 : #ffa6a6,
     contrast: (
         50 : #000000,
         100 : #000000,
         200 : #000000,
         300 : #000000,
-        400 : #000000,
-        500 : #000000,
+        400 : #ffffff,
+        500 : #ffffff,
         600 : #ffffff,
         700 : #ffffff,
         800 : #ffffff,
@@ -101,9 +101,10 @@ $greenPallete: (
     )
 );
 
+
 $my-theme-primary: mat-palette($orangePallet, 700, 300, 900);
 $my-theme-accent: mat-palette($bluePallete, 700, 300, 900);
-$my-theme-warn: mat-palette($greenPallete, 700, 300, 900);
+$my-theme-warn: mat-palette($redPallete, 700, 300, 900);
 
 $my-app-theme: mat-light-theme($my-theme-primary, $my-theme-accent, $my-theme-warn);
 @include angular-material-theme($my-app-theme);

@@ -1,5 +1,3 @@
-
-
 @import 'theme.scss';
 
 html, body {
@@ -8,6 +6,10 @@ html, body {
   width: 100%;
   min-width: 100%;
   min-height: 100%;
+  // left: 0;
+  // top: 0;
+  // padding: 0px;
+  overflow: hidden;
 }
 
 // this class can be used anywhere in the application to implement the custom theme
@@ -29,7 +31,7 @@ span.token1{
 span.token2{
   color: rgb(99, 106, 207);
 }
-span.token3{
+span.token3, span.token17{
   color: rgb(71, 211, 125);
 }
 span.token4{
@@ -39,6 +41,7 @@ span.token4{
 span.token5{
   color: rgb(117, 180, 151);
 }
+
 span.token6{color: rgb(201, 125, 211);}
 span.token7{color: rgb(197, 148, 58);}
 span.token8{color: rgb(253, 248, 182);}

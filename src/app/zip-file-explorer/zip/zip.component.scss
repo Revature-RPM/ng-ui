@@ -9,6 +9,23 @@ $Border: rgb(66, 66, 66);
 $TextImportant: white;
 $TextPassive: gray;
 $baseColor: rgb(29, 29, 29);
+
+$orangePallet: (
+    50: #fff2e0,
+    100: #ffdeb3,
+    200: #ffc980,
+    300: #ffb34d,
+    400: #ffa226,
+    500: #ff9200,
+    600: #ff8a00,
+    700: #ff7f00,
+    800: #ff7500,
+    900: #ff6300,
+    A100: #ffffff,
+    A200: #fff6f2,
+    A400: #ffd4bf,
+    A700: #ffc3a6,
+);
 .background{
   background-color: $baseColor;
    min-height:100vh;
@@ -132,6 +149,7 @@ textarea{
     color:  $TextImportant;
     opacity: 1;
   }
+//end of base element styling.
 //file header menu css
 .file_header{
   overflow-x: hidden;
@@ -188,9 +206,51 @@ textarea{
   font-weight: bold;
 }
 
-
+//end of file header menu css
 
 //side bar css
+.fileContainer {
+  overflow: hidden;
+
+  border-color: rgb(216, 121, 139);
+  border-style: none;
+  border-width: 0px;
+  box-shadow: 2px 2px 8px $Saturation100;
+  background-color:  $Saturation80;
+  // border-radius: 5px;
+  padding: .2em;
+  font-size: 2em;
+  height:37px;
+  width:37px;
+  text-align: center;
+  color: $TextPassive;
+  float:left;
+  top:0;
+  clear: left;
+  color:rgb(85, 255, 85);
+}
+
+
+
+.fileContainer:hover{
+  background-color: $Saturation100;
+  border-color: rgb(255, 203, 212);
+  color:rgb(85, 255, 85);
+  
+}
+.fileContainer [type=file] {
+  cursor: inherit;
+  display: block;
+  font-size: 2em;
+  filter: alpha(opacity=0);
+  height:.1px;
+  width:.1px;
+  opacity: 0;
+  position: absolute;
+  right: 0;
+  text-align: right;
+  top: 0;
+}
 .btn-container{
   position: relative;
   top: 0;
@@ -202,8 +262,14 @@ textarea{
   background-color: $baseColor;
   
 }
-.btn-home:hover{
+.btn-open{
   color: rgb(31, 183, 243);
+}
+.btn-open:hover{
+  color: rgb(31, 183, 243);
+}
+.btn-home{
+  color: rgb(243, 31, 31);
 }
 .btn-home:hover{
   color: rgb(243, 31, 31);
@@ -225,6 +291,8 @@ textarea{
   padding:5px 0px 5px 0px;
   font-size: .9em;
   padding-left:1em;
+  overflow: hidden;
+  white-space: nowrap;
   cursor: default;
 }
 .btn-container>div>p:hover{
@@ -236,6 +304,8 @@ textarea{
 .btn-container>div:hover{
   overflow-y:auto;
 }
+
+//end of side bar css
 //code display css
 .container_div{
   margin-top: 1px;
@@ -261,7 +331,7 @@ textarea{
   text-align: left;
   overflow-y: scroll;
   overflow-x: auto;
-  white-space: pre-wrap;
+  white-space: pre;
   background-color: $Saturation100;
   color: rgb(161, 229, 238);
   cursor: default;
@@ -271,7 +341,7 @@ textarea{
 .header {
  
   max-width: 100%;
-  background-color: $Saturation80;
+  background-color: #ff6300;
   /*
   *background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0)60%, rgba(255, 77, 246, 0.24));
   */padding-left:10em;
@@ -289,5 +359,7 @@ textarea{
 .display-text{
   color: $TextImportant;
   background-color: $Saturation80;
+  padding: 5px 0px 5px 0px;
   word-wrap: normal;
 }
+//end of code display css

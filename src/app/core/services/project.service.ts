@@ -16,17 +16,28 @@ const HTTP_OPTIONS = {
 })
 export class ProjectService {
   CurrentProject: Project;
-  
+
   constructor(private httpClient: HttpClient) { }
 
   getAllProjects(): Observable<Project[]> {
-    return this.httpClient.get<Project[]>('http://localhost:8080/spring-mvc/projects', HTTP_OPTIONS);
+    return this.httpClient.get<Project[]>(environment.url + '/projects', HTTP_OPTIONS);
   }
 
-  createProject(formData: FormData): Observable<Project> {
-    return this.httpClient.post('endpoint', formData);
+  getProjectById(id): Observable<Project> {
+    return this.httpClient.get<Project>(environment.url + `/projects/id/${id}`, HTTP_OPTIONS);
   }
-  
+
+  updateProject(project: Project, id): Observable<Project> {
+    return this.httpClient.put(environment.url + `/projects/${id}`, project, HTTP_OPTIONS);
+  }
+
+  /*
+   *  TODO project-service needs to get rid of the trailing slash
+   */
+  createProject(formData: FormData): Observable<Project> {
+    return this.httpClient.post(environment.url + '/projects/', formData);
+  }
+
   setCurrentProject(project: Project) {
     this.CurrentProject = project;
   }

@@ -225,14 +225,15 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { HttpClientModule } from &#x27;@angular/common/http&#x27;;
 import { NgModule } from &#x27;@angular/core&#x27;;
 import { BrowserAnimationsModule } from &#x27;@angular/platform-browser/animations&#x27;;
+import { ServiceWorkerModule } from &#x27;@angular/service-worker&#x27;;
 import { MatJumbotronModule } from &#x27;@angular-material-extensions/jumbotron&#x27;;
 
-import { ServiceWorkerModule } from &#x27;@angular/service-worker&#x27;;
 import { AppRoutingModule } from &#x27;./app-routing.module&#x27;;
 import { ProjectModule } from &#x27;./project/project.module&#x27;;
 import { AppComponent } from &#x27;./app.component&#x27;;
 import { CoreModule } from &#x27;./core/core.module&#x27;;
 import { environment } from &#x27;src/environments/environment&#x27;;
+
 
 @NgModule({
   declarations: [
@@ -241,7 +242,7 @@ import { environment } from &#x27;src/environments/environment&#x27;;
   imports: [
     AppRoutingModule,
     BrowserAnimationsModule,
-    CoreModule,
+    CoreModule.forRoot(),
     HttpClientModule,
     ProjectModule,
     MatJumbotronModule.forRoot(),

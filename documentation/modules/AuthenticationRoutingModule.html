@@ -70,7 +70,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">  import { NgModule } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &#x27;@angular/core&#x27;;
 import { Routes, RouterModule } from &#x27;@angular/router&#x27;;
 
 import { LoginComponent } from &#x27;./login/login.component&#x27;;
@@ -80,8 +80,8 @@ import { RegistrationComponent } from &#x27;./registration/registration.componen
 const routes: Routes &#x3D; [
   { path: &#x27;login&#x27;, component: LoginComponent },
   { path: &#x27;logout&#x27;, component: LogoutComponent },
-  { path: &#x27;register&#x27;, component: RegistrationComponent },
-  { path: &#x27;**&#x27;, redirectTo: &#x27;login&#x27; }
+  { path: &#x27;register&#x27;, component: RegistrationComponent }
+  // { path: &#x27;**&#x27;, redirectTo: &#x27;login&#x27; }
 ];
 
 @NgModule({
