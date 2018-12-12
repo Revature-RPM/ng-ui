@@ -44,10 +44,10 @@ export class ViewProjectsComponent implements OnInit, OnDestroy {
    * @author Shawn Bickel (1810-Oct08-Java-USF)
    */
   ngOnInit() {
-    this.currentUser = this.userService.getUser();
-    if (this.currentUser === null) {
+    if (this.userService.getUser() === null) {
       this.router.navigate(['/auth/login']);
     }
+    this.currentUser = this.userService.getUser();
 
     const trainerFullName = this.currentUser.firstName + ' ' + this.currentUser.lastName;
     this.subscription = this.viewProjectsService.getAllProjects()
