@@ -50,6 +50,7 @@ export class ViewProjectsComponent implements OnInit, OnDestroy {
     }
 
     const trainerFullName = this.currentUser.firstName + ' ' + this.currentUser.lastName;
+    console.log(this.currentUser);
     this.subscription = this.viewProjectsService.getAllProjects()
     .subscribe((projectResponse) => {
       this.allProjects = projectResponse;
