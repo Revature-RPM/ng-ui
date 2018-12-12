@@ -46,26 +46,27 @@ export class ViewProjectsComponent implements OnInit, OnDestroy {
   ngOnInit() {
     if (this.userService.getUser() === null) {
       this.router.navigate(['/auth/login']);
-    }
-    this.currentUser = this.userService.getUser();
+    } else {
+      this.currentUser = this.userService.getUser();
 
-    const trainerFullName = this.currentUser.firstName + ' ' + this.currentUser.lastName;
-    this.subscription = this.viewProjectsService.getAllProjects()
-    .subscribe((projectResponse) => {
-      this.allProjects = projectResponse;
-      // Assign the data to the data source for the table to render
-      this.dataSource = new MatTableDataSource(this.allProjects);
-      /* place all the current user's project's in an array to easily switch between tabs to see all projects and a particular user's projects
-          without having to make multiple calls to the server  */
-      this.userProjects = [];
-      for (let i = 0; i < projectResponse.length; i++) {
-        if (projectResponse[i].trainer === trainerFullName) {
-          this.userProjects.push(projectResponse[i]);
+      const trainerFullName = this.currentUser.firstName + ' ' + this.currentUser.lastName;
+      this.subscription = this.viewProjectsService.getAllProjects()
+      .subscribe((projectResponse) => {
+        this.allProjects = projectResponse;
+        // Assign the data to the data source for the table to render
+        this.dataSource = new MatTableDataSource(this.allProjects);
+        /* place all the current user's project's in an array to easily switch between tabs to see all projects and a particular user's projects
+            without having to make multiple calls to the server  */
+        this.userProjects = [];
+        for (let i = 0; i < projectResponse.length; i++) {
+          if (projectResponse[i].trainer === trainerFullName) {
+            this.userProjects.push(projectResponse[i]);
+          }
         }
-      }
-      this.dataSource = new MatTableDataSource(this.allProjects);
-      this.dataSource.sort = this.sort;
-    });
+        this.dataSource = new MatTableDataSource(this.allProjects);
+        this.dataSource.sort = this.sort;
+      });
+    }
   }
 
   /**
