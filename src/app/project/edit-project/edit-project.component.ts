@@ -77,7 +77,7 @@ export class EditProjectComponent implements OnInit {
      this.subscription = this.route.params.subscribe(params => {
        this.projectService.getProjectById(params['id']).pipe(first()).subscribe(projectById => {
          this.projectToUpdate = projectById;
-
+        console.log(this.projectToUpdate);
          for (let i = 0; i < this.projectToUpdate.groupMembers.length; i++) {
            this.groupMemberString += ' ' + this.projectToUpdate.groupMembers[i];
          }

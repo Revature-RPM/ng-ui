@@ -76,12 +76,16 @@ export class ViewProjectsComponent implements OnInit, OnDestroy {
    * @author Shawn Bickel (1810-Oct08-Java-USF)
    */
   canEdit(rowClick) {
+    console.log(this.currentUser);
     // retrieve the trainer displayed in the table row
     const trainer = rowClick.path[1].cells[2].innerHTML.trim();
 
      // Retrieve the user from local storage and ensure that the user can edit the project if the user submitted the project
      const trainerFullName = this.currentUser.firstName + ' ' + this.currentUser.lastName;
-     if (trainerFullName === trainer) {
+     if(this.currentUser.role == "ROLE_ADMIN"){
+       this.trainerCanEdit = true;
+     }
+     else if (trainerFullName === trainer) {
         this.trainerCanEdit = true;
      } else {
        this.trainerCanEdit = false;
