@@ -126,7 +126,7 @@
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
       <tr mat-row *matRowDef="let project; columns: displayedColumns;" class="project-row" [class.expanded-row]="expandedProject === project"
-        (click)="expandedProject = expandedProject === project ? null : project; canEdit($event)">
+        (click)="expandedProject = expandedProject === project ? null : project; canEdit(project)">
       </tr>
       <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></tr>
     </table>
