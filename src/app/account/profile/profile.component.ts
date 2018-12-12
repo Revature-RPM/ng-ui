@@ -89,6 +89,7 @@ export class ProfileComponent implements OnInit {
       this.userService.updateProfile(updatedUserInfo).pipe(first()).subscribe((user) => {
         if (user) {
           this.user = user;
+          console.log(this.user);
           //window.localStorage.setItem('user', JSON.stringify(updatedUserInfo));
           alert('profile updated');
           this.fillFormGroup(this.user.firstName, this.user.lastName, this.user.email, this.user.username, this.user.password);
