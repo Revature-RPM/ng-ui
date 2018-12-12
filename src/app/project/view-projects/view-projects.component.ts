@@ -25,7 +25,7 @@ import { User } from 'src/app/core/models/User';
 export class ViewProjectsComponent implements OnInit, OnDestroy {
   trainerCanEdit = false;
   currentUser: User;
-  displayedColumns: string[] = ['name', 'batch', 'trainer', 'techStack', 'status']; // change trainer to trainer
+  displayedColumns: string[] = ['name', 'batch', 'trainer', 'techStack', 'status']; 
   dataSource: MatTableDataSource<Project>;
   @ViewChild(MatSort) sort: MatSort;
   expandedProject: Project | null;
