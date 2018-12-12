@@ -103,30 +103,6 @@ checkForValidField(nameField, batchField, trainerField, descriptionField, techSt
 ngOnDestroy() {
   this.subscription.unsubscribe();
 }
-
-/**
- * this method opens the dialog defined in the input-dialog component; 
- *    after the dialog is closed the user's data is placed in the groupMembers array or the zipLinks array depending on which field was clicked
- * @param e: the event of clicking either the group member or zip links fields, which both trigger the dialog to open
- * @author Shawn Bickel (1810-Oct08-Java-USF)
- */
-openDialog(e): void {
-  // open the dialog contained in the InputDialogComponent passing the data to be displayed in the dialog
-  const dialogRef = this.dialog.open(InputDialogComponent, {
-    width: '250px',
-    data: {title: this.title, questionType: this.questionType, result: this.result}
-  });
-
-  // when the dialog is closed, the data is returned as an observable
-  dialogRef.afterClosed().subscribe(result => {
-    // only proceed if the user entered information
-    if (result !== undefined && result !== null){
-      // if the user chose to add a group member, then place the input into the groupMembers array corresponding to the project to submit
-      this.projectToUpdate.groupMembers.push(result);
-      this.groupMemberString = this.projectToUpdate.groupMembers.join(', '); 
-    } 
-  });
-}
  /**
  * This method is bound to the event that the form is submitted;
  * The updated project is sent to a service where it is sent to the server with an http put method
