@@ -56,7 +56,7 @@ ${error.error}`
   // @param user
   //
   login(user: User): Observable<any> {
-    return this.http.post(environment.url + '/auth/', user, { observe: 'response'})
+    return this.http.post(environment.url + '/auth/login', user, { observe: 'response'})
       .pipe(map(reponse=>{
         if(reponse.headers.get('Authorization')){
           // console.log("reponse body seen")

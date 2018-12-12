@@ -9,5 +9,4 @@ export interface Project {
     techStack?: string;
     status?: string;
     description?: string;
-    FullName?: string;
  }

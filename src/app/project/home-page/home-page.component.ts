@@ -17,8 +17,8 @@ export class HomePageComponent implements OnInit {
     // }
     const tempUser: User = {
       id: 1,
-      firstName: 'Yuki',
-      lastName: 'Mano',
+      firstName: 'Wezley',
+      lastName: 'Singleton',
       username: 'YukiMano',
       password: 'password',
       role: 'trainer',

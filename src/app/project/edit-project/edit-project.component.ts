@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatSnackBar } from '@angular/material';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgMetaService } from 'ngmeta';
 import { Subscription } from 'rxjs';
@@ -20,6 +20,8 @@ export interface DialogData {
   styleUrls: ['./edit-project.component.scss']
 })
 export class EditProjectComponent implements OnInit {
+
+validForm: Boolean = true;
 
 // projectToUpdate will hold project information for a specific project returned by id and is bound to the information that users enter in the form
 projectToUpdate: Project = {};
@@ -49,7 +51,8 @@ constructor(private router: Router,
   private ngmeta: NgMetaService,
   private projectService: ProjectService,
   private route: ActivatedRoute,
-  public dialog: MatDialog) {}
+  private dialog: MatDialog,
+  private snackBar: MatSnackBar) {}
 
 ngOnInit() {
   if (localStorage.getItem('user') === null) {
@@ -65,6 +68,8 @@ ngOnInit() {
    * This will retrieve the path variable which corresponds to the id of the project to be edited.
    * ActivatedRoute has an observable called 'params' which provides a means to do this.
    * Once the project id is retrieved from the path, it can be passed to the project service to obtain the project to update.
+   * 
+   *  @author Shawn Bickel (1810-Oct08-Java-USF)
    */
   this.subscription = this.route.params.subscribe(params => {
     this.projectService.getProjectById(params['id']).subscribe(projectById => {
@@ -74,13 +79,26 @@ ngOnInit() {
         for (let i = 0; i < this.projectToUpdate.groupMembers.length; i++){
             this.groupMemberString += ' ' + this.projectToUpdate.groupMembers[i];
         }
-        this.projectToUpdate.zipLinks.length = 0;
-        this.projectToUpdate.screenShots.length = 0;
-        this.projectToUpdate.zipLinks.push('');
-        let dummyFile = new File(["foo"], 'dummy.txt');
-        this.projectToUpdate.screenShots.push(dummyFile);
     });   
  });
+}
+
+/**
+ * This method determines if the entire form is valid when focus is removed from an input field
+ * @param nameField : the template variable for the name input field which holds validation information
+ * @param batchField : the template variable for the batch input field which holds validation information
+ * @param trainerField : the template variable for the trainer name input field which holds validation information
+ * @param groupMemberField : the template variable for the group member input field which holds validation information
+ * @param descriptionField : the template variable for the description input field which holds validation information
+ * @param techStackField : the template variable for the technology stack input field which holds validation information
+ *  @author Shawn Bickel (1810-Oct08-Java-USF)
+ */
+checkForValidField(nameField, batchField, trainerField, groupMemberField, descriptionField, techStackField){
+  if (!nameField.valid || !batchField.valid || !trainerField.valid || !groupMemberField.valid || !descriptionField.valid || !techStackField.valid){
+    this.validForm = false;
+  }else{
+    this.validForm = true;
+  }
 }
 
 ngOnDestroy() {
@@ -106,51 +124,23 @@ openDialog(e): void {
     if (result !== undefined && result !== null){
       // if the user chose to add a group member, then place the input into the groupMembers array corresponding to the project to submit
       this.projectToUpdate.groupMembers.push(result);
-      this.groupMemberString += result + ' ';
+      this.groupMemberString = this.projectToUpdate.groupMembers.join(', '); 
     } 
   });
 }
  /**
  * This method is bound to the event that the form is submitted;
- * all the data of the form is placed as key/value pairs into a FormData object;
- * this FormData object is then sent to the server as a post request to create a new project
+ * The updated project is sent to a service where it is sent to the server with an http put method
  * @author Shawn Bickel (1810-Oct08-Java-USF)
  */
 submitForm() {
-
-  // FormData is used to hold form fields and their values as key/value pairs to easily transfer data in a form 
-  const formData = new FormData();
- 
-  // append the data of the form as key/value pairs using field names on the server as keys and data in the form as values
-  formData.append('name', this.projectToUpdate.name);
-  formData.append('batch', this.projectToUpdate.batch);
-  formData.append('fullName', this.projectToUpdate.trainer);
-  formData.append('techStack', this.projectToUpdate.techStack);
-  formData.append('description', this.projectToUpdate.description);
-  formData.append('status', 'pending');
-
-  console.log(this.projectToUpdate.groupMembers);
-  console.log(this.projectToUpdate.screenShots);
-  console.log(this.projectToUpdate.zipLinks);
-
-  // elements of an array are appended to the FormData object using the same key name
-  for (let i = 0; i < this.projectToUpdate.groupMembers.length; i++) { 
-    formData.append('groupMembers', this.projectToUpdate.groupMembers[i]);
-  }
-
-  for (let j = 0; j < this.projectToUpdate.screenShots.length; j++) { 
-    formData.append('screenShots', this.projectToUpdate.screenShots[j]);
-  }
-
-  for (let k = 0; k < this.projectToUpdate.zipLinks.length; k++) { 
-    formData.append('zipLinks', this.projectToUpdate.zipLinks[k]);
-  }
-
-  // the FormData object is then sent to a service where it is submitted to the server as an http post request
-  this.projectService.updateProject(formData, this.projectToUpdate.id).subscribe(project => {
-     this.router.navigate(['/home']);
+  console.log('in submit form');
+  console.log(this.projectToUpdate);
+  this.projectService.updateProject(this.projectToUpdate, this.projectToUpdate.id).subscribe(project => {});
+  this.snackBar.open('The edited changes may take time to appear', '', {
+    duration: 5000,
   });
+  this.router.navigate(['/home']);
 }
 }
-
 
