@@ -1,17 +1,27 @@
-import { environment } from 'src/environments/environment';
-// angular doesn't allow iffe in module.ts so this factory is needed for the options
-// you can export functions in the module.ts. but this will allow future dependency injection
-export function jwtOptionsFactory() {
-  return {
-      tokenGetter: () => {
-        console.log('tokenGetter in core.module.ts');
-        console.log(window.localStorage.getItem('jwt'));
-       return window.localStorage.getItem('jwt');
-    },
-    whitelistedDomains: [environment.url],
-    blacklistedRoutes: [environment.url + '/auth/']
-    // according to libary document. whitelisted domains will have headers ATTACHED
-    // but blacklisted will not have the headers REPLACED
-    // ? hopefully --
-  };
+import { Injectable } from '@angular/core';
+import {
+  HttpEvent,
+  HttpHandler,
+  HttpInterceptor,
+  HttpRequest
+} from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { UserService } from './user.service';
+import { environment} from 'src/environments/environment'
+
+@Injectable()
+export class TokenInterceptor implements HttpInterceptor {
+  constructor(private userService: UserService) {}
+
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+      if(request.url.indexOf(environment.url)>0 && window.localStorage.getItem("jwt")){
+      //check uri later
+      request = request.clone({
+        setHeaders: {
+          Authorization: `Bearer ${window.localStorage.getItem('jwt')}`
+        }
+      });
+    }
+    return next.handle(request);
+  }
 }

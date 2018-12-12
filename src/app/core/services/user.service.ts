@@ -19,6 +19,7 @@ const httpOptions = {
 export class UserService {
   jwtauthtoken: string;
   user: User;
+
   constructor(private http: HttpClient) { }
 
   // TODO clean this up
@@ -44,8 +45,10 @@ ${error.error}`
   getUser() {
     if (this.user) {
       return this.user;
-    } else if (window.localStorage.get('user') && window.localStorage.get('jwt')) {
-      this.user = window.localStorage.get('user');
+    } else if (window.localStorage.getItem('user') && window.localStorage.getItem('jwt')) {
+      this.user = JSON.parse(window.localStorage.getItem('user'));
+    } else {
+      return null;
     }
     return this.user;
   }
@@ -54,7 +57,7 @@ ${error.error}`
   // @param user
   //
   login(user: User): Observable<any> {
-    return this.http.post(environment.url + '/auth/', user, { observe: 'response'})
+    return this.http.post(environment.url + '/auth/login', user, { observe: 'response'})
       .pipe(map(reponse => {
         if (reponse.headers.get('Authorization')) {
           this.user = reponse.body;
@@ -71,7 +74,7 @@ ${error.error}`
     // only use environment.url for the base url and concat any restful endpoints
   register(user: User): Observable<User> {
     user.role = 'user';
-    return this.http.post<User>(environment.url + '/auth/users/', user, httpOptions)
+    return this.http.post<User>(environment.url+ '/auth/users/', user, httpOptions)
       .pipe(catchError(this.handleError));
   }
 

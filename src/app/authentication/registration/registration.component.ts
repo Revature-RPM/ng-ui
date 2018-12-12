@@ -27,16 +27,16 @@ export class RegistrationComponent implements OnInit {
   isLinear = true;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
-  
-  //email pattern ensures the email is a @revature.com email
-  emailPattern = '^[a-zA-Z0-9_.+-]+(?:(?:[a-zA-Z0-9-]+\.)?[a-zA-Z]+\.)?@(revature)\.com$';
-  
-  //username pattern ensures there are no underscores at beginning or end of username
-  //and at least 8 characters
-  usernamePattern = '^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$';
-  confirmPassword: string;
 
-  //this method is called to ensure password was typed correctly
+  // email pattern ensures the email is a @revature.com email
+  emailPattern = '^[a-zA-Z0-9_.+-]+(?:(?:[a-zA-Z0-9-]+\.)?[a-zA-Z]+\.)?@(revature)\.com$';
+
+  // username pattern ensures there are no underscores at beginning or end of username
+  // and at least 8 characters
+  usernamePattern = '^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$';
+  confirmPassword: string; 
+
+  // this method is called to ensure password was typed correctly
   static MatchPassword(AC: AbstractControl) {
     const password = AC.get('password').value; // to get value in input tag
     const confirmPassword = AC.get('confirmPassword').value; // to get value in input tag
@@ -59,7 +59,7 @@ export class RegistrationComponent implements OnInit {
       this.ngmeta.setHead({ title: 'Register | RPM' });
     }
 
-    //all the different validators to ensure form is properly filled
+    // all the different validators to ensure form is properly filled
     this.firstFormGroup = this._formBuilder.group({
       firstName: [
         Validators.required,
@@ -92,12 +92,11 @@ export class RegistrationComponent implements OnInit {
     });
   }
 
-  //registration method takes the validated fields packages into a JSON and sends the observable
+  // registration method takes the validated fields packages into a JSON and sends the observable
   register() {
     console.log(this.user);
     this.userService.register(this.user).pipe(first()).subscribe((user) => {
       if (user) {
-        localStorage.setItem('user', JSON.stringify(user));
         this.router.navigate(['/auth/login']);
       }
     });

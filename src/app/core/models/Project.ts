@@ -2,7 +2,7 @@ export interface Project {
     id?: number;
     name?: string;
     batch?: string;
-    userFullName?: string;
+    trainer?: string;
     groupMembers?: any[];
     screenShots?: any[];
     zipLinks?: any[];

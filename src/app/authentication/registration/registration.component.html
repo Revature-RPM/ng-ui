@@ -7,20 +7,18 @@
           <form ngNativeValidate [formGroup]="firstFormGroup">
             <ng-template matStepLabel>Fill out your name</ng-template>
             <mat-form-field>
-              <input matInput placeholder="First Name" formControlName="firstName" required minlength="2" [(ngModel)]="user.firstName">
+              <input matInput placeholder="First Name" formControlName="firstName" required minlength="1" [(ngModel)]="user.firstName">
             </mat-form-field>
             <br />
             <mat-form-field>
-              <input matInput placeholder="Last Name" formControlName="lastName" required minlength="2" [(ngModel)]="user.lastName">
+              <input matInput placeholder="Last Name" formControlName="lastName" required minlength="1" [(ngModel)]="user.lastName">
             </mat-form-field>
             <br />
             <mat-form-field>
               <input matInput type="email" placeholder="Revature Email" formControlName="email" required [(ngModel)]="user.email"
-                matTooltip="Must be a valid @revature.com email." [pattern]="emailPattern">
-                <mat-hint>@revature.com required</mat-hint>
+                matTooltip="Must be valid @revature.com Email." [pattern]="emailPattern">
             </mat-form-field>
             <div>
-              <br>
               <button mat-button matStepperNext type="submit" ng-disabled=!vm.form.$valid>Next</button>
               <a mat-button routerLink="/auth/login">Return to Login</a>
             </div>
@@ -32,7 +30,7 @@
             <mat-form-field>
               <input matInput placeholder="Username" formControlName="username" required 
                 [pattern]="usernamePattern"
-                matTooltip="No underscores at beginning or end of username. No other characters. Must be at least 8 characters"
+                matTooltip="No underscores at beginning or end of username. Must be at least 8 characters"
                 [(ngModel)]="user.username">
             </mat-form-field>
             <br />

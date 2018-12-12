@@ -12,8 +12,7 @@ import { UserService } from 'src/app/core/services/user.service';
 export class NavbarComponent implements OnInit {
   user: User = {};
 
-  constructor(private router: Router, private userservice: UserService) {
-  }
+  constructor(private router: Router, private userservice: UserService) { }
 
   goToRegister() {
     this.router.navigate(['auth', 'register']);
@@ -28,12 +27,12 @@ export class NavbarComponent implements OnInit {
   }
 
   logout() {
-    this.userservice.logout()
+    this.userservice.logout();
     this.router.navigate(['auth/login']);
   }
 
   ngOnInit() {
-    this.user = this.userservice.user;
+    this.user = this.userservice.getUser();    
   }
 
   homepageShortcut() {

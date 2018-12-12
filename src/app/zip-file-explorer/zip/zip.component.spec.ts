@@ -7,7 +7,7 @@ import { AppModule} from '../../app.module';
 import { ZipComponent } from './zip.component';
 import { ZipFileExplorerModule } from '../zip-file-explorer.module';
 
-describe('ZipComponent', () => {
+xdescribe('ZipComponent', () => {
   let component: ZipComponent;
   let fixture: ComponentFixture<ZipComponent>;
 

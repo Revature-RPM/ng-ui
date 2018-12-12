@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { User } from 'src/app/core/models/User';
 
 @Component({
   selector: 'app-home-page',
@@ -11,8 +12,5 @@ export class HomePageComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit() {
-    if (localStorage.getItem('user') === null) {
-      this.router.navigate(['/auth/login']);
-    }
   }
 }

@@ -24,11 +24,11 @@ export class ProjectService {
   }
 
   getProjectById(id): Observable<Project> {
-    return this.httpClient.get<Project>(environment.url + `/projects/${id}`, HTTP_OPTIONS);
+    return this.httpClient.get<Project>(environment.url + `/projects/id/${id}`, HTTP_OPTIONS);
   }
 
-  updateProject(formData: FormData, id): Observable<Project> {
-    return this.httpClient.put(environment.url + `/projects/${id}`, formData);
+  updateProject(project: Project, id): Observable<Project> {
+    return this.httpClient.put(environment.url + `/projects/${id}`, project, HTTP_OPTIONS);
   }
 
   createProject(formData: FormData): Observable<Project> {

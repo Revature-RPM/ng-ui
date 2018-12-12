@@ -28,7 +28,7 @@
                 <mat-form-field class="example-full-width" appearance="outline">
                         <mat-label>Trainer Name</mat-label>
                     <mat-error *ngIf="!trainerName.valid || trainerName.pristine">Trainer name is required</mat-error>
-                    <input type="text" name="trainers" matInput placeholder="Trainer Name" [(ngModel)]="projectToUpload.userFullName" 
+                    <input type="text" name="trainers" matInput placeholder="Trainer Name" [(ngModel)]="projectToUpload.trainer" 
                     [ngModelOptions]="{standalone: true}" required #trainerName="ngModel">
                   </mat-form-field>
             </td>
@@ -65,7 +65,7 @@
                       [ngModelOptions]="{standalone: true}" (click)="openDialog($event)" #zipLinks="ngModel" required>                    </mat-form-field>
               </td>
               <td><mat-form-field class="example-full-width" appearance="outline">
-                    <mat-label>Tecknology Stack</mat-label>
+                    <mat-label>Technology Stack</mat-label>
                   <mat-error *ngIf="!techStack.valid || techStack.pristine">Technology stack is required</mat-error>
                   <input type=text matInput name="stack" placeholder="Project Technology Stack" [(ngModel)]="projectToUpload.techStack" 
                   [ngModelOptions]="{standalone: true}" required #techStack="ngModel">
