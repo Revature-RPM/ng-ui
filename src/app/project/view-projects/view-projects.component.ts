@@ -145,7 +145,7 @@ export class ViewProjectsComponent implements OnInit, OnDestroy {
    */
   ngOnInit() {
     this.currentUser = JSON.parse(localStorage.getItem('user'));
-    
+
     const trainerFullName = this.currentUser.firstName + ' ' + this.currentUser.lastName;
     this.subscription = this.viewProjectsService.getAllProjects()
     .subscribe((projectResponse) => {
@@ -155,8 +155,8 @@ export class ViewProjectsComponent implements OnInit, OnDestroy {
       /* place all the current user's project's in an array to easily switch between tabs to see all projects and a particular user's projects
           without having to make multiple calls to the server  */
       this.userProjects = [];
-      for (let i = 0; i < projectResponse.length; i++){
-        if (projectResponse[i].trainer === trainerFullName){
+      for (let i = 0; i < projectResponse.length; i++) {
+        if (projectResponse[i].trainer === trainerFullName) {
           this.userProjects.push(projectResponse[i]);
         }
       }
@@ -228,12 +228,12 @@ export class ViewProjectsComponent implements OnInit, OnDestroy {
     }
   }
 
-  codebase(project){
+  codebase(project) {
     this.viewProjectsService.CurrentProject = project;
     this.router.navigate(['/codebase']);
   }
 
-  edit(project){
+  edit(project) {
     this.router.navigate([project.id + '/edit']);
   }
 
@@ -241,18 +241,18 @@ export class ViewProjectsComponent implements OnInit, OnDestroy {
     this.router.navigate(['/project_submission']);
   }
 
-  yourProjects(){
+  yourProjects() {
     this.viewProjects(false);
   }
 
-  projects(){
+  projects() {
     this.viewProjects(true);
   }
 
-  viewProjects(allProjects: boolean){
-    if (allProjects){
+  viewProjects(allProjects: boolean) {
+    if (allProjects) {
       this.dataSource = new MatTableDataSource(this.allProjects);
-    }else{
+    } else {
       this.dataSource = new MatTableDataSource(this.userProjects);
     }
   }
