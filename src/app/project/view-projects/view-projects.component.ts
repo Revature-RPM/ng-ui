@@ -8,6 +8,7 @@ import { ProjectService } from 'src/app/core/services/project.service';
 import { UserService } from 'src/app/core/services/user.service';
 import { Router } from '@angular/router';
 import { User } from 'src/app/core/models/User';
+import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
   selector: 'app-view-projects',
