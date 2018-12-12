@@ -7,6 +7,7 @@ import { Project } from 'src/app/core/models/Project';
 import { ProjectService } from 'src/app/core/services/project.service';
 import { Router } from '@angular/router';
 import { User } from 'src/app/core/models/User';
+import { UserService } from 'src/app/core/services/user.service';
 
 // hardcoded Project data ... should be deleted later
 const PROJECT_DATA: Project[] = [
@@ -135,7 +136,7 @@ export class ViewProjectsComponent implements OnInit, OnDestroy {
   allProjects: Project[];
   userProjects: Project[];
   subscription: Subscription;
-  constructor(private router: Router, private viewProjectsService: ProjectService) { }
+  constructor(private router: Router, private viewProjectsService: ProjectService, private userService: UserService) { }
 
   /**
    * this is a lifecycle method called once by Angular after ngOnChanges(); it should be used to perform intialization logic;
@@ -144,7 +145,7 @@ export class ViewProjectsComponent implements OnInit, OnDestroy {
    * @author Shawn Bickel (1810-Oct08-Java-USF)
    */
   ngOnInit() {
-    this.currentUser = JSON.parse(localStorage.getItem('user'));
+    this.currentUser = this.userService.getUser();
     
     const trainerFullName = this.currentUser.firstName + ' ' + this.currentUser.lastName;
     this.subscription = this.viewProjectsService.getAllProjects()

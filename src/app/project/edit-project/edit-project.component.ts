@@ -8,6 +8,7 @@ import { first } from 'rxjs/operators';
 import { Project } from 'src/app/core/models/Project';
 import { ProjectService } from 'src/app/core/services/project.service';
 import { InputDialogComponent } from '../project-submission/input-dialog/input-dialog.component';
+import { UserService } from 'src/app/core/services/user.service';
 
 export interface DialogData {
   title: string;
@@ -51,12 +52,13 @@ export class EditProjectComponent implements OnInit {
   constructor(private router: Router,
     private ngmeta: NgMetaService,
     private projectService: ProjectService,
+    private userService: UserService,
     private route: ActivatedRoute,
     private dialog: MatDialog,
     private snackBar: MatSnackBar) {}
 
   ngOnInit() {
-    if (localStorage.getItem('user') === null) {
+    if (this.userService.getUser() === null) {
       this.router.navigate(['/auth/login']);
     } else {
       this.ngmeta.setHead({ title: 'Edit Project | RPM' });
