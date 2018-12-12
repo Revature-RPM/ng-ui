@@ -64,10 +64,11 @@ export class ZipComponent implements OnInit {
       this.browserSupported = isTextDecoderSupported;
       if (this.projectService.CurrentProject) {
         this.availableUrls = this.projectService.CurrentProject.zipLinks;
-      } else { // test block
-        this.availableUrls.push('https://s3.us-east-2.amazonaws.com/zip-test-bucket/reflections-mafia-client-master.zip');
-        this.availableUrls.push('not an url');
       }
+      // } else { // test block
+      //   this.availableUrls.push('https://s3.us-east-2.amazonaws.com/zip-test-bucket/reflections-mafia-client-master.zip');
+      //   this.availableUrls.push('not an url');
+      // }
     }
   }
   /**
