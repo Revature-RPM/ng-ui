@@ -7,6 +7,15 @@ import { AppModule} from '../../app.module';
 
 import { HomePageComponent } from './home-page.component';
 
+/** 
+ * This test suite serves to check the proper creation of the HomePage
+ * component as well the as well as the functionality 
+ * of the various methods within it.
+ * @param null
+ * @author Ryan Beevers| Shawn Bickle | Sahil Makhijani| Andrew Mitchem | Yuki Mano |Jeffly Luctamar| (1810-Oct08-Java-USF)
+ * 
+ * */
+
 describe('HomePageComponent', () => {
   let component: HomePageComponent;
   let fixture: ComponentFixture<HomePageComponent>;
