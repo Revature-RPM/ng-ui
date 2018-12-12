@@ -82,18 +82,21 @@ export class ProfileComponent implements OnInit {
         password: this.form.get('password').value,
         role: this.user.role,
       };
-      this.user = updatedUserInfo;
+      // this.user = updatedUserInfo;
 
-      this.fillFormGroup(this.user.firstName, this.user.lastName, this.user.email, this.user.username, this.user.password);
+      // this.fillFormGroup(this.user.firstName, this.user.lastName, this.user.email, this.user.username, this.user.password);
 
       this.userService.updateProfile(updatedUserInfo).pipe(first()).subscribe((user) => {
         if (user) {
           this.user = user;
+          this.userService.user = user;
           //window.localStorage.setItem('user', JSON.stringify(updatedUserInfo));
           alert('profile updated');
           this.fillFormGroup(this.user.firstName, this.user.lastName, this.user.email, this.user.username, this.user.password);
         }
       }, (error) => {
+          this.user = this.userService.getUser();
+          this.fillFormGroup(this.user.firstName, this.user.lastName, this.user.email, this.user.username, this.user.password);
           alert('error updating profile');
       });
     }
