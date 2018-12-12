@@ -47,8 +47,7 @@ export class ViewProjectsComponent implements OnInit, OnDestroy {
     this.currentUser = this.userService.getUser();
     if (this.currentUser === null) {
       this.router.navigate(['/auth/login']);
-    }
-
+    }else{
     const trainerFullName = this.currentUser.firstName + ' ' + this.currentUser.lastName;
     this.subscription = this.viewProjectsService.getAllProjects()
     .subscribe((projectResponse) => {
@@ -66,6 +65,7 @@ export class ViewProjectsComponent implements OnInit, OnDestroy {
       this.dataSource = new MatTableDataSource(this.allProjects);
       this.dataSource.sort = this.sort;
     });
+    }
   }
 
   /**
