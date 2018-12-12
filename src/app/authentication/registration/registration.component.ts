@@ -34,7 +34,7 @@ export class RegistrationComponent implements OnInit {
   // username pattern ensures there are no underscores at beginning or end of username
   // and at least 8 characters
   usernamePattern = '^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$';
-  confirmPassword: string;
+  confirmPassword: string; 
 
   // this method is called to ensure password was typed correctly
   static MatchPassword(AC: AbstractControl) {

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
 import { NgMetaService } from 'ngmeta';
 
@@ -61,12 +61,13 @@ export class ProjectSubmissionComponent implements OnInit {
   constructor(private router: Router,
               private ngmeta: NgMetaService,
               private dialog: MatDialog,
-              private projectService: ProjectService) {}
+              private projectService: ProjectService,
+              private snackBar: MatSnackBar) {}
 
   ngOnInit() {
-    if (localStorage.getItem('user') === null) {
-      this.router.navigate(['/auth/login']);
-    } else {
+    // if (localStorage.getItem('user') === null) {
+    //   this.router.navigate(['/auth/login']);
+    // } else {
       this.ngmeta.setHead({ title: 'Submit | RPM' });
       this.projectToUpload.groupMembers = [];
       this.projectToUpload.screenShots = [];
@@ -74,7 +75,7 @@ export class ProjectSubmissionComponent implements OnInit {
       this.groupMemberString = '';
       this.zipLinksString = '';
       this.githubURLRegex = new RegExp('^(https:\/\/github\.com\/[^/]+\/[^/]+)');
-    }
+    // }
   }
 
   /**
@@ -156,7 +157,7 @@ export class ProjectSubmissionComponent implements OnInit {
     // append the data of the form as key/value pairs using field names on the server as keys and data in the form as values
     formData.append('name', this.projectToUpload.name);
     formData.append('batch', this.projectToUpload.batch);
-    formData.append('userFullName', this.projectToUpload.userFullName);
+    formData.append('trainer', this.projectToUpload.trainer);
     formData.append('techStack', this.projectToUpload.techStack);
     formData.append('description', this.projectToUpload.description);
     formData.append('status', 'pending');
@@ -175,9 +176,11 @@ export class ProjectSubmissionComponent implements OnInit {
     }
 
     // the FormData object is then sent to a service where it is submitted to the server as an http post request
-    this.projectService.createProject(formData).subscribe(project => {
-      this.router.navigate(['/home']);
+    this.projectService.createProject(formData).subscribe(project => {});
+    this.snackBar.open('The new project will be visible momentarily', '', {
+      duration: 5000,
     });
+    this.router.navigate(['/home']);
   }
 
   /**

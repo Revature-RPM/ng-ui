@@ -74,7 +74,7 @@ ${error.error}`
     // only use environment.url for the base url and concat any restful endpoints
   register(user: User): Observable<User> {
     user.role = 'user';
-    return this.http.post<User>(environment.url + '/auth/users/', user, httpOptions)
+    return this.http.post<User>(environment.url+ '/auth/users/', user, httpOptions)
       .pipe(catchError(this.handleError));
   }
 

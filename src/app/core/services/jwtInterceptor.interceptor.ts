@@ -7,21 +7,21 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { UserService } from './user.service';
+import { environment} from 'src/environments/environment'
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
   constructor(private userService: UserService) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-
-    if (window.localStorage.getItem('jwt')) {
-    // check uri later
-    request = request.clone({
-      setHeaders: {
-        Authorization: `Bearer ${window.localStorage.getItem('jwt')}`
-      }
-    });
-  }
+      if(request.url.indexOf(environment.url)>0 && window.localStorage.getItem("jwt")){
+      //check uri later
+      request = request.clone({
+        setHeaders: {
+          Authorization: `Bearer ${window.localStorage.getItem('jwt')}`
+        }
+      });
+    }
     return next.handle(request);
   }
 }
