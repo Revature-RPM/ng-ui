@@ -88,13 +88,12 @@ ngOnInit() {
  * @param nameField : the template variable for the name input field which holds validation information
  * @param batchField : the template variable for the batch input field which holds validation information
  * @param trainerField : the template variable for the trainer name input field which holds validation information
- * @param groupMemberField : the template variable for the group member input field which holds validation information
  * @param descriptionField : the template variable for the description input field which holds validation information
  * @param techStackField : the template variable for the technology stack input field which holds validation information
  *  @author Shawn Bickel (1810-Oct08-Java-USF)
  */
-checkForValidField(nameField, batchField, trainerField, groupMemberField, descriptionField, techStackField){
-  if (!nameField.valid || !batchField.valid || !trainerField.valid || !groupMemberField.valid || !descriptionField.valid || !techStackField.valid){
+checkForValidField(nameField, batchField, trainerField, descriptionField, techStackField){
+  if (!nameField.valid || !batchField.valid || !trainerField.valid || !descriptionField.valid || !techStackField.valid){
     this.validForm = false;
   }else{
     this.validForm = true;
