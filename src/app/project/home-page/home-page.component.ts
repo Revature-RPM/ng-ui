@@ -12,6 +12,5 @@ export class HomePageComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit() {
-
   }
 }

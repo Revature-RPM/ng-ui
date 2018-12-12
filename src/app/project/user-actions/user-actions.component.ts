@@ -14,11 +14,6 @@ export class UserActionsComponent implements OnInit {
   constructor(private router: Router,) {
   }
 
-
-
   ngOnInit() {
   }
-
-
-
 }
