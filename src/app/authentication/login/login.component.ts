@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
   constructor(private userService: UserService, private router: Router, private ngmeta: NgMetaService) { }
 
   ngOnInit() {
-    if (localStorage.getItem('user') !== null) {
+    if (this.userService.getUser() !== null) {
       this.router.navigate(['']);
     } else {
       this.ngmeta.setHead({ title: 'Login | RPM' });

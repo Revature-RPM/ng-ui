@@ -6,6 +6,7 @@ import { NgMetaService } from 'ngmeta';
 import { InputDialogComponent } from './input-dialog/input-dialog.component';
 import { Project } from 'src/app/core/models/Project';
 import { ProjectService } from 'src/app/core/services/project.service';
+import { UserService } from 'src/app/core/services/user.service';
 
 // this interface represents data to be held and returned from an input dialog
 export interface DialogData {
@@ -62,12 +63,13 @@ export class ProjectSubmissionComponent implements OnInit {
               private ngmeta: NgMetaService,
               private dialog: MatDialog,
               private projectService: ProjectService,
-              private snackBar: MatSnackBar) {}
+              private snackBar: MatSnackBar,
+              private userService: UserService) {}
 
   ngOnInit() {
-    // if (localStorage.getItem('user') === null) {
-    //   this.router.navigate(['/auth/login']);
-    // } else {
+    if (this.userService.getUser() === null) {
+      this.router.navigate(['/auth/login']);
+    } else {
       this.ngmeta.setHead({ title: 'Submit | RPM' });
       this.projectToUpload.groupMembers = [];
       this.projectToUpload.screenShots = [];
@@ -75,7 +77,7 @@ export class ProjectSubmissionComponent implements OnInit {
       this.groupMemberString = '';
       this.zipLinksString = '';
       this.githubURLRegex = new RegExp('^(https:\/\/github\.com\/[^/]+\/[^/]+)');
-    // }
+    }
   }
 
   /**
