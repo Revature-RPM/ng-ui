@@ -72,18 +72,11 @@ export class ViewProjectsComponent implements OnInit, OnDestroy {
 
   /**
    * This method determines if a trainer can edit a project; a trainer can only edit a project if the project was submitted by the trainer.
-   * The click event of this method is used to find the name of the trainer displayed in the row;
-   * if the trainer in the row is the same as the currently logged in user, then the trainer can edit the project
    * @param rowClick : the event when a row is clicked and expanded
    * @author Shawn Bickel (1810-Oct08-Java-USF)
    */
   canEdit(project) {
-    console.log(this.currentUser);
-    // retrieve the trainer displayed in the table row
-    // const trainer = rowClick.path[1].cells[2].innerHTML.trim();
-
-     // Retrieve the user from local storage and ensure that the user can edit the project if the user submitted the project
-     const trainerFullName = this.currentUser.firstName.trim() + ' ' + this.currentUser.lastName.trim();
+      const trainerFullName = this.currentUser.firstName.trim() + ' ' + this.currentUser.lastName.trim();
      if(this.currentUser.role == "ROLE_ADMIN"){
        this.trainerCanEdit = true;
      }

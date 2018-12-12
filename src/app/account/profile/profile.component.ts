@@ -82,9 +82,6 @@ export class ProfileComponent implements OnInit {
         password: this.form.get('password').value,
         role: this.user.role,
       };
-      // this.user = updatedUserInfo;
-
-      // this.fillFormGroup(this.user.firstName, this.user.lastName, this.user.email, this.user.username, this.user.password);
 
       this.userService.updateProfile(updatedUserInfo).pipe(first()).subscribe((user) => {
         if (user) {
