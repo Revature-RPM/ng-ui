@@ -93,7 +93,11 @@
                   <label><strong> Group Members: </strong></label>
                 </div>
                 <div id="description-label" fxLayout="row">
-                  <label><strong> Project Description: </strong></label>
+
+                  <!-- this line is needed for styling purpose -->
+                  <label style="color: white"> ____ </label>
+                  
+                  <label><strong> Description: </strong></label>
                 </div>
               </div>
               <div class="container" fxLayout.xs="column">
@@ -117,7 +121,7 @@
                     </button>
                   </a>
                   <a id="edit-button">
-                    <button (click)="edit(project)" id="icon" mat-icon-button
+                    <button *ngIf="trainerCanEdit" (click)="edit(project)" id="icon" mat-icon-button
                       mat-stroked-button color="primary" matTooltip="Edit" matTooltipPosition="right">
                       <mat-icon id="profile-icon">edit</mat-icon>
                     </button>
