@@ -42,6 +42,11 @@ ${error.error}`
     this.jwtauthtoken = null;
     this.user = null;
   }
+  /*
+  * retrievers the current user from user service. if null for whatever reason. checks local storage for valid
+  * user and jwt
+  *@Author Andrew Mitchem
+  */
   getUser() {
     if (this.user) {
       return this.user;
@@ -69,14 +74,18 @@ ${error.error}`
       }), catchError(this.handleError));
   }
 
-  // only use environment.url for the base url and concat any RESTful endpoints
+  /*
+  * Register a new user
+  */
   register(user: User): Observable<User> {
     user.role = 'user';
     return this.http.post<User>(environment.url + '/auth/users/', user, httpOptions)
       .pipe(catchError(this.handleError));
   }
 
-  // only use environment.url for the base url and concat any RESTful endpoints
+  /*
+  * Updates the user profile
+  */
   updateProfile(user: User): Observable<User> {
     return this.http.put<User>(environment.url + '/auth/users/', user, httpOptions)
       .pipe(catchError(this.handleError));
