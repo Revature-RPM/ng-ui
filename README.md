@@ -16,7 +16,7 @@ We will need to describe how we tested the Angular application.
 
 ## Documentation
 
-Futher information concerning the details of our application, application workflow, and material design can be found in our [project wiki](https://guides.github.com/features/mastering-markdown/)
+Futher information concerning the details of our application, application workflow, and material design can be found in our [project wiki](https://github.com/1810-oct08-java-usf/ng-ui/wiki)
 
 ### Compodoc
 
