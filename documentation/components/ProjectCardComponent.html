@@ -303,7 +303,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/project/view-projects/project-card/project-card.component.ts:28</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/project/view-projects/project-card/project-card.component.ts:27</a></div>
                             </td>
                         </tr>
 
@@ -379,7 +379,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/project/view-projects/project-card/project-card.component.ts:31</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/project/view-projects/project-card/project-card.component.ts:30</a></div>
                             </td>
                         </tr>
 
@@ -566,7 +566,6 @@ export class ProjectCardComponent implements OnInit {
   }
 
   ngOnInit() {
-    //console.log(this.project.techStack[0]);
   }
 
   changeImage() {
@@ -589,7 +588,7 @@ export class ProjectCardComponent implements OnInit {
     &lt;mat-card-content&gt;
       &lt;p&gt;{{project.description}}&lt;/p&gt;
       &lt;p&gt;tech: {{project.techStack}}&lt;/p&gt; 
-      &lt;p&gt;Trainers : {{ project.userFullName}}&lt;/p&gt;
+      &lt;p&gt;Trainers : {{ project.trainer}}&lt;/p&gt;
     &lt;/mat-card-content&gt;
     &lt;mat-card-actions&gt;
       &lt;button mat-button&gt;Edit&lt;/button&gt;
@@ -633,8 +632,8 @@ export class ProjectCardComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><mat-card class="example-card">    <mat-card-header>      <mat-card-title>{{ project.name }}</mat-card-title>    </mat-card-header>    <img mat-card-image (mouseleave)="changeImage()" (mouseover)="changeImage()" [src]="currentimage" alt="Batch Team Image">    <mat-card-content>      <p>{{project.description}}</p>      <p>tech: {{project.techStack}}</p>       <p>Trainers : {{ project.userFullName}}</p>    </mat-card-content>    <mat-card-actions>      <button mat-button>Edit</button>      <button mat-button *ngIf="admin && !approved">Approve</button>      <button mat-button (click)="openCodeBase()">CodeBase</button>    </mat-card-actions>  </mat-card>  </div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AppLogoComponent', 'selector': 'app-app-logo'},{'name': 'HomePageComponent', 'selector': 'app-home-page'},{'name': 'InputDialogComponent', 'selector': 'app-input-dialog'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LogoutComponent', 'selector': 'app-logout'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'ProfileComponent', 'selector': 'app-profile'},{'name': 'ProjectCardComponent', 'selector': 'app-project-card'},{'name': 'ProjectSubmissionComponent', 'selector': 'app-project-submission'},{'name': 'RegistrationComponent', 'selector': 'app-registration'},{'name': 'UserActionsComponent', 'selector': 'app-user-actions'},{'name': 'ViewProjectsComponent', 'selector': 'app-view-projects'},{'name': 'ZipComponent', 'selector': 'app-zip-component'}];
+        var COMPONENT_TEMPLATE = '<div><mat-card class="example-card">    <mat-card-header>      <mat-card-title>{{ project.name }}</mat-card-title>    </mat-card-header>    <img mat-card-image (mouseleave)="changeImage()" (mouseover)="changeImage()" [src]="currentimage" alt="Batch Team Image">    <mat-card-content>      <p>{{project.description}}</p>      <p>tech: {{project.techStack}}</p>       <p>Trainers : {{ project.trainer}}</p>    </mat-card-content>    <mat-card-actions>      <button mat-button>Edit</button>      <button mat-button *ngIf="admin && !approved">Approve</button>      <button mat-button (click)="openCodeBase()">CodeBase</button>    </mat-card-actions>  </mat-card>  </div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AppLogoComponent', 'selector': 'app-app-logo'},{'name': 'EditProjectComponent', 'selector': 'app-edit-project'},{'name': 'HomePageComponent', 'selector': 'app-home-page'},{'name': 'InputDialogComponent', 'selector': 'app-input-dialog'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LogoutComponent', 'selector': 'app-logout'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'ProfileComponent', 'selector': 'app-profile'},{'name': 'ProjectCardComponent', 'selector': 'app-project-card'},{'name': 'ProjectSubmissionComponent', 'selector': 'app-project-submission'},{'name': 'RegistrationComponent', 'selector': 'app-registration'},{'name': 'UserActionsComponent', 'selector': 'app-user-actions'},{'name': 'ViewProjectsComponent', 'selector': 'app-view-projects'},{'name': 'ZipComponent', 'selector': 'app-zip-component'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'ProjectCardComponent'};
 </script>
