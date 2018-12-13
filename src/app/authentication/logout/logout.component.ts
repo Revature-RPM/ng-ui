@@ -12,7 +12,7 @@ export class LogoutComponent implements OnInit {
 
   constructor(private router: Router, private userService: UserService) {
     if (this.userService.getUser() !== null) {
-      localStorage.removeItem('user');
+      this.userService.logout();
       router.navigate(['/auth/login']);
     }
   }
