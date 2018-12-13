@@ -50,11 +50,11 @@ export class ProjectSubmissionComponent implements OnInit {
 
   /**
    * githubURLRegex: holds the regular expression to validate that an entered link is formatted correctly
-   *    - a valid link is of the format: https://github.com/<github username>/<repository name>
-   *    - the regular expression used to validate this is: ^(https:\/\/github\.com\/[^/]+\/[^/]+)
-   *    - this expression is checking that the link contains https://github.com/at least one of <any character but a '/'>/at least one of <any character but a '/'>`
+   * - a valid link is of the format: https://github.com/<github username>/<repository name>
+   * - the regular expression used to validate this is: ^(https:\/\/github\.com\/[^/]+\/[^/]+)
+   * - this expression is checking that the link contains https://github.com/at least one of <any character but a '/'>/at least one of <any character but a '/'>
    * githubURL: a string to hold the user's input from the dialog
-   *  @author Shawn Bickel (1810-Oct08-Java-USF)
+   * @author Shawn Bickel (1810-Oct08-Java-USF)
    */
   githubURLRegex: RegExp;
   githubURL: string;

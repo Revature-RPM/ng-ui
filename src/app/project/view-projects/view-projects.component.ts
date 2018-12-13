@@ -55,8 +55,8 @@ export class ViewProjectsComponent implements OnInit, OnDestroy {
         this.allProjects = projectResponse;
         // Assign the data to the data source for the table to render
         this.dataSource = new MatTableDataSource(this.allProjects);
-        /* place all the current user's project's in an array to easily switch between tabs to see all projects and a particular user's projects
-            without having to make multiple calls to the server  */
+        /* place all the current user's project's in an array to easily switch between tabs to see all projects and
+        a particular user's projects without having to make multiple calls to the server */
         this.userProjects = [];
         for (let i = 0; i < projectResponse.length; i++) {
           if (projectResponse[i].trainer === trainerFullName) {
@@ -74,16 +74,15 @@ export class ViewProjectsComponent implements OnInit, OnDestroy {
    * @param rowClick : the event when a row is clicked and expanded
    * @author Shawn Bickel (1810-Oct08-Java-USF)
    */
-  canEdit(project) {
-      const trainerFullName = this.currentUser.firstName.trim() + ' ' + this.currentUser.lastName.trim();
-     if(this.currentUser.role == "ROLE_ADMIN"){
-       this.trainerCanEdit = true;
-     }
-     else if (trainerFullName === project.trainer) {
-        this.trainerCanEdit = true;
-     } else {
-       this.trainerCanEdit = false;
-     }
+  canEdit(project: any) {
+    const trainerFullName = this.currentUser.firstName.trim() + ' ' + this.currentUser.lastName.trim();
+    if (this.currentUser.role === 'ROLE_ADMIN') {
+      this.trainerCanEdit = true;
+    } else if (trainerFullName === project.trainer) {
+      this.trainerCanEdit = true;
+    } else {
+      this.trainerCanEdit = false;
+    }
   }
 
   /**

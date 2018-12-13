@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgMetaService } from 'ngmeta'; // TODO use to change title to 'Edit | RPM' or something
@@ -7,7 +7,6 @@ import { first } from 'rxjs/operators';
 
 import { Project } from 'src/app/core/models/Project';
 import { ProjectService } from 'src/app/core/services/project.service';
-import { InputDialogComponent } from '../project-submission/input-dialog/input-dialog.component';
 import { UserService } from 'src/app/core/services/user.service';
 
 export interface DialogData {
@@ -25,7 +24,8 @@ export class EditProjectComponent implements OnInit {
 
   validForm: Boolean = true;
 
-  // projectToUpdate will hold project information for a specific project returned by id and is bound to the information that users enter in the form
+  // projectToUpdate will hold project information for a specific project returned by id and
+  // is bound to the information that users enter in the form
   projectToUpdate: Project = {};
 
   /**
@@ -34,9 +34,9 @@ export class EditProjectComponent implements OnInit {
    * result will hold the user's response, either a group member or a link to be validated as a Github repository link
    * @author Shawn Bickel (1810-Oct08-Java-USF)
    */
-  title: string = "New Group Member";
-  questionType: string = "Enter the name of the group member";
-  result: string;
+  title = 'New Group Member';
+  questionType = 'Enter the name of the group member';
+  result;
 
   subscription: Subscription; // will be used to subscribe to the results of an observable
 
@@ -56,21 +56,19 @@ export class EditProjectComponent implements OnInit {
       this.projectToUpdate.groupMembers = [];
       this.projectToUpdate.screenShots = [];
       this.projectToUpdate.zipLinks = [];
-      console.log('in editing');
-     /**
-     * This will retrieve the path variable which corresponds to the id of the project to be edited.
-     * ActivatedRoute has an observable called 'params' which provides a means to do this.
-     * Once the project id is retrieved from the path, it can be passed to the project service to obtain the project to update.
-     * 
-     *  @author Shawn Bickel (1810-Oct08-Java-USF)
-     */
-    this.subscription = this.route.params.subscribe(params => {
-      this.projectService.getProjectById(params['id']).pipe(first()).subscribe(projectById => {
-        console.log(projectById);
-        this.projectToUpdate = projectById;
-       console.log(this.projectToUpdate);
+
+      /**
+       * This will retrieve the path variable which corresponds to the id of the project to be edited.
+       * ActivatedRoute has an observable called 'params' which provides a means to do this.
+       * Once the project id is retrieved from the path, it can be passed to the project service to obtain the project to update.
+       *
+       *  @author Shawn Bickel (1810-Oct08-Java-USF)
+       */
+      this.subscription = this.route.params.subscribe(params => {
+        this.projectService.getProjectById(params['id']).pipe(first()).subscribe(projectById => {
+          this.projectToUpdate = projectById;
+        });
       });
-    });
     }
   }
 
@@ -81,27 +79,22 @@ export class EditProjectComponent implements OnInit {
    * @param trainerField : the template variable for the trainer name input field which holds validation information
    * @param descriptionField : the template variable for the description input field which holds validation information
    * @param techStackField : the template variable for the technology stack input field which holds validation information
-   *  @author Shawn Bickel (1810-Oct08-Java-USF)
+   * @author Shawn Bickel (1810-Oct08-Java-USF)
    */
-  checkForValidField(nameField, batchField, trainerField, descriptionField, techStackField){
-    if (!nameField.valid || !batchField.valid || !trainerField.valid || !descriptionField.valid || !techStackField.valid){
+  checkForValidField(nameField, batchField, trainerField, descriptionField, techStackField) {
+    if (!nameField.valid || !batchField.valid || !trainerField.valid || !descriptionField.valid || !techStackField.valid) {
       this.validForm = false;
-    }else{
+    } else {
       this.validForm = true;
     }
   }
 
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }
-   /**
+  /**
    * This method is bound to the event that the form is submitted;
    * The updated project is sent to a service where it is sent to the server with an http put method
    * @author Shawn Bickel (1810-Oct08-Java-USF)
    */
   submitForm() {
-    console.log('in submit form');
-    console.log(this.projectToUpdate);
     this.projectService.updateProject(this.projectToUpdate, this.projectToUpdate.id).subscribe(project => {});
     this.snackBar.open('The edited changes may take time to appear', '', {
       duration: 5000,

@@ -11,7 +11,6 @@ export class AppLogoComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit() {
-   
   }
 
   homepageShortcut() {

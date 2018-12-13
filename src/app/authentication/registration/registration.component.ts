@@ -34,13 +34,13 @@ export class RegistrationComponent implements OnInit {
   // username pattern ensures there are no underscores at beginning or end of username
   // and at least 8 characters
   usernamePattern = '^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$';
-  confirmPassword: string; 
+  confirmPassword: string;
 
   // this method is called to ensure password was typed correctly
   static MatchPassword(AC: AbstractControl) {
     const password = AC.get('password').value; // to get value in input tag
     const confirmPassword = AC.get('confirmPassword').value; // to get value in input tag
-    if (password != confirmPassword) {
+    if (password !== confirmPassword) {
       AC.get('confirmPassword').setErrors({ MatchPassword: true });
     } else {
       return null;
