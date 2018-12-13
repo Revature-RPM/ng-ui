@@ -11,9 +11,12 @@ This is the Angular front-end of a full-stack application with the purpose of pr
 ## Usage
 * We should include screenshots of our application at this point to illustrate use cases and functionality.
 
+## Testing
+We will need to describe how we tested the Angular application.
+
 ## Documentation
 
-Futher information concerning the details of our application, application workflow, and material design can be found in our [project wiki](../../wiki)
+Futher information concerning the details of our application, application workflow, and material design can be found in our [project wiki](https://github.com/1810-oct08-java-usf/ng-ui/wiki)
 
 ### Compodoc
 
@@ -22,7 +25,7 @@ Compodoc is a documentation generator for Angular applications. It provides a co
 [RPM Compodoc Angular Documentation](http://rpmdocs.s3-website.us-east-2.amazonaws.com)
 
 ## Contributing Information
-Information concerning submitting code for review or making pull requests can be found by reading our [contributing documentation](./docs/contributing.md)
+Information concerning submitting code for review or making pull requests can be found by reading our [contributing documentation](https://github.com/1810-oct08-java-usf/ng-ui/blob/dev/docs/contributing.md)
 
 ## Current Authors
 **Sahil Makhijani**, **Ryan Beevers**, **Shawn Bickel**, **Jeffly Luctamar**, **Yuki Mano**, **Andrew Mitchem** 

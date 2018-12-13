@@ -3,7 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { Project } from '../models/Project';
-import { environment } from 'src/environments/environment';
+import { environment } from 'src/environments/environment.prod'
+// import { environment } from 'src/environments/environment';
 
 const HTTP_OPTIONS = {
   headers: new HttpHeaders({
