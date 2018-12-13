@@ -6,7 +6,6 @@ import { catchError, map} from 'rxjs/operators';
 import { User } from '../models/User';
 import { environment } from '../../../environments/environment';
 
-
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json'
@@ -42,11 +41,11 @@ ${error.error}`
     this.jwtauthtoken = null;
     this.user = null;
   }
-  /*
-  * retrievers the current user from user service. if null for whatever reason. checks local storage for valid
-  * user and jwt
-  *@Author Andrew Mitchem
-  */
+  /**
+   * retrievers the current user from user service. if null for whatever reason. checks local storage for valid
+   * user and jwt
+   * @author Andrew Mitchem
+   */
   getUser() {
     if (this.user) {
       return this.user;
