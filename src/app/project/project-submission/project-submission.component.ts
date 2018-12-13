@@ -179,6 +179,7 @@ export class ProjectSubmissionComponent implements OnInit {
 
     // the FormData object is then sent to a service where it is submitted to the server as an http post request
     this.projectService.createProject(formData).subscribe(project => {});
+    window.location.reload();
     this.router.navigate(['/home']);
   }
 
