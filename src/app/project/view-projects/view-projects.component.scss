@@ -65,17 +65,37 @@ flex-direction: row;
   margin: 8px 0;
 }
 
+#group-members-label{
+  padding-top: 8vh;
+  padding-left: 2vh;
+  padding-right: 1vh;
+}
+
+#description-label{
+  padding-top: 12vh;
+  padding-left: 2vh;
+  padding-right: 1vh;
+}
+
 #project-members {
-  padding: 30px;
+  padding-top: 8vh;
   text-align: left;
-  display: block;
 }
 
 #project-description {
-  padding: 30px;
+  padding-top: 8vh;
   text-align: left;
 }
 
 #arrow-icon {
   margin-top: 20vh;
+}
+
+#codebase-button {
+  padding-top: 8vh; 
+  padding-left: 5vh;
+}
+
+#edit-button {
+  padding-top: 8vh;
 }
