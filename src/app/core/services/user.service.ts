@@ -54,8 +54,6 @@ ${error.error}`
   }
   // only use environment.url for the base url and concat any restful endpoints
   // user.login(user). login the user and retrieve the jwt token from the header
-  // @param user
-  //
   login(user: User): Observable<any> {
     return this.http.post(environment.url + '/auth/login', user, { observe: 'response'})
       .pipe(map(reponse => {
@@ -71,14 +69,14 @@ ${error.error}`
       }), catchError(this.handleError));
   }
 
-    // only use environment.url for the base url and concat any restful endpoints
+  // only use environment.url for the base url and concat any RESTful endpoints
   register(user: User): Observable<User> {
     user.role = 'user';
-    return this.http.post<User>(environment.url+ '/auth/users/', user, httpOptions)
+    return this.http.post<User>(environment.url + '/auth/users/', user, httpOptions)
       .pipe(catchError(this.handleError));
   }
 
-    // only use environment.url for the base url and concat any restful endpoints
+  // only use environment.url for the base url and concat any RESTful endpoints
   updateProfile(user: User): Observable<User> {
     return this.http.put<User>(environment.url + '/auth/users/', user, httpOptions)
       .pipe(catchError(this.handleError));
