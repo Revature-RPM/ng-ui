@@ -22,53 +22,41 @@
 <text text-anchor="start" x="429.7258" y="-15.4" font-family="sans-serif" font-size="14.00" fill="#000000"> &#160;Exports</text>
 <g id="clust1" class="cluster">
 <title>cluster_CoreModule</title>
-<polygon fill="none" stroke="#000000" stroke-dasharray="1,5" points="23.5,-70 23.5,-195 472.5,-195 472.5,-70 23.5,-70"/>
+<polygon fill="none" stroke="#000000" stroke-dasharray="1,5" points="97.5,-70 97.5,-195 398.5,-195 398.5,-70 97.5,-70"/>
 </g>
 <g id="clust6" class="cluster">
 <title>cluster_CoreModule_providers</title>
-<polygon fill="none" stroke="#000000" points="31.5,-78 31.5,-130 464.5,-130 464.5,-78 31.5,-78"/>
+<polygon fill="none" stroke="#000000" points="105.5,-78 105.5,-130 390.5,-130 390.5,-78 105.5,-78"/>
 </g>
 <!-- ProjectService -->
 <g id="node1" class="node">
 <title>ProjectService</title>
-<ellipse fill="#fdb462" stroke="#000000" cx="389.5" cy="-104" rx="67.1888" ry="18"/>
-<text text-anchor="middle" x="389.5" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">ProjectService</text>
+<ellipse fill="#fdb462" stroke="#000000" cx="315.5" cy="-104" rx="67.1888" ry="18"/>
+<text text-anchor="middle" x="315.5" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">ProjectService</text>
 </g>
 <!-- CoreModule -->
-<g id="node4" class="node">
+<g id="node3" class="node">
 <title>CoreModule</title>
-<polygon fill="#8dd3c7" stroke="#000000" points="288.7619,-187 285.7619,-191 264.7619,-191 261.7619,-187 202.2381,-187 202.2381,-151 288.7619,-151 288.7619,-187"/>
-<text text-anchor="middle" x="245.5" y="-164.8" font-family="Times,serif" font-size="14.00" fill="#000000">CoreModule</text>
+<polygon fill="#8dd3c7" stroke="#000000" points="286.7619,-187 283.7619,-191 262.7619,-191 259.7619,-187 200.2381,-187 200.2381,-151 286.7619,-151 286.7619,-187"/>
+<text text-anchor="middle" x="243.5" y="-164.8" font-family="Times,serif" font-size="14.00" fill="#000000">CoreModule</text>
 </g>
 <!-- ProjectService&#45;&gt;CoreModule -->
 <g id="edge1" class="edge">
 <title>ProjectService&#45;&gt;CoreModule</title>
-<path fill="none" stroke="#000000" d="M389.5,-122.1061C389.5,-141.3391 389.5,-169 389.5,-169 389.5,-169 299.0955,-169 299.0955,-169"/>
-<polygon fill="#000000" stroke="#000000" points="299.0956,-165.5001 289.0955,-169 299.0955,-172.5001 299.0956,-165.5001"/>
+<path fill="none" stroke="#000000" d="M267.5183,-116.8419C267.5183,-116.8419 267.5183,-140.5231 267.5183,-140.5231"/>
+<polygon fill="#000000" stroke="#000000" points="264.0184,-140.523 267.5183,-150.5231 271.0184,-140.5231 264.0184,-140.523"/>
 </g>
 <!-- UserService -->
 <g id="node2" class="node">
 <title>UserService</title>
-<ellipse fill="#fdb462" stroke="#000000" cx="245.5" cy="-104" rx="58.4415" ry="18"/>
-<text text-anchor="middle" x="245.5" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">UserService</text>
+<ellipse fill="#fdb462" stroke="#000000" cx="171.5" cy="-104" rx="58.4415" ry="18"/>
+<text text-anchor="middle" x="171.5" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">UserService</text>
 </g>
 <!-- UserService&#45;&gt;CoreModule -->
 <g id="edge2" class="edge">
 <title>UserService&#45;&gt;CoreModule</title>
-<path fill="none" stroke="#000000" d="M245.5,-122.1061C245.5,-122.1061 245.5,-140.991 245.5,-140.991"/>
-<polygon fill="#000000" stroke="#000000" points="242.0001,-140.9909 245.5,-150.991 249.0001,-140.991 242.0001,-140.9909"/>
-</g>
-<!-- jwtinterceptor -->
-<g id="node3" class="node">
-<title>jwtinterceptor</title>
-<ellipse fill="#fdb462" stroke="#000000" cx="104.5" cy="-104" rx="65.4033" ry="18"/>
-<text text-anchor="middle" x="104.5" y="-99.8" font-family="Times,serif" font-size="14.00" fill="#000000">jwtinterceptor</text>
-</g>
-<!-- jwtinterceptor&#45;&gt;CoreModule -->
-<g id="edge3" class="edge">
-<title>jwtinterceptor&#45;&gt;CoreModule</title>
-<path fill="none" stroke="#000000" d="M104.5,-122.1061C104.5,-141.3391 104.5,-169 104.5,-169 104.5,-169 192.0448,-169 192.0448,-169"/>
-<polygon fill="#000000" stroke="#000000" points="192.0449,-172.5001 202.0448,-169 192.0448,-165.5001 192.0449,-172.5001"/>
+<path fill="none" stroke="#000000" d="M214.9198,-116.226C214.9198,-116.226 214.9198,-140.683 214.9198,-140.683"/>
+<polygon fill="#000000" stroke="#000000" points="211.4199,-140.683 214.9198,-150.683 218.4199,-140.683 211.4199,-140.683"/>
 </g>
 </g>
 </svg>

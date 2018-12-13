@@ -64,6 +64,18 @@
     <code>src/app/authentication/registration/registration.component.ts</code>
 </p>
 
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>This component was built to allow registration and validation for registering users.
+The validation that is performed is to ensure there are no characters in the username,
+no underscores at the beginning or end of the username, the email is an @revature.com email,
+names are at least 2 characters long, and passwords are validated by typing twice and ensuring
+they match. Usernames and passwords must be at least 8 characters long. No next buttons
+can be hit unless the forms are valid.</p>
+
+    </p>
 
 
     <p class="comment">
@@ -73,6 +85,11 @@
                 <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
     </p>
 
+    <p class="comment">
+        <h3>Example</h3>
+    </p>
+    <div class="io-description">
+    </div>
 
 <section>
     <h3>Metadata</h3>
@@ -145,9 +162,6 @@
                                 <a href="#secondFormGroup">secondFormGroup</a>
                             </li>
                             <li>
-                                <a href="#sessionUser">sessionUser</a>
-                            </li>
-                            <li>
                                 <a href="#user">user</a>
                             </li>
                             <li>
@@ -193,12 +207,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(userService: <a href="../injectables/UserService.html">UserService</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, _formBuilder: <a href="https://angular.io/api/forms/FormBuilder" target="_blank">FormBuilder</a>)</code>
+<code>constructor(userService: <a href="../injectables/UserService.html">UserService</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, _formBuilder: <a href="https://angular.io/api/forms/FormBuilder" target="_blank">FormBuilder</a>, ngmeta: NgMetaService)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/authentication/registration/registration.component.ts:33</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/authentication/registration/registration.component.ts:48</a></div>
                             </td>
                         </tr>
 
@@ -251,6 +265,18 @@
                                                     </td>
                                                     
                                                 </tr>
+                                                <tr>
+                                                        <td>ngmeta</td>
+                                                  
+                                                        <td>
+                                                                    <code>NgMetaService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
                                         </tbody>
                                     </table>
                             </div>
@@ -293,7 +319,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/authentication/registration/registration.component.ts:25</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/authentication/registration/registration.component.ts:40</a></div>
                             </td>
                         </tr>
 
@@ -362,7 +388,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/authentication/registration/registration.component.ts:39</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/authentication/registration/registration.component.ts:55</a></div>
                             </td>
                         </tr>
 
@@ -400,7 +426,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/app/authentication/registration/registration.component.ts:75</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/app/authentication/registration/registration.component.ts:96</a></div>
                             </td>
                         </tr>
 
@@ -450,7 +476,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/authentication/registration/registration.component.ts:23</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/authentication/registration/registration.component.ts:37</a></div>
                             </td>
                         </tr>
 
@@ -489,7 +515,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/authentication/registration/registration.component.ts:21</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/authentication/registration/registration.component.ts:32</a></div>
                             </td>
                         </tr>
 
@@ -523,7 +549,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/authentication/registration/registration.component.ts:19</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/authentication/registration/registration.component.ts:28</a></div>
                             </td>
                         </tr>
 
@@ -556,7 +582,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/authentication/registration/registration.component.ts:18</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/authentication/registration/registration.component.ts:27</a></div>
                             </td>
                         </tr>
 
@@ -590,40 +616,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/authentication/registration/registration.component.ts:20</a></div>
-                            </td>
-                        </tr>
-
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="sessionUser"></a>
-                        <span class="name">
-                            <b>
-                            sessionUser
-                            </b>
-                            <a href="#sessionUser"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <code>sessionUser:     <code></code>
-</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>localStorage.getItem(&#x27;user&#x27;)</code>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/authentication/registration/registration.component.ts:16</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/authentication/registration/registration.component.ts:29</a></div>
                             </td>
                         </tr>
 
@@ -662,7 +655,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/authentication/registration/registration.component.ts:17</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/authentication/registration/registration.component.ts:26</a></div>
                             </td>
                         </tr>
 
@@ -701,7 +694,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/authentication/registration/registration.component.ts:22</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/authentication/registration/registration.component.ts:36</a></div>
                             </td>
                         </tr>
 
@@ -717,11 +710,21 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
 import { AbstractControl, FormBuilder, FormGroup, Validators } from &#x27;@angular/forms&#x27;;
 import { Router } from &#x27;@angular/router&#x27;;
+import { NgMetaService } from &#x27;ngmeta&#x27;;
 import { first } from &#x27;rxjs/operators&#x27;;
 
 import { User } from &#x27;src/app/core/models/User&#x27;;
 import { UserService } from &#x27;src/app/core/services/user.service&#x27;;
 
+/**
+ * This component was built to allow registration and validation for registering users.
+ * The validation that is performed is to ensure there are no characters in the username,
+ * no underscores at the beginning or end of the username, the email is an @revature.com email,
+ * names are at least 2 characters long, and passwords are validated by typing twice and ensuring
+ * they match. Usernames and passwords must be at least 8 characters long. No next buttons
+ * can be hit unless the forms are valid.
+ * @author Ryan Beevers (1810-Oct08-Java-USF)
+ */
 @Component({
   selector: &#x27;app-registration&#x27;,
   templateUrl: &#x27;./registration.component.html&#x27;,
@@ -729,15 +732,20 @@ import { UserService } from &#x27;src/app/core/services/user.service&#x27;;
 })
 
 export class RegistrationComponent implements OnInit {
-  sessionUser &#x3D; localStorage.getItem(&#x27;user&#x27;);
   user: User &#x3D; {};
   isLinear &#x3D; true;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
+
+  // email pattern ensures the email is a @revature.com email
   emailPattern &#x3D; &#x27;^[a-zA-Z0-9_.+-]+(?:(?:[a-zA-Z0-9-]+\.)?[a-zA-Z]+\.)?@(revature)\.com$&#x27;;
+
+  // username pattern ensures there are no underscores at beginning or end of username
+  // and at least 8 characters
   usernamePattern &#x3D; &#x27;^(?&#x3D;.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?&lt;![_.])$&#x27;;
   confirmPassword: string; 
 
+  // this method is called to ensure password was typed correctly
   static MatchPassword(AC: AbstractControl) {
     const password &#x3D; AC.get(&#x27;password&#x27;).value; // to get value in input tag
     const confirmPassword &#x3D; AC.get(&#x27;confirmPassword&#x27;).value; // to get value in input tag
@@ -750,12 +758,17 @@ export class RegistrationComponent implements OnInit {
 
   constructor(private userService: UserService,
               private router: Router,
-              private _formBuilder: FormBuilder) { }
+              private _formBuilder: FormBuilder,
+              private ngmeta: NgMetaService) { }
 
   ngOnInit() {
-    if (this.sessionUser !&#x3D;&#x3D; null) {
+    if (this.userService.getUser() !&#x3D;&#x3D; null) {
       this.router.navigate([&#x27;&#x27;]);
+    } else {
+      this.ngmeta.setHead({ title: &#x27;Register | RPM&#x27; });
     }
+
+    // all the different validators to ensure form is properly filled
     this.firstFormGroup &#x3D; this._formBuilder.group({
       firstName: [
         Validators.required,
@@ -788,17 +801,16 @@ export class RegistrationComponent implements OnInit {
     });
   }
 
+  // registration method takes the validated fields packages into a JSON and sends the observable
   register() {
     console.log(this.user);
     this.userService.register(this.user).pipe(first()).subscribe((user) &#x3D;&gt; {
       if (user) {
-        localStorage.setItem(&#x27;user&#x27;, JSON.stringify(user));
         this.router.navigate([&#x27;/auth/login&#x27;]);
       }
     });
   }
-}
-</code></pre>
+}</code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-templateData">
@@ -832,18 +844,20 @@ export class RegistrationComponent implements OnInit {
           &lt;form ngNativeValidate [formGroup]&#x3D;&quot;secondFormGroup&quot;&gt;
             &lt;ng-template matStepLabel&gt;Create a Username and Password&lt;/ng-template&gt;
             &lt;mat-form-field&gt;
-              &lt;input matInput placeholder&#x3D;&quot;Username&quot; formControlName&#x3D;&quot;username&quot; required 
+              &lt;input matInput placeholder&#x3D;&quot;Username&quot; formControlName&#x3D;&quot;username&quot;  minlength&#x3D;&quot;8&quot; required 
                 [pattern]&#x3D;&quot;usernamePattern&quot;
                 matTooltip&#x3D;&quot;No underscores at beginning or end of username. Must be at least 8 characters&quot;
                 [(ngModel)]&#x3D;&quot;user.username&quot;&gt;
             &lt;/mat-form-field&gt;
             &lt;br /&gt;
             &lt;mat-form-field&gt;
-              &lt;input matInput type&#x3D;&quot;password&quot; placeholder&#x3D;&quot;Password&quot; formControlName&#x3D;&quot;password&quot; required [(ngModel)]&#x3D;&quot;user.password&quot;&gt;
+              &lt;input matInput type&#x3D;&quot;password&quot; placeholder&#x3D;&quot;Password&quot; formControlName&#x3D;&quot;password&quot; id&#x3D;&quot;inputPassword&quot; required minlength&#x3D;&quot;8&quot; [(ngModel)]&#x3D;&quot;user.password&quot;&gt;
+              &lt;mat-hint&gt;Must be 8 characters&lt;/mat-hint&gt;
             &lt;/mat-form-field&gt;
             &lt;br /&gt;
             &lt;mat-form-field&gt;
-              &lt;input matInput type&#x3D;&quot;password&quot; placeholder&#x3D;&quot;Confirm Password&quot; formControlName&#x3D;&quot;confirmPassword&quot; required [(ngModel)]&#x3D;&quot;confirmPassword&quot;&gt;
+              &lt;input matInput type&#x3D;&quot;password&quot; placeholder&#x3D;&quot;Confirm Password&quot; formControlName&#x3D;&quot;confirmPassword&quot; required minlength&#x3D;&quot;8&quot; [(ngModel)]&#x3D;&quot;confirmPassword&quot;&gt;
+              &lt;mat-hint&gt;Passwords must match&lt;/mat-hint&gt;
             &lt;/mat-form-field&gt;
             &lt;div&gt;
               &lt;button mat-button matStepperPrevious&gt;Back&lt;/button&gt;
@@ -863,8 +877,7 @@ export class RegistrationComponent implements OnInit {
       &lt;/mat-vertical-stepper&gt;
     &lt;/mat-jumbotron-content&gt;
   &lt;/mat-jumbotron&gt;
-&lt;/div&gt;
-</code></pre>
+&lt;/div&gt;</code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-styleData">
@@ -943,8 +956,8 @@ $font: &#x27;Courier New&#x27;, sans-serif;
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><app-app-logo></app-app-logo><div class="my-theme" id="registration-container">  <mat-jumbotron id="jumbotron">    <mat-jumbotron-content id="content">      <mat-vertical-stepper [linear]="isLinear">        <mat-step [stepControl]="firstFormGroup">          <form ngNativeValidate [formGroup]="firstFormGroup">            <ng-template matStepLabel>Fill out your name</ng-template>            <mat-form-field>              <input matInput placeholder="First Name" formControlName="firstName" required minlength="1" [(ngModel)]="user.firstName">            </mat-form-field>            <br />            <mat-form-field>              <input matInput placeholder="Last Name" formControlName="lastName" required minlength="1" [(ngModel)]="user.lastName">            </mat-form-field>            <br />            <mat-form-field>              <input matInput type="email" placeholder="Revature Email" formControlName="email" required [(ngModel)]="user.email"                matTooltip="Must be valid @revature.com Email." [pattern]="emailPattern">            </mat-form-field>            <div>              <button mat-button matStepperNext type="submit" ng-disabled=!vm.form.$valid>Next</button>              <a mat-button routerLink="/auth/login">Return to Login</a>            </div>          </form>        </mat-step>        <mat-step [stepControl]="secondFormGroup">          <form ngNativeValidate [formGroup]="secondFormGroup">            <ng-template matStepLabel>Create a Username and Password</ng-template>            <mat-form-field>              <input matInput placeholder="Username" formControlName="username" required                 [pattern]="usernamePattern"                matTooltip="No underscores at beginning or end of username. Must be at least 8 characters"                [(ngModel)]="user.username">            </mat-form-field>            <br />            <mat-form-field>              <input matInput type="password" placeholder="Password" formControlName="password" required [(ngModel)]="user.password">            </mat-form-field>            <br />            <mat-form-field>              <input matInput type="password" placeholder="Confirm Password" formControlName="confirmPassword" required [(ngModel)]="confirmPassword">            </mat-form-field>            <div>              <button mat-button matStepperPrevious>Back</button>              <button mat-button matStepperNext type="submit" ng-disabled=!vm.form.$valid>Next</button>              <a mat-button routerLink="/auth/login">Return to Login</a>            </div>          </form>        </mat-step>        <mat-step>          <ng-template matStepLabel>Done</ng-template>          <div>            <button mat-button matStepperPrevious>Back</button>            <button mat-flat-button type="button" (click)="register()"><strong>Create Account</strong></button>            <a mat-button routerLink="/auth/login">Cancel</a>          </div>        </mat-step>      </mat-vertical-stepper>    </mat-jumbotron-content>  </mat-jumbotron></div></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AppLogoComponent', 'selector': 'app-app-logo'},{'name': 'HomePageComponent', 'selector': 'app-home-page'},{'name': 'InputDialogComponent', 'selector': 'app-input-dialog'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LogoutComponent', 'selector': 'app-logout'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'ProfileComponent', 'selector': 'app-profile'},{'name': 'ProjectCardComponent', 'selector': 'app-project-card'},{'name': 'ProjectSubmissionComponent', 'selector': 'app-project-submission'},{'name': 'RegistrationComponent', 'selector': 'app-registration'},{'name': 'UserActionsComponent', 'selector': 'app-user-actions'},{'name': 'ViewProjectsComponent', 'selector': 'app-view-projects'},{'name': 'ZipComponent', 'selector': 'app-zip-component'}];
+        var COMPONENT_TEMPLATE = '<div><app-app-logo></app-app-logo><div class="my-theme" id="registration-container">  <mat-jumbotron id="jumbotron">    <mat-jumbotron-content id="content">      <mat-vertical-stepper [linear]="isLinear">        <mat-step [stepControl]="firstFormGroup">          <form ngNativeValidate [formGroup]="firstFormGroup">            <ng-template matStepLabel>Fill out your name</ng-template>            <mat-form-field>              <input matInput placeholder="First Name" formControlName="firstName" required minlength="1" [(ngModel)]="user.firstName">            </mat-form-field>            <br />            <mat-form-field>              <input matInput placeholder="Last Name" formControlName="lastName" required minlength="1" [(ngModel)]="user.lastName">            </mat-form-field>            <br />            <mat-form-field>              <input matInput type="email" placeholder="Revature Email" formControlName="email" required [(ngModel)]="user.email"                matTooltip="Must be valid @revature.com Email." [pattern]="emailPattern">            </mat-form-field>            <div>              <button mat-button matStepperNext type="submit" ng-disabled=!vm.form.$valid>Next</button>              <a mat-button routerLink="/auth/login">Return to Login</a>            </div>          </form>        </mat-step>        <mat-step [stepControl]="secondFormGroup">          <form ngNativeValidate [formGroup]="secondFormGroup">            <ng-template matStepLabel>Create a Username and Password</ng-template>            <mat-form-field>              <input matInput placeholder="Username" formControlName="username"  minlength="8" required                 [pattern]="usernamePattern"                matTooltip="No underscores at beginning or end of username. Must be at least 8 characters"                [(ngModel)]="user.username">            </mat-form-field>            <br />            <mat-form-field>              <input matInput type="password" placeholder="Password" formControlName="password" id="inputPassword" required minlength="8" [(ngModel)]="user.password">              <mat-hint>Must be 8 characters</mat-hint>            </mat-form-field>            <br />            <mat-form-field>              <input matInput type="password" placeholder="Confirm Password" formControlName="confirmPassword" required minlength="8" [(ngModel)]="confirmPassword">              <mat-hint>Passwords must match</mat-hint>            </mat-form-field>            <div>              <button mat-button matStepperPrevious>Back</button>              <button mat-button matStepperNext type="submit" ng-disabled=!vm.form.$valid>Next</button>              <a mat-button routerLink="/auth/login">Return to Login</a>            </div>          </form>        </mat-step>        <mat-step>          <ng-template matStepLabel>Done</ng-template>          <div>            <button mat-button matStepperPrevious>Back</button>            <button mat-flat-button type="button" (click)="register()"><strong>Create Account</strong></button>            <a mat-button routerLink="/auth/login">Cancel</a>          </div>        </mat-step>      </mat-vertical-stepper>    </mat-jumbotron-content>  </mat-jumbotron></div></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AppLogoComponent', 'selector': 'app-app-logo'},{'name': 'EditProjectComponent', 'selector': 'app-edit-project'},{'name': 'HomePageComponent', 'selector': 'app-home-page'},{'name': 'InputDialogComponent', 'selector': 'app-input-dialog'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LogoutComponent', 'selector': 'app-logout'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'ProfileComponent', 'selector': 'app-profile'},{'name': 'ProjectCardComponent', 'selector': 'app-project-card'},{'name': 'ProjectSubmissionComponent', 'selector': 'app-project-submission'},{'name': 'RegistrationComponent', 'selector': 'app-registration'},{'name': 'UserActionsComponent', 'selector': 'app-user-actions'},{'name': 'ViewProjectsComponent', 'selector': 'app-view-projects'},{'name': 'ZipComponent', 'selector': 'app-zip-component'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'RegistrationComponent'};
 </script>

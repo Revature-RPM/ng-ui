@@ -131,6 +131,9 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#homepageShortcut">homepageShortcut</a>
+                            </li>
+                            <li>
                                 <a href="#ngOnInit">ngOnInit</a>
                             </li>
                         </ul>
@@ -151,15 +154,45 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor()</code>
+<code>constructor(router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/app/shared/app-logo/app-logo.component.ts:11</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/app/shared/app-logo/app-logo.component.ts:9</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
             </tbody>
         </table>
 </section>
@@ -173,6 +206,44 @@
         <h3 id="methods">
             Methods
         </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="homepageShortcut"></a>
+                        <span class="name">
+                            <b>
+                            homepageShortcut
+                            </b>
+                            <a href="#homepageShortcut"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>homepageShortcut()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/shared/app-logo/app-logo.component.ts:17</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
@@ -195,7 +266,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/shared/app-logo/app-logo.component.ts:17</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/shared/app-logo/app-logo.component.ts:13</a></div>
                             </td>
                         </tr>
 
@@ -219,8 +290,6 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
-import { MatIconRegistry } from &#x27;@angular/material&#x27;;
-import { DomSanitizer } from &#x27;@angular/platform-browser&#x27;;
 import { Router } from &#x27;@angular/router&#x27;;
 
 @Component({
@@ -230,23 +299,50 @@ import { Router } from &#x27;@angular/router&#x27;;
 })
 export class AppLogoComponent implements OnInit {
 
-  constructor() {
-
-  }
+  constructor(private router: Router) { }
 
   ngOnInit() {
+   
   }
 
+  homepageShortcut() {
+    this.router.navigate([&#x27;projects&#x27;, &#x27;home&#x27;]);
+  }
 }
 </code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;div id&#x3D;&quot;logoContainter&quot;&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;!-- &lt;div id&#x3D;&quot;logoContainter&quot;&gt;
     &lt;button id&#x3D;&quot;icon&quot; mat-icon-button mat-stroked-button mat-button&gt;
         &lt;img id&#x3D;&quot;home-icon&quot; src&#x3D;&quot;../../../assets/icons/RPM_Logo.png&quot;&gt;
     &lt;/button&gt;
-&lt;/div&gt;</code></pre>
+     &lt;span class&#x3D;&quot;example-fill-remaining-space&quot;&gt;&lt;/span&gt; 
+    &lt;img id&#x3D;&quot;rpm-logo&quot; src&#x3D;&quot;../../../assets/img/RPM_LogoTEXTONLY1.png&quot;&gt;
+    &lt;h1&gt; REVATURE PROJECT MANAGER &lt;/h1&gt;
+&lt;/div&gt; --&gt;
+
+&lt;div id&#x3D;&quot;toolbar&quot;&gt;
+        &lt;mat-toolbar class&#x3D;&quot;my-theme&quot; color&#x3D;&quot;primary&quot;&gt;
+            &lt;mat-toolbar-row&gt;
+                &lt;button id&#x3D;&quot;icon&quot; mat-icon-button mat-stroked-button mat-button matTooltip&#x3D;&quot;Home&quot; matTooltipPosition&#x3D;&quot;right&quot;
+                    (click)&#x3D;&quot;homepageShortcut()&quot;&gt;
+                    &lt;img id&#x3D;&quot;home-icon&quot; src&#x3D;&quot;../../../assets/icons/RPM_Logo.png&quot;&gt;
+                &lt;/button&gt;
+
+                &lt;!-- This fills the remaining space of the current row --&gt;
+                &lt;span class&#x3D;&quot;example-fill-remaining-space&quot;&gt;&lt;/span&gt;
+
+                &lt;img id&#x3D;&quot;rpm-logo&quot; src&#x3D;&quot;../../../assets/img/RPM_LogoTEXTONLY.png&quot;&gt;
+
+                &lt;span class&#x3D;&quot;example-fill-remaining-space&quot;&gt;&lt;/span&gt;
+                &lt;!-- This fills the remaining space of the current row --&gt;
+
+                &lt;p&gt; &lt;/p&gt;
+            &lt;/mat-toolbar-row&gt;
+            &lt;mat-divider&gt;&lt;/mat-divider&gt;
+        &lt;/mat-toolbar&gt;
+    &lt;/div&gt;</code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-styleData">
@@ -266,7 +362,24 @@ export class AppLogoComponent implements OnInit {
 #icon {
     width: 64px;
     height: 64px;
-}</code></pre>
+}
+
+#rpm-logo {
+    width: 75vh;
+    height: 10vh;
+    margin-top: 1vh;
+}
+
+.example-fill-remaining-space {
+    /* The css flex property determines how flexible items will appear in relation to each other;
+        It is used to specify flex-grow, flex-shrink, and flex-basis properties
+            - flex-grow: determines how a specified element will increase in size in relation to other flexible elements
+            - flex-shrink: determines how an element will decrease in size relative to other flexible elements 
+            - flex-basis: determines the initial length of a flexible item 
+                - auto: the length will be equal to the length of the item; if the item has no length, the length will be determined by the content 
+                - initial: sets the length to the default value, which is auto */
+    flex: 1 1 auto;
+  }</code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-tree">
@@ -294,8 +407,8 @@ export class AppLogoComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div id="logoContainter">    <button id="icon" mat-icon-button mat-stroked-button mat-button>        <img id="home-icon" src="../../../assets/icons/RPM_Logo.png">    </button></div></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AppLogoComponent', 'selector': 'app-app-logo'},{'name': 'HomePageComponent', 'selector': 'app-home-page'},{'name': 'InputDialogComponent', 'selector': 'app-input-dialog'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LogoutComponent', 'selector': 'app-logout'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'ProfileComponent', 'selector': 'app-profile'},{'name': 'ProjectCardComponent', 'selector': 'app-project-card'},{'name': 'ProjectSubmissionComponent', 'selector': 'app-project-submission'},{'name': 'RegistrationComponent', 'selector': 'app-registration'},{'name': 'UserActionsComponent', 'selector': 'app-user-actions'},{'name': 'ViewProjectsComponent', 'selector': 'app-view-projects'},{'name': 'ZipComponent', 'selector': 'app-zip-component'}];
+        var COMPONENT_TEMPLATE = '<div><!-- <div id="logoContainter">    <button id="icon" mat-icon-button mat-stroked-button mat-button>        <img id="home-icon" src="../../../assets/icons/RPM_Logo.png">    </button>     <span class="example-fill-remaining-space"></span>     <img id="rpm-logo" src="../../../assets/img/RPM_LogoTEXTONLY1.png">    <h1> REVATURE PROJECT MANAGER </h1></div> --><div id="toolbar">        <mat-toolbar class="my-theme" color="primary">            <mat-toolbar-row>                <button id="icon" mat-icon-button mat-stroked-button mat-button matTooltip="Home" matTooltipPosition="right"                    (click)="homepageShortcut()">                    <img id="home-icon" src="../../../assets/icons/RPM_Logo.png">                </button>                <!-- This fills the remaining space of the current row -->                <span class="example-fill-remaining-space"></span>                <img id="rpm-logo" src="../../../assets/img/RPM_LogoTEXTONLY.png">                <span class="example-fill-remaining-space"></span>                <!-- This fills the remaining space of the current row -->                <p> </p>            </mat-toolbar-row>            <mat-divider></mat-divider>        </mat-toolbar>    </div></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AppLogoComponent', 'selector': 'app-app-logo'},{'name': 'EditProjectComponent', 'selector': 'app-edit-project'},{'name': 'HomePageComponent', 'selector': 'app-home-page'},{'name': 'InputDialogComponent', 'selector': 'app-input-dialog'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LogoutComponent', 'selector': 'app-logout'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'ProfileComponent', 'selector': 'app-profile'},{'name': 'ProjectCardComponent', 'selector': 'app-project-card'},{'name': 'ProjectSubmissionComponent', 'selector': 'app-project-submission'},{'name': 'RegistrationComponent', 'selector': 'app-registration'},{'name': 'UserActionsComponent', 'selector': 'app-user-actions'},{'name': 'ViewProjectsComponent', 'selector': 'app-view-projects'},{'name': 'ZipComponent', 'selector': 'app-zip-component'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'AppLogoComponent'};
 </script>
