@@ -1,5 +1,5 @@
 export interface Project {
-    id?: number;
+    id?: any;
     name?: string;
     batch?: string;
     trainer?: string;
