@@ -28,7 +28,7 @@
           <form ngNativeValidate [formGroup]="secondFormGroup">
             <ng-template matStepLabel>Create a Username and Password</ng-template>
             <mat-form-field>
-              <input matInput placeholder="Username" formControlName="username" required 
+              <input matInput placeholder="Username" formControlName="username"  minlength="8" required 
                 [pattern]="usernamePattern"
                 matTooltip="No underscores at beginning or end of username. Must be at least 8 characters"
                 [(ngModel)]="user.username">

@@ -1,26 +1,27 @@
-<div class="my-theme"  id="userActions">
+<div class="my-theme" id="userActions">
   <mat-toolbar color="primary">
-      <mat-toolbar-row>
+    <mat-toolbar-row>
 
-          <button id="icon" mat-icon-button mat-stroked-button mat-button matTooltip="Add New Project" matTooltipPosition="right" (click)="submitProject()">
-              <mat-icon>add</mat-icon>
-          </button>
-          <span class="example-fill-remaining-space"></span>
-          <mat-tab-group>
-              <mat-tab>
-                  <ng-template mat-tab-label>
-                      <span (click)="yourProjects()">Your Projects</span>
-                  </ng-template>
-              </mat-tab>
+      <button id="icon" mat-icon-button mat-stroked-button mat-button matTooltip="Add New Project" matTooltipPosition="right"
+        (click)="submitProject()">
+        <mat-icon>add</mat-icon>
+      </button>
+      <span class="example-fill-remaining-space"></span>
+      <mat-tab-group>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <span (click)="yourProjects()">Your Projects</span>
+          </ng-template>
+        </mat-tab>
 
-              <mat-tab>
-                  <ng-template mat-tab-label>
-                      <span (click)="projects()">All Projects</span>
-                  </ng-template>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <span (click)="projects()">All Projects</span>
+          </ng-template>
 
-              </mat-tab>
-          </mat-tab-group>
-      </mat-toolbar-row>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-toolbar-row>
   </mat-toolbar>
 </div>
 <div id="view-project-layout">
@@ -88,32 +89,40 @@
 
               <!-- display project's group members and project's description -->
               <div class="container" fxLayout.xs="column">
-                <div id="project-members" fxLayout="row">
+                <div id="group-members-label" fxLayout="row">
                   <label><strong> Group Members: </strong></label>
-                  <textarea rows="3" cols="100" placeholder="No Project Description" disabled=true readonly>
-  {{project.groupMembers.join(', ')}}
+                </div>
+                <div id="description-label" fxLayout="row">
+
+                  <!-- this line is needed for styling purpose -->
+                  <label style="color: white"> ____ </label>
+                  
+                  <label><strong> Description: </strong></label>
+                </div>
+              </div>
+              <div class="container" fxLayout.xs="column">
+                <div id="project-members" fxLayout="row">
+                  <textarea rows="3" cols="100" placeholder="No Project Description" disabled=true readonly>{{project.groupMembers.join(', ')}}
                   </textarea>
                 </div>
                 <div id="project-description" fxLayout="row">
-                  <strong> Description: </strong>
-                  <textarea rows="10" cols="100" placeholder="No Project Description" disabled=true readonly>
-  {{project.description}}
-                    </textarea>
+                  <textarea rows="10" cols="100" placeholder="No Project Description" disabled=true readonly>{{project.description}}
+                  </textarea>
                 </div>
               </div>
 
               <!-- display buttons for routing to project's codebase as well as routing to editing a project -->
               <div fxLayout.xs="column">
                 <div class="container" fxLayout="row">
-                  <a target="_blank">
-                    <button (click)="codebase(project)" mat-icon-button mat-stroked-button color="primary" mat-button matTooltip="Codebase"
-                      matTooltipPosition="left">
+                  <a id="codebase-button" target="_blank">
+                    <button (click)="codebase(project)" mat-icon-button mat-stroked-button color="primary" mat-button
+                      matTooltip="Codebase" matTooltipPosition="left">
                       <mat-icon>folder_special</mat-icon>
                     </button>
                   </a>
-                  <a>
-                    <button *ngIf="trainerCanEdit"  (click)="edit(project)" id="icon" mat-icon-button mat-stroked-button color="primary" matTooltip="Edit"
-                      matTooltipPosition="right">
+                  <a id="edit-button">
+                    <button *ngIf="trainerCanEdit" (click)="edit(project)" id="icon" mat-icon-button
+                      mat-stroked-button color="primary" matTooltip="Edit" matTooltipPosition="right">
                       <mat-icon id="profile-icon">edit</mat-icon>
                     </button>
                   </a>
@@ -126,7 +135,7 @@
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
       <tr mat-row *matRowDef="let project; columns: displayedColumns;" class="project-row" [class.expanded-row]="expandedProject === project"
-        (click)="expandedProject = expandedProject === project ? null : project; canEdit($event)">
+        (click)="expandedProject = expandedProject === project ? null : project; canEdit(project)">
       </tr>
       <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></tr>
     </table>
