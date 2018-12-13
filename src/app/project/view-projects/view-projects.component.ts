@@ -25,7 +25,7 @@ import { User } from 'src/app/core/models/User';
 export class ViewProjectsComponent implements OnInit, OnDestroy {
   trainerCanEdit = false;
   currentUser: User;
-  displayedColumns: string[] = ['name', 'batch', 'trainer', 'techStack', 'status']; // change trainer to trainer
+  displayedColumns: string[] = ['name', 'batch', 'trainer', 'techStack', 'status']; 
   dataSource: MatTableDataSource<Project>;
   @ViewChild(MatSort) sort: MatSort;
   expandedProject: Project | null;
@@ -47,9 +47,8 @@ export class ViewProjectsComponent implements OnInit, OnDestroy {
     this.currentUser = this.userService.getUser();
     if (this.currentUser === null) {
       this.router.navigate(['/auth/login']);
-    }
-
-    const trainerFullName = this.currentUser.firstName + ' ' + this.currentUser.lastName;
+    }else{
+    const trainerFullName = this.currentUser.firstName.trim() + ' ' + this.currentUser.lastName.trim();
     console.log(this.currentUser);
     this.subscription = this.viewProjectsService.getAllProjects()
     .subscribe((projectResponse) => {
@@ -60,29 +59,28 @@ export class ViewProjectsComponent implements OnInit, OnDestroy {
           without having to make multiple calls to the server  */
       this.userProjects = [];
       for (let i = 0; i < projectResponse.length; i++) {
-        if (projectResponse[i].trainer === trainerFullName) {
+        if (projectResponse[i].trainer == trainerFullName) {
+          console.log(projectResponse[i]);
           this.userProjects.push(projectResponse[i]);
         }
       }
       this.dataSource = new MatTableDataSource(this.allProjects);
       this.dataSource.sort = this.sort;
     });
+    }
   }
 
   /**
    * This method determines if a trainer can edit a project; a trainer can only edit a project if the project was submitted by the trainer.
-   * The click event of this method is used to find the name of the trainer displayed in the row;
-   * if the trainer in the row is the same as the currently logged in user, then the trainer can edit the project
    * @param rowClick : the event when a row is clicked and expanded
    * @author Shawn Bickel (1810-Oct08-Java-USF)
    */
-  canEdit(rowClick) {
-    // retrieve the trainer displayed in the table row
-    const trainer = rowClick.path[1].cells[2].innerHTML.trim();
-
-     // Retrieve the user from local storage and ensure that the user can edit the project if the user submitted the project
-     const trainerFullName = this.currentUser.firstName + ' ' + this.currentUser.lastName;
-     if (trainerFullName === trainer) {
+  canEdit(project) {
+      const trainerFullName = this.currentUser.firstName.trim() + ' ' + this.currentUser.lastName.trim();
+     if(this.currentUser.role == "ROLE_ADMIN"){
+       this.trainerCanEdit = true;
+     }
+     else if (trainerFullName === project.trainer) {
         this.trainerCanEdit = true;
      } else {
        this.trainerCanEdit = false;
