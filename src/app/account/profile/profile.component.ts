@@ -82,20 +82,17 @@ export class ProfileComponent implements OnInit {
         password: this.form.get('password').value,
         role: this.user.role,
       };
-      this.user = updatedUserInfo;
-      // this line should be put in user service
-      // window.localStorage.setItem('user', JSON.stringify(updatedUserInfo));
-      // this.user = JSON.parse(window.localStorage.getItem('user'));
-
-      this.fillFormGroup(this.user.firstName, this.user.lastName, this.user.email, this.user.username, this.user.password);
 
       this.userService.updateProfile(updatedUserInfo).pipe(first()).subscribe((user) => {
         if (user) {
+          this.user = user;
           this.userService.user = user;
           alert('profile updated');
           this.fillFormGroup(this.user.firstName, this.user.lastName, this.user.email, this.user.username, this.user.password);
         }
       }, (error) => {
+          this.user = this.userService.getUser();
+          this.fillFormGroup(this.user.firstName, this.user.lastName, this.user.email, this.user.username, this.user.password);
           alert('error updating profile');
       });
     }
@@ -107,7 +104,7 @@ export class ProfileComponent implements OnInit {
    */
   cancelEditProfile() {
     this.disableButton = true;
-    this.user = JSON.parse(window.localStorage.getItem('user'));
+    this.user = this.userService.getUser();
     this.fillFormGroup(this.user.firstName, this.user.lastName, this.user.email, this.user.username, this.user.password);
   }
 

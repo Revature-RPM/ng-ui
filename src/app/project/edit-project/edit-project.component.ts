@@ -38,15 +38,6 @@ export class EditProjectComponent implements OnInit {
   questionType: string = "Enter the name of the group member";
   result: string;
 
-
-  /**
-   * groupMemberString is bound to the user's input of the group member field 
-   * When a new group memberk is added, then that information is concatenated to the string. 
-   * Because of two-way binding, the result is placed in the group member field 
-   * @author Shawn Bickel (1810-Oct08-Java-USF)
-   */
-  groupMemberString: string;
-
   subscription: Subscription; // will be used to subscribe to the results of an observable
 
   constructor(private router: Router,
@@ -65,8 +56,7 @@ export class EditProjectComponent implements OnInit {
       this.projectToUpdate.groupMembers = [];
       this.projectToUpdate.screenShots = [];
       this.projectToUpdate.zipLinks = [];
-      this.groupMemberString = '';
-    }
+      console.log('in editing');
      /**
      * This will retrieve the path variable which corresponds to the id of the project to be edited.
      * ActivatedRoute has an observable called 'params' which provides a means to do this.
@@ -74,15 +64,14 @@ export class EditProjectComponent implements OnInit {
      * 
      *  @author Shawn Bickel (1810-Oct08-Java-USF)
      */
-     this.subscription = this.route.params.subscribe(params => {
-       this.projectService.getProjectById(params['id']).pipe(first()).subscribe(projectById => {
-         this.projectToUpdate = projectById;
-
-         for (let i = 0; i < this.projectToUpdate.groupMembers.length; i++) {
-           this.groupMemberString += ' ' + this.projectToUpdate.groupMembers[i];
-         }
-       });
+    this.subscription = this.route.params.subscribe(params => {
+      this.projectService.getProjectById(params['id']).pipe(first()).subscribe(projectById => {
+        console.log(projectById);
+        this.projectToUpdate = projectById;
+       console.log(this.projectToUpdate);
+      });
     });
+    }
   }
 
   /**

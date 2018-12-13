@@ -15,9 +15,6 @@
               </button>
               <h1 id="profile-header"><strong>Profile</strong></h1>
             </div>
-            <div fxLayout.xs="column">
-              <h3 id="user-role">{{user.role}}</h3>
-            </div>
           </div>
 
           <div class="container" fxLayout="row" fxLayout.xs="column">
@@ -33,7 +30,7 @@
               <div fxLayout.xs="column">
                 <mat-form-field>
                   <input matInput readonly={{setReadOnly}} id="inputFirstName" placeholder="First Name" formControlName="firstName"
-                    (blur)=formFilled() (mouseleave)=formFilled() minlength="2" required>
+                    (blur)=formFilled() (mouseleave)=formFilled() minlength="1" required>
                   <mat-error *ngIf="form.get('firstName').hasError('minlength') && !form.get('firstName').hasError('required')">
                     Must be at least <strong>2 characters</strong> long
                   </mat-error>
@@ -45,7 +42,7 @@
               <div fxLayout.xs="column">
                 <mat-form-field>
                   <input matInput readonly={{setReadOnly}} id="inputLastName" placeholder="Last Name" formControlName="lastName"
-                    (blur)=formFilled() (mouseleave)=formFilled() minlength="2" required>
+                    (blur)=formFilled() (mouseleave)=formFilled() minlength="1" required>
                   <mat-error *ngIf="form.get('lastName').hasError('minlength') && !form.get('lastName').hasError('required')">
                     Must be at least <strong>2 characters</strong> long
                   </mat-error>
