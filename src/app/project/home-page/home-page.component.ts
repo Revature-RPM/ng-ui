@@ -7,6 +7,10 @@ import { UserService } from 'src/app/core/services/user.service';
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.scss']
 })
+
+/**
+ * The Home page contains the navbar and the ability to view projects and their details
+ */
 export class HomePageComponent implements OnInit {
 
   constructor(private router: Router, private userService: UserService) { }

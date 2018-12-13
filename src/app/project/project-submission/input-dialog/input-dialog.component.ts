@@ -8,6 +8,12 @@ import { ProjectSubmissionComponent, DialogData } from '../project-submission.co
   templateUrl: './input-dialog.component.html',
   styleUrls: ['./input-dialog.component.scss']
 })
+
+/**
+ * This component defines the content and behavior of the input dialog that is used to collect group member and repository links information 
+ *      when a project is submitted
+ * @author Shawn Bickel (1810-Oct08-Java-USF)
+ */
 export class InputDialogComponent implements OnInit {
 
   /**

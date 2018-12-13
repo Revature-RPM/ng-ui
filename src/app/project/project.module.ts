@@ -6,7 +6,6 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { HomePageComponent } from './home-page/home-page.component';
 import { ProjectRoutingModule } from './project-routing.module';
 import { ProjectSubmissionComponent } from './project-submission/project-submission.component';
-import { UserActionsComponent } from './user-actions/user-actions.component';
 import { ViewProjectsComponent } from './view-projects/view-projects.component';
 import { ProjectService } from '../core/services/project.service';
 import { SharedModule } from '../shared/shared.module';
@@ -17,7 +16,6 @@ import { EditProjectComponent } from './edit-project/edit-project.component';
   declarations: [
     HomePageComponent,
     ProjectSubmissionComponent,
-    UserActionsComponent,
     ViewProjectsComponent,
     InputDialogComponent,
     EditProjectComponent
