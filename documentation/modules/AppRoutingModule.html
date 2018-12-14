@@ -76,9 +76,7 @@ import { Routes, RouterModule, PreloadAllModules } from &#x27;@angular/router&#x
 const routes: Routes &#x3D; [
   { path: &#x27;&#x27;, loadChildren: &#x27;./project/project.module#ProjectModule&#x27;, pathMatch: &#x27;full&#x27; },
   { path: &#x27;account&#x27;, loadChildren: &#x27;./account/account.module#AccountModule&#x27; },
-  { path: &#x27;auth&#x27;, loadChildren: &#x27;./authentication/authentication.module#AuthenticationModule&#x27; },
-  { path: &#x27;projects&#x27;, loadChildren: &#x27;./project/project.module#ProjectModule&#x27; }
-  // { path: &#x27;**&#x27;, redirectTo: &#x27;&#x27; }
+  { path: &#x27;auth&#x27;, loadChildren: &#x27;./authentication/authentication.module#AuthenticationModule&#x27; }
 ];
 
 @NgModule({

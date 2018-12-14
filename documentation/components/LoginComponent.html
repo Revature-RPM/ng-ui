@@ -64,6 +64,15 @@
     <code>src/app/authentication/login/login.component.ts</code>
 </p>
 
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Login component takes in a username and password and checks to see if user exists. If
+user exists, user is successfully logged in. Validation includes not letting user hit
+login until form is entirely filled out</p>
+
+    </p>
 
 
     <p class="comment">
@@ -73,6 +82,11 @@
                 <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
     </p>
 
+    <p class="comment">
+        <h3>Example</h3>
+    </p>
+    <div class="io-description">
+    </div>
 
 <section>
     <h3>Metadata</h3>
@@ -130,9 +144,6 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#sessionUser">sessionUser</a>
-                            </li>
-                            <li>
                                 <a href="#user">user</a>
                             </li>
                         </ul>
@@ -171,12 +182,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(userService: <a href="../injectables/UserService.html">UserService</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>)</code>
+<code>constructor(userService: <a href="../injectables/UserService.html">UserService</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, ngmeta: NgMetaService)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/authentication/login/login.component.ts:15</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/authentication/login/login.component.ts:21</a></div>
                             </td>
                         </tr>
 
@@ -210,6 +221,18 @@
                                                   
                                                         <td>
                                                                     <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>ngmeta</td>
+                                                  
+                                                        <td>
+                                                                    <code>NgMetaService</code>
                                                         </td>
                                                   
                                                     <td>
@@ -257,7 +280,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/authentication/login/login.component.ts:25</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/authentication/login/login.component.ts:34</a></div>
                             </td>
                         </tr>
 
@@ -295,7 +318,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/authentication/login/login.component.ts:19</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/authentication/login/login.component.ts:26</a></div>
                             </td>
                         </tr>
 
@@ -318,39 +341,6 @@
         <h3 id="inputs">
             Properties
         </h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="sessionUser"></a>
-                        <span class="name">
-                            <b>
-                            sessionUser
-                            </b>
-                            <a href="#sessionUser"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <code>sessionUser:     <code></code>
-</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>localStorage.getItem(&#x27;user&#x27;)</code>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/authentication/login/login.component.ts:14</a></div>
-                            </td>
-                        </tr>
-
-
-            </tbody>
-        </table>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
@@ -378,12 +368,12 @@
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>{}</code>
+                            <i>Default value : </i><code>{ }</code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/authentication/login/login.component.ts:15</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/authentication/login/login.component.ts:21</a></div>
                             </td>
                         </tr>
 
@@ -398,35 +388,45 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
 import { Router } from &#x27;@angular/router&#x27;;
+import { NgMetaService } from &#x27;ngmeta&#x27;;
 import { first } from &#x27;rxjs/operators&#x27;;
 
 import { User } from &#x27;src/app/core/models/User&#x27;;
 import { UserService } from &#x27;src/app/core/services/user.service&#x27;;
 
+/**
+ * Login component takes in a username and password and checks to see if user exists. If
+ * user exists, user is successfully logged in. Validation includes not letting user hit
+ * login until form is entirely filled out
+ * @author Ryan Beevers (1810-Oct08-Java-USF)
+ */
 @Component({
   selector: &#x27;app-login&#x27;,
   templateUrl: &#x27;./login.component.html&#x27;,
   styleUrls: [&#x27;./login.component.scss&#x27;]
 })
 export class LoginComponent implements OnInit {
-  sessionUser &#x3D; localStorage.getItem(&#x27;user&#x27;);
-  user: User &#x3D; {};
-
-  constructor(private userService: UserService, private router: Router) { }
+  user: User &#x3D; { };
+  
+ 
+  constructor(private userService: UserService, private router: Router, private ngmeta: NgMetaService) { }
 
   ngOnInit() {
-    if (this.sessionUser !&#x3D;&#x3D; null) {
-      this.router.navigate([&#x27;/home&#x27;]);
+    if (this.userService.getUser() !&#x3D;&#x3D; null) {
+      this.router.navigate([&#x27;&#x27;]);
+    } else {
+      this.ngmeta.setHead({ title: &#x27;Login | RPM&#x27; });
     }
   }
 
   login() {
     this.userService.login(this.user).pipe(first()).subscribe((user) &#x3D;&gt; {
       if (user) {
-        localStorage.setItem(&#x27;user&#x27;, JSON.stringify(user));
         this.router.navigate([&#x27;/home&#x27;]);
+      } else {
+        alert(&#x27;Error logging in&#x27;);
       }
-    });
+    }, (error) &#x3D;&gt; { alert(&#x27;ERROR LOGGING IN&#x27;); });
   }
 }
 </code></pre>
@@ -437,7 +437,7 @@ export class LoginComponent implements OnInit {
 &lt;div class&#x3D;&quot;my-theme&quot; id&#x3D;&quot;login-container&quot;&gt;
   &lt;mat-jumbotron color&#x3D;&quot;accent&quot; id&#x3D;&quot;jumbotron&quot;&gt;
     &lt;mat-jumbotron-content id&#x3D;&quot;content&quot;&gt;
-      &lt;form #formcontrol&#x3D;&quot;ngForm&quot;&gt;
+      &lt;form #formcontrol&#x3D;&quot;ngForm&quot; &gt; 
         &lt;mat-card&gt;
           &lt;mat-card-header&gt;
             &lt;mat-card-title&gt;Login&lt;/mat-card-title&gt;
@@ -478,6 +478,7 @@ $light-grey: mat-color($mat-grey, 200);
 $black: mat-color($mat-grey,900);
 
 $font: &#x27;Courier New&#x27;, sans-serif;
+
 
 #login-container {
     background-color: #ff7f00;
@@ -562,8 +563,8 @@ $font: &#x27;Courier New&#x27;, sans-serif;
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><app-app-logo></app-app-logo><div class="my-theme" id="login-container">  <mat-jumbotron color="accent" id="jumbotron">    <mat-jumbotron-content id="content">      <form #formcontrol="ngForm">        <mat-card>          <mat-card-header>            <mat-card-title>Login</mat-card-title>          </mat-card-header>          <mat-card-content>            <br />            <mat-form-field appearance="outline">              <input matInput type="text" class="form-control" placeholder="Username" name="username" [(ngModel)]="user.username"                required>            </mat-form-field>            <br />            <mat-form-field appearance="outline">              <input matInput type="password" class="form-control" placeholder="Password" name="password" [(ngModel)]="user.password"                required>            </mat-form-field>            <br />            <mat-error *ngIf="!formcontrol.form.valid">Please enter all fields</mat-error>            <button color="accent" mat-flat-button type="button" [disabled]="!formcontrol.form.valid" (click)="login()">Login</button>            <a mat-button routerLink="/auth/register">Register</a>          </mat-card-content>        </mat-card>      </form>    </mat-jumbotron-content>  </mat-jumbotron></div></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AppLogoComponent', 'selector': 'app-app-logo'},{'name': 'HomePageComponent', 'selector': 'app-home-page'},{'name': 'InputDialogComponent', 'selector': 'app-input-dialog'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LogoutComponent', 'selector': 'app-logout'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'ProfileComponent', 'selector': 'app-profile'},{'name': 'ProjectCardComponent', 'selector': 'app-project-card'},{'name': 'ProjectSubmissionComponent', 'selector': 'app-project-submission'},{'name': 'RegistrationComponent', 'selector': 'app-registration'},{'name': 'UserActionsComponent', 'selector': 'app-user-actions'},{'name': 'ViewProjectsComponent', 'selector': 'app-view-projects'},{'name': 'ZipComponent', 'selector': 'app-zip-component'}];
+        var COMPONENT_TEMPLATE = '<div><app-app-logo></app-app-logo><div class="my-theme" id="login-container">  <mat-jumbotron color="accent" id="jumbotron">    <mat-jumbotron-content id="content">      <form #formcontrol="ngForm" >         <mat-card>          <mat-card-header>            <mat-card-title>Login</mat-card-title>          </mat-card-header>          <mat-card-content>            <br />            <mat-form-field appearance="outline">              <input matInput type="text" class="form-control" placeholder="Username" name="username" [(ngModel)]="user.username"                required>            </mat-form-field>            <br />            <mat-form-field appearance="outline">              <input matInput type="password" class="form-control" placeholder="Password" name="password" [(ngModel)]="user.password"                required>            </mat-form-field>            <br />            <mat-error *ngIf="!formcontrol.form.valid">Please enter all fields</mat-error>            <button color="accent" mat-flat-button type="button" [disabled]="!formcontrol.form.valid" (click)="login()">Login</button>            <a mat-button routerLink="/auth/register">Register</a>          </mat-card-content>        </mat-card>      </form>    </mat-jumbotron-content>  </mat-jumbotron></div></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AppLogoComponent', 'selector': 'app-app-logo'},{'name': 'EditProjectComponent', 'selector': 'app-edit-project'},{'name': 'HomePageComponent', 'selector': 'app-home-page'},{'name': 'InputDialogComponent', 'selector': 'app-input-dialog'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LogoutComponent', 'selector': 'app-logout'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'ProfileComponent', 'selector': 'app-profile'},{'name': 'ProjectCardComponent', 'selector': 'app-project-card'},{'name': 'ProjectSubmissionComponent', 'selector': 'app-project-submission'},{'name': 'RegistrationComponent', 'selector': 'app-registration'},{'name': 'UserActionsComponent', 'selector': 'app-user-actions'},{'name': 'ViewProjectsComponent', 'selector': 'app-view-projects'},{'name': 'ZipComponent', 'selector': 'app-zip-component'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'LoginComponent'};
 </script>

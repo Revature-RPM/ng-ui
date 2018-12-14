@@ -9,19 +9,19 @@ import { Project } from 'src/app/core/models/Project';
 import { ProjectService } from 'src/app/core/services/project.service';
 import { UserService } from 'src/app/core/services/user.service';
 
-export interface DialogData {
-  title: string;
-  questionType: string;
-  result: string;
-}
-
 @Component({
   selector: 'app-edit-project',
   templateUrl: './edit-project.component.html',
   styleUrls: ['./edit-project.component.scss']
 })
+
+/* This component adds functionality to edit a project. However, the server is adding an extra header to the response causing the following 
+    error: The 'Access-Control-Allow-Origin' header contains multiple values 'http://localhost:4200, http://localhost:4200', but only one is allowed.
+    This needs to be addressed on the server to move forward. */
 export class EditProjectComponent implements OnInit {
 
+  /* This field is initially true since the project contents for a particular project are placed in the form fields using two-way binding when 
+        ngOnInit() is called and the project is retrieved by id from the server */
   validForm: Boolean = true;
 
   // projectToUpdate will hold project information for a specific project returned by id and

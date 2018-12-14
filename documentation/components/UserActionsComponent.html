@@ -147,9 +147,6 @@
                             <li>
                                 <a href="#ngOnInit">ngOnInit</a>
                             </li>
-                            <li>
-                                <a href="#submitProject">submitProject</a>
-                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -168,19 +165,17 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(iconRegistry: MatIconRegistry, sanitizer: <a href="https://angular.io/api/platform-browser/DomSanitizer" target="_blank">DomSanitizer</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>)</code>
+<code>constructor(router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/project/user-actions/user-actions.component.ts:14</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/project/user-actions/user-actions.component.ts:12</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
-                            <div class="io-description"><p>the constructor is called when an instance of the class is created</p>
-</div>
                             <div>
                                     <b>Parameters :</b>
                                     <table class="params">
@@ -189,43 +184,9 @@
                                                 <td>Name</td>
                                                     <td>Type</td>
                                                 <td>Optional</td>
-                                                    <td>Description</td>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                                <tr>
-                                                        <td>iconRegistry</td>
-                                                  
-                                                        <td>
-                                                                    <code>MatIconRegistry</code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                        <td>
-                                                                <code><p>:  a service to register icons so they can be used with the mat-icon component from Angular Materials</p>
-</code>
-                                                        </td>
-                                                </tr>
-                                                <tr>
-                                                        <td>sanitizer</td>
-                                                  
-                                                        <td>
-                                                                    <code><a href="https://angular.io/api/platform-browser/DomSanitizer" target="_blank" >DomSanitizer</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                        <td>
-                                                                <code><p>: prevents cross-site scripting attacks by filtering values to be used in the DOM; in this case it is bypassing
-         Angular&#39;s default security to use this image asset</p>
-</code>
-                                                        </td>
-                                                </tr>
                                                 <tr>
                                                         <td>router</td>
                                                   
@@ -237,10 +198,6 @@
                                                             No
                                                     </td>
                                                     
-                                                        <td>
-                                                                <code><p>: provides navigation to various views in an Angular application</p>
-</code>
-                                                        </td>
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -282,45 +239,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/project/user-actions/user-actions.component.ts:32</a></div>
-                            </td>
-                        </tr>
-
-
-                <tr>
-                    <td class="col-md-4">
-
-                            <div class="io-description">
-                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                            </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="submitProject"></a>
-                        <span class="name">
-                            <b>
-                            submitProject
-                            </b>
-                            <a href="#submitProject"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-<code>submitProject()</code>
-                    </td>
-                </tr>
-
-
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/project/user-actions/user-actions.component.ts:28</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/project/user-actions/user-actions.component.ts:17</a></div>
                             </td>
                         </tr>
 
@@ -375,7 +294,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/project/user-actions/user-actions.component.ts:14</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/project/user-actions/user-actions.component.ts:12</a></div>
                             </td>
                         </tr>
 
@@ -388,9 +307,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
-import { MatIconRegistry } from &#x27;@angular/material/icon&#x27;;
-import { DomSanitizer } from &#x27;@angular/platform-browser&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, Input } from &#x27;@angular/core&#x27;;
 import { Router } from &#x27;@angular/router&#x27;;
 
 import { User } from &#x27;src/app/core/models/User&#x27;;
@@ -403,36 +320,17 @@ import { User } from &#x27;src/app/core/models/User&#x27;;
 export class UserActionsComponent implements OnInit {
   user: User &#x3D; {};
 
-  /**
-	 * the constructor is called when an instance of the class is created
-	 *
-	 * @param iconRegistry:  a service to register icons so they can be used with the mat-icon component from Angular Materials
-   * @param sanitizer: prevents cross-site scripting attacks by filtering values to be used in the DOM; in this case it is bypassing
-   *                         Angular&#x27;s default security to use this image asset
-   * @param router: provides navigation to various views in an Angular application
-	 * @author Shawn Bickel (1810-Oct08-Java-USF)
-	 */
-  constructor(private iconRegistry: MatIconRegistry, private sanitizer: DomSanitizer, private router: Router) {
-  }
-
-  submitProject() {
-    this.router.navigate([&#x27;/projects/project_submission&#x27;]);
+  constructor(private router: Router,) {
   }
 
   ngOnInit() {
-    // this.user &#x3D; JSON.parse(localStorage.getItem(&#x27;user&#x27;));
-    this.iconRegistry.addSvgIcon(
-      &#x27;add_project&#x27;,
-      this.sanitizer.bypassSecurityTrustResourceUrl(&#x27;assets/img/round-add-24px.svg&#x27;));
   }
-
 }
 </code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;!-- *ngIf&#x3D;&quot;user&quot; --&gt;
-&lt;div class&#x3D;&quot;my-theme&quot;  id&#x3D;&quot;userActions&quot;&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;!-- &lt;div class&#x3D;&quot;my-theme&quot;  id&#x3D;&quot;userActions&quot;&gt;
     &lt;mat-toolbar color&#x3D;&quot;primary&quot;&gt;
         &lt;mat-toolbar-row&gt;
 
@@ -444,46 +342,20 @@ export class UserActionsComponent implements OnInit {
             &lt;mat-tab-group&gt;
                 &lt;mat-tab&gt;
                     &lt;ng-template mat-tab-label&gt;
-                        &lt;span&gt;Your Projects&lt;/span&gt;
+                        &lt;span (click)&#x3D;&quot;yourProjects()&quot;&gt;Your Projects&lt;/span&gt;
                     &lt;/ng-template&gt;
                 &lt;/mat-tab&gt;
 
                 &lt;mat-tab&gt;
                     &lt;ng-template mat-tab-label&gt;
-                        &lt;span&gt;All Projects&lt;/span&gt;
+                        &lt;span (click)&#x3D;&quot;allProjects()&quot;&gt;All Projects&lt;/span&gt;
                     &lt;/ng-template&gt;
 
                 &lt;/mat-tab&gt;
             &lt;/mat-tab-group&gt;
-            &lt;!-- &lt;span class&#x3D;&quot;example-fill-remaining-space&quot;&gt;&lt;/span&gt; --&gt;
-            &lt;!-- &lt;button mat-button [matMenuTriggerFor]&#x3D;&quot;filterMenu&quot;&gt;Filter Projects&lt;/button&gt;
-          &lt;mat-menu  #filterMenu&#x3D;&quot;matMenu&quot;&gt;
-              &lt;button mat-menu-item&gt;
-                  &lt;span&gt;Project Name&lt;/span&gt;
-              &lt;/button&gt;
-              &lt;button mat-menu-item&gt;
-                  &lt;span&gt;Batch Name&lt;/span&gt;
-              &lt;/button&gt;
-              &lt;button mat-menu-item&gt;
-                  &lt;span&gt;Trainer&lt;/span&gt;
-              &lt;/button&gt;
-              &lt;button mat-menu-item&gt;
-                  &lt;span&gt;Stack&lt;/span&gt;
-              &lt;/button&gt;
-          &lt;/mat-menu&gt; --&gt;
-            &lt;!-- &lt;span class&#x3D;&quot;example-fill-remaining-space&quot;&gt;&lt;/span&gt;
-          &lt;button *ngIf&#x3D;&quot;user.userRole &#x3D;&#x3D; &#x27;admin&#x27;&quot; mat-button [matMenuTriggerFor]&#x3D;&quot;projectMenu&quot;&gt;Type of Project&lt;/button&gt;
-          &lt;mat-menu  #projectMenu&#x3D;&quot;matMenu&quot;&gt;
-              &lt;button mat-menu-item&gt;
-                  &lt;span&gt;Pending Projects&lt;/span&gt;
-              &lt;/button&gt;
-              &lt;button mat-menu-item&gt;
-                  &lt;span&gt;Pending Edits&lt;/span&gt;
-              &lt;/button&gt;
-          &lt;/mat-menu&gt; --&gt;
         &lt;/mat-toolbar-row&gt;
     &lt;/mat-toolbar&gt;
-&lt;/div&gt;</code></pre>
+&lt;/div&gt; --&gt;</code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-styleData">
@@ -531,8 +403,8 @@ export class UserActionsComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><!-- *ngIf="user" --><div class="my-theme"  id="userActions">    <mat-toolbar color="primary">        <mat-toolbar-row>            <button id="icon" mat-icon-button mat-stroked-button mat-button matTooltip="Add New Project"                matTooltipPosition="right" (click)="submitProject()">                <mat-icon>add</mat-icon>            </button>            <span class="example-fill-remaining-space"></span>            <mat-tab-group>                <mat-tab>                    <ng-template mat-tab-label>                        <span>Your Projects</span>                    </ng-template>                </mat-tab>                <mat-tab>                    <ng-template mat-tab-label>                        <span>All Projects</span>                    </ng-template>                </mat-tab>            </mat-tab-group>            <!-- <span class="example-fill-remaining-space"></span> -->            <!-- <button mat-button [matMenuTriggerFor]="filterMenu">Filter Projects</button>          <mat-menu  #filterMenu="matMenu">              <button mat-menu-item>                  <span>Project Name</span>              </button>              <button mat-menu-item>                  <span>Batch Name</span>              </button>              <button mat-menu-item>                  <span>Trainer</span>              </button>              <button mat-menu-item>                  <span>Stack</span>              </button>          </mat-menu> -->            <!-- <span class="example-fill-remaining-space"></span>          <button *ngIf="user.userRole == \'admin\'" mat-button [matMenuTriggerFor]="projectMenu">Type of Project</button>          <mat-menu  #projectMenu="matMenu">              <button mat-menu-item>                  <span>Pending Projects</span>              </button>              <button mat-menu-item>                  <span>Pending Edits</span>              </button>          </mat-menu> -->        </mat-toolbar-row>    </mat-toolbar></div></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AppLogoComponent', 'selector': 'app-app-logo'},{'name': 'HomePageComponent', 'selector': 'app-home-page'},{'name': 'InputDialogComponent', 'selector': 'app-input-dialog'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LogoutComponent', 'selector': 'app-logout'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'ProfileComponent', 'selector': 'app-profile'},{'name': 'ProjectCardComponent', 'selector': 'app-project-card'},{'name': 'ProjectSubmissionComponent', 'selector': 'app-project-submission'},{'name': 'RegistrationComponent', 'selector': 'app-registration'},{'name': 'UserActionsComponent', 'selector': 'app-user-actions'},{'name': 'ViewProjectsComponent', 'selector': 'app-view-projects'},{'name': 'ZipComponent', 'selector': 'app-zip-component'}];
+        var COMPONENT_TEMPLATE = '<div><!-- <div class="my-theme"  id="userActions">    <mat-toolbar color="primary">        <mat-toolbar-row>            <button id="icon" mat-icon-button mat-stroked-button mat-button matTooltip="Add New Project"                matTooltipPosition="right" (click)="submitProject()">                <mat-icon>add</mat-icon>            </button>            <span class="example-fill-remaining-space"></span>            <mat-tab-group>                <mat-tab>                    <ng-template mat-tab-label>                        <span (click)="yourProjects()">Your Projects</span>                    </ng-template>                </mat-tab>                <mat-tab>                    <ng-template mat-tab-label>                        <span (click)="allProjects()">All Projects</span>                    </ng-template>                </mat-tab>            </mat-tab-group>        </mat-toolbar-row>    </mat-toolbar></div> --></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AppLogoComponent', 'selector': 'app-app-logo'},{'name': 'EditProjectComponent', 'selector': 'app-edit-project'},{'name': 'HomePageComponent', 'selector': 'app-home-page'},{'name': 'InputDialogComponent', 'selector': 'app-input-dialog'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LogoutComponent', 'selector': 'app-logout'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'ProfileComponent', 'selector': 'app-profile'},{'name': 'ProjectCardComponent', 'selector': 'app-project-card'},{'name': 'ProjectSubmissionComponent', 'selector': 'app-project-submission'},{'name': 'RegistrationComponent', 'selector': 'app-registration'},{'name': 'UserActionsComponent', 'selector': 'app-user-actions'},{'name': 'ViewProjectsComponent', 'selector': 'app-view-projects'},{'name': 'ZipComponent', 'selector': 'app-zip-component'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'UserActionsComponent'};
 </script>

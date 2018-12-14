@@ -130,6 +130,9 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#availableUrls">availableUrls</a>
+                            </li>
+                            <li>
                                 <a href="#browserSupported">browserSupported</a>
                             </li>
                             <li>
@@ -184,6 +187,9 @@
                                 <a href="#parseFiles">parseFiles</a>
                             </li>
                             <li>
+                                <a href="#safeTitle">safeTitle</a>
+                            </li>
+                            <li>
                                 <a href="#sendRequest">sendRequest</a>
                             </li>
                         </ul>
@@ -204,17 +210,19 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(http: <a href="https://angular.io/api/common/http/HttpClient" target="_blank">HttpClient</a>, location: <a href="https://angular.io/api/common/Location" target="_blank">Location</a>, projectService: <a href="../injectables/ProjectService.html">ProjectService</a>)</code>
+<code>constructor(http: <a href="https://angular.io/api/common/http/HttpClient" target="_blank">HttpClient</a>, location: <a href="https://angular.io/api/common/Location" target="_blank">Location</a>, ngmeta: NgMetaService, projectService: <a href="../injectables/ProjectService.html">ProjectService</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/zip-file-explorer/zip/zip.component.ts:33</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/zip-file-explorer/zip/zip.component.ts:37</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>Constructur: Injects Http Client into the component for use of resource request</p>
+</div>
                             <div>
                                     <b>Parameters :</b>
                                     <table class="params">
@@ -251,10 +259,34 @@
                                                     
                                                 </tr>
                                                 <tr>
+                                                        <td>ngmeta</td>
+                                                  
+                                                        <td>
+                                                                    <code>NgMetaService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
                                                         <td>projectService</td>
                                                   
                                                         <td>
                                                                     <code><a href="../injectables/ProjectService.html" target="_self" >ProjectService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -302,7 +334,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/app/zip-file-explorer/zip/zip.component.ts:96</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="117" class="link-to-prism">src/app/zip-file-explorer/zip/zip.component.ts:117</a></div>
                             </td>
                         </tr>
 
@@ -371,7 +403,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/app/zip-file-explorer/zip/zip.component.ts:71</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/app/zip-file-explorer/zip/zip.component.ts:88</a></div>
                             </td>
                         </tr>
 
@@ -412,7 +444,7 @@ sets the defualt display message as a helpme file</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/zip-file-explorer/zip/zip.component.ts:59</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/app/zip-file-explorer/zip/zip.component.ts:76</a></div>
                             </td>
                         </tr>
 
@@ -431,6 +463,7 @@ sets the defualt display for error messages</p>
                                                 <td>Name</td>
                                                     <td>Type</td>
                                                 <td>Optional</td>
+                                                    <td>Description</td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -445,6 +478,10 @@ sets the defualt display for error messages</p>
                                                     </td>
                                                     
 
+                                                        <td>
+                                                                <code><p>: Error message</p>
+</code>
+                                                        </td>
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -484,7 +521,7 @@ sets the defualt display for error messages</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="132" class="link-to-prism">src/app/zip-file-explorer/zip/zip.component.ts:132</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="150" class="link-to-prism">src/app/zip-file-explorer/zip/zip.component.ts:150</a></div>
                             </td>
                         </tr>
 
@@ -553,7 +590,7 @@ from stack overflow</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/app/zip-file-explorer/zip/zip.component.ts:88</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="108" class="link-to-prism">src/app/zip-file-explorer/zip/zip.component.ts:108</a></div>
                             </td>
                         </tr>
 
@@ -594,7 +631,7 @@ Redirects back to the last page</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/zip-file-explorer/zip/zip.component.ts:42</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/zip-file-explorer/zip/zip.component.ts:52</a></div>
                             </td>
                         </tr>
 
@@ -632,7 +669,7 @@ Redirects back to the last page</p>
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="143" class="link-to-prism">src/app/zip-file-explorer/zip/zip.component.ts:143</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="161" class="link-to-prism">src/app/zip-file-explorer/zip/zip.component.ts:161</a></div>
                             </td>
                         </tr>
 
@@ -716,7 +753,7 @@ unpacks a zip blob(ui8array) and opens with JSZip (zip is the reference variable
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/app/zip-file-explorer/zip/zip.component.ts:91</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">src/app/zip-file-explorer/zip/zip.component.ts:111</a></div>
                             </td>
                         </tr>
 
@@ -785,7 +822,7 @@ unpacks a zip blob(ui8array) and opens with JSZip (zip is the reference variable
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="201" class="link-to-prism">src/app/zip-file-explorer/zip/zip.component.ts:201</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="206" class="link-to-prism">src/app/zip-file-explorer/zip/zip.component.ts:206</a></div>
                             </td>
                         </tr>
 
@@ -835,6 +872,75 @@ opens and individual zip file. This method ignores files that are directories (i
             <tbody>
                 <tr>
                     <td class="col-md-4">
+                        <a name="safeTitle"></a>
+                        <span class="name">
+                            <b>
+                            safeTitle
+                            </b>
+                            <a href="#safeTitle"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>safeTitle(link: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="100" class="link-to-prism">src/app/zip-file-explorer/zip/zip.component.ts:100</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>link</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
                         <a name="sendRequest"></a>
                         <span class="name">
                             <b>
@@ -846,14 +952,14 @@ opens and individual zip file. This method ignores files that are directories (i
                 </tr>
                 <tr>
                     <td class="col-md-4">
-<code>sendRequest()</code>
+<code>sendRequest(url: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                     </td>
                 </tr>
 
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="106" class="link-to-prism">src/app/zip-file-explorer/zip/zip.component.ts:106</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="128" class="link-to-prism">src/app/zip-file-explorer/zip/zip.component.ts:128</a></div>
                             </td>
                         </tr>
 
@@ -865,9 +971,40 @@ Fire off an http request to retrieve the zip file</p>
 </div>
 
                             <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>url</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
                                 <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                             </div>
+                                <div class="io-description">
+                                    
+                                </div>
                     </td>
                 </tr>
             </tbody>
@@ -883,6 +1020,45 @@ Fire off an http request to retrieve the zip file</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
+                        <a name="availableUrls"></a>
+                        <span class="name">
+                            <b>
+                            availableUrls
+                            </b>
+                            <a href="#availableUrls"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>availableUrls:     <code>string[]</code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>string[]</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/zip-file-explorer/zip/zip.component.ts:37</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
                         <a name="browserSupported"></a>
                         <span class="name">
                             <b>
@@ -894,16 +1070,10 @@ Fire off an http request to retrieve the zip file</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <code>browserSupported:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                        <code>browserSupported:     <code></code>
 </code>
                     </td>
                 </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                        </td>
-                    </tr>
                     <tr>
                         <td class="col-md-4">
                             <i>Default value : </i><code>true</code>
@@ -911,7 +1081,7 @@ Fire off an http request to retrieve the zip file</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/zip-file-explorer/zip/zip.component.ts:33</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/zip-file-explorer/zip/zip.component.ts:36</a></div>
                             </td>
                         </tr>
 
@@ -950,7 +1120,7 @@ Fire off an http request to retrieve the zip file</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/zip-file-explorer/zip/zip.component.ts:32</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/zip-file-explorer/zip/zip.component.ts:35</a></div>
                             </td>
                         </tr>
 
@@ -989,7 +1159,7 @@ Fire off an http request to retrieve the zip file</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/zip-file-explorer/zip/zip.component.ts:31</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/zip-file-explorer/zip/zip.component.ts:34</a></div>
                             </td>
                         </tr>
 
@@ -1028,7 +1198,7 @@ Fire off an http request to retrieve the zip file</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/zip-file-explorer/zip/zip.component.ts:29</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/zip-file-explorer/zip/zip.component.ts:32</a></div>
                             </td>
                         </tr>
 
@@ -1062,7 +1232,7 @@ Fire off an http request to retrieve the zip file</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/zip-file-explorer/zip/zip.component.ts:30</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/zip-file-explorer/zip/zip.component.ts:33</a></div>
                             </td>
                         </tr>
 
@@ -1078,7 +1248,10 @@ Fire off an http request to retrieve the zip file</p>
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { HttpClient } from &#x27;@angular/common/http&#x27;;
 import { Location } from &#x27;@angular/common&#x27;;
 import { Component, OnInit } from &#x27;@angular/core&#x27;;
+import { Router } from &#x27;@angular/router&#x27;;
 import * as JSZip from &#x27;jszip&#x27;;
+import { NgMetaService } from &#x27;ngmeta&#x27;;
+
 import { ProjectService } from &#x27;src/app/core/services/project.service&#x27;;
 
 @Component({
@@ -1106,31 +1279,45 @@ export class ZipComponent implements OnInit {
   RenderFile: RenderFile[] &#x3D; [];
   SelectedFile: RenderFile;
   OpenFile: RenderFile[] &#x3D; [];
-  filepath: string &#x3D; &#x27;&#x27;;
-  browserSupported: boolean &#x3D; true;
-  /*Constructur: Injects Http Client into the component for use of resource request
-  *@param HttpClient standard angular dependency to fire http request.
-  *@param Location: Allows the page to redirect back to the last page it was opened from
-  *@param ProjectService: Injects the project service to get the request url
-  *@author Andrew Mitchem (1810-Oct08-Java-USF)
-  */
-  constructor(private http: HttpClient, private location: Location,private projectService: ProjectService) { }
+  filepath &#x3D; &#x27;&#x27;;
+  browserSupported &#x3D; true;
+  availableUrls: string [] &#x3D; [];
+  /**
+   * Constructur: Injects Http Client into the component for use of resource request
+   * @param HttpClient standard angular dependency to fire http request.
+   * @param Location: Allows the page to redirect back to the last page it was opened from
+   * @param Router: Allows for redirection to login if the user has not yet logged in
+   * @param NgMetaService: Changes the value of &lt;title&gt; inside index.html
+   * @author Andrew Mitchem (1810-Oct08-Java-USF)
+   */
+  constructor(private http: HttpClient,
+              private location: Location,
+              private ngmeta: NgMetaService,
+              private projectService: ProjectService,
+              private router: Router) { }
 
   ngOnInit() {
-    this.SelectedFile &#x3D; this.defaultFile();
-    let isTextDecoderSupported &#x3D; false;
-    try { isTextDecoderSupported  &#x3D; !!new TextDecoder(&#x27;utf-8&#x27;) 
-          
-          } catch(e){
-      
-          }
-         
-    this.browserSupported &#x3D; isTextDecoderSupported
+    if (localStorage.getItem(&#x27;user&#x27;) &#x3D;&#x3D;&#x3D; null) {
+      this.router.navigate([&#x27;/auth/login&#x27;]);
+    } else {
+      this.ngmeta.setHead({ title: &#x27;Code | RPM&#x27; });
+      this.SelectedFile &#x3D; this.defaultFile();
+      let isTextDecoderSupported &#x3D; false;
+      try {
+        isTextDecoderSupported  &#x3D; !!new TextDecoder(&#x27;utf-8&#x27;);
+      } catch (e) {
+      }
+
+      this.browserSupported &#x3D; isTextDecoderSupported;
+      if (this.projectService.CurrentProject) {
+        this.availableUrls &#x3D; this.projectService.CurrentProject.zipLinks;
+      }
+    }
   }
   /**
    * Zip.errorFile()
    * sets the defualt display for error messages
-   * @param message
+   * @param message: Error message
    * @author Andrew Mitchem (1810-Oct08-Java-USF)
    */
   errorFile(message: string): RenderFile {
@@ -1155,7 +1342,10 @@ use the second 🗁 (green) to open a local repo zip.
 
 Currently can open and navigate to the src directory of Angular and Java Repositories
     &#x60;;
-      return testfile;
+    return testfile;
+  }
+  safeTitle(link: string) {
+    return link.substring(link.lastIndexOf(&#x27;/&#x27;) + 1);
   }
   /**
    * Zip.goBack()
@@ -1165,39 +1355,37 @@ Currently can open and navigate to the src directory of Angular and Java Reposit
   goBack() {
     this.location.back();
   }
-  openRenderFile(renderFile: RenderFile){
+  openRenderFile(renderFile: RenderFile) {
     this.SelectedFile &#x3D; renderFile;
-    if(!this.OpenFile.includes(renderFile))
-      this.OpenFile.push(renderFile)
+    if (!this.OpenFile.includes(renderFile)) {
+      this.OpenFile.push(renderFile);
+    }
   }
-  closeRenderFile(renderFile: RenderFile){
-    this.OpenFile.splice(this.OpenFile.indexOf(renderFile),1)
-    if(this.OpenFile.length)
-    this.SelectedFile &#x3D; this.defaultFile();
+  closeRenderFile(renderFile: RenderFile) {
+    this.OpenFile.splice(this.OpenFile.indexOf(renderFile), 1);
+    if (this.OpenFile.length) {
+      this.SelectedFile &#x3D; this.defaultFile();
+    }
   }
   /**
    * Zip.sendRequest()
    * Fire off an http request to retrieve the zip file
    * @author Andrew Mitchem (1810-Oct08-Java-USF)
    */
-  sendRequest() {
-    const url &#x3D; &#x27;https://s3.us-east-2.amazonaws.com/zip-test-bucket/reflections-mafia-client-master.zip&#x27;;
+  sendRequest(url: string) {
     // reponse type is arraybuffer so the get request knows this is a oclet-array-stream request
     this.http.get(url, { observe: &#x27;response&#x27;, responseType: &#x27;blob&#x27;})
     .subscribe(blob &#x3D;&gt; {
       // after the array is retrieve. open the data with JSZip
-      console.log(blob);
-      console.log(blob.body);
-      console.log(blob.headers);
-      console.log(blob.headers.get(&#x27;content-disposition&#x27;));
       if (blob.headers.get(&#x27;content-disposition&#x27;)) {
         const datafilename &#x3D; this.getFileNameFromHttpResponse(blob.headers.get(&#x27;content-disposition&#x27;));
-        console.log(datafilename);
         this.openData(blob.body, datafilename);
       } else {
         const datafilename &#x3D; url.substring(url.lastIndexOf(&#x27;/&#x27;) + 1);
         this.openData(blob.body, datafilename);
       }
+    }, error &#x3D;&gt; {
+      this.SelectedFile &#x3D; this.errorFile(&#x27;Yeah we couldn\&#x27;t find this file: we\&#x27;re Sorry&#x27;);
     });
   }
   /**
@@ -1218,44 +1406,31 @@ Currently can open and navigate to the src directory of Angular and Java Reposit
    * @author Andrew Mitchem (1810-Oct08-Java-USF)
    */
   openData(data , datafilename?) {
-    console.log(&#x27;This is your data file: &#x27; + datafilename);
     this.RenderFile &#x3D; [];
     this.SelectedFile &#x3D; this.defaultFile();
     this.OpenFile &#x3D; [];
-    // console.log(&quot;hi&quot;)
-    console.log(&#x27;This is your data: &#x27;);
-    console.log(data);
     let dataname &#x3D; &#x27;&#x27;;
     if (data.name) {
         dataname &#x3D; data.name.substring(0, data.name.lastIndexOf(&#x27;.&#x27;));
     } else {
         dataname &#x3D; datafilename.substring(0, datafilename.lastIndexOf(&#x27;.&#x27;));
     }
-    console.log(dataname);
     const zip &#x3D; new JSZip();
     // new instance of JSZip. note this object lifecycle needs to be undone after rendering
     // as such it not a class member but function member only for the scope of this function closure
     zip.loadAsync(data)
     .then(contents &#x3D;&gt; {
-      console.log(contents);
       // move to the sub folder inside the zip file: replace with pass paramater variables
       if (!zip.folder(new RegExp(dataname)).length) {
-        console.log(&#x27;malformed package&#x27;);
         this.SelectedFile &#x3D; this.errorFile(&#x27;Package didn\&#x27;t match zip filename&#x27;);
         return;
       }
       let dirFolder &#x3D;  zip.folder(dataname);
-      console.log(dirFolder);
-      console.log(dirFolder.folder(/src\/main\/java/));
       if (dirFolder.folder(/src\/main\/java/).length) {
-        console.log(&#x27;Hi&#x27;);
         dirFolder &#x3D;  dirFolder.folder(&#x27;src/main/java&#x27;);
-        console.log(dirFolder);
         this.filepath &#x3D; dataname + &#x27;/src/main/java&#x27;;
       } else if (dirFolder.folder(/src\/app/).length) {
-        console.log(&#x27;Hello&#x27;);
         dirFolder &#x3D;  dirFolder.folder(&#x27;src/app&#x27;);
-        console.log(dirFolder);
         this.filepath &#x3D; dataname + &#x27;/src/app&#x27;;
       } else {
         console.log(&#x27;malformed package. not angular or java&#x27;);
@@ -1278,27 +1453,24 @@ Currently can open and navigate to the src directory of Angular and Java Reposit
   parseFiles(file) {
     // check if file is a directory
     if (!file.dir) {
-        let fileName &#x3D; file.name;
-        // save ZipObject file name as once unzip into a  standard file  we loose acess to this data
-        fileName &#x3D; fileName.replace(this.filepath, &#x27;&#x27;);
-        fileName &#x3D; fileName.substring(fileName.lastIndexOf(&#x27;/&#x27;) + 1);
-        // remove leading path in name
-        if(this.browserSupported){
-          let helpme &#x3D; file.async(&#x27;uint8array&#x27;).then(function (data) { // converts the ZipObject
-            let string &#x3D; &#x27;Placeholder Text \n we are sorry your browser may not be supported&#x27;;
-            
-            
-            string &#x3D; new TextDecoder(&#x27;utf-8&#x27;).decode(data);
-            return string;
-          });
-          helpme.then(string &#x3D;&gt; {
-            const file &#x3D; new RenderFile();
-            file.fileName &#x3D; fileName;
-            file.fileContent &#x3D; string; // &quot;file here is a string text readable format stored for rendering logic&quot;
-            this.RenderFile.push(file);
-          });
-        }else{
-          file.fileName &#x3D; fileName;
+      let fileName &#x3D; file.name;
+      // save ZipObject file name as once unzip into a  standard file  we loose acess to this data
+      fileName &#x3D; fileName.replace(this.filepath, &#x27;&#x27;);
+      fileName &#x3D; fileName.substring(fileName.lastIndexOf(&#x27;/&#x27;) + 1);
+      // remove leading path in name
+      const helpme &#x3D; file.async(&#x27;uint8array&#x27;).then(function (data) { // converts the ZipObject
+        let string &#x3D; &#x27;Placeholder Text \n we are sorry your browser may not be supported&#x27;;
+        string &#x3D; new TextDecoder(&#x27;utf-8&#x27;).decode(data);
+        return string;
+      });
+      helpme.then(string &#x3D;&gt; {
+        const file &#x3D; new RenderFile();
+        file.fileName &#x3D; fileName;
+        file.fileContent &#x3D; string; // &quot;file here is a string text readable format stored for rendering logic&quot;
+        this.RenderFile.push(file);
+      });
+    } else {
+      file.fileName &#x3D; &#x27;Error&#x27;;
             file.fileContent &#x3D; &#x60;Sorry @Browser not currently supported
             ≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈
 ≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈████≈
@@ -1358,31 +1530,30 @@ Currently can open and navigate to the src directory of Angular and Java Reposit
 ≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈█▒▒▒▒█≈≈≈≈≈≈≈≈≈
 ≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈█▒█▒█≈≈≈≈≈≈≈≈≈
 ≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈███≈≈≈≈≈≈≈≈≈≈
-            &#x60;; 
-            this.RenderFile.push(file);
-        }
+            &#x60;;
+        this.RenderFile.push(file);
+      }
     }
   }
-}
-/**
-* Tree
-* SubClass for storing render related structure
-* @author Andrew Mitchem (1810-Oct08-Java-USF)
-*/
-class Tree {
-  name: string;
-  files: File[] &#x3D; [];
-  tree: Tree[] &#x3D; [];
-}
-/**
-* RenderFile
-* SubClass for storing render related structure
-* @author Andrew Mitchem (1810-Oct08-Java-USF)
-*/
-class RenderFile {
-  fileName: String;
-  fileContent: String;
-}
+  /**
+  * Tree
+  * SubClass for storing render related structure
+  * @author Andrew Mitchem (1810-Oct08-Java-USF)
+  */
+  class Tree {
+    name: string;
+    files: File[] &#x3D; [];
+    tree: Tree[] &#x3D; [];
+  }
+  /**
+  * RenderFile
+  * SubClass for storing render related structure
+  * @author Andrew Mitchem (1810-Oct08-Java-USF)
+  */
+  class RenderFile {
+    fileName: String;
+    fileContent: String;
+  }
 </code></pre>
     </div>
 
@@ -1390,11 +1561,11 @@ class RenderFile {
         <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;background&quot;&gt;
   &lt;div class&#x3D;&quot;header&quot;&gt;&lt;span&gt; Code Base Viewer&lt;/span&gt;&lt;/div&gt;
     &lt;div class&#x3D;&quot;btn-container&quot;&gt;
-      &lt;button  class&#x3D;&quot;btn-open btn-side&quot;(click)&#x3D;&#x27;sendRequest()&#x27;&gt;🗁&lt;/button&gt;
-      &lt;label class&#x3D;&quot;fileContainer&quot;&gt; 🗁
-        &lt;input #fileOpener type&#x3D;&quot;file&quot; class&#x3D;&quot;&quot; (change)&#x3D;&#x27;openData(fileOpener.files[0])&#x27;&gt;
+      &lt;button *ngFor&#x3D;&quot;let link of availableUrls&quot; class&#x3D;&quot;btn-open btn-side&quot;(click)&#x3D;&#x27;sendRequest(link)&#x27; [title]&#x3D;&quot;safeTitle(link)&quot;&gt;🗁&lt;/button&gt;
+      &lt;label class&#x3D;&quot;fileContainer&quot; title&#x3D;&quot;Open Local File&quot;&gt; 🗁
+        &lt;input #fileOpener type&#x3D;&quot;file&quot; class&#x3D;&quot;&quot; (change)&#x3D;&#x27;openData(fileOpener.files[0])&#x27; &gt;
         &lt;/label&gt;
-      &lt;button class&#x3D;&quot;btn-home btn-side&quot;(click)&#x3D;&#x27;goBack()&#x27;&gt;⌂&lt;/button&gt;
+      &lt;button class&#x3D;&quot;btn-home btn-side&quot;(click)&#x3D;&#x27;goBack()&#x27; title&#x3D;&quot;Home&quot;&gt;⌂&lt;/button&gt;
     
       &lt;h4 class&#x3D;&quot;display-text&quot;&gt; &amp;#x25b7; Explorer&lt;/h4&gt;
       &lt;div&gt;
@@ -1820,8 +1991,8 @@ textarea{
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="background">  <div class="header"><span> Code Base Viewer</span></div>    <div class="btn-container">      <button  class="btn-open btn-side"(click)=\'sendRequest()\'>🗁</button>      <label class="fileContainer"> 🗁        <input #fileOpener type="file" class="" (change)=\'openData(fileOpener.files[0])\'>        </label>      <button class="btn-home btn-side"(click)=\'goBack()\'>⌂</button>          <h4 class="display-text"> &#x25b7; Explorer</h4>      <div>      <p *ngFor="let help of RenderFile" [class.selected_p]="SelectedFile === help"  (click)="openRenderFile(help)">{{help.fileName}}</p>    </div>    </div>  <div class="container_div">    <div *ngIf="OpenFile.length!==0" class="file_header">      <button  class="btn-file"                (click)="SelectedFile = help"                 [class.selected_btn]="SelectedFile === help"                 *ngFor="let help of OpenFile">                <div class="x" (click)="closeRenderFile(help)">X</div>                  {{help.fileName}}                        </button>           <!-- <details [open]="SelectedFile === help" (click)="SelectedFile = help" *ngFor="let help of RenderFile">        <summary >{{help.fileName}}</summary>      </details> -->    </div>  <div class="editor" [innerHTML]="SelectedFile.fileContent| lineNumber | lex">  </div>    <!--  <textarea hidden #editortext (scroll)="scrollEditor()" autocomplete="off" autocorrect="off" autocapitalize="off"                spellcheck="false" class="editor-input" [(ngModel)]="SelectedFile.fileContent">  </textarea> -->  </div></div></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AppLogoComponent', 'selector': 'app-app-logo'},{'name': 'HomePageComponent', 'selector': 'app-home-page'},{'name': 'InputDialogComponent', 'selector': 'app-input-dialog'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LogoutComponent', 'selector': 'app-logout'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'ProfileComponent', 'selector': 'app-profile'},{'name': 'ProjectCardComponent', 'selector': 'app-project-card'},{'name': 'ProjectSubmissionComponent', 'selector': 'app-project-submission'},{'name': 'RegistrationComponent', 'selector': 'app-registration'},{'name': 'UserActionsComponent', 'selector': 'app-user-actions'},{'name': 'ViewProjectsComponent', 'selector': 'app-view-projects'},{'name': 'ZipComponent', 'selector': 'app-zip-component'}];
+        var COMPONENT_TEMPLATE = '<div><div class="background">  <div class="header"><span> Code Base Viewer</span></div>    <div class="btn-container">      <button *ngFor="let link of availableUrls" class="btn-open btn-side"(click)=\'sendRequest(link)\' [title]="safeTitle(link)">🗁</button>      <label class="fileContainer" title="Open Local File"> 🗁        <input #fileOpener type="file" class="" (change)=\'openData(fileOpener.files[0])\' >        </label>      <button class="btn-home btn-side"(click)=\'goBack()\' title="Home">⌂</button>          <h4 class="display-text"> &#x25b7; Explorer</h4>      <div>      <p *ngFor="let help of RenderFile" [class.selected_p]="SelectedFile === help"  (click)="openRenderFile(help)">{{help.fileName}}</p>    </div>    </div>  <div class="container_div">    <div *ngIf="OpenFile.length!==0" class="file_header">      <button  class="btn-file"                (click)="SelectedFile = help"                 [class.selected_btn]="SelectedFile === help"                 *ngFor="let help of OpenFile">                <div class="x" (click)="closeRenderFile(help)">X</div>                  {{help.fileName}}                        </button>           <!-- <details [open]="SelectedFile === help" (click)="SelectedFile = help" *ngFor="let help of RenderFile">        <summary >{{help.fileName}}</summary>      </details> -->    </div>  <div class="editor" [innerHTML]="SelectedFile.fileContent| lineNumber | lex">  </div>    <!--  <textarea hidden #editortext (scroll)="scrollEditor()" autocomplete="off" autocorrect="off" autocapitalize="off"                spellcheck="false" class="editor-input" [(ngModel)]="SelectedFile.fileContent">  </textarea> -->  </div></div></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AppLogoComponent', 'selector': 'app-app-logo'},{'name': 'EditProjectComponent', 'selector': 'app-edit-project'},{'name': 'HomePageComponent', 'selector': 'app-home-page'},{'name': 'InputDialogComponent', 'selector': 'app-input-dialog'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LogoutComponent', 'selector': 'app-logout'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'ProfileComponent', 'selector': 'app-profile'},{'name': 'ProjectCardComponent', 'selector': 'app-project-card'},{'name': 'ProjectSubmissionComponent', 'selector': 'app-project-submission'},{'name': 'RegistrationComponent', 'selector': 'app-registration'},{'name': 'UserActionsComponent', 'selector': 'app-user-actions'},{'name': 'ViewProjectsComponent', 'selector': 'app-view-projects'},{'name': 'ZipComponent', 'selector': 'app-zip-component'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'ZipComponent'};
 </script>

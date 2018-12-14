@@ -203,12 +203,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(userService: <a href="../injectables/UserService.html">UserService</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, fb: <a href="https://angular.io/api/forms/FormBuilder" target="_blank">FormBuilder</a>)</code>
+<code>constructor(userService: <a href="../injectables/UserService.html">UserService</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, fb: <a href="https://angular.io/api/forms/FormBuilder" target="_blank">FormBuilder</a>, ngmeta: NgMetaService)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/account/profile/profile.component.ts:44</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/account/profile/profile.component.ts:53</a></div>
                             </td>
                         </tr>
 
@@ -261,6 +261,18 @@
                                                     </td>
                                                     
                                                 </tr>
+                                                <tr>
+                                                        <td>ngmeta</td>
+                                                  
+                                                        <td>
+                                                                    <code>NgMetaService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
                                         </tbody>
                                     </table>
                             </div>
@@ -301,13 +313,15 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/app/account/profile/profile.component.ts:101</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/app/account/profile/profile.component.ts:105</a></div>
                             </td>
                         </tr>
 
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>This function will pre-fill the form with user&#39;s profile information</p>
+</div>
 
                             <div class="io-description">
                                 <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -339,13 +353,15 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="110" class="link-to-prism">src/app/account/profile/profile.component.ts:110</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="120" class="link-to-prism">src/app/account/profile/profile.component.ts:120</a></div>
                             </td>
                         </tr>
 
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>This function pre-fills the form, which contains the neccessary input validations</p>
+</div>
 
                             <div class="io-description">
                                     <b>Parameters :</b>
@@ -355,6 +371,7 @@
                                                 <td>Name</td>
                                                     <td>Type</td>
                                                 <td>Optional</td>
+                                                    <td>Description</td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -369,6 +386,10 @@
                                                     </td>
                                                     
 
+                                                        <td>
+                                                                <code><p>: input firstname to fill out the form</p>
+</code>
+                                                        </td>
                                                 </tr>
                                                 <tr>
                                                         <td>lastName</td>
@@ -381,6 +402,10 @@
                                                     </td>
                                                     
 
+                                                        <td>
+                                                                <code><p>: input lastnme to fill out the form</p>
+</code>
+                                                        </td>
                                                 </tr>
                                                 <tr>
                                                         <td>email</td>
@@ -393,6 +418,10 @@
                                                     </td>
                                                     
 
+                                                        <td>
+                                                                <code><p>: input email to fill out the form</p>
+</code>
+                                                        </td>
                                                 </tr>
                                                 <tr>
                                                         <td>username</td>
@@ -405,6 +434,10 @@
                                                     </td>
                                                     
 
+                                                        <td>
+                                                                <code><p>: input username to fill out the form</p>
+</code>
+                                                        </td>
                                                 </tr>
                                                 <tr>
                                                         <td>password</td>
@@ -417,6 +450,10 @@
                                                     </td>
                                                     
 
+                                                        <td>
+                                                                <code><p>: input password to fill out the form</p>
+</code>
+                                                        </td>
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -456,13 +493,15 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="127" class="link-to-prism">src/app/account/profile/profile.component.ts:127</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="140" class="link-to-prism">src/app/account/profile/profile.component.ts:140</a></div>
                             </td>
                         </tr>
 
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>This function will disable button if all input validations of the form are not satisfied</p>
+</div>
 
                             <div class="io-description">
                                 <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -496,13 +535,16 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/account/profile/profile.component.ts:26</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/account/profile/profile.component.ts:30</a></div>
                             </td>
                         </tr>
 
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>source: <a href="https://scotch.io/@ibrahimalsurkhi/match-password-validation-with-angular-2">https://scotch.io/@ibrahimalsurkhi/match-password-validation-with-angular-2</a>
+Enable validation error when password is not matched with confirmPassword</p>
+</div>
 
                             <div class="io-description">
                                     <b>Parameters :</b>
@@ -512,6 +554,7 @@
                                                 <td>Name</td>
                                                     <td>Type</td>
                                                 <td>Optional</td>
+                                                    <td>Description</td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -526,6 +569,10 @@
                                                     </td>
                                                     
 
+                                                        <td>
+                                                                <code><p>: grab the form that uses this function&#39;s validation</p>
+</code>
+                                                        </td>
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -565,7 +612,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/account/profile/profile.component.ts:48</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/account/profile/profile.component.ts:60</a></div>
                             </td>
                         </tr>
 
@@ -603,13 +650,15 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="135" class="link-to-prism">src/app/account/profile/profile.component.ts:135</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="152" class="link-to-prism">src/app/account/profile/profile.component.ts:152</a></div>
                             </td>
                         </tr>
 
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>This function will force the user&#39;s to retype the input field for confirming password</p>
+</div>
 
                             <div class="io-description">
                                 <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -643,13 +692,15 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/account/profile/profile.component.ts:36</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/account/profile/profile.component.ts:45</a></div>
                             </td>
                         </tr>
 
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>Enable validation error when email does not end with <a href="mailto:&#39;@revature.com">&#39;@revature.com</a>&#39;</p>
+</div>
 
                             <div class="io-description">
                                     <b>Parameters :</b>
@@ -659,6 +710,7 @@
                                                 <td>Name</td>
                                                     <td>Type</td>
                                                 <td>Optional</td>
+                                                    <td>Description</td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -673,6 +725,10 @@
                                                     </td>
                                                     
 
+                                                        <td>
+                                                                <code><p>: grab the form that uses this function&#39;s validation</p>
+</code>
+                                                        </td>
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -712,13 +768,15 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/app/account/profile/profile.component.ts:68</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/app/account/profile/profile.component.ts:74</a></div>
                             </td>
                         </tr>
 
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>This function will call the user-service to update user&#39;s profile information</p>
+</div>
 
                             <div class="io-description">
                                 <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -950,10 +1008,11 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
 import { AbstractControl, FormBuilder, FormGroup, Validators } from &#x27;@angular/forms&#x27;;
 import { Router } from &#x27;@angular/router&#x27;;
-import { UserService } from &#x27;src/app/core/services/user.service&#x27;;
+import { NgMetaService } from &#x27;ngmeta&#x27;;
 import { first } from &#x27;rxjs/operators&#x27;;
 
 import { User } from &#x27;src/app/core/models/User&#x27;;
+import { UserService } from &#x27;src/app/core/services/user.service&#x27;;
 
 @Component({
   selector: &#x27;app-profile&#x27;,
@@ -962,7 +1021,6 @@ import { User } from &#x27;src/app/core/models/User&#x27;;
 })
 
 export class ProfileComponent implements OnInit {
-
   form: FormGroup;
   user: User;
   setReadOnly &#x3D; true;
@@ -970,8 +1028,12 @@ export class ProfileComponent implements OnInit {
   filledPassword &#x3D; true;
   emailPattern &#x3D; &#x27;^[a-zA-Z0-9_.+-]+(?:(?:[a-zA-Z0-9-]+\.)?[a-zA-Z]+\.)?@(revature)\.com$&#x27;;
 
-  // source: &lt;https://scotch.io/@ibrahimalsurkhi/match-password-validation-with-angular-2&gt;
-  // enable validation error when password is not matched
+  /**
+   * source: &lt;https://scotch.io/@ibrahimalsurkhi/match-password-validation-with-angular-2&gt;
+   * Enable validation error when password is not matched with confirmPassword
+   * @param AC : grab the form that uses this function&#x27;s validation
+   * @author Yuki Mano (1810-Oct08-Java-USF)
+   */
   static MatchPassword(AC: AbstractControl) {
     const password &#x3D; AC.get(&#x27;password&#x27;).value; // to get value in input tag
     const confirmPassword &#x3D; AC.get(&#x27;confirmPassword&#x27;).value; // to get value in input tag
@@ -982,6 +1044,11 @@ export class ProfileComponent implements OnInit {
     }
   }
 
+  /**
+   * Enable validation error when email does not end with &#x27;@revature.com&#x27;
+   * @param AC : grab the form that uses this function&#x27;s validation
+   * @author Yuki Mano (1810-Oct08-Java-USF)
+   */
   static RevatureEmail(AC: AbstractControl) {
     const email &#x3D; AC.get(&#x27;email&#x27;).value; // to get value in input tag
     const emailPattern &#x3D; &#x27;^[a-zA-Z0-9_.+-]+(?:(?:[a-zA-Z0-9-]+\.)?[a-zA-Z]+\.)?@(revature)\.com$&#x27;; // regex for Revature email
@@ -992,28 +1059,25 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  constructor(private userService: UserService, private router: Router, private fb: FormBuilder) { }
+  constructor(private userService: UserService,
+              private router: Router,
+              private fb: FormBuilder,
+              private ngmeta: NgMetaService) { }
 
   ngOnInit() {
-    const tempUser: User &#x3D; {
-      id: 1,
-      firstName: &#x27;Yuki&#x27;,
-      lastName: &#x27;Mano&#x27;,
-      username: &#x27;YukiMano&#x27;,
-      password: &#x27;password&#x27;,
-      role: &#x27;trainer&#x27;,
-      email: &#x27;ym@revature.com&#x27;,
-    };
-
-    window.localStorage.setItem(&#x27;user&#x27;, JSON.stringify(tempUser));
-
     // pre-fill the profile information with logged-in user information
-    this.user &#x3D; JSON.parse(window.localStorage.getItem(&#x27;user&#x27;));
-
+    this.user &#x3D; this.userService.getUser();
+    if (!this.user) {
+      this.router.navigate([&#x27;/auth/login&#x27;]);
+    }
+    this.ngmeta.setHead({ title: &#x27;Profile | RPM&#x27; });
     this.fillFormGroup(this.user.firstName, this.user.lastName, this.user.email, this.user.username, this.user.password);
   }
 
-  // call user-service to update the profile information
+  /**
+   * This function will call the user-service to update user&#x27;s profile information
+   * @author Yuki Mano (1810-Oct08-Java-USF)
+   */
   updateProfile() {
     if (this.form.valid) {
       const updatedUserInfo: User &#x3D; {
@@ -1026,36 +1090,40 @@ export class ProfileComponent implements OnInit {
         role: this.user.role,
       };
 
-      // this line should be put in user service
-      // window.localStorage.setItem(&#x27;user&#x27;, JSON.stringify(updatedUserInfo));
-      // this.user &#x3D; JSON.parse(window.localStorage.getItem(&#x27;user&#x27;));
-
-      // this.fillFormGroup(this.user.firstName, this.user.lastName, this.user.email, this.user.username, this.user.password);
-
-      console.log(updatedUserInfo);
-
-
       this.userService.updateProfile(updatedUserInfo).pipe(first()).subscribe((user) &#x3D;&gt; {
         if (user) {
-          localStorage.setItem(&#x27;user&#x27;, JSON.stringify(user));
+          this.user &#x3D; user;
+          this.userService.user &#x3D; user;
+          alert(&#x27;profile updated&#x27;);
           this.fillFormGroup(this.user.firstName, this.user.lastName, this.user.email, this.user.username, this.user.password);
-          console.log(this.user);
         }
+      }, (error) &#x3D;&gt; {
+          this.user &#x3D; this.userService.getUser();
+          this.fillFormGroup(this.user.firstName, this.user.lastName, this.user.email, this.user.username, this.user.password);
+          alert(&#x27;error updating profile&#x27;);
       });
-
     }
   }
 
-  // pre-fill the form with intial inputs
+  /**
+   * This function will pre-fill the form with user&#x27;s profile information
+   * @author Yuki Mano (1810-Oct08-Java-USF)
+   */
   cancelEditProfile() {
     this.disableButton &#x3D; true;
-
-    this.user &#x3D; JSON.parse(window.localStorage.getItem(&#x27;user&#x27;));
-
+    this.user &#x3D; this.userService.getUser();
     this.fillFormGroup(this.user.firstName, this.user.lastName, this.user.email, this.user.username, this.user.password);
   }
 
-  // pre-fill the form
+  /**
+   * This function pre-fills the form, which contains the neccessary input validations
+   * @param firstName : input firstname to fill out the form
+   * @param lastName : input lastnme to fill out the form
+   * @param email : input email to fill out the form
+   * @param username : input username to fill out the form
+   * @param password : input password to fill out the form
+   * @author Yuki Mano (1810-Oct08-Java-USF)
+   */
   fillFormGroup(firstName: string, lastName: string, email: string, username: string, password: string) {
     this.form &#x3D; this.fb.group({
       firstName: [firstName.trim(), [Validators.required, Validators.minLength]],
@@ -1072,7 +1140,10 @@ export class ProfileComponent implements OnInit {
       });
   }
 
-  // disable button if all input validations of the form are not satisfied
+  /**
+   * This function will disable button if all input validations of the form are not satisfied
+   * @author Yuki Mano (1810-Oct08-Java-USF)
+   */
   formFilled() {
     if (this.form.valid) {
       this.disableButton &#x3D; false;
@@ -1081,23 +1152,19 @@ export class ProfileComponent implements OnInit {
     }
   }
 
+  /**
+   * This function will force the user&#x27;s to retype the input field for confirming password
+   * @author Yuki Mano (1810-Oct08-Java-USF)
+   */
   retypeConfirmPassword() {
     this.form.get(&#x27;confirmPassword&#x27;).setValue(&#x27;&#x27;);
   }
-
 }
 
 /*
-TO-DO
-
-- usernme must be uniqued (call to the db) --&gt; mat-error when username is not uniqued
-- email must be uniqued (call to the db) *not required* --&gt; mat-error when email is not uniqued
-
-- create a function in user-service which call to the server side and set the data into local storage
-
-+ more space in between inputs for mat-error (optional)
-+ min-length &amp;&amp; maxlength validation for username and password (optional)
-+ email must be @revature.com (optional)
+TODO
+- (optional) usernme must be uniqued (call to the db) --&gt; mat-error when username is not uniqued
+- (optional) email must be uniqued (call to the db) --&gt; mat-error when email is not uniqued
 */
 </code></pre>
     </div>
@@ -1120,9 +1187,6 @@ TO-DO
               &lt;/button&gt;
               &lt;h1 id&#x3D;&quot;profile-header&quot;&gt;&lt;strong&gt;Profile&lt;/strong&gt;&lt;/h1&gt;
             &lt;/div&gt;
-            &lt;div fxLayout.xs&#x3D;&quot;column&quot;&gt;
-              &lt;h3 id&#x3D;&quot;user-role&quot;&gt;{{user.role}}&lt;/h3&gt;
-            &lt;/div&gt;
           &lt;/div&gt;
 
           &lt;div class&#x3D;&quot;container&quot; fxLayout&#x3D;&quot;row&quot; fxLayout.xs&#x3D;&quot;column&quot;&gt;
@@ -1130,6 +1194,7 @@ TO-DO
               information.&lt;/p&gt;
           &lt;/div&gt;
 
+          &lt;!-- display the form that contains user&#x27;s profile information --&gt;
           &lt;form [formGroup]&#x3D;&quot;form&quot;&gt;
             &lt;hr&gt;
             &lt;div class&#x3D;&quot;container&quot; fxLayout&#x3D;&quot;row&quot; fxLayoutGap&#x3D;&quot;10%&quot; fxLayoutGap.xs&#x3D;&quot;0&quot;&gt;
@@ -1137,7 +1202,7 @@ TO-DO
               &lt;div fxLayout.xs&#x3D;&quot;column&quot;&gt;
                 &lt;mat-form-field&gt;
                   &lt;input matInput readonly&#x3D;{{setReadOnly}} id&#x3D;&quot;inputFirstName&quot; placeholder&#x3D;&quot;First Name&quot; formControlName&#x3D;&quot;firstName&quot;
-                    (blur)&#x3D;formFilled() (mouseleave)&#x3D;formFilled() minlength&#x3D;&quot;2&quot; required&gt;
+                    (blur)&#x3D;formFilled() (mouseleave)&#x3D;formFilled() minlength&#x3D;&quot;1&quot; required&gt;
                   &lt;mat-error *ngIf&#x3D;&quot;form.get(&#x27;firstName&#x27;).hasError(&#x27;minlength&#x27;) &amp;&amp; !form.get(&#x27;firstName&#x27;).hasError(&#x27;required&#x27;)&quot;&gt;
                     Must be at least &lt;strong&gt;2 characters&lt;/strong&gt; long
                   &lt;/mat-error&gt;
@@ -1149,7 +1214,7 @@ TO-DO
               &lt;div fxLayout.xs&#x3D;&quot;column&quot;&gt;
                 &lt;mat-form-field&gt;
                   &lt;input matInput readonly&#x3D;{{setReadOnly}} id&#x3D;&quot;inputLastName&quot; placeholder&#x3D;&quot;Last Name&quot; formControlName&#x3D;&quot;lastName&quot;
-                    (blur)&#x3D;formFilled() (mouseleave)&#x3D;formFilled() minlength&#x3D;&quot;2&quot; required&gt;
+                    (blur)&#x3D;formFilled() (mouseleave)&#x3D;formFilled() minlength&#x3D;&quot;1&quot; required&gt;
                   &lt;mat-error *ngIf&#x3D;&quot;form.get(&#x27;lastName&#x27;).hasError(&#x27;minlength&#x27;) &amp;&amp; !form.get(&#x27;lastName&#x27;).hasError(&#x27;required&#x27;)&quot;&gt;
                     Must be at least &lt;strong&gt;2 characters&lt;/strong&gt; long
                   &lt;/mat-error&gt;
@@ -1235,8 +1300,9 @@ TO-DO
                     <code>./profile.component.scss</code>
                 </p>
                 <pre class="line-numbers"><code class="language-scss">#user-role {
-    margin-top: -30%;
-    border-color: black;  
+    // margin-top: -10vh;
+    border-color: black;
+    margin-left: -3vh;  
   }
   
   #profile-text {
@@ -1275,8 +1341,8 @@ TO-DO
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><app-navbar></app-navbar><mat-grid-list class="my-theme" cols="8" height="100%" width="100%">  <mat-grid-tile colspan=1 rowspan=1></mat-grid-tile>  <mat-grid-tile colspan=6 rowspan=3.5>    <div class="container" fxLayout.xs="column" fxLayoutAlign="center">      <mat-jumbotron>        <mat-jumbotron-content>          <div class="container" fxLayout="row" fxLayoutGap="75%" fxLayoutGap.xs="0">            <div fxLayout.xs="column">              <button mat-icon-button mat-stroked-button color="primary" mat-button routerLink="/projects/home"                matTooltip="Home" matTooltipPosition="right">                <mat-icon>home</mat-icon>              </button>              <h1 id="profile-header"><strong>Profile</strong></h1>            </div>            <div fxLayout.xs="column">              <h3 id="user-role">{{user.role}}</h3>            </div>          </div>          <div class="container" fxLayout="row" fxLayout.xs="column">            <p id="profile-text">Edit your profile information, and then press the \'Save\' button to update your              information.</p>          </div>          <form [formGroup]="form">            <hr>            <div class="container" fxLayout="row" fxLayoutGap="10%" fxLayoutGap.xs="0">              <div fxLayout.xs="column"></div>              <div fxLayout.xs="column">                <mat-form-field>                  <input matInput readonly={{setReadOnly}} id="inputFirstName" placeholder="First Name" formControlName="firstName"                    (blur)=formFilled() (mouseleave)=formFilled() minlength="2" required>                  <mat-error *ngIf="form.get(\'firstName\').hasError(\'minlength\') && !form.get(\'firstName\').hasError(\'required\')">                    Must be at least <strong>2 characters</strong> long                  </mat-error>                  <mat-error *ngIf="form.get(\'firstName\').hasError(\'required\')">                    First name is <strong>required</strong>                  </mat-error>                </mat-form-field>              </div>              <div fxLayout.xs="column">                <mat-form-field>                  <input matInput readonly={{setReadOnly}} id="inputLastName" placeholder="Last Name" formControlName="lastName"                    (blur)=formFilled() (mouseleave)=formFilled() minlength="2" required>                  <mat-error *ngIf="form.get(\'lastName\').hasError(\'minlength\') && !form.get(\'lastName\').hasError(\'required\')">                    Must be at least <strong>2 characters</strong> long                  </mat-error>                  <mat-error *ngIf="form.get(\'lastName\').hasError(\'required\')">                    Last name is <strong>required</strong>                  </mat-error>                </mat-form-field>              </div>            </div>            <div class="container" fxLayout="row" fxLayoutGap="10%" fxLayoutGap.xs="0">              <div fxLayout.xs="column"></div>              <div fxLayout.xs="column">                <mat-form-field>                  <input matInput readonly={{setReadOnly}} id="inputEmail" placeholder="Email" formControlName="email"                    (blur)=formFilled() (mouseleave)=formFilled() [pattern]="emailPattern" required>                  <mat-error *ngIf="form.controls.email.errors?.RevatureEmail">                    Must end with <strong>@revature.com</strong>                  </mat-error>                </mat-form-field>              </div>              <div fxLayout.xs="column">                <mat-form-field>                  <input matInput readonly={{setReadOnly}} id="inputUsername" placeholder="Username" formControlName="username"                    (blur)=formFilled() (mouseleave)=formFilled() minlength="8" required>                  <mat-error *ngIf="form.get(\'username\').hasError(\'minlength\') && !form.get(\'username\').hasError(\'required\')">                    Must be at least <strong>8 characters</strong> long                  </mat-error>                  <mat-error *ngIf="form.get(\'username\').hasError(\'required\')">                    Username is <strong>required</strong>                  </mat-error>                </mat-form-field>              </div>            </div>            <div class="container" fxLayout="row" fxLayoutGap="10%" fxLayoutGap.xs="0">              <div fxLayout.xs="column"></div>              <div fxLayout.xs="column">                <mat-form-field>                  <input matInput readonly={{setReadOnly}} type="password" id="inputPassword" placeholder="Password"                    formControlName="password" (blur)=retypeConfirmPassword() minlength="8" required>                  <mat-error *ngIf="form.get(\'password\').hasError(\'minlength\') && !form.get(\'password\').hasError(\'required\')">                    Must be at least <strong>8 characters</strong>                  </mat-error>                  <mat-error *ngIf="form.get(\'password\').hasError(\'required\')">                    Password is <strong>required</strong>                  </mat-error>                </mat-form-field>              </div>              <div fxLayout.xs="column">                <mat-form-field *ngIf="!setReadOnly">                  <input matInput type="password" id="inputConfirmPassword" placeholder="Confirm Password"                    formControlName="confirmPassword" (blur)=formFilled() (mouseleave)=formFilled() required>                  <mat-error *ngIf="form.controls.confirmPassword.errors?.MatchPassword">                    Password must <strong>match</strong>                  </mat-error>                </mat-form-field>              </div>            </div>            <div class="container" fxLayout="row" fxLayoutGap="10%" fxLayoutGap.xs="0">              <div fxLayout.xs="column"></div>              <div fxLayout.xs="column">                <button *ngIf="setReadOnly" type="button" mat-stroked-button color="primary" (click)="setReadOnly=false">Edit</button>                <button *ngIf="!setReadOnly" type="button" mat-stroked-button color="primary" [disabled]="disableButton"                  (click)="setReadOnly=true; updateProfile()">Save</button>                <button *ngIf="!setReadOnly" type="button" mat-stroked-button color="primary" (click)="setReadOnly=true; cancelEditProfile()">Cancel</button>              </div>            </div>          </form>        </mat-jumbotron-content>      </mat-jumbotron>    </div>  </mat-grid-tile>  <mat-grid-tile colspan=1 rowspan=1></mat-grid-tile></mat-grid-list></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AppLogoComponent', 'selector': 'app-app-logo'},{'name': 'HomePageComponent', 'selector': 'app-home-page'},{'name': 'InputDialogComponent', 'selector': 'app-input-dialog'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LogoutComponent', 'selector': 'app-logout'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'ProfileComponent', 'selector': 'app-profile'},{'name': 'ProjectCardComponent', 'selector': 'app-project-card'},{'name': 'ProjectSubmissionComponent', 'selector': 'app-project-submission'},{'name': 'RegistrationComponent', 'selector': 'app-registration'},{'name': 'UserActionsComponent', 'selector': 'app-user-actions'},{'name': 'ViewProjectsComponent', 'selector': 'app-view-projects'},{'name': 'ZipComponent', 'selector': 'app-zip-component'}];
+        var COMPONENT_TEMPLATE = '<div><app-navbar></app-navbar><mat-grid-list class="my-theme" cols="8" height="100%" width="100%">  <mat-grid-tile colspan=1 rowspan=1></mat-grid-tile>  <mat-grid-tile colspan=6 rowspan=3.5>    <div class="container" fxLayout.xs="column" fxLayoutAlign="center">      <mat-jumbotron>        <mat-jumbotron-content>          <div class="container" fxLayout="row" fxLayoutGap="75%" fxLayoutGap.xs="0">            <div fxLayout.xs="column">              <button mat-icon-button mat-stroked-button color="primary" mat-button routerLink="/projects/home"                matTooltip="Home" matTooltipPosition="right">                <mat-icon>home</mat-icon>              </button>              <h1 id="profile-header"><strong>Profile</strong></h1>            </div>          </div>          <div class="container" fxLayout="row" fxLayout.xs="column">            <p id="profile-text">Edit your profile information, and then press the \'Save\' button to update your              information.</p>          </div>          <!-- display the form that contains user\'s profile information -->          <form [formGroup]="form">            <hr>            <div class="container" fxLayout="row" fxLayoutGap="10%" fxLayoutGap.xs="0">              <div fxLayout.xs="column"></div>              <div fxLayout.xs="column">                <mat-form-field>                  <input matInput readonly={{setReadOnly}} id="inputFirstName" placeholder="First Name" formControlName="firstName"                    (blur)=formFilled() (mouseleave)=formFilled() minlength="1" required>                  <mat-error *ngIf="form.get(\'firstName\').hasError(\'minlength\') && !form.get(\'firstName\').hasError(\'required\')">                    Must be at least <strong>2 characters</strong> long                  </mat-error>                  <mat-error *ngIf="form.get(\'firstName\').hasError(\'required\')">                    First name is <strong>required</strong>                  </mat-error>                </mat-form-field>              </div>              <div fxLayout.xs="column">                <mat-form-field>                  <input matInput readonly={{setReadOnly}} id="inputLastName" placeholder="Last Name" formControlName="lastName"                    (blur)=formFilled() (mouseleave)=formFilled() minlength="1" required>                  <mat-error *ngIf="form.get(\'lastName\').hasError(\'minlength\') && !form.get(\'lastName\').hasError(\'required\')">                    Must be at least <strong>2 characters</strong> long                  </mat-error>                  <mat-error *ngIf="form.get(\'lastName\').hasError(\'required\')">                    Last name is <strong>required</strong>                  </mat-error>                </mat-form-field>              </div>            </div>            <div class="container" fxLayout="row" fxLayoutGap="10%" fxLayoutGap.xs="0">              <div fxLayout.xs="column"></div>              <div fxLayout.xs="column">                <mat-form-field>                  <input matInput readonly={{setReadOnly}} id="inputEmail" placeholder="Email" formControlName="email"                    (blur)=formFilled() (mouseleave)=formFilled() [pattern]="emailPattern" required>                  <mat-error *ngIf="form.controls.email.errors?.RevatureEmail">                    Must end with <strong>@revature.com</strong>                  </mat-error>                </mat-form-field>              </div>              <div fxLayout.xs="column">                <mat-form-field>                  <input matInput readonly={{setReadOnly}} id="inputUsername" placeholder="Username" formControlName="username"                    (blur)=formFilled() (mouseleave)=formFilled() minlength="8" required>                  <mat-error *ngIf="form.get(\'username\').hasError(\'minlength\') && !form.get(\'username\').hasError(\'required\')">                    Must be at least <strong>8 characters</strong> long                  </mat-error>                  <mat-error *ngIf="form.get(\'username\').hasError(\'required\')">                    Username is <strong>required</strong>                  </mat-error>                </mat-form-field>              </div>            </div>            <div class="container" fxLayout="row" fxLayoutGap="10%" fxLayoutGap.xs="0">              <div fxLayout.xs="column"></div>              <div fxLayout.xs="column">                <mat-form-field>                  <input matInput readonly={{setReadOnly}} type="password" id="inputPassword" placeholder="Password"                    formControlName="password" (blur)=retypeConfirmPassword() minlength="8" required>                  <mat-error *ngIf="form.get(\'password\').hasError(\'minlength\') && !form.get(\'password\').hasError(\'required\')">                    Must be at least <strong>8 characters</strong>                  </mat-error>                  <mat-error *ngIf="form.get(\'password\').hasError(\'required\')">                    Password is <strong>required</strong>                  </mat-error>                </mat-form-field>              </div>              <div fxLayout.xs="column">                <mat-form-field *ngIf="!setReadOnly">                  <input matInput type="password" id="inputConfirmPassword" placeholder="Confirm Password"                    formControlName="confirmPassword" (blur)=formFilled() (mouseleave)=formFilled() required>                  <mat-error *ngIf="form.controls.confirmPassword.errors?.MatchPassword">                    Password must <strong>match</strong>                  </mat-error>                </mat-form-field>              </div>            </div>            <div class="container" fxLayout="row" fxLayoutGap="10%" fxLayoutGap.xs="0">              <div fxLayout.xs="column"></div>              <div fxLayout.xs="column">                <button *ngIf="setReadOnly" type="button" mat-stroked-button color="primary" (click)="setReadOnly=false">Edit</button>                <button *ngIf="!setReadOnly" type="button" mat-stroked-button color="primary" [disabled]="disableButton"                  (click)="setReadOnly=true; updateProfile()">Save</button>                <button *ngIf="!setReadOnly" type="button" mat-stroked-button color="primary" (click)="setReadOnly=true; cancelEditProfile()">Cancel</button>              </div>            </div>          </form>        </mat-jumbotron-content>      </mat-jumbotron>    </div>  </mat-grid-tile>  <mat-grid-tile colspan=1 rowspan=1></mat-grid-tile></mat-grid-list></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AppLogoComponent', 'selector': 'app-app-logo'},{'name': 'EditProjectComponent', 'selector': 'app-edit-project'},{'name': 'HomePageComponent', 'selector': 'app-home-page'},{'name': 'InputDialogComponent', 'selector': 'app-input-dialog'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LogoutComponent', 'selector': 'app-logout'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'ProfileComponent', 'selector': 'app-profile'},{'name': 'ProjectCardComponent', 'selector': 'app-project-card'},{'name': 'ProjectSubmissionComponent', 'selector': 'app-project-submission'},{'name': 'RegistrationComponent', 'selector': 'app-registration'},{'name': 'UserActionsComponent', 'selector': 'app-user-actions'},{'name': 'ViewProjectsComponent', 'selector': 'app-view-projects'},{'name': 'ZipComponent', 'selector': 'app-zip-component'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'ProfileComponent'};
 </script>
