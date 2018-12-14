@@ -130,7 +130,7 @@ export class ProfileComponent implements OnInit {
           ProfileComponent.MatchPassword, // match password validation
           ProfileComponent.RevatureEmail, // must be Revature email
         ]
-      });
+    });
   }
 
   /**

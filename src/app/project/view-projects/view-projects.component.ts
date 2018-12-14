@@ -1,12 +1,12 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatSort, MatTableDataSource } from '@angular/material';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 import { Project } from 'src/app/core/models/Project';
 import { ProjectService } from 'src/app/core/services/project.service';
 import { UserService } from 'src/app/core/services/user.service';
-import { Router } from '@angular/router';
 import { User } from 'src/app/core/models/User';
 
 @Component({

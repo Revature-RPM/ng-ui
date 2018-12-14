@@ -1,28 +1,22 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { SharedModule } from '../../shared/shared.module';
 import { AppModule } from '../../app.module';
-
-
-
 import { ProfileComponent } from './profile.component';
 
-/** 
+/**
  * This test suite serves to check the proper creation of the Profile
- * component as well the as well as the functionality 
+ * component as well the as well as the functionality
  * of the various methods within it.
- * @param null
- * @author Ryan Beevers| Shawn Bickle | Sahil Makhijani| Andrew Mitchem | Yuki Mano |Jeffly Luctamar| (1810-Oct08-Java-USF)
- * 
- * */
-
+ * @author Ryan Beevers | Shawn Bickel | Sahil Makhijani | Andrew Mitchem | Yuki Mano | Jeffly Luctamar | (1810-Oct08-Java-USF)
+ */
 xdescribe('ProfileComponent', () => {
   let component: ProfileComponent;
   let fixture: ComponentFixture<ProfileComponent>;
 
-  beforeEach(()=> {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [ ProfileComponent],
       imports: [SharedModule, RouterTestingModule, BrowserAnimationsModule, AppModule]
@@ -41,28 +35,28 @@ xdescribe('ProfileComponent', () => {
   });
 
 
-  //Tests conditions for an invalid form(ie. missing field values)
-  it('Should produce an invalid form', () =>{
-    
-    component.form.controls['firstName'].setValue(''); 
+  // Tests conditions for an invalid form (ie. missing field values)
+  it('Should produce an invalid form', () => {
+
+    component.form.controls['firstName'].setValue('');
     component.form.controls['lastName'].setValue('');
     component.form.controls['email'].setValue('Test@revature.com');
     component.form.controls['username'].setValue('Tester');
     component.form.controls['password'].setValue('Testing');
 
-    expect(component.form.valid).toBeFalsy;
+    expect(component.form.valid).toBeFalsy();
 
-  })
+  });
 
-  //Tests conditions for an valid form(ie. when all fields are present )
-  it('Should produce a valid form', () =>{
+  // Tests conditions for an valid form (ie. when all fields are present)
+  it('Should produce a valid form', () => {
 
     component.form.controls['firstName'].setValue('Tester');
     component.form.controls['lastName'].setValue('Test');
     component.form.controls['email'].setValue('Test@revature.com');
     component.form.controls['username'].setValue('Tester');
     component.form.controls['password'].setValue('Testing');
-    expect(component.form.valid).toBeTruthy;
 
-  })
+    expect(component.form.valid).toBeTruthy();
+  });
 });

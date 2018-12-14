@@ -90,7 +90,7 @@ export class ProjectSubmissionComponent implements OnInit {
    */
   openDialog(e): void {
     // determine which input was clicked, the group members field or the zip links field
-    if (e.target.id == 'inputGroupMembers') {
+    if (e.target.id === 'inputGroupMembers') {
       this.title = 'New Group Member';
       this.questionType = 'Enter the name of the group member';
     } else {
@@ -110,7 +110,7 @@ export class ProjectSubmissionComponent implements OnInit {
       if (result !== undefined && result !== null) {
 
         // if the user chose to add a group member, then place the input into the groupMembers array corresponding to the project to submit
-        if (e.target.id == 'inputGroupMembers') {
+        if (e.target.id === 'inputGroupMembers') {
           this.projectToUpload.groupMembers.push(result);
           this.groupMemberString = this.projectToUpload.groupMembers.join(', ');
         } else {
@@ -126,7 +126,7 @@ export class ProjectSubmissionComponent implements OnInit {
           * The length of a valid URL will equal the length of the match found in the string corresponding the the regular expression.
           * All links are unique
           */
-          if (this.githubURLRegex.test(this.githubURL) == false || this.githubURL.length != regexArr[0].length) {
+          if (this.githubURLRegex.test(this.githubURL) === false || this.githubURL.length !== regexArr[0].length) {
             this.invalidLink = true;
             return;
           }
