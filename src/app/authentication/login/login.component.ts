@@ -19,8 +19,7 @@ import { UserService } from 'src/app/core/services/user.service';
 })
 export class LoginComponent implements OnInit {
   user: User = { };
-  
- 
+
   constructor(private userService: UserService, private router: Router, private ngmeta: NgMetaService) { }
 
   ngOnInit() {

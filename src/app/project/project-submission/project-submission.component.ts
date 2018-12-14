@@ -51,11 +51,11 @@ export class ProjectSubmissionComponent implements OnInit {
 
   /**
    * githubURLRegex: holds the regular expression to validate that an entered link is formatted correctly
-   *    - a valid link is of the format: https://github.com/<github username>/<repository name>
-   *    - the regular expression used to validate this is: ^(https:\/\/github\.com\/[^/]+\/[^/]+)
-   *    - this expression is checking that the link contains https://github.com/at least one of <any character but a '/'>/at least one of <any character but a '/'>`
+   * - a valid link is of the format: https://github.com/<github username>/<repository name>
+   * - the regular expression used to validate this is: ^(https:\/\/github\.com\/[^/]+\/[^/]+)
+   * - this expression is checking that the link contains https://github.com/at least one of <any character but a '/'>/at least one of <any character but a '/'>
    * githubURL: a string to hold the user's input from the dialog
-   *  @author Shawn Bickel (1810-Oct08-Java-USF)
+   * @author Shawn Bickel (1810-Oct08-Java-USF)
    */
   githubURLRegex: RegExp;
   githubURL: string;
@@ -90,7 +90,7 @@ export class ProjectSubmissionComponent implements OnInit {
    */
   openDialog(e): void {
     // determine which input was clicked, the group members field or the zip links field
-    if (e.target.id == 'inputGroupMembers') {
+    if (e.target.id === 'inputGroupMembers') {
       this.title = 'New Group Member';
       this.questionType = 'Enter the name of the group member';
     } else {
@@ -110,7 +110,7 @@ export class ProjectSubmissionComponent implements OnInit {
       if (result !== undefined && result !== null) {
 
         // if the user chose to add a group member, then place the input into the groupMembers array corresponding to the project to submit
-        if (e.target.id == 'inputGroupMembers') {
+        if (e.target.id === 'inputGroupMembers') {
           this.projectToUpload.groupMembers.push(result);
           this.groupMemberString = this.projectToUpload.groupMembers.join(', ');
         } else {
@@ -126,7 +126,7 @@ export class ProjectSubmissionComponent implements OnInit {
           * The length of a valid URL will equal the length of the match found in the string corresponding the the regular expression.
           * All links are unique
           */
-          if (this.githubURLRegex.test(this.githubURL) == false || this.githubURL.length != regexArr[0].length) {
+          if (this.githubURLRegex.test(this.githubURL) === false || this.githubURL.length !== regexArr[0].length) {
             this.invalidLink = true;
             return;
           }
@@ -181,8 +181,12 @@ export class ProjectSubmissionComponent implements OnInit {
     }
 
     // the FormData object is then sent to a service where it is submitted to the server as an http post request
-    this.projectService.createProject(formData).subscribe(project => {});
-    this.router.navigate(['/home']);
+    this.projectService.createProject(formData).subscribe(project => {
+      this.snackBar.open('The new project will be visible momentarily', '', {
+        duration: 5000,
+      });
+      this.router.navigate(['/home']);
+    });
   }
 
   /**

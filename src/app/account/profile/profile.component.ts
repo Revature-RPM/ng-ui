@@ -30,7 +30,7 @@ export class ProfileComponent implements OnInit {
   static MatchPassword(AC: AbstractControl) {
     const password = AC.get('password').value; // to get value in input tag
     const confirmPassword = AC.get('confirmPassword').value; // to get value in input tag
-    if (password != confirmPassword) {
+    if (password !== confirmPassword) {
       AC.get('confirmPassword').setErrors({ MatchPassword: true });
     } else {
       return null;
@@ -130,7 +130,7 @@ export class ProfileComponent implements OnInit {
           ProfileComponent.MatchPassword, // match password validation
           ProfileComponent.RevatureEmail, // must be Revature email
         ]
-      });
+    });
   }
 
   /**

@@ -6,7 +6,6 @@ import { catchError, map} from 'rxjs/operators';
 import { User } from '../models/User';
 import { environment } from '../../../environments/environment';
 
-
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json'
@@ -42,11 +41,11 @@ ${error.error}`
     this.jwtauthtoken = null;
     this.user = null;
   }
-  /*
-  * retrievers the current user from user service. if null for whatever reason. checks local storage for valid
-  * user and jwt
-  *@Author Andrew Mitchem
-  */
+  /**
+   * retrievers the current user from user service. if null for whatever reason. checks local storage for valid
+   * user and jwt
+   * @author Andrew Mitchem
+   */
   getUser() {
     if (this.user) {
       return this.user;
@@ -59,8 +58,6 @@ ${error.error}`
   }
   // only use environment.url for the base url and concat any restful endpoints
   // user.login(user). login the user and retrieve the jwt token from the header
-  // @param user
-  //
   login(user: User): Observable<any> {
     return this.http.post(environment.url + '/auth/login', user, { observe: 'response'})
       .pipe(map(reponse => {
@@ -76,12 +73,12 @@ ${error.error}`
       }), catchError(this.handleError));
   }
 
-   /*
-   *Register a new user
-   */
+  /*
+  * Register a new user
+  */
   register(user: User): Observable<User> {
     user.role = 'user';
-    return this.http.post<User>(environment.url+ '/auth/users/', user, httpOptions)
+    return this.http.post<User>(environment.url + '/auth/users/', user, httpOptions)
       .pipe(catchError(this.handleError));
   }
 

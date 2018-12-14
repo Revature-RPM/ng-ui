@@ -13,6 +13,7 @@ export class LineNumberPipe implements PipeTransform {
   transform(value: string, args?: any): string {
     return this.splitMethod(value);
   }
+
   splitMethod(value) {
     const lines = value.split('\n');
     let returnValue = '';

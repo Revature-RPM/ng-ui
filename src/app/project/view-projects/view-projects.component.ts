@@ -1,12 +1,12 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatSort, MatTableDataSource } from '@angular/material';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 import { Project } from 'src/app/core/models/Project';
 import { ProjectService } from 'src/app/core/services/project.service';
 import { UserService } from 'src/app/core/services/user.service';
-import { Router } from '@angular/router';
 import { User } from 'src/app/core/models/User';
 
 @Component({
@@ -25,7 +25,7 @@ import { User } from 'src/app/core/models/User';
 export class ViewProjectsComponent implements OnInit, OnDestroy {
   trainerCanEdit = false;
   currentUser: User;
-  displayedColumns: string[] = ['name', 'batch', 'trainer', 'techStack', 'status']; 
+  displayedColumns: string[] = ['name', 'batch', 'trainer', 'techStack', 'status'];
   dataSource: MatTableDataSource<Project>;
   @ViewChild(MatSort) sort: MatSort;
   expandedProject: Project | null;
@@ -44,30 +44,28 @@ export class ViewProjectsComponent implements OnInit, OnDestroy {
    * @author Shawn Bickel (1810-Oct08-Java-USF)
    */
   ngOnInit() {
-    this.currentUser = this.userService.getUser();
-    if (this.currentUser === null) {
+    if (this.userService.getUser() === null) {
       this.router.navigate(['/auth/login']);
-    }else{
-    const trainerFullName = this.currentUser.firstName.trim() + ' ' + this.currentUser.lastName.trim();
-    console.log(this.currentUser);
-    this.subscription = this.viewProjectsService.getAllProjects()
-    .subscribe((projectResponse) => {
-      this.allProjects = projectResponse;
-      // Assign the data to the data source for the table to render
-      this.dataSource = new MatTableDataSource(this.allProjects);
+    } else {
+      this.currentUser = this.userService.getUser();
 
-      /* place all the current user's project's in an array to easily switch between tabs to see all projects and a particular user's projects
-          without having to make multiple calls to the server  */
-      this.userProjects = [];
-      for (let i = 0; i < projectResponse.length; i++) {
-        if (projectResponse[i].trainer == trainerFullName) {
-          console.log(projectResponse[i]);
-          this.userProjects.push(projectResponse[i]);
+      const trainerFullName = this.currentUser.firstName.trim() + ' ' + this.currentUser.lastName.trim();
+      this.subscription = this.viewProjectsService.getAllProjects()
+      .subscribe((projectResponse) => {
+        this.allProjects = projectResponse;
+        // Assign the data to the data source for the table to render
+        this.dataSource = new MatTableDataSource(this.allProjects);
+        /* place all the current user's project's in an array to easily switch between tabs to see all projects and
+        a particular user's projects without having to make multiple calls to the server */
+        this.userProjects = [];
+        for (let i = 0; i < projectResponse.length; i++) {
+          if (projectResponse[i].trainer === trainerFullName) {
+            this.userProjects.push(projectResponse[i]);
+          }
         }
-      }
-      this.dataSource = new MatTableDataSource(this.allProjects);
-      this.dataSource.sort = this.sort;
-    });
+        this.dataSource = new MatTableDataSource(this.allProjects);
+        this.dataSource.sort = this.sort;
+      });
     }
   }
 
@@ -76,16 +74,15 @@ export class ViewProjectsComponent implements OnInit, OnDestroy {
    * @param project: the project who's trainer is being validated
    * @author Shawn Bickel (1810-Oct08-Java-USF)
    */
-  canEdit(project) {
-      const trainerFullName = this.currentUser.firstName.trim() + ' ' + this.currentUser.lastName.trim();
-     if(this.currentUser.role == "ROLE_ADMIN"){
-       this.trainerCanEdit = true;
-     }
-     else if (trainerFullName === project.trainer) {
-        this.trainerCanEdit = true;
-     } else {
-       this.trainerCanEdit = false;
-     }
+  canEdit(project: any) {
+    const trainerFullName = this.currentUser.firstName.trim() + ' ' + this.currentUser.lastName.trim();
+    if (this.currentUser.role === 'ROLE_ADMIN') {
+      this.trainerCanEdit = true;
+    } else if (trainerFullName === project.trainer) {
+      this.trainerCanEdit = true;
+    } else {
+      this.trainerCanEdit = false;
+    }
   }
 
   /**
