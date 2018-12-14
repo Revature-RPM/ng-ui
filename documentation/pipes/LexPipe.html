@@ -111,6 +111,14 @@
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>Lex.makeLex()
+Initializes the lex();
+property binds the object to have a string(&quot;token&quot;) and regex</p>
+<p>$&amp; inside the token is the matched regex</p>
+<p>&amp;lt &amp;gt are escaped characters to render &lt;&gt; in html as they are reserve characters normal</p>
+<p>These must happen first</p>
+<p>the regex g field is to specify to parse all instances that match.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -149,6 +157,10 @@
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>Lex.parse(string,string)
+simply calls replaced using the lext.  more contextual highlightning should parse the string
+in stream till a valid token match</p>
+</div>
 
                             <div class="io-description">
                                     <b>Parameters :</b>
@@ -158,6 +170,7 @@
                                                 <td>Name</td>
                                                     <td>Type</td>
                                                 <td>Optional</td>
+                                                    <td>Description</td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -172,6 +185,10 @@
                                                     </td>
                                                     
 
+                                                        <td>
+                                                                <code><p>: property reference of the lex object containing the regex for this replace</p>
+</code>
+                                                        </td>
                                                 </tr>
                                                 <tr>
                                                         <td>template</td>
@@ -184,6 +201,10 @@
                                                     </td>
                                                     
 
+                                                        <td>
+                                                                <code><p>: string to be parsed.</p>
+</code>
+                                                        </td>
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -230,6 +251,11 @@
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>Lex.tranform(input)
+the function called by the lexpipe
+checks the lex for a binded property and parses the string based on that to assign tokens</p>
+<p>returns explicity sanitized bypassed strings for innerhtml.</p>
+</div>
 
                             <div class="io-description">
                                     <b>Parameters :</b>
@@ -341,30 +367,30 @@ import { DomSanitizer } from &#x27;@angular/platform-browser&#x27;;
 @Pipe({
   name: &#x27;lex&#x27;
 })
-  /*
-  * Class Lex
-  * A pipe to highlight input code into highlighted html
-  * @author Andrew Mitchem (1810-Oct08-Java-USF)
-  */
+/**
+ * Class Lex
+ * A pipe to highlight input code into highlighted html
+ * @author Andrew Mitchem (1810-Oct08-Java-USF)
+ */
 export class LexPipe implements PipeTransform {
   public lex: Object &#x3D; new Object();
-    /*
-  * Lex constructor
-  * construct the lex();
-  * @param DomSanitizer: used to notify angular that text is safe for innherhtml assignment
-  * @author Andrew Mitchem (1810-Oct08-Java-USF)
-  */
+  /**
+   * Lex constructor
+   * construct the lex();
+   * @param DomSanitizer: used to notify angular that text is safe for innherhtml assignment
+   * @author Andrew Mitchem (1810-Oct08-Java-USF)
+   */
   constructor(private sanitizer: DomSanitizer) {
     this.makeLex();
   }
-    /*
-  * Lex.tranform(input)
-  * the function called by the lexpipe
-  * checks the lex for a binded property and parses the string based on that to assign tokens
-  *
-  * returns explicity sanitized bypassed strings for innerhtml.
-  * @author Andrew Mitchem (1810-Oct08-Java-USF)
-  */
+  /**
+   * Lex.tranform(input)
+   * the function called by the lexpipe
+   * checks the lex for a binded property and parses the string based on that to assign tokens
+   *
+   * returns explicity sanitized bypassed strings for innerhtml.
+   * @author Andrew Mitchem (1810-Oct08-Java-USF)
+   */
   transform(value: string, args?: any): any {
    for (const lexDict in this.lex) {
     if (this.lex.hasOwnProperty(lexDict)) {
@@ -373,118 +399,113 @@ export class LexPipe implements PipeTransform {
    }
    return this.sanitizer.bypassSecurityTrustHtml(value);
   }
-  /*
-  * Lex.parse(string,string)
-  * simply calls replaced using the lext.  more contextual highlightning should parse the string
-  * in stream till a valid token match
-  *
-  * @param dict: property reference of the lex object containing the regex for this replace
-  * @param template: string to be parsed.
-  * @author Andrew Mitchem (1810-Oct08-Java-USF)
-  */
+  /**
+   * Lex.parse(string,string)
+   * simply calls replaced using the lext.  more contextual highlightning should parse the string
+   * in stream till a valid token match
+   *
+   * @param dict: property reference of the lex object containing the regex for this replace
+   * @param template: string to be parsed.
+   * @author Andrew Mitchem (1810-Oct08-Java-USF)
+   */
   parse(dict: string, template: string): string {
     return template.replace(this.lex[dict], dict);
   }
-   /*
-  * Lex.makeLex()
-  * Initializes the lex();
-  * property binds the object to have a string(&quot;token&quot;) and regex
-  *
-  * \$&amp; inside the token is the matched regex
-  *
-  * &amp;lt &amp;gt are escaped characters to render &lt;&gt; in html as they are reserve characters normal
-  *
-  * These must happen first
-  *
-  * the regex g field is to specify to parse all instances that match.
-  *
-  * @author Andrew Mitchem (1810-Oct08-Java-USF)
-  */
+  /**
+   * Lex.makeLex()
+   * Initializes the lex();
+   * property binds the object to have a string(&quot;token&quot;) and regex
+   *
+   * \$&amp; inside the token is the matched regex
+   *
+   * &amp;lt &amp;gt are escaped characters to render &lt;&gt; in html as they are reserve characters normal
+   *
+   * These must happen first
+   *
+   * the regex g field is to specify to parse all instances that match.
+   *
+   * @author Andrew Mitchem (1810-Oct08-Java-USF)
+   */
   makeLex() {
-      /* this &quot;lex&quot;-esqe is used to parse text and assign it a span &quot;token&quot;
-      * sanizitation is a major concern in this code
-      * high quality contextual highlighting can only be done with a full lex-bison esque parse
-      * with the lex side sorting into tokens for the bison side to recombine into
-      * a complete template tree with tokens snippets ( &lt;span [innertext]&#x3D;tokenvalue [class]&#x3D;tokentype&gt; )
-      * only creating a token after matching or exhausting the lex matches
-      *
-      * the first noticable issue is &gt;token &lt; occurences. attempting to ignore them with
-      * look ahead and lookbehind has had mixed results
-      * moving to bison-esqu parser would relive this issue as we do not assign tokens additonal text which will
-      * be matched later.
-      *
-      *
-      *
-      * *This currently does multiple passes matching one individual expression instead of poping
-      * input and evaulating with lookahead/behind against the entire lex then and poping onto a stack
-      * This causes a large majority of our concurrent editing issues though we also have to be mindful
-      * of stream input at that point and consuming based on a token needs. this creates an issue where
-      * tokens could match to previous created span elements. the lex-bison approach would solve this.
-      *
-      * uses css child selector to enforce certian element colors (ie for comments and strings)
-      * by overwriting child elements (*) properites
-      *
-      * DO NOT REORDER THESE WITHOUT EXTENSIVE TESTING.
-      *
-      */
+    /**
+     * this &quot;lex&quot;-esqe is used to parse text and assign it a span &quot;token&quot;
+     * sanizitation is a major concern in this code
+     * high quality contextual highlighting can only be done with a full lex-bison esque parse
+     * with the lex side sorting into tokens for the bison side to recombine into
+     * a complete template tree with tokens snippets ( &lt;span [innertext]&#x3D;tokenvalue [class]&#x3D;tokentype&gt; )
+     * only creating a token after matching or exhausting the lex matches
+     *
+     * the first noticable issue is &gt;token &lt; occurences. attempting to ignore them with
+     * look ahead and lookbehind has had mixed results
+     * moving to bison-esqu parser would relive this issue as we do not assign tokens additonal text which will
+     * be matched later.
+     *
+     * *This currently does multiple passes matching one individual expression instead of poping
+     * input and evaulating with lookahead/behind against the entire lex then and poping onto a stack
+     * This causes a large majority of our concurrent editing issues though we also have to be mindful
+     * of stream input at that point and consuming based on a token needs. this creates an issue where
+     * tokens could match to previous created span elements. the lex-bison approach would solve this.
+     *
+     * uses css child selector to enforce certian element colors (ie for comments and strings)
+     * by overwriting child elements (*) properites
+     *
+     * DO NOT REORDER THESE WITHOUT EXTENSIVE TESTING.
+     */
     let isLookBehindSupported &#x3D; false;
-    try { isLookBehindSupported &#x3D; !!new RegExp(&quot;(?&lt;&#x3D;)&quot;); 
-    
-    } catch(e){
-
+    try {
+      isLookBehindSupported &#x3D; !!new RegExp(&#x27;(?&lt;&#x3D;)&#x27;);
+    } catch (e) {
     }
-    console.log(isLookBehindSupported)
-    if( isLookBehindSupported){
-    this.lex[&#x27;&amp;lt&#x27;]                               &#x3D; /&lt;/g;
-    // mild sanitization
-    this.lex[&#x27;&amp;gt&#x27;]                               &#x3D; /&gt;/g;
-    // ^--
-    this.lex[&#x60;&lt;span class&#x3D;&#x27;token1&#x27;&gt;\$&amp;&lt;/span&gt;&#x60;]   &#x3D; /[&#x3D;;{})(,:+-]|\!|\||\[|\]/gi;
-    // this must be the first token generator as &#x3D; is inside the spans produce currently:
-    // matches based symbol tokens( + &#x3D; ; { } )
-    this.lex[&#x60;&lt;span class&#x3D;&#x27;token13&#x27;&gt;\$&amp;&lt;/span&gt;&#x60;]  &#x3D; /\/\/.*/g;
-    // this property matches comments (//) no support for /* */ ones
-    this.lex[&#x60;&lt;span class&#x3D;&#x27;token15&#x27;&gt;\$&amp;&lt;/span&gt;&#x60;]  &#x3D; /(import[^s]|package).*/g;
-    // Simply selects imports/packages. doesn&#x27;t include items infront of them (i.e. Angular)
-    this.lex[&#x60;&lt;span class&#x3D;&#x27;token16&#x27;&gt;\$&amp;&lt;/span&gt;&#x60;]  &#x3D; /(?&lt;&#x3D;(class ))\w+/g
-    //simply selects words preceed by reserved token class uses lookahead 
-    this.lex[&#x60;&lt;span class&#x3D;&#x27;token9&#x27;&gt;\$&amp;&lt;/span&gt;&#x60;]   &#x3D; /(?&lt;&#x3D;(public ))\w+/g 
-    //simply selects tokens preceeded by reserved token public uses lookahead 
-    this.lex[&#x60;&lt;span class&#x3D;&#x27;token10&#x27;&gt;\$&amp;&lt;/span&gt;&#x60;]  &#x3D; /(?&lt;&#x3D;(private ))\w+/g 
-    //simply selects tokens preceeded by reserved token private.uses lookahead 
-    this.lex[&#x60;&lt;span class&#x3D;&#x27;token11&#x27;&gt;\$&amp;&lt;/span&gt;&#x60;]  &#x3D; /(?&lt;&#x3D;(static ))\w+/g 
-    //simply selects tokens preceeded by reserved token static uses lookahead 
-    this.lex[&#x60;&lt;span class&#x3D;&#x27;token12&#x27;&gt;\$&amp;&lt;/span&gt;&#x60;]  &#x3D; /(?&lt;&#x3D;(protected ))\w+/g 
-    // simply selects tokens preceeded by reserved token protected uses lookahead
-    this.lex[&#x60;&lt;span class&#x3D;&#x27;token2&#x27;&gt;\$&amp;&lt;/span&gt;&#x60;]   &#x3D; /public|private|protected|package/g;
-    // simply selects reserved tokens public private protected package
-    this.lex[&#x60;&lt;span class&#x3D;&#x27;token3&#x27;&gt;\$&amp;&lt;/span&gt;&#x60;]   &#x3D; /(?&lt;!\w)(Integer|boolean|Boolean|int|String|number)(?!\w)/g
-    this.lex[&#x60;&lt;span class&#x3D;&#x27;token17&#x27;&gt;\$&amp;&lt;/span&gt;&#x60;]   &#x3D;/(?&lt;!\w)(string|Observable|any|Date|let|long|Long|byte|Byte|char|Char)(?!\w)/g
-    // simply selects reserved tokens for base types and wrapper classes  uses negative lookahead and negative lookbehind
-    this.lex[&#x60;&lt;span class&#x3D;&#x27;token4&#x27;&gt;\$&amp;&lt;/span&gt;&#x60;]   &#x3D; /(^(\s|\d){4})|((?&lt;&#x3D;\n&lt;\/span&gt;)(\s|\d){4})|(\n(\s|\d){4})/g
-    // simply selects the line numbers. checks for line numbers at start of text.
-    // line numbers where a span clips the carriage return, and raw line numbers after carriage returns
-    this.lex[&#x60;&lt;span class&#x3D;&#x27;token5&#x27;&gt;\$&amp;&lt;/span&gt;&#x60;]   &#x3D; /@[\w\d]+/g;
-    // simply selects @annotations and decorators
-    this.lex[&#x60;&lt;span class&#x3D;&#x27;token6&#x27;&gt;\$&amp;&lt;/span&gt;&#x60;]   &#x3D;/(?&lt;!\w)(if|for|new|return|void|extends|exports|imports|providers|constructor|declarations|implements|console|System|else|try|catch)(?!\w)/g
-    //simply selects tokens that are reserved for flow control uses negative lookahead and lookbehind
-    this.lex[&#x60;&lt;span class&#x3D;&#x27;token7&#x27;&gt;\$&amp;&lt;/span&gt;&#x60;]   &#x3D; /(?&lt;!\w)(this|super|switch|null|case|selector|templateUrl|styleUrls|default|const|throws|export)(?!\w)/g
-    // simply selects tokens that are reserved keywords (this|super|switch|null)
-    this.lex[&#x60;&lt;span class&#x3D;&#x27;token8&#x27;&gt;\$&amp;&lt;/span&gt;&#x60;]   &#x3D; /\.\w+/g;
-    // simply selects tokens that are .operators. ie this.method()
-    this.lex[&#x60;&lt;span class&#x3D;&#x27;token14&#x27;&gt;\$&amp;&lt;/span&gt;&#x60;]  &#x3D; /&quot;(?:[^&quot;\\]|\\.)*&quot;/g;
-    // simply selects tokens that are strings. exludes escaped &quot;&quot; ie &quot;string&quot; &quot;string are made by \&quot; \&quot; &quot;
-    // uses non capturing group with negative single character group to include \&quot; in the result
-    // this particular regex expression is from stackoverflow.
-  }else{
-    this.lex[&#x27;&amp;lt&#x27;]                               &#x3D; /&lt;/g;
-    // mild sanitization
-    this.lex[&#x27;&amp;gt&#x27;]                               &#x3D; /&gt;/g;
-    this.lex[&#x60;&lt;span class&#x3D;&#x27;token5&#x27;&gt;\$&amp;&lt;/span&gt;&#x60;]   &#x3D; /@[\w\d]+/g;
-}
 
-}
-
+    if (isLookBehindSupported) {
+      this.lex[&#x27;&amp;lt&#x27;]                               &#x3D; /&lt;/g;
+      // mild sanitization
+      this.lex[&#x27;&amp;gt&#x27;]                               &#x3D; /&gt;/g;
+      // ^--
+      this.lex[&#x60;&lt;span class&#x3D;&#x27;token1&#x27;&gt;\$&amp;&lt;/span&gt;&#x60;]   &#x3D; /[&#x3D;;{})(,:+-]|\!|\||\[|\]/gi;
+      // this must be the first token generator as &#x3D; is inside the spans produce currently:
+      // matches based symbol tokens( + &#x3D; ; { } )
+      this.lex[&#x60;&lt;span class&#x3D;&#x27;token13&#x27;&gt;\$&amp;&lt;/span&gt;&#x60;]  &#x3D; /\/\/.*/g;
+      // this property matches comments (//) no support for /* */ ones
+      this.lex[&#x60;&lt;span class&#x3D;&#x27;token15&#x27;&gt;\$&amp;&lt;/span&gt;&#x60;]  &#x3D; /(import[^s]|package).*/g;
+      // Simply selects imports/packages. doesn&#x27;t include items infront of them (i.e. Angular)
+      this.lex[&#x60;&lt;span class&#x3D;&#x27;token16&#x27;&gt;\$&amp;&lt;/span&gt;&#x60;]  &#x3D; /(?&lt;&#x3D;(class ))\w+/g;
+      // simply selects words preceed by reserved token class uses lookahead
+      this.lex[&#x60;&lt;span class&#x3D;&#x27;token9&#x27;&gt;\$&amp;&lt;/span&gt;&#x60;]   &#x3D; /(?&lt;&#x3D;(public ))\w+/g;
+      // simply selects tokens preceeded by reserved token public uses lookahead
+      this.lex[&#x60;&lt;span class&#x3D;&#x27;token10&#x27;&gt;\$&amp;&lt;/span&gt;&#x60;]  &#x3D; /(?&lt;&#x3D;(private ))\w+/g;
+      // simply selects tokens preceeded by reserved token private.uses lookahead
+      this.lex[&#x60;&lt;span class&#x3D;&#x27;token11&#x27;&gt;\$&amp;&lt;/span&gt;&#x60;]  &#x3D; /(?&lt;&#x3D;(static ))\w+/g;
+      // simply selects tokens preceeded by reserved token static uses lookahead
+      this.lex[&#x60;&lt;span class&#x3D;&#x27;token12&#x27;&gt;\$&amp;&lt;/span&gt;&#x60;]  &#x3D; /(?&lt;&#x3D;(protected ))\w+/g;
+      // simply selects tokens preceeded by reserved token protected uses lookahead
+      this.lex[&#x60;&lt;span class&#x3D;&#x27;token2&#x27;&gt;\$&amp;&lt;/span&gt;&#x60;]   &#x3D; /public|private|protected|package/g;
+      // simply selects reserved tokens public private protected package
+      this.lex[&#x60;&lt;span class&#x3D;&#x27;token3&#x27;&gt;\$&amp;&lt;/span&gt;&#x60;]   &#x3D; /(?&lt;!\w)(Integer|boolean|Boolean|int|String|number)(?!\w)/g;
+      this.lex[&#x60;&lt;span class&#x3D;&#x27;token17&#x27;&gt;\$&amp;&lt;/span&gt;&#x60;]  &#x3D; /(?&lt;!\w)(string|Observable|any|Date|let|long|Long|byte|Byte|char|Char)(?!\w)/g;
+      // simply selects reserved tokens for base types and wrapper classes  uses negative lookahead and negative lookbehind
+      this.lex[&#x60;&lt;span class&#x3D;&#x27;token4&#x27;&gt;\$&amp;&lt;/span&gt;&#x60;]   &#x3D; /(^(\s|\d){4})|((?&lt;&#x3D;\n&lt;\/span&gt;)(\s|\d){4})|(\n(\s|\d){4})/g;
+      // simply selects the line numbers. checks for line numbers at start of text.
+      // line numbers where a span clips the carriage return, and raw line numbers after carriage returns
+      this.lex[&#x60;&lt;span class&#x3D;&#x27;token5&#x27;&gt;\$&amp;&lt;/span&gt;&#x60;]   &#x3D; /@[\w\d]+/g;
+      // simply selects @annotations and decorators
+      this.lex[&#x60;&lt;span class&#x3D;&#x27;token6&#x27;&gt;\$&amp;&lt;/span&gt;&#x60;]   &#x3D; /(?&lt;!\w)(if|for|new|return|void|extends|exports|imports|providers|constructor|declarations|implements|console|System|else|try|catch)(?!\w)/g;
+      // simply selects tokens that are reserved for flow control uses negative lookahead and lookbehind
+      this.lex[&#x60;&lt;span class&#x3D;&#x27;token7&#x27;&gt;\$&amp;&lt;/span&gt;&#x60;]   &#x3D; /(?&lt;!\w)(this|super|switch|null|case|selector|templateUrl|styleUrls|default|const|throws|export)(?!\w)/g;
+      // simply selects tokens that are reserved keywords (this|super|switch|null)
+      this.lex[&#x60;&lt;span class&#x3D;&#x27;token8&#x27;&gt;\$&amp;&lt;/span&gt;&#x60;]   &#x3D; /\.\w+/g;
+      // simply selects tokens that are .operators. ie this.method()
+      this.lex[&#x60;&lt;span class&#x3D;&#x27;token14&#x27;&gt;\$&amp;&lt;/span&gt;&#x60;]  &#x3D; /&quot;(?:[^&quot;\\]|\\.)*&quot;/g;
+      // simply selects tokens that are strings. exludes escaped &quot;&quot; ie &quot;string&quot; &quot;string are made by \&quot; \&quot; &quot;
+      // uses non capturing group with negative single character group to include \&quot; in the result
+      // this particular regex expression is from stackoverflow.
+    } else {
+      this.lex[&#x27;&amp;lt&#x27;]                               &#x3D; /&lt;/g;
+      // mild sanitization
+      this.lex[&#x27;&amp;gt&#x27;]                               &#x3D; /&gt;/g;
+      this.lex[&#x60;&lt;span class&#x3D;&#x27;token5&#x27;&gt;\$&amp;&lt;/span&gt;&#x60;]   &#x3D; /@[\w\d]+/g;
+    }
+  }
 }
 </code></pre>
     </div>

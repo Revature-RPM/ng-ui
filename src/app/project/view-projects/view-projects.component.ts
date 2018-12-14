@@ -39,8 +39,8 @@ export class ViewProjectsComponent implements OnInit, OnDestroy {
 
   /**
    * this is a lifecycle method called once by Angular after ngOnChanges(); it should be used to perform intialization logic;
-   * the content of the method includes a call to a service to consume information from an endpoint concerning projects; an observable
-   * is subscribed to and the returned projects are placed in an array to be displayed in a grid view.
+   * the content of the method includes a call to a service to consume information from an endpoint to retrieve all projects; an observable
+   * is subscribed to and the returned projects are placed in an array to be displayed in a mat table
    * @author Shawn Bickel (1810-Oct08-Java-USF)
    */
   ngOnInit() {
@@ -71,7 +71,7 @@ export class ViewProjectsComponent implements OnInit, OnDestroy {
 
   /**
    * This method determines if a trainer can edit a project; a trainer can only edit a project if the project was submitted by the trainer.
-   * @param rowClick : the event when a row is clicked and expanded
+   * @param project: the project who's trainer is being validated
    * @author Shawn Bickel (1810-Oct08-Java-USF)
    */
   canEdit(project: any) {
@@ -143,14 +143,27 @@ export class ViewProjectsComponent implements OnInit, OnDestroy {
     this.router.navigate(['/project_submission']);
   }
 
+  /**
+   * This method is called if the user clicks the tab, 'Your Projects', to just see a trainer's (the user) projects
+   * @author Shawn Bickel (1810-Oct08-Java-USF)
+   */
   yourProjects() {
     this.viewProjects(false);
   }
 
+  /**
+   * This method is called if the user cliks the tab, 'All Projects', to see all submitted projects
+   * @author Shawn Bickel (1810-Oct08-Java-USF)
+   */
   projects() {
     this.viewProjects(true);
   }
 
+  /**
+   * This method determines if all the projects should be in the mat-table or if just a single trainer's projects should be in the mat-table
+   * @param allProjects: if true, all projects are shown; if false, only a single trainer's (the user) projects are shown
+   * @author Shawn Bickel (1810-Oct08-Java-USF)
+   */
   viewProjects(allProjects: boolean) {
     if (allProjects) {
       this.dataSource = new MatTableDataSource(this.allProjects);
