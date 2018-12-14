@@ -11,6 +11,9 @@ import { UserService } from 'src/app/core/services/user.service';
 
 /**
  * The Home page contains the navbar and the ability to view projects and their details
+ * To future batches: learn everything you can about change detection
+ * Here is a helpful resource: https://youtu.be/ybNj-id0kjY
+ * Good luck!
  */
 export class HomePageComponent implements OnInit {
 
