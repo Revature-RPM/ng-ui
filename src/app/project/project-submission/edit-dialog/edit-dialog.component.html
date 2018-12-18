@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>{{ data.title }} </h1>
+<div mat-dialog-content>
+  <p>{{ data.questionType }}</p>
+    <li *ngFor="let name of data.values" style="list-style-type: none" value="{{name}">
+      <i id="{{name}}"  class="material-icons" style="color: orange" (click)="removeItem($event)">remove_circle_outline</i> {{name}}
+    </li>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button [mat-dialog-close]="data.values" cdkFocusInitial>Submit</button>
+</div>

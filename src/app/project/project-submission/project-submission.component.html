@@ -38,6 +38,7 @@
                     <mat-error *ngIf="!groupMembers.valid || groupMembers.pristine">Group members are required</mat-error>
                   <input type="text" id="inputGroupMembers" matInput name="groupMembers" placeholder="Group Members" readonly [(ngModel)]="groupMemberString" 
                     [ngModelOptions]="{standalone: true}" (click)="openDialog($event)" required #groupMembers="ngModel">
+                    <mat-hint id="editGroupMembers" (click)="openEditDialog($event)" aria-label="editGroupMembers" name="editGroupMembers" align="end">Edit</mat-hint>
                   </mat-form-field>
             </td>
           </tr>
@@ -60,8 +61,10 @@
                   <mat-form-field class="example-full-width" appearance="outline">
                         <mat-label>Repository Links</mat-label>
                       <mat-error *ngIf="!zipLinks.valid || zipLinks.pristine || invalidLink">A Github link is required in format: https://github.com/[Github username]/[Repository Name]</mat-error>
-                      <input type="text" id="inputGithubLink" name="repoLinks" readonly matInput placeholder="Project Repository Links" [(ngModel)]="zipLinksString" 
-                      [ngModelOptions]="{standalone: true}" (click)="openDialog($event)" #zipLinks="ngModel" required>                    </mat-form-field>
+                      <textarea type="text" id="inputGithubLink" name="repoLinks" readonly matInput placeholder="Project Repository Links" [(ngModel)]="zipLinksString" 
+                      [ngModelOptions]="{standalone: true}" (click)="openDialog($event)" #zipLinks="ngModel" required></textarea>  
+                      <mat-hint id="editGithubLink" (click)="openEditDialog($event)" aria-label="editGithubLink" name="editGithubLink" align="end">Edit</mat-hint>                  
+                    </mat-form-field>
               </td>
               <td><mat-form-field class="example-full-width" appearance="outline">
                     <mat-label>Technology Stack</mat-label>
