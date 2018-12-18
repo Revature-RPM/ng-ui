@@ -123,7 +123,7 @@ export class ProfileComponent implements OnInit {
       lastName: [lastName.trim(), [Validators.required, Validators.minLength]],
       email: [email.trim(), [Validators.required, Validators.email]],
       username: [username.trim(), [Validators.required, Validators.minLength]],
-      password: [password, [Validators.required, Validators.minLength]],
+      password: ['', [Validators.required, Validators.minLength]],
       confirmPassword: ['', [Validators.required, Validators.minLength]],
     }, {
         validator: [
