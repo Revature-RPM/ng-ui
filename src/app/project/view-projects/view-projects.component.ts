@@ -63,6 +63,7 @@ export class ViewProjectsComponent implements OnInit, OnDestroy {
             this.userProjects.push(projectResponse[i]);
           }
         }
+        console.log(this.userProjects);
         this.dataSource = new MatTableDataSource(this.allProjects);
         this.dataSource.sort = this.sort;
       });
@@ -167,8 +168,10 @@ export class ViewProjectsComponent implements OnInit, OnDestroy {
   viewProjects(allProjects: boolean) {
     if (allProjects) {
       this.dataSource = new MatTableDataSource(this.allProjects);
+      console.log(this.dataSource);
     } else {
       this.dataSource = new MatTableDataSource(this.userProjects);
+      console.log(this.dataSource);
     }
   }
 }
