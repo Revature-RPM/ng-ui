@@ -52,6 +52,7 @@ export class ProjectSubmissionComponent implements OnInit {
   groupMemberString: string;
   zipLinksString: string;
 
+
   /**
    * githubURLRegex: holds the regular expression to validate that an entered link is formatted correctly
    * - a valid link is of the format: https://github.com/<github username>/<repository name>
