@@ -55,6 +55,7 @@ export class ProjectSubmissionComponent implements OnInit {
 
 
   /**
+   * This method is no longer used
    * githubURLRegex: holds the regular expression to validate that an entered link is formatted correctly
    * - a valid link is of the format: https://github.com/<github username>/<repository name>
    * - the regular expression used to validate this is: ^(https:\/\/github\.com\/[^/]+\/[^/]+)
@@ -160,14 +161,14 @@ export class ProjectSubmissionComponent implements OnInit {
    * @param e: the event of clicking either the group member or zip links fields, which both trigger the dialog to open
    * @author Sean Doyle (1810-Oct22-Java-USF)
    */
-  openEditDialog(e) {
+  openEditableDialog(e) {
     // determine which edit link was clicked, the group members edit field or the zip links edit field
-    if (e.target.id === 'editGroupMembers') {
+    if (e.target.id === 'inputGroupMembers') {
       this.title = 'New Group Member';
       this.questionType = 'Enter the name of the group member';
       this.width = 300;
       this.values = this.projectToUpload.groupMembers;
-    } else if (e.target.id === 'editGithubLink') {
+    } else {
       this.title = 'Repository Link';
       this.questionType = 'Enter the Github URL of your repository';
       this.width = 500;
@@ -182,7 +183,7 @@ export class ProjectSubmissionComponent implements OnInit {
      // when the dialog is closed, the updated array for the respective edit link is returned as an observable
     dialogRef.afterClosed().subscribe(result => {
       if (result !== undefined && result !== null) {
-        if (e.target.id === 'editGroupMembers') {
+        if (e.target.id === 'inputGroupMembers') {
           // takes the resluts from the editing and applies it to the stored array groupMembers
           this.projectToUpload.groupMembers = result;
           // ensures that we are not trying to do an operation on an empty array
@@ -198,7 +199,9 @@ export class ProjectSubmissionComponent implements OnInit {
           if (result === undefined || result === null) {
             this.zipLinksString = '';
           } else {
+            // Clears the current zipLinks so that we can stored any edited links
             this.projectToUpload.zipLinks = [];
+            // Iterates through the returned
             result.forEach(element => {
               console.log('element ' + element);
               // find the exact match in the string corresponding to the github repository regular expression
