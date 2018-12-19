@@ -31,7 +31,22 @@
 }
 
 #rpm-logo {
-    width: 75vh;
-    height: 10vh;
-    margin-top: 1vh;
+    max-width: auto;
+    max-height: 100%;
+    margin-top: 30px;
 }
+
+#title {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 42px;
+    color: #ffa226,
+}
+
+// #title {
+//     text-shadow:
+// 		-1px -1px 0 #ff7500,
+// 		1px -1px 0 #ff7500,
+// 		-1px 1px 0 #ff7500,
+// 		1px 1px 0 #ff7500;
+// }
