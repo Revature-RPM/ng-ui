@@ -56,6 +56,8 @@
             <button mat-button matStepperPrevious>Back</button>
             <button mat-flat-button type="button" (click)="register()"><strong>Create Account</strong></button>
             <a mat-button routerLink="/auth/login">Cancel</a>
+            <div id="registerSpinner" *ngIf='registering'><mat-spinner [diameter]="30"></mat-spinner><span>Registering</span></div>
+            <div id="registerSpinner" *ngIf='authenticating'><mat-spinner [diameter]="30"></mat-spinner><span>Authenticating</span></div>
           </div>
         </mat-step>
       </mat-vertical-stepper>
