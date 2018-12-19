@@ -7,12 +7,14 @@ import { InputDialogComponent } from './input-dialog/input-dialog.component';
 import { Project } from 'src/app/core/models/Project';
 import { ProjectService } from 'src/app/core/services/project.service';
 import { UserService } from 'src/app/core/services/user.service';
+import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
 
 // this interface represents data to be held and returned from an input dialog
 export interface DialogData {
   title: string;
   questionType: string;
   result: string;
+  values: string[];
 }
 
 @Component({
@@ -37,8 +39,10 @@ export class ProjectSubmissionComponent implements OnInit {
    * @author Shawn Bickel (1810-Oct08-Java-USF)
    */
   title: string;
+  width: number;
   questionType: string;
   result: string;
+  values: string[];
 
   /**
    * groupMemberString and zipLinkString are both bound to the user's input of the group member field and the zip links field
@@ -49,7 +53,9 @@ export class ProjectSubmissionComponent implements OnInit {
   groupMemberString: string;
   zipLinksString: string;
 
+
   /**
+   * This method is no longer used
    * githubURLRegex: holds the regular expression to validate that an entered link is formatted correctly
    * - a valid link is of the format: https://github.com/<github username>/<repository name>
    * - the regular expression used to validate this is: ^(https:\/\/github\.com\/[^/]+\/[^/]+)
@@ -75,6 +81,7 @@ export class ProjectSubmissionComponent implements OnInit {
       this.projectToUpload.groupMembers = [];
       this.projectToUpload.screenShots = [];
       this.projectToUpload.zipLinks = [];
+      this.projectToUpload.trainer = this.userService.user.firstName + ' ' + this.userService.user.lastName;
       this.groupMemberString = '';
       this.zipLinksString = '';
       this.githubURLRegex = new RegExp('^(https:\/\/github\.com\/[^/]+\/[^/]+)');
@@ -141,11 +148,97 @@ export class ProjectSubmissionComponent implements OnInit {
           this.validGithubURL = true;
           this.invalidLink = false;
           this.projectToUpload.zipLinks.push(result);
-          this.zipLinksString += result + ' ';
+          this.zipLinksString = this.projectToUpload.zipLinks.join('\n');
         }
       }
     });
   }
+
+    /**
+   * this method opens the dialog defined in the edit-dialog component;
+   * after the dialog is closed the user's updated data is placed in the groupMembers array
+   * or the zipLinks array depending on which field was clicked
+   * @param e: the event of clicking either the group member or zip links fields, which both trigger the dialog to open
+   * @author Sean Doyle (1810-Oct22-Java-USF)
+   */
+  openEditableDialog(e) {
+    // determine which edit link was clicked, the group members edit field or the zip links edit field
+    if (e.target.id === 'inputGroupMembers') {
+      this.title = 'New Group Member';
+      this.questionType = 'Enter the name of the group member';
+      this.width = 300;
+      this.values = this.projectToUpload.groupMembers;
+    } else {
+      this.title = 'Repository Link';
+      this.questionType = 'Enter the Github URL of your repository';
+      this.width = 500;
+      this.values = this.projectToUpload.zipLinks;
+    }
+
+    // open the dialog contained in the EditDialogComponent passing the data to be displayed in the dialog
+    const dialogRef = this.dialog.open(EditDialogComponent, {
+      width: this.width + 'px',
+      data: {title: this.title, questionType: this.questionType, result: this.result, values: this.values}
+    });
+     // when the dialog is closed, the updated array for the respective edit link is returned as an observable
+    dialogRef.afterClosed().subscribe(result => {
+      if (result !== undefined && result !== null) {
+        if (e.target.id === 'inputGroupMembers') {
+          // takes the resluts from the editing and applies it to the stored array groupMembers
+          this.projectToUpload.groupMembers = result;
+          // ensures that we are not trying to do an operation on an empty array
+          if (result === undefined || result === null) {
+            this.groupMemberString = '';
+          } else {
+            // sets the input field's display value as a Comma Separated Value for all Group Member names
+            this.groupMemberString = this.projectToUpload.groupMembers.join(', ');
+          }
+        } else {
+          // ensures that we are not trying to do an operation on an empty array
+          // this.projectToUpload.zipLinks = result;
+          if (result === undefined || result === null) {
+            this.zipLinksString = '';
+          } else {
+            // Clears the current zipLinks so that we can stored any edited links
+            this.projectToUpload.zipLinks = [];
+            // Iterates through the returned
+            result.forEach(element => {
+              console.log('element ' + element);
+              // find the exact match in the string corresponding to the github repository regular expression
+              const regexArr = element.match(this.githubURLRegex);
+              console.log('regex ' + regexArr);
+              /**
+               * If the string contains no matches related to the regex or
+               * if the length of the input is greater than the match, then the link is not valid.
+               * If the matched portion of the URL is only a subset of the entire URL, then we know that the URL is not valid.
+               * The length of a valid URL will equal the length of the match found in the string corresponding the the regular expression.
+               * All links are unique
+               */
+              if (regexArr) {
+                console.log('wyapoint1');
+                if (this.githubURLRegex.test(element) || element.length !== regexArr[0].length) {
+                  console.log('wyapoint2');
+                  if (!this.projectToUpload.zipLinks.includes(element)) {
+                    console.log('stored element ' + element);
+                    // at this point, the URL will be valid and will be placed in the array
+                    // corresponding to the zip links array of the project to be submitted
+                    this.projectToUpload.zipLinks.push(element);
+                  }
+                }
+              }
+            });
+            // sets the input field's display value as each line item containing one GitHub URL
+            if (this.projectToUpload.zipLinks.length > 0) {
+              this.zipLinksString = this.projectToUpload.zipLinks.join('\n');
+            } else {
+              this.zipLinksString = '';
+            }
+          }
+        }
+      }
+    });
+  }
+
 
   /**
    * This method is bound to the event that the form is submitted;
