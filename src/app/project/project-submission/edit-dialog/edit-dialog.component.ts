@@ -16,6 +16,9 @@ import { ProjectSubmissionComponent, DialogData } from '../project-submission.co
  */
 export class EditDialogComponent implements OnInit {
 
+  inEditMode: boolean[] = [];
+
+
   /**
    * @param dialogRef : injects a reference to the dialog defined in the class of the project submission component
    * @param data : the data passed to the dialog
@@ -44,24 +47,31 @@ export class EditDialogComponent implements OnInit {
   allowEdit(e) {
     console.log('jabber');
     console.log(e.target.id);
-    document.getElementById(`forListEdit${e.target.id}`).innerHTML = `<mat-form-field class="example-full-width" appearance="outline">
-                                                        <input type=text matInput name="editor" value="${e.target.id}"
-                                                        placeholder="${e.target.id}"></mat-form-field>
-                                                        <button id="modifyField${e.target.id}"
-                                                        (click)="modifyField($event)">Change</button>`;
+    const indexOfName = this.data.values.indexOf(e.target.id);
+    this.inEditMode[indexOfName] = !this.inEditMode[indexOfName];
   }
 
   modifyField(e) {
-    console.log(e.target.placeholder);
-    const indexOfName = this.data.values.indexOf(e.target.placeholder);
-    console.log(e.target.value);
+    const indexOfName = this.data.values.indexOf(e.target.id);
+    console.log(indexOfName);
     this.data.values[indexOfName] =  e.target.value;
   }
 
   addItem(e) {
     console.log(this.data.result);
-    this.data.values.push(this.data.result);
-    this.data.result = '';
+    if (<string>this.data.result !== undefined || <string>this.data.result !== null || <string>this.data.result !== '') {
+      this.data.values.push(this.data.result);
+      this.data.result = '';
+      this.inEditMode.push(false);
+    }
+  }
+
+
+  onEnter(e) {
+    console.log('Jiffy');
+    if (e.key === 'Enter') {
+      console.log(e.target.id);
+    }
   }
 
   ngOnInit() {

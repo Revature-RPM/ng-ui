@@ -2,14 +2,19 @@
 <div mat-dialog-content>
     <p>{{ data.questionType }}</p>
     <mat-form-field>
-      <input id="userItemText" type="text" matInput [(ngModel)]="data.result" cdkFocusInitial>
+      <input id="userItemText" type="text" (keydown.enter)="addItem($event)" matInput [(ngModel)]="data.result"
+      [ngModelOptions]="{standalone: true}" cdkFocusInitial/>
+      <mat-hint id="addItemButton" type="submit" class="material-icons" style="color: orange"
+       align="end" (click)="addItem($event)">add_circle_outline</mat-hint>
     </mat-form-field>
-    <i id="addItemButton" class="material-icons" style="color: orange" (click)="addItem($event)" align="end">add_circle_outline</i>
-
-    <li *ngFor="let name of data.values" style="list-style-type: none" value="{{name}}">
+    <li *ngFor="let name of data.values; let i = index" style="list-style-type: none" value="{{name}}">
       <i id="{{name}}" class="material-icons" style="color: orange" (click)="removeItem($event)">remove_circle_outline</i> {{name}}
       <i id="{{name}}" class="material-icons" style="color: orange" (click)="allowEdit($event)">edit</i>
-      <span id="forListEdit{{name}}"></span>
+      <mat-form-field class="example-full-width" appearance="outline" *ngIf="inEditMode[i]">
+          <input type="text" matInput name="editor" value="{{name}}"
+          placeholder="{{name}}"></mat-form-field>
+          <i id="{{name}}" class="material-icons" style="color: orange" *ngIf="inEditMode[i]"
+          (click)="modifyField($event)">check</i>
     </li>
 </div>
 <div mat-dialog-actions>
