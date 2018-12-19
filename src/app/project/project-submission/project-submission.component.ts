@@ -39,6 +39,7 @@ export class ProjectSubmissionComponent implements OnInit {
    * @author Shawn Bickel (1810-Oct08-Java-USF)
    */
   title: string;
+  width: number;
   questionType: string;
   result: string;
   values: string[];
@@ -163,15 +164,17 @@ export class ProjectSubmissionComponent implements OnInit {
     if (e.target.id === 'editGroupMembers') {
       this.title = 'New Group Member';
       this.questionType = 'Enter the name of the group member';
+      this.width = 300;
       this.values = this.projectToUpload.groupMembers;
     } else if (e.target.id === 'editGithubLink') {
       this.title = 'Select A Github Link to Remove';
+      this.width = 500;
       this.values = this.projectToUpload.zipLinks;
     }
 
     // open the dialog contained in the EditDialogComponent passing the data to be displayed in the dialog
     const dialogRef = this.dialog.open(EditDialogComponent, {
-      width: '250px',
+      width: this.width + 'px',
       data: {title: this.title, questionType: this.questionType, result: this.result, values: this.values}
     });
 

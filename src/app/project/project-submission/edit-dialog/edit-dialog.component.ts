@@ -17,7 +17,7 @@ import { ProjectSubmissionComponent, DialogData } from '../project-submission.co
 export class EditDialogComponent implements OnInit {
 
   inEditMode: boolean[] = [];
-
+  editedValues: string[] = [];
 
   /**
    * @param dialogRef : injects a reference to the dialog defined in the class of the project submission component
@@ -42,6 +42,8 @@ export class EditDialogComponent implements OnInit {
   removeItem(e) {
     const indexOfName = this.data.values.indexOf(e.target.id);
     this.data.values = this.data.values.slice(0, indexOfName).concat(this.data.values.slice(indexOfName + 1, this.data.values.length));
+    this.editedValues = this.editedValues.slice(0, indexOfName).concat(this.editedValues.slice(indexOfName + 1, this.editedValues.length));
+    this.inEditMode = this.inEditMode.slice(0, indexOfName).concat(this.inEditMode.slice(indexOfName + 1, this.inEditMode.length));
   }
 
   allowEdit(e) {
@@ -53,19 +55,20 @@ export class EditDialogComponent implements OnInit {
 
   modifyField(e) {
     const indexOfName = this.data.values.indexOf(e.target.id);
-    console.log(indexOfName);
-    this.data.values[indexOfName] =  e.target.value;
+    this.data.values[indexOfName] = this.editedValues[indexOfName];
+    this.inEditMode[indexOfName] = false;
   }
 
   addItem(e) {
     console.log(this.data.result);
-    if (<string>this.data.result !== undefined || <string>this.data.result !== null || <string>this.data.result !== '') {
+    // The if statement treats undefined, null, and empty values as 'falsey' and there for the if-statement will decline the value
+    if (this.data.result) {
       this.data.values.push(this.data.result);
-      this.data.result = '';
       this.inEditMode.push(false);
+      this.editedValues.push(this.data.result);
+      this.data.result = '';
     }
   }
-
 
   onEnter(e) {
     console.log('Jiffy');
@@ -75,5 +78,9 @@ export class EditDialogComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.data.values.forEach(index =>
+      this.editedValues.push(index),
+      this.inEditMode.push(false)
+    );
   }
 }
