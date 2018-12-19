@@ -65,8 +65,10 @@ export class ViewProjectsComponent implements OnInit, OnDestroy {
       this.subscription = this.viewProjectsService.getAllProjects()
       .subscribe((projectResponse: Project[]) => {
         this.allProjects = projectResponse;
+        
         // allProjects is split into smaller arrays to be displayed dynamically by length dictated in pagify function property pagelength
         this.paginatedProjects = pagify(this.allProjects);
+        
         // Assign the data to the data source for the table to render
         for (let i = 0; i < this.paginatedProjects.length;i++){
           this.pages.push(i)
@@ -81,9 +83,11 @@ export class ViewProjectsComponent implements OnInit, OnDestroy {
             this.userProjects.push(projectResponse[i]);
           }
         }
+
         /**these 2 lines were commented out by Ryan in first commit of Trevin's batch,
          they may be affecting the filter functionality as that is broke now
          @author Ryan Williams (1810-Oct22-Java-USF)
+
         this.dataSource = new MatTableDataSource(this.allProjects);
         this.dataSource.sort = this.sort; */
       });

@@ -12,6 +12,7 @@ import { SharedModule } from '../shared/shared.module';
 import { ZipFileExplorerModule } from '../zip-file-explorer/zip-file-explorer.module';
 import { InputDialogComponent } from './project-submission/input-dialog/input-dialog.component';
 import { EditProjectComponent } from './edit-project/edit-project.component';
+import { EditDialogComponent } from './project-submission/edit-dialog/edit-dialog.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { EditProjectComponent } from './edit-project/edit-project.component';
     ProjectSubmissionComponent,
     ViewProjectsComponent,
     InputDialogComponent,
-    EditProjectComponent
+    EditProjectComponent,
+    EditDialogComponent
   ],
   imports: [
     CommonModule,
@@ -29,7 +31,7 @@ import { EditProjectComponent } from './edit-project/edit-project.component';
     MatDialogModule,
     MatSnackBarModule
   ],
-  entryComponents: [InputDialogComponent],
+  entryComponents: [InputDialogComponent, EditDialogComponent],
   providers: [ProjectService]
 })
 export class ProjectModule { }

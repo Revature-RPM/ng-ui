@@ -3,9 +3,9 @@ export interface Project {
     name?: string;
     batch?: string;
     trainer?: string;
-    groupMembers?: any[];
+    groupMembers?: string[];
     screenShots?: any[];
-    zipLinks?: any[];
+    zipLinks?: string[];
     techStack?: string;
     status?: string;
     description?: string;
