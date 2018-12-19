@@ -53,6 +53,8 @@ export class ViewProjectsComponent implements OnInit, OnDestroy {
       this.subscription = this.viewProjectsService.getAllProjects()
       .subscribe((projectResponse) => {
         this.allProjects = projectResponse;
+        console.log(this.allProjects);
+        console.log(trainerFullName);
         // Assign the data to the data source for the table to render
         this.dataSource = new MatTableDataSource(this.allProjects);
         /* place all the current user's project's in an array to easily switch between tabs to see all projects and
@@ -63,6 +65,7 @@ export class ViewProjectsComponent implements OnInit, OnDestroy {
             this.userProjects.push(projectResponse[i]);
           }
         }
+        console.log(this.userProjects);
         this.dataSource = new MatTableDataSource(this.allProjects);
         this.dataSource.sort = this.sort;
       });

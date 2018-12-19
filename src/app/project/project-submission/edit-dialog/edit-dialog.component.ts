@@ -41,6 +41,29 @@ export class EditDialogComponent implements OnInit {
     this.data.values = this.data.values.slice(0, indexOfName).concat(this.data.values.slice(indexOfName + 1, this.data.values.length));
   }
 
+  allowEdit(e) {
+    console.log('jabber');
+    console.log(e.target.id);
+    document.getElementById(`forListEdit${e.target.id}`).innerHTML = `<mat-form-field class="example-full-width" appearance="outline">
+                                                        <input type=text matInput name="editor" value="${e.target.id}"
+                                                        placeholder="${e.target.id}"></mat-form-field>
+                                                        <button id="modifyField${e.target.id}"
+                                                        (click)="modifyField($event)">Change</button>`;
+  }
+
+  modifyField(e) {
+    console.log(e.target.placeholder);
+    const indexOfName = this.data.values.indexOf(e.target.placeholder);
+    console.log(e.target.value);
+    this.data.values[indexOfName] =  e.target.value;
+  }
+
+  addItem(e) {
+    console.log(this.data.result);
+    this.data.values.push(this.data.result);
+    this.data.result = '';
+  }
+
   ngOnInit() {
   }
 }

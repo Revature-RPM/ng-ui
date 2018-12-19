@@ -161,7 +161,8 @@ export class ProjectSubmissionComponent implements OnInit {
   openEditDialog(e) {
     // determine which edit link was clicked, the group members edit field or the zip links edit field
     if (e.target.id === 'editGroupMembers') {
-      this.title = 'Select A Group Member to Remove';
+      this.title = 'New Group Member';
+      this.questionType = 'Enter the name of the group member';
       this.values = this.projectToUpload.groupMembers;
     } else if (e.target.id === 'editGithubLink') {
       this.title = 'Select A Github Link to Remove';
