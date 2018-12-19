@@ -13,8 +13,8 @@ import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
 export interface DialogData {
   title: string;
   questionType: string;
-  result: any;
-  values: any[];
+  result: string;
+  values: string[];
 }
 
 @Component({
@@ -41,7 +41,7 @@ export class ProjectSubmissionComponent implements OnInit {
   title: string;
   questionType: string;
   result: string;
-  values: any;
+  values: string[];
 
   /**
    * groupMemberString and zipLinkString are both bound to the user's input of the group member field and the zip links field
