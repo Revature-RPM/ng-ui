@@ -3,12 +3,10 @@ import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatSort, MatTableDataSource } from '@angular/material';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-
 import { Project } from 'src/app/core/models/Project';
 import { ProjectService } from 'src/app/core/services/project.service';
 import { UserService } from 'src/app/core/services/user.service';
 import { User } from 'src/app/core/models/User';
-
 @Component({
   selector: 'app-view-projects',
   templateUrl: './view-projects.component.html',
@@ -21,40 +19,60 @@ import { User } from 'src/app/core/models/User';
     ]),
   ],
 })
-
 export class ViewProjectsComponent implements OnInit, OnDestroy {
   trainerCanEdit = false;
   currentUser: User;
   displayedColumns: string[] = ['name', 'batch', 'trainer', 'techStack', 'status'];
-  dataSource: MatTableDataSource<Project>;
-  @ViewChild(MatSort) sort: MatSort;
+  dataSource: any;
   expandedProject: Project | null;
-
   imagePage = 0;
-
   allProjects: Project[];
   userProjects: Project[];
+  paginatedProjects: Project[];
+  currentPage = 1;
+  pages = [];
   subscription: Subscription;
   constructor(private router: Router, private viewProjectsService: ProjectService, private userService: UserService) { }
-
   /**
    * this is a lifecycle method called once by Angular after ngOnChanges(); it should be used to perform intialization logic;
    * the content of the method includes a call to a service to consume information from an endpoint to retrieve all projects; an observable
    * is subscribed to and the returned projects are placed in an array to be displayed in a mat table
    * @author Shawn Bickel (1810-Oct08-Java-USF)
    */
+  /** splits an array into a specific length, in this case splits the allProjects
+   returned by the projectService response into arrays of length pagelength
+   @author Ryan Williams (1810-Oct22-Java-USF) */
   ngOnInit() {
+    function pagify(arr){
+    const pageArray = [];
+    const pageLength = 10;// decides how many projects to display at a time
+    const pages = Math.ceil(arr.length/pageLength);
+      for (let i = 0; i < pages; i++)
+      {
+        pageArray.push(arr.slice(pageLength * i, (pageLength * i) + pageLength));
+      }
+    return pageArray;
+    }
+    /** pagify function added in first commit of Trevin's batch, the function
+     breaks an existing array into smaller arrays of length pagelength
+     @author Ryan Williams (1810-Oct22-Java-USF) */
+     
     if (this.userService.getUser() === null) {
       this.router.navigate(['/auth/login']);
     } else {
       this.currentUser = this.userService.getUser();
-
       const trainerFullName = this.currentUser.firstName.trim() + ' ' + this.currentUser.lastName.trim();
       this.subscription = this.viewProjectsService.getAllProjects()
-      .subscribe((projectResponse) => {
+      .subscribe((projectResponse: Project[]) => {
         this.allProjects = projectResponse;
+        // allProjects is split into smaller arrays to be displayed dynamically by length dictated in pagify function property pagelength
+        this.paginatedProjects = pagify(this.allProjects);
         // Assign the data to the data source for the table to render
-        this.dataSource = new MatTableDataSource(this.allProjects);
+        for (let i = 0; i < this.paginatedProjects.length;i++){
+          this.pages.push(i)
+        }
+        const pageDataArr = this.paginatedProjects[this.currentPage - 1];
+        this.dataSource = pageDataArr;
         /* place all the current user's project's in an array to easily switch between tabs to see all projects and
         a particular user's projects without having to make multiple calls to the server */
         this.userProjects = [];
@@ -63,18 +81,32 @@ export class ViewProjectsComponent implements OnInit, OnDestroy {
             this.userProjects.push(projectResponse[i]);
           }
         }
-        console.log(this.userProjects);
+        /**these 2 lines were commented out by Ryan in first commit of Trevin's batch,
+         they may be affecting the filter functionality as that is broke now
+         @author Ryan Williams (1810-Oct22-Java-USF)
         this.dataSource = new MatTableDataSource(this.allProjects);
-        this.dataSource.sort = this.sort;
+        this.dataSource.sort = this.sort; */
       });
     }
   }
-
   /**
    * This method determines if a trainer can edit a project; a trainer can only edit a project if the project was submitted by the trainer.
    * @param project: the project who's trainer is being validated
    * @author Shawn Bickel (1810-Oct08-Java-USF)
    */
+  /* 
+   * The pageSelect method is the first method added by Trevin's batch, 
+   * it is bound to the click event to allow the user to choose which page of projects to display
+  */
+  pageSelect(e){
+    const pageNumber = e.target.innerHTML.slice(-1);
+    this.currentPage = pageNumber;
+    this.dataSource = this.paginatedProjects[pageNumber - 1];
+    /**  edits the view dynamically based on the page user selects 
+     * @author Ryan Williams (1810-Oct22-Java-USF)
+    */
+  }
+
   canEdit(project: any) {
     const trainerFullName = this.currentUser.firstName.trim() + ' ' + this.currentUser.lastName.trim();
     if (this.currentUser.role === 'ROLE_ADMIN') {
@@ -85,7 +117,6 @@ export class ViewProjectsComponent implements OnInit, OnDestroy {
       this.trainerCanEdit = false;
     }
   }
-
   /**
   * this is a lifecycle method called once by Angular before the component is destroyed;
   * it is usually used to close resources such as unsubscribing from the observable's data stream;
@@ -97,7 +128,6 @@ export class ViewProjectsComponent implements OnInit, OnDestroy {
       this.subscription.unsubscribe();
     }
   }
-
   /**
    * This function is used to filter the table based on the inputted string.
    * It is binded as an event listener.
@@ -107,7 +137,6 @@ export class ViewProjectsComponent implements OnInit, OnDestroy {
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-
   /**
    * This function is used to increment the page index of the project's screenshot.
    * Incrementing the page index will render the next project's screenshot.
@@ -117,7 +146,6 @@ export class ViewProjectsComponent implements OnInit, OnDestroy {
   nextImage(totalAmountOfScreenShots: number) {
     this.imagePage = (this.imagePage + 1) % totalAmountOfScreenShots;
   }
-
   /**
    * This function is used to decrement the page index of the project's screenshot.
    * Decrementing the page index will render the next project's screenshot.
@@ -130,20 +158,16 @@ export class ViewProjectsComponent implements OnInit, OnDestroy {
       this.imagePage = totalAmountOfScreenShots;
     }
   }
-
   codebase(project) {
     this.viewProjectsService.CurrentProject = project;
     this.router.navigate(['/codebase']);
   }
-
   edit(project) {
     this.router.navigate([project.id + '/edit']);
   }
-
   submitProject() {
     this.router.navigate(['/project_submission']);
   }
-
   /**
    * This method is called if the user clicks the tab, 'Your Projects', to just see a trainer's (the user) projects
    * @author Shawn Bickel (1810-Oct08-Java-USF)
@@ -151,7 +175,6 @@ export class ViewProjectsComponent implements OnInit, OnDestroy {
   yourProjects() {
     this.viewProjects(false);
   }
-
   /**
    * This method is called if the user cliks the tab, 'All Projects', to see all submitted projects
    * @author Shawn Bickel (1810-Oct08-Java-USF)
@@ -159,7 +182,6 @@ export class ViewProjectsComponent implements OnInit, OnDestroy {
   projects() {
     this.viewProjects(true);
   }
-
   /**
    * This method determines if all the projects should be in the mat-table or if just a single trainer's projects should be in the mat-table
    * @param allProjects: if true, all projects are shown; if false, only a single trainer's (the user) projects are shown
@@ -168,10 +190,8 @@ export class ViewProjectsComponent implements OnInit, OnDestroy {
   viewProjects(allProjects: boolean) {
     if (allProjects) {
       this.dataSource = new MatTableDataSource(this.allProjects);
-      console.log(this.dataSource);
     } else {
       this.dataSource = new MatTableDataSource(this.userProjects);
-      console.log(this.dataSource);
     }
   }
 }
