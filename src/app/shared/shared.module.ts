@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { MatProgressSpinnerModule } from '@angular/material';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -53,7 +54,8 @@ import { AppLogoComponent } from './app-logo/app-logo.component';
     ScrollDispatchModule,
     MatTableModule,
     SliderModule,
-    MatSortModule
+    MatSortModule,
+    MatProgressSpinnerModule
   ],
   exports: [
     FlexLayoutModule,
@@ -80,7 +82,8 @@ import { AppLogoComponent } from './app-logo/app-logo.component';
     MatTooltipModule,
     MatTableModule,
     SliderModule,
-    MatSortModule
+    MatSortModule,
+    MatProgressSpinnerModule
   ]
 })
 export class SharedModule { }

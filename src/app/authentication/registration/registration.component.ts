@@ -28,6 +28,10 @@ export class RegistrationComponent implements OnInit {
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
 
+  loginUser: User = {};
+  registering = false;
+  authenticating = false;
+
   // email pattern ensures the email is a @revature.com email
   emailPattern = '^[a-zA-Z0-9_.+-]+(?:(?:[a-zA-Z0-9-]+\.)?[a-zA-Z]+\.)?@(revature)\.com$';
 
@@ -95,9 +99,22 @@ export class RegistrationComponent implements OnInit {
   // registration method takes the validated fields packages into a JSON and sends the observable
   register() {
     console.log(this.user);
+    this.registering=true;
     this.userService.register(this.user).pipe(first()).subscribe((user) => {
       if (user) {
-        this.router.navigate(['/auth/login']);
+        this.registering=false;
+        this.authenticating = true;
+        this.loginUser.username = user.username;
+        this.loginUser.password = user.password;
+        this.userService.login(this.loginUser).pipe(first()).subscribe(
+          (user) => {
+          this.authenticating = false;
+          this.router.navigate(['/home']);
+          });
+
+
+
+        //this.router.navigate(['/auth/login']);
       }
     });
   }
