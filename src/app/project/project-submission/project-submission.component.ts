@@ -80,6 +80,7 @@ export class ProjectSubmissionComponent implements OnInit {
       this.projectToUpload.groupMembers = [];
       this.projectToUpload.screenShots = [];
       this.projectToUpload.zipLinks = [];
+      this.projectToUpload.trainer = this.userService.user.firstName + ' ' + this.userService.user.lastName;
       this.groupMemberString = '';
       this.zipLinksString = '';
       this.githubURLRegex = new RegExp('^(https:\/\/github\.com\/[^/]+\/[^/]+)');
@@ -167,7 +168,8 @@ export class ProjectSubmissionComponent implements OnInit {
       this.width = 300;
       this.values = this.projectToUpload.groupMembers;
     } else if (e.target.id === 'editGithubLink') {
-      this.title = 'Select A Github Link to Remove';
+      this.title = 'Repository Link';
+      this.questionType = 'Enter the Github URL of your repository';
       this.width = 500;
       this.values = this.projectToUpload.zipLinks;
     }
@@ -177,7 +179,6 @@ export class ProjectSubmissionComponent implements OnInit {
       width: this.width + 'px',
       data: {title: this.title, questionType: this.questionType, result: this.result, values: this.values}
     });
-
      // when the dialog is closed, the updated array for the respective edit link is returned as an observable
     dialogRef.afterClosed().subscribe(result => {
       if (result !== undefined && result !== null) {
@@ -193,12 +194,42 @@ export class ProjectSubmissionComponent implements OnInit {
           }
         } else {
           // ensures that we are not trying to do an operation on an empty array
-          this.projectToUpload.zipLinks = result;
+          // this.projectToUpload.zipLinks = result;
           if (result === undefined || result === null) {
             this.zipLinksString = '';
           } else {
+            this.projectToUpload.zipLinks = [];
+            result.forEach(element => {
+              console.log('element ' + element);
+              // find the exact match in the string corresponding to the github repository regular expression
+              const regexArr = element.match(this.githubURLRegex);
+              console.log('regex ' + regexArr);
+              /**
+               * If the string contains no matches related to the regex or
+               * if the length of the input is greater than the match, then the link is not valid.
+               * If the matched portion of the URL is only a subset of the entire URL, then we know that the URL is not valid.
+               * The length of a valid URL will equal the length of the match found in the string corresponding the the regular expression.
+               * All links are unique
+               */
+              if (regexArr) {
+                console.log('wyapoint1');
+                if (this.githubURLRegex.test(element) || element.length !== regexArr[0].length) {
+                  console.log('wyapoint2');
+                  if (!this.projectToUpload.zipLinks.includes(element)) {
+                    console.log('stored element ' + element);
+                    // at this point, the URL will be valid and will be placed in the array
+                    // corresponding to the zip links array of the project to be submitted
+                    this.projectToUpload.zipLinks.push(element);
+                  }
+                }
+              }
+            });
             // sets the input field's display value as each line item containing one GitHub URL
-            this.zipLinksString = this.projectToUpload.zipLinks.join('\n');
+            if (this.projectToUpload.zipLinks.length > 0) {
+              this.zipLinksString = this.projectToUpload.zipLinks.join('\n');
+            } else {
+              this.zipLinksString = '';
+            }
           }
         }
       }

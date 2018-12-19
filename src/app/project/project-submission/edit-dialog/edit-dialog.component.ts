@@ -28,8 +28,13 @@ export class EditDialogComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<ProjectSubmissionComponent>,
               @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
 
-  onNoClick(): void {
+  onNoClick(): string[] {
     this.dialogRef.close();
+    return [];
+  }
+  onSubmitForm(): string[] {
+    this.dialogRef.close();
+    return this.data.values;
   }
 
   /**

@@ -1,7 +1,7 @@
 <h1 mat-dialog-title>{{ data.title }} </h1>
 <div mat-dialog-content>
     <p>{{ data.questionType }}</p>
-    <mat-form-field>
+    <mat-form-field class="example-full-width" >
       <input id="userItemText" type="text" (keydown.enter)="addItem($event)" matInput [(ngModel)]="data.result"
       [ngModelOptions]="{standalone: true}" cdkFocusInitial/>
     </mat-form-field>
