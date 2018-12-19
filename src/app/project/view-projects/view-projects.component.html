@@ -29,8 +29,11 @@
   <!-- a field for users to enter in a string to filter the table -->
   <mat-form-field>
     <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-  </mat-form-field>
-
+  </mat-form-field> 
+  <!-- added a for loop to dynamically create pages decided by the pages array-->
+ <div *ngFor= "let page of pages" class ="pages">
+  <span  (click)="pageSelect($event)">Page {{page + 1}}</span>  
+</div> 
   <div class="table-container mat-elevation-z8 my-theme" color="primary">
     <table mat-table [dataSource]="dataSource" multiTemplateDataRows matSort>
 
@@ -97,7 +100,7 @@
 
                   <!-- this line is needed for styling purpose -->
                   <label style="color: white"> ____ </label>
-                  
+
                   <label><strong> Description: </strong></label>
                 </div>
               </div>
@@ -122,8 +125,8 @@
                     </button>
                   </a>
                   <a id="edit-button">
-                    <button *ngIf="trainerCanEdit" (click)="edit(project)" id="icon" mat-icon-button
-                      mat-stroked-button color="primary" matTooltip="Edit" matTooltipPosition="right">
+                    <button *ngIf="trainerCanEdit" (click)="edit(project)" id="icon" mat-icon-button mat-stroked-button
+                      color="primary" matTooltip="Edit" matTooltipPosition="right">
                       <mat-icon id="profile-icon">edit</mat-icon>
                     </button>
                   </a>

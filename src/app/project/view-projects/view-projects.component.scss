@@ -103,3 +103,11 @@ flex-direction: row;
 #edit-button {
   padding-top: 8vh;
 }
+
+//added in first Trevin's batch commit, styles the pages text next to filter
+.pages{
+  display:inline;
+  margin-right:1.5rem;
+  cursor: pointer;
+  font-size:24px;
+}
