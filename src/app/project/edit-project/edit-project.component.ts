@@ -114,7 +114,7 @@ export class EditProjectComponent implements OnInit {
 
   deleteProject() {
     this.projectService.deleteProjectById(this.projectToUpdate.id).subscribe(hello => {
-
+      this.router.navigate(['home']);
     }, helloTwo => {
 
     })
