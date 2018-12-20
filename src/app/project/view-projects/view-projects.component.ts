@@ -49,7 +49,6 @@ export class ViewProjectsComponent implements OnInit, OnDestroy {
       this.router.navigate(['/auth/login']);
     } else {
       this.currentUser = this.userService.getUser();
-
       const trainerFullName = this.currentUser.firstName.trim() + ' ' + this.currentUser.lastName.trim();
       this.subscription = this.viewProjectsService.getAllProjects()
       .subscribe((projectResponse) => {
