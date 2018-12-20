@@ -8,6 +8,12 @@
       </button>
       <span class="example-fill-remaining-space"></span>
       <mat-tab-group>
+        <mat-tab *ngIf="currentUser.role === 'ROLE_ADMIN'" >
+          <ng-template mat-tab-label>
+            <span (click)="allUsers()">All Users</span>
+          </ng-template>
+        </mat-tab>
+
         <mat-tab>
           <ng-template mat-tab-label>
             <span (click)="yourProjects()">Your Projects</span>
