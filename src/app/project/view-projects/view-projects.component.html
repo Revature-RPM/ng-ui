@@ -1,6 +1,5 @@
 <div class="my-theme" id="userActions">
-  <mat-toolbar color="white">
-    <!-- <h1 id="title">Revature Project Manager</h1> -->
+  <mat-toolbar color="primary">
     <mat-toolbar-row>
 
       <button id="icon" mat-icon-button mat-stroked-button mat-button matTooltip="Add New Project" matTooltipPosition="right"
@@ -29,11 +28,8 @@
   <!-- a field for users to enter in a string to filter the table -->
   <mat-form-field>
     <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-  </mat-form-field> 
-  <!-- added a for loop to dynamically create pages decided by the pages array-->
- <div *ngFor= "let page of pages" class ="pages">
-  <span  (click)="pageSelect($event)">Page {{page + 1}}</span>  
-</div> 
+  </mat-form-field>
+
   <div class="table-container mat-elevation-z8 my-theme" color="primary">
     <table mat-table [dataSource]="dataSource" multiTemplateDataRows matSort>
 
@@ -100,7 +96,7 @@
 
                   <!-- this line is needed for styling purpose -->
                   <label style="color: white"> ____ </label>
-
+                  
                   <label><strong> Description: </strong></label>
                 </div>
               </div>
@@ -125,8 +121,8 @@
                     </button>
                   </a>
                   <a id="edit-button">
-                    <button *ngIf="trainerCanEdit" (click)="edit(project)" id="icon" mat-icon-button mat-stroked-button
-                      color="primary" matTooltip="Edit" matTooltipPosition="right">
+                    <button *ngIf="trainerCanEdit" (click)="edit(project)" id="icon" mat-icon-button
+                      mat-stroked-button color="primary" matTooltip="Edit" matTooltipPosition="right">
                       <mat-icon id="profile-icon">edit</mat-icon>
                     </button>
                   </a>
@@ -143,5 +139,6 @@
       </tr>
       <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></tr>
     </table>
+    <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
   </div>
 </div>

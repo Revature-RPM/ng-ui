@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-
+import { MatPaginatorModule } from '@angular/material';
 import { HomePageComponent } from './home-page/home-page.component';
 import { ProjectRoutingModule } from './project-routing.module';
 import { ProjectSubmissionComponent } from './project-submission/project-submission.component';
@@ -29,7 +29,8 @@ import { EditDialogComponent } from './project-submission/edit-dialog/edit-dialo
     SharedModule,
     ZipFileExplorerModule,
     MatDialogModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatPaginatorModule
   ],
   entryComponents: [InputDialogComponent, EditDialogComponent],
   providers: [ProjectService]
