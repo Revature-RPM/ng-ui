@@ -24,16 +24,16 @@
 
         <table class="example-full-width" cellspacing="5">
           <tr>
-            <td *ngIf="userService.user.role === Role_Admin">
-                <mat-form-field class="example-full-width" appearance="outline">
+<!--             <td *ngIf="user.role === 'ROLE_ADMIN'"></td>
+ -->                <mat-form-field class="example-full-width" appearance="outline">
                         <mat-label>Trainer Name</mat-label>
                     <mat-error *ngIf="!trainerName.valid || trainerName.pristine">Trainer name is required</mat-error>
                     <!-- TODO: make this a dropdown where it lists all of the trainers -->
                     <input type="text" name="trainers" matInput placeholder="Trainer Name"
                     [(ngModel)]="projectToUpload.trainer"
                     [ngModelOptions]="{standalone: true}" required #trainerName="ngModel">
+                    <!-- [disabled]="(user.role !== 'ROLE_ADMIN')" -->
                   </mat-form-field>
-            </td>
             <td>
                 <mat-form-field class="example-full-width" appearance="outline">
                         <mat-label>Group Members</mat-label>
@@ -90,7 +90,7 @@
               </tr>
             </table>
             <br>
-           <button (click)="submitForm()" [disabled]="(!name.valid || name.pristine) || (!batch.valid || batch.pristine) || (!trainerName.valid || trainerName.pristine) ||
+           <button (click)="submitForm()" [disabled]="(!name.valid || name.pristine) || (!batch.valid || batch.pristine) || (!trainerName.valid) ||
            (!groupMembers.valid) || (!description.valid || description.pristine) || (!zipLinks.valid) ||
            (!techStack.valid || techStack.pristine) || !validScreenshots || !validGithubURL" type="submit" id="submit" mat-flat-button color="accent">Submit Project</button>
 

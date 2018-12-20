@@ -8,6 +8,7 @@ import { Project } from 'src/app/core/models/Project';
 import { ProjectService } from 'src/app/core/services/project.service';
 import { UserService } from 'src/app/core/services/user.service';
 import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
+import { User } from 'src/app/core/models/User';
 
 // this interface represents data to be held and returned from an input dialog
 export interface DialogData {
@@ -66,6 +67,8 @@ export class ProjectSubmissionComponent implements OnInit {
   githubURLRegex: RegExp;
   githubURL: string;
 
+  user: User;
+
   constructor(private router: Router,
               private ngmeta: NgMetaService,
               private dialog: MatDialog,
@@ -85,6 +88,7 @@ export class ProjectSubmissionComponent implements OnInit {
       this.groupMemberString = '';
       this.zipLinksString = '';
       this.githubURLRegex = new RegExp('^(https:\/\/github\.com\/[^/]+\/[^/]+)');
+      this.user = this.userService.user;
     }
   }
 
@@ -229,8 +233,10 @@ export class ProjectSubmissionComponent implements OnInit {
             });
             // sets the input field's display value as each line item containing one GitHub URL
             if (this.projectToUpload.zipLinks.length > 0) {
+              this.validGithubURL = true;
               this.zipLinksString = this.projectToUpload.zipLinks.join('\n');
             } else {
+              this.validGithubURL = false;
               this.zipLinksString = '';
             }
           }
