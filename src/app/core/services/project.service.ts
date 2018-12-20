@@ -41,4 +41,8 @@ export class ProjectService {
   setCurrentProject(project: Project) {
     this.CurrentProject = project;
   }
+
+  deleteProjectById(id): Observable<any> {
+    return this.httpClient.delete<any>(environment.url + `/projects/id/${id}`);
+  }
 }

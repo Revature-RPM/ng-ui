@@ -59,6 +59,12 @@
             <br>
            <button (click)="submitForm()" [disabled]="(!name.valid) || (!batch.valid) || (!trainerName.valid) || 
           (!description.valid) || (!techStack.valid)" type="submit" id="submit" mat-flat-button color="accent">Update Project</button>
-      </form>
+          <br>
+          <br>
+          <br>
+          <br>
+          <button (click)="deleteProjectPopup()" id="submit" mat-flat-button color="accent">Delete Project</button>      
+        </form>
+      
  </div>
  
