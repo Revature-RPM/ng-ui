@@ -28,6 +28,8 @@ export class EditProjectComponent implements OnInit {
   // is bound to the information that users enter in the form
   projectToUpdate: Project = {};
 
+  allProjects: Project[];
+
   /**
    * title, questionType, and result are all passed to a dialog when the user chooses either the group member or the links input field
    * title and questionType represent the information which will displayed in an input dialog
@@ -65,9 +67,17 @@ export class EditProjectComponent implements OnInit {
        *  @author Shawn Bickel (1810-Oct08-Java-USF)
        */
       this.subscription = this.route.params.subscribe(params => {
-        this.projectService.getProjectById(params['id']).pipe(first()).subscribe(projectById => {
-          this.projectToUpdate = projectById;
-        });
+        // this.projectService.getProjectById(params['id']).pipe(first()).subscribe(projectById => {
+        //   this.projectToUpdate = projectById;
+        // });
+        this.projectService.getAllProjects().pipe(first()).subscribe(allProjects => {
+          this.allProjects = allProjects;
+          for(var i = 0; i<this.allProjects.length; i++) {
+            if(params['id'] == this.allProjects[i].id) {
+              this.projectToUpdate = this.allProjects[i];
+            }
+          }
+        })
       });
     }
   }
