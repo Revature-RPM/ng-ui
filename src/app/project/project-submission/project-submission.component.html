@@ -68,12 +68,27 @@
                       <!--<mat-hint id="editGithubLink" (click)="openEditDialog($event)" aria-label="editGithubLink" name="editGithubLink" align="end">Edit</mat-hint>-->
                     </mat-form-field>
               </td>
-              <td><mat-form-field class="example-full-width" appearance="outline">
+              <td>
+                <!-- <mat-form-field class="example-full-width" appearance="outline">
                     <mat-label>Technology Stack</mat-label>
                   <mat-error *ngIf="!techStack.valid || techStack.pristine">Technology stack is required</mat-error>
                   <input type=text matInput name="stack" placeholder="Project Technology Stack" [(ngModel)]="projectToUpload.techStack"
                   [ngModelOptions]="{standalone: true}" required #techStack="ngModel">
-                </mat-form-field></td>
+                </mat-form-field> -->
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Technology Stack</mat-label>
+                    <mat-error *ngIf="!techStack.valid || techStack.pristine">Technology stack is required</mat-error>
+                    <mat-select 
+                    placeholder="Select Batch" 
+                    [(ngModel)]="projectToUpload.techStack"
+                    [ngModelOptions]="{standalone: true}" 
+                    required #techStack="ngModel">
+                      <mat-option *ngFor="let tech of techStackList" [value]="tech">
+                        {{tech}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+              </td>
             </tr>
           </table>
 

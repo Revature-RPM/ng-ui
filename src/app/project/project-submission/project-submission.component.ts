@@ -27,6 +27,7 @@ export interface DialogData {
 export class ProjectSubmissionComponent implements OnInit {
   // projectToUpload is bound to the information that users enter in the form
   projectToUpload: Project = {};
+  techStackList = ['Java/J2EE', 'PEGA', 'JavaScript MVC', '.Net', 'React.js', 'Java', 'iOS9'];
 
   // validScreenshots and validGithubURL determine if information has been entered correctly and if the form can be submitted
   validScreenshots = false;
