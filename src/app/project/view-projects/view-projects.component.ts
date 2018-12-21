@@ -172,4 +172,16 @@ export class ViewProjectsComponent implements OnInit, OnDestroy {
       this.dataSource = new MatTableDataSource(this.userProjects);
     }
   }
+
+  turnOnApproveFilter() {
+
+    var approvedDataSource = [];
+
+    for(var i = 0; i<this.dataSource.data.length; i++) {
+      if(this.dataSource.data[i].status == 'Approved') {
+        approvedDataSource.push(this.dataSource.data[i]);
+      }
+    }
+    this.dataSource = new MatTableDataSource(approvedDataSource);
+  }
 }
