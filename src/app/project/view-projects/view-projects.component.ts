@@ -24,11 +24,18 @@ import { User } from 'src/app/core/models/User';
 
 export class ViewProjectsComponent implements OnInit, OnDestroy {
   trainerCanEdit = false;
+  usersPage = true;
+  projectsPage = false;
   currentUser: User;
+  allUsersArray: User[];
+  dataSourceUsers: MatTableDataSource<User>;
+  displayedUserColumns: string[] = ['username', 'firstName', 'lastName', 'email', 'role'];
   displayedColumns: string[] = ['name', 'batch', 'trainer', 'techStack', 'status'];
   dataSource: MatTableDataSource<Project>;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sortUsers: MatSort;
+  @ViewChild(MatPaginator) userPaginator: MatPaginator;
   expandedProject: Project | null;
 
   imagePage = 0;
@@ -36,6 +43,7 @@ export class ViewProjectsComponent implements OnInit, OnDestroy {
   allProjects: Project[];
   userProjects: Project[];
   subscription: Subscription;
+  userSubscription: Subscription;
   constructor(private router: Router, private viewProjectsService: ProjectService, private userService: UserService) { }
 
   /**
@@ -43,6 +51,7 @@ export class ViewProjectsComponent implements OnInit, OnDestroy {
    * the content of the method includes a call to a service to consume information from an endpoint to retrieve all projects; an observable
    * is subscribed to and the returned projects are placed in an array to be displayed in a mat table
    * @author Shawn Bickel (1810-Oct08-Java-USF)
+   * @author Michael Grammens (1810-Oct22-Java-USF)
    */
   ngOnInit() {
     if (this.userService.getUser() === null) {
@@ -67,6 +76,15 @@ export class ViewProjectsComponent implements OnInit, OnDestroy {
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
       });
+
+      this.userSubscription = this.userService.getAllUsers().subscribe(
+        data => {
+          console.log(data);
+          this.allUsersArray = data;
+          this.dataSourceUsers = new MatTableDataSource(this.allUsersArray);
+          this.dataSourceUsers.sort = this.sortUsers;
+          this.dataSourceUsers.paginator = this.userPaginator;
+      });
     }
   }
 
@@ -87,6 +105,14 @@ export class ViewProjectsComponent implements OnInit, OnDestroy {
   }
 
   /**
+   * This method well either show the all users table or projects tables using *ngIf's in html
+   * @author Michael Grammens (1810-Oct22-Java-USF)
+   */
+  allUsers() {
+    this.usersPage = true;
+    this.projectsPage = false;
+  }
+  /**
   * this is a lifecycle method called once by Angular before the component is destroyed;
   * it is usually used to close resources such as unsubscribing from the observable's data stream;
   * resources should be released to avoid memory leaks
@@ -95,6 +121,9 @@ export class ViewProjectsComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     if (this.subscription) {
       this.subscription.unsubscribe();
+    }
+    if (this.userSubscription) {
+      this.userSubscription.unsubscribe();
     }
   }
 
@@ -106,6 +135,10 @@ export class ViewProjectsComponent implements OnInit, OnDestroy {
    */
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  applyUserFilter(filterValue: string) {
+    this.dataSourceUsers.filter = filterValue.trim().toLowerCase();
   }
 
   /**
@@ -149,6 +182,8 @@ export class ViewProjectsComponent implements OnInit, OnDestroy {
    * @author Shawn Bickel (1810-Oct08-Java-USF)
    */
   yourProjects() {
+    this.usersPage = false;
+    this.projectsPage = true;
     this.viewProjects(false);
   }
 
@@ -157,6 +192,8 @@ export class ViewProjectsComponent implements OnInit, OnDestroy {
    * @author Shawn Bickel (1810-Oct08-Java-USF)
    */
   projects() {
+    this.usersPage = false;
+    this.projectsPage = true;
     this.viewProjects(true);
   }
 
