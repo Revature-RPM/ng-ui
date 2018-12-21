@@ -8,9 +8,21 @@ $black: mat-color($mat-grey,900);
 
 $font: 'Courier New', sans-serif;
 
+#rpm-logo {
+    max-width: auto;
+    max-height: 100%;
+    margin-top: 30px;
+}
+
+#title {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 42px;
+    color: #ffa226,
+}
 
 #login-container {
-    background-color: #ff7f00;
+    background-color: whitesmoke;
     display: flex;
     align-items: center;
     justify-content: center;
