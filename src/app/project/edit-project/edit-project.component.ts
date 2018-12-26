@@ -111,4 +111,14 @@ export class EditProjectComponent implements OnInit {
     });
     this.router.navigate(['/home']);
   }
+
+  deleteProject() {
+    this.projectService.deleteProjectById(this.projectToUpdate.id).subscribe(hello => {
+      this.router.navigate(['home']);
+    }, helloTwo => {
+
+    })
+  }
+
+
 }
