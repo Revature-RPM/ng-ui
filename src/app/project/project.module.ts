@@ -13,6 +13,9 @@ import { ZipFileExplorerModule } from '../zip-file-explorer/zip-file-explorer.mo
 import { InputDialogComponent } from './project-submission/input-dialog/input-dialog.component';
 import { EditProjectComponent } from './edit-project/edit-project.component';
 import { EditDialogComponent } from './project-submission/edit-dialog/edit-dialog.component';
+import { ViewUsersComponent } from './view-users/view-users.component';
+import { ViewProjectsLogicComponent } from './view-projects-logic/view-projects-logic.component';
+import { ViewUsersProjectsComponent } from './view-users-projects/view-users-projects.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +24,10 @@ import { EditDialogComponent } from './project-submission/edit-dialog/edit-dialo
     ViewProjectsComponent,
     InputDialogComponent,
     EditProjectComponent,
-    EditDialogComponent
+    EditDialogComponent,
+    ViewUsersComponent,
+    ViewProjectsLogicComponent,
+    ViewUsersProjectsComponent
   ],
   imports: [
     CommonModule,

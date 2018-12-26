@@ -87,7 +87,8 @@ ${error.error}`
    * @author Michael Grammens (1810-Oct22-Java-USF)
    */
   getAllUsers(): Observable<User[]> {
-    return this.http.get<User[]>(environment.url + '/auth/users/', httpOptions);
+    return this.http.get<User[]>(environment.url + '/auth/users/', httpOptions)
+      .pipe(catchError(this.handleError));
   }
   /*
   * Updates the user profile
