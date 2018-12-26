@@ -82,6 +82,14 @@ ${error.error}`
       .pipe(catchError(this.handleError));
   }
 
+  /**
+   * Get all users from the database
+   * @author Michael Grammens (1810-Oct22-Java-USF)
+   */
+  getAllUsers(): Observable<User[]> {
+    return this.http.get<User[]>(environment.url + '/auth/users/', httpOptions)
+      .pipe(catchError(this.handleError));
+  }
   /*
   * Updates the user profile
   */
