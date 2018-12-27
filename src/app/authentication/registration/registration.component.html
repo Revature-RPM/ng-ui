@@ -16,8 +16,11 @@
             <br />
             <mat-form-field>
               <input matInput type="email" placeholder="Revature Email" formControlName="email" required [(ngModel)]="user.email"
-                matTooltip="Must be valid @revature.com Email." [pattern]="emailPattern">
+                matTooltip="Must be valid @revature.com Email." [pattern]="emailPattern" (focusout)="checkIfEmailIsInUse()" (keyup)="checkIfEmailIsInUseKey()">
             </mat-form-field>
+            <div id="registerSpinner" *ngIf='checkingIfEmailIsInUse'><mat-spinner [diameter]="30"></mat-spinner><span>Checking email availability</span></div>
+            <div id="availableEmail" *ngIf='emailIsAvailable'>Email '{{emailToCheck}}' is available!</div>
+            <div id="emailNotAvailable" *ngIf='emailIsNotAvailable'>Email '{{emailToCheck}}' is already in use</div>
             <div>
               <button mat-button matStepperNext type="submit" ng-disabled=!vm.form.$valid>Next</button>
               <a mat-button routerLink="/auth/login">Return to Login</a>

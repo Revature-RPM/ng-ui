@@ -46,3 +46,13 @@ $font: 'Courier New', sans-serif;
 #registerSpinner {
     display: inline;
 }
+
+#availableEmail {
+    font-size: 12px;
+    color: green;
+}
+
+#emailNotAvailable {
+    font-size: 12px;
+    color: red;
+}
