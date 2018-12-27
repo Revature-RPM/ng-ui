@@ -40,6 +40,11 @@ export class RegistrationComponent implements OnInit {
   usernamePattern = '^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$';
   confirmPassword: string;
 
+  checkingIfEmailIsInUse = false;
+  emailIsAvailable = false;
+  emailIsNotAvailable = false;
+  emailToCheck: string;
+
   // this method is called to ensure password was typed correctly
   static MatchPassword(AC: AbstractControl) {
     const password = AC.get('password').value; // to get value in input tag
@@ -118,4 +123,54 @@ export class RegistrationComponent implements OnInit {
       }
     });
   }
+
+  checkIfEmailIsInUseKey() {
+    var ref = this.user.email;
+    setTimeout(() => {
+    if(ref.endsWith("@revature.com")) {
+      this.emailToCheck = this.user.email;
+      this.emailIsAvailable = false;
+      this.emailIsNotAvailable = false;
+      this.checkingIfEmailIsInUse = true;
+
+      this.userService.checkIfEmailIsInUse(this.user.email).subscribe(
+        result => {
+          this.checkingIfEmailIsInUse = false;
+          this.emailIsNotAvailable = true;
+
+        }, err => {
+          this.checkingIfEmailIsInUse = false;
+          this.emailIsAvailable = true;
+
+
+        }
+      )
+
+    }
+  }, 1000)
+  }
+
+  checkIfEmailIsInUse() {
+    if(this.user.email.endsWith("@revature.com")) {
+      this.emailToCheck = this.user.email;
+      this.emailIsAvailable = false;
+      this.emailIsNotAvailable = false;
+      this.checkingIfEmailIsInUse = true;
+
+      this.userService.checkIfEmailIsInUse(this.user.email).subscribe(
+        result => {
+          this.checkingIfEmailIsInUse = false;
+          this.emailIsNotAvailable = true;
+
+        }, err => {
+          this.checkingIfEmailIsInUse = false;
+          this.emailIsAvailable = true;
+
+
+        }
+      )
+
+    }
+  }
+
 }

@@ -97,4 +97,9 @@ ${error.error}`
     return this.http.put<User>(environment.url + '/auth/users/', user, httpOptions)
       .pipe(catchError(this.handleError));
   }
+
+  checkIfEmailIsInUse(email): Observable<string> {
+    return this.http.get<string>(environment.url + '/auth/users/emailInUse/' + email)
+      .pipe(catchError(this.handleError));
+  }
 }
