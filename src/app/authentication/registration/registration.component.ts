@@ -135,8 +135,13 @@ export class RegistrationComponent implements OnInit {
 
       this.userService.checkIfEmailIsInUse(this.user.email).subscribe(
         result => {
-          this.checkingIfEmailIsInUse = false;
-          this.emailIsNotAvailable = true;
+          if(result['emailIsInUse'] == 'false') {
+            this.checkingIfEmailIsInUse = false;
+            this.emailIsAvailable = true;
+          } else {
+            this.checkingIfEmailIsInUse = false;
+            this.emailIsNotAvailable = true;
+          }
 
         }, err => {
           this.checkingIfEmailIsInUse = false;
@@ -159,8 +164,13 @@ export class RegistrationComponent implements OnInit {
 
       this.userService.checkIfEmailIsInUse(this.user.email).subscribe(
         result => {
-          this.checkingIfEmailIsInUse = false;
-          this.emailIsNotAvailable = true;
+          if(result['emailIsInUse'] == 'false') {
+            this.checkingIfEmailIsInUse = false;
+            this.emailIsAvailable = true;
+          } else {
+            this.checkingIfEmailIsInUse = false;
+            this.emailIsNotAvailable = true;
+          }
 
         }, err => {
           this.checkingIfEmailIsInUse = false;
