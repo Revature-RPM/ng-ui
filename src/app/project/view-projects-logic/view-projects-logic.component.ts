@@ -36,6 +36,11 @@ export class ViewProjectsLogicComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   constructor(private router: Router, private viewProjectsService: ProjectService, private userService: UserService) { }
 
+  /**
+   * Only push approved project into the allProject datastructure
+   * if the user's role is ROLE_User
+   * @ Louis Pipkin (1810-Oct22-Java-USF)
+   */
   ngOnInit() {
     if (this.userService.getUser() === null) {
       this.router.navigate(['/auth/login']);
@@ -44,7 +49,19 @@ export class ViewProjectsLogicComponent implements OnInit, OnDestroy {
       const trainerFullName = this.currentUser.firstName.trim() + ' ' + this.currentUser.lastName.trim();
       this.subscription = this.viewProjectsService.getAllProjects()
       .subscribe((projectResponse) => {
-        this.allProjects = projectResponse;
+        let u = JSON.parse(localStorage.user);
+        if (u.role === "ROLE_USER") {
+          let approvedDataSource = [];
+          for(let i = 0; i < projectResponse.length; i++) {
+            if(projectResponse[i].status === 'Approved') {
+              approvedDataSource.push(projectResponse[i]);
+            }
+          }
+          // this.dataSource = new MatTableDataSource(approvedDataSource);
+          this.allProjects = approvedDataSource;
+        } else {
+          this.allProjects = projectResponse;
+        }
         // Assign the data to the data source for the table to render
         this.dataSource = new MatTableDataSource(this.allProjects);
         /* place all the current user's project's in an array to easily switch between tabs to see all projects and
