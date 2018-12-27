@@ -125,8 +125,10 @@ export class RegistrationComponent implements OnInit {
   }
 
   checkIfEmailIsInUseKey() {
+    var ref = this.user.email;
     setTimeout(() => {
-    if(this.user.email.endsWith("@revature.com")) {
+    if(ref.endsWith("@revature.com")) {
+      console.log('a');
       this.emailToCheck = this.user.email;
       this.emailIsAvailable = false;
       this.emailIsNotAvailable = false;
