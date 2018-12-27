@@ -137,7 +137,7 @@ export class RegistrationComponent implements OnInit {
 
       this.userService.checkIfEmailIsInUse(this.user.email).subscribe(
         result => {
-          if(result['emailIsInUse'] == 'false') {
+          if(result['emailIsInUse'] == false) {
             this.checkingIfEmailIsInUse = false;
             this.emailIsAvailable = true;
           } else {
@@ -168,7 +168,7 @@ export class RegistrationComponent implements OnInit {
 
       this.userService.checkIfEmailIsInUse(this.user.email).subscribe(
         result => {
-          if(result['emailIsInUse'] == 'false') {
+          if(result['emailIsInUse'] == false) {
             this.checkingIfEmailIsInUse = false;
             this.emailIsAvailable = true;
           } else {
