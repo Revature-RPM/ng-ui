@@ -128,7 +128,6 @@ export class RegistrationComponent implements OnInit {
     var ref = this.user.email;
     setTimeout(() => {
     if(ref.endsWith("@revature.com")) {
-      console.log('a');
       this.emailToCheck = this.user.email;
       this.emailIsAvailable = false;
       this.emailIsNotAvailable = false;
