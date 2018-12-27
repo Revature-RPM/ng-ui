@@ -124,6 +124,8 @@ export class RegistrationComponent implements OnInit {
     });
   }
 
+  /*Function to be called as user types on email input form
+  */
   checkIfEmailIsInUseKey() {
     var ref = this.user.email;
     setTimeout(() => {
@@ -135,8 +137,13 @@ export class RegistrationComponent implements OnInit {
 
       this.userService.checkIfEmailIsInUse(this.user.email).subscribe(
         result => {
-          this.checkingIfEmailIsInUse = false;
-          this.emailIsNotAvailable = true;
+          if(result['emailIsInUse'] == 'false') {
+            this.checkingIfEmailIsInUse = false;
+            this.emailIsAvailable = true;
+          } else {
+            this.checkingIfEmailIsInUse = false;
+            this.emailIsNotAvailable = true;
+          }
 
         }, err => {
           this.checkingIfEmailIsInUse = false;
@@ -150,6 +157,8 @@ export class RegistrationComponent implements OnInit {
   }, 1000)
   }
 
+  /*Function to be called when focus is deselected on email input form
+  */
   checkIfEmailIsInUse() {
     if(this.user.email.endsWith("@revature.com")) {
       this.emailToCheck = this.user.email;
@@ -159,9 +168,14 @@ export class RegistrationComponent implements OnInit {
 
       this.userService.checkIfEmailIsInUse(this.user.email).subscribe(
         result => {
-          this.checkingIfEmailIsInUse = false;
-          this.emailIsNotAvailable = true;
-
+          if(result['emailIsInUse'] == 'false') {
+            this.checkingIfEmailIsInUse = false;
+            this.emailIsAvailable = true;
+          } else {
+            this.checkingIfEmailIsInUse = false;
+            this.emailIsNotAvailable = true;
+          }
+          
         }, err => {
           this.checkingIfEmailIsInUse = false;
           this.emailIsAvailable = true;
