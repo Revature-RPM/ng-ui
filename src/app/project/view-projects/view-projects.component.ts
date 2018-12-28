@@ -1,8 +1,11 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatSort, MatTableDataSource, MatPaginator } from '@angular/material';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd, RoutesRecognized, NavigationStart } from '@angular/router';
 import { Subscription } from 'rxjs';
+import {filter, pairwise} from 'rxjs/operators';
+
+import { Observable } from 'rxjs';
 
 import { Project } from 'src/app/core/models/Project';
 import { ProjectService } from 'src/app/core/services/project.service';
@@ -30,6 +33,10 @@ export class ViewProjectsComponent implements OnInit {
    */
   ngOnInit() {
     this.currentUser = this.userService.getUser();
+    if(sessionStorage.getItem('lastPage') == 'project_Submit') {
+      sessionStorage.removeItem('lastPage');
+      this.yourProjects();
+    }
   }
 
   /**
