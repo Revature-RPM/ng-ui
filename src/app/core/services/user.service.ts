@@ -102,4 +102,10 @@ ${error.error}`
     return this.http.get<string>(environment.url + '/auth/users/emailInUse/' + email)
       .pipe(catchError(this.handleError));
   }
+
+  checkIfUsernameIsAvailable(username): Observable<string> {
+    return this.http.get<string>(environment.url + '/auth/users/usernameAvailable/' + username)
+      .pipe(catchError(this.handleError));
+  }
+
 }
