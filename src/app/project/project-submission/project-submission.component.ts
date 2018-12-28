@@ -285,6 +285,7 @@ export class ProjectSubmissionComponent implements OnInit {
       this.snackBar.open('The new project will be visible momentarily', '', {
         duration: 5000,
       });
+      sessionStorage.setItem('lastPage', 'project_Submit');
       this.router.navigate(['/home']);
     });
   }
