@@ -94,7 +94,7 @@ ${error.error}`
   * Updates the user profile
   */
   updateProfile(user: User): Observable<User> {
-    return this.http.put<User>(environment.url + '/auth/users/update/', user, httpOptions)
+    return this.http.put<User>(environment.url + '/auth/users/', user, httpOptions)
       .pipe(catchError(this.handleError));
   }
 

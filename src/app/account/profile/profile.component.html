@@ -77,22 +77,6 @@
                 </mat-form-field>
               </div>
             </div>
-            
-            <div class="container" fxLayout="row" fxLayoutGap="10%" fxLayoutGap.xs="0">
-                <div fxLayout.xs="column"></div>
-                <div fxLayout.xs="column">
-                  <mat-form-field>
-                    <input matInput readonly={{setReadOnly}} type="password" id="currInputPassword" placeholder="Current Password" 
-                    formControlName="currPassword" (blue)=formFilled() (mouseleave)=formFilled() minlength="8" required>
-                    <mat-error *ngIf="form.get('currPassword').hasError('minlength') && !form.get('currPassword').hasError('required')">
-                      Must be at least <strong>8 characters</strong>
-                    </mat-error>
-                    <mat-error *ngIf="form.get('currPassword').hasError('required')">
-                      Password is <strong>required</strong>
-                    </mat-error>
-                  </mat-form-field>
-                </div>
-              </div>
 
             <div class="container" fxLayout="row" fxLayoutGap="10%" fxLayoutGap.xs="0">
               <div fxLayout.xs="column"></div>
