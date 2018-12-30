@@ -20,6 +20,9 @@ import { UserService } from 'src/app/core/services/user.service';
 export class LoginComponent implements OnInit {
   user: User = { };
 
+  usernameO = false;
+  passwordO = false;
+
   constructor(private userService: UserService, private router: Router, private ngmeta: NgMetaService) { }
 
   ngOnInit() {
@@ -38,5 +41,31 @@ export class LoginComponent implements OnInit {
         alert('Error logging in');
       }
     }, (error) => { alert('ERROR LOGGING IN'); });
+  }
+
+  loginE() {
+    if(!this.user.username || this.user.username.length == 0) {
+      this.usernameO = true;
+      return;
+    } else {
+      this.usernameO = false;
+    }
+    if(!this.user.password || this.user.username.length == 0) {
+      this.passwordO = true;
+      return;
+    } else {
+      this.passwordO = false;
+    }
+
+    if(this.user.username.length != 0 && this.user.password.length != 0) {
+      this.userService.login(this.user).pipe(first()).subscribe((user) => {
+        if (user) {
+          this.router.navigate(['/home']);
+        } else {
+          alert('Error logging in');
+        }
+      }, (error) => { alert('ERROR LOGGING IN'); });
+    }
+
   }
 }

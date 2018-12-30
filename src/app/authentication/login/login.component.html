@@ -11,13 +11,15 @@
             <br />
             <mat-form-field appearance="outline">
               <input matInput type="text" class="form-control" placeholder="Username" name="username" [(ngModel)]="user.username"
-                required>
+                required (keydown.enter)="loginE()">
             </mat-form-field>
+            <div id='o' *ngIf="usernameO">Username must be filled out</div>
             <br />
             <mat-form-field appearance="outline">
               <input matInput type="password" class="form-control" placeholder="Password" name="password" [(ngModel)]="user.password"
-                required>
+                required (keydown.enter)="loginE()">
             </mat-form-field>
+            <div id='o' *ngIf="passwordO">Password must be filled out</div>
             <br />
             <mat-error *ngIf="!formcontrol.form.valid">Please enter all fields</mat-error>
             <button color="accent" mat-flat-button type="button" [disabled]="!formcontrol.form.valid" (click)="login()">Login</button>
