@@ -98,11 +98,17 @@ ${error.error}`
       .pipe(catchError(this.handleError));
   }
 
+  /* Requests if email is in use
+    Resource true if avail, false else
+  */
   checkIfEmailIsInUse(email): Observable<string> {
     return this.http.get<string>(environment.url + '/auth/users/emailInUse/' + email)
       .pipe(catchError(this.handleError));
   }
 
+  /* Requests if username if available
+    Resource true if avail, false else
+  */
   checkIfUsernameIsAvailable(username): Observable<string> {
     return this.http.get<string>(environment.url + '/auth/users/usernameAvailable/' + username)
       .pipe(catchError(this.handleError));

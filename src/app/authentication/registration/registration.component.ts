@@ -194,7 +194,9 @@ export class RegistrationComponent implements OnInit {
     }
   }
 
-
+  /*Function to be called as user types on username input form
+    Checks to see if username for registration is available
+  */
   checkIfUsernameIsAvailableKey() {
     var ref = this.user.username;
     setTimeout(() => {
@@ -224,6 +226,9 @@ export class RegistrationComponent implements OnInit {
     }, 1000)
   }
 
+  /*Function to be called when focus is deselected from username input form
+    Checks to see if username for registration is available
+  */
   checkIfUsernameIsAvailable() {
     if(this.user.username.length >= 8) {
       this.usernameToCheck = this.user.username;
