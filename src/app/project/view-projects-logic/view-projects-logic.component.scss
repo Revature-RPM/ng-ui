@@ -111,3 +111,18 @@
     cursor: pointer;
     font-size:24px;
   }
+
+#registerSpinner {
+    display: inline;
+}
+
+#projectApproved {
+  font-size: 12px;
+  color: green;
+}
+
+#projectDeclined {
+  font-size: 12px;
+  color: red;
+}
+

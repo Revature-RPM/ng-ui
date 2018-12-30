@@ -50,6 +50,14 @@ export class ViewProjectsLogicComponent implements OnInit, OnDestroy {
       this.subscription = this.viewProjectsService.getAllProjects()
       .subscribe((projectResponse) => {
         let u = JSON.parse(localStorage.user);
+
+        for(let i = 0; i < projectResponse.length; i++) {
+         projectResponse[i].approvingProject = false;
+         projectResponse[i].projectApproved = false;
+        }
+
+
+
         if (u.role === "ROLE_USER") {
           let approvedDataSource = [];
           for(let i = 0; i < projectResponse.length; i++) {
@@ -146,4 +154,37 @@ export class ViewProjectsLogicComponent implements OnInit, OnDestroy {
   edit(project) {
     this.router.navigate([project.id + '/edit']);
   }
+
+  approve(project, event) {
+    event.stopPropagation();
+    project.status = 'Approved';
+    project.approvingProject = true;
+    this.viewProjectsService.updateProject(project, project.id).subscribe(
+      result => {
+        project.approvingProject = false;
+        project.projectApproved = true;
+        // alert('Project has been successfully approved');
+      }, err => {
+
+      }
+
+    )
+  }
+
+  decline(project, event) {
+    event.stopPropagation();
+    project.status = 'Declined';
+    project.approvingProject = true;
+    this.viewProjectsService.updateProject(project, project.id).subscribe(
+      result => {
+        project.approvingProject = false;
+        project.projectDeclined = true;
+        // alert('Project has been successfully approved');
+      }, err => {
+
+      }
+    )
+  }
+
+
 }
