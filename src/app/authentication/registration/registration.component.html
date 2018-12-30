@@ -34,8 +34,11 @@
               <input matInput placeholder="Username" formControlName="username"  minlength="8" required 
                 [pattern]="usernamePattern"
                 matTooltip="No underscores at beginning or end of username. Must be at least 8 characters"
-                [(ngModel)]="user.username">
+                [(ngModel)]="user.username" (focusout)="checkIfUsernameIsAvailable()" (keyup)="checkIfUsernameIsAvailableKey()">
             </mat-form-field>
+            <div id="registerSpinner" *ngIf='checkingIfUsernameIsAvailable'><mat-spinner [diameter]="30"></mat-spinner><span>Checking Username</span></div>
+            <div id="availableEmail" *ngIf='usernameIsAvailable'>Username '{{usernameToCheck}}' is available!</div>
+            <div id="emailNotAvailable" *ngIf='usernameIsNotAvailable'>Username '{{usernameToCheck}}' is already in use</div>
             <br />
             <mat-form-field>
               <input matInput type="password" placeholder="Password" formControlName="password" id="inputPassword" required minlength="8" [(ngModel)]="user.password">

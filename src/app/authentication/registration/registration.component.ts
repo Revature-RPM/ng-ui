@@ -45,6 +45,13 @@ export class RegistrationComponent implements OnInit {
   emailIsNotAvailable = false;
   emailToCheck: string;
 
+
+
+  checkingIfUsernameIsAvailable = false;
+  usernameIsAvailable = false;
+  usernameIsNotAvailable = false;
+  usernameToCheck: string;
+
   // this method is called to ensure password was typed correctly
   static MatchPassword(AC: AbstractControl) {
     const password = AC.get('password').value; // to get value in input tag
@@ -186,5 +193,71 @@ export class RegistrationComponent implements OnInit {
 
     }
   }
+
+  /*Function to be called as user types on username input form
+    Checks to see if username for registration is available
+  */
+  checkIfUsernameIsAvailableKey() {
+    var ref = this.user.username;
+    setTimeout(() => {
+      if(ref.length >= 8) {
+        this.usernameToCheck = this.user.username;
+        this.usernameIsAvailable = false;
+        this.usernameIsNotAvailable = false;
+        this.checkingIfUsernameIsAvailable = true;
+  
+        this.userService.checkIfUsernameIsAvailable(this.usernameToCheck).subscribe(
+          result => {
+            if(result['usernameIsAvailable'] ==  true) {
+              this.checkingIfUsernameIsAvailable = false;
+              this.usernameIsAvailable = true;
+            } else {
+              this.checkingIfUsernameIsAvailable = false;
+              this.usernameIsAvailable = false;
+            }
+  
+  
+          }, err => {
+            this.checkingIfUsernameIsAvailable = false;
+            this.usernameIsNotAvailable = true;
+          }
+        )
+      }
+    }, 1000)
+  }
+
+  /*Function to be called when focus is deselected from username input form
+    Checks to see if username for registration is available
+  */
+  checkIfUsernameIsAvailable() {
+    if(this.user.username.length >= 8) {
+      this.usernameToCheck = this.user.username;
+      this.usernameIsAvailable = false;
+      this.usernameIsNotAvailable = false;
+      this.checkingIfUsernameIsAvailable = true;
+
+      this.userService.checkIfUsernameIsAvailable(this.usernameToCheck).subscribe(
+        result => {
+          if(result['usernameIsAvailable'] ==  true) {
+            this.checkingIfUsernameIsAvailable = false;
+            this.usernameIsAvailable = true;
+          } else {
+            this.checkingIfUsernameIsAvailable = false;
+            this.usernameIsAvailable = false;
+          }
+
+
+        }, err => {
+          this.checkingIfUsernameIsAvailable = false;
+          this.usernameIsNotAvailable = true;
+        }
+      )
+
+
+
+    }
+  }
+
+
 
 }
