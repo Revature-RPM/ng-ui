@@ -68,4 +68,14 @@ export class LoginComponent implements OnInit {
     }
 
   }
+
+  checkEP(event) {
+    if(event.key.length == 1)
+    this.passwordO = false;
+  }
+
+  checkE(event) {
+    if(event.key.length == 1)
+    this.usernameO = false;
+  }
 }
