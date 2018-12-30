@@ -132,6 +132,9 @@ export class RegistrationComponent implements OnInit {
   }
 
   /*Function to be called as user types on email input form
+  Checks first to see if there is a value for the email, then
+  makes the request over the "internodes" to see if the email
+  is available given that '@revature.com' is within the email
   */
   checkIfEmailIsInUseKey() {
     var ref = this.user.email;
