@@ -9,4 +9,6 @@ export interface Project {
     techStack?: string;
     status?: string;
     description?: string;
+    approvingProject?: boolean;
+    projectApproved?: boolean;
  }
