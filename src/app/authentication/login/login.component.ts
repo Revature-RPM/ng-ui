@@ -20,6 +20,9 @@ import { UserService } from 'src/app/core/services/user.service';
 export class LoginComponent implements OnInit {
   user: User = { };
 
+  usernameO = false;
+  passwordO = false;
+
   constructor(private userService: UserService, private router: Router, private ngmeta: NgMetaService) { }
 
   ngOnInit() {
@@ -38,5 +41,47 @@ export class LoginComponent implements OnInit {
         alert('Error logging in');
       }
     }, (error) => { alert('ERROR LOGGING IN'); });
+  }
+
+  /* Logs in user upon enter
+  */
+  loginE() {
+    if(!this.user.username || this.user.username.length == 0) {
+      this.usernameO = true;
+      return;
+    } else {
+      this.usernameO = false;
+    }
+    if(!this.user.password || this.user.username.length == 0) {
+      this.passwordO = true;
+      return;
+    } else {
+      this.passwordO = false;
+    }
+
+    if(this.user.username.length != 0 && this.user.password.length != 0) {
+      this.userService.login(this.user).pipe(first()).subscribe((user) => {
+        if (user) {
+          this.router.navigate(['/home']);
+        } else {
+          alert('Error logging in');
+        }
+      }, (error) => { alert('ERROR LOGGING IN'); });
+    }
+
+  }
+
+  /* Listens to key input on password input field to remove 'Password is required'
+  */
+  checkEP(event) {
+    if(event.key.length == 1)
+    this.passwordO = false;
+  }
+
+  /* Listens to key input on username input field to remove 'Username is required'
+  */
+  checkE(event) {
+    if(event.key.length == 1)
+    this.usernameO = false;
   }
 }
