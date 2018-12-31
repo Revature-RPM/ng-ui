@@ -38,12 +38,12 @@
           <button class="formatButtons" *ngIf="project.status == 'pending' || project.status == 'Pending'" color=primary
             (click)="approve(project, $event)">Approve</button>
           <button class="formatButtons" *ngIf="project.status == 'pending' || project.status == 'Pending'" color=warn
-            (click)="decline(project, $event)">Decline</button>
+            (click)="decline(project, $event)">Deny</button>
           <div id="registerSpinner" *ngIf='project.approvingProject'>
             <mat-spinner [diameter]="20"></mat-spinner><span>Updating project</span>
           </div>
           <div id="projectApproved" *ngIf='project.projectApproved'>Project Approved</div>
-          <div id="projectDeclined" *ngIf='project.projectDeclined'>Project Declined</div>
+          <div id="projectDeclined" *ngIf='project.projectDeclined'>Project Denied</div>
 
         </td>
       </ng-container>
