@@ -62,28 +62,20 @@
               </div>
 
               <!-- display project's group members and project's description -->
-              <div class="container" fxLayout.xs="column">
-                <div id="group-members-label" fxLayout="row">
-                  <label><strong> Group Members: </strong></label>
+              <div class="container" fxLayout="column">
+                  <div id="group-members-label">
+                    <label><strong> Group Members: </strong></label>
+                    <div>{{project.groupMembers.join(', ')}}</div>
+                  </div>
+  
+                  <!--  this line is needed for styling purpose -->
+  
+                  <div id="group-members-label">
+                    <label><strong> Description: </strong></label>
+                    <div>{{project.description}}</div>
+                  </div>
                 </div>
-                <div id="description-label" fxLayout="row">
-
-                  <!-- this line is needed for styling purpose -->
-                  <label style="color: white"> ____ </label>
-                  
-                  <label><strong> Description: </strong></label>
-                </div>
-              </div>
-              <div class="container" fxLayout.xs="column">
-                <div id="project-members" fxLayout="row">
-                  <textarea rows="3" cols="100" placeholder="No Project Description" disabled=true readonly>{{project.groupMembers.join(', ')}}
-                  </textarea>
-                </div>
-                <div id="project-description" fxLayout="row">
-                  <textarea rows="10" cols="100" placeholder="No Project Description" disabled=true readonly>{{project.description}}
-                  </textarea>
-                </div>
-              </div>
+  
 
               <!-- display buttons for routing to project's codebase as well as routing to editing a project -->
               <div fxLayout.xs="column">

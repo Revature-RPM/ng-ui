@@ -45,6 +45,13 @@ export class RegistrationComponent implements OnInit {
   emailIsNotAvailable = false;
   emailToCheck: string;
 
+
+
+  checkingIfUsernameIsAvailable = false;
+  usernameIsAvailable = false;
+  usernameIsNotAvailable = false;
+  usernameToCheck: string;
+
   // this method is called to ensure password was typed correctly
   static MatchPassword(AC: AbstractControl) {
     const password = AC.get('password').value; // to get value in input tag
@@ -125,34 +132,39 @@ export class RegistrationComponent implements OnInit {
   }
 
   /*Function to be called as user types on email input form
+  Checks first to see if there is a value for the email, then
+  makes the request over the "internodes" to see if the email
+  is available given that '@revature.com' is within the email
   */
   checkIfEmailIsInUseKey() {
     var ref = this.user.email;
     setTimeout(() => {
-    if(ref.endsWith("@revature.com")) {
-      this.emailToCheck = this.user.email;
-      this.emailIsAvailable = false;
-      this.emailIsNotAvailable = false;
-      this.checkingIfEmailIsInUse = true;
+      if(ref){
+        if(ref.endsWith("@revature.com")) {
+          this.emailToCheck = this.user.email;
+          this.emailIsAvailable = false;
+          this.emailIsNotAvailable = false;
+          this.checkingIfEmailIsInUse = true;
 
-      this.userService.checkIfEmailIsInUse(this.user.email).subscribe(
-        result => {
-          if(result['emailIsInUse'] == false) {
-            this.checkingIfEmailIsInUse = false;
-            this.emailIsAvailable = true;
-          } else {
-            this.checkingIfEmailIsInUse = false;
-            this.emailIsNotAvailable = true;
-          }
+          this.userService.checkIfEmailIsInUse(this.user.email).subscribe(
+            result => {
+              if(result['emailIsInUse'] == false) {
+                this.checkingIfEmailIsInUse = false;
+                this.emailIsAvailable = true;
+              } else {
+                this.checkingIfEmailIsInUse = false;
+                this.emailIsNotAvailable = true;
+              }
 
-        }, err => {
-          this.checkingIfEmailIsInUse = false;
-          this.emailIsAvailable = true;
+            }, err => {
+              this.checkingIfEmailIsInUse = false;
+              this.emailIsAvailable = true;
 
+
+            }
+          )
 
         }
-      )
-
     }
   }, 1000)
   }
@@ -186,5 +198,71 @@ export class RegistrationComponent implements OnInit {
 
     }
   }
+
+  /*Function to be called as user types on username input form
+    Checks to see if username for registration is available
+  */
+  checkIfUsernameIsAvailableKey() {
+    var ref = this.user.username;
+    setTimeout(() => {
+      if(ref.length >= 8) {
+        this.usernameToCheck = this.user.username;
+        this.usernameIsAvailable = false;
+        this.usernameIsNotAvailable = false;
+        this.checkingIfUsernameIsAvailable = true;
+  
+        this.userService.checkIfUsernameIsAvailable(this.usernameToCheck).subscribe(
+          result => {
+            if(result['usernameIsAvailable'] ==  true) {
+              this.checkingIfUsernameIsAvailable = false;
+              this.usernameIsAvailable = true;
+            } else {
+              this.checkingIfUsernameIsAvailable = false;
+              this.usernameIsNotAvailable = true;
+            }
+  
+  
+          }, err => {
+            this.checkingIfUsernameIsAvailable = false;
+            this.usernameIsNotAvailable = true;
+          }
+        )
+      }
+    }, 1000)
+  }
+
+  /*Function to be called when focus is deselected from username input form
+    Checks to see if username for registration is available
+  */
+  checkIfUsernameIsAvailable() {
+    if(this.user.username.length >= 8) {
+      this.usernameToCheck = this.user.username;
+      this.usernameIsAvailable = false;
+      this.usernameIsNotAvailable = false;
+      this.checkingIfUsernameIsAvailable = true;
+
+      this.userService.checkIfUsernameIsAvailable(this.usernameToCheck).subscribe(
+        result => {
+          if(result['usernameIsAvailable'] ==  true) {
+            this.checkingIfUsernameIsAvailable = false;
+            this.usernameIsAvailable = true;
+          } else {
+            this.checkingIfUsernameIsAvailable = false;
+            this.usernameIsNotAvailable = true;
+          }
+
+
+        }, err => {
+          this.checkingIfUsernameIsAvailable = false;
+          this.usernameIsNotAvailable = true;
+        }
+      )
+
+
+
+    }
+  }
+
+
 
 }

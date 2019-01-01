@@ -287,7 +287,11 @@ export class ProjectSubmissionComponent implements OnInit {
       });
       sessionStorage.setItem('lastPage', 'project_Submit');
       this.router.navigate(['/home']);
-    });
+    },
+    error => {
+      alert('Error submitting project');
+    }
+    );
   }
 
   /**
