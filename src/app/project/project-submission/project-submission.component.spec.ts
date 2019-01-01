@@ -6,6 +6,7 @@ import { SharedModule } from '../../shared/shared.module';
 
 import { ProjectSubmissionComponent } from './project-submission.component';
 import { AppModule } from 'src/app/app.module';
+import { By } from '@angular/platform-browser';
 
 /**
  * This test suite serves to check the proper creation of the ProjectSubmission
@@ -35,4 +36,9 @@ describe('ProjectSubmissionComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should display \'Project Name\' in mat-label', () => {
+    expect(fixture.debugElement.query(By.css('mat-label')).nativeElement.textContent).toContain('Project Name');
+  })
+
 });

@@ -12,6 +12,7 @@ import { CoreModule } from './core/core.module';
 import { environment } from 'src/environments/environment';
 import { TokenInterceptor} from 'src/app/core/services/jwtInterceptor.interceptor';
 import 'hammerjs';
+import { AuthenticationModule } from './authentication/authentication.module';
 
 export function tokenGetter() {
   return window.localStorage.getItem('jwt');
@@ -30,6 +31,7 @@ export function tokenGetter() {
     MatJumbotronModule.forRoot(),
     NgMetaModule.forRoot(),
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    AuthenticationModule
   ],
   providers: [
     {
