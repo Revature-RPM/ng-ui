@@ -77,7 +77,7 @@ export class EditProjectComponent implements OnInit {
               this.projectToUpdate = this.allProjects[i];
             }
           }
-        })
+        });
       });
     }
   }
@@ -105,6 +105,10 @@ export class EditProjectComponent implements OnInit {
    * @author Shawn Bickel (1810-Oct08-Java-USF)
    */
   submitForm() {
+    if (localStorage.getItem('user')['role'] ==='ROLE_USER'){
+if (this.projectToUpdate.status === 'Approved'){
+this.projectToUpdate.status = 'Pending';
+}}
     this.projectService.updateProject(this.projectToUpdate, this.projectToUpdate.id).subscribe(project => {});
     this.snackBar.open('The edited changes may take time to appear', '', {
       duration: 5000,
