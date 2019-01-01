@@ -4,7 +4,7 @@ import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 const routes: Routes = [
   { path: '', loadChildren: './project/project.module#ProjectModule', pathMatch: 'full' },
   { path: 'account', loadChildren: './account/account.module#AccountModule' },
-  { path: 'auth', loadChildren: './authentication/authentication.module#AuthenticationModule' }
+  { path: 'auth', loadChildren: './authentication/authentication.module#AuthenticationModule', pathMatch: 'full' }
 ];
 
 @NgModule({
