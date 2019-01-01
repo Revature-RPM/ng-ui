@@ -31,7 +31,7 @@ describe('ViewUsersComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ViewUsersComponent);
     component = fixture.componentInstance;
-    //fixture.detectChanges();
+    fixture.detectChanges();
   });
 
   it('should create', () => {
