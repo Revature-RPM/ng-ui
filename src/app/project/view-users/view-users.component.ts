@@ -25,7 +25,7 @@ export class ViewUsersComponent implements OnInit {
     if (this.userService.user.role === 'ROLE_ADMIN') {
     this.userSubscription = this.userService.getAllUsers().subscribe(
       data => {
-        console.log(data);
+        // console.log(data);
         this.allUsersArray = data;
         this.dataSourceUsers = new MatTableDataSource(this.allUsersArray);
         this.dataSourceUsers.sort = this.sortUsers;
