@@ -88,7 +88,7 @@
             <button mat-raised-button disabled>Disabled</button>      
           </div>
           
-        
+          <div class = "marginDiv">
           <h3>Add a Group Member</h3>
           <mat-form-field>
             <mat-label>Add a Group Member</mat-label>
@@ -102,7 +102,7 @@
              <button mat-raised-button (click)= "removeGroupMember($event)" >{{groupMember}}</button>
             </span>
           </span>
-        
+          </div>
             <br>
            <button (click)="submitForm()" [disabled]="(!name.valid) || (!batch.valid) || (!trainerName.valid) || 
           (!description.valid) || (!techStack.valid)" type="submit" id="submit" mat-flat-button color="accent">Update Project</button>
