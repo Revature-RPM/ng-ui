@@ -13,6 +13,8 @@ $minimal-padding: 1%;
 #title{
     text-align: $alignment;
     padding: $minimal-padding;
+    display: inline-block;
+    margin-left:34%;
     
 }
 
@@ -45,6 +47,14 @@ form {
     font-size: 23px;
   }
  
+
+  #icon {
+      float:left;
+      margin-left:5%;
+      margin-top: 35px;
+  }
+
   #hideMePlease{
     display:none;
 }
+

@@ -125,6 +125,14 @@ export class EditProjectComponent implements OnInit {
     });
   }
 
+
+  back() {
+    sessionStorage.setItem('lastPage', 'edit');
+    this.router.navigate(['home']);
+  }
+
+
+
     /**
    * These methods allow removal and adding users to projects when editing.
    * @author Ryan Williams (1810-Oct20-Java-USF)
@@ -142,4 +150,5 @@ export class EditProjectComponent implements OnInit {
     updatedArr.push(nameToAdd);
     this.projectToUpdate.groupMembers = updatedArr;
   }
+
 }

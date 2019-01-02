@@ -42,6 +42,11 @@
       <tr mat-header-row *matHeaderRowDef="displayedUserColumns; sticky: true"></tr>
       <tr mat-row *matRowDef="let project; columns: displayedUserColumns;"></tr>
     </table>
+
+    <div id="a" *ngIf='retrievingProjects'><div id='aa'><mat-spinner [diameter]="70"></mat-spinner></div><div id='aaa'><span>Retrieving Users</span></div></div>
+    <br *ngIf='retrievingProjects'>
+    <br *ngIf='retrievingProjects'>
+    <br *ngIf='retrievingProjects'>
     <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
   </div>
 </div>
