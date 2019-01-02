@@ -30,7 +30,7 @@ phases:
         commands:
         # Builds Angular application. You can also build using custom environment here like mock or staging
         - echo Build started on `date`
-        - ng build --${BUILD_ENV}
+        - ng build --${BUILD_ENV} --aot
 
     post_build:
         commands:
