@@ -22,7 +22,7 @@ phases:
         - sudo apt-get update -y
         - sudo apt-get install -y yarn
         # Install Angular CLI, If you are not using Angular 6, install angular/cli@1.7.0 or lower, confirm by running ng -v inside your project folder
-        - yarn global add @angular/cli@6.0.8
+        - yarn global add @angular/cli@7.0.3
         # Install node dependancies.
         - yarn install
 
