@@ -2,7 +2,7 @@ version: 0.2
 
 env:
     variables:
-        S3_BUCKET: "rpmclient.revature.com"
+        S3_BUCKET: "rpm-client.revature.com"
 #         BUILD_ENV : "prod"
 
 phases:
