@@ -11,6 +11,7 @@
     "experimentalDecorators": true,
     "target": "es5",
     "paths": {
+      "@angular/": ["node_modules/@angular/"],
       "jszip": [
         "node_modules/jszip/dist/jszip.min.js"
       ]
