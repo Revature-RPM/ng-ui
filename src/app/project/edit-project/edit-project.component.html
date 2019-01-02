@@ -66,6 +66,26 @@
           </tr>
         </table>
     
+        <!-- This exists only to stop the form propagation from hitting the buttons below, enter key was causing issues removing items from the groupmember array-->
+        <div class="example-button-row" id="hideMePlease">
+          <button mat-raised-button>Basic</button>
+          <button mat-raised-button color="primary">Primary</button>
+          <button mat-raised-button color="accent">Accent</button>
+          <button mat-raised-button color="warn">Warn</button>
+          <button mat-raised-button disabled>Disabled</button>      
+        </div>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Add Group Member" (keydown.enter)="addGroupMember($event)">
+        </mat-form-field>
+
+        <h3>Select a Group Member to Remove</h3>
+        <span *ngFor = "let groupMember of this.projectToUpdate.groupMembers">
+          <span>
+           <button mat-raised-button (click)= "removeGroupMember($event)" >{{groupMember}}</button>
+          </span>
+        </span>
+
         <table class="example-full-width" cellspacing="5"><tr>
             <td>
                 <mat-form-field class="example-full-width"  appearance="outline">

@@ -41,4 +41,21 @@ export class ViewUsersComponent implements OnInit {
   applyUserFilter(filterValue: string) {
     this.dataSourceUsers.filter = filterValue.trim().toLowerCase();
   }
+  updateToAdmin(user){
+    if(user.username !=='admin') {
+      // console.log('Clicked');
+      // user.role = 'ROLE_ADMIN' + ' special';
+      this.userService.updateUserToAdmin(user).subscribe(
+        result => {
+          user.role = 'ROLE_ADMIN';
+         // alert(user.firstName + ' has been updated to' + user.role)
+        },
+        err => {
+          user.role = 'ROLE_USER';
+         alert(user.firstName + ' role has not been updated Successfully')
+        }
+      );
+    }
+
+  }
 }
