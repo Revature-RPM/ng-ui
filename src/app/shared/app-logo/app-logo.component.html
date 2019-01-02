@@ -10,7 +10,7 @@
 <div id="toolbar">
         <mat-toolbar class="my-theme" color="white">
             <mat-toolbar-row>
-                <button id="icon" mat-icon-button mat-stroked-button mat-button matTooltip="Home" matTooltipPosition="right"
+                <button *ngIf='!loginRegister'id="icon" mat-icon-button mat-stroked-button mat-button matTooltip="Home" matTooltipPosition="right"
                     (click)="homepageShortcut()">
                     <img id="home-icon" src="../../../assets/icons/RPM_Logo.png">
                 </button>

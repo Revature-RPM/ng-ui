@@ -8,9 +8,14 @@ import { Router } from '@angular/router';
 })
 export class AppLogoComponent implements OnInit {
 
+  loginRegister = false;
+
   constructor(private router: Router) { }
 
   ngOnInit() {
+    if(this.router.url == '/auth/login' || this.router.url == '/auth/register') {
+      this.loginRegister = true;
+    }
   }
 
   homepageShortcut() {
