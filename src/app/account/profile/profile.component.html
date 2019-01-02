@@ -57,23 +57,25 @@
               <div fxLayout.xs="column"></div>
               <div fxLayout.xs="column">
                 <mat-form-field>
-                  <input matInput readonly={{setReadOnly}} id="inputEmail" placeholder="Email" formControlName="email"
-                    (blur)=formFilled() (mouseleave)=formFilled() [pattern]="emailPattern" required>
+                  <input matInput readonly=true id="inputEmail" placeholder="Email" formControlName="email"
+                    (blur)=formFilled() (mouseleave)=formFilled() [pattern]="emailPattern" style="background-color: rgb(214, 195, 195)"><!--required>
                   <mat-error *ngIf="form.controls.email.errors?.RevatureEmail">
                     Must end with <strong>@revature.com</strong>
                   </mat-error>
+                  -->
                 </mat-form-field>
               </div>
               <div fxLayout.xs="column">
                 <mat-form-field>
-                  <input matInput readonly={{setReadOnly}} id="inputUsername" placeholder="Username" formControlName="username"
-                    (blur)=formFilled() (mouseleave)=formFilled() minlength="8" required>
+                  <input matInput readonly=true id="inputUsername" placeholder="Username" formControlName="username"
+                    (blur)=formFilled() (mouseleave)=formFilled() minlength="8" style="background-color: rgb(214, 195, 195)"> <!--required>
                   <mat-error *ngIf="form.get('username').hasError('minlength') && !form.get('username').hasError('required')">
                     Must be at least <strong>8 characters</strong> long
                   </mat-error>
                   <mat-error *ngIf="form.get('username').hasError('required')">
                     Username is <strong>required</strong>
                   </mat-error>
+                  -->
                 </mat-form-field>
               </div>
             </div>
