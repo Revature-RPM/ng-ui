@@ -125,5 +125,10 @@ export class EditProjectComponent implements OnInit {
     })
   }
 
+  back() {
+    sessionStorage.setItem('lastPage', 'edit');
+    this.router.navigate(['home']);
+  }
+
 
 }

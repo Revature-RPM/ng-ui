@@ -23,6 +23,7 @@ export class ViewProjectsComponent implements OnInit {
   projectsPage = false;
   userProjectsPage = false;
   currentUser: User;
+  tab = 0;
   constructor(private router: Router, private viewProjectsService: ProjectService, private userService: UserService) { }
 
   /**
@@ -35,8 +36,18 @@ export class ViewProjectsComponent implements OnInit {
     this.currentUser = this.userService.getUser();
     if(sessionStorage.getItem('lastPage') == 'project_Submit') {
       sessionStorage.removeItem('lastPage');
+      this.tab = 0;
+      this.yourProjects();
+    } else if (sessionStorage.getItem('lastPage') == 'edit' && this.currentUser.role == 'ROLE_ADMIN') {
+      sessionStorage.removeItem('lastPage');
+      this.tab = 2;
+      this.projects();
+    } else if (sessionStorage.getItem('lastPage') == 'edit' && this.currentUser.role != 'ROLE_ADMIN') {
+      sessionStorage.removeItem('lastPage');
+      this.tab = 0;
       this.yourProjects();
     } else if (this.currentUser.role !== 'ROLE_ADMIN') {
+      this.tab = 0;
       this.yourProjects();
     }
   }
