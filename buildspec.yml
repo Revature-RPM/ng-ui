@@ -2,8 +2,8 @@ version: 0.2
 
 env:
     variables:
-        S3_BUCKET: "<S3_BUCKET_HERE>"
-        APP_NAME: "<APP_NAME_HERE>"
+        S3_BUCKET: "rpmclient.revature.com"
+        APP_NAME: "rpm"
         BUILD_ENV : "prod"
 
 phases:
