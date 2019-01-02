@@ -55,6 +55,8 @@ export class ProjectSubmissionComponent implements OnInit {
   groupMemberString: string;
   zipLinksString: string;
 
+  submitting = false;
+
 
   /**
    * This method is no longer used
@@ -256,7 +258,7 @@ export class ProjectSubmissionComponent implements OnInit {
   submitForm() {
     // FormData is used to hold form fields and their values as key/value pairs to easily transfer data in a form
     const formData = new FormData();
-
+    this.submitting = true;
     // append the data of the form as key/value pairs using field names on the server as keys and data in the form as values
     formData.append('name', this.projectToUpload.name);
     formData.append('batch', this.projectToUpload.batch);
@@ -282,6 +284,7 @@ export class ProjectSubmissionComponent implements OnInit {
 
     // the FormData object is then sent to a service where it is submitted to the server as an http post request
     this.projectService.createProject(formData).subscribe(project => {
+      this.submitting = false;
       this.snackBar.open('The new project will be visible momentarily', '', {
         duration: 5000,
       });

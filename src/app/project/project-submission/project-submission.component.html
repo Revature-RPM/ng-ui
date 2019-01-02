@@ -105,9 +105,15 @@
               </tr>
             </table>
             <br>
-           <button (click)="submitForm()" [disabled]="(!name.valid || name.pristine) || (!batch.valid || batch.pristine) || (!trainerName.valid) ||
+           <button [disabled] = "submitting" (click)="submitForm()" [disabled]="(!name.valid || name.pristine) || (!batch.valid || batch.pristine) || (!trainerName.valid) ||
            (!groupMembers.valid) || (!description.valid || description.pristine) || (!zipLinks.valid) ||
            (!techStack.valid || techStack.pristine) || !validScreenshots || !validGithubURL" type="submit" id="submit" mat-flat-button color="accent">Submit Project</button>
+
+           <br *ngIf='submitting'>
+           <br *ngIf='submitting'>
+           <br *ngIf='submitting'>
+           <div id="registerSpinner" *ngIf='submitting'><mat-spinner [diameter]="30"></mat-spinner><span>Submitting</span></div>
+
            <br>
            <br>
 
