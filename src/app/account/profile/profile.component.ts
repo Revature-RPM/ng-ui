@@ -92,7 +92,7 @@ export class ProfileComponent implements OnInit {
           this.userService.user = user;
 
           localStorage.setItem('user', JSON.stringify(this.user));
-          alert('profile updated');
+          // alert('profile updated');
 
           this.fillFormGroup(this.user.firstName, this.user.lastName, this.user.email, this.user.username, this.user.password);
         }
