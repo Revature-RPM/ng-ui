@@ -59,6 +59,13 @@
           </tr>
         </table>
     
+        <h3>Select a Group Member to Remove</h3>
+        <span *ngFor = "let groupMember of this.projectToUpdate.groupMembers">
+          <span>
+           <button mat-raised-button (click)= "removeGroupMember($event)" >{{groupMember}}</button>
+          </span>
+        </span>
+        
         <table class="example-full-width" cellspacing="5"><tr>
             <td>
                 <mat-form-field class="example-full-width"  appearance="outline">

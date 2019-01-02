@@ -73,7 +73,7 @@ export class EditProjectComponent implements OnInit {
         this.projectService.getAllProjects().pipe(first()).subscribe(allProjects => {
           this.allProjects = allProjects;
           for(var i = 0; i<this.allProjects.length; i++) {
-            if(params['id'] == this.allProjects[i].id) {
+            if (params['id'] == this.allProjects[i].id) {
               this.projectToUpdate = this.allProjects[i];
             }
           }
@@ -106,7 +106,7 @@ export class EditProjectComponent implements OnInit {
    */
   submitForm() {
     if (JSON.parse(localStorage.getItem('user')).role === 'ROLE_USER') {
-      if (this.projectToUpdate.status === 'Approved'){
+      if (this.projectToUpdate.status === 'Approved') {
         this.projectToUpdate.status = 'Pending';
       }
     }
@@ -122,8 +122,14 @@ export class EditProjectComponent implements OnInit {
       this.router.navigate(['home']);
     }, helloTwo => {
 
-    })
+    });
   }
-
-
+  removeGroupMember(e) {// project : Project
+    const updatedArr = this.projectToUpdate.groupMembers;
+    const nameToRemove = e.target.textContent;
+    const index = updatedArr.indexOf(nameToRemove);
+    updatedArr.splice(index, 1);
+    this.projectToUpdate.groupMembers = updatedArr;
+    console.log(updatedArr);
+  }
 }
