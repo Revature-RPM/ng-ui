@@ -124,12 +124,22 @@ export class EditProjectComponent implements OnInit {
 
     });
   }
+
+    /**
+   * These methods allow removal and adding users to projects when editing.
+   * @author Ryan Williams (1810-Oct20-Java-USF)
+   */
   removeGroupMember(e) {// project : Project
     const updatedArr = this.projectToUpdate.groupMembers;
     const nameToRemove = e.target.textContent;
     const index = updatedArr.indexOf(nameToRemove);
     updatedArr.splice(index, 1);
     this.projectToUpdate.groupMembers = updatedArr;
-    console.log(updatedArr);
+  }
+  addGroupMember(event: any) {
+    const updatedArr = this.projectToUpdate.groupMembers;
+    const nameToAdd = event.target.value;
+    updatedArr.push(nameToAdd);
+    this.projectToUpdate.groupMembers = updatedArr;
   }
 }
