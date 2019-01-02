@@ -106,9 +106,9 @@ export class EditProjectComponent implements OnInit {
    */
   submitForm() {
     if (JSON.parse(localStorage.getItem('user')).role === 'ROLE_USER') {
-      if (this.projectToUpdate.status === 'Approved') {
+      // if (this.projectToUpdate.status === 'Approved') {
         this.projectToUpdate.status = 'Pending';
-      }
+      // }
     }
     this.projectService.updateProject(this.projectToUpdate, this.projectToUpdate.id).subscribe(project => { });
     this.snackBar.open('The edited changes may take time to appear', '', {
