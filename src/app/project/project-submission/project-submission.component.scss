@@ -18,8 +18,10 @@ $minimal-padding: 1%;
 
 #submit{
     text-align: $alignment;
-    padding-left: 10%;;
+    padding-left: 10%;
     padding-right: 10%;
+    // background-color:#000dff86;
+    // color: #fff;
 }
 
 form {
@@ -37,7 +39,7 @@ form {
   }
 
   #buttonScreenshotTrigger{
-      background-color:#ff8a00;
+      background-color:#000dff86;
   }
 
   #requiredScreenShotButton{

@@ -87,13 +87,13 @@ export class ProfileComponent implements OnInit {
         if (user) {
           this.user = user;
           this.userService.user = user;
-          alert('profile updated');
+          // alert('profile updated');
           this.fillFormGroup(this.user.firstName, this.user.lastName, this.user.email, this.user.username, this.user.password);
         }
       }, (error) => {
           this.user = this.userService.getUser();
           this.fillFormGroup(this.user.firstName, this.user.lastName, this.user.email, this.user.username, this.user.password);
-          alert('error updating profile');
+          // alert('error updating profile');
       });
     }
   }
