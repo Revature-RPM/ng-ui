@@ -90,7 +90,10 @@ export class ProfileComponent implements OnInit {
         if (user) {
           this.user = user;
           this.userService.user = user;
+
+          localStorage.setItem('user', JSON.stringify(this.user));
           // alert('profile updated');
+
           this.fillFormGroup(this.user.firstName, this.user.lastName, this.user.email, this.user.username, this.user.password);
         }
       }, (error) => {
