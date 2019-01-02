@@ -19,6 +19,9 @@ export class ViewUsersComponent implements OnInit {
   @ViewChild(MatSort) sortUsers: MatSort;
   @ViewChild(MatPaginator) userPaginator: MatPaginator;
   userSubscription: Subscription;
+
+  retrievingProjects = true;
+
   constructor(private router: Router, private viewProjectsService: ProjectService, private userService: UserService) { }
 
   ngOnInit() {
@@ -26,6 +29,7 @@ export class ViewUsersComponent implements OnInit {
     this.userSubscription = this.userService.getAllUsers().subscribe(
       data => {
         // console.log(data);
+        this.retrievingProjects = false;
         this.allUsersArray = data;
         this.dataSourceUsers = new MatTableDataSource(this.allUsersArray);
         this.dataSourceUsers.sort = this.sortUsers;
