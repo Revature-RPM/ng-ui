@@ -30,8 +30,8 @@ export function tokenGetter() {
     ProjectModule,
     MatJumbotronModule.forRoot(),
     NgMetaModule.forRoot(),
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
-    AuthenticationModule
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    // AuthenticationModule
   ],
   providers: [
     {
