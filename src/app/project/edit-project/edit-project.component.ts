@@ -40,6 +40,8 @@ export class EditProjectComponent implements OnInit {
   questionType = 'Enter the name of the group member';
   result;
 
+  groupMember = '';
+
   subscription: Subscription; // will be used to subscribe to the results of an observable
 
   constructor(private router: Router,
@@ -144,11 +146,12 @@ export class EditProjectComponent implements OnInit {
     updatedArr.splice(index, 1);
     this.projectToUpdate.groupMembers = updatedArr;
   }
-  addGroupMember(event: any) {
+  addGroupMember() {
     const updatedArr = this.projectToUpdate.groupMembers;
-    const nameToAdd = event.target.value;
+    const nameToAdd = this.groupMember;
     updatedArr.push(nameToAdd);
     this.projectToUpdate.groupMembers = updatedArr;
+    this.groupMember = '';
   }
 
 }
