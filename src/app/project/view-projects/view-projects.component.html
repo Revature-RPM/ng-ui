@@ -8,7 +8,7 @@
       </button>
       <span class="example-fill-remaining-space"></span>
       <!-- <button mat-rasied-button (click)="turnOnApproveFilter()">Approved</button> -->
-      <mat-tab-group>
+      <mat-tab-group [selectedIndex] = "tab">
         <!-- Button is only shown if role is admin -->
         <mat-tab *ngIf="currentUser.role === 'ROLE_ADMIN'" >
           <ng-template mat-tab-label >

@@ -35,10 +35,12 @@
       <ng-container matColumnDef="status">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
         <td mat-cell *matCellDef="let project"> {{project.status}}
-          <button class="formatButtons" *ngIf="project.status == 'pending' || project.status == 'Pending'" color=primary
-            (click)="approve(project, $event)">Approve</button>
-          <button class="formatButtons" *ngIf="project.status == 'pending' || project.status == 'Pending'" color=warn
-            (click)="decline(project, $event)">Deny</button>
+
+          <button mat-icon-button mat-stroked-button class="formatButtons" *ngIf="project.status == 'pending' || project.status == 'Pending'" color=primary
+            (click)="approve(project, $event)"><mat-icon>check</mat-icon></button>
+          <button mat-icon-button mat-stroked-button class="formatButtons" *ngIf="project.status == 'pending' || project.status == 'Pending'" color=warn
+            (click)="decline(project, $event)"><mat-icon>clear</mat-icon></button>
+
           <div id="registerSpinner" *ngIf='project.approvingProject'>
             <mat-spinner [diameter]="20"></mat-spinner><span>Updating project</span>
           </div>
@@ -116,6 +118,12 @@
       </tr>
       <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></tr>
     </table>
+
+    <div *ngIf='retrievingProjects'><div id='aa'><mat-spinner [diameter]="70"></mat-spinner></div><div id='aaa'><span>Retrieving Projects</span></div></div>
+    <br *ngIf='retrievingProjects'>
+    <br *ngIf='retrievingProjects'>
+    <br *ngIf='retrievingProjects'>
+
     <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
   </div>
 </div>

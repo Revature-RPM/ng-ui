@@ -34,6 +34,9 @@ export class ViewProjectsLogicComponent implements OnInit, OnDestroy {
   allProjects: Project[];
   userProjects: Project[];
   subscription: Subscription;
+
+  retrievingProjects = true;
+
   constructor(private router: Router, private viewProjectsService: ProjectService, private userService: UserService) { }
 
   /**
@@ -50,6 +53,8 @@ export class ViewProjectsLogicComponent implements OnInit, OnDestroy {
       this.subscription = this.viewProjectsService.getAllProjects()
       .subscribe((projectResponse) => {
         let u = JSON.parse(localStorage.user);
+
+        this.retrievingProjects = false;
 
         for(let i = 0; i < projectResponse.length; i++) {
          projectResponse[i].approvingProject = false;

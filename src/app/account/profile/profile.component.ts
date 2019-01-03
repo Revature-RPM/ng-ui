@@ -73,27 +73,35 @@ export class ProfileComponent implements OnInit {
    */
   updateProfile() {
     if (this.form.valid) {
+      let pass = this.form.get('password').value;
+      if (pass === '') {
+        pass = this.form.get('currPassword').value;
+      }
       const updatedUserInfo: User = {
         id: this.user.id,
         firstName: this.form.get('firstName').value.trim(),
         lastName: this.form.get('lastName').value.trim(),
         email: this.form.get('email').value.trim(),
         username: this.form.get('username').value.trim(),
-        password: this.form.get('currPassword').value + ' ' + this.form.get('password').value,
+
+        password: this.form.get('currPassword').value + ' ' + pass,
+
         role: this.user.role,
       };
-
       this.userService.updateProfile(updatedUserInfo).pipe(first()).subscribe((user) => {
         if (user) {
           this.user = user;
           this.userService.user = user;
-          alert('profile updated');
+
+          localStorage.setItem('user', JSON.stringify(this.user));
+          // alert('profile updated');
+
           this.fillFormGroup(this.user.firstName, this.user.lastName, this.user.email, this.user.username, this.user.password);
         }
       }, (error) => {
           this.user = this.userService.getUser();
           this.fillFormGroup(this.user.firstName, this.user.lastName, this.user.email, this.user.username, this.user.password);
-          alert('error updating profile');
+          // alert('error updating profile');
       });
     }
   }
@@ -124,8 +132,13 @@ export class ProfileComponent implements OnInit {
       email: [email.trim(), [Validators.required, Validators.email]],
       username: [username.trim(), [Validators.required, Validators.minLength]],
       currPassword: ['', [Validators.required, Validators.minLength]],
-      password: ['', [Validators.required, Validators.minLength]],
-      confirmPassword: ['', [Validators.required, Validators.minLength]],
+      
+      // password: ['', [Validators.required, Validators.minLength]],
+      // confirmPassword: ['', [Validators.required, Validators.minLength]],
+      
+      password: ['', Validators.minLength],
+      confirmPassword: ['', Validators.minLength],
+
     }, {
         validator: [
           ProfileComponent.MatchPassword, // match password validation

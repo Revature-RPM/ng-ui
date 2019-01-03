@@ -25,6 +25,8 @@ export class LoginComponent implements OnInit {
   authenticating = false;
   loggedIn = false;
 
+  logSuccess = true;
+
   constructor(private userService: UserService, private router: Router, private ngmeta: NgMetaService) { }
 
   ngOnInit() {
@@ -44,9 +46,16 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/home']);
       } else {
         this.authenticating = false;
-        alert('Error logging in');
+
+        this.logSuccess = false;
+       
       }
-    }, (error) => { this.authenticating = false; alert('ERROR LOGGING IN'); });
+    }, (error) => { 
+      this.authenticating = false;
+      this.logSuccess = false;
+     
+    });
+
   }
 
   /* Logs in user upon enter
@@ -84,14 +93,22 @@ export class LoginComponent implements OnInit {
   /* Listens to key input on password input field to remove 'Password is required'
   */
   checkEP(event) {
-    if(event.key.length == 1)
+    if(JSON.parse(event['cancelable']) == false) {
+
+    }
+    else if(event.key.length == 1) {
     this.passwordO = false;
+    }
   }
 
   /* Listens to key input on username input field to remove 'Username is required'
   */
   checkE(event) {
-    if(event.key.length == 1)
+    if(JSON.parse(event['cancelable']) == false) {
+
+    }
+    else if(event.key.length == 1) {
     this.usernameO = false;
+    }
   }
 }

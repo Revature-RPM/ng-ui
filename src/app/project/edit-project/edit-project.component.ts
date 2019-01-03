@@ -73,11 +73,11 @@ export class EditProjectComponent implements OnInit {
         this.projectService.getAllProjects().pipe(first()).subscribe(allProjects => {
           this.allProjects = allProjects;
           for(var i = 0; i<this.allProjects.length; i++) {
-            if(params['id'] == this.allProjects[i].id) {
+            if (params['id'] == this.allProjects[i].id) {
               this.projectToUpdate = this.allProjects[i];
             }
           }
-        })
+        });
       });
     }
   }
@@ -105,7 +105,12 @@ export class EditProjectComponent implements OnInit {
    * @author Shawn Bickel (1810-Oct08-Java-USF)
    */
   submitForm() {
-    this.projectService.updateProject(this.projectToUpdate, this.projectToUpdate.id).subscribe(project => {});
+    if (JSON.parse(localStorage.getItem('user')).role === 'ROLE_USER') {
+      // if (this.projectToUpdate.status === 'Approved') {
+        this.projectToUpdate.status = 'Pending';
+      // }
+    }
+    this.projectService.updateProject(this.projectToUpdate, this.projectToUpdate.id).subscribe(project => { });
     this.snackBar.open('The edited changes may take time to appear', '', {
       duration: 5000,
     });
@@ -117,8 +122,33 @@ export class EditProjectComponent implements OnInit {
       this.router.navigate(['home']);
     }, helloTwo => {
 
-    })
+    });
   }
 
+
+  back() {
+    sessionStorage.setItem('lastPage', 'edit');
+    this.router.navigate(['home']);
+  }
+
+
+
+    /**
+   * These methods allow removal and adding users to projects when editing.
+   * @author Ryan Williams (1810-Oct20-Java-USF)
+   */
+  removeGroupMember(e) {// project : Project
+    const updatedArr = this.projectToUpdate.groupMembers;
+    const nameToRemove = e.target.textContent;
+    const index = updatedArr.indexOf(nameToRemove);
+    updatedArr.splice(index, 1);
+    this.projectToUpdate.groupMembers = updatedArr;
+  }
+  addGroupMember(event: any) {
+    const updatedArr = this.projectToUpdate.groupMembers;
+    const nameToAdd = event.target.value;
+    updatedArr.push(nameToAdd);
+    this.projectToUpdate.groupMembers = updatedArr;
+  }
 
 }

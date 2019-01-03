@@ -1,6 +1,13 @@
 <app-navbar></app-navbar>
+<div>
  <div class="my-theme">
-    <h1 id="title">Edit Project</h1>
+    <div>
+      <button id="icon" mat-icon-button mat-stroked-button mat-button
+                      (click)="back()">
+                      <mat-icon>arrow_back</mat-icon>
+                  </button>
+      <h1 id="title">Edit Project</h1>
+    </div>
     <form  #projectForm="ngForm" novalidate>
         <table class="example-full-width" cellspacing="5"><tr>
           <td>
@@ -58,7 +65,7 @@
           </td>
           </tr>
         </table>
-    
+
         <table class="example-full-width" cellspacing="5"><tr>
             <td>
                 <mat-form-field class="example-full-width"  appearance="outline">
@@ -71,6 +78,31 @@
             </td>
             </tr>
         </table>
+
+          <!-- This exists only to stop the form propagation from hitting the buttons below, enter key was causing issues removing items from the groupmember array-->
+          <div class="example-button-row" id="hideMePlease">
+            <button mat-raised-button>Basic</button>
+            <button mat-raised-button color="primary">Primary</button>
+            <button mat-raised-button color="accent">Accent</button>
+            <button mat-raised-button color="warn">Warn</button>
+            <button mat-raised-button disabled>Disabled</button>      
+          </div>
+          
+          <div class = "marginDiv">
+          <h3>Add a Group Member</h3>
+          <mat-form-field>
+            <mat-label>Add a Group Member</mat-label>
+            <input matInput placeholder="Add Group Member" (keydown.enter)="addGroupMember($event)">
+          </mat-form-field>
+        
+         
+          <h3>Select a Group Member to Remove</h3>
+          <span *ngFor = "let groupMember of this.projectToUpdate.groupMembers">
+            <span>
+             <button mat-raised-button (click)= "removeGroupMember($event)" >{{groupMember}}</button>
+            </span>
+          </span>
+          </div>
             <br>
            <button (click)="submitForm()" [disabled]="(!name.valid) || (!batch.valid) || (!trainerName.valid) || 
           (!description.valid) || (!techStack.valid)" type="submit" id="submit" mat-flat-button color="accent">Update Project</button>
@@ -78,8 +110,9 @@
           <br>
           <br>
           <br>
-          <button (click)="deleteProject()" id="submit" mat-flat-button color="accent">Delete Project</button>      
+          <button (click)="deleteProject()" id="submit" mat-flat-button color="accent">Delete Project</button>  
+          <br>
+          <br>    
         </form>
       
  </div>
- 
