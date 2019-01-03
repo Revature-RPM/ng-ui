@@ -92,7 +92,7 @@
           <h3>Add a Group Member</h3>
           <mat-form-field>
             <mat-label>Add a Group Member</mat-label>
-            <input matInput placeholder="Add Group Member" (keydown.enter)="addGroupMember($event)">
+            <input matInput placeholder="Add Group Member" [(ngModel)]="groupMember" name="hello" (keydown.enter)="addGroupMember()">
           </mat-form-field>
         
          
