@@ -34,11 +34,15 @@ export class ViewProjectsComponent implements OnInit {
    */
   ngOnInit() {
     this.currentUser = this.userService.getUser();
-    if(sessionStorage.getItem('lastPage') == 'project_Submit') {
+    if(sessionStorage.getItem('lastPage') == 'project_Submit' && this.currentUser.role == 'ROLE_ADMIN') {
+      sessionStorage.removeItem('lastPage');
+      this.tab = 1;
+      this.yourProjects();
+    } else if(sessionStorage.getItem('lastPage') == 'project_Submit') {
       sessionStorage.removeItem('lastPage');
       this.tab = 0;
       this.yourProjects();
-    } else if (sessionStorage.getItem('lastPage') == 'edit' && this.currentUser.role == 'ROLE_ADMIN') {
+    }else if (sessionStorage.getItem('lastPage') == 'edit' && this.currentUser.role == 'ROLE_ADMIN') {
       sessionStorage.removeItem('lastPage');
       this.tab = 2;
       this.projects();
