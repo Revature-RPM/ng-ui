@@ -89,14 +89,22 @@ export class LoginComponent implements OnInit {
   /* Listens to key input on password input field to remove 'Password is required'
   */
   checkEP(event) {
-    if(event.key.length == 1)
+    if(JSON.parse(event['cancelable']) == false) {
+
+    }
+    else if(event.key.length == 1) {
     this.passwordO = false;
+    }
   }
 
   /* Listens to key input on username input field to remove 'Username is required'
   */
   checkE(event) {
-    if(event.key.length == 1)
+    if(JSON.parse(event['cancelable']) == false) {
+
+    }
+    else if(event.key.length == 1) {
     this.usernameO = false;
+    }
   }
 }
