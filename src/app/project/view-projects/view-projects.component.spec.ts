@@ -34,4 +34,14 @@ describe('ViewProjectsComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should be usersPage=false', () => {
+    fixture.componentInstance.projects();
+    expect(fixture.componentInstance.usersPage).toEqual(false)
+  })
+
+  it('should be projectsPage=true', () => {
+    fixture.componentInstance.projects();
+    expect(fixture.componentInstance.projectsPage).toEqual(true)
+  })
 });

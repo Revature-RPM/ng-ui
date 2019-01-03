@@ -11,7 +11,9 @@
             <br />
             <mat-form-field appearance="outline">
               <input matInput type="text" class="form-control" placeholder="Username" name="username" [(ngModel)]="user.username"
+
                 required (keydown.enter)="loginE()" (keydown)="checkE($event)" autofocus>
+
             </mat-form-field>
             <div id='field' *ngIf="usernameO">Username must be filled out</div>
             <br />
@@ -24,8 +26,9 @@
             <mat-error *ngIf="!formcontrol.form.valid">Please enter all fields</mat-error>
             <div id="registerSpinner" *ngIf='authenticating'><mat-spinner [diameter]="30"></mat-spinner><span>Authenticating</span></div>
             <div id='o' *ngIf='loggedIn'><mat-icon>check</mat-icon><span>Logging In</span></div>
-            <div id="logUnsuccessful" *ngIf='!logSuccess'>Invalid Username/Password</div>
 
+            <div id="logUnsuccessful" *ngIf='!logSuccess'>Invalid Username/Password</div>
+          
             <button color="accent" mat-flat-button type="button" [disabled]="!formcontrol.form.valid" (click)="login()">Login</button>
             <a mat-button routerLink="/auth/register">Register</a>
           </mat-card-content>

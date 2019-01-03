@@ -24,7 +24,9 @@ export class LoginComponent implements OnInit {
   passwordO = false;
   authenticating = false;
   loggedIn = false;
+
   logSuccess = true;
+
   constructor(private userService: UserService, private router: Router, private ngmeta: NgMetaService) { }
 
   ngOnInit() {
@@ -44,6 +46,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/home']);
       } else {
         this.authenticating = false;
+
         this.logSuccess = false;
        
       }
@@ -52,6 +55,7 @@ export class LoginComponent implements OnInit {
       this.logSuccess = false;
      
     });
+
   }
 
   /* Logs in user upon enter

@@ -83,7 +83,9 @@ export class ProfileComponent implements OnInit {
         lastName: this.form.get('lastName').value.trim(),
         email: this.form.get('email').value.trim(),
         username: this.form.get('username').value.trim(),
+
         password: this.form.get('currPassword').value + ' ' + pass,
+
         role: this.user.role,
       };
       this.userService.updateProfile(updatedUserInfo).pipe(first()).subscribe((user) => {
@@ -130,8 +132,13 @@ export class ProfileComponent implements OnInit {
       email: [email.trim(), [Validators.required, Validators.email]],
       username: [username.trim(), [Validators.required, Validators.minLength]],
       currPassword: ['', [Validators.required, Validators.minLength]],
+      
+      // password: ['', [Validators.required, Validators.minLength]],
+      // confirmPassword: ['', [Validators.required, Validators.minLength]],
+      
       password: ['', Validators.minLength],
       confirmPassword: ['', Validators.minLength],
+
     }, {
         validator: [
           ProfileComponent.MatchPassword, // match password validation

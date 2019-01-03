@@ -12,12 +12,41 @@ import { UserService } from './user.service';
  * @author Ryan Beevers | Shawn Bickel | Sahil Makhijani | Andrew Mitchem | Yuki Mano | Jeffly Luctamar | (1810-Oct08-Java-USF)
  */
 describe('UserService', () => {
-  beforeEach(() => TestBed.configureTestingModule({
+
+  var service;
+  beforeEach(() => {
+    TestBed.configureTestingModule({
     declarations: [ ],
-    imports: [ RouterTestingModule, BrowserAnimationsModule, AppModule, AuthenticationModule]}));
+    imports: [ RouterTestingModule, BrowserAnimationsModule, AppModule, AuthenticationModule]})
+    service = TestBed.get(UserService)
+  });
 
   it('should be created', () => {
     const service: UserService = TestBed.get(UserService);
     expect(service).toBeTruthy();
   });
+
+  it('should return \'{emailIsInUse:true}\' on checking if email is in use with \'admin@revature.com\'', () => {
+    var response = {emailIsInUse:true};
+    service.checkIfEmailIsInUse('admin@revature.com').subscribe(res => {
+      expect(res).toEqual(response);
+    })
+  })
+
+  it('should return \'{emailIsInUse:false}\' on checking if email is in use with \'(╯• ◡•)╯︵ ┻━┻@email.o\'', () => {
+    var response = {emailIsInUse:false}
+    service.checkIfEmailIsInUse('(╯• ◡•)╯︵ ┻━┻@email.o').subscribe(res => {
+      expect(res).toEqual(response);
+    })
+  })
+
+  it('should return \'{usernameIsAvailable:false}\' on checking if username is available with \'admin\'', () => {
+    var response = {usernameIsAvailable:false}
+    service.checkIfUsernameIsAvailable('admin').subscribe(res => {
+      expect(res).toEqual(response);
+    });
+  })
+
+  
+
 });
