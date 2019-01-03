@@ -112,7 +112,12 @@
            <br *ngIf='submitting'>
            <br *ngIf='submitting'>
            <br *ngIf='submitting'>
-           <div id="registerSpinner" *ngIf='submitting'><mat-spinner [diameter]="30"></mat-spinner><span>Submitting</span></div>
+           <div id="registerSpinner" *ngIf='submitting'>
+             <div id="aao">
+             <mat-spinner [diameter]="30"></mat-spinner><br>
+             <span>Submitting</span>
+             </div>
+            </div>
 
            <br>
            <br>
