@@ -25,7 +25,7 @@ let url = 'http://rpmclient.revature.com.s3-website-us-west-2.amazonaws.com/';
         expect(element(by.id('profile-header')).getText().toEqual('Profile'));
         expect(element(by.id('profile-text')).getText().toEqual('Edit your profile information, and then press the '+Save+' button to update your information.'));
 
-
+        
         
      }
  })
