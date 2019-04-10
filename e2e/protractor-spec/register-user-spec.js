@@ -1,6 +1,6 @@
 import { browser } from "protractor";
 import { element } from "@angular/core/src/render3";
-
+import { UserService } from 'src/app/core/services/user.service';
 
 
 // What we plan to test
@@ -120,6 +120,23 @@ describe('Test Register', function() {
 
     })
 
+
+
+    it('check if register fails with an already used email', function() {
+        browser.get(`${url}`);
+
+        // get element by tag name specific to the email tag [2], and check if the email is already in use 
+        checkIfEmailIsInUse(element(by.tagName('mat-form-field')[2]).value) == false;
+
+        browser.actions().sendKeys(protractor.Key.ENTER).perform();
+        browser.waitForAngular();
+
+        // specifiy what url we are wanting to hit after this action is performed
+        expect(browser.getCurrentUrl(`${url}login`));
+
+
+    })
+
     
 
 
@@ -228,6 +245,22 @@ describe('Test Register', function() {
 
     })
 
+
+
+    it('check if register fails with an already used username', function() {
+        browser.get(`${url}`);
+
+        // get element by tag name specific to the email tag [2], and check if the email is already in use 
+        checkIfUsernameIsInAvailable(element(by.tagName('mat-form-field')[3]).value) == true;
+
+        browser.actions().sendKeys(protractor.Key.ENTER).perform();
+        browser.waitForAngular();
+
+        // specifiy what url we are wanting to hit after this action is performed
+        expect(browser.getCurrentUrl(`${url}login`));
+
+
+    })
 
 
 
