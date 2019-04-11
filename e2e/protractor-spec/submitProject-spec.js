@@ -26,29 +26,26 @@ async function getProject(){
     return JSON.parse(response.body);
     }
 describe('Tesing the submit project function', function(){
-
-        it('Should persist a new project when submitted')
-        {
-            // Give values for each input field in the submit prject page
-            browser.get(`${url}`);
-            element(by.id('project_name')).sendKeys('Test Project');
-            element(by.name('batchName')).sendKeys('Test');
-            element(by.name('trainers')).sendKeys('Wezley');
-            element(by.id('inputGroupMembers')).sendKeys('Abe,Mitchell,Omar,Thanh,Zachary');
-            element(by.name('description')).sendKeys('This is a test project');
-            element(by.id('inputGithubLink')).sendKeys('https://github.com/test/TestRepo');
-            element(by.tagName('mat-select')).elementToBeSelected('Java');
-            element(by.id('submit')).click();
-            browser.waitForAngular();
-            //get project by name to ensure that the project was persisted.
-            let project = getProject();
-            expect(project.name.toEqual('Test Project'));
-            expect(project.batch.toEqual('Test'));
-            expect(project.trainer.toEqual('Wezley'));
-            expect(project.groupMembers.toEqual('Abe,Mitchell,Omar,Thanh,Zachary'));
-            expect(project.description.toEqual('This is a test project'));
-            expect(project.zipLinks.toEqual('https://github.com/test/TestRepo'));
-            expect(project.techStack.toEqual('Java'));
-            
-        }
-})
+    it('Should persist a new project when submitted',function() {
+        // Give values for each input field in the submit prject page
+        browser.get(`${url}`);
+        element(by.id('project_name')).sendKeys('Test Project');
+        element(by.name('batchName')).sendKeys('Test');
+        element(by.name('trainers')).sendKeys('Wezley');
+        element(by.id('inputGroupMembers')).sendKeys('Abe,Mitchell,Omar,Thanh,Zachary');
+        element(by.name('description')).sendKeys('This is a test project');
+        element(by.id('inputGithubLink')).sendKeys('https://github.com/test/TestRepo');
+        element(by.tagName('mat-select')).elementToBeSelected('Java');
+        element(by.id('submit')).click();
+        browser.waitForAngular();
+        //get project by name to ensure that the project was persisted.
+        let project = getProject();
+        expect(project.name.toEqual('Test Project'));
+        expect(project.batch.toEqual('Test'));
+        expect(project.trainer.toEqual('Wezley'));
+        expect(project.groupMembers.toEqual('Abe,Mitchell,Omar,Thanh,Zachary'));
+        expect(project.description.toEqual('This is a test project'));
+        expect(project.zipLinks.toEqual('https://github.com/test/TestRepo'));
+        expect(project.techStack.toEqual('Java')); 
+    });
+});

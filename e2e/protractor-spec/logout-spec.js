@@ -7,8 +7,7 @@ import { element } from "@angular/core/src/render3";
  */
 describe('Testing logout', function(){
     let url = 'http://rpmclient.revature.com.s3-website-us-west-2.amazonaws.com/';
-    it('Should return to the login page')
-    {
+    it('Should return to the login page', function(){
         browser.get(`${url}home`);
         var myButton = element(by.buttonText('Logout'));
 
@@ -16,5 +15,5 @@ describe('Testing logout', function(){
         expect(localStorage.getItem('jwt')==null);
         expect(localStorage.getItem('user')==null);
         expect(browser.getCurrentUrl(`${url}`));
-    }
-})
+    });
+});

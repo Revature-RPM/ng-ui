@@ -14,8 +14,7 @@ let url = 'http://rpmclient.revature.com.s3-website-us-west-2.amazonaws.com/';
     })
     //THis will ensure that when the Profile button is pressed the proper page is displayed
  describe('Test the routing abilities fo the userAccount function used in the navbar', function(){
-     it('It should route the user to the current users account page')
-     {
+     it('It should route the user to the current users account page', function(){
         browser.get(`${url}`);
         var myButton = element(by.buttonText('Profile'));
         myButton.click();
@@ -27,8 +26,9 @@ let url = 'http://rpmclient.revature.com.s3-website-us-west-2.amazonaws.com/';
 
         
         
-     }
- })
+     });
+ });
+ 
  afterAll(function(){
     var myButton = element(by.buttonText('Logout'));
     myButton.click();
