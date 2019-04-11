@@ -1,4 +1,7 @@
-import { TestBed } from '@angular/core/testing';
+import { HttpClient } from '@angular/common/http';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing'
+import { User } from './../models/User';
+import { TestBed, getTestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 
@@ -11,15 +14,23 @@ import { UserService } from './user.service';
  * as well as the functionality of the various methods within
  * @author Ryan Beevers | Shawn Bickel | Sahil Makhijani | Andrew Mitchem | Yuki Mano | Jeffly Luctamar | (1810-Oct08-Java-USF)
  */
-describe('UserService', () => {
+fdescribe('UserService', () => {
+  let injector: TestBed;
+  let httpMock:HttpClientTestingModule;
+  let service: UserService;
+  let testUser:User;
 
-  var service;
   beforeEach(() => {
     TestBed.configureTestingModule({
     declarations: [ ],
-    imports: [ RouterTestingModule, BrowserAnimationsModule, AppModule, AuthenticationModule]})
-    service = TestBed.get(UserService)
+    imports: [ RouterTestingModule, BrowserAnimationsModule, AppModule, AuthenticationModule,HttpClientTestingModule],
+    providers: [UserService]
+  })
+    injector = getTestBed();
+    service = injector.get(UserService);
+    httpMock = injector.get(HttpClientTestingModule);
   });
+
 
   it('should be created', () => {
     const service: UserService = TestBed.get(UserService);
@@ -47,6 +58,18 @@ describe('UserService', () => {
     });
   })
 
-  
+ 
+  /**
+   * testing logout if items are cleared from local storage
+   */
+  it('should remove items from local storage and return null for jwtauth and user',() => {
+    localStorage.setItem('jwt','testJwt');
+    localStorage.setItem('user','testUser')
+    service.logout();
+
+    expect(service.jwtauthtoken).toBeNull;
+    expect(service.user).toBeNull;
+
+  })
 
 });
