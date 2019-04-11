@@ -8,6 +8,8 @@ import { SharedModule } from '../../shared/shared.module';
 import { ProjectSubmissionComponent } from './project-submission.component';
 import { AppModule } from 'src/app/app.module';
 import { By } from '@angular/platform-browser';
+import { UserService } from 'src/app/core/services/user.service';
+import { User } from 'src/app/core/models/User';
 
 /**
  * This test suite serves to check the proper creation of the ProjectSubmission
@@ -19,6 +21,16 @@ describe('ProjectSubmissionComponent', () => {
   let component: ProjectSubmissionComponent;
   let fixture: ComponentFixture<ProjectSubmissionComponent>;
   let router: Router;
+  let service: UserService;
+  let testUser: User = {
+    id: 10000,
+    firstName: 'Alex',
+    lastName: 'Johnson',
+    email: 'alexjohnson4564@gmail.com',
+    username: 'alexj4564',
+    password: 'Password1234',
+    role: 'admin'
+ };
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -56,12 +68,18 @@ describe('ProjectSubmissionComponent', () => {
     let navigateSpy = spyOn(router, 'navigate');
 
     component.ngOnInit();
+
     expect(navigateSpy).toHaveBeenCalledWith(['/auth/login']);
   })
 
   it('should do stuff', () => {
 
-    
+    service = TestBed.get(UserService);
+    spyOn(service,'getUser').and.returnValue(testUser);
+
+    component.ngOnInit();
+
+    expect(component.projectToUpload.groupMembers).toBe([]);
   })
 
 });
