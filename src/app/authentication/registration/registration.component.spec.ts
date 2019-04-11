@@ -19,7 +19,8 @@ import { By } from '@angular/platform-browser';
 
 
 // Testing the successful creation of the Registration component
-fdescribe('RegistrationComponent', () => {
+describe('RegistrationComponent', () => {
+  let service: UserService;
   let component: RegistrationComponent;
   let fixture: ComponentFixture<RegistrationComponent>;
 
@@ -36,6 +37,7 @@ fdescribe('RegistrationComponent', () => {
     fixture = TestBed.createComponent(RegistrationComponent);
     component = fixture.componentInstance;
     //fixture.detectChanges();
+    service = TestBed.get(UserService);
   });
 
   // Testing the successful creation of the registration componenet
@@ -89,4 +91,17 @@ fdescribe('RegistrationComponent', () => {
     // the user service register method should be called with the passed credentials
     expect(serviceSpy).toHaveBeenCalled();
   });
+
+  it('Test for checking if email is in use', () => {
+    let test = 'test@gmail.com';
+    component.emailToCheck = test;
+    component.emailIsAvailable = true;
+    component.emailIsNotAvailable = true;
+    component.checkingIfEmailIsInUse = false; 
+
+    let spy = spyOn(service, 'checkIfEmailIsInUse').apply(test) 
+
+    expect(spy).toBeUndefined();
+
+  })
 });
