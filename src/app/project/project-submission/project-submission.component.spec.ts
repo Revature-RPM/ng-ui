@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
+import { Router } from '@angular/router';
 import { SharedModule } from '../../shared/shared.module';
 
 import { ProjectSubmissionComponent } from './project-submission.component';
@@ -17,6 +18,7 @@ import { By } from '@angular/platform-browser';
 describe('ProjectSubmissionComponent', () => {
   let component: ProjectSubmissionComponent;
   let fixture: ComponentFixture<ProjectSubmissionComponent>;
+  let router: Router;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -31,6 +33,7 @@ describe('ProjectSubmissionComponent', () => {
     fixture = TestBed.createComponent(ProjectSubmissionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    router = TestBed.get(Router)
   });
 
   it('should create', () => {
@@ -39,6 +42,26 @@ describe('ProjectSubmissionComponent', () => {
 
   it('should display \'Project Name\' in mat-label', () => {
     expect(fixture.debugElement.query(By.css('mat-label')).nativeElement.textContent).toContain('Project Name');
+  });
+
+  /**
+   * testing that when the project submission component is rendered, if the user is null
+   * then the user should be navigated back to login
+   * 
+   * @author Alex Johnson (190107-Java-Spark-USF)
+   */
+  it('should navigate to login if the user is null', () => {
+
+    localStorage.setItem('user', null);
+    let navigateSpy = spyOn(router, 'navigate');
+
+    component.ngOnInit();
+    expect(navigateSpy).toHaveBeenCalledWith(['/auth/login']);
+  })
+
+  it('should do stuff', () => {
+
+    
   })
 
 });
