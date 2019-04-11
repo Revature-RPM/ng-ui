@@ -25,7 +25,7 @@ let url = 'http://rpmclient.revature.com.s3-website-us-west-2.amazonaws.com/';
         },
             
         });
-        return response.body;
+        return JSON.parse(response.body);
         }
 
     //This will test the persistance of the update user function
