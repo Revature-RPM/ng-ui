@@ -15,7 +15,9 @@ import { parse } from "path";
  * @author Ryan Beevers | Shawn Bickel | Sahil Makhijani | Andrew Mitchem | Yuki Mano | Jeffly Luctamar | (1810-Oct08-Java-USF)
  */
 // Testing the successful creation of the Registration component
-fdescribe("RegistrationComponent", () => {
+
+describe('RegistrationComponent', () => {
+  let service: UserService;
   let component: RegistrationComponent;
   let fixture: ComponentFixture<RegistrationComponent>;
   let userService: UserService;
@@ -37,6 +39,7 @@ fdescribe("RegistrationComponent", () => {
     component = fixture.componentInstance;
     userService = TestBed.get(UserService);
     //fixture.detectChanges();
+    service = TestBed.get(UserService);
   });
   // Testing the successful creation of the registration componenet
   it("should create", () => {
@@ -170,7 +173,6 @@ fdescribe("RegistrationComponent", () => {
     expect(spy).toBeTruthy();
     expect(component.checkingIfUsernameIsAvailable).toBeFalsy();
     expect(component.usernameIsAvailable).toBeTruthy();
-    
   });
 
   xit("should check the usernameIsAvailable (result else) checkingIfUsernameIsAvailable, usernameIsNotAvailable", () => {
@@ -179,18 +181,25 @@ fdescribe("RegistrationComponent", () => {
     component.checkIfUsernameIsAvailable();
     expect(spy).toBeFalsy();
     expect(component.checkingIfUsernameIsAvailable).toBeFalsy();
-    expect(component.usernameIsNotAvailable).toBeTruthy();
-    
+    expect(component.usernameIsNotAvailable).toBeTruthy(); 
   });
 
   fit("should check the usernameIsAvailable (error) checkingIfUsernameIsAvailable, usernameIsNotAvailable", () => {
 
     component.checkIfUsernameIsAvailable();
     expect(component.checkingIfUsernameIsAvailable).toBeFalsy();
-    expect(component.usernameIsNotAvailable).toBeTruthy();
-    
+    expect(component.usernameIsNotAvailable).toBeTruthy();    
   });
+  
+  it('Test for checking if email is in use', () => {
+    let test = 'test@gmail.com';
+    component.emailToCheck = test;
+    component.emailIsAvailable = true;
+    component.emailIsNotAvailable = true;
+    component.checkingIfEmailIsInUse = false; 
 
+    let spy = spyOn(service, 'checkIfEmailIsInUse').apply(test) 
 
-
+    expect(spy).toBeUndefined();
+  })
 });
