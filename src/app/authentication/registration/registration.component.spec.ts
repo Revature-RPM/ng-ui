@@ -19,7 +19,7 @@ import { By } from '@angular/platform-browser';
 
 
 // Testing the successful creation of the Registration component
-fdescribe('RegistrationComponent', () => {
+describe('RegistrationComponent', () => {
   let component: RegistrationComponent;
   let fixture: ComponentFixture<RegistrationComponent>;
 
