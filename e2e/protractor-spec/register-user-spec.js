@@ -126,7 +126,7 @@ describe('Test Register', function() {
         browser.get(`${url}`);
 
         // get element by tag name specific to the email tag [2], and check if the email is already in use 
-        checkIfEmailIsInUse(element(by.tagName('mat-form-field')[2]).value) == false;
+        userService.checkIfEmailIsInUse(element(by.tagName('mat-form-field')[2]).value) == false;
 
         browser.actions().sendKeys(protractor.Key.ENTER).perform();
         browser.waitForAngular();
@@ -251,7 +251,7 @@ describe('Test Register', function() {
         browser.get(`${url}`);
 
         // get element by tag name specific to the email tag [2], and check if the email is already in use 
-        checkIfUsernameIsInAvailable(element(by.tagName('mat-form-field')[3]).value) == true;
+        userService.checkIfUsernameIsInAvailable(element(by.tagName('mat-form-field')[3]).value) == true;
 
         browser.actions().sendKeys(protractor.Key.ENTER).perform();
         browser.waitForAngular();
