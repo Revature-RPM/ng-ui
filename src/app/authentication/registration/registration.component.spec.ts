@@ -75,7 +75,7 @@ describe('RegistrationComponent', () => {
     // simulate a form submission
     component.user.firstName = 'Tester';
     component.user.lastName = 'Testing';
-    component.user.email = 'test@revature.com';
+    component.user.email = 'test2.test1ng@inbox.ru';
     component.user.username = 'test';
     component.user.password = 'ing';
     const registrationElement = fixture.debugElement.query(By.css('[id = "registration-container"]')); // Capture the template for inside of a variable for mocking
