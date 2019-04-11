@@ -13,13 +13,11 @@ beforeAll(function(){
     browser.waitForAngular();
 })
 
-describe('Testing that the submit project button routes the user to the proper page', function(){
-    
-    it('Should route to submit project page')
-    {
+describe('Testing that the submit project button routes the user to the proper page', function(){ 
+    it('Should route to submit project page', function(){
         browser.get(`${url}`);
         element(by.id('icon')).click();
         expect(browser.getCurrentUrl(`${url}`));
         expect(element(by.id('title')).getText().toEqual('Submit a Project'));
-    }
-})
+    });
+});
