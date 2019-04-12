@@ -8,6 +8,7 @@ import { AuthenticationModule } from "../authentication.module";
 import { UserService } from "src/app/core/services/user.service";
 import { By } from "@angular/platform-browser";
 import { parse } from "path";
+import { of } from 'rxjs';
 /**
  * This test suite serves to check the proper creation of the registration
  * component as well the as well as the functionality
@@ -15,9 +16,7 @@ import { parse } from "path";
  * @author Ryan Beevers | Shawn Bickel | Sahil Makhijani | Andrew Mitchem | Yuki Mano | Jeffly Luctamar | (1810-Oct08-Java-USF)
  */
 // Testing the successful creation of the Registration component
-
-describe('RegistrationComponent', () => {
-  let service: UserService;
+describe("RegistrationComponent", () => {
   let component: RegistrationComponent;
   let fixture: ComponentFixture<RegistrationComponent>;
   let userService: UserService;
@@ -39,7 +38,6 @@ describe('RegistrationComponent', () => {
     component = fixture.componentInstance;
     userService = TestBed.get(UserService);
     //fixture.detectChanges();
-    service = TestBed.get(UserService);
   });
   // Testing the successful creation of the registration componenet
   it("should create", () => {
@@ -61,7 +59,7 @@ describe('RegistrationComponent', () => {
    * button click event. Upon a succesful form submission, the button click,
    * should trigger an indirect call to user service class
    */
-  xit('Registration button click event should make a call to the UserService', () => {
+  it('Registration button click event should make a call to the UserService', () => {
     // Arrange the registration environment
     const debugElement = fixture.debugElement;
     const userService = debugElement.injector.get(UserService);
@@ -89,13 +87,13 @@ describe('RegistrationComponent', () => {
    * This test should verify regitering is false, authentication is true, loginUser username
    * and loginUser password is set to user when user is inserted to userService.register method
    */
-  xit("should verify registering, authenticating, loginUser username and password when userService.register is called", () => {
+  
+  it("should verify registering, authenticating, loginUser username and password when userService.register is called", () => {
     let testUser = {
       username: "test",
       password: "testpassword"
     };
-    
-   // spyOn(userService, "register").and.returnValue(JSON.stringify(testUser));
+
     spyOn(userService, "register").and.returnValue(testUser);
     component.register();
     expect(component.registering).toBeFalsy;
@@ -109,7 +107,7 @@ describe('RegistrationComponent', () => {
    * This test should check email in  checkIfEmailIsInUse false 
    * and email is avalibale is true
    */
-  xit("should check the properties of checkIfEmailIsInUse method values of emailToCheck, emailIsAvailable, emailIsNotAvailable, checkingIfEmailIsInUse ", () => {
+  it("should check the properties of checkIfEmailIsInUse method values of emailToCheck, emailIsAvailable, emailIsNotAvailable, checkingIfEmailIsInUse ", () => {
     
     component.user.email = 'testEmail';
     component.checkIfEmailIsInUse(); 
@@ -121,7 +119,7 @@ describe('RegistrationComponent', () => {
   });
 
 
-  xit("should check the checkIfEmailIsInUse (result if) checkingIfEmailIsInUse , emailIsAvailable, ", () => {
+  it("should check the checkIfEmailIsInUse (result if) checkingIfEmailIsInUse , emailIsAvailable, ", () => {
     
     let spy = spyOn(userService,'checkIfEmailIsInUse').apply('testEmail');
   
@@ -133,29 +131,27 @@ describe('RegistrationComponent', () => {
   });
 
 
-  xit("should check the checkIfEmailIsInUse (result else) checkingIfEmailIsInUse,and emailIsNotAvailable", () => {
-  
-    spyOn(this.userService, 'checkIfEmailIsInUse').and.returnValue(true);
+  it("should check the checkIfEmailIsInUse (result else) checkingIfEmailIsInUse,and emailIsNotAvailable", () => {
+   
     component.checkIfEmailIsInUse();
     expect(component.checkingIfEmailIsInUse).toBeFalsy();
     expect(component.emailIsNotAvailable).toBeTruthy();
 
   });
 
-  fit("should check the checkIfEmailIsInUse (error) checkingIfEmailIsInUse,and emailIsNotAvailable", () => {
-  
-    component.checkIfEmailIsInUse();
+  it("should check the checkIfEmailIsInUse (error) checkingIfEmailIsInUse,and emailIsNotAvailable", () => {
+   
+    expect(component.checkIfEmailIsInUse()).toThrow("error");
     expect(component.checkingIfEmailIsInUse).toBeTruthy;
     expect(component.emailIsNotAvailable).toBeFalsy;
 
   });
 
   /**
-   * This test should check username available checkIfUsernameIsAvailable false 
-   * and email is avalibale is true
+   * This test should check username available checkIfUsernameIsAvailable method
    */
 
-  xit("should check the properties of checkIfUsernameIsAvailable method values of usernameToCheck, emailIsAvailable, emailIsNotAvailable, checkingIfEmailIsInUse ", () => {
+  it("should check the properties of checkIfUsernameIsAvailable method values of usernameToCheck, emailIsAvailable, emailIsNotAvailable, checkingIfEmailIsInUse ", () => {
     
     component.user.username = 'username';
     component.checkIfUsernameIsAvailable(); 
@@ -166,40 +162,32 @@ describe('RegistrationComponent', () => {
 
   });
 
-  xit("should check the usernameIsAvailable (result if) checkingIfUsernameIsAvailable, usernameIsAvailable", () => {
-    
-    let spy = spyOn(this.userService, 'checkIfUsernameIsAvailable').and.returnValue(true);
-    component.checkIfUsernameIsAvailable();
+  it("should check the usernameIsAvailable (result if) checkingIfUsernameIsAvailable, usernameIsAvailable",() => {
+     let spy = spyOn(this.userService, 'checkIfUsernameIsAvailable')
+    .and.returnValue(true);
+    component.checkIfUsernameIsAvailable(); 
     expect(spy).toBeTruthy();
     expect(component.checkingIfUsernameIsAvailable).toBeFalsy();
     expect(component.usernameIsAvailable).toBeTruthy();
+    
   });
 
-  xit("should check the usernameIsAvailable (result else) checkingIfUsernameIsAvailable, usernameIsNotAvailable", () => {
-    
-    let spy = spyOn(this.userService, 'checkIfUsernameIsAvailable').and.returnValue(false);
-    component.checkIfUsernameIsAvailable();
+  it("should check the usernameIsAvailable (result else) checkingIfUsernameIsAvailable, usernameIsNotAvailable",() => {
+    let spy = spyOn(this.userService, 'checkIfUsernameIsAvailable')
+    .and.returnValue(false);
+    component.checkIfUsernameIsAvailable(); 
     expect(spy).toBeFalsy();
     expect(component.checkingIfUsernameIsAvailable).toBeFalsy();
-    expect(component.usernameIsNotAvailable).toBeTruthy(); 
+    expect(component.usernameIsNotAvailable).toBeTruthy();
+   
   });
 
-  fit("should check the usernameIsAvailable (error) checkingIfUsernameIsAvailable, usernameIsNotAvailable", () => {
-
-    component.checkIfUsernameIsAvailable();
+  it("should check the usernameIsAvailable (error) checkingIfUsernameIsAvailable, usernameIsNotAvailable", () => {
+    component.checkIfUsernameIsAvailable(); 
+    expect(component.checkIfUsernameIsAvailable()).toThrow("error");
     expect(component.checkingIfUsernameIsAvailable).toBeFalsy();
-    expect(component.usernameIsNotAvailable).toBeTruthy();    
+    expect(component.usernameIsNotAvailable).toBeTruthy();
+    
   });
-  
-  it('Test for checking if email is in use', () => {
-    let test = 'test@gmail.com';
-    component.emailToCheck = test;
-    component.emailIsAvailable = true;
-    component.emailIsNotAvailable = true;
-    component.checkingIfEmailIsInUse = false; 
 
-    let spy = spyOn(service, 'checkIfEmailIsInUse').apply(test) 
-
-    expect(spy).toBeUndefined();
-  })
 });
