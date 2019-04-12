@@ -14,10 +14,10 @@ import { UserService } from './user.service';
  * as well as the functionality of the various methods within
  * @author Ryan Beevers | Shawn Bickel | Sahil Makhijani | Andrew Mitchem | Yuki Mano | Jeffly Luctamar | (1810-Oct08-Java-USF)
  */
-fdescribe('UserService', () => {
+describe('UserService', () => {
   let injector: TestBed;
   let httpMock:HttpClientTestingModule;
-  let service: UserService;
+  let service;
   let testUser:User;
 
   beforeEach(() => {
@@ -63,6 +63,7 @@ fdescribe('UserService', () => {
    * testing logout if items are cleared from local storage
    */
   it('should remove items from local storage and return null for jwtauth and user',() => {
+    
     localStorage.setItem('jwt','testJwt');
     localStorage.setItem('user','testUser')
     service.logout();
