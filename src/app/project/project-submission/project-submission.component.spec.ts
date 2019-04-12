@@ -30,7 +30,7 @@ describe('ProjectSubmissionComponent', () => {
     username: 'alexj4564',
     password: 'Password1234',
     role: 'admin'
- };
+  };
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -45,7 +45,6 @@ describe('ProjectSubmissionComponent', () => {
     fixture = TestBed.createComponent(ProjectSubmissionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-    router = TestBed.get(Router)
   });
 
   it('should create', () => {
@@ -64,6 +63,8 @@ describe('ProjectSubmissionComponent', () => {
    */
   it('should navigate to login if the user is null', () => {
 
+    router = TestBed.get(Router);
+    localStorage.clear();
     localStorage.setItem('user', null);
     let navigateSpy = spyOn(router, 'navigate');
 
@@ -74,12 +75,12 @@ describe('ProjectSubmissionComponent', () => {
 
   it('should do stuff', () => {
 
-    service = TestBed.get(UserService);
-    spyOn(service,'getUser').and.returnValue(testUser);
+    localStorage.clear();
+    localStorage.setItem('user', `${testUser}`);
 
     component.ngOnInit();
 
-    expect(component.projectToUpload.groupMembers).toBe([]);
+    expect(component.groupMemberString).toBeUndefined;
   })
 
 });
