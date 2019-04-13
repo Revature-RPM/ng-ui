@@ -5,6 +5,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { SharedModule } from '../../shared/shared.module';
 import { AppModule} from '../../app.module';
 import { ViewProjectsComponent } from './view-projects.component';
+import { Router } from '@angular/router';
 
 /**
  * This test suite serves to check the proper creation of the ViewProjects
@@ -16,6 +17,7 @@ import { ViewProjectsComponent } from './view-projects.component';
 xdescribe('ViewProjectsComponent', () => {
   let component: ViewProjectsComponent;
   let fixture: ComponentFixture<ViewProjectsComponent>;
+  let router: Router;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -44,4 +46,11 @@ xdescribe('ViewProjectsComponent', () => {
     fixture.componentInstance.projects();
     expect(fixture.componentInstance.projectsPage).toEqual(true)
   })
+
+  it('should test mock navigation ',() =>{
+
+    let navigateSpy = spyOn(router,'navigate')
+    component.submitProject();
+    expect(navigateSpy).toHaveBeenCalledWith(['/project_submission'])
+   })
 });
