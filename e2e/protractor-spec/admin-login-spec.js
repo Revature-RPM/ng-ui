@@ -2,7 +2,7 @@
  * @author Abe, Omar, Zach, Thanh, Mitchell
  */
 describe('Logging in as an Admin', function () {
-        let url = 'http://rpmclient.revature.com.s3-website-us-west-2.amazonaws.com/';
+        let url = 'http://tn-rpm-test.s3-website-us-east-1.amazonaws.com/';
     it('check login with correct credentials', function () {
         browser.get(`${url}`);
         element(by.id('mat-input-0')).sendKeys('admin');
@@ -53,7 +53,9 @@ describe('Logging in as an Admin', function () {
         element(by.id('mat-input-1')).sendKeys('p5ssw0rd');
         browser.actions().sendKeys(protractor.Key.ENTER).perform();
         browser.waitForAngular();
+        expect(element(by.id('logUnsuccessful')).getText().toEqual('Invalid Username/Password'));
         expect(browser.getCurrentUrl(`${url}`));
+        
     })
 
     it('check login with incorrect username', function () {
