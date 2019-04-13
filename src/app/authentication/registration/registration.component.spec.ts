@@ -88,7 +88,7 @@ describe("RegistrationComponent", () => {
    * and loginUser password is set to user when user is inserted to userService.register method
    */
   
-  xit("should verify registering, authenticating, loginUser username and password when userService.register is called", () => {
+  it("should verify registering, authenticating, loginUser username and password when userService.register is called", () => {
     let testUser = {
       username: "test",
       password: "testpassword"
