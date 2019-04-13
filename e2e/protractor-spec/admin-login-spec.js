@@ -14,8 +14,8 @@ describe('Logging in as an Admin', function () {
         browser.waitForAngular();
         expect(browser.getCurrentUrl(`${url}home`));
         // var table = //element(by.className('mat-table'));
-        var row = element.all(by.css('.mat-table tr')).get(1);
-        var cells = row.all(by.tagName('td'));
+        let row = element.all(by.css('.mat-table tr')).get(1);
+        let cells = row.all(by.tagName('td'));
         expect(cells.get(0).getText()).toEqual('admin');
         expect(cells.get(1).getText()).toEqual('Adam');
         expect(cells.get(2).getText()).toEqual('Inn');
@@ -55,19 +55,8 @@ describe('Logging in as an Admin', function () {
         element(by.id('mat-input-0')).sendKeys('admin');
         element(by.id('mat-input-1')).sendKeys('p5ssw0rd');
         browser.actions().sendKeys(protractor.Key.ENTER).perform();
-        
         browser.waitForAngular();
-        // let alert =  element(by.id('logUnsuccessful')).getText();
-        // console.log(alert);
-        // browser.pause('4444');
-        
-       
-        // let alertText = browser.switchTo().alert()
-        // expect(alertText.getText()).toEqual('ERROR LOGGING IN');
-        // expect(browser.alert()).toEqual('ERROR LOGGING IN')
-        // browser.switchTo().frame(element(by.tagName('alert'))).accept();
         browser.switchTo().alert().accept();
-        // expect(browser.switchTo().alert("ERROR LOGGING IN").getText()).toEqual('ERROR LOGGING IN');
         expect(browser.getCurrentUrl(`${url}`));
         
     })
