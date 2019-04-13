@@ -62,8 +62,21 @@ fdescribe('ViewProjectsComponent', () => {
     expect(component.usersPage).toBeTruthy();
     expect(component.projectsPage).toBeFalsy();
     expect(component.userProjectsPage).toBeFalsy();
-  
+    
   })
+  /**
+   * Test allUsers role is not ADMIN and verify if yourproject method is called
+   */
+  it('should verify if yourProject method is called if role isnotADMIN in alluser method',()=>{
+    component.currentUser = {
+      role: "test"
+    }
+    spyOn(component,'yourProjects').and.callThrough();
+    component.allUsers();
+
+    expect(component.yourProjects).toHaveBeenCalledTimes(1);
+  })
+
   /**
    * Test projects fields userPage, projectPage,and userProjectsPage
    */
@@ -71,13 +84,13 @@ fdescribe('ViewProjectsComponent', () => {
     component.usersPage = true;
     component.projectsPage = false;
     component.userProjectsPage = true;
-
+    
     component.projects();
 
     expect(component.usersPage).toBeFalsy();
     expect(component.projectsPage).toBeTruthy();
     expect(component.userProjectsPage).toBeFalsy();
-  })
+   })
 
   /**
    * Test yourProject fields userPage, projectpage and userProjectPage
