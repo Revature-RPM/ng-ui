@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
  * @author Ryan Beevers | Shawn Bickel | Sahil Makhijani | Andrew Mitchem | Yuki Mano | Jeffly Luctamar | (1810-Oct08-Java-USF)
  */
 
-xdescribe('ViewProjectsComponent', () => {
+fdescribe('ViewProjectsComponent', () => {
   let component: ViewProjectsComponent;
   let fixture: ComponentFixture<ViewProjectsComponent>;
   let router: Router;
@@ -30,7 +30,7 @@ xdescribe('ViewProjectsComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ViewProjectsComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+   
   });
 
   it('should create', () => {
@@ -46,10 +46,60 @@ xdescribe('ViewProjectsComponent', () => {
     fixture.componentInstance.projects();
     expect(fixture.componentInstance.projectsPage).toEqual(true)
   })
+  /**
+   * Test allUsers is role is ADMIN will set userPage, projectPage,and userProject
+   */
+  it('should verify userPage is truthy, and projectPage, and userProjectPage to be falsy, if currentUser role is ADMIN',() =>{
+    component.currentUser = {
+      role: "ROLE_ADMIN"
+    }
+    component.usersPage = false;
+    component.projectsPage = true; 
+    component.userProjectsPage = true;
 
-  it('should test mock navigation ',() =>{
+    component.allUsers();
 
-    let navigateSpy = spyOn(router,'navigate')
+    expect(component.usersPage).toBeTruthy();
+    expect(component.projectsPage).toBeFalsy();
+    expect(component.userProjectsPage).toBeFalsy();
+  
+  })
+  /**
+   * Test projects fields userPage, projectPage,and userProjectsPage
+   */
+  it('should verify userPage,and userProjectsPage to be falsy, and projectsPage to be truthy', () =>{
+    component.usersPage = true;
+    component.projectsPage = false;
+    component.userProjectsPage = true;
+
+    component.projects();
+
+    expect(component.usersPage).toBeFalsy();
+    expect(component.projectsPage).toBeTruthy();
+    expect(component.userProjectsPage).toBeFalsy();
+  })
+
+  /**
+   * Test yourProject fields userPage, projectpage and userProjectPage
+   */
+  it('should verify userPage and projectPage are falsy and userProjectsPage is truthy', () =>{
+    component.usersPage = true;
+    component.projectsPage = true;
+    component.userProjectsPage = false;
+
+    component.yourProjects();
+    expect(component.usersPage).toBeFalsy();
+    expect(component.projectsPage).toBeFalsy();
+    expect(component.userProjectsPage).toBeTruthy();
+
+  })
+
+  /**
+   * Test isolated routing and check if the 
+   */
+  xit('should test mock navigation ',() =>{
+
+    let navigateSpy = spyOn(router,'navigate').and.callThrough();
     component.submitProject();
     expect(navigateSpy).toHaveBeenCalledWith(['/project_submission'])
    })
