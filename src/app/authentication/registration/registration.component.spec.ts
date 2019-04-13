@@ -174,7 +174,7 @@ describe("RegistrationComponent", () => {
     component.user.username = 'username';
  
     let result = true;
-   let spy = spyOn(userService,checkIfUsernameIsAvailable(usernamecheck)).and.callFake(() =>{
+   let spy = spyOn(userService,'checkIfUsernameIsAvailable').and.callFake(() =>{
     
     return of(result);
 
