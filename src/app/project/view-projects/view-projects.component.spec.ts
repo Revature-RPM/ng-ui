@@ -1,3 +1,5 @@
+import { User } from './../../core/models/User';
+import { UserService } from './../../core/services/user.service';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -14,10 +16,12 @@ import { Router } from '@angular/router';
  * @author Ryan Beevers | Shawn Bickel | Sahil Makhijani | Andrew Mitchem | Yuki Mano | Jeffly Luctamar | (1810-Oct08-Java-USF)
  */
 
-fdescribe('ViewProjectsComponent', () => {
+describe('ViewProjectsComponent', () => {
   let component: ViewProjectsComponent;
   let fixture: ComponentFixture<ViewProjectsComponent>;
   let router: Router;
+  let service:UserService;
+  let testUser:User;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -30,7 +34,7 @@ fdescribe('ViewProjectsComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ViewProjectsComponent);
     component = fixture.componentInstance;
-   
+    service = TestBed.get(UserService);
   });
 
   it('should create', () => {
@@ -46,6 +50,97 @@ fdescribe('ViewProjectsComponent', () => {
     fixture.componentInstance.projects();
     expect(fixture.componentInstance.projectsPage).toEqual(true)
   })
+  /**
+   * Test ngOnit with current user with sessionStorage equal to 'lastPage' and role of ADMIN
+   */
+  it('should verify sessionstorage is clear, tab = 1 and yourProject is called ',() =>{
+    testUser = {
+     role:'ROLE_ADMIN'
+    }
+    spyOn(service,'getUser').and.returnValue(testUser);
+    sessionStorage.setItem('lastPage', 'project_Submit');
+    spyOn(component,'yourProjects').and.callThrough();
+    
+    component.ngOnInit();
+
+    expect(sessionStorage.getItem('lastPage')).toBeFalsy();
+    expect(component.tab).toEqual(1);
+    expect(component.yourProjects).toHaveBeenCalledTimes(1);
+ 
+  })
+   /**
+   * Test ngOnit with current user with sessionStorage equal to 'project_Submit' role of NOT ADMIN
+   */
+  it('should verify sessionstorage is clear, tab = 1 and yourProject is called ',() =>{
+    testUser = {
+     role:'test'
+    }
+    spyOn(service,'getUser').and.returnValue(testUser);
+    sessionStorage.setItem('lastPage', 'project_Submit');
+    spyOn(component,'yourProjects').and.callThrough();
+    
+    component.ngOnInit();
+
+    expect(sessionStorage.getItem('lastPage')).toBeFalsy();
+    expect(component.tab).toEqual(0);
+    expect(component.yourProjects).toHaveBeenCalledTimes(1);
+ 
+  })
+  /**
+   * Test ngOnit with current user with sessionStorage equal to 'edit' and role of ADMIN
+   */
+  it('should verify sessionstorage is clear, tab = 2 and yourProject is called ',() =>{
+    testUser = {
+     role:'ROLE_ADMIN'
+    }
+    spyOn(service,'getUser').and.returnValue(testUser);
+    sessionStorage.setItem('lastPage', 'edit');
+    spyOn(component,'projects').and.callThrough();
+    
+    component.ngOnInit();
+
+    expect(sessionStorage.getItem('lastPage')).toBeFalsy();
+    expect(component.tab).toEqual(2);
+    expect(component.projects).toHaveBeenCalledTimes(1);
+ 
+  })
+   /**
+   * Test ngOnit with current user with sessionStorage equal to 'edit' and role of NOT ADMIN
+   */
+  it('should verify sessionstorage is clear, tab = 0 and yourProject is called ',() =>{
+    testUser = {
+     role:'test'
+    }
+    spyOn(service,'getUser').and.returnValue(testUser);
+    sessionStorage.setItem('lastPage', 'edit');
+    spyOn(component,'yourProjects').and.callThrough();
+    
+    component.ngOnInit();
+
+    expect(sessionStorage.getItem('lastPage')).toBeFalsy();
+    expect(component.tab).toEqual(0);
+    expect(component.yourProjects).toHaveBeenCalledTimes(1);
+ 
+  })
+  /**
+   * Test ngOnit with current user role of NOT ADMIN
+   */
+  it('should verify tab = 0 and yourProject is called ',() =>{
+    testUser = {
+     role:'test'
+    }
+    spyOn(service,'getUser').and.returnValue(testUser);
+    spyOn(component,'yourProjects').and.callThrough();
+    
+    component.ngOnInit();
+
+    expect(component.tab).toEqual(0);
+    expect(component.yourProjects).toHaveBeenCalledTimes(1);
+ 
+  })
+
+
+
   /**
    * Test allUsers is role is ADMIN will set userPage, projectPage,and userProject
    */
