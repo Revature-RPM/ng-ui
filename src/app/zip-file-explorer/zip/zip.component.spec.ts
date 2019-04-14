@@ -6,7 +6,7 @@ import { AppModule} from '../../app.module';
 import { ZipComponent } from './zip.component';
 import { ZipFileExplorerModule } from '../zip-file-explorer.module';
 
-xdescribe('ZipComponent', () => {
+fdescribe('ZipComponent', () => {
   let component: ZipComponent;
   let fixture: ComponentFixture<ZipComponent>;
 
@@ -27,4 +27,28 @@ xdescribe('ZipComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  
+  /**
+   * This test should display error messages
+   * @Author Gabriel Zapata and Edward Bechtold (190107-Java-Spark-USF)
+   */
+  xit('should throw an error', () => {
+    let message = 'test';
+    
+    component.errorFile(message);
+    
+    expect(message).toBeTruthy();
+  })
+
+  /**
+   * This tests the safeTitle method to ensure links are being properly created
+   */
+  xit('should return a substring of link', () => {
+    let link = 'test';
+    
+    component.safeTitle(link);
+
+    expect(component.safeTitle).toBe('test/');
+  })
+  
 });
