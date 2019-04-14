@@ -124,4 +124,68 @@ describe('EditProjectComponent', () => {
     
     expect(component.projectToUpdate.status).toContain('Pending');
   })
+
+  /**
+   * testing that when the edit-project component is rendered, if the user is null
+   * then the user should be navigated back to login
+   * 
+   * @author Alex Johnson (190107-Java-Spark-USF)
+   */
+  it('should navigate to login if the user is null', () => {
+
+    router = TestBed.get(Router);
+    localStorage.clear();
+    localStorage.setItem('user', null);
+    let navigateSpy = spyOn(router, 'navigate');
+
+    component.ngOnInit();
+
+    expect(navigateSpy).toHaveBeenCalledWith(['/auth/login']);
+  });
+
+  /**
+   * the tested method should navigate to home
+   * 
+   * @author Alex Johnson (190107-Java-Spark-USF)
+   */
+  xit('should navigate to home', () => {
+
+    router = TestBed.get(Router);
+    let navigateSpy = spyOn(router, 'navigate');
+
+    component.submitForm();
+
+    expect(navigateSpy).toHaveBeenCalledWith(['/home']);
+  });
+
+  /**
+   * the deleteProject() method should navigate to home
+   * 
+   * @author Alex Johnson (190107-Java-Spark-USF)
+   */
+  xit('should navigate to home', () => {
+
+    router = TestBed.get(Router);
+    let navigateSpy = spyOn(router, 'navigate');
+
+    component.deleteProject();
+
+    expect(navigateSpy).toHaveBeenCalledWith(['/home']);
+  });
+
+  /**
+   * the back() method should navigate to home
+   * 
+   * @author Alex Johnson (190107-Java-Spark-USF)
+   */
+  xit('should navigate to home', () => {
+
+    router = TestBed.get(Router);
+    let navigateSpy = spyOn(router, 'navigate');
+
+    component.back();
+
+    expect(navigateSpy).toHaveBeenCalledWith(['/home']);
+  });
+
 });
