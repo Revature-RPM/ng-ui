@@ -215,4 +215,33 @@ describe("RegistrationComponent", () => {
     
   });
 
+  it("Should check the properties of checkIfEmailIsInUseKey method values of emailToCheck, emailIsAvailable, emailIsNotAvailable, checkingIfEmailIsInUse", (done) => {
+
+    component.user.email = 'testEmail';
+    component.checkIfEmailIsInUseKey();
+ 
+    setTimeout(() => {
+      expect(component.emailToCheck).toBe('testEmail');
+      expect(component.emailIsAvailable).toBeFalsy();
+      expect(component.emailIsNotAvailable).toBeFalsy();
+      expect(component.checkingIfEmailIsInUse).toBeTruthy();
+ 
+      done();
+    }, 1000);
+  });
+ 
+  it("Should check the properties of checkIfUsernameIsAvailableKey method values of usernameToCheck, usernameIsAvailable, usernameIsNotAvailable, checkIfUsernameIsAvailable", (done) => {
+ 
+    component.user.username = 'testName';
+    component.checkIfUsernameIsAvailableKey();
+ 
+    setTimeout(() => {
+      expect(component.usernameToCheck).toBe('testName');
+      expect(component.usernameIsAvailable).toBeFalsy();
+      expect(component.usernameIsNotAvailable).toBeFalsy();
+      expect(component.checkIfUsernameIsAvailable).toBeTruthy();
+ 
+      done();
+    }, 1000);
+  });
 });
