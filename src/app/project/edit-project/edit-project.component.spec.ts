@@ -150,6 +150,7 @@ describe('EditProjectComponent', () => {
    */
   xit('should navigate to home', () => {
 
+    router = TestBed.get(Router);
     let navigateSpy = spyOn(router, 'navigate');
 
     component.submitForm();
@@ -164,6 +165,7 @@ describe('EditProjectComponent', () => {
    */
   xit('should navigate to home', () => {
 
+    router = TestBed.get(Router);
     let navigateSpy = spyOn(router, 'navigate');
 
     component.deleteProject();
@@ -178,6 +180,7 @@ describe('EditProjectComponent', () => {
    */
   xit('should navigate to home', () => {
 
+    router = TestBed.get(Router);
     let navigateSpy = spyOn(router, 'navigate');
 
     component.back();
