@@ -200,15 +200,20 @@ describe('ViewProjectsComponent', () => {
     expect(component.projectsPage).toBeFalsy();
     expect(component.userProjectsPage).toBeTruthy();
 
-  })
+  });
 
-  /**
-   * Test isolated routing and check if the 
+   /**
+   * the tested method should navigate to project_submission
+   * 
+   * @author Alex Johnson (190107-Java-Spark-USF)
    */
-  xit('should test mock navigation ',() =>{
+  it('should navigate to project_submission', () => {
 
-    let navigateSpy = spyOn(router,'navigate').and.callThrough();
+    router = TestBed.get(Router);
+    let navigateSpy = spyOn(router, 'navigate');
+
     component.submitProject();
-    expect(navigateSpy).toHaveBeenCalledWith(['/project_submission'])
-   })
+
+    expect(navigateSpy).toHaveBeenCalledWith(['/project_submission']);
+  });
 });
