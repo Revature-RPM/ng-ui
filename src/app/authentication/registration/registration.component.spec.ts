@@ -56,14 +56,14 @@ describe("RegistrationComponent", () => {
   });
   /**
    * Testing the fuctionality of the registration components
-   * button click event. Upon a succesful form submission, the button click,
+   * button click event. Upon a successful form submission, the button click,
    * should trigger an indirect call to user service class
    */
   it('Registration button click event should make a call to the UserService', () => {
     // Arrange the registration environment
     const debugElement = fixture.debugElement;
     const userService = debugElement.injector.get(UserService);
-    const serviceSpy = spyOn(userService, "register").and.callThrough(); // Spy on the user service login method
+    const serviceSpy = spyOn(userService, "register").and.callThrough(); // Spy on the user service register method
     // simulate a form submission
     component.user.firstName = "Tester";
     component.user.lastName = "Testing";
