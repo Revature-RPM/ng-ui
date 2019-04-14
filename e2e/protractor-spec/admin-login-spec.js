@@ -1,8 +1,11 @@
+
+
+
 /**
  * @author Abe, Omar, Zach, Thanh, Mitchell
  */
 describe('Logging in as an Admin', function () {
-        let url = 'http://rpmclient.revature.com.s3-website-us-west-2.amazonaws.com/';
+        let url = 'http://tn-rpm-test.s3-website-us-east-1.amazonaws.com/';
     it('check login with correct credentials', function () {
         browser.get(`${url}`);
         element(by.id('mat-input-0')).sendKeys('admin');
@@ -11,8 +14,8 @@ describe('Logging in as an Admin', function () {
         browser.waitForAngular();
         expect(browser.getCurrentUrl(`${url}home`));
         // var table = //element(by.className('mat-table'));
-        var row = element.all(by.css('.mat-table tr')).get(1);
-        var cells = row.all(by.tagName('td'));
+        let row = element.all(by.css('.mat-table tr')).get(1);
+        let cells = row.all(by.tagName('td'));
         expect(cells.get(0).getText()).toEqual('admin');
         expect(cells.get(1).getText()).toEqual('Adam');
         expect(cells.get(2).getText()).toEqual('Inn');
@@ -53,7 +56,9 @@ describe('Logging in as an Admin', function () {
         element(by.id('mat-input-1')).sendKeys('p5ssw0rd');
         browser.actions().sendKeys(protractor.Key.ENTER).perform();
         browser.waitForAngular();
+        browser.switchTo().alert().accept();
         expect(browser.getCurrentUrl(`${url}`));
+        
     })
 
     it('check login with incorrect username', function () {
@@ -62,6 +67,7 @@ describe('Logging in as an Admin', function () {
         element(by.id('mat-input-1')).sendKeys('p4ssw0rd');
         browser.actions().sendKeys(protractor.Key.ENTER).perform();
         browser.waitForAngular();
+        browser.switchTo().alert().accept();
         expect(browser.getCurrentUrl(`${url}`));
     })
 
@@ -80,6 +86,7 @@ describe('Logging in as an Admin', function () {
         element(by.id('mat-input-1')).sendKeys('ppppp44444sssswwwwwwwoooorrrd');
         browser.actions().sendKeys(protractor.Key.ENTER).perform();
         browser.waitForAngular();
+        browser.switchTo().alert().accept();
         expect(browser.getCurrentUrl(`${url}`));
     })
 
@@ -89,6 +96,7 @@ describe('Logging in as an Admin', function () {
         element(by.id('mat-input-1')).sendKeys('p5ssw0rd');
         browser.actions().sendKeys(protractor.Key.ENTER).perform();
         browser.waitForAngular();
+        browser.switchTo().alert().accept();
         expect(browser.getCurrentUrl(`${url}`));
     })
 })
