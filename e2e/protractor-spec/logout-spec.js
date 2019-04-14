@@ -17,8 +17,7 @@ describe('Testing logout', function(){
     
     it('Should return to the login page', function(){
         browser.get(`${url}home`);
-        var myButton = element.all(by.tagName('button')).get(3);
-
+        let myButton = element.all(by.tagName('button')).get(3);
         myButton.click();
         browser.waitForAngular(
             function(){let value = browser.executeScript("return window.localStorage.getItem('user');");

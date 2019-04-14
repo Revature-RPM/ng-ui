@@ -7,7 +7,8 @@ exports.config = {
   allScriptsTimeout: 11000,
   specs: [
     // './protractor-spec/admin-login-spec.js', 
-    './protractor-spec/logout-spec.js'
+    // './protractor-spec/logout-spec.js'
+    './protractor-spec/updateProf-spec.js'
     
   ],
   capabilities: {
