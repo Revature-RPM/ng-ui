@@ -1,25 +1,25 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { SharedModule } from '../../shared/shared.module';
 import { AppModule} from '../../app.module';
-
 import { LoginComponent } from './login.component';
 import { UserService } from '../../core/services/user.service';
 import { AuthenticationModule } from '../authentication.module';
 import { By } from '@angular/platform-browser';
-
+import { User } from 'src/app/core/models/User';
+import { componentFactoryName } from '@angular/compiler';
+import { Component } from '@angular/core';
 /**
  * This test suite serves to check the proper creation of the Login
  * component as well the as well as the functionality
  * of the various methods within it.
  * @author Ryan Beevers | Shawn Bickel | Sahil Makhijani | Andrew Mitchem | Yuki Mano | Jeffly Luctamar | (1810-Oct08-Java-USF)
  */
-describe('LoginComponent', () => {
+fdescribe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
-
+  let userService: UserService;
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [ ],
@@ -44,8 +44,6 @@ describe('LoginComponent', () => {
     expect(component).toBeTruthy();
   });
 
-
-
   /**
    * Testing the fuctionality of the login method
    */
@@ -58,6 +56,11 @@ describe('LoginComponent', () => {
     // Spy on the user service login method
     const serviceSpy = spyOn(userService, 'login').and.callThrough();
 
+    component.usernameO=false;
+    component.passwordO=false;
+    component.authenticating=false;
+    component.loggedIn=false;
+    component.logSuccess=true;
     component.login();
 
     // the user service login method should be called
@@ -89,8 +92,65 @@ describe('LoginComponent', () => {
     expect(serviceSpy).toHaveBeenCalled();
   });
 
-  it('should render \'Login\' in title', () => {
+  xit('should render \'Login\' in title', () => {
     expect(fixture.debugElement.query(By.css('mat-card-title')).nativeElement.textContent).toContain('Login');
   })
 
+/**
+ * This test suite serves to check the functionality
+ * of the various methods within it.
+ * @author Fadi Alzoubi
+ */
+
+  xit('Check the initialization values of login component ',()=>{
+    let testUser = {
+      username: "test",
+      password: "testpassword"
+    };
+
+    //spyOn(userService,"login").and.returnValue(testUser);
+   // expect(component.user).toBe(testUser);
+   component.login();
+    expect(component.usernameO).toBeFalsy;
+    expect(component.passwordO).toBeFalsy;
+    expect(component.authenticating).toBeFalsy;
+    expect(component.loggedIn).toBeFalsy;
+    expect(component.logSuccess).toBeFalsy;
+  });
+
+//Check login method 
+it("Check login properties",()=>{
+  component.login();
+  // //if true(user)
+  // expect( component.login()).toHaveBeenCalled();
+  expect( this.userService.login().authenticating).toBeTruthy();
+  expect(this.userService.login().if (true).authenticating).toBeFalsy();
+  expect(this.userService.login().if (true).loggedIn).toBeTruthy(); 
+  expect(this.userService.login().if (true).router.nvigate).toBeDefined();
+  //else
+  expect(this.userService.login().if (false).authenticating).toBeFalsy(); 
+  expect(this.userService.login().if (false).logSuccess).toBeFalsy();   
+  //Error
+  expect(this.userService.login().console.error().authenticating).toBeFalsy;
+  expect(this.userService.login().console.error().logSuccess).toBeFalsy;
+  });
+
+
+//Check loginE method 
+// it("Check login properties",()=>{
+//   component.loginE();
+ 
+//   expect(component.login).toBeDefined();
+//   expect( this.userService.login().authenticating).toBeTruthy();
+//   expect(this.userService.login().if(true).authenticating).toBeFalsy();
+//   expect(this.userService.login().if(true).loggedIn).toBeTruthy(); 
+//   expect(this.userService.login().if(true).router.nvigate).toBeDefined();
+//   expect( component.usernameO).toBeTruthy();
+//   //else
+//   expect(this.userService.login().if (false).authenticating).toBeFalsy(); 
+   
+//   //Error
+//   expect(this.userService.login().console.error().authenticating).toBeFalsy;
+//   expect(this.userService.login().console.error().logSuccess).toBeFalsy;
+//   });
 });

@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { async, ComponentFixture, TestBed, fakeAsync } from "@angular/core/testing";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { RouterTestingModule } from "@angular/router/testing";
 import { SharedModule } from "../../shared/shared.module";
@@ -8,13 +8,17 @@ import { AuthenticationModule } from "../authentication.module";
 import { UserService } from "src/app/core/services/user.service";
 import { By } from "@angular/platform-browser";
 import { parse } from "path";
-import { of } from 'rxjs';
+import { of, Observable } from 'rxjs';
+//import 'rxjs/add/observable/of';
 /**
  * This test suite serves to check the proper creation of the registration
  * component as well the as well as the functionality
  * of the various methods within it.
  * @author Ryan Beevers | Shawn Bickel | Sahil Makhijani | Andrew Mitchem | Yuki Mano | Jeffly Luctamar | (1810-Oct08-Java-USF)
  */
+
+ //-----
+
 // Testing the successful creation of the Registration component
 describe("RegistrationComponent", () => {
   let component: RegistrationComponent;
@@ -119,7 +123,7 @@ describe("RegistrationComponent", () => {
   });
 
 
-  xit("should check the checkIfEmailIsInUse (result if) checkingIfEmailIsInUse , emailIsAvailable, ", () => {
+  it("should check the checkIfEmailIsInUse (result if) checkingIfEmailIsInUse , emailIsAvailable, ", () => {
     
     let spy = spyOn(userService,'checkIfEmailIsInUse').apply('testEmail');
   
@@ -139,7 +143,7 @@ describe("RegistrationComponent", () => {
 
   });
 
-  xit("should check the checkIfEmailIsInUse (error) checkingIfEmailIsInUse,and emailIsNotAvailable", () => {
+  it("should check the checkIfEmailIsInUse (error) checkingIfEmailIsInUse,and emailIsNotAvailable", () => {
    
     expect(component.checkIfEmailIsInUse()).toThrow("error");
     expect(component.checkingIfEmailIsInUse).toBeTruthy;
@@ -151,18 +155,40 @@ describe("RegistrationComponent", () => {
    * This test should check username available checkIfUsernameIsAvailable method
    */
 
-  it("should check the properties of checkIfUsernameIsAvailable method values of usernameToCheck, emailIsAvailable, emailIsNotAvailable, checkingIfEmailIsInUse ", () => {
+  it("should check the properties of checkIfUsernameIsAvailable method values of usernameToCheck, emailIsAvailable, emailIsNotAvailable, checkingIfEmailIsInUse ",() => {
     
+    component.usernameToCheck = 'usernamecheck'
     component.user.username = 'username';
     component.checkIfUsernameIsAvailable(); 
-    expect(component.usernameToCheck).toBe('username');
+  
+  
+    expect(component.usernameToCheck).toBe('usernamecheck');
     expect(component.usernameIsAvailable).toBeFalsy();
     expect(component.usernameIsNotAvailable).toBeFalsy();
     expect(component.checkingIfUsernameIsAvailable).toBeTruthy();
 
   });
+  it("should check the properties of checkIfUsernameIsAvailable method values of usernameToCheck, emailIsAvailable, emailIsNotAvailable, checkingIfEmailIsInUse ", fakeAsync(() => {
+    
+    component.usernameToCheck = 'usernamecheck'
+    component.user.username = 'username';
+ 
+    let result = true;
+   let spy = spyOn(userService,'checkIfUsernameIsAvailable').and.callFake(() =>{
+    
+    return of(result);
 
-  xit("should check the usernameIsAvailable (result if) checkingIfUsernameIsAvailable, usernameIsAvailable",() => {
+    })
+   component.checkingIfUsernameIsAvailable=false;
+    component.checkIfUsernameIsAvailable();
+
+    expect(spy).toEqual(true);
+    expect(component.checkingIfUsernameIsAvailable).toBeFalsy();
+    expect(component.usernameIsAvailable).toBeTruthy();
+  }));
+
+
+  it("should check the usernameIsAvailable (result if) checkingIfUsernameIsAvailable, usernameIsAvailable",() => {
      let spy = spyOn(this.userService, 'checkIfUsernameIsAvailable')
     .and.returnValue(true);
     component.checkIfUsernameIsAvailable(); 
@@ -172,9 +198,8 @@ describe("RegistrationComponent", () => {
     
   });
 
-  xit("should check the usernameIsAvailable (result else) checkingIfUsernameIsAvailable, usernameIsNotAvailable",() => {
-    let spy = spyOn(this.userService, 'checkIfUsernameIsAvailable')
-    .and.returnValue(false);
+  it("should check the usernameIsAvailable (result else) checkingIfUsernameIsAvailable, usernameIsNotAvailable",() => {
+    let spy = spyOn(this.userService, 'checkIfUsernameIsAvailable').and.returnValue(false);
     component.checkIfUsernameIsAvailable(); 
     expect(spy).toBeFalsy();
     expect(component.checkingIfUsernameIsAvailable).toBeFalsy();
@@ -182,7 +207,7 @@ describe("RegistrationComponent", () => {
    
   });
 
-  xit("should check the usernameIsAvailable (error) checkingIfUsernameIsAvailable, usernameIsNotAvailable", () => {
+  it("should check the usernameIsAvailable (error) checkingIfUsernameIsAvailable, usernameIsNotAvailable", () => {
     component.checkIfUsernameIsAvailable(); 
     expect(component.checkIfUsernameIsAvailable()).toThrow("error");
     expect(component.checkingIfUsernameIsAvailable).toBeFalsy();
