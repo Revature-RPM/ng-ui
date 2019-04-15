@@ -7,12 +7,12 @@ exports.config = {
   allScriptsTimeout: 11000,
   specs: [
     // './protractor-spec/admin-login-spec.js', 
-    // './protractor-spec/logout-spec.js',
+    './protractor-spec/logout-spec.js'
     // './protractor-spec/updateProf-spec.js',
     // './protractor-spec/submit-project-route-spec.js',
-    // './protractor-spec/register-user-spec.js,'
-    // './protractor-spec/submitProject-spec.js,'
-    './protractor-spec/toUserAccount-spec.js'
+    // './protractor-spec/register-user-spec.js',
+    // './protractor-spec/submitProject-spec.js',
+    // './protractor-spec/toUserAccount-spec.js'
   ],
   capabilities: {
     'browserName': 'chrome'

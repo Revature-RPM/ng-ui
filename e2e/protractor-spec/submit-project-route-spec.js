@@ -17,7 +17,7 @@ describe('Testing that the submit project button routes the user to the proper p
     it('Should route to submit project page', function(){
         browser.get(`${url}home`);
         element.all(by.tagName('button')).get(2).click();
-        expect(browser.getCurrentUrl(`${url}project_submission`));
+        expect(browser.getCurrentUrl()).toEqual(`${url}project_submission`);
         expect(element.all(by.tagName('h1')).get(1).getText()).toEqual('Submit a Project');
     });
 });
