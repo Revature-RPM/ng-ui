@@ -36,7 +36,7 @@ beforeAll(function(){
         };
         it('Should update the user ', function(){
              browser.get(`${url}home`);
-         
+
         browser.sleep(100);
         browser.get(`${url}account/2`);
         browser.sleep(100);

@@ -25,9 +25,16 @@ describe('Test Register', function() {
         return JSON.parse(response.body);
         };
     it('check if register works with valid inputs', function() {
-
-        browser.get(`${url}`);
+        let value = browser.executeScript("return window.localStorage.getItem('user');");
+        if(value) {
+            browser.get(`${url}home`);
+            let myButton = element.all(by.tagName('button')).get(3);
+            myButton.click();
+            browser.waitForAngular(
+                function(){
+                    browser.get(`${url}`);
         browser.get(`${url}auth/register`);
+        // browser.pause('4444');
         // grab the elements that holds the input for username/ firstname/ lastname/ password/ email
         // get these elements and then test the .sendKeys for each element
         element(by.id('mat-input-0')).sendKeys('Protractor1');
@@ -35,6 +42,7 @@ describe('Test Register', function() {
         element(by.id('mat-input-2')).sendKeys('protractor2@revature.com');
         element.all(by.css('.mat-button')).get(0).click();
         element(by.id('mat-input-3')).sendKeys('ProtractorUser');
+        
         element(by.id('inputPassword')).sendKeys('password');
         element(by.id('mat-input-5')).sendKeys('password');
         element.all(by.css('.mat-button')).get(3).click();
@@ -51,6 +59,10 @@ describe('Test Register', function() {
         expect(user.username).toEqual('ProtractorUser');
         expect(user.password).toEqual('password');
         });
+                }
+            )
+        }
+        
 
     })
 
@@ -61,6 +73,12 @@ describe('Test Register', function() {
     
 
     it('check if register fails with all blank inputs', function() {
+        let value = browser.executeScript("return window.localStorage.getItem('user');");
+        if(value) {
+            browser.get(`${url}home`);
+            let myButton = element.all(by.tagName('button')).get(3);
+            myButton.click();
+        }
         browser.get(`${url}`);
     
         // get these elements and then test the .sendKeys for each element
@@ -80,6 +98,12 @@ describe('Test Register', function() {
     // Email tests
    
     it('check if register fails with blank email', function() {
+        let value = browser.executeScript("return window.localStorage.getItem('user');");
+        if(value) {
+            browser.get(`${url}home`);
+            let myButton = element.all(by.tagName('button')).get(3);
+            myButton.click();
+        }
         browser.get(`${url}`);
     
         // get element by tag name specific to the email tag [2], and check if it is empty
@@ -96,6 +120,12 @@ describe('Test Register', function() {
 
 
     it('check if register fails with invalid email without @ symbol or .com', function() {
+        let value = browser.executeScript("return window.localStorage.getItem('user');");
+        if(value) {
+            browser.get(`${url}home`);
+            let myButton = element.all(by.tagName('button')).get(3);
+            myButton.click();
+        }
         browser.get(`${url}`);
 
         // get element by tag name specific to the email tag [2], and check if it is invalid 
@@ -113,6 +143,12 @@ describe('Test Register', function() {
 
 
     it('check if register fails with invalid email that starts with a space', function() {
+        let value = browser.executeScript("return window.localStorage.getItem('user');");
+        if(value) {
+            browser.get(`${url}home`);
+            let myButton = element.all(by.tagName('button')).get(3);
+            myButton.click();
+        }
         browser.get(`${url}`);
 
         // get element by tag name specific to the email tag [2], and check if there is a space at the begginging 
@@ -130,6 +166,12 @@ describe('Test Register', function() {
 
 
     it('check if register fails with invalid email length', function() {
+        let value = browser.executeScript("return window.localStorage.getItem('user');");
+        if(value) {
+            browser.get(`${url}home`);
+            let myButton = element.all(by.tagName('button')).get(3);
+            myButton.click();
+        }
         browser.get(`${url}`);
 
         // get element by tag name specific to the email tag [2], and check if the length is too long 
@@ -147,19 +189,29 @@ describe('Test Register', function() {
 
 
     it('check if register fails with an already used email', function() {
+        let value = browser.executeScript("return window.localStorage.getItem('user');");
+        if(value) {
+            browser.get(`${url}home`);
+            let myButton = element.all(by.tagName('button')).get(3);
+            myButton.click();
+            browser.waitForAngular(function(){
+                browser.get(`${url}`);
+                browser.get(`${url}auth/register`);
+                browser.pause('4444');
+                // grab the elements that holds the input for username/ firstname/ lastname/ password/ email
+                // get these elements and then test the .sendKeys for each element
+                element(by.id('mat-input-0')).sendKeys('Test');
+                element(by.id('mat-input-1')).sendKeys('Test1');
+                element(by.id('mat-input-2')).sendKeys('test@revature.com');
+                // browser.pause('4444');
+                
+                // get element by tag name specific to the email tag [2], and check if the email is already in use 
+                
+                expect(element(by.id('emailNotAvailable')).getText()).toEqual(`Email 'test@revature.com' is already in use`);
+            })
+        }
         
-        browser.get(`${url}`);
-        browser.get(`${url}auth/register`);
-        // grab the elements that holds the input for username/ firstname/ lastname/ password/ email
-        // get these elements and then test the .sendKeys for each element
-        element(by.id('mat-input-0')).sendKeys('Test');
-        element(by.id('mat-input-1')).sendKeys('Test1');
-        element(by.id('mat-input-2')).sendKeys('test@revature.com');
-        // browser.pause('4444');
-        
-        // get element by tag name specific to the email tag [2], and check if the email is already in use 
-        
-        expect(element(by.id('emailNotAvailable')).getText()).toEqual(`Email 'test@revature.com' is already in use`);
+       
         // browser.actions().sendKeys(protractor.Key.ENTER).perform();
         // browser.waitForAngular();
 
