@@ -8,7 +8,7 @@ import { AppModule } from 'src/app/app.module';
 import { ProjectModule } from '../../project.module';
 import { ProjectService } from 'src/app/core/services/project.service';
 
-xdescribe('InputDialogComponent', () => {
+describe('InputDialogComponent', () => {
   let component: InputDialogComponent;
   let fixture: ComponentFixture<InputDialogComponent>;
 
