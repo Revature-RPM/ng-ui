@@ -29,9 +29,6 @@ describe('Testing logout', function(){
             let value = browser.executeScript("return window.localStorage.getItem('user');");
             expect(value).toEqual(null);
             
-        }
-        );
-        
-        
+        });
     });
 });

@@ -2,6 +2,7 @@
 
 /**
  * @author Abe Schroeder, Omar Jamal, Zach Marazita, Thanh Nguyen, Mitchell Elbus (190107-Java-Spark-USF)
+ * Tests pertaining to the updating of of user profiles
  */
 
 let url = 'http://tn-rpm-test.s3-website-us-east-1.amazonaws.com/';
@@ -15,43 +16,42 @@ beforeAll(function(){
     
 })
     
-    /**
-     * @author Abe Schroeder, Omar Jamal, Zach Marazita, Thanh Nguyen, Mitchell Elbus (190107-Java-Spark-USF)
-     * Test the persistence of the update profile function
-     */
+/**
+ * @author Abe Schroeder, Omar Jamal, Zach Marazita, Thanh Nguyen, Mitchell Elbus (190107-Java-Spark-USF)
+ * Test the persistence of the update profile function
+ */
+describe('This tests the update Profile function', function(){
     
-    describe('This tests the update Profile function', function(){
-        
-    // after we update the user we want to get this user from the database and make sure the the changes we persisted.
-    async function getUser(){
-        let response = await fetch( `${url}id/2`,{
-         method: 'GET',
+// after we update the user we want to get this user from the database and make sure the the changes we persisted.
+async function getUser(){
+    let response = await fetch( `${url}id/2`,{
+        method: 'GET',
         mode: 'cors',
         headers: {
             'Content-Type': 'application/json'
-        },
-            
-        });
-        return JSON.parse(response.body);
-        };
-        it('Should update the user ', function(){
-             browser.get(`${url}home`);
+        }, 
+    });
 
-        browser.sleep(100);
-        browser.get(`${url}account/2`);
-        browser.sleep(100);
-        element.all(by.tagName('button')).get(3).click();
-        
-        browser.sleep(1000);
-         element(by.id('inputFirstName')).sendKeys('Demo');
-         element(by.id('inputLastName')).sendKeys('McDemoson');
-        element(by.id('currInputPassword')).sendKeys('Demo');
-       element(by.id('inputPassword')).sendKeys('Demo');
-       element.all(by.tagName('button')).get(1).click();
-       browser.waitForAngular();
-       let user = getUser();
-       let myUser = {id: 2, firstName: 'Demo', lastName:'McDemoson',email:'demo@revature.com'
-        ,username: 'TheDemo', password:'Demo'};
-        expect(myUser).toEqual(user);})
-    })
+    return JSON.parse(response.body);
+};
+
+it('Should update the user ', function(){
+    browser.get(`${url}home`);
+    browser.sleep(100);
+    browser.get(`${url}account/2`);
+    browser.sleep(100);
+    element.all(by.tagName('button')).get(3).click();
+    
+    browser.sleep(1000);
+    element(by.id('inputFirstName')).sendKeys('Demo');
+    element(by.id('inputLastName')).sendKeys('McDemoson');
+    element(by.id('currInputPassword')).sendKeys('Demo');
+    element(by.id('inputPassword')).sendKeys('Demo');
+    element.all(by.tagName('button')).get(1).click();
+    browser.waitForAngular();
+    let user = getUser();
+    let myUser = {id: 2, firstName: 'Demo', lastName:'McDemoson',email:'demo@revature.com'
+    ,username: 'TheDemo', password:'Demo'};
+    expect(myUser).toEqual(user);})
+})
     
