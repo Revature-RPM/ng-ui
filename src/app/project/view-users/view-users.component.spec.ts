@@ -47,24 +47,10 @@ describe('ViewUsersComponent', () => {
     service = TestBed.get(UserService);
     fixture = TestBed.createComponent(ViewUsersComponent);
     component = fixture.componentInstance;
-    //fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should view all users if logged-in as administrator', () => {
-    testUser = {
-      role:'ROLE_ADMIN'
-    }
-    service.user = testUser;
-    component.ngOnInit() 
-    component.userSubscription = this.service.getAllUsers().subsribe( data => {
-
-      expect(component.retrievingProjects).toBeFalsy();
-      expect(component.allUsersArray).toEqual(data);
-    });
-
-  });
 });

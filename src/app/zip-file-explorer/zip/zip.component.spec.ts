@@ -28,10 +28,9 @@ describe('ZipComponent', () => {
     fixture = TestBed.createComponent(ZipComponent);
     component = fixture.componentInstance;
     projectService = TestBed.get(ProjectService);
-    fixture.detectChanges();
   });
 
-  xit('should create', () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
   
@@ -41,6 +40,7 @@ describe('ZipComponent', () => {
    */
   xit('should throw an error', () => {
     
+    fixture.detectChanges();
     let message = 'test';
     
     component.errorFile(message);
@@ -53,6 +53,7 @@ describe('ZipComponent', () => {
    */
   xit('should return a substring of link', () => {
     
+    fixture.detectChanges();
     let link = 'test';
     
     component.safeTitle(link);
@@ -68,6 +69,7 @@ describe('ZipComponent', () => {
    */
   xit('should navigate to login if the user is null', () => {
 
+    fixture.detectChanges();
     router = TestBed.get(Router);
     localStorage.clear();
     localStorage.setItem('user', null);
@@ -81,7 +83,9 @@ describe('ZipComponent', () => {
   /**
    * Test will verify goBack location
    */
-  it('should test goBack and location.back to be called',() =>{
+  xit('should test goBack and location.back to be called',() =>{
+    
+    fixture.detectChanges();
     component.goBack();
   })
   /**
@@ -89,6 +93,8 @@ describe('ZipComponent', () => {
    * not working  
    */
   xit('should test errorFile ',()=>{
+    
+    fixture.detectChanges();
     let message = 'test'
     component.errorFile(message);
     
@@ -98,6 +104,8 @@ describe('ZipComponent', () => {
    * not working
    */
   xit('should test safeFile ',()=>{
+    
+    fixture.detectChanges();
     let message = 'test'
     component.safeTitle(message);
   })
@@ -106,6 +114,8 @@ describe('ZipComponent', () => {
    * not working
    */
   xit('should test openRenderFile ',()=>{
+    
+    fixture.detectChanges();
     renderFile = 'test';
     component.OpenFile.push(renderFile);
     component.safeTitle(renderFile);
@@ -116,6 +126,8 @@ describe('ZipComponent', () => {
    * not working
    */
   xit('should test openRenderFile ',()=>{
+    
+    fixture.detectChanges();
     renderFile = 'test';
     component.OpenFile.push(renderFile);
     component.safeTitle(renderFile);
@@ -125,7 +137,9 @@ describe('ZipComponent', () => {
    * Test test openRenderFile 
    * not working
    */
-  it('should test getFileNameFromHpResponse',()=>{
+  xit('should test getFileNameFromHpResponse',()=>{
+    
+    fixture.detectChanges();
     let message = 'test'
     component.getFileNameFromHttpResponse(message);
   })

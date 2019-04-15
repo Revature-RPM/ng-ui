@@ -4,7 +4,7 @@ import { RouterTestingModule } from "@angular/router/testing";
 import { SharedModule } from "../../shared/shared.module";
 import { AppModule } from "../../app.module";
 import { RegistrationComponent } from "./registration.component";
-import { AuthenticationModule } from "../authentication.module";
+import { AuthenticationModule } from 'src/app/authentication/authentication.module';
 import { UserService } from "src/app/core/services/user.service";
 import { By } from "@angular/platform-browser";
 import { parse } from "path";

@@ -5,7 +5,7 @@ import { SharedModule } from '../../shared/shared.module';
 import { AppModule } from '../../app.module';
 import { LoginComponent } from './login.component';
 import { UserService } from '../../core/services/user.service';
-import { AuthenticationModule } from '../authentication.module';
+import { AuthenticationModule } from 'src/app/authentication/authentication.module';
 import { By } from '@angular/platform-browser';
 import { User } from 'src/app/core/models/User';
 import { componentFactoryName } from '@angular/compiler';

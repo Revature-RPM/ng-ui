@@ -22,15 +22,7 @@ describe('ProjectSubmissionComponent', () => {
   let fixture: ComponentFixture<ProjectSubmissionComponent>;
   let router: Router;
   let service: UserService;
-  let testUser: User = {
-    id: 10000,
-    firstName: 'Alex',
-    lastName: 'Johnson',
-    email: 'alexjohnson4564@gmail.com',
-    username: 'alexj4564',
-    password: 'Password1234',
-    role: 'admin'
-  };
+  let testUser: User
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -44,7 +36,8 @@ describe('ProjectSubmissionComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ProjectSubmissionComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    service = TestBed.get(UserService);
+    
   });
 
   it('should create', () => {
@@ -71,16 +64,28 @@ describe('ProjectSubmissionComponent', () => {
     component.ngOnInit();
 
     expect(navigateSpy).toHaveBeenCalledWith(['/auth/login']);
-  })
+  });
 
-  xit('should do stuff', () => {
-
-    localStorage.clear();
-    localStorage.setItem('user', `${testUser}`);
+  /**
+   * Test ngOnit if userService.getUser is not null
+   * 
+   * @author Gabriel Zapata, Alex Johnson (010719-Java-Spark-USF)
+   */
+  xit('should verify ngOninit feilds if userService.getUser is not null',()=>{
+    testUser ={
+      role:'test'
+    }
+    localStorage.setItem('user','testUser');
+    let spy = spyOn(service,'getUser').and.returnValue(testUser);
 
     component.ngOnInit();
-
-    expect(component.groupMemberString).toBeUndefined;
-  })
+    expect(spy).toHaveBeenCalled();
+    expect(component.projectToUpload.groupMembers).toBeTruthy();
+    expect(component.projectToUpload.screenShots).toBeTruthy();
+    expect(component.groupMemberString).toBeFalsy();
+    expect(component.zipLinksString).toBeFalsy();
+    expect(component.githubURL).toBeTruthy();
+    expect(component).toBe(testUser);
+  });
 
 });
