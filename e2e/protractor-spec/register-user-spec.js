@@ -1,4 +1,3 @@
-
 /**
  * @author Abe Schroeder, Omar Jamal, Zach Marazita, Thanh Nguyen, Mitchell Elbus (190107-Java-Spark-USF)
  * General tests pertaining to the registering of new users
@@ -20,7 +19,7 @@ describe('Test Register', function() {
 
         return JSON.parse(response.body);
     };
-    
+
     it('check if register works with valid inputs', function() {
         let value = browser.executeScript("return window.localStorage.getItem('user');");
         if(value) {
@@ -62,11 +61,8 @@ describe('Test Register', function() {
     })
 
 
-
-
     ///////////////////////////////////////////////////////////////////////
     
-
     it('check if register fails with all blank inputs', function() {
         let value = browser.executeScript("return window.localStorage.getItem('user');");
         if(value) {
@@ -85,8 +81,6 @@ describe('Test Register', function() {
          expect(browser.getCurrentUrl(`${url}login`));
 
     })
-
-
 
 
     ///////////////////////////////////////////////////////////////////////////
@@ -112,8 +106,6 @@ describe('Test Register', function() {
 
     })
 
-
-
     it('check if register fails with invalid email without @ symbol or .com', function() {
         let value = browser.executeScript("return window.localStorage.getItem('user');");
         if(value) {
@@ -134,8 +126,6 @@ describe('Test Register', function() {
 
 
     })
-
-
 
     it('check if register fails with invalid email that starts with a space', function() {
         let value = browser.executeScript("return window.localStorage.getItem('user');");
@@ -158,8 +148,6 @@ describe('Test Register', function() {
 
     })
 
-
-
     it('check if register fails with invalid email length', function() {
         let value = browser.executeScript("return window.localStorage.getItem('user');");
         if(value) {
@@ -180,8 +168,6 @@ describe('Test Register', function() {
 
 
     })
-
-
 
     it('check if register fails with an already used email', function() {
         let value = browser.executeScript("return window.localStorage.getItem('user');");
@@ -204,240 +190,4 @@ describe('Test Register', function() {
             })
         }
     })
-
-    
-
-
-    ///////////////////////////////////////////////////////////////////////////
-    // Password tests
-
-    // it('check if register fails with blank passwords', function() {
-    //     browser.get(`${url}`);
-        
-    //     // get element by tag name specific to the password tag [4] & [5], and check if it is empty
-    //     element(by.tagName('mat-form-field')[4]).value == '';
-    //     element(by.tagName('mat-form-field')[5]).value == '';
-
-    //     browser.actions().sendKeys(protractor.Key.ENTER).perform();
-    //     browser.waitForAngular();
-
-    //      // specifiy what url we are wanting to hit after this action is performed
-    //      expect(browser.getCurrentUrl(`${url}login`));
-
-    // })
-
-
-
-    // it('check if register fails with starting with a space in password', function() {
-    //     browser.get(`${url}`);
-        
-    //     // get element by tag name specific to the password tag [4] & [5], and check if it starts with a space
-    //     element(by.tagName('mat-form-field')[4]).value == ' password';
-    //     element(by.tagName('mat-form-field')[5]).value == ' password';
-
-    //     browser.actions().sendKeys(protractor.Key.ENTER).perform();
-    //     browser.waitForAngular();
-
-    //      // specifiy what url we are wanting to hit after this action is performed
-    //      expect(browser.getCurrentUrl(`${url}login`));
-
-    // })
-
-
-
-    // it('check if register fails with the length being too long for password', function() {
-    //     browser.get(`${url}`);
-        
-    //     // get element by tag name specific to the password tag [4] & [5], and check if it starts with a space
-    //     element(by.tagName('mat-form-field')[4]).value == 'passssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss';
-    //     element(by.tagName('mat-form-field')[5]).value == 'passssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss';
-
-    //     browser.actions().sendKeys(protractor.Key.ENTER).perform();
-    //     browser.waitForAngular();
-
-    //      // specifiy what url we are wanting to hit after this action is performed
-    //      expect(browser.getCurrentUrl(`${url}login`));
-
-    // })
-
-
-
-
-    // ///////////////////////////////////////////////////////////////////////////
-    // // Username tests
-
-    // it('check if register fails with blank username', function() {
-    //     browser.get(`${url}`);
-    
-    //     // get element by tag name specific to the username tag [3], and check if it is empty
-    //     element(by.tagName('mat-form-field')[3]).value == '';
-        
-
-    //     browser.actions().sendKeys(protractor.Key.ENTER).perform();
-    //     browser.waitForAngular();
-
-    //      // specifiy what url we are wanting to hit after this action is performed
-    //      expect(browser.getCurrentUrl(`${url}login`));
-
-    // })
-
-
-
-    // it('check if register fails with username starting with a space', function() {
-    //     browser.get(`${url}`);
-        
-    //     // get element by tag name specific to the username tag [3] and check if it starts with a space
-    //     element(by.tagName('mat-form-field')[3]).value == ' username';
-
-    //     browser.actions().sendKeys(protractor.Key.ENTER).perform();
-    //     browser.waitForAngular();
-
-    //      // specifiy what url we are wanting to hit after this action is performed
-    //      expect(browser.getCurrentUrl(`${url}login`));
-
-    // })
-
-
-
-    // it('check if register fails with username being too long', function() {
-    //     browser.get(`${url}`);
-        
-    //     // get element by tag name specific to the username tag [3] and check if it is too long
-    //     element(by.tagName('mat-form-field')[3]).value == 'passssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss';
-
-    //     browser.actions().sendKeys(protractor.Key.ENTER).perform();
-    //     browser.waitForAngular();
-
-    //      // specifiy what url we are wanting to hit after this action is performed
-    //      expect(browser.getCurrentUrl(`${url}login`));
-
-    // })
-
-
-
-    // it('check if register fails with an already used username', function() {
-    //     browser.get(`${url}`);
-
-    //     // get element by tag name specific to the email tag [2], and check if the email is already in use 
-    //     this.userService.checkIfUsernameIsInAvailable(element(by.tagName('mat-form-field')[3]).value) == true;
-
-    //     browser.actions().sendKeys(protractor.Key.ENTER).perform();
-    //     browser.waitForAngular();
-
-    //     // specifiy what url we are wanting to hit after this action is performed
-    //     expect(browser.getCurrentUrl(`${url}login`));
-
-
-    // })
-
-
-
-    // ///////////////////////////////////////////////////////////////////////////
-    // // First name tests
-
-    // it('check if register fails with blank firstname', function() {
-    //     browser.get(`${url}`);
-    
-    //     // get element by tag name specific to the firstname tag [0], and check if it is empty
-    //     element(by.tagName('mat-form-field')[0]).value == '';
-        
-
-    //     browser.actions().sendKeys(protractor.Key.ENTER).perform();
-    //     browser.waitForAngular();
-
-    //      // specifiy what url we are wanting to hit after this action is performed
-    //      expect(browser.getCurrentUrl(`${url}login`));
-
-    // })
-
-
-
-    // it('check if register fails with starting with a space', function() {
-    //     browser.get(`${url}`);
-    
-    //     // get element by tag name specific to the firstname tag [0], and check if it starts with a space
-    //     element(by.tagName('mat-form-field')[0]).value == ' billy';
-        
-
-    //     browser.actions().sendKeys(protractor.Key.ENTER).perform();
-    //     browser.waitForAngular();
-
-    //      // specifiy what url we are wanting to hit after this action is performed
-    //      expect(browser.getCurrentUrl(`${url}login`));
-
-    // })
-
-
-
-    // it('check if register fails with first name is greater than 50', function() {
-    //     browser.get(`${url}`);
-    
-    //     // get element by tag name specific to the firstname tag [0], and check if it starts with a space
-    //     element(by.tagName('mat-form-field')[0]).value == 'passssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss';
-        
-
-    //     browser.actions().sendKeys(protractor.Key.ENTER).perform();
-    //     browser.waitForAngular();
-
-    //      // specifiy what url we are wanting to hit after this action is performed
-    //      expect(browser.getCurrentUrl(`${url}login`));
-
-    // })
-
-
-
-
-    // ///////////////////////////////////////////////////////////////////////////
-    // // Last name tests
-
-    // it('check if register fails with blank lastname', function() {
-    //     browser.get(`${url}`);
-    
-    //     // get element by tag name specific to the lastname tag [1], and check if it is empty
-    //     element(by.tagName('mat-form-field')[1]).value == '';
-        
-
-    //     browser.actions().sendKeys(protractor.Key.ENTER).perform();
-    //     browser.waitForAngular();
-
-    //      // specifiy what url we are wanting to hit after this action is performed
-    //      expect(browser.getCurrentUrl(`${url}login`));
-
-    // })
-
-
-
-    // it('check if register fails if lastname starts with a space', function() {
-    //     browser.get(`${url}`);
-    
-    //     // get element by tag name specific to the lastname tag [1], and check if it starts with a space
-    //     element(by.tagName('mat-form-field')[1]).value == ' bobby';
-        
-
-    //     browser.actions().sendKeys(protractor.Key.ENTER).perform();
-    //     browser.waitForAngular();
-
-    //      // specifiy what url we are wanting to hit after this action is performed
-    //      expect(browser.getCurrentUrl(`${url}login`));
-
-    // })
-
-
-
-    // it('check if register fails if lastname is greater than 50 characters', function() {
-    //     browser.get(`${url}`);
-    
-    //     // get element by tag name specific to the lastname tag [1], and check if it is bigger than 50
-    //     element(by.tagName('mat-form-field')[1]).value == 'passssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss';
-        
-
-    //     browser.actions().sendKeys(protractor.Key.ENTER).perform();
-    //     browser.waitForAngular();
-
-    //      // specifiy what url we are wanting to hit after this action is performed
-    //      expect(browser.getCurrentUrl(`${url}login`));
-
-    // })
-
-
 })
