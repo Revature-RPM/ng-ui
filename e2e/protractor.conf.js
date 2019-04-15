@@ -6,10 +6,13 @@ const { SpecReporter } = require('jasmine-spec-reporter');
 exports.config = {
   allScriptsTimeout: 11000,
   specs: [
-     './protractor-spec/admin-login-spec.js', 
-     './protractor-spec/logout-spec.js',
-    './protractor-spec/updateProf-spec.js'
-    
+    // './protractor-spec/admin-login-spec.js', 
+    // './protractor-spec/logout-spec.js',
+    // './protractor-spec/updateProf-spec.js',
+    // './protractor-spec/submit-project-route-spec.js',
+    // './protractor-spec/register-user-spec.js,'
+    // './protractor-spec/submitProject-spec.js,'
+    './protractor-spec/toUserAccount-spec.js'
   ],
   capabilities: {
     'browserName': 'chrome'
@@ -19,7 +22,7 @@ exports.config = {
   framework: 'jasmine',
   jasmineNodeOpts: {
     showColors: true,
-    defaultTimeoutInterval: 30000,
+    defaultTimeoutInterval: 300000,
     print: function() {}
   },
   onPrepare() {
