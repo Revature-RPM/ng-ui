@@ -2,7 +2,8 @@
 
 
 /**
- * @author Abe Schroeder, Omar Jamal, Zach Marazita, Thanh Nguyen, Mitchell Elbus
+ * @author Abe Schroeder, Omar Jamal, Zach Marazita, Thanh Nguyen, Mitchell Elbus (190107-Java-Spark-USF)
+ * This tests to make sure the logout function returns us to the login page and the local storage is also cleared
  */
 let url = 'http://tn-rpm-test.s3-website-us-east-1.amazonaws.com/';
 beforeEach(function(){
