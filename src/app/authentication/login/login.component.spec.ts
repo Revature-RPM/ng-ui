@@ -16,7 +16,7 @@ import { Component } from '@angular/core';
  * of the various methods within it.
  * @author Ryan Beevers | Shawn Bickel | Sahil Makhijani | Andrew Mitchem | Yuki Mano | Jeffly Luctamar | (1810-Oct08-Java-USF)
  */
-fdescribe('LoginComponent', () => {
+describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
   let userService: UserService;

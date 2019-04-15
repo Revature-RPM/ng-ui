@@ -27,7 +27,7 @@ class userService {
 
 
 
-fdescribe('ViewUsersComponent', () => {
+describe('ViewUsersComponent', () => {
   let component: ViewUsersComponent;
   let fixture: ComponentFixture<ViewUsersComponent>;
   let injector: TestBed;
