@@ -49,6 +49,7 @@ describe('Logging in as an Admin', function () {
 
 
     })
+
     /**
      * Ensures admin is not logged in with improper credentials
      */
@@ -62,6 +63,7 @@ describe('Logging in as an Admin', function () {
         expect(browser.getCurrentUrl()).toEqual(`${url}`);
         
     })
+
     /**
      * Ensures admin is not logged in with improper credentials
      */
@@ -74,6 +76,7 @@ describe('Logging in as an Admin', function () {
         browser.switchTo().alert().accept();
         expect(browser.getCurrentUrl()).toEqual(`${url}`);
     })
+
     /**
      * Ensures admin is not logged in with no credentials
      */
@@ -85,6 +88,7 @@ describe('Logging in as an Admin', function () {
         browser.waitForAngular();
         expect(browser.getCurrentUrl()).toEqual(`${url}`);
     })
+
     /**
      * Ensures admin is not logged in with improper credentials
      */
@@ -97,6 +101,7 @@ describe('Logging in as an Admin', function () {
         browser.switchTo().alert().accept();
         expect(browser.getCurrentUrl()).toEqual(`${url}`);
     })
+    
     /**
      * Ensures admin is not logged in with spaces
      */
