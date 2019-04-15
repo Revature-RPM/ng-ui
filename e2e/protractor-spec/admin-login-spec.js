@@ -2,7 +2,8 @@
 
 
 /**
- * @author Abe, Omar, Zach, Thanh, Mitchell
+ * @author Abe Schroeder, Omar Jamal, Zach Marazita, Thanh Nguyen, Mitchell Elbus (190107-Java-Spark-USF)
+ * logs the user in as an admin and makes sure they are brought to the proper page
  */
 describe('Logging in as an Admin', function () {
         let url = 'http://tn-rpm-test.s3-website-us-east-1.amazonaws.com/';
@@ -13,7 +14,6 @@ describe('Logging in as an Admin', function () {
         browser.actions().sendKeys(protractor.Key.ENTER).perform();
         browser.waitForAngular();
         expect(browser.getCurrentUrl(`${url}home`));
-        // var table = //element(by.className('mat-table'));
         let row = element.all(by.css('.mat-table tr')).get(1);
         let cells = row.all(by.tagName('td'));
         expect(cells.get(0).getText()).toEqual('admin');
@@ -49,7 +49,9 @@ describe('Logging in as an Admin', function () {
 
 
     })
-
+    /**
+     * Ensures admin is not logged in with improper credentials
+     */
     it('check login with incorrect password', function () {
         browser.get(`${url}`);
         element(by.id('mat-input-0')).sendKeys('admin');
@@ -60,7 +62,9 @@ describe('Logging in as an Admin', function () {
         expect(browser.getCurrentUrl(`${url}`));
         
     })
-
+    /**
+     * Ensures admin is not logged in with improper credentials
+     */
     it('check login with incorrect username', function () {
         browser.get(`${url}`);
         element(by.id('mat-input-0')).sendKeys('acmin');
@@ -70,7 +74,9 @@ describe('Logging in as an Admin', function () {
         browser.switchTo().alert().accept();
         expect(browser.getCurrentUrl(`${url}`));
     })
-
+    /**
+     * Ensures admin is not logged in with no credentials
+     */
     it('check login with no credentials', function () {
         browser.get(`${url}`);
         element(by.id('mat-input-0')).sendKeys('');
@@ -79,7 +85,9 @@ describe('Logging in as an Admin', function () {
         browser.waitForAngular();
         expect(browser.getCurrentUrl(`${url}`));
     })
-
+    /**
+     * Ensures admin is not logged in with improper credentials
+     */
     it('check login with incorrect credentials', function () {
         browser.get(`${url}`);
         element(by.id('mat-input-0')).sendKeys('aaaddddddmmmmmiiiinnnnnn');
@@ -89,7 +97,9 @@ describe('Logging in as an Admin', function () {
         browser.switchTo().alert().accept();
         expect(browser.getCurrentUrl(`${url}`));
     })
-
+    /**
+     * Ensures admin is not logged in with spaces
+     */
     it('check login with spaces', function () {
         browser.get(`${url}`);
         element(by.id('mat-input-0')).sendKeys(' admin');
