@@ -1,7 +1,7 @@
 
 
 /**
- * @author Abe,Mitchell,Omar,Thanh,Zachary
+ * @author Abe Schroeder, Omar Jamal, Zach Marazita, Thanh Nguyen, Mitchell Elbus (190107-Java-Spark-USF)
  */
 
 let url = 'http://tn-rpm-test.s3-website-us-east-1.amazonaws.com/';
@@ -15,8 +15,11 @@ beforeAll(function(){
     
 })
     
-
-    //This will test the persistance of the update user function
+    /**
+     * @author Abe Schroeder, Omar Jamal, Zach Marazita, Thanh Nguyen, Mitchell Elbus (190107-Java-Spark-USF)
+     * Test the persistence of the update profile function
+     */
+    
     describe('This tests the update Profile function', function(){
         
     // after we update the user we want to get this user from the database and make sure the the changes we persisted.
@@ -50,17 +53,5 @@ beforeAll(function(){
        let myUser = {id: 2, firstName: 'Demo', lastName:'McDemoson',email:'demo@revature.com'
         ,username: 'TheDemo', password:'Demo'};
         expect(myUser).toEqual(user);})
-        
-            
-           
-            
-
-        
     })
-
-
-
-    // afterAll(function(){
-    //     var myButton = element(by.buttonText('Logout'));
-    //     myButton.click();
-    //  })
+    
