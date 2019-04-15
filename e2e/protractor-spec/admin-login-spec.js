@@ -49,7 +49,9 @@ describe('Logging in as an Admin', function () {
 
 
     })
-
+    /**
+     * Ensures admin is not logged in with improper credentials
+     */
     it('check login with incorrect password', function () {
         browser.get(`${url}`);
         element(by.id('mat-input-0')).sendKeys('admin');
@@ -60,7 +62,9 @@ describe('Logging in as an Admin', function () {
         expect(browser.getCurrentUrl(`${url}`));
         
     })
-
+    /**
+     * Ensures admin is not logged in with improper credentials
+     */
     it('check login with incorrect username', function () {
         browser.get(`${url}`);
         element(by.id('mat-input-0')).sendKeys('acmin');
@@ -70,7 +74,9 @@ describe('Logging in as an Admin', function () {
         browser.switchTo().alert().accept();
         expect(browser.getCurrentUrl(`${url}`));
     })
-
+    /**
+     * Ensures admin is not logged in with no credentials
+     */
     it('check login with no credentials', function () {
         browser.get(`${url}`);
         element(by.id('mat-input-0')).sendKeys('');
@@ -79,7 +85,9 @@ describe('Logging in as an Admin', function () {
         browser.waitForAngular();
         expect(browser.getCurrentUrl(`${url}`));
     })
-
+    /**
+     * Ensures admin is not logged in with improper credentials
+     */
     it('check login with incorrect credentials', function () {
         browser.get(`${url}`);
         element(by.id('mat-input-0')).sendKeys('aaaddddddmmmmmiiiinnnnnn');
@@ -89,7 +97,9 @@ describe('Logging in as an Admin', function () {
         browser.switchTo().alert().accept();
         expect(browser.getCurrentUrl(`${url}`));
     })
-
+    /**
+     * Ensures admin is not logged in with spaces
+     */
     it('check login with spaces', function () {
         browser.get(`${url}`);
         element(by.id('mat-input-0')).sendKeys(' admin');
