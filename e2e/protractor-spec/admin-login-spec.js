@@ -2,7 +2,8 @@
 
 
 /**
- * @author Abe, Omar, Zach, Thanh, Mitchell
+ * @author Abe Schroeder, Omar Jamal, Zach Marazita, Thanh Nguyen, Mitchell Elbus (190107-Java-Spark-USF)
+ * logs the user in as an admin and makes sure they are brought to the proper page
  */
 describe('Logging in as an Admin', function () {
         let url = 'http://tn-rpm-test.s3-website-us-east-1.amazonaws.com/';
@@ -13,7 +14,6 @@ describe('Logging in as an Admin', function () {
         browser.actions().sendKeys(protractor.Key.ENTER).perform();
         browser.waitForAngular();
         expect(browser.getCurrentUrl(`${url}home`));
-        // var table = //element(by.className('mat-table'));
         let row = element.all(by.css('.mat-table tr')).get(1);
         let cells = row.all(by.tagName('td'));
         expect(cells.get(0).getText()).toEqual('admin');
