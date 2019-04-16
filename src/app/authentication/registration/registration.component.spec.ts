@@ -38,7 +38,7 @@ describe("RegistrationComponent", () => {
     fixture = TestBed.createComponent(RegistrationComponent);
     component = fixture.componentInstance;
     userService = TestBed.get(UserService);
-    //fixture.detectChanges();
+    fixture.detectChanges();
   });
   // Testing the successful creation of the registration componenet
   it("should create", () => {

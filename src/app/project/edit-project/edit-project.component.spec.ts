@@ -94,9 +94,11 @@ describe('EditProjectComponent', () => {
   });
 
   /**
-   * This doesn't work either wow
+   * This method should validate fields
+   * 
+   * @Author Gabriel Zapata and Alex Johnson (190107 Java)
    */
-  xit('should validateFields', () => {
+  it('should validateFields', () => {
     let nameField = { valid: false };
     let batchField = { valid: false };
     let trainerField = { valid: false };
@@ -178,7 +180,7 @@ describe('EditProjectComponent', () => {
    * 
    * @author Alex Johnson (190107-Java-Spark-USF)
    */
-  xit('should navigate to home', () => {
+  it('should navigate to home', () => {
 
     router = TestBed.get(Router);
     let navigateSpy = spyOn(router, 'navigate');
