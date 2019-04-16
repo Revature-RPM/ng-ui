@@ -31,34 +31,39 @@ describe("This tests the update project function", () => {
     });
     return JSON.parse(response.body);
   }
-  describe('Testing the update project function', ()=>{
-      it('should persist the updated function when triggered', ()=>{
-          // give values for each input field in update project page
-          browser.get(`${url}home`);
-          browser.get(`${url}:id/edit`);
+  describe("Testing the update project function", () => {
+    it("should persist the updated function when triggered", () => {
+      // give values for each input field in update project page
+      browser.get(`${url}home`);
+      browser.get(`${url}:id/edit`);
 
-          // retrieving fields of update project
+      // retrieving fields of update project
 
-          element(by.id('project_name')).sendKeys('Testing projectName');
-          element(by.id('batchName')).sendKeys('Testing batchName');
-          element(by.name('trainers')).sendKeys('Testing Wezley');
-          element(by.name('hello')).sendKeys('Abe, Mitchell, Omar, Thanh, Zachary');
-          element(by.name('description')).sendKeys('This is a test for updating description');
-          // inputGithubLink not found in html; check back later
+      element(by.id("project_name")).sendKeys("Testing projectName");
+      element(by.name("batchName")).sendKeys("Testing batchName");
+      element(by.name("trainers")).sendKeys("Testing Wezley");
+      element(by.name("hello")).sendKeys("Abe, Mitchell, Omar, Thanh, Zachary");
+      element(by.name("description")).sendKeys(
+        "This is a test for updating description"
+      );
+      // inputGithubLink not found in html; check back later
 
-          // capturing submit button
-          element(by.id('submit-update')).click();
+      // capturing submit button
+      browser.waitForAngular(() => {
+        element(by.id("submit-update")).click();
+      });
 
-          browser.waitForAngular(()=>{
-              let project = getProject();
-              expect(project.name).toEqual('Testing projectName');
-              expect(project.batch).toEqual('Testing batchName');
-              expect(project.trainers).toEqual('Testing Wezley');
-              expect(project.hello).toEqual('Abe, Mitchell, Omar, Thanh, Zachary');
-              expect(project.description).toEqual('This is a test for updating description');
-              // ziplinks would correspond to github link; check back later
-         });
-
-      })
-  })
+      browser.waitForAngular(() => {
+        let project = getProject();
+        expect(project.name).toEqual("Testing projectName");
+        expect(project.batch).toEqual("Testing batchName");
+        expect(project.trainers).toEqual("Testing Wezley");
+        expect(project.hello).toEqual("Abe, Mitchell, Omar, Thanh, Zachary");
+        expect(project.description).toEqual(
+          "This is a test for updating description"
+        );
+        // ziplinks would correspond to github link; check back later
+      });
+    });
+  });
 });
