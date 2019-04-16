@@ -40,6 +40,7 @@ describe("RegistrationComponent", () => {
     userService = TestBed.get(UserService);
     fixture.detectChanges();
   });
+
   // Testing the successful creation of the registration componenet
   it("should create", () => {
     expect(component).toBeTruthy();
