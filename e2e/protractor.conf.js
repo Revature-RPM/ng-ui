@@ -12,7 +12,8 @@ exports.config = {
     './protractor-spec/updateprof-spec.js',
     './protractor-spec/submit-project-route-spec.js',
     './protractor-spec/register-user-spec.js',
-    './protractor-spec/submitproject-spec.js'
+    './protractor-spec/submitProject-spec.js',
+    './protractor-spec/update-project-spec.js'
   ],
   capabilities: {
     'browserName': 'chrome'
