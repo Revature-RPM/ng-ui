@@ -25,10 +25,11 @@ describe('Testing logout', function(){
         let myButton = element.all(by.tagName('button')).get(3);
         myButton.click();
         browser.waitForAngular(
-            function(){let value = browser.executeScript("return window.localStorage.getItem('user');");
-            expect(value).toEqual(null);}
-        );
-        
-        expect(browser.getCurrentUrl(`${url}`));
+            function(){
+            let value = browser.executeScript("return window.localStorage.getItem('user');");
+            expect(value).toEqual(null);
+            expect(browser.getCurrentUrl()).toEqual(`${url}`);
+            
+        });
     });
 });

@@ -13,7 +13,7 @@ describe('Logging in as an Admin', function () {
         element(by.id('mat-input-1')).sendKeys('p4ssw0rd');
         browser.actions().sendKeys(protractor.Key.ENTER).perform();
         browser.waitForAngular();
-        expect(browser.getCurrentUrl(`${url}home`));
+        expect(browser.getCurrentUrl()).toEqual(`${url}home`);
         let row = element.all(by.css('.mat-table tr')).get(1);
         let cells = row.all(by.tagName('td'));
         expect(cells.get(0).getText()).toEqual('admin');
@@ -49,6 +49,7 @@ describe('Logging in as an Admin', function () {
 
 
     })
+
     /**
      * Ensures admin is not logged in with improper credentials
      */
@@ -59,9 +60,10 @@ describe('Logging in as an Admin', function () {
         browser.actions().sendKeys(protractor.Key.ENTER).perform();
         browser.waitForAngular();
         browser.switchTo().alert().accept();
-        expect(browser.getCurrentUrl(`${url}`));
+        expect(browser.getCurrentUrl()).toEqual(`${url}`);
         
     })
+
     /**
      * Ensures admin is not logged in with improper credentials
      */
@@ -72,8 +74,9 @@ describe('Logging in as an Admin', function () {
         browser.actions().sendKeys(protractor.Key.ENTER).perform();
         browser.waitForAngular();
         browser.switchTo().alert().accept();
-        expect(browser.getCurrentUrl(`${url}`));
+        expect(browser.getCurrentUrl()).toEqual(`${url}`);
     })
+
     /**
      * Ensures admin is not logged in with no credentials
      */
@@ -83,8 +86,9 @@ describe('Logging in as an Admin', function () {
         element(by.id('mat-input-1')).sendKeys('');
         browser.actions().sendKeys(protractor.Key.ENTER).perform();
         browser.waitForAngular();
-        expect(browser.getCurrentUrl(`${url}`));
+        expect(browser.getCurrentUrl()).toEqual(`${url}`);
     })
+
     /**
      * Ensures admin is not logged in with improper credentials
      */
@@ -95,8 +99,9 @@ describe('Logging in as an Admin', function () {
         browser.actions().sendKeys(protractor.Key.ENTER).perform();
         browser.waitForAngular();
         browser.switchTo().alert().accept();
-        expect(browser.getCurrentUrl(`${url}`));
+        expect(browser.getCurrentUrl()).toEqual(`${url}`);
     })
+    
     /**
      * Ensures admin is not logged in with spaces
      */
@@ -107,7 +112,7 @@ describe('Logging in as an Admin', function () {
         browser.actions().sendKeys(protractor.Key.ENTER).perform();
         browser.waitForAngular();
         browser.switchTo().alert().accept();
-        expect(browser.getCurrentUrl(`${url}`));
+        expect(browser.getCurrentUrl()).toEqual(`${url}`);
     })
 })
 
