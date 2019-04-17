@@ -6,14 +6,15 @@ const { SpecReporter } = require('jasmine-spec-reporter');
 exports.config = {
   allScriptsTimeout: 11000,
   specs: [
+    './protractor-spec/update-project-spec.js',
     './protractor-spec/admin-approve-project-spec.js',
     './protractor-spec/admin-login-spec.js',
     './protractor-spec/logout-spec.js',
     './protractor-spec/updateprof-spec.js',
     './protractor-spec/submit-project-route-spec.js',
     './protractor-spec/register-user-spec.js',
-    './protractor-spec/submitProject-spec.js',
-    './protractor-spec/update-project-spec.js'
+    './protractor-spec/submitProject-spec.js'
+    
   ],
   capabilities: {
     'browserName': 'chrome'
