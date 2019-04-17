@@ -10,11 +10,12 @@ import { UserService } from 'src/app/core/services/user.service';
 /**
  * This component was built to allow registration and validation for registering users.
  * The validation that is performed is to ensure there are no characters in the username,
- * no underscores at the beginning or end of the username, the email is an @revature.com email,
+ * no underscores at the beginning or end of the username,
  * names are at least 2 characters long, and passwords are validated by typing twice and ensuring
  * they match. Usernames and passwords must be at least 8 characters long. No next buttons
  * can be hit unless the forms are valid.
  * @author Ryan Beevers (1810-Oct08-Java-USF)
+ * @author Slavik Gleanco
  */
 @Component({
   selector: 'app-registration',
@@ -32,8 +33,8 @@ export class RegistrationComponent implements OnInit {
   registering = false;
   authenticating = false;
 
-  // email pattern ensures the email is a @revature.com email
-  emailPattern = '^[a-zA-Z0-9_.+-]+(?:(?:[a-zA-Z0-9-]+\.)?[a-zA-Z]+\.)?@(revature)\.com$';
+  // email pattern enforces a valid email format.
+  emailPattern = '^[a-zA-Z0-9_.+-]+(?:(?:[a-zA-Z0-9-]+\.)?[a-zA-Z]+\.)?@([a-zA-Z]+)\.[a-zA-Z]+$';
 
   // username pattern ensures there are no underscores at beginning or end of username
   // and at least 8 characters
@@ -131,21 +132,19 @@ export class RegistrationComponent implements OnInit {
     });
   }
 
-  /*Function to be called as user types on email input form
-  Checks first to see if there is a value for the email, then
-  makes the request over the "internodes" to see if the email
-  is available given that '@revature.com' is within the email
+  /*Function to be called as user types inside email input form.
+    Checks first to see if there is a value for the email, then makes the request
+    over to the "auth" micro-service to see if the email is available.
   */
   checkIfEmailIsInUseKey() {
     var ref = this.user.email;
     setTimeout(() => {
       if(ref){
-        if(ref.endsWith("@revature.com")) {
+        
           this.emailToCheck = this.user.email;
           this.emailIsAvailable = false;
           this.emailIsNotAvailable = false;
           this.checkingIfEmailIsInUse = true;
-
           this.userService.checkIfEmailIsInUse(this.user.email).subscribe(
             result => {
               if(result['emailIsInUse'] == false) {
@@ -155,24 +154,23 @@ export class RegistrationComponent implements OnInit {
                 this.checkingIfEmailIsInUse = false;
                 this.emailIsNotAvailable = true;
               }
-
             }, err => {
               this.checkingIfEmailIsInUse = false;
               this.emailIsAvailable = true;
-
-
             }
-          )
-
-        }
+          )    
     }
   }, 1000)
   }
 
   /*Function to be called when focus is deselected on email input form
   */
-  checkIfEmailIsInUse() {
-    if(this.user.email.endsWith("@revature.com")) {
+
+  
+  /*
+ * Function to check the user email is unique
+ */
+  checkIfEmailIsInUse() {  
       this.emailToCheck = this.user.email;
       this.emailIsAvailable = false;
       this.emailIsNotAvailable = false;
@@ -186,17 +184,12 @@ export class RegistrationComponent implements OnInit {
           } else {
             this.checkingIfEmailIsInUse = false;
             this.emailIsNotAvailable = true;
-          }
-          
+          }       
         }, err => {
           this.checkingIfEmailIsInUse = false;
           this.emailIsAvailable = true;
-
-
         }
-      )
-
-    }
+      )  
   }
 
   /*Function to be called as user types on username input form
@@ -220,8 +213,6 @@ export class RegistrationComponent implements OnInit {
               this.checkingIfUsernameIsAvailable = false;
               this.usernameIsNotAvailable = true;
             }
-  
-  
           }, err => {
             this.checkingIfUsernameIsAvailable = false;
             this.usernameIsNotAvailable = true;
@@ -250,19 +241,11 @@ export class RegistrationComponent implements OnInit {
             this.checkingIfUsernameIsAvailable = false;
             this.usernameIsNotAvailable = true;
           }
-
-
         }, err => {
           this.checkingIfUsernameIsAvailable = false;
           this.usernameIsNotAvailable = true;
         }
       )
-
-
-
     }
   }
-
-
-
 }
