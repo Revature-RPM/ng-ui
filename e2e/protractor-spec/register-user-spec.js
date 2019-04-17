@@ -21,7 +21,7 @@ describe('Test Register', function() {
     };
 
     it('check if register works with valid inputs', function() {
-        let value = browser.executeScript("return window.localStorage.getItem('user');");
+        let value = browser.executeScript("return window.localStorage.getItem('user')");
         if(value) {
             browser.get(`${url}home`);
             let myButton = element.all(by.tagName('button')).get(3);
