@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
+import { Router } from '@angular/router';
 
 import { SharedModule } from '../../shared/shared.module';
 import { AppModule} from '../../app.module';
@@ -15,6 +16,7 @@ import { AppLogoComponent } from './app-logo.component';
 describe('AppLogoComponent', () => {
   let component: AppLogoComponent;
   let fixture: ComponentFixture<AppLogoComponent>;
+  let router: Router;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -28,9 +30,25 @@ describe('AppLogoComponent', () => {
     fixture = TestBed.createComponent(AppLogoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    router = TestBed.get(Router);
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  /**
+   * the tested method should navigate to project, home
+   * 
+   * @author Alex Johnson (190107-Java-Spark-USF)
+   */
+  it('should navigate to project, home', () => {
+
+    let navigateSpy = spyOn(router, 'navigate');
+
+    component.homepageShortcut();
+
+    expect(navigateSpy).toHaveBeenCalledWith(['projects', 'home']);
+  });
+
 });
