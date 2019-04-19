@@ -168,7 +168,6 @@ export class ViewProjectsLogicComponent implements OnInit, OnDestroy {
       result => {
         project.approvingProject = false;
         project.projectApproved = true;
-        // alert('Project has been successfully approved');
       }, err => {
 
       }
@@ -184,7 +183,6 @@ export class ViewProjectsLogicComponent implements OnInit, OnDestroy {
       result => {
         project.approvingProject = false;
         project.projectDeclined = true;
-        // alert('Project has been successfully approved');
       }, err => {
 
       }
