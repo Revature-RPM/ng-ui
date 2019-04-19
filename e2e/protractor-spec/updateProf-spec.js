@@ -1,8 +1,8 @@
 
 
 /**
- * @author Abe Schroeder, Omar Jamal, Zach Marazita, Thanh Nguyen, Mitchell Elbus (190107-Java-Spark-USF)
  * Tests pertaining to the updating of of user profiles
+ * @author Abe Schroeder, Omar Jamal, Zach Marazita, Thanh Nguyen, Mitchell Elbus (190107-Java-Spark-USF)
  */
 
 let url = 'http://tn-rpm-test.s3-website-us-east-1.amazonaws.com/';
@@ -36,13 +36,18 @@ async function getUser(){
 };
 
 it('Should update the user ', function(){
+    //got to the homepage
     browser.get(`${url}home`);
     browser.sleep(100);
+    // then go to the usres profile page
     browser.get(`${url}account/2`);
     browser.sleep(100);
+    // click the edit profile button
     element.all(by.tagName('button')).get(3).click();
     
     browser.sleep(1000);
+    // get all of the edit profile elemetns and send them proper values. then we ensure that the updates were persisted
+    //properly.
     element(by.id('inputFirstName')).sendKeys('Demo');
     element(by.id('inputLastName')).sendKeys('McDemoson');
     element(by.id('currInputPassword')).sendKeys('Demo');
