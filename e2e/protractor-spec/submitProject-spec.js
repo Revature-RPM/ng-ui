@@ -1,10 +1,10 @@
 
 
 /**
- * @author Abe,Mitchell,Omar,Thanh,Zachary
+ * //We use the before all function so that a user is logged in for these tests.
+ * @author Abe Schroeder, Omar Jamal, Zach Marazita, Thanh Nguyen, Mitchell Elbus (190107-Java-Spark-USF)
  */
 let url = 'http://tn-rpm-test.s3-website-us-east-1.amazonaws.com/';
-//We use the before all function so that a user is logged in for these tests.
 beforeAll(function(){
     browser.get(`${url}`);
     element(by.id('mat-input-0')).sendKeys('test-user');
@@ -24,6 +24,11 @@ async function getProject(){
     });
     return JSON.parse(response.body);
     }
+
+/**
+ * ensure proper submision of projects by users, and that they client is routed properlly after submission
+ * @author Abe Schroeder, Omar Jamal, Zach Marazita, Thanh Nguyen, Mitchell Elbus (190107-Java-Spark-USF)
+ */
 describe('Tesing the submit project function', function(){
     it('Should persist a new project when submitted',function() {
         // Give values for each input field in the submit prject page

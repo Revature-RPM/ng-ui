@@ -1,6 +1,6 @@
 /**
- * @author Abe Schroeder, Omar Jamal, Zach Marazita, Thanh Nguyen, Mitchell Elbus (190107-Java-Spark-USF)
  * General tests pertaining to the registering of new users
+ * @author Abe Schroeder, Omar Jamal, Zach Marazita, Thanh Nguyen, Mitchell Elbus (190107-Java-Spark-USF)
  */
 describe('Test Register', function() {
 

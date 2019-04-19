@@ -1,8 +1,8 @@
 
 
 /**
- * @author Abe Schroeder, Omar Jamal, Zach Marazita, Thanh Nguyen, Mitchell Elbus (190107-Java-Spark-USF)
  * Tests pertaining to the updating of of user profiles
+ * @author Abe Schroeder, Omar Jamal, Zach Marazita, Thanh Nguyen, Mitchell Elbus (190107-Java-Spark-USF)
  */
 
 let url = 'http://tn-rpm-test.s3-website-us-east-1.amazonaws.com/';

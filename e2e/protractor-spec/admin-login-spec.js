@@ -2,8 +2,8 @@
 
 
 /**
- * @author Abe Schroeder, Omar Jamal, Zach Marazita, Thanh Nguyen, Mitchell Elbus (190107-Java-Spark-USF)
  * logs the user in as an admin and makes sure they are brought to the proper page
+ * @author Abe Schroeder, Omar Jamal, Zach Marazita, Thanh Nguyen, Mitchell Elbus (190107-Java-Spark-USF)
  */
 describe('Logging in as an Admin', function () {
         let url = 'http://tn-rpm-test.s3-website-us-east-1.amazonaws.com/';

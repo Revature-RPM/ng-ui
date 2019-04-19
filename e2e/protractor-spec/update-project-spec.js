@@ -1,6 +1,6 @@
 /**
- * @author Abe Schroeder, Omar Jamal, Zach Marazita, Thanh Nguyen, Mitchell Elbus (190107-Java-Spark-USF)
  * Tests regarding to updating users' projects
+ * @author Abe Schroeder, Omar Jamal, Zach Marazita, Thanh Nguyen, Mitchell Elbus (190107-Java-Spark-USF)
  */
 
 let url = "http://tn-rpm-test.s3-website-us-east-1.amazonaws.com/";
@@ -17,6 +17,10 @@ beforeAll(function() {
   browser.waitForAngular();
 });
 
+/**
+ * test the users ability to update an existing project
+ * @author Abe Schroeder, Omar Jamal, Zach Marazita, Thanh Nguyen, Mitchell Elbus (190107-Java-Spark-USF)
+ */
 describe("This tests the update project function", () => {
   // after we update project we want to get this user from the database and make sure the changes are persisted
   async function getProject() {
@@ -31,6 +35,11 @@ describe("This tests the update project function", () => {
     });
     return JSON.parse(response.body);
   }
+
+/**
+ * testing the ability for the user to update an existing project
+ * @author Abe Schroeder, Omar Jamal, Zach Marazita, Thanh Nguyen, Mitchell Elbus (190107-Java-Spark-USF)
+ */
   describe("Testing the update project function", () => {
     it("should persist the updated function when triggered", () => {
       // give values for each input field in update project page

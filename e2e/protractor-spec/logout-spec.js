@@ -2,8 +2,8 @@
 
 
 /**
- * @author Abe Schroeder, Omar Jamal, Zach Marazita, Thanh Nguyen, Mitchell Elbus (190107-Java-Spark-USF)
  * Run before each test to make sure the user has been logged in properly
+ * @author Abe Schroeder, Omar Jamal, Zach Marazita, Thanh Nguyen, Mitchell Elbus (190107-Java-Spark-USF)
  */
 let url = 'http://tn-rpm-test.s3-website-us-east-1.amazonaws.com/';
 beforeEach(function(){
@@ -15,8 +15,8 @@ beforeEach(function(){
     
 })
 /**
- * @author Abe Schroeder, Omar Jamal, Zach Marazita, Thanh Nguyen, Mitchell Elbus (190107-Java-Spark-USF)
  * test's that logging the user out will effectively return them to the proper page
+ * @author Abe Schroeder, Omar Jamal, Zach Marazita, Thanh Nguyen, Mitchell Elbus (190107-Java-Spark-USF)
  */
 describe('Testing logout', function(){
     

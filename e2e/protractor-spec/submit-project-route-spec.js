@@ -1,6 +1,6 @@
 /**
- * @author Abe Schroeder, Zach Marazita (190107-Java-Spark-USF)
  * Tests pertaining to the proper routing of the user to new pages after submiting projects
+ * @author Abe Schroeder, Zach Marazita (190107-Java-Spark-USF)
  */
 
 let url = 'http://tn-rpm-test.s3-website-us-east-1.amazonaws.com/';
