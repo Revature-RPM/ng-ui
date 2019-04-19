@@ -21,9 +21,13 @@ beforeEach(function(){
 describe('Testing logout', function(){
     
     it('Should return to the login page', function(){
+        //Go to the home page
         browser.get(`${url}home`);
+        //get the logout button which is the fourth button on the html document
         let myButton = element.all(by.tagName('button')).get(3);
+        //click the button
         myButton.click();
+        //wait for angular to actually log the user out
         browser.waitForAngular(
             function(){
             let value = browser.executeScript("return window.localStorage.getItem('user');");
