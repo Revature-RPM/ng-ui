@@ -5,6 +5,7 @@ const { SpecReporter } = require('jasmine-spec-reporter');
 
 exports.config = {
   allScriptsTimeout: 11000,
+  // registers all of our test files
   specs: [
     './protractor-spec/update-project-spec.js',
     './protractor-spec/admin-approve-project-spec.js',

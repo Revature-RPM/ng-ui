@@ -32,8 +32,12 @@ async function getProject(){
 describe('Tesing the submit project function', function(){
     it('Should persist a new project when submitted',function() {
         // Give values for each input field in the submit prject page
+        //got to the home page
         browser.get(`${url}home`);
+        //then go to the sub,it project page
         browser.get(`${url}project_submission`)
+        // get all of the input elements and give them valid values. then we submit the prject and make sure that the project
+        //was persisted properly.
         element(by.id('project_name')).sendKeys('Test Project');
         element(by.name('batchName')).sendKeys('Test');
         element(by.name('trainers')).sendKeys('Wezley');

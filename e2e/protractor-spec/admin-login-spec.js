@@ -8,7 +8,9 @@
 describe('Logging in as an Admin', function () {
         let url = 'http://tn-rpm-test.s3-website-us-east-1.amazonaws.com/';
     it('check login with correct credentials', function () {
+        //get the login page
         browser.get(`${url}`);
+        //get the input elements for logging in and send it valid username and password
         element(by.id('mat-input-0')).sendKeys('admin');
         element(by.id('mat-input-1')).sendKeys('p4ssw0rd');
         browser.actions().sendKeys(protractor.Key.ENTER).perform();
@@ -16,6 +18,7 @@ describe('Logging in as an Admin', function () {
         expect(browser.getCurrentUrl()).toEqual(`${url}home`);
         let row = element.all(by.css('.mat-table tr')).get(1);
         let cells = row.all(by.tagName('td'));
+        // want to ensure that the page for the admin looks correct
         expect(cells.get(0).getText()).toEqual('admin');
         expect(cells.get(1).getText()).toEqual('Adam');
         expect(cells.get(2).getText()).toEqual('Inn');
