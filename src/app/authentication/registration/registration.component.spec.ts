@@ -14,6 +14,7 @@ import { of } from 'rxjs';
  * component as well the as well as the functionality
  * of the various methods within it.
  * @author Ryan Beevers | Shawn Bickel | Sahil Makhijani | Andrew Mitchem | Yuki Mano | Jeffly Luctamar | (1810-Oct08-Java-USF)
+ * @author Gabriel Zapata | Fadi Alzoubi | Slavik Gleanco | Alex Johnson | Edward Bechtold | (190107-Java-Spark-USF)
  */
 // Testing the successful creation of the Registration component
 describe('RegistrationComponent', () => {
@@ -61,9 +62,9 @@ describe('RegistrationComponent', () => {
    * Testing the fuctionality of the registration components
    * button click event. Upon a successful form submission, the button click,
    * should trigger an indirect call to user service class
+   * @author Ryan Beevers | Shawn Bickel | Sahil Makhijani | Andrew Mitchem | Yuki Mano | Jeffly Luctamar | (1810-Oct08-Java-USF)
    */
-  //need to fix
-  xit('Registration button click event should make a call to the UserService', () => {
+  it('Registration button click event should make a call to the UserService', () => {
     // Arrange the registration environment
     const debugElement = fixture.debugElement;
     const userService = debugElement.injector.get(UserService);
@@ -75,7 +76,7 @@ describe('RegistrationComponent', () => {
     component.user.username = 'test';
     component.user.password = 'ing';
     const registrationElement = fixture.debugElement.query(
-      By.css('[id = 'registration-container']')
+      By.css('[id = registration-container]')
     ); // Capture the template for inside of a variable for mocking
     fixture.detectChanges();
     // Gain access to button element within the template to trigger a click event
@@ -89,8 +90,10 @@ describe('RegistrationComponent', () => {
   });
 
   /**
-   * This test should verify regitering is false, authentication is true, loginUser username
-   * and loginUser password is set to user when user is inserted to userService.register method
+   * This test should verify registering is false, authentication is true, loginUser username
+   * and loginUser password is set to user when user is inserted to userService.register method.
+   * Not sure why this isn't working. If not skipped, other things fail.
+   * @author Fadi Alzoubi | Edward Bechtold | (190107-Java-Spark-USF)
    */
   xit('should verify registering, authenticating, loginUser username and password when userService.register is called', () => {
     let testUser = {
@@ -107,10 +110,11 @@ describe('RegistrationComponent', () => {
   });
 
   /**
-   * This test should check email in  checkIfEmailIsInUse false 
-   * and email is avalibale is true
+   * Tests the "checkIfEmailIsInUse" method up until the observable (.subscribe) line
+   * This test passes when tested alone. However, it fails when tested alongside other tests for this component
+   * Therefore, it's skipped and needs fixing. Probably an indication the test is not properly isolated.
+   * @author Slavik Gleanco | (190107-Java-Spark-USF)
    */
-  //need to fix
   xit('should check the properties of checkIfEmailIsInUse method values of emailToCheck, emailIsAvailable, emailIsNotAvailable, checkingIfEmailIsInUse ', () => { 
     component.user.email = 'testEmail';
     component.checkIfEmailIsInUse(); 
@@ -120,7 +124,28 @@ describe('RegistrationComponent', () => {
     expect(component.checkingIfEmailIsInUse).toBeTruthy();
   });
 
-  //need to fix
+  /**
+   * Tests the "checkIfUsernameIsAvailable" method up until the observable (.subscribe) line
+   * This test passes when tested alone. However, it fails when tested alongside other tests for this component
+   * Therefore, it's skipped and needs fixing.
+   * @author Slavik Gleanco | (190107-Java-Spark-USF)
+   */
+  xit('should check the properties of checkIfUsernameIsAvailable method values of usernameToCheck, emailIsAvailable, emailIsNotAvailable, checkingIfEmailIsInUse ', () => {
+    component.user.username = 'username';
+    component.checkIfUsernameIsAvailable(); 
+    expect(component.usernameToCheck).toBe('username');
+    expect(component.usernameIsAvailable).toBeFalsy();
+    expect(component.usernameIsNotAvailable).toBeFalsy();
+    expect(component.checkingIfUsernameIsAvailable).toBeTruthy();
+
+  });
+
+  /**
+   * Tests the "checkIfUsernameIsAvailableKey" method up until the observable (.subscribe) line
+   * This test passes when tested alone. However, it fails when tested alongside other tests for this component
+   * Therefore, it's skipped and needs fixing.
+   * @author Slavik Gleanco | (190107-Java-Spark-USF)
+   */
   xit('Should check the properties of checkIfUsernameIsAvailableKey method values of usernameToCheck, usernameIsAvailable, usernameIsNotAvailable, checkIfUsernameIsAvailable', (done) => {
     component.user.username = 'testName';
     component.checkIfUsernameIsAvailableKey();
@@ -135,7 +160,12 @@ describe('RegistrationComponent', () => {
     }, 1000);
   });
 
-  //need to fix
+  /**
+   * Tests the "checkIfEmailIsInUseKey" method up until the observable (.subscribe) line
+   * This test passes when tested alone. However, it fails when tested alongside other tests for this component
+   * Therefore, it's skipped and needs fixing.
+   * @author Slavik Gleanco | (190107-Java-Spark-USF)
+   */
   xit('Should check the properties of checkIfEmailIsInUseKey method values of emailToCheck, emailIsAvailable, emailIsNotAvailable, checkingIfEmailIsInUse', (done) => { 
     component.user.email = 'testEmail';
     component.checkIfEmailIsInUseKey();
@@ -150,70 +180,4 @@ describe('RegistrationComponent', () => {
     }, 1000);
   });
 
-
-  xit('should check the checkIfEmailIsInUse (result if) checkingIfEmailIsInUse , emailIsAvailable, ', () => {
-    let spy = spyOn(userService,'checkIfEmailIsInUse').apply('testEmail');
-    component.checkIfEmailIsInUse();
-    expect(spy).toBeTruthy();
-    expect(component.checkIfEmailIsInUse).toBeFalsy();
-    expect(component.emailIsAvailable).toBeTruthy();
-    
-  });
-
-
-  xit('should check the checkIfEmailIsInUse (result else) checkingIfEmailIsInUse,and emailIsNotAvailable', () => {
-    component.checkIfEmailIsInUse();
-    expect(component.checkingIfEmailIsInUse).toBeFalsy();
-    expect(component.emailIsNotAvailable).toBeTruthy();
-
-  });
-
-  xit('should check the checkIfEmailIsInUse (error) checkingIfEmailIsInUse,and emailIsNotAvailable', () => {
-    expect(component.checkIfEmailIsInUse()).toThrow('error');
-    expect(component.checkingIfEmailIsInUse).toBeTruthy;
-    expect(component.emailIsNotAvailable).toBeFalsy;
-
-  });
-
-  /**
-   * This test should check username available checkIfUsernameIsAvailable method
-   */
-  //need to fix
-  xit('should check the properties of checkIfUsernameIsAvailable method values of usernameToCheck, emailIsAvailable, emailIsNotAvailable, checkingIfEmailIsInUse ', () => {
-    component.user.username = 'username';
-    component.checkIfUsernameIsAvailable(); 
-    expect(component.usernameToCheck).toBe('username');
-    expect(component.usernameIsAvailable).toBeFalsy();
-    expect(component.usernameIsNotAvailable).toBeFalsy();
-    expect(component.checkingIfUsernameIsAvailable).toBeTruthy();
-
-  });
-
-  xit('should check the usernameIsAvailable (result if) checkingIfUsernameIsAvailable, usernameIsAvailable',() => {
-     let spy = spyOn(this.userService, 'checkIfUsernameIsAvailable')
-    .and.returnValue(true);
-    component.checkIfUsernameIsAvailable(); 
-    expect(spy).toBeTruthy();
-    expect(component.checkingIfUsernameIsAvailable).toBeFalsy();
-    expect(component.usernameIsAvailable).toBeTruthy();
-    
-  });
-
-  xit('should check the usernameIsAvailable (result else) checkingIfUsernameIsAvailable, usernameIsNotAvailable',() => {
-    let spy = spyOn(this.userService, 'checkIfUsernameIsAvailable')
-    .and.returnValue(false);
-    component.checkIfUsernameIsAvailable(); 
-    expect(spy).toBeFalsy();
-    expect(component.checkingIfUsernameIsAvailable).toBeFalsy();
-    expect(component.usernameIsNotAvailable).toBeTruthy();
-   
-  });
-
-  xit('should check the usernameIsAvailable (error) checkingIfUsernameIsAvailable, usernameIsNotAvailable', () => {
-    component.checkIfUsernameIsAvailable(); 
-    expect(component.checkIfUsernameIsAvailable()).toThrow('error');
-    expect(component.checkingIfUsernameIsAvailable).toBeFalsy();
-    expect(component.usernameIsNotAvailable).toBeTruthy();
-    
-  });
 });

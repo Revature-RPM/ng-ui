@@ -44,6 +44,7 @@ describe('ZipComponent', () => {
    * testing that when the zip component is rendered, if the user is null
    * then the user should be navigated back to login
    * 
+   * Remove the 'x' from 'xit' to run this test. Does not work because router is not properly mocked.
    * @author Alex Johnson (190107-Java-Spark-USF)
    */
   xit('should navigate to login if the user is null', () => {
@@ -60,7 +61,8 @@ describe('ZipComponent', () => {
   });
   
   /**
-   * This test should display error messages
+   * This test should display error messages. This test does not function properly. Refactor.
+   * 
    * @author Gabriel Zapata | Edward Bechtold (190107-Java-Spark-USF)
    */
   xit('should call ErrorFile an error', () => {
@@ -74,7 +76,7 @@ describe('ZipComponent', () => {
   })
 
   /**
-   * This tests the safeTitle method to ensure links are being properly created
+   * This tests the safeTitle method to ensure links are being properly created.This test does not function properly. Refactor.
    * 
    * @author Gabriel Zapata | Edward Bechtold (190107-Java-Spark-USF)
    */
@@ -89,7 +91,7 @@ describe('ZipComponent', () => {
   });
 
   /**
-   * Test will verify ngOnInit field SelectedFile to be truthy
+   * Test will verify ngOnInit field SelectedFile to be truthy. This test does not function properly. Refactor.
    * 
    * @author Gabriel Zapata (190107-Java-Spark-USF)
    */
@@ -111,7 +113,7 @@ describe('ZipComponent', () => {
 
 
    /**
-   * Test test openRenderFile 
+   * Test openRenderFile. 
    * 
    * @author Gabriel Zapata (190107-Java-Spark-USF)
    * 
@@ -132,7 +134,7 @@ describe('ZipComponent', () => {
   })
 
    /**
-   * Test test closeRenderFile 
+   * Test closeRenderFile.
    * 
    * @author Gabriel Zapata (190107-Java-Spark-USF)
    * 
@@ -161,10 +163,10 @@ describe('ZipComponent', () => {
   })
 
    /**
-   * Test getFileNameFromHttpResponse is called  
+   * Test to ensure getFileNameFromHttpResponse is called.
+   * This was one of the first tests I wrote and I didn't know what I was doing. Should be refactored. Works tho
    * 
    * @author Gabriel Zapata (190107-Java-Spark-USF)
-   * 
    */
 
   it('should test getFileNameFromHttpResponse with testContentDispositionHeader',()=>{
@@ -174,7 +176,7 @@ describe('ZipComponent', () => {
 
   })
   /**
-   * Test openData
+   * Test openData function with a not null name.
    * 
    * @author Gabriel Zapata (190107-Java-Spark-USF)
    */
@@ -193,7 +195,7 @@ describe('ZipComponent', () => {
   })
 
    /**
-   * Test openData
+   * Test openData function with a parameter of 'test' on the datafilename.
    * 
    * @author Gabriel Zapata (190107-Java-Spark-USF)
    */

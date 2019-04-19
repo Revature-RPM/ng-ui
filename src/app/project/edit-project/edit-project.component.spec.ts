@@ -10,6 +10,12 @@ import { UserService } from 'src/app/core/services/user.service';
 import { ProjectService } from 'src/app/core/services/project.service';
 import { Router } from '@angular/router';
 
+/**
+ * Edit Project tests. 
+ * Skipped tests do not work- router is not being correctly mocked. Use below resource for more information on mocking a router.
+ * https://codecraft.tv/courses/angular/unit-testing/routing/
+ * @author Gabriel Zapata | Fadi Alzoubi | Slavik Gleanco | Alex Johnson | Edward Bechtold | (190107-Java-Spark-USF)
+ */
 describe('EditProjectComponent', () => {
   let component: EditProjectComponent;
   let fixture: ComponentFixture<EditProjectComponent>;
@@ -37,16 +43,10 @@ describe('EditProjectComponent', () => {
     expect(component).toBeTruthy();
   });
 
-    
-  //   // const title = component.meta.getTag('name=title');
-  //   const title = component.meta.getTitle('name=title');
-  //   expect(title).toBe('Edit Project | RPM');
-  // });
-
   /**
    * Back function on component sets 'lastPage' in sessionStorage to 'edit'.
    * the 'toBe' matcher expects an exact match.
-   * @Author Edward Bechtold and a little bit of Gabriel too (190107 Java)
+   * @author Edward Bechtold | Gabriel Zapata | (190107-Java-Spark-USF)
    */
   it('should set sessionStorage appropriately after back() function is called', () => {
 
@@ -58,8 +58,7 @@ describe('EditProjectComponent', () => {
   /**
    * AddGroupMember function should add a value to the updatedArr. The array 
    * will have a value of truthy if a value is successfully added to it.
-   *  
-   * @Author Gabriel Zapata and Edward Bechtold (190107 Java)
+   * @author Gabriel Zapata | Edward Bechtold | (190107-Java-Spark-USF)
    */
   it('should add a group member to the updatedArr', () => {
     
@@ -72,10 +71,11 @@ describe('EditProjectComponent', () => {
   });
   
   /** 
-   * This doesn't work - revisit
-   * @Author Gabriel Zapata and Edward Bechtold (190107 Java)
+   * Supposed to test initialization variables within ngoninit. Implementation is wrong but might be salvageable. 
+   * Remove 'x' from 'xit' to unskip.
+   * @author Gabriel Zapata | Edward Bechtold | (190107-Java-Spark-USF)
    */
-  xit('should improve code coverage', () => {
+  xit('should test initialization variables', () => {
     let testUser = {
       username: 'test'
     };
@@ -94,9 +94,8 @@ describe('EditProjectComponent', () => {
   });
 
   /**
-   * This method should validate fields
-   * 
-   * @Author Gabriel Zapata and Alex Johnson (190107 Java)
+   * This method should test if fields are invalid inside checkForValidField function.
+   * @author Gabriel Zapata | Alex Johnson | (190107-Java-Spark-USF)
    */
   it('should validateFields', () => {
     let nameField = { valid: false };
@@ -110,27 +109,9 @@ describe('EditProjectComponent', () => {
     expect(component.validForm).toBeFalsy();
   });
 
-  /** 
-   * This doesn't submit a form
-   */
-  xit('should submit a form', () => {
-    localStorage.clear();
-    let testUser = {
-      role: 'ROLE_USER'
-    }
-    
-    JSON.stringify(testUser);
-    localStorage.setItem('user', 'testUser');
-    
-    component.submitForm();
-    
-    expect(component.projectToUpdate.status).toContain('Pending');
-  })
-
   /**
    * testing that when the edit-project component is rendered, if the user is null
    * then the user should be navigated back to login
-   * 
    * @author Alex Johnson (190107-Java-Spark-USF)
    */
   it('should navigate to login if the user is null', () => {
@@ -146,8 +127,8 @@ describe('EditProjectComponent', () => {
   });
 
   /**
-   * the tested method should navigate to home
-   * 
+   * The tested method should navigate to home.
+   * Implementation is not correct ; needs refactoring.
    * @author Alex Johnson (190107-Java-Spark-USF)
    */
   xit('should navigate to home', () => {
@@ -161,8 +142,8 @@ describe('EditProjectComponent', () => {
   });
 
   /**
-   * the deleteProject() method should navigate to home
-   * 
+   * The deleteProject() method should navigate to home.
+   * Implementation is not correct ; needs refactoring. 
    * @author Alex Johnson (190107-Java-Spark-USF)
    */
   xit('should navigate to home', () => {
@@ -176,8 +157,7 @@ describe('EditProjectComponent', () => {
   });
 
   /**
-   * the back() method should navigate to home
-   * 
+   * The back() method should navigate to home.
    * @author Alex Johnson (190107-Java-Spark-USF)
    */
   it('should navigate to home', () => {
