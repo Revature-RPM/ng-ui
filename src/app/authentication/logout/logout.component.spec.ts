@@ -10,9 +10,9 @@ import { AuthenticationModule } from 'src/app/authentication/authentication.modu
 import { AuthenticationRoutingModule } from '../authentication-routing.module';
 
 /**
- * This test suite serves to check the proper creation of the Logout
- * component.
- * @author Ryan Beevers | Shawn Bickel | Sahil Makhijani | Andrew Mitchem | Yuki Mano | Jeffly Luctamar | (1810-Oct08-Java-USF)
+ * This component cannot be tested because there is no implementation. All variables are global scoped. 
+ * Future iterations could consider restructuring this component.
+ * @author Gabriel Zapata | Fadi Alzoubi | Slavik Gleanco | Alex Johnson | Edward Bechtold
  */
 
 describe('LogoutComponent', () => {

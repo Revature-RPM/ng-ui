@@ -10,9 +10,10 @@ import { AppModule} from '../../app.module';
 import { UserService } from './user.service';
 
 /**
- * This test serves to check if this service was properly created
- * as well as the functionality of the various methods within
- * @author Ryan Beevers | Shawn Bickel | Sahil Makhijani | Andrew Mitchem | Yuki Mano | Jeffly Luctamar | (1810-Oct08-Java-USF)
+ * UserService tests. For future testing research implementing HttpClientTestingModule 
+ * and HttpTestingController to perform actual unit testing for reaching the application-tier. 
+ * 
+ * @author Gabriel Zapata | Fadi Alzoubi | Slavik Gleanco | Alex Johnson | Edward Bechtold
  */
 describe('UserService', () => {
   let injector: TestBed;
@@ -31,12 +32,19 @@ describe('UserService', () => {
     httpMock = injector.get(HttpClientTestingModule);
   });
 
-
+/**
+ * 
+ * @author Gabriel Zapata
+ */
   it('should be created', () => {
     const service: UserService = TestBed.get(UserService);
     expect(service).toBeTruthy();
   });
 
+  /**
+   * 
+   * @author Gabriel Zapata
+   */
   it('should return \'{emailIsInUse:true}\' on checking if email is in use with \'admin@revature.com\'', () => {
     let response = {emailIsInUse:true};
     service.checkIfEmailIsInUse('admin@revature.com').subscribe(res => {
@@ -44,6 +52,11 @@ describe('UserService', () => {
     })
   })
 
+  /**
+   * The following test is not an isolated unit test. No spy method is used to mock the service. Refactor by implementing HttpTestingController.
+   * HttpTestingController will be used to mock a fake application-tier. Read more here on mocking http services: https://angular.io/guide/http - Gabriel Zapata
+   * @author Sahil Makhijani
+   */
   it('should return \'{emailIsInUse:false}\' on checking if email is in use with \'(╯• ◡•)╯︵ ┻━┻@email.o\'', () => {
     let response = {emailIsInUse:false}
     service.checkIfEmailIsInUse('(╯• ◡•)╯︵ ┻━┻@email.o').subscribe(res => {
@@ -51,6 +64,11 @@ describe('UserService', () => {
     })
   })
 
+  /**
+   * The following test is not an isolated unit test. No spy method is used to mock the service. Refactor by implementing HttpTestingController.
+   * HttpTestingController will be used to mock a fake application-tier. Read more here on mocking http services: https://angular.io/guide/http - Gabriel Zapata
+   * @author Sahil Makhijani
+   */
   it('should return \'{usernameIsAvailable:false}\' on checking if username is available with \'admin\'', () => {
     let response = {usernameIsAvailable:false}
     service.checkIfUsernameIsAvailable('admin').subscribe(res => {
@@ -60,7 +78,8 @@ describe('UserService', () => {
 
  
   /**
-   * testing logout if items are cleared from local storage
+   * Verifies local storage is cleared upon logging out
+   * @author Gabriel Zapata
    */
   it('should remove items from local storage and return null for jwtauth and user',() => {
     

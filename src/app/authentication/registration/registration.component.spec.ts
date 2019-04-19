@@ -14,6 +14,7 @@ import { of } from 'rxjs';
  * component as well the as well as the functionality
  * of the various methods within it.
  * @author Ryan Beevers | Shawn Bickel | Sahil Makhijani | Andrew Mitchem | Yuki Mano | Jeffly Luctamar | (1810-Oct08-Java-USF)
+ * @author Gabriel Zapata | Fadi Alzoubi | Slavik Gleanco | Alex Johnson | Edward Bechtold
  */
 // Testing the successful creation of the Registration component
 describe('RegistrationComponent', () => {
