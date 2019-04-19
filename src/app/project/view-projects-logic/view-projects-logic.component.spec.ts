@@ -16,11 +16,9 @@ import { ProjectService } from 'src/app/core/services/project.service';
 
 
 /**
- * This test suite serves to check the proper creation of the ViewProjects
- * component as well the as well as the functionality
- * of the various methods within it.
- * @author Ryan Beevers | Shawn Bickel | Sahil Makhijani | Andrew Mitchem | Yuki Mano | Jeffly Luctamar | (1810-Oct08-Java-USF)
- * @author Ryan Williams | Michael Grammens | (1810-Oct22-Java-USF)
+ * Test suite tests functionality of 'View Project Logic' component.
+ * 
+ * @author Gabriel Zapata | Slavik Gleanco | Fadi Alzoubi | Alex Johnson | Edward Bechtold
  */
 
 describe('ViewProjectsLogicComponent', () => {
@@ -130,7 +128,7 @@ describe('ViewProjectsLogicComponent', () => {
   })
 
   /**
-   * the tested method should canEdit fields Currentuser.role is RoleAdmin
+   * the tested method should test if canEdit fields Currentuser.role is RoleAdmin
    * 
    * @author Gabriel Zapata (190107-Java-Spark-USF)
    */
@@ -149,7 +147,7 @@ describe('ViewProjectsLogicComponent', () => {
   });
 
   /**
- * the tested method should canEdit fields where current user full name equals project trainer name
+ * the tested method should test if canEdit fields where current user full name equals project trainer name
  *  
  * @author Gabriel Zapata (190107-Java-Spark-USF)
  */
@@ -168,7 +166,7 @@ describe('ViewProjectsLogicComponent', () => {
   });
 
   /**
-  * Tested method canEdit fields when Currentuser.role not RoleAdmin
+  * Tested method canEdit should test fields when Currentuser.role not RoleAdmin
   * 
   * @author Gabriel Zapata (190107-Java-Spark-USF)
   */
@@ -223,7 +221,7 @@ describe('ViewProjectsLogicComponent', () => {
   it('should approve a project', () => {
     let project = {
       status: 'Denied',
-      //this field may be faulty in component needs to be refactored Gabriel Zapata (190107-Java-Spark-USF)
+      //this field may be faulty in component needs to be refactored Gabriel Zapata | (190107-Java-Spark-USF)
       approvingProject: false
     }
     let event = new MouseEvent('click');
@@ -237,13 +235,13 @@ describe('ViewProjectsLogicComponent', () => {
   });
 
   /**
-   * Test deny method and fields with project of opposite feilds and event parameters 
+   * Test deny method and fields with project of opposite fields and event parameters 
    * @author Slavik Gleanco | Gabriel Zapata (190107-Java-Spark-USF)
    */
   it('should decline a project', () => {
     let project = {
       status: 'Approved',
-      //this field may be faulty in component needs to be refactored Gabriel Zapata (190107-Java-Spark-USF)
+      //this field may be faulty in component needs to be refactored | Gabriel Zapata (190107-Java-Spark-USF)
       approvingProject: false
     }
     let event = new MouseEvent('click');

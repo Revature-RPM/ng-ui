@@ -10,6 +10,17 @@ import { ProjectService } from 'src/app/core/services/project.service';
 import { EditDialogComponent } from './edit-dialog.component';
 import { AuthenticationModule } from 'src/app/authentication/authentication.module';
 
+/**
+ * The line below are the imports that correlate to the 'providers' fix in line 36.
+ * Uncomment both this code and the code in line 38 to fix.
+ * import {MatDialogModule, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+ * 
+ * @author Slavik Gleanco | Edward Bechtold | Gabriel Zapata | (190107-Java-Spark-USF)
+ */
+/**
+ * This component is unreachable. Testing could not be achieved. Consider refactoring component. Might be fixed with imports.
+ * @author Gabriel Zapata | Slavik Gleanco | Fadi Alzoubi | Alex Johnson | Edward Bechtold | (190107-Java-Spark-USF)
+ */
 describe('EditDialogComponent', () => {
   let component: EditDialogComponent;
   let fixture: ComponentFixture<EditDialogComponent>;
@@ -18,7 +29,19 @@ describe('EditDialogComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ EditDialogComponent ],
       imports: [SharedModule, RouterTestingModule, BrowserAnimationsModule, AppModule, ProjectModule, AuthenticationModule],
-      providers: [ProjectService]
+      providers: [ProjectService
+      
+      /**
+       * Uncomment the below code to fix the import issues with the provider. This is the answer to some 
+       * of the problems we had in testing this component.
+       * (Make sure you don't forget the comma at the start, and the closing bracket currently on line 41!)
+       * 
+       * , {provide: MatDialogRef, useValue: {}}, { provide: MAT_DIALOG_DATA, useValue: {}}
+       * 
+       * @author Slavik Gleanco | Edward Bechtold | Gabriel Zapata | (190107-Java-Spark-USF)
+       */
+
+      ]
     })
     .compileComponents();
   });

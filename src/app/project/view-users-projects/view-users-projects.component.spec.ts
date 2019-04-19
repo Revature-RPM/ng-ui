@@ -18,8 +18,7 @@ import { of } from 'rxjs';
  * This test suite serves to check the proper creation of the ViewProjects
  * component as well the as well as the functionality
  * of the various methods within it.
- * @author Ryan Beevers | Shawn Bickel | Sahil Makhijani | Andrew Mitchem | Yuki Mano | Jeffly Luctamar | (1810-Oct08-Java-USF)
- * @author Ryan Williams | Michael Grammens | (1810-Oct22-Java-USF)
+ * @author Gabriel Zapata | Slavik Gleanco | Fadi Alzoubi | Alex Johnson | Edward Bechtold | (190107-Java-Spark-USF)
  */
 
 describe('ViewUsersProjectsComponent', () => {
@@ -46,7 +45,6 @@ describe('ViewUsersProjectsComponent', () => {
     userService = TestBed.get(UserService);
     projectService = TestBed.get(ProjectService);
     projectServiceSpy = jasmine.createSpyObj('ProjectService', ['getAllProjects']);
- 
   });
 
   it('should create', () => {
@@ -81,7 +79,6 @@ describe('ViewUsersProjectsComponent', () => {
 
     expect(component.currentUser).toBe(testUser1);
     expect(component.subscription).toBeTruthy();
- 
   })
 
    /**

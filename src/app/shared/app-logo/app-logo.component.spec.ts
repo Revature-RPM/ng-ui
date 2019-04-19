@@ -11,7 +11,7 @@ import { AppLogoComponent } from './app-logo.component';
  * This test suite serves to check the proper creation of the AppLogo
  * component as well the as well as the functionality
  * of the various methods within it.
- * @author Ryan Beevers | Shawn Bickel | Sahil Makhijani | Andrew Mitchem | Yuki Mano | Jeffly Luctamar | (1810-Oct08-Java-USF)
+ * @author Alex Johnson (190107-Java-Spark-USF)
  */
 describe('AppLogoComponent', () => {
   let component: AppLogoComponent;

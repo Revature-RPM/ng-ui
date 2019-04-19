@@ -7,6 +7,12 @@ import { AppModule} from '../../app.module';
 
 import { ProjectService } from './project.service';
 
+/**
+ * Not enough time to implement unit tests for http requests and responses. Refer to link below for assistance in writing future tests.
+ * https://angular.io/guide/http
+ * 
+ * @author Gabriel Zapata (190107-Java-Spark-USF)
+ */
 describe('ProjectService', () => {
   beforeEach(() => TestBed.configureTestingModule({
     declarations: [ ],

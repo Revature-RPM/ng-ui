@@ -41,18 +41,24 @@ describe('ViewProjectsComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  /**
+   * @author (1810-Oct08-Java-USF)
+   */
   it('should be usersPage=false', () => {
     fixture.componentInstance.projects();
     expect(fixture.componentInstance.usersPage).toEqual(false)
   })
 
+  /**
+   * @author (1810-Oct08-Java-USF)
+   */
   it('should be projectsPage=true', () => {
     fixture.componentInstance.projects();
     expect(fixture.componentInstance.projectsPage).toEqual(true)
   })
   /**
-   * @author Gabriel Zapata (190107-Java-Spark-USF)
    * Test ngOnit with current user with sessionStorage equal to 'lastPage' and role of ADMIN
+   * @author Gabriel Zapata (190107-Java-Spark-USF)
    */
   it('should verify sessionstorage is clear, tab = 1 and yourProject is called ',() =>{
     testUser = {
@@ -70,8 +76,8 @@ describe('ViewProjectsComponent', () => {
  
   })
    /**
+    * Test ngOnit with current user with sessionStorage equal to 'project_Submit' role of NOT ADMIN
     * @author Gabriel Zapata (190107-Java-Spark-USF)
-   * Test ngOnit with current user with sessionStorage equal to 'project_Submit' role of NOT ADMIN
    */
   it('should verify sessionstorage is clear, tab = 1 and yourProject is called ',() =>{
     testUser = {
@@ -89,8 +95,8 @@ describe('ViewProjectsComponent', () => {
  
   })
   /**
-   * @author Gabriel Zapata (190107-Java-Spark-USF)
    * Test ngOnit with current user with sessionStorage equal to 'edit' and role of ADMIN
+   * @author Gabriel Zapata (190107-Java-Spark-USF)
    */
   it('should verify sessionstorage is clear, tab = 2 and yourProject is called ',() =>{
     testUser = {
@@ -108,8 +114,8 @@ describe('ViewProjectsComponent', () => {
  
   })
    /**
+    * Test ngOnit with current user with sessionStorage equal to 'edit' and role of NOT ADMIN
     * @author Gabriel Zapata (190107-Java-Spark-USF)
-   * Test ngOnit with current user with sessionStorage equal to 'edit' and role of NOT ADMIN
    */
   it('should verify sessionstorage is clear, tab = 0 and yourProject is called ',() =>{
     testUser = {
@@ -128,8 +134,8 @@ describe('ViewProjectsComponent', () => {
   })
 
   /**
-   * @author Gabriel Zapata (190107-Java-Spark-USF)
    * Test ngOnit with current user role of NOT ADMIN
+   * @author Gabriel Zapata (190107-Java-Spark-USF)
    */
   it('should verify tab = 0 and yourProject is called once ',() =>{
     testUser = {
@@ -148,8 +154,8 @@ describe('ViewProjectsComponent', () => {
 
 
   /**
-   * @author Gabriel Zapata (190107-Java-Spark-USF)
    * Test allUsers is role is ADMIN will set userPage, projectPage,and userProject
+   * @author Gabriel Zapata (190107-Java-Spark-USF)
    */
   it('should verify userPage is truthy, and projectPage, and userProjectPage to be falsy, if currentUser role is ADMIN',() =>{
     component.currentUser = {
@@ -167,8 +173,8 @@ describe('ViewProjectsComponent', () => {
     
   })
   /**
-   * @author Gabriel Zapata (190107-Java-Spark-USF)
    * Test allUsers role is not ADMIN and verify if yourproject method is called
+   * @author Gabriel Zapata (190107-Java-Spark-USF)
    */
   it('should verify if yourProject method is called if role isnotADMIN in alluser method',()=>{
     component.currentUser = {
@@ -181,8 +187,8 @@ describe('ViewProjectsComponent', () => {
   })
 
   /**
-   * @author Gabriel Zapata (190107-Java-Spark-USF)
    * Test projects fields userPage, projectPage,and userProjectsPage
+   * @author Gabriel Zapata (190107-Java-Spark-USF)
    */
   it('should verify userPage,and userProjectsPage to be falsy, and projectsPage to be truthy', () =>{
     component.usersPage = true;
@@ -197,8 +203,8 @@ describe('ViewProjectsComponent', () => {
    })
 
   /**
-   * @author Gabriel Zapata
    * Test yourProject fields userPage, projectpage and userProjectPage
+   * @author Gabriel Zapata (190107-Java-Spark-USF)
    */
   it('should verify userPage and projectPage are falsy and userProjectsPage is truthy', () =>{
     component.usersPage = true;

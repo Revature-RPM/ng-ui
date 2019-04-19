@@ -13,7 +13,8 @@ import { UserService } from './user.service';
  * UserService tests. For future testing research implementing HttpClientTestingModule 
  * and HttpTestingController to perform actual unit testing for reaching the application-tier. 
  * 
- * @author Gabriel Zapata | Fadi Alzoubi | Slavik Gleanco | Alex Johnson | Edward Bechtold
+ * @author (1810-Oct08-Java-USF)
+ * @author Gabriel Zapata | Fadi Alzoubi | Slavik Gleanco | Alex Johnson | Edward Bechtold (190107-Java-Spark-USF)
  */
 describe('UserService', () => {
   let injector: TestBed;
@@ -32,18 +33,15 @@ describe('UserService', () => {
     httpMock = injector.get(HttpClientTestingModule);
   });
 
-/**
- * 
- * @author Gabriel Zapata
- */
   it('should be created', () => {
     const service: UserService = TestBed.get(UserService);
     expect(service).toBeTruthy();
   });
 
   /**
+   * The following test is not a unit test. No spyOn is called. Isolation is not maintained. Needs refactoring. 
    * 
-   * @author Gabriel Zapata
+   * @author (1810-Oct08-Java-USF)
    */
   it('should return \'{emailIsInUse:true}\' on checking if email is in use with \'admin@revature.com\'', () => {
     let response = {emailIsInUse:true};
@@ -55,7 +53,7 @@ describe('UserService', () => {
   /**
    * The following test is not an isolated unit test. No spy method is used to mock the service. Refactor by implementing HttpTestingController.
    * HttpTestingController will be used to mock a fake application-tier. Read more here on mocking http services: https://angular.io/guide/http - Gabriel Zapata
-   * @author Sahil Makhijani
+   * @author (1810-Oct08-Java-USF)
    */
   it('should return \'{emailIsInUse:false}\' on checking if email is in use with \'(╯• ◡•)╯︵ ┻━┻@email.o\'', () => {
     let response = {emailIsInUse:false}
@@ -67,7 +65,7 @@ describe('UserService', () => {
   /**
    * The following test is not an isolated unit test. No spy method is used to mock the service. Refactor by implementing HttpTestingController.
    * HttpTestingController will be used to mock a fake application-tier. Read more here on mocking http services: https://angular.io/guide/http - Gabriel Zapata
-   * @author Sahil Makhijani
+   * @author (1810-Oct08-Java-USF)
    */
   it('should return \'{usernameIsAvailable:false}\' on checking if username is available with \'admin\'', () => {
     let response = {usernameIsAvailable:false}
@@ -79,7 +77,7 @@ describe('UserService', () => {
  
   /**
    * Verifies local storage is cleared upon logging out
-   * @author Gabriel Zapata
+   * @author Gabriel Zapata (190107-Java-Spark-USF)
    */
   it('should remove items from local storage and return null for jwtauth and user',() => {
     

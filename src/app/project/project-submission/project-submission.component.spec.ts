@@ -15,7 +15,8 @@ import { User } from 'src/app/core/models/User';
  * This test suite serves to check the proper creation of the ProjectSubmission
  * component as well the as well as the functionality
  * of the various methods within it.
- * @author Ryan Beevers | Shawn Bickel | Sahil Makhijani | Andrew Mitchem | Yuki Mano | Jeffly Luctamar | (1810-Oct08-Java-USF)
+ * 
+ * @author Gabriel Zapata | Slavik Gleanco | Fadi Alzoubi | Alex Johnson | Edward Bechtold | (190107-Java-Spark-USF)
  */
 describe('ProjectSubmissionComponent', () => {
   let component: ProjectSubmissionComponent;
@@ -64,9 +65,9 @@ describe('ProjectSubmissionComponent', () => {
   });
   
   /**
-   * Test ngOnit if userService.getUser is not null
+   * Test ngoninit fields if user is not null
    * 
-   * @author Gabriel Zapata, Alex Johnson (010719-Java-Spark-USF)
+   * @author Gabriel Zapata | Alex Johnson | (190107-Java-Spark-USF)
    * 
    */
   it('should verify ngOninit fields if userService.getUser is not null',()=>{
@@ -91,10 +92,10 @@ describe('ProjectSubmissionComponent', () => {
    /**
     * Test openDialog with event listener = inputGroupMembers
     *
-   * @author Gabriel Zapata (010719-Java-Spark-USF)
+   * @author Gabriel Zapata (190107-Java-Spark-USF)
    * 
    */
-  it('should verify openDialog fields, and title, questiontype, ',()=>{
+  it('should verify openDialog fields, and title, questiontype, when event.target.id = inputGroupMembers ',()=>{
     
     let event = {
       target : {
@@ -110,12 +111,11 @@ describe('ProjectSubmissionComponent', () => {
   })
 
    /**
-    * Test openDialog with event listener = inputGroupMembers
-    *
-   * @author Gabriel Zapata (010719-Java-Spark-USF)
-   * 
+   * Test openDialog with event listener != inputGroupMembers
+   *
+   * @author Gabriel Zapata (190107-Java-Spark-USF)
    */
-  it('should verify openDialog fields, and title, questiontype, ',()=>{
+  it('should verify openDialog fields, and title, questiontype, when event.target.id != inputGroupMembers ',()=>{
     
     let event = {
       target : {
@@ -131,9 +131,9 @@ describe('ProjectSubmissionComponent', () => {
   })
 
    /**
-     * Test openEditableDialog with event listener = inputGroupMember
-     * 
-    * @author Gabriel Zapata (010719-Java-Spark-USF)
+    * This is a silly redundant test that could be consolidated with the above OOPS.
+    * 
+    * @author Gabriel Zapata (190107-Java-Spark-USF)
    */
   it('should verify openEditableDialog fields if id is not inputGroupMembers',()=>{
     let event = {
@@ -151,9 +151,9 @@ describe('ProjectSubmissionComponent', () => {
   })
 
     /**
-     * Test openEditableDialog with event listener = inputGroupMember
+     * This test could also be refactored to consolidate with the above.
      * 
-    * @author Gabriel Zapata | Slavik Cool-Guy (010719-Java-Spark-USF)
+    * @author Gabriel Zapata | Slavik Cool-Guy (190107-Java-Spark-USF)
    */
   it('should verify openEditableDialog fields if id is not inputGroupMembers',()=>{
     let event = {
@@ -172,7 +172,7 @@ describe('ProjectSubmissionComponent', () => {
 
     
   /**
-   * Test submitForm formData
+   * Testing whether submitting fields is valid with a valid entry.
    * 
    * @author Gabriel Zapata (010719-Java-Spark-USF)
    */
@@ -189,7 +189,7 @@ describe('ProjectSubmissionComponent', () => {
   })
 
     /**
-     * Test openEditableDialog with event listener = inputGroupMember
+     * This is similar to the above, 'openEditableDialog', but with 'onFileSelected' instead.
      * 
     * @author Gabriel Zapata (010719-Java-Spark-USF)
    */  

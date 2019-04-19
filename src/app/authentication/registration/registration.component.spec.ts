@@ -14,7 +14,7 @@ import { of } from 'rxjs';
  * component as well the as well as the functionality
  * of the various methods within it.
  * @author Ryan Beevers | Shawn Bickel | Sahil Makhijani | Andrew Mitchem | Yuki Mano | Jeffly Luctamar | (1810-Oct08-Java-USF)
- * @author Gabriel Zapata | Fadi Alzoubi | Slavik Gleanco | Alex Johnson | Edward Bechtold
+ * @author Gabriel Zapata | Fadi Alzoubi | Slavik Gleanco | Alex Johnson | Edward Bechtold | (190107-Java-Spark-USF)
  */
 // Testing the successful creation of the Registration component
 describe('RegistrationComponent', () => {
@@ -91,7 +91,8 @@ describe('RegistrationComponent', () => {
 
   /**
    * This test should verify registering is false, authentication is true, loginUser username
-   * and loginUser password is set to user when user is inserted to userService.register method
+   * and loginUser password is set to user when user is inserted to userService.register method.
+   * Not sure why this isn't working. If not skipped, other things fail.
    * @author Fadi Alzoubi | Edward Bechtold | (190107-Java-Spark-USF)
    */
   xit('should verify registering, authenticating, loginUser username and password when userService.register is called', () => {
@@ -111,10 +112,9 @@ describe('RegistrationComponent', () => {
   /**
    * Tests the "checkIfEmailIsInUse" method up until the observable (.subscribe) line
    * This test passes when tested alone. However, it fails when tested alongside other tests for this component
-   * Therefore, it's skipped and needs fixing.
+   * Therefore, it's skipped and needs fixing. Probably an indication the test is not properly isolated.
    * @author Slavik Gleanco | (190107-Java-Spark-USF)
    */
-  //need to fix
   xit('should check the properties of checkIfEmailIsInUse method values of emailToCheck, emailIsAvailable, emailIsNotAvailable, checkingIfEmailIsInUse ', () => { 
     component.user.email = 'testEmail';
     component.checkIfEmailIsInUse(); 
@@ -130,7 +130,6 @@ describe('RegistrationComponent', () => {
    * Therefore, it's skipped and needs fixing.
    * @author Slavik Gleanco | (190107-Java-Spark-USF)
    */
-  //need to fix
   xit('should check the properties of checkIfUsernameIsAvailable method values of usernameToCheck, emailIsAvailable, emailIsNotAvailable, checkingIfEmailIsInUse ', () => {
     component.user.username = 'username';
     component.checkIfUsernameIsAvailable(); 
@@ -147,7 +146,6 @@ describe('RegistrationComponent', () => {
    * Therefore, it's skipped and needs fixing.
    * @author Slavik Gleanco | (190107-Java-Spark-USF)
    */
-  //need to fix
   xit('Should check the properties of checkIfUsernameIsAvailableKey method values of usernameToCheck, usernameIsAvailable, usernameIsNotAvailable, checkIfUsernameIsAvailable', (done) => {
     component.user.username = 'testName';
     component.checkIfUsernameIsAvailableKey();
@@ -168,7 +166,6 @@ describe('RegistrationComponent', () => {
    * Therefore, it's skipped and needs fixing.
    * @author Slavik Gleanco | (190107-Java-Spark-USF)
    */
-  //need to fix
   xit('Should check the properties of checkIfEmailIsInUseKey method values of emailToCheck, emailIsAvailable, emailIsNotAvailable, checkingIfEmailIsInUse', (done) => { 
     component.user.email = 'testEmail';
     component.checkIfEmailIsInUseKey();

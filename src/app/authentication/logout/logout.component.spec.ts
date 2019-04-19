@@ -12,7 +12,7 @@ import { AuthenticationRoutingModule } from '../authentication-routing.module';
 /**
  * This component cannot be tested because there is no implementation. All variables are global scoped. 
  * Future iterations could consider restructuring this component.
- * @author Gabriel Zapata | Fadi Alzoubi | Slavik Gleanco | Alex Johnson | Edward Bechtold
+ * @author Gabriel Zapata | Fadi Alzoubi | Slavik Gleanco | Alex Johnson | Edward Bechtold | (190107-Java-Spark-USF)
  */
 
 describe('LogoutComponent', () => {
