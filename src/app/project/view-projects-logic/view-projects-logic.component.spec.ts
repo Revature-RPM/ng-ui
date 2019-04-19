@@ -218,7 +218,6 @@ describe('ViewProjectsLogicComponent', () => {
 
   /**
   * Test approve method and fields with project of opposite feilds and event parameters 
-  * 
   * @author Slavik Gleanco | Gabriel Zapata (190107-Java-Spark-USF)
   */
   it('should approve a project', () => {
@@ -238,8 +237,7 @@ describe('ViewProjectsLogicComponent', () => {
   });
 
   /**
-   * Test denie method and fields with project of opposite feilds and event parameters 
-   * 
+   * Test deny method and fields with project of opposite feilds and event parameters 
    * @author Slavik Gleanco | Gabriel Zapata (190107-Java-Spark-USF)
    */
   it('should decline a project', () => {
