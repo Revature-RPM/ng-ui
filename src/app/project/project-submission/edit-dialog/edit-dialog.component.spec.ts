@@ -11,8 +11,8 @@ import { EditDialogComponent } from './edit-dialog.component';
 import { AuthenticationModule } from 'src/app/authentication/authentication.module';
 
 /**
- * The line below are the imports that correlate to the 'providers' fix in line 36.
- * Uncomment both this code and the code in line 38 to fix.
+ * The line below are the imports that correlate to the 'providers' fix in line 39.
+ * Uncomment both this code currently (line 16) and the code in line 39 to fix.
  * import {MatDialogModule, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
  * 
  * @author Slavik Gleanco | Edward Bechtold | Gabriel Zapata | (190107-Java-Spark-USF)
@@ -32,9 +32,9 @@ describe('EditDialogComponent', () => {
       providers: [ProjectService
       
       /**
-       * Uncomment the below code to fix the import issues with the provider. This is the answer to some 
+       * Uncomment the below code (line 39) to fix the import issues with the provider. This is likely the answer to some 
        * of the problems we had in testing this component.
-       * (Make sure you don't forget the comma at the start, and the closing bracket currently on line 41!)
+       * (Make sure you don't forget the comma at the start, and be mindful of the closing bracket currently on line 44!)
        * 
        * , {provide: MatDialogRef, useValue: {}}, { provide: MAT_DIALOG_DATA, useValue: {}}
        * 
