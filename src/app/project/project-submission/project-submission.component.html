@@ -105,9 +105,24 @@
               </tr>
             </table>
             <br>
+
+            <table class="example-full-width" cellspacing="5">
+              <tr>
+                <td>
+                    <span id="requiredDataModelButton">* </span>
+                    <!-- This button triggers the file input to be clicked by referencing its template variable, uploadDatamodel -->
+                    <button id="buttonDatamodelTrigger" mat-flat-button color="accent" (click)="uploadDatamodel.click()">Choose Data Model: </button>
+                    <span *ngFor="let datamodel of projectToUpload.dataModel">
+                        <span> {{ datamodel.name }} </span>
+                    </span>
+                </td>
+              </tr>
+            </table>
+            <br>
+
            <button [disabled] = "submitting" (click)="submitForm()" [disabled]="(!name.valid || name.pristine) || (!batch.valid || batch.pristine) || (!trainerName.valid) ||
            (!groupMembers.valid) || (!description.valid || description.pristine) || (!zipLinks.valid) ||
-           (!techStack.valid || techStack.pristine) || !validScreenshots || !validGithubURL" type="submit" id="submit" mat-flat-button color="accent">Submit Project</button>
+           (!techStack.valid || techStack.pristine) || !validScreenshots || !validGithubURL || !validDatamodel" type="submit" id="submit" mat-flat-button color="accent">Submit Project</button>
 
            <br *ngIf='submitting'>
            <br *ngIf='submitting'>
@@ -124,5 +139,6 @@
 
            <!-- Hidden file input used to retrieve project screenshots -->
            <input id="screenShots" name="screenShotFiles" #uploadScreenshots hidden type="file" (change)="onFileSelected($event)" accept="image/*" multiple required/>
+           <input id="dataModel" name="dataModelFiles" #uploadDatamodel hidden type="file" (change)="onDataModelSelected($event)" accept="file/*" />
       </form>
  </div>
