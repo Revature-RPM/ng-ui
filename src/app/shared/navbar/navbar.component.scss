@@ -44,6 +44,54 @@
     font-family: 'Montserrat';
 }
 
+@media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (-webkit-min-device-pixel-ratio: 1) {
+
+    #title {
+        text-align: center;
+        margin-top: 25px;
+        font-size: 3rem;
+        color: #ffa226;
+        font-family: 'Montserrat';
+    }
+
+}
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 568px) 
+  and (-webkit-min-device-pixel-ratio: 1) {
+
+    #title {
+        text-align: center;
+        margin-top: 25px;
+        font-size: 1rem;
+        color: #ffa226;
+        font-family: 'Montserrat';
+    }
+    #rpm-logo {
+        max-width: 30%;
+        max-height: 55%;
+        margin-top: 5px;
+    }
+    #icon
+    {
+        max-width: 24px;
+        max-height: 24px;
+    }
+    #home-icon{
+        max-width: 24px;
+        max-height: 24px;
+        margin-bottom: 20px;
+    }
+    #profile-icon
+    {
+        margin-bottom: 20px;
+        margin-right: 15px;
+    }
+  }
+
 // #title {
 //     text-shadow:
 // 		-1px -1px 0 #ff7500,

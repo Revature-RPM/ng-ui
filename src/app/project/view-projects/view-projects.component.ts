@@ -1,5 +1,5 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { MatSort, MatTableDataSource, MatPaginator } from '@angular/material';
 import { Router, NavigationEnd, RoutesRecognized, NavigationStart } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -16,6 +16,7 @@ import { User } from 'src/app/core/models/User';
   selector: 'app-view-projects',
   templateUrl: './view-projects.component.html',
   styleUrls: ['./view-projects.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 
 export class ViewProjectsComponent implements OnInit {
@@ -24,6 +25,8 @@ export class ViewProjectsComponent implements OnInit {
   userProjectsPage = false;
   currentUser: User;
   tab = 0;
+
+
   constructor(private router: Router, private viewProjectsService: ProjectService, private userService: UserService) { }
 
   /**
@@ -84,4 +87,5 @@ export class ViewProjectsComponent implements OnInit {
   submitProject() {
     this.router.navigate(['/project_submission']);
   }
+
 }
