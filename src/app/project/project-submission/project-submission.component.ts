@@ -83,6 +83,11 @@ export class ProjectSubmissionComponent implements OnInit {
               private snackBar: MatSnackBar,
               private userService: UserService) {}
 
+  formValidation(): boolean {
+    return this.projectToUpload.name.length > 0 || this.projectToUpload.batch.length > 0 || this.projectToUpload.description.length > 0 ||
+    this.projectToUpload.groupMembers.length > 0 ||  this.projectToUpload.techStack.length > 0 || this.projectToUpload.trainer.length > 0
+    || this.projectToUpload.zipLinks.length > 0 || this.projectToUpload.screenShots.length > 0; }
+
   ngOnInit() {
     if (this.userService.getUser() === null) {
       this.router.navigate(['/auth/login']);
@@ -302,7 +307,44 @@ export class ProjectSubmissionComponent implements OnInit {
       this.router.navigate(['/home']);
     },
     error => {
-      alert('Error submitting project');
+      /*
+      * The error message now checks if any fields are empty
+      * if any are the corresponding message will be displayed.
+      */
+      let error_message = '';
+      if (this.projectToUpload.name === undefined) {
+          error_message += 'Project name is empty.\n';
+      }
+
+      if (this.projectToUpload.batch === undefined) {
+          error_message += 'Batch is empty.\n';
+      }
+
+      if (this.projectToUpload.trainer === "") {
+        error_message += 'Trainer name is empty.\n';
+      }
+
+      if (this.projectToUpload.groupMembers.length < 1) {
+        error_message += 'Group Members is empty.\n';
+      }
+
+      if (this.projectToUpload.description === undefined) {
+        error_message += 'Description is empty.\n';
+      }
+
+      if (this.projectToUpload.zipLinks.length < 1) {
+        error_message += 'Repository link is empty.\n';
+      }
+
+      if (this.projectToUpload.techStack === undefined) {
+        error_message += 'Tech stack is empty.\n';
+      }
+
+      if (this.projectToUpload.screenShots.length < 1) {
+        error_message += 'Screenshots is empty.\n';
+      }
+
+      alert(error_message);
     }
     );
   }
