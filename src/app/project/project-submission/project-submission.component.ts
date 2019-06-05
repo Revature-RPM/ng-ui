@@ -32,7 +32,10 @@ export class ProjectSubmissionComponent implements OnInit {
   // validScreenshots and validGithubURL determine if information has been entered correctly and if the form can be submitted
   validScreenshots = false;
   validGithubURL = false;
+
+  // validDatamodel determines if information has been entered correctly and if the form can be submitted 
   validDatamodel = false;
+
   invalidLink = false; // triggers an error message if set to true
 
   /**
@@ -318,6 +321,14 @@ export class ProjectSubmissionComponent implements OnInit {
     }
   }
 
+  /**
+   * When the file input is triggered, the event is passed to this method
+   * which uses the properties of the event to retrieve the files chosen and
+   * place them in the array corresponding to the dataModel array of the project
+   * to be submitted
+   * 
+   * @param f the event corresponding to the user choosing a dataModel file to upload 
+   */
   onDataModelSelected(f) {
     for (let i = 0; i < f.target.files.length; i++) {
       this.projectToUpload.dataModel.push(f.target.files[i]);
