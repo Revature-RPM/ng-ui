@@ -344,6 +344,10 @@ export class ProjectSubmissionComponent implements OnInit {
         error_message += 'Screenshots is empty.\n';
       }
 
+      if (this.projectToUpload.dataModel.length < 1) {
+        error_message += 'Data Model is empty.\n';
+      }
+      
       alert(error_message);
     }
     );
