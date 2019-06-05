@@ -117,7 +117,7 @@ flex-direction: row;
   and (max-device-width: 568px) 
   and (-webkit-min-device-pixel-ratio: 1) {
 
-    .mat-tab-label
+    ::ng-deep .mat-tab-label
     {
     padding: 0 10px !important;
     }

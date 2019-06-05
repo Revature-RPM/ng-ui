@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProjectService } from 'src/app/core/services/project.service';
 import { UserService } from 'src/app/core/services/user.service';
@@ -10,7 +10,6 @@ import { User } from 'src/app/core/models/User';
   selector: 'app-view-users',
   templateUrl: './view-users.component.html',
   styleUrls: ['./view-users.component.scss'],
-  encapsulation: ViewEncapsulation.None
 })
 export class ViewUsersComponent implements OnInit {
   usersPage = true;

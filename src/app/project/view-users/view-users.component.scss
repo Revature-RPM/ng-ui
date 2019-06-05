@@ -130,31 +130,7 @@
 
   .mobile-label {
     display: none;
-  }
-
-  table {
-    width: 100%;
-  }
-  
-  td.mat-column-star {
-    width: 20px;
-    padding-right: 8px !important;
-  }
-  
-  .mat-row {
-    a {
-      text-decoration: none;
-      &:hover {
-      text-decoration: underline;
-      }
-    }
-  }
-  
-  .mat-form-field {
-    font-size: 14px;
-    width: 100%;
-  }
-  
+  } 
   
   @media screen and (max-width: 960px) {
     .mat-elevation-z8 {
@@ -207,7 +183,6 @@
           padding: 0 48px 0 16px;
           a {
             font-size: 20px;
-            // font-weight: 400;
             color: inherit;
           }
           &:before {
@@ -244,6 +219,5 @@
   
     .mat-paginator {
       margin-top: 24px;
-    }
-  
+    }  
   }
