@@ -30,8 +30,9 @@ export class LoginComponent implements OnInit {
   constructor(private userService: UserService, private router: Router, private ngmeta: NgMetaService) { }
 
   ngOnInit() {
+    //added '\home' to navigate so that if a user is already logged in, landing page routes to home page
     if (this.userService.getUser() !== null) {
-      this.router.navigate(['']);
+      this.router.navigate(['\home']);
     } else {
       this.ngmeta.setHead({ title: 'Login | RPM' });
     }
