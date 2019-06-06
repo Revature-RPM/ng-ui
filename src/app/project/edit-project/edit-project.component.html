@@ -6,7 +6,7 @@
                       (click)="back()">
                       <mat-icon>arrow_back</mat-icon>
                   </button>
-      <h1 id="title">Edit Project</h1>
+      <h1 id="title" style="font-size:3vw">Edit Project</h1>
     </div>
     <form  #projectForm="ngForm" novalidate>
         <table class="example-full-width" cellspacing="5"><tr fxLayout="row wrap">
@@ -92,7 +92,7 @@
           <h3>Add a Group Member</h3>
           <mat-form-field>
             <mat-label>Add a Group Member</mat-label>
-            <input matInput placeholder="Add Group Member" [(ngModel)]="groupMember" name="hello" (keydown.enter)="addGroupMember()">
+            <input matInput placeholder="Add Group Member" [(ngModel)]="groupMember" name="hello" (keydown.enter)="addGroupMember()" >
           </mat-form-field>
         
          
