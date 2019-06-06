@@ -4,7 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { MatJumbotronModule } from '@angular-material-extensions/jumbotron';
 import { NgMetaModule } from 'ngmeta';
-
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { AppRoutingModule } from './app-routing.module';
 import { ProjectModule } from './project/project.module';
 import { AppComponent } from './app.component';
@@ -32,7 +32,8 @@ export function tokenGetter() {
     MatJumbotronModule.forRoot(),
     NgMetaModule.forRoot(),
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
-    AuthenticationModule
+    AuthenticationModule,
+    FlexLayoutModule
   ],
   providers: [
     {

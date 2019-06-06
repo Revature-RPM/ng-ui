@@ -1,11 +1,12 @@
 <div class="background">
   <div class="header"><span> Code Base Viewer</span></div>
     <div class="btn-container">
-      <button *ngFor="let link of availableUrls" class="btn-open btn-side"(click)='sendRequest(link)' [title]="safeTitle(link)">🗁</button>
-      <label class="fileContainer" title="Open Local File"> 🗁
+      <label *ngFor="let link of availableUrls" [for]="safeTitle(link)">{{safeTitle(link)}}</label>
+      <button *ngFor="let link of availableUrls" class="btn-open btn-side"(click)='sendRequest(link)' [id]="safeTitle(link)">🗁</button>
+      <label class="fileContainer">🗁
         <input #fileOpener type="file" class="" (change)='openData(fileOpener.files[0])' >
         </label>
-      <button class="btn-home btn-side"(click)='goBack()' title="Home">⌂</button>
+      <button class="btn-home btn-side"(click)='goBack()'>⌂</button>
     
       <h4 class="display-text"> &#x25b7; Explorer</h4>
       <div>
