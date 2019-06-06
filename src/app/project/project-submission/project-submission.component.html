@@ -1,9 +1,10 @@
 <app-navbar></app-navbar>
  <div class="my-theme">
     <h1 id="title">Submit a Project</h1>
+    
     <form  #projectForm="ngForm" novalidate>
-        <table class="example-full-width" cellspacing="5"><tr>
-          <td>
+        <table class="example-full-width" cellspacing="5"><tr fxLayout="row wrap">
+          <td fxFlex="50%" fxFlex.md="50%" fxFlex.sm="50%" fxFlex.xs="100%">
               <mat-form-field class="example-full-width" appearance="outline">
                     <mat-label>Project Name</mat-label>
                   <mat-error *ngIf="!name.valid || name.pristine">Project name is required</mat-error>
@@ -11,7 +12,7 @@
                   [ngModelOptions]="{standalone: true}" required #name="ngModel">
                 </mat-form-field>
           </td>
-          <td>
+          <td fxFlex="50%" fxFlex.md="50%" fxFlex.sm="50%" fxFlex.xs="100%">
               <mat-form-field class="example-full-width" appearance="outline">
                     <mat-label>Batch Name</mat-label>
                   <mat-error *ngIf="!batch.valid || batch.pristine">Batch name is required</mat-error>
@@ -23,7 +24,7 @@
 
 
         <table class="example-full-width" cellspacing="5">
-          <tr>
+          <tr fxLayout="row wrap">
 <!--             <td *ngIf="user.role === 'ROLE_ADMIN'"></td>
  -->                <mat-form-field class="example-full-width" appearance="outline">
                         <mat-label>Trainer Name</mat-label>
@@ -46,7 +47,7 @@
           </tr>
         </table>
 
-        <table class="example-full-width" cellspacing="5"><tr>
+        <table class="example-full-width" cellspacing="5"><tr fxLayout="row wrap">
             <td>
                 <mat-form-field class="example-full-width"  appearance="outline">
                         <mat-label>Description</mat-label>
@@ -58,7 +59,7 @@
         </tr></table>
 
         <table class="example-full-width" cellspacing="5">
-            <tr>
+          <tr fxLayout="row wrap">
               <td>
                   <mat-form-field class="example-full-width" appearance="outline">
                         <mat-label>Repository Links</mat-label>
