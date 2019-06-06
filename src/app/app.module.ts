@@ -13,6 +13,7 @@ import { environment } from 'src/environments/environment';
 import { TokenInterceptor} from 'src/app/core/services/jwtInterceptor.interceptor';
 import 'hammerjs';
 import { AuthenticationModule } from 'src/app/authentication/authentication.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 export function tokenGetter() {
   return window.localStorage.getItem('jwt');
