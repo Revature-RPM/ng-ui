@@ -115,12 +115,10 @@
   #aa {
     position: relative;
     margin-left: 35%;
-    // display:inline;
     float:left;
   }
   
   #aaa {
-    // display:inline;
     float:left;
     font-family: "Courier New", sans-serif;
     margin-top: 30px;
@@ -133,38 +131,24 @@
   } 
   
   @media screen and (max-width: 960px) {
-    .mat-elevation-z8 {
-      background: transparent;
-      box-shadow: none;
-    }
 
     .mobile-label {
       width: 80px;
       display: inline-block;
           font-weight: bold;
     }
-  
+
+    .mat-elevation-z8 {
+      background: transparent;
+      box-shadow: none;
+    }
+
     .mat-header-row {
       display: none;
     }
   
-    tbody {
-      display: block;
-      width: 100%;
-    }
-    
-    .mat-table {
-      background: transparent;
-      * {
-        box-sizing: border-box;
-      }
-  
       .mat-row {
-        display: block;
-        overflow: hidden;
         height: auto;
-        position: relative;
-        clear: both;
         box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
         background-color: #fff;
         border-radius: 3px;
@@ -216,8 +200,3 @@
         }
       }
     }
-  
-    .mat-paginator {
-      margin-top: 24px;
-    }  
-  }

@@ -22,7 +22,7 @@
 #title {
     text-align: center;
     margin-top: 25px;
-    font-size: 4rem;
+    font-size: 3rem;
     color: #ffa226;
     font-family: 'Montserrat';
 }
@@ -34,7 +34,21 @@
     #title {
         text-align: center;
         margin-top: 25px;
-        font-size: 3rem;
+        font-size: 2rem;
+        color: #ffa226;
+        font-family: 'Montserrat';
+    }
+
+}
+@media only screen 
+  and (min-device-width: 321px) 
+  and (max-device-width: 767px) 
+  and (-webkit-min-device-pixel-ratio: 1) {
+
+    #title {
+        text-align: center;
+        margin-top: 25px;
+        font-size: 1.5rem;
         color: #ffa226;
         font-family: 'Montserrat';
     }
