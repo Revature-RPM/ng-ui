@@ -211,7 +211,6 @@ textarea{
 //side bar css
 .fileContainer {
   overflow: hidden;
-
   border-color: rgb(165, 165, 165);
   border-style: none;
   border-width: 0px;
@@ -219,9 +218,9 @@ textarea{
   background-color:  $Saturation80;
   // border-radius: 5px;
   padding: .2em;
-  font-size: 2em;
-  height:37px;
-  width:37px;
+  font-size: 2vw;
+  height: 1.5em;
+  width: 1.5em;
   text-align: center;
   color: $TextPassive;
   float:left;
@@ -229,8 +228,6 @@ textarea{
   clear: left;
   color:rgb(31, 192, 31);
 }
-
-
 
 .fileContainer:hover{
   background-color: $Saturation100;
@@ -255,7 +252,7 @@ textarea{
   position: relative;
   top: 0;
   left: 0;
-  width: 14%;
+  width: 14vw;
   display: block;
   float: left;
   height: 80vh;
@@ -303,6 +300,19 @@ textarea{
 }
 .btn-container>div:hover{
   overflow-y:auto;
+}
+.btn-container>.btn-home {
+  font-size: 2vw;
+  height: 1.88em;
+  width: 1.88em;
+  text-align: center;
+}
+
+.label {
+  font-size: 1vw;
+  margin-top: 0px;
+  padding-top: 0px;
+
 }
 
 //end of side bar css
@@ -362,4 +372,5 @@ textarea{
   padding: 5px 0px 5px 0px;
   word-wrap: normal;
 }
+
 //end of code display css
