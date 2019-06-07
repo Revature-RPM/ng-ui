@@ -238,7 +238,7 @@ textarea{
 .fileContainer [type=file] {
   cursor: inherit;
   display: block;
-  font-size: 2em;
+  font-size: 2vw;
   filter: alpha(opacity=0);
   height:.1px;
   width:.1px;
@@ -306,13 +306,23 @@ textarea{
   height: 1.88em;
   width: 1.88em;
   text-align: center;
+  float:left;
+  top:0;
+  clear: left;
 }
 
-.label {
-  font-size: 1vw;
-  margin-top: 0px;
-  padding-top: 0px;
+.btn-img {
+  height: 70%;
+  font-size: 2vw;
+  display: flex;
+  justify-content: center;
+}
 
+.btn-txt {
+  height: 30%;
+  font-size: 1vw;
+  display: flex;
+  justify-content: center;
 }
 
 //end of side bar css
@@ -349,17 +359,13 @@ textarea{
 }
 //header css
 .header {
- 
-  max-width: 100%;
-  background-color: rgb(233, 236, 239);
   /*
   *background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0)60%, rgba(255, 77, 246, 0.24));
-  */padding-left:10em;
-  padding-top: 2px;
-  height: 30px;
-  min-height: 30px;
-  margin: 0%;
+  */
   box-shadow: $Shadow;
+  display: flex;
+  justify-content: center;
+  font-size: 4vw;
 }
 .header > span{
   // text-shadow: 1px 0px 1px #faea07f3, -1px 0px 1px #f70cd7f3;
@@ -370,7 +376,7 @@ textarea{
   color: $TextImportant;
   background-color: $Saturation80;
   padding: 5px 0px 5px 0px;
-  word-wrap: normal;
+  font-size: 1.4vw;
 }
 
 //end of code display css

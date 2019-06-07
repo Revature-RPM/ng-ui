@@ -6,6 +6,7 @@ import * as JSZip from 'jszip';
 import { NgMetaService } from 'ngmeta';
 
 import { ProjectService } from 'src/app/core/services/project.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-zip-component',
@@ -35,6 +36,7 @@ export class ZipComponent implements OnInit {
   filepath = '';
   browserSupported = true;
   availableUrls: string [] = [];
+  title = '';
   /**
    * Constructur: Injects Http Client into the component for use of resource request
    * @param HttpClient standard angular dependency to fire http request.
@@ -98,7 +100,8 @@ Currently can open and navigate to the src directory of Angular and Java Reposit
     return testfile;
   }
   safeTitle(link: string) {
-    return link.substring(link.lastIndexOf('/') + 1);
+    this.title = link.substring(link.lastIndexOf('/') + 1);
+    return this.title;
   }
   /**
    * Zip.goBack()

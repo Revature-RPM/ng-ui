@@ -1,10 +1,21 @@
 <div class="background">
-  <div class="header"><span> Code Base Viewer</span></div>
+  <div class="header">Code Base Viewer</div>
     <div class="btn-container">
-      <button *ngFor="let link of availableUrls" class="btn-open btn-side"(click)='sendRequest(link)'>🗁{{safeTitle(link)}}</button>
-      <label class="fileContainer" title="Open Local File">🗁 <span class="label">Open local file.</span><input #fileOpener type="file" (change)='openData(fileOpener.files[0])'></label>
-      <button class="btn-home btn-side"(click)='goBack()'>⌂ <span class="label">Home</span></button>
-      <h4 class="display-text"> &#x25b7; Explorer</h4>
+      <button *ngFor="let link of availableUrls" class="btn-open btn-side"(click)='sendRequest(link)'>
+        <div class="btn-img">🗁</div>
+        <!-- The button text for these buttons require further guidance from higher. -->
+        <div class="btn-txt">{{title}}</div>
+      </button>
+      <label class="fileContainer" title="Open Local File">
+        <div class="btn-img">🗁</div>
+        <div class="btn-txt">Local</div>
+        <input #fileOpener type="file" (change)='openData(fileOpener.files[0])'>
+      </label>
+      <button class="btn-home btn-side"(click)='goBack()'>
+        <div class="btn-img">⌂</div>
+        <div class="btn-txt">Home</div>
+      </button>
+      <h4 class="display-text">&nbsp;&#x25b7; Explorer</h4>
       <div>
       <p *ngFor="let help of RenderFile" [class.selected_p]="SelectedFile === help" (click)="openRenderFile(help)">{{help.fileName}}</p>
     </div>
