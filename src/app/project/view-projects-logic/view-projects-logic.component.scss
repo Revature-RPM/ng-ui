@@ -142,15 +142,107 @@
 #aa {
   position: relative;
   margin-left: 35%;
-  // display:inline;
   float:left;
 }
 
 #aaa {
-  // display:inline;
   float:left;
   font-family: "Courier New", sans-serif;
   margin-top: 30px;
   font-size: 15px;
   margin-left: 30px;
+}
+
+.mobile-label {
+  display: none;
+} 
+
+@media screen and (max-width: 960px) {
+  #project-image
+  {
+    min-width: 25vh;
+    min-height: 25vh;
+    max-height: 25vh;
+    max-width: 25vh;
+    size: auto;
+  }
+  #arrow-icon
+  {
+    margin-top: 12.5vh;
+  }
+
+  #container
+  {
+    display: block;
+  }
+
+  .mobile-label {
+    width: 80px;
+    display: inline-block;
+        font-weight: bold;
+  }
+  
+  .mat-elevation-z8 {
+    background: transparent;
+    box-shadow: none;
+  }
+
+
+  .mat-header-row {
+    display: none;
+  }
+
+    .mat-row {
+
+      height: auto;
+      box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
+      background-color: #fff;
+      border-radius: 3px;
+      + .mat-row {
+        margin-top: 24px;
+      }
+    }
+
+    .mat-cell {
+      display: block;
+      width: 100%;
+      padding: 0 16px;
+      margin: 16px 0;
+      border: 0 none;
+      &:first-child {
+        padding: 0 48px 0 16px;
+        a {
+          font-size: 20px;
+          color: inherit;
+        }
+        &:before {
+          display: none;
+        }
+      }
+      &.m-card-sub-title {
+        margin-top: -8px;
+        padding: 0 48px 0 16px;
+        color: rgba(0,0,0,.54);
+      }
+    }
+
+    .has_label_on_mobile {
+      &:before {
+        content: attr(data-label);
+        display: inline;
+        font-weight: normal;
+      }
+    }
+
+    .mat-column-star {
+      width: auto;
+      padding: 8px 0 0 !important;
+      margin: 0;
+      position: absolute;
+      top: 0;
+      right: 0;
+      &:before {
+        display: none;
+      }
+    }
 }
