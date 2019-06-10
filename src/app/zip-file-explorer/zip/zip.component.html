@@ -1,6 +1,7 @@
 <div class="background">
   <div class="header">Code Base Viewer</div>
     <div class="btn-container">
+
       <button *ngFor="let link of availableUrls" class="btn-open btn-side"(click)='sendRequest(link)'>
         <div class="btn-img">🗁</div>
         <!-- The button text for these buttons require further guidance from higher. -->
@@ -16,6 +17,7 @@
         <div class="btn-txt">Home</div>
       </button>
       <div class="display-text">&nbsp;&#x25b7; Explorer</div>
+
       <div>
       <p *ngFor="let help of RenderFile" [class.selected_p]="SelectedFile === help" (click)="openRenderFile(help)">{{help.fileName}}</p>
     </div>
