@@ -12,4 +12,5 @@ export interface Project {
     approvingProject?: boolean;
     projectApproved?: boolean;
     projectDeclined?: boolean;
+    dataModel?: any[];
  }

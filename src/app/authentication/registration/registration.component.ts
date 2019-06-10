@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgMetaService } from 'ngmeta';
@@ -24,6 +24,7 @@ import { UserService } from 'src/app/core/services/user.service';
 })
 
 export class RegistrationComponent implements OnInit {
+
   user: User = {};
   isLinear = true;
   firstFormGroup: FormGroup;
@@ -70,8 +71,9 @@ export class RegistrationComponent implements OnInit {
               private ngmeta: NgMetaService) { }
 
   ngOnInit() {
+    //added '\home' routing if user has already logged
     if (this.userService.getUser() !== null) {
-      this.router.navigate(['']);
+      this.router.navigate(['\home']);
     } else {
       this.ngmeta.setHead({ title: 'Register | RPM' });
     }

@@ -9,6 +9,7 @@ import { ProjectService } from 'src/app/core/services/project.service';
 import { UserService } from 'src/app/core/services/user.service';
 import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
 import { User } from 'src/app/core/models/User';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 // this interface represents data to be held and returned from an input dialog
 export interface DialogData {
@@ -32,6 +33,10 @@ export class ProjectSubmissionComponent implements OnInit {
   // validScreenshots and validGithubURL determine if information has been entered correctly and if the form can be submitted
   validScreenshots = false;
   validGithubURL = false;
+
+  // validDatamodel determines if information has been entered correctly and if the form can be submitted 
+  validDatamodel = false;
+
   invalidLink = false; // triggers an error message if set to true
 
   /**
@@ -79,6 +84,11 @@ export class ProjectSubmissionComponent implements OnInit {
               private snackBar: MatSnackBar,
               private userService: UserService) {}
 
+  formValidation(): boolean {
+    return this.projectToUpload.name.length > 0 || this.projectToUpload.batch.length > 0 || this.projectToUpload.description.length > 0 ||
+    this.projectToUpload.groupMembers.length > 0 ||  this.projectToUpload.techStack.length > 0 || this.projectToUpload.trainer.length > 0
+    || this.projectToUpload.zipLinks.length > 0 || this.projectToUpload.screenShots.length > 0; }
+
   ngOnInit() {
     if (this.userService.getUser() === null) {
       this.router.navigate(['/auth/login']);
@@ -87,6 +97,7 @@ export class ProjectSubmissionComponent implements OnInit {
       this.projectToUpload.groupMembers = [];
       this.projectToUpload.screenShots = [];
       this.projectToUpload.zipLinks = [];
+      this.projectToUpload.dataModel = [];
       this.projectToUpload.trainer = this.userService.user.firstName + ' ' + this.userService.user.lastName;
       this.groupMemberString = '';
       this.zipLinksString = '';
@@ -280,6 +291,13 @@ export class ProjectSubmissionComponent implements OnInit {
       formData.append('zipLinks', this.projectToUpload.zipLinks[k]);
     }
 
+    for (let l = 0; l < this.projectToUpload.dataModel.length; l++) {
+      formData.append('dataModel', this.projectToUpload.dataModel[l]);
+
+    }
+    console.log(formData.getAll);
+
+
     // the FormData object is then sent to a service where it is submitted to the server as an http post request
     this.projectService.createProject(formData).subscribe(project => {
       this.submitting = false;
@@ -290,7 +308,48 @@ export class ProjectSubmissionComponent implements OnInit {
       this.router.navigate(['/home']);
     },
     error => {
-      alert('Error submitting project');
+      /*
+      * The error message now checks if any fields are empty
+      * if any are the corresponding message will be displayed.
+      */
+      let error_message = '';
+      if (this.projectToUpload.name === undefined) {
+          error_message += 'Project name is empty.\n';
+      }
+
+      if (this.projectToUpload.batch === undefined) {
+          error_message += 'Batch is empty.\n';
+      }
+
+      if (this.projectToUpload.trainer === "") {
+        error_message += 'Trainer name is empty.\n';
+      }
+
+      if (this.projectToUpload.groupMembers.length < 1) {
+        error_message += 'Group Members is empty.\n';
+      }
+
+      if (this.projectToUpload.description === undefined) {
+        error_message += 'Description is empty.\n';
+      }
+
+      if (this.projectToUpload.zipLinks.length < 1) {
+        error_message += 'Repository link is empty.\n';
+      }
+
+      if (this.projectToUpload.techStack === undefined) {
+        error_message += 'Tech stack is empty.\n';
+      }
+
+      if (this.projectToUpload.screenShots.length < 1) {
+        error_message += 'Screenshots is empty.\n';
+      }
+
+      if (this.projectToUpload.dataModel.length < 1) {
+        error_message += 'Data Model is empty.\n';
+      }
+      
+      alert(error_message);
     }
     );
   }
@@ -306,6 +365,21 @@ export class ProjectSubmissionComponent implements OnInit {
     for (let i = 0; i < e.target.files.length; i++) {
       this.projectToUpload.screenShots.push(e.target.files[i]);
       this.validScreenshots = true;
+    }
+  }
+
+  /**
+   * When the file input is triggered, the event is passed to this method
+   * which uses the properties of the event to retrieve the files chosen and
+   * place them in the array corresponding to the dataModel array of the project
+   * to be submitted
+   * 
+   * @param f the event corresponding to the user choosing a dataModel file to upload 
+   */
+  onDataModelSelected(f) {
+    for (let i = 0; i < f.target.files.length; i++) {
+      this.projectToUpload.dataModel.push(f.target.files[i]);
+      this.validDatamodel = true;
     }
   }
 }

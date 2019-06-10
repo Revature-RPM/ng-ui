@@ -1,14 +1,14 @@
-$Saturation100: rgb(24, 23, 23);
-$Saturation90: rgb(39, 38, 38);
-$Saturation80: rgb(54, 53, 53);
+$Saturation100: rgb(255, 255, 255);
+$Saturation90: rgb(224, 224, 224);
+$Saturation80: rgb(212, 212, 212);
 $Saturation80alpha50: rgba(78, 77, 77, 0.452);
-$Saturation20: rgb(134, 134, 134);
-$Contrast: white;
-$Shadow: rgb(161, 236, 154);
+$Saturation20: rgb(156, 156, 156);
+$Contrast: rgb(0, 0, 0);
+$Shadow: rgb(30, 187, 16);
 $Border: rgb(66, 66, 66);
-$TextImportant: white;
-$TextPassive: gray;
-$baseColor: rgb(29, 29, 29);
+$TextImportant: rgb(0, 0, 0);
+$TextPassive: rgb(133, 133, 133);
+$baseColor: rgb(245, 245, 245);
 
 $orangePallet: (
     50: #fff2e0,
@@ -95,7 +95,7 @@ button{
   border-color: rgb(216, 121, 139);
   border-style: none;
   border-width: 0px;
-  box-shadow: 2px 2px 8px $Saturation100;
+  box-shadow: 5px 5px 8px $Contrast;
   background-color:  $Saturation80;
   // border-radius: 5px;
   height:1.5em;
@@ -211,26 +211,23 @@ textarea{
 //side bar css
 .fileContainer {
   overflow: hidden;
-
-  border-color: rgb(216, 121, 139);
+  border-color: rgb(165, 165, 165);
   border-style: none;
   border-width: 0px;
-  box-shadow: 2px 2px 8px $Saturation100;
+  box-shadow: 5px 5px 8px $Contrast;
   background-color:  $Saturation80;
   // border-radius: 5px;
   padding: .2em;
-  font-size: 2em;
-  height:37px;
-  width:37px;
+  font-size: 2vw;
+  height: 1.5em;
+  width: 1.5em;
   text-align: center;
   color: $TextPassive;
   float:left;
   top:0;
   clear: left;
-  color:rgb(85, 255, 85);
+  color:rgb(31, 192, 31);
 }
-
-
 
 .fileContainer:hover{
   background-color: $Saturation100;
@@ -241,7 +238,7 @@ textarea{
 .fileContainer [type=file] {
   cursor: inherit;
   display: block;
-  font-size: 2em;
+  font-size: 2vw;
   filter: alpha(opacity=0);
   height:.1px;
   width:.1px;
@@ -255,7 +252,7 @@ textarea{
   position: relative;
   top: 0;
   left: 0;
-  width: 14%;
+  width: 13.87vw;
   display: block;
   float: left;
   height: 80vh;
@@ -263,10 +260,10 @@ textarea{
   
 }
 .btn-open{
-  color: rgb(31, 183, 243);
+  color: rgb(33, 159, 209);
 }
 .btn-open:hover{
-  color: rgb(31, 183, 243);
+  color: rgb(33, 159, 209);
 }
 .btn-home{
   color: rgb(243, 31, 31);
@@ -304,6 +301,29 @@ textarea{
 .btn-container>div:hover{
   overflow-y:auto;
 }
+.btn-container>.btn-home {
+  font-size: 2vw;
+  height: 1.88em;
+  width: 1.88em;
+  text-align: center;
+  float:left;
+  top:0;
+  clear: left;
+}
+
+.btn-img {
+  height: 70%;
+  font-size: 2vw;
+  display: flex;
+  justify-content: center;
+}
+
+.btn-txt {
+  height: 30%;
+  font-size: 1vw;
+  display: flex;
+  justify-content: center;
+}
 
 //end of side bar css
 //code display css
@@ -333,33 +353,33 @@ textarea{
   overflow-x: auto;
   white-space: pre;
   background-color: $Saturation100;
-  color: rgb(161, 229, 238);
+  color: rgb(73, 156, 233);
   cursor: default;
 
 }
 //header css
 .header {
- 
-  max-width: 100%;
-  background-color: #ff6300;
   /*
   *background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0)60%, rgba(255, 77, 246, 0.24));
-  */padding-left:10em;
-  padding-top: 2px;
-  height: 30px;
-  min-height: 30px;
-  margin: 0%;
+  */
   box-shadow: $Shadow;
+  display: flex;
+  justify-content: center;
+  font-size: 4vw;
 }
 .header > span{
   // text-shadow: 1px 0px 1px #faea07f3, -1px 0px 1px #f70cd7f3;
   font-size: 1.5em;
   color: $TextImportant;
 }
-.display-text{
+::ng-deep .display-text{
   color: $TextImportant;
   background-color: $Saturation80;
   padding: 5px 0px 5px 0px;
-  word-wrap: normal;
+  font-size: 1.35vw;
+  max-width: 13vw;
+  max-height: 2.5vh;
+  margin-right: 0px;
 }
+
 //end of code display css

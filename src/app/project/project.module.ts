@@ -16,6 +16,7 @@ import { EditDialogComponent } from './project-submission/edit-dialog/edit-dialo
 import { ViewUsersComponent } from './view-users/view-users.component';
 import { ViewProjectsLogicComponent } from './view-projects-logic/view-projects-logic.component';
 import { ViewUsersProjectsComponent } from './view-users-projects/view-users-projects.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { ViewUsersProjectsComponent } from './view-users-projects/view-users-pro
     ZipFileExplorerModule,
     MatDialogModule,
     MatSnackBarModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    FlexLayoutModule
   ],
   entryComponents: [InputDialogComponent, EditDialogComponent],
   providers: [ProjectService]
