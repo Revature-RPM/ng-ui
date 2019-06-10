@@ -267,9 +267,11 @@ export class ProjectSubmissionComponent implements OnInit {
    * @author Shawn Bickel (1810-Oct08-Java-USF)
    */
   submitForm() {
+
+    let formValidated : boolean = false;
+    let error_message = '';
     // FormData is used to hold form fields and their values as key/value pairs to easily transfer data in a form
     const formData = new FormData();
-    this.submitting = true;
     // append the data of the form as key/value pairs using field names on the server as keys and data in the form as values
     formData.append('name', this.projectToUpload.name);
     formData.append('batch', this.projectToUpload.batch);
@@ -277,81 +279,89 @@ export class ProjectSubmissionComponent implements OnInit {
     formData.append('techStack', this.projectToUpload.techStack);
     formData.append('description', this.projectToUpload.description);
     formData.append('status', 'pending');
-
+    
     // elements of an array are appended to the FormData object using the same key name
     for (let i = 0; i < this.projectToUpload.groupMembers.length; i++) {
-      formData.append('groupMembers', this.projectToUpload.groupMembers[i]);
+    formData.append('groupMembers', this.projectToUpload.groupMembers[i]);
     }
-
+    
     for (let j = 0; j < this.projectToUpload.screenShots.length; j++) {
-      formData.append('screenShots', this.projectToUpload.screenShots[j]);
+    formData.append('screenShots', this.projectToUpload.screenShots[j]);
     }
-
+    
     for (let k = 0; k < this.projectToUpload.zipLinks.length; k++) {
-      formData.append('zipLinks', this.projectToUpload.zipLinks[k]);
+    formData.append('zipLinks', this.projectToUpload.zipLinks[k]);
     }
-
+    
     for (let l = 0; l < this.projectToUpload.dataModel.length; l++) {
-      formData.append('dataModel', this.projectToUpload.dataModel[l]);
-
+    formData.append('dataModel', this.projectToUpload.dataModel[l]);
+    
     }
-    console.log(formData.getAll);
-
-
+    
+    /*
+    * The error message now checks if any fields are empty
+    * if any are the corresponding message will be displayed.
+    */
+    if (this.projectToUpload.name === undefined) {
+    error_message += 'Project name is empty.\n';
+    }
+    
+    if (this.projectToUpload.batch === undefined) {
+    error_message += 'Batch is empty.\n';
+    }
+    
+    if (this.projectToUpload.trainer === "") {
+    error_message += 'Trainer name is empty.\n';
+    }
+    
+    if (this.projectToUpload.groupMembers.length < 1) {
+    error_message += 'Group Members is empty.\n';
+    }
+    
+    if (this.projectToUpload.description === undefined) {
+    error_message += 'Description is empty.\n';
+    }
+    
+    if (this.projectToUpload.zipLinks.length < 1) {
+    error_message += 'Repository link is empty.\n';
+    }
+    
+    if (this.projectToUpload.techStack === undefined) {
+    error_message += 'Tech stack is empty.\n';
+    }
+    
+    if (this.projectToUpload.screenShots.length < 1) {
+    error_message += 'Screenshots is empty.\n';
+    }
+    
+    if (this.projectToUpload.dataModel.length < 1) {
+    error_message += 'Data Model is empty.\n';
+    }
+    
+    
+    if(error_message === ''){
+    formValidated = true;
+    }
+    
+    if(formValidated){
+    this.submitting = true;
+    
     // the FormData object is then sent to a service where it is submitted to the server as an http post request
     this.projectService.createProject(formData).subscribe(project => {
-      this.submitting = false;
-      this.snackBar.open('The new project will be visible momentarily', '', {
-        duration: 5000,
-      });
-      sessionStorage.setItem('lastPage', 'project_Submit');
-      this.router.navigate(['/home']);
+    this.submitting = false;
+    this.snackBar.open('The new project will be visible momentarily', '', {
+    duration: 5000,
+    });
+    sessionStorage.setItem('lastPage', 'project_Submit');
+    this.router.navigate(['/home']);
     },
     error => {
-      /*
-      * The error message now checks if any fields are empty
-      * if any are the corresponding message will be displayed.
-      */
-      let error_message = '';
-      if (this.projectToUpload.name === undefined) {
-          error_message += 'Project name is empty.\n';
-      }
-
-      if (this.projectToUpload.batch === undefined) {
-          error_message += 'Batch is empty.\n';
-      }
-
-      if (this.projectToUpload.trainer === "") {
-        error_message += 'Trainer name is empty.\n';
-      }
-
-      if (this.projectToUpload.groupMembers.length < 1) {
-        error_message += 'Group Members is empty.\n';
-      }
-
-      if (this.projectToUpload.description === undefined) {
-        error_message += 'Description is empty.\n';
-      }
-
-      if (this.projectToUpload.zipLinks.length < 1) {
-        error_message += 'Repository link is empty.\n';
-      }
-
-      if (this.projectToUpload.techStack === undefined) {
-        error_message += 'Tech stack is empty.\n';
-      }
-
-      if (this.projectToUpload.screenShots.length < 1) {
-        error_message += 'Screenshots is empty.\n';
-      }
-
-      if (this.projectToUpload.dataModel.length < 1) {
-        error_message += 'Data Model is empty.\n';
-      }
-      
-      alert(error_message);
     }
     );
+    } else {
+    alert(error_message);
+    
+    }
   }
 
   /**
