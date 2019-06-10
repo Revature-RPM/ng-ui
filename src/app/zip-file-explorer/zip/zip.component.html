@@ -15,7 +15,7 @@
         <div class="btn-img">⌂</div>
         <div class="btn-txt">Home</div>
       </button>
-      <h4 class="display-text">&nbsp;&#x25b7; Explorer</h4>
+      <div class="display-text">&nbsp;&#x25b7; Explorer</div>
       <div>
       <p *ngFor="let help of RenderFile" [class.selected_p]="SelectedFile === help" (click)="openRenderFile(help)">{{help.fileName}}</p>
     </div>

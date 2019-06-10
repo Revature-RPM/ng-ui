@@ -252,7 +252,7 @@ textarea{
   position: relative;
   top: 0;
   left: 0;
-  width: 14vw;
+  width: 13.87vw;
   display: block;
   float: left;
   height: 80vh;
@@ -372,11 +372,14 @@ textarea{
   font-size: 1.5em;
   color: $TextImportant;
 }
-.display-text{
+::ng-deep .display-text{
   color: $TextImportant;
   background-color: $Saturation80;
   padding: 5px 0px 5px 0px;
-  font-size: 1.4vw;
+  font-size: 1.35vw;
+  max-width: 13vw;
+  max-height: 2.5vh;
+  margin-right: 0px;
 }
 
 //end of code display css
