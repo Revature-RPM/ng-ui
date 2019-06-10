@@ -6,11 +6,11 @@
                       (click)="back()">
                       <mat-icon>arrow_back</mat-icon>
                   </button>
-      <h1 id="title" style="font-size:3vw">Edit Project</h1>
+      <h1 id="title">Edit Project</h1>
     </div>
     <form  #projectForm="ngForm" novalidate>
-        <table class="example-full-width" cellspacing="5"><tr fxLayout="row wrap">
-          <td fxFlex="50%" fxFlex.md="50%" fxFlex.sm="50%" fxFlex.xs="100%">
+        <table class="example-full-width" cellspacing="5"><tr>
+          <td>
               <mat-form-field class="example-full-width" appearance="outline">
                     <mat-label>Project Name</mat-label>
                   <mat-error *ngIf="!validForm">Project name is required</mat-error>
@@ -19,7 +19,7 @@
                   [ngModelOptions]="{standalone: true}" required #name="ngModel">
                 </mat-form-field>
           </td>
-          <td fxFlex="50%" fxFlex.md="50%" fxFlex.sm="50%" fxFlex.xs="100%">
+          <td>
               <mat-form-field class="example-full-width" appearance="outline">
                     <mat-label>Batch Name</mat-label>
                   <mat-error *ngIf="!validForm">Batch name is required</mat-error>
@@ -31,8 +31,8 @@
       
     
         <table class="example-full-width" cellspacing="5">
-          <tr fxLayout="row wrap">
-            <td fxFlex="50%" fxFlex.md="50%" fxFlex.sm="50%" fxFlex.xs="100%">
+          <tr>
+            <td>
                 <mat-form-field class="example-full-width" appearance="outline">
                         <mat-label>Trainer Name</mat-label>
                     <mat-error *ngIf="!validForm">Trainer name is required</mat-error>
@@ -41,7 +41,7 @@
                     [ngModelOptions]="{standalone: true}" required #trainerName="ngModel">
                   </mat-form-field>
             </td>
-            <td fxFlex="50%" fxFlex.md="50%" fxFlex.sm="50%" fxFlex.xs="100%">
+            <td>
             <!--   <mat-form-field class="example-full-width" appearance="outline">
                 <mat-label>Tecknology Stack</mat-label>
               <mat-error *ngIf="!validForm">Technology stack is required</mat-error>
@@ -66,8 +66,8 @@
           </tr>
         </table>
 
-        <table class="example-full-width" cellspacing="5"><tr fxLayout="row wrap">
-            <td fxFlex="100%" fxFlex.md="100%" fxFlex.sm="100%" fxFlex.xs="100%">
+        <table class="example-full-width" cellspacing="5"><tr>
+            <td>
                 <mat-form-field class="example-full-width"  appearance="outline">
                         <mat-label>Description</mat-label>
                     <mat-error *ngIf="!validForm">Description is required</mat-error>
@@ -92,7 +92,7 @@
           <h3>Add a Group Member</h3>
           <mat-form-field>
             <mat-label>Add a Group Member</mat-label>
-            <input matInput placeholder="Add Group Member" [(ngModel)]="groupMember" name="hello" (keydown.enter)="addGroupMember()" >
+            <input matInput placeholder="Add Group Member" [(ngModel)]="groupMember" name="hello" (keydown.enter)="addGroupMember()">
           </mat-form-field>
         
          
