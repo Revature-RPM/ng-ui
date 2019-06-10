@@ -112,7 +112,8 @@
                 <td>
                     <span id="requiredDataModelButton">* </span>
                     <!-- This button triggers the file input to be clicked by referencing its template variable, uploadDatamodel -->
-                    <button id="buttonDatamodelTrigger" mat-flat-button color="accent" (click)="uploadDatamodel.click()">Choose Data Model: </button>
+                    <!-- <label for="buttonDatamodelTrigger" >SQL scripts only!</label><br> -->
+                    <button id="buttonDatamodelTrigger" mat-flat-button color="accent" (click)="uploadDatamodel.click()" title="SQL Scripts only.">Choose Data Model: </button>
                     <span *ngFor="let datamodel of projectToUpload.dataModel">
                         <span> {{ datamodel.name }} </span>
                     </span>
