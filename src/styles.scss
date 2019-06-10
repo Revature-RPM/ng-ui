@@ -30,10 +30,10 @@ html, body {
   float: right;
 }
 span.token1{
-  color:rgb(255, 255, 255);
+  color:rgb(0, 0, 0);
 }
 span.token2{
-  color: rgb(99, 106, 207);
+  color: rgb(25, 38, 216);
 }
 span.token3, span.token17{
   color: rgb(71, 211, 125);
@@ -46,7 +46,7 @@ span.token5{
   color: rgb(117, 180, 151);
 }
 
-span.token6{color: rgb(201, 125, 211);}
+span.token6{color: rgb(212, 18, 238);}
 span.token7{color: rgb(197, 148, 58);}
 span.token8{color: rgb(253, 248, 182);}
 span.token9,.token10,.token11,.token12{color:gold;}
@@ -54,6 +54,6 @@ span.token13{color:green;}
 span.token14{color:rgb(243, 102, 161)}
 span.token14 * {color:rgb(243, 102, 161)}
 span.token13 *{color:green;}
-span.token15 {color: rgb(236, 127, 127)}
+span.token15 {color: rgb(236, 24, 24)}
 span.token15 * {color: rgb(236, 127, 127)}
 span.token16 {color: rgb(0, 255, 149)}
