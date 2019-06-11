@@ -11,6 +11,7 @@ import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
 import { User } from 'src/app/core/models/User';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
+
 // this interface represents data to be held and returned from an input dialog
 export interface DialogData {
   title: string;
@@ -267,6 +268,7 @@ export class ProjectSubmissionComponent implements OnInit {
    * @author Shawn Bickel (1810-Oct08-Java-USF)
    */
   submitForm() {
+ 
 
     let formValidated : boolean = false;
     let error_message = '';
@@ -356,6 +358,13 @@ export class ProjectSubmissionComponent implements OnInit {
     this.router.navigate(['/home']);
     },
     error => {
+      this.submitting = false;
+      if(error.status === 400){
+      alert('Bad Request - Please try again.');
+      }
+      if(error.status === 500){
+      alert('Internal server error!');
+      }
     }
     );
     } else {
