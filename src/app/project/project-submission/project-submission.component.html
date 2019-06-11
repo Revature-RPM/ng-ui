@@ -122,9 +122,7 @@
             </table>
             <br>
 
-           <button [disabled] = "submitting" (click)="submitForm()" [disabled]="(!name.valid || name.pristine) || (!batch.valid || batch.pristine) || (!trainerName.valid) ||
-           (!groupMembers.valid) || (!description.valid || description.pristine) || (!zipLinks.valid) ||
-           (!techStack.valid || techStack.pristine) || !validScreenshots || !validGithubURL || !validDatamodel" type="submit" id="submit" mat-flat-button color="accent">Submit Project</button>
+           <button (click)="submitForm()" type="submit" id="submit" mat-flat-button color="accent">Submit Project</button>
 
            <br *ngIf='submitting'>
            <br *ngIf='submitting'>
