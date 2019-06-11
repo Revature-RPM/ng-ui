@@ -85,10 +85,7 @@ export class ProjectSubmissionComponent implements OnInit {
               private snackBar: MatSnackBar,
               private userService: UserService) {}
 
-  formValidation(): boolean {
-    return this.projectToUpload.name.length > 0 || this.projectToUpload.batch.length > 0 || this.projectToUpload.description.length > 0 ||
-    this.projectToUpload.groupMembers.length > 0 ||  this.projectToUpload.techStack.length > 0 || this.projectToUpload.trainer.length > 0
-    || this.projectToUpload.zipLinks.length > 0 || this.projectToUpload.screenShots.length > 0; }
+  
 
   ngOnInit() {
     if (this.userService.getUser() === null) {
