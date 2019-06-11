@@ -269,7 +269,6 @@ export class ProjectSubmissionComponent implements OnInit {
    */
   submitForm() {
  
-
     let formValidated : boolean = false;
     let error_message = '';
     // FormData is used to hold form fields and their values as key/value pairs to easily transfer data in a form
@@ -336,9 +335,6 @@ export class ProjectSubmissionComponent implements OnInit {
     error_message += 'Screenshots is empty.\n';
     }
     
-    if (this.projectToUpload.dataModel.length < 1) {
-    error_message += 'Data Model is empty.\n';
-    }
     
     
     if(error_message === ''){
@@ -365,8 +361,7 @@ export class ProjectSubmissionComponent implements OnInit {
       if(error.status === 500){
       alert('Internal server error!');
       }
-    }
-    );
+    });
     } else {
     alert(error_message);
     
