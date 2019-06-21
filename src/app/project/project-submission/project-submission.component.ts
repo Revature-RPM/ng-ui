@@ -9,7 +9,6 @@ import { ProjectService } from 'src/app/core/services/project.service';
 import { UserService } from 'src/app/core/services/user.service';
 import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
 import { User } from 'src/app/core/models/User';
-import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 // this interface represents data to be held and returned from an input dialog
@@ -69,7 +68,8 @@ export class ProjectSubmissionComponent implements OnInit {
    * githubURLRegex: holds the regular expression to validate that an entered link is formatted correctly
    * - a valid link is of the format: https://github.com/<github username>/<repository name>
    * - the regular expression used to validate this is: ^(https:\/\/github\.com\/[^/]+\/[^/]+)
-   * - this expression is checking that the link contains https://github.com/at least one of <any character but a '/'>/at least one of <any character but a '/'>
+   * - this expression is checking that the link contains https://github.com/at least one of <any character but a '/'>
+   * /at least one of <any character but a '/'>
    * githubURL: a string to hold the user's input from the dialog
    * @author Shawn Bickel (1810-Oct08-Java-USF)
    */
@@ -79,13 +79,13 @@ export class ProjectSubmissionComponent implements OnInit {
   user: User;
 
   constructor(private router: Router,
-              private ngmeta: NgMetaService,
-              private dialog: MatDialog,
-              private projectService: ProjectService,
-              private snackBar: MatSnackBar,
-              private userService: UserService) {}
+    private ngmeta: NgMetaService,
+    private dialog: MatDialog,
+    private projectService: ProjectService,
+    private snackBar: MatSnackBar,
+    private userService: UserService) { }
 
-  
+
 
   ngOnInit() {
     if (this.userService.getUser() === null) {
@@ -112,6 +112,7 @@ export class ProjectSubmissionComponent implements OnInit {
    * @author Shawn Bickel (1810-Oct08-Java-USF)
    */
   openDialog(e): void {
+
     // determine which input was clicked, the group members field or the zip links field
     if (e.target.id === 'inputGroupMembers') {
       this.title = 'New Group Member';
@@ -124,7 +125,7 @@ export class ProjectSubmissionComponent implements OnInit {
     // open the dialog contained in the InputDialogComponent passing the data to be displayed in the dialog
     const dialogRef = this.dialog.open(InputDialogComponent, {
       width: '250px',
-      data: {title: this.title, questionType: this.questionType, result: this.result}
+      data: { title: this.title, questionType: this.questionType, result: this.result }
     });
 
     // when the dialog is closed, the data is returned as an observable
@@ -139,16 +140,16 @@ export class ProjectSubmissionComponent implements OnInit {
         } else {
           this.githubURL = result;
 
-         // find the exact match in the string corresponding to the github repository regular expression
-         const regexArr = this.githubURL.match(this.githubURLRegex);
+          // find the exact match in the string corresponding to the github repository regular expression
+          const regexArr = this.githubURL.match(this.githubURLRegex);
 
-         /**
-          * If the string contains no matches related to the regex or
-          * if the length of the input is greater than the match, then the link is not valid.
-          * If the matched portion of the URL is only a subset of the entire URL, then we know that the URL is not valid.
-          * The length of a valid URL will equal the length of the match found in the string corresponding the the regular expression.
-          * All links are unique
-          */
+          /**
+           * If the string contains no matches related to the regex or
+           * if the length of the input is greater than the match, then the link is not valid.
+           * If the matched portion of the URL is only a subset of the entire URL, then we know that the URL is not valid.
+           * The length of a valid URL will equal the length of the match found in the string corresponding the the regular expression.
+           * All links are unique
+           */
           if (this.githubURLRegex.test(this.githubURL) === false || this.githubURL.length !== regexArr[0].length) {
             this.invalidLink = true;
             return;
@@ -170,13 +171,13 @@ export class ProjectSubmissionComponent implements OnInit {
     });
   }
 
-    /**
-   * this method opens the dialog defined in the edit-dialog component;
-   * after the dialog is closed the user's updated data is placed in the groupMembers array
-   * or the zipLinks array depending on which field was clicked
-   * @param e: the event of clicking either the group member or zip links fields, which both trigger the dialog to open
-   * @author Sean Doyle (1810-Oct22-Java-USF)
-   */
+  /**
+ * this method opens the dialog defined in the edit-dialog component;
+ * after the dialog is closed the user's updated data is placed in the groupMembers array
+ * or the zipLinks array depending on which field was clicked
+ * @param e: the event of clicking either the group member or zip links fields, which both trigger the dialog to open
+ * @author Sean Doyle (1810-Oct22-Java-USF)
+ */
   openEditableDialog(e) {
     // determine which edit link was clicked, the group members edit field or the zip links edit field
     if (e.target.id === 'inputGroupMembers') {
@@ -194,14 +195,17 @@ export class ProjectSubmissionComponent implements OnInit {
     // open the dialog contained in the EditDialogComponent passing the data to be displayed in the dialog
     const dialogRef = this.dialog.open(EditDialogComponent, {
       width: this.width + 'px',
-      data: {title: this.title, questionType: this.questionType, result: this.result, values: this.values}
+      data: { title: this.title, questionType: this.questionType, result: this.result, values: this.values }
     });
-     // when the dialog is closed, the updated array for the respective edit link is returned as an observable
+
+    // when the dialog is closed, the updated array for the respective edit link is returned as an observable
     dialogRef.afterClosed().subscribe(result => {
       if (result !== undefined && result !== null) {
         if (e.target.id === 'inputGroupMembers') {
+
           // takes the resluts from the editing and applies it to the stored array groupMembers
           this.projectToUpload.groupMembers = result;
+
           // ensures that we are not trying to do an operation on an empty array
           if (result === undefined || result === null) {
             this.groupMemberString = '';
@@ -210,19 +214,22 @@ export class ProjectSubmissionComponent implements OnInit {
             this.groupMemberString = this.projectToUpload.groupMembers.join(', ');
           }
         } else {
+
           // ensures that we are not trying to do an operation on an empty array
           // this.projectToUpload.zipLinks = result;
           if (result === undefined || result === null) {
             this.zipLinksString = '';
           } else {
+
             // Clears the current zipLinks so that we can stored any edited links
             this.projectToUpload.zipLinks = [];
+
             // Iterates through the returned
             result.forEach(element => {
-              console.log('element ' + element);
+
               // find the exact match in the string corresponding to the github repository regular expression
               const regexArr = element.match(this.githubURLRegex);
-              console.log('regex ' + regexArr);
+
               /**
                * If the string contains no matches related to the regex or
                * if the length of the input is greater than the match, then the link is not valid.
@@ -231,11 +238,8 @@ export class ProjectSubmissionComponent implements OnInit {
                * All links are unique
                */
               if (regexArr) {
-                console.log('wyapoint1');
                 if (this.githubURLRegex.test(element) || element.length !== regexArr[0].length) {
-                  console.log('wyapoint2');
                   if (!this.projectToUpload.zipLinks.includes(element)) {
-                    console.log('stored element ' + element);
                     // at this point, the URL will be valid and will be placed in the array
                     // corresponding to the zip links array of the project to be submitted
                     this.projectToUpload.zipLinks.push(element);
@@ -265,11 +269,13 @@ export class ProjectSubmissionComponent implements OnInit {
    * @author Shawn Bickel (1810-Oct08-Java-USF)
    */
   submitForm() {
- 
-    let formValidated : boolean = false;
+
+    let formValidated = false;
     let error_message = '';
+
     // FormData is used to hold form fields and their values as key/value pairs to easily transfer data in a form
     const formData = new FormData();
+
     // append the data of the form as key/value pairs using field names on the server as keys and data in the form as values
     formData.append('name', this.projectToUpload.name);
     formData.append('batch', this.projectToUpload.batch);
@@ -277,91 +283,91 @@ export class ProjectSubmissionComponent implements OnInit {
     formData.append('techStack', this.projectToUpload.techStack);
     formData.append('description', this.projectToUpload.description);
     formData.append('status', 'pending');
-    
+
     // elements of an array are appended to the FormData object using the same key name
     for (let i = 0; i < this.projectToUpload.groupMembers.length; i++) {
-    formData.append('groupMembers', this.projectToUpload.groupMembers[i]);
+      formData.append('groupMembers', this.projectToUpload.groupMembers[i]);
     }
-    
+
     for (let j = 0; j < this.projectToUpload.screenShots.length; j++) {
-    formData.append('screenShots', this.projectToUpload.screenShots[j]);
+      formData.append('screenShots', this.projectToUpload.screenShots[j]);
     }
-    
+
     for (let k = 0; k < this.projectToUpload.zipLinks.length; k++) {
-    formData.append('zipLinks', this.projectToUpload.zipLinks[k]);
+      formData.append('zipLinks', this.projectToUpload.zipLinks[k]);
     }
-    
+
     for (let l = 0; l < this.projectToUpload.dataModel.length; l++) {
-    formData.append('dataModel', this.projectToUpload.dataModel[l]);
-    
+      formData.append('dataModel', this.projectToUpload.dataModel[l]);
+
     }
-    
+
     /*
     * The error message now checks if any fields are empty
     * if any are the corresponding message will be displayed.
     */
     if (this.projectToUpload.name === undefined) {
-    error_message += 'Project name is empty.\n';
+      error_message += 'Project name is empty.\n';
     }
-    
+
     if (this.projectToUpload.batch === undefined) {
-    error_message += 'Batch is empty.\n';
+      error_message += 'Batch is empty.\n';
     }
-    
+
     if (this.projectToUpload.trainer === "") {
-    error_message += 'Trainer name is empty.\n';
+      error_message += 'Trainer name is empty.\n';
     }
-    
+
     if (this.projectToUpload.groupMembers.length < 1) {
-    error_message += 'Group Members is empty.\n';
+      error_message += 'Group Members is empty.\n';
     }
-    
+
     if (this.projectToUpload.description === undefined) {
-    error_message += 'Description is empty.\n';
+      error_message += 'Description is empty.\n';
     }
-    
+
     if (this.projectToUpload.zipLinks.length < 1) {
-    error_message += 'Repository link is empty.\n';
+      error_message += 'Repository link is empty.\n';
     }
-    
+
     if (this.projectToUpload.techStack === undefined) {
-    error_message += 'Tech stack is empty.\n';
+      error_message += 'Tech stack is empty.\n';
     }
-    
+
     if (this.projectToUpload.screenShots.length < 1) {
-    error_message += 'Screenshots is empty.\n';
+      error_message += 'Screenshots is empty.\n';
     }
-    
-    
-    
-    if(error_message === ''){
-    formValidated = true;
+
+
+
+    if (error_message === '') {
+      formValidated = true;
     }
-    
-    if(formValidated){
-    this.submitting = true;
-    
-    // the FormData object is then sent to a service where it is submitted to the server as an http post request
-    this.projectService.createProject(formData).subscribe(project => {
-    this.submitting = false;
-    this.snackBar.open('The new project will be visible momentarily', '', {
-    duration: 5000,
-    });
-    sessionStorage.setItem('lastPage', 'project_Submit');
-    this.router.navigate(['/home']);
-    },
-    error => {
-      this.submitting = false;
-      if(error.status === 400){
-      alert('Bad Request - Please try again.');
-      }
-      if(error.status === 500){
-      alert('Internal server error!');
-      }
-    });
+
+    if (formValidated) {
+      this.submitting = true;
+
+      // the FormData object is then sent to a service where it is submitted to the server as an http post request
+      this.projectService.createProject(formData).subscribe(project => {
+        this.submitting = false;
+        this.snackBar.open('The new project will be visible momentarily', '', {
+          duration: 5000,
+        });
+        sessionStorage.setItem('lastPage', 'project_Submit');
+        this.router.navigate(['/home']);
+      },
+        error => {
+          this.submitting = false;
+          if (error.status === 400) {
+            alert('Bad Request - Please try again.');
+          }
+          if (error.status === 500) {
+            alert('Internal server error!');
+          }
+        });
     } else {
-    alert(error_message);
-    
+      alert(error_message);
+
     }
   }
 
