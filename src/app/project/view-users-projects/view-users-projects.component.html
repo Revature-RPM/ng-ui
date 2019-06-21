@@ -118,7 +118,14 @@
       <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></tr>
     </table>
 
-    <div id="a" *ngIf='retrievingProjects'><div id='aa'><mat-spinner [diameter]="70"></mat-spinner></div><div id='aaa'><span>Retrieving Projects</span></div></div>
+    <div id="a" *ngIf='retrievingProjects'>
+      <div id='aa'>
+        <mat-spinner [diameter]="70"></mat-spinner>
+      </div>
+      <div id='aaa'>
+        <span>Retrieving Projects</span>
+      </div>
+    </div>
     <br *ngIf='retrievingProjects'>
     <br *ngIf='retrievingProjects'>
     <br *ngIf='retrievingProjects'>

@@ -9,7 +9,7 @@
                 - auto: the length will be equal to the length of the item; if the item has no length, the length will be determined by the content 
                 - initial: sets the length to the default value, which is auto */
     flex: 1 1 auto;
-  }
+}
 
  #navbarTitle{
     border: none;
@@ -33,7 +33,6 @@
 #rpm-logo {
     max-width: auto;
     max-height: 100%;
-    // margin-top: 30px;
 }
 
 #title {
@@ -55,8 +54,8 @@
         color: #ffa226;
         font-family: 'Montserrat';
     }
-
 }
+
 @media only screen 
   and (min-device-width: 320px) 
   and (max-device-width: 568px) 
@@ -89,12 +88,4 @@
         margin-bottom: 20px;
         margin-right: 15px;
     }
-  }
-
-// #title {
-//     text-shadow:
-// 		-1px -1px 0 #ff7500,
-// 		1px -1px 0 #ff7500,
-// 		-1px 1px 0 #ff7500,
-// 		1px 1px 0 #ff7500;
-// }
+}
