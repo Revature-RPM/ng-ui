@@ -24,6 +24,8 @@ export class ViewProjectsComponent implements OnInit {
   userProjectsPage = false;
   currentUser: User;
   tab = 0;
+
+
   constructor(private router: Router, private viewProjectsService: ProjectService, private userService: UserService) { }
 
   /**
@@ -84,4 +86,5 @@ export class ViewProjectsComponent implements OnInit {
   submitProject() {
     this.router.navigate(['/project_submission']);
   }
+
 }
