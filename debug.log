@@ -1,0 +1,7 @@
+[1207/171216.798:ERROR:exception_handler_server.cc(526)] ConnectNamedPipe: The pipe is being closed. (0xE8)
+[0417/095356.484:ERROR:process_reader_win.cc(123)] NtOpenThread: {Access Denied} A process has requested access to an object, but has not been granted those access rights. (0xc0000022)
+[0417/095356.517:ERROR:exception_snapshot_win.cc(98)] thread ID 9116 not found in process
+[0417/095510.284:ERROR:process_reader_win.cc(123)] NtOpenThread: {Access Denied} A process has requested access to an object, but has not been granted those access rights. (0xc0000022)
+[0417/095510.288:ERROR:exception_snapshot_win.cc(98)] thread ID 6700 not found in process
+[0417/095643.105:ERROR:process_reader_win.cc(123)] NtOpenThread: {Access Denied} A process has requested access to an object, but has not been granted those access rights. (0xc0000022)
+[0417/095643.108:ERROR:exception_snapshot_win.cc(98)] thread ID 13168 not found in process
