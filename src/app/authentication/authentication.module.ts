@@ -21,4 +21,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
     SharedModule
   ]
 })
-export class AuthenticationModule { }
+export class AuthenticationModule {
+
+  //TODO Add actual implementation here or remove this class if it serves no purpose.
+}
