@@ -5,7 +5,6 @@ import { SharedModule } from '../../shared/shared.module';
 import { AppModule } from '../../app.module';
 import { LoginComponent } from './login.component';
 import { UserService } from '../../core/services/user.service';
-import { AuthenticationModule } from 'src/app/authentication/authentication.module';
 import { By } from '@angular/platform-browser';
 import { User } from 'src/app/core/models/User';
 import { componentFactoryName } from '@angular/compiler';
@@ -27,8 +26,7 @@ describe('LoginComponent', () => {
       imports: [SharedModule,
         RouterTestingModule,
         BrowserAnimationsModule,
-        AppModule,
-        AuthenticationModule],
+        AppModule],
       providers: [UserService]
     })
       .compileComponents();
@@ -74,7 +72,7 @@ describe('LoginComponent', () => {
    * Testing the fuctionality of the login method,
    * Specifically button click event, which call the login
    * methods in both the Login Component and the User service
-   * 
+   *
    * @author Sahil Makhijani (1810-Oct08-Java-USF)
    */
   it('Login button click should make a call to the UserService', () => {
@@ -135,7 +133,7 @@ describe('LoginComponent', () => {
   });
 
   /**
-   *Test will verify if username is truthy then loginE will return usernameO as false 
+   *Test will verify if username is truthy then loginE will return usernameO as false
    *
    * @author Gabriel Zapata
   **/
@@ -149,7 +147,7 @@ describe('LoginComponent', () => {
     expect(component.usernameO).toBeFalsy();
   });
   /**
-   *Test will verify if username is falsy then loginE will return usernameO as true 
+   *Test will verify if username is falsy then loginE will return usernameO as true
   *
    * @author Gabriel Zapata | Edward Bechtold
   **/
@@ -163,7 +161,7 @@ describe('LoginComponent', () => {
     expect(component.usernameO).toBeTruthy();
   });
   /**
-   *Test will verify if password is falsy then loginE will return passwordO as false 
+   *Test will verify if password is falsy then loginE will return passwordO as false
   *
    * @author Gabriel Zapata | Edward Bechtold
   **/
@@ -178,9 +176,9 @@ describe('LoginComponent', () => {
     expect(component.passwordO).toBeFalsy();
   });
   /**
-   *Test will determine username and password are valid.  
-   * 
-   * @author Gabriel Zapata 
+   *Test will determine username and password are valid.
+   *
+   * @author Gabriel Zapata
     **/
   it("should verify passwordO is true if password is falsy", () => {
 
@@ -193,7 +191,7 @@ describe('LoginComponent', () => {
     expect(component.passwordO).toBeFalsy();
   });
   /**
-   *Testing authentication and isLoggedIn given that username and password are both valid. 
+   *Testing authentication and isLoggedIn given that username and password are both valid.
    *
    * @author Gabriel Zapata
    **/
