@@ -1,3 +1,19 @@
+/*
+EditProjectComponent should set sessionStorage appropriately after back() function is called
+Uncaught Error: Uncaught (in promise): Error: Cannot find module 'src/app/authentication/authentication.module'
+Error: Cannot find module 'src/app/authentication/authentication.module'
+    at http://localhost:9876/_karma_webpack_/webpack:/src/$_lazy_route_resource lazy namespace object:5:1
+    at ZoneDelegate../node_modules/zone.js/dist/zone.js.ZoneDelegate.invoke (http://localhost:9876/_karma_webpack_/webpack:/node_modules/zone.js/dist/zone.js:391:1)
+    at ProxyZoneSpec.push../node_modules/zone.js/dist/zone-testing.js.ProxyZoneSpec.onInvoke (http://localhost:9876/_karma_webpack_/webpack:/node_modules/zone.js/dist/zone-testing.js:289:1)
+    at ZoneDelegate../node_modules/zone.js/dist/zone.js.ZoneDelegate.invoke (http://localhost:9876/_karma_webpack_/webpack:/node_modules/zone.js/dist/zone.js:390:1)
+    at Object.onInvoke (http://localhost:9876/_karma_webpack_/webpack:/node_modules/@angular/core/fesm5/core.js:14060:1)
+    at ZoneDelegate../node_modules/zone.js/dist/zone.js.ZoneDelegate.invoke (http://localhost:9876/_karma_webpack_/webpack:/node_modules/zone.js/dist/zone.js:390:1)
+    at Zone../node_modules/zone.js/dist/zone.js.Zone.run (http://localhost:9876/_karma_webpack_/webpack:/node_modules/zone.js/dist/zone.js:150:1)
+    at http://localhost:9876/_karma_webpack_/webpack:/node_modules/zone.js/dist/zone.js:889:1
+    at ZoneDelegate../node_modules/zone.js/dist/zone.js.ZoneDelegate.invokeTask (http://localhost:9876/_karma_webpack_/webpack:/node_modules/zone.js/dist/zone.js:423:1)
+    at ProxyZoneSpec.push../node_modules/zone.js/dist/zone-testing.js.ProxyZoneSpec.onInvokeTask (http://localhost:9876/_karma_webpack_/webpack:/node_modules/zone.js/dist/zone-testing.js:320:1) thrown
+ */
+
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { Router, ActivatedRoute } from '@angular/router';
