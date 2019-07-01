@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { NgMetaService } from 'ngmeta';
-import { first } from 'rxjs/operators';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {NgMetaService} from 'ngmeta';
+import {first} from 'rxjs/operators';
 
-import { User } from 'src/app/core/models/User';
-import { UserService } from 'src/app/core/services/user.service';
-import { SnackbarService } from 'src/app/core/services/snackbar.service';
+import {User} from 'src/app/core/models/User';
+import {UserService} from 'src/app/core/services/user.service';
+import {SnackbarService} from 'src/app/core/services/snackbar.service';
 
 /**
  * Login component takes in a username and password and checks to see if user exists. If
@@ -31,11 +31,12 @@ export class LoginComponent implements OnInit {
   constructor(private userService: UserService, private router: Router, private ngmeta: NgMetaService, private snackbar: SnackbarService) { }
 
   ngOnInit() {
-    //added '\home' to navigate so that if a user is already logged in, landing page routes to home page
-    if (this.userService.getUser() !== null) {
+
+    // Reroute to the dashboard if a JWT is present.
+    if (localStorage.getItem('jwt') !== null) {
       this.router.navigate(['\home']);
     } else {
-      this.ngmeta.setHead({ title: 'Login | RPM' });
+      this.ngmeta.setHead({title: 'Login | RPM'});
     }
   }
 
@@ -59,6 +60,7 @@ export class LoginComponent implements OnInit {
     });
 
   }
+
 
   /* Logs in user upon enter
   */
