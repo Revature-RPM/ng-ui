@@ -64,6 +64,10 @@ export class TokenInterceptor implements HttpInterceptor {
       // Purge rpmRefresh Token
       localStorage.removeItem('rpmRefresh');
 
+      //Purge user
+      localStorage.removeItem('user');
+      this.userService.user = null;
+
       // Reroute to the login page.
       this.router.navigate(['/auth/login']);
 

@@ -16,7 +16,6 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class UserService {
-  jwtauthtoken: string;
   user: User;
 
   constructor(private http: HttpClient) { }
@@ -39,7 +38,6 @@ ${error.error}`
   logout() {
     localStorage.removeItem('jwt');
     localStorage.removeItem('user');
-    this.jwtauthtoken = null;
     this.user = null;
   }
   /**
@@ -64,12 +62,12 @@ ${error.error}`
       .pipe(map(response => {
         if (response.headers.get('Authorization')) {
           this.user = response.body;
-          this.jwtauthtoken = response.headers.get('Authorization').split(' ')[1];
+          let jwtauthtoken = response.headers.get('Authorization').split(' ')[1];
           localStorage.setItem('user', JSON.stringify(response.body));
 
           // Add a refresh token.
           localStorage.setItem('rpmRefresh', (Math.round((new Date()).getTime() / 1000) + 120) + '');
-          localStorage.setItem('jwt', this.jwtauthtoken);
+          localStorage.setItem('jwt', jwtauthtoken);
           return response.body;
         } else {
           return null; // this should throw error
