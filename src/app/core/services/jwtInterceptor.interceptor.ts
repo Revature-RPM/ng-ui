@@ -9,10 +9,14 @@ import {Router} from '@angular/router';
 /**
  * TokenInterceptor
  * Http Interceptor that attaches jwt tokens to request to the microservice projected api
- * implements one functions intercept.
- * used in the app.module.ts as a provider
+ * implements one functions intercept used in the app.module.ts as a provider.
+ *
+ * In addition this interceptor is responsible for checking and replacing rpmRefresh tokens
+ * which have an expiration of 6 hours from the time of the last successful transaction.
  * @author Andrew Mitchem
+ * @author Ian Baker
  */
+
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
   constructor(private userService: UserService, private router: Router) {
@@ -30,7 +34,8 @@ export class TokenInterceptor implements HttpInterceptor {
     }
 
     // Set the refresh period for the new token.
-    const newRefreshTime = currentTime + 21600000; // Set this to current time + 6 hours.
+    const newRefreshTime = currentTime + 120; // Development - Set this to current time + 2 minutes.
+    // const newRefreshTime = currentTime + 21600000; // Production - Set this to current time + 6 hours.
 
     // Add check to see if currentTime < tokenExpiration. If it is. Skip all logic and go to
     // else block.
