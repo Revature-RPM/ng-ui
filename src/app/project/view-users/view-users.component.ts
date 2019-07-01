@@ -5,6 +5,7 @@ import { UserService } from 'src/app/core/services/user.service';
 import { Subscription } from 'rxjs';
 import { MatSort, MatPaginator, MatTableDataSource } from '@angular/material';
 import { User } from 'src/app/core/models/User';
+import { SnackbarService } from 'src/app/core/services/snackbar.service';
 
 @Component({
   selector: 'app-view-users',
@@ -22,7 +23,7 @@ export class ViewUsersComponent implements OnInit {
 
   retrievingProjects = true;
 
-  constructor(private router: Router, private viewProjectsService: ProjectService, private userService: UserService) { }
+  constructor(private router: Router, private viewProjectsService: ProjectService, private userService: UserService, private snackbar: SnackbarService) { }
 
   ngOnInit() {
     if (this.userService.user.role === 'ROLE_ADMIN') {
@@ -48,11 +49,10 @@ export class ViewUsersComponent implements OnInit {
       this.userService.updateUserToAdmin(user).subscribe(
         result => {
           user.role = 'ROLE_ADMIN';
-         // alert(user.firstName + ' has been updated to' + user.role)
         },
-        err => {
+        error => {
           user.role = 'ROLE_USER';
-         alert(user.firstName + ' role has not been updated Successfully')
+          this.snackbar.openSnackBar(user.firstName + ' role has not been updated Successfully', 'Dismiss');
         }
       );
     }
