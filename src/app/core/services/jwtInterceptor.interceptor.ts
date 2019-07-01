@@ -23,6 +23,13 @@ export class TokenInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
+    // If there isn't a jwt in storage, there's no need for the user to be anywhere besides the login and no reason
+    // to continue in this function.
+    if (!localStorage.getItem('jwt')) {
+      this.router.navigate(['/auth/login']);
+      return;
+    }
+
     // Set the current time in UNIX
     const currentTime = Math.round((new Date()).getTime() / 1000); // Set this to current time
 
