@@ -9,6 +9,7 @@ import { ProjectService } from 'src/app/core/services/project.service';
 import { UserService } from 'src/app/core/services/user.service';
 import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
 import { User } from 'src/app/core/models/User';
+import { SnackbarService } from 'src/app/core/services/snackbar.service';
 
 
 // this interface represents data to be held and returned from an input dialog
@@ -78,12 +79,14 @@ export class ProjectSubmissionComponent implements OnInit {
 
   user: User;
 
-  constructor(private router: Router,
+  constructor(
+    private router: Router,
     private ngmeta: NgMetaService,
     private dialog: MatDialog,
     private projectService: ProjectService,
-    private snackBar: MatSnackBar,
-    private userService: UserService) { }
+    private userService: UserService,
+    private snackbar: SnackbarService
+    ) { }
 
 
 
@@ -299,46 +302,17 @@ export class ProjectSubmissionComponent implements OnInit {
 
     for (let l = 0; l < this.projectToUpload.dataModel.length; l++) {
       formData.append('dataModel', this.projectToUpload.dataModel[l]);
-
     }
 
-    /*
-    * The error message now checks if any fields are empty
-    * if any are the corresponding message will be displayed.
-    */
-    if (this.projectToUpload.name === undefined) {
-      error_message += 'Project name is empty.\n';
-    }
-
-    if (this.projectToUpload.batch === undefined) {
-      error_message += 'Batch is empty.\n';
-    }
-
-    if (this.projectToUpload.trainer === "") {
-      error_message += 'Trainer name is empty.\n';
-    }
-
-    if (this.projectToUpload.groupMembers.length < 1) {
-      error_message += 'Group Members is empty.\n';
-    }
-
-    if (this.projectToUpload.description === undefined) {
-      error_message += 'Description is empty.\n';
-    }
-
-    if (this.projectToUpload.zipLinks.length < 1) {
-      error_message += 'Repository link is empty.\n';
-    }
-
-    if (this.projectToUpload.techStack === undefined) {
-      error_message += 'Tech stack is empty.\n';
-    }
-
-    if (this.projectToUpload.screenShots.length < 1) {
-      error_message += 'Screenshots is empty.\n';
-    }
-
-
+    //Field validation, why aren't these used with validators?
+    if (this.projectToUpload.name === undefined) this.snackbar.openSnackBar('Project name is empty.', 'Dismiss');
+    if (this.projectToUpload.batch === undefined) this.snackbar.openSnackBar('Batch is empty.', 'Dismiss');
+    if (this.projectToUpload.trainer === "") this.snackbar.openSnackBar('Trainer name is empty.', 'Dismiss');
+    if (this.projectToUpload.groupMembers.length < 1) this.snackbar.openSnackBar('Group Members is empty.', 'Dismiss');
+    if (this.projectToUpload.description === undefined) this.snackbar.openSnackBar('Description.', 'Dismiss');
+    if (this.projectToUpload.zipLinks.length < 1) this.snackbar.openSnackBar('Repository link is empty.', 'Dismiss');
+    if (this.projectToUpload.techStack === undefined) this.snackbar.openSnackBar('Tech stack is empty.', 'Dismiss');
+    if (this.projectToUpload.screenShots.length < 1) this.snackbar.openSnackBar('Screenshots is empty.', 'Dismiss');
 
     if (error_message === '') {
       formValidated = true;
@@ -350,24 +324,19 @@ export class ProjectSubmissionComponent implements OnInit {
       // the FormData object is then sent to a service where it is submitted to the server as an http post request
       this.projectService.createProject(formData).subscribe(project => {
         this.submitting = false;
-        this.snackBar.open('The new project will be visible momentarily', '', {
-          duration: 5000,
-        });
+        this.snackbar.openSnackBar('The new project will be visible momentarily.', 'Dismiss');
         sessionStorage.setItem('lastPage', 'project_Submit');
         this.router.navigate(['/home']);
       },
         error => {
           this.submitting = false;
           if (error.status === 400) {
-            alert('Bad Request - Please try again.');
+            this.snackbar.openSnackBar('Bad Request - Please try again.', 'Dismiss');
           }
           if (error.status === 500) {
-            alert('Internal server error!');
+            this.snackbar.openSnackBar('Internal server error!', 'Dismiss');
           }
         });
-    } else {
-      alert(error_message);
-
     }
   }
 
