@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 
-import { UserService } from 'src/app/core/services/user.service';
+import {UserService} from 'src/app/core/services/user.service';
 
 @Component({
   selector: 'app-home-page',
@@ -19,9 +19,17 @@ export class HomePageComponent implements OnInit {
 
   constructor(private router: Router, private userService: UserService) { }
 
+
+  /* The logic for stripping expired JWTs and rerouting
+     to the login page is in the JWTInterceptor.
+
+     The logic below is commented out in light of the
+     improvements to the JWTInterceptor.
+  */
+
   ngOnInit() {
-    if (this.userService.getUser() === null) {
-      this.router.navigate(['/auth/login']);
-    }
+    // if (this.userService.getUser() === null) {
+    //   this.router.navigate(['/auth/login']);
+    // }
   }
 }

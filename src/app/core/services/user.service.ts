@@ -1,10 +1,10 @@
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
-import { catchError, map} from 'rxjs/operators';
+import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Observable, throwError} from 'rxjs';
+import {catchError, map} from 'rxjs/operators';
 
-import { User } from '../models/User';
-import { environment } from '../../../environments/environment';
+import {User} from '../models/User';
+import {environment} from '../../../environments/environment';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -34,7 +34,8 @@ ${error.error}`
 
     return throwError('Something went wrong; please try again later.');
   }
-  // user.logout()... remove the user information from app and storge.
+
+  // user.logout()... remove the user information from app and storage.
   logout() {
     localStorage.removeItem('jwt');
     localStorage.removeItem('user');
@@ -60,15 +61,18 @@ ${error.error}`
   // user.login(user). login the user and retrieve the jwt token from the header
   login(user: User): Observable<any> {
     return this.http.post(environment.url + '/auth/login', user, { observe: 'response'})
-      .pipe(map(reponse => {
-        if (reponse.headers.get('Authorization')) {
-          this.user = reponse.body;
-          this.jwtauthtoken = reponse.headers.get('Authorization').split(' ')[1];
-          localStorage.setItem('user', JSON.stringify(reponse.body));
+      .pipe(map(response => {
+        if (response.headers.get('Authorization')) {
+          this.user = response.body;
+          this.jwtauthtoken = response.headers.get('Authorization').split(' ')[1];
+          localStorage.setItem('user', JSON.stringify(response.body));
+
+          // Add a refresh token.
+          localStorage.setItem('rpmRefresh', (Math.round((new Date()).getTime() / 1000) + 120) + '');
           localStorage.setItem('jwt', this.jwtauthtoken);
-          return reponse.body;
+          return response.body;
         } else {
-          return null; // this should throwerror
+          return null; // this should throw error
         }
       }), catchError(this.handleError));
   }
@@ -101,17 +105,17 @@ ${error.error}`
 
   /**
    * @author Clement Dikoko
-   * @author Vanessa Fountain 
+   * @author Vanessa Fountain
    * Updates the user role to admin only if current the user is admin
-   * the ' special' is parsed and bypasses the password needed in auth service 
+   * the ' special' is parsed and bypasses the password needed in auth service
    * */
   updateUserToAdmin(user: User): Observable<User> {
     user.role = 'ROLE_ADMIN' + ' special';
     return this.http.put<User>(environment.url + '/auth/users/', user, httpOptions)
       .pipe(catchError(this.handleError));
   }
-  
-  
+
+
   /* Requests if email is in use
     Resource true if avail, false else
   */

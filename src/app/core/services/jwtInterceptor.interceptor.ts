@@ -16,7 +16,6 @@ import {Router} from '@angular/router';
  * @author Andrew Mitchem
  * @author Ian Baker
  */
-
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
   constructor(private userService: UserService, private router: Router) {
@@ -44,7 +43,6 @@ export class TokenInterceptor implements HttpInterceptor {
       // If the URL contains the evironment URL and they have a JWT then attach the value of the
       // JWT as the header.
       if (request.url.indexOf(environment.url) >= 0 && window.localStorage.getItem('jwt')) {
-        // TODO Check URI later
         request = request.clone({
           setHeaders: {
             Authorization: `Bearer ${window.localStorage.getItem('jwt')}`
@@ -59,6 +57,7 @@ export class TokenInterceptor implements HttpInterceptor {
       // If their refresh token is expired then kick them back to the login screen and purge
       // both refresh and JWT tokens.
 
+
       // Purge JWT Token
       localStorage.removeItem('jwt');
 
@@ -67,6 +66,7 @@ export class TokenInterceptor implements HttpInterceptor {
 
       // Reroute to the login page.
       this.router.navigate(['/auth/login']);
+
     }
   }
 
