@@ -103,7 +103,12 @@ export class ProjectSubmissionComponent implements OnInit {
     dialogRef.afterClosed().subscribe(
 
       result => {
+        if (e.target.id === 'inputGroupMembers') {
+          this.projectToUpload.groupMembers = result;
+          this.groupMemberString = this.projectToUpload.groupMembers.join(', ');
+        } else {
 
+        this.projectToUpload.groupMembers = result;
         result.forEach(
           element => {
             if (this.githubURLRegex.test(element)) {
@@ -114,7 +119,7 @@ export class ProjectSubmissionComponent implements OnInit {
           });
 
         if (this.projectToUpload.zipLinks.length > 0) this.zipLinksString = this.projectToUpload.zipLinks.join('\n');
-
+        }
       });
   }
 

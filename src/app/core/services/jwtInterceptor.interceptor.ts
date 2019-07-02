@@ -41,7 +41,7 @@ export class TokenInterceptor implements HttpInterceptor {
     }
 
     // Set the refresh period for the new token.
-    const newRefreshTime = currentTime + 120; // Development - Set this to current time + 2 minutes.
+    const newRefreshTime = currentTime + 21600000; // Development - Set this to current time + 2 minutes.
     // const newRefreshTime = currentTime + 21600000; // Production - Set this to current time + 6 hours.
 
     // Add check to see if currentTime < tokenExpiration. If it is. Skip all logic and go to
