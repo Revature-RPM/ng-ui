@@ -5,6 +5,7 @@ import {Observable} from 'rxjs';
 import {UserService} from './user.service';
 import {environment} from 'src/environments/environment';
 import {Router} from '@angular/router';
+import { LocationStrategy } from '@angular/common';
 
 /**
  * TokenInterceptor
@@ -18,16 +19,16 @@ import {Router} from '@angular/router';
  */
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
-  constructor(private userService: UserService, private router: Router) {
+  constructor(private userService: UserService, private router: Router, private url: LocationStrategy) {
   }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    // If there isn't a jwt in storage, there's no need for the user to be anywhere besides the login and no reason
+    // If there isn't a jwt in storage, there's no need for the user to be anywhere besides the login/register and no reason
     // to continue in this function.
-    if (!localStorage.getItem('jwt')) {
+    if (!localStorage.getItem('jwt') && this.url.path() != '/auth/login' && this.url.path() != '/auth/register') {
       this.router.navigate(['/auth/login']);
-      return;
+      return next.handle(request);
     }
 
     // Set the current time in UNIX
@@ -46,7 +47,7 @@ export class TokenInterceptor implements HttpInterceptor {
     // Add check to see if currentTime < tokenExpiration. If it is. Skip all logic and go to
     // else block.
 
-    if (currentTime < tokenExpiration) {
+    if (localStorage.getItem('rpmRefresh') && currentTime < tokenExpiration) {
       // If the URL contains the evironment URL and they have a JWT then attach the value of the
       // JWT as the header.
       if (request.url.indexOf(environment.url) >= 0 && window.localStorage.getItem('jwt')) {
@@ -59,7 +60,6 @@ export class TokenInterceptor implements HttpInterceptor {
         // Reset rpmRefresh token to expireTime. The refreshTime variable is brute forced into a string here.
         localStorage.setItem('rpmRefresh', newRefreshTime + '');
       }
-      return next.handle(request);
     } else {
       // If their refresh token is expired then kick them back to the login screen and purge
       // both refresh and JWT tokens.
@@ -76,9 +76,14 @@ export class TokenInterceptor implements HttpInterceptor {
       this.userService.user = null;
 
       // Reroute to the login page.
+      if (this.url.path() != '/auth/login' && this.url.path() != '/auth/register') {
       this.router.navigate(['/auth/login']);
+      }
 
     }
+
+    return next.handle(request);
   }
 
 }
+
