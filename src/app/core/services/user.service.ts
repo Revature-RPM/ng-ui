@@ -18,7 +18,7 @@ const httpOptions = {
 export class UserService {
   user: User;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { this.user = JSON.parse(localStorage.getItem('user')); }
 
   // TODO clean this up
   private handleError(error: HttpErrorResponse) {
@@ -79,7 +79,6 @@ ${error.error}`
   * Register a new user
   */
   register(user: User): Observable<User> {
-    this.user = user;
     user.role = 'user';
     return this.http.post<User>(environment.url + '/auth/users/', user, httpOptions)
       .pipe(catchError(this.handleError));
