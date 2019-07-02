@@ -48,7 +48,6 @@ export class TokenInterceptor implements HttpInterceptor {
     // else block.
 
     if (localStorage.getItem('rpmRefresh') && currentTime < tokenExpiration) {
-      console.log('user has jwt');
       // If the URL contains the evironment URL and they have a JWT then attach the value of the
       // JWT as the header.
       if (request.url.indexOf(environment.url) >= 0 && window.localStorage.getItem('jwt')) {

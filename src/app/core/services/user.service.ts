@@ -79,6 +79,7 @@ ${error.error}`
   * Register a new user
   */
   register(user: User): Observable<User> {
+    this.user = user;
     user.role = 'user';
     return this.http.post<User>(environment.url + '/auth/users/', user, httpOptions)
       .pipe(catchError(this.handleError));
