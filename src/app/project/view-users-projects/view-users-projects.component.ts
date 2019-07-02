@@ -38,10 +38,15 @@ export class ViewUsersProjectsComponent implements OnInit, OnDestroy {
 
   constructor(private router: Router, private viewProjectsService: ProjectService, private userService: UserService) { }
 
+
+  /* The logic for stripping expired JWTs and rerouting
+  to the login page is now in the JWTInterceptor.
+  */
+
   ngOnInit() {
-    if (this.userService.getUser() === null) {
-      this.router.navigate(['/auth/login']);
-    } else {
+    // if (this.userService.getUser() === null) {
+    //   this.router.navigate(['/auth/login']);
+    // } else {
       this.currentUser = this.userService.getUser();
       const trainerFullName = this.currentUser.firstName.trim() + ' ' + this.currentUser.lastName.trim();
       this.subscription = this.viewProjectsService.getAllProjects()
@@ -60,7 +65,7 @@ export class ViewUsersProjectsComponent implements OnInit, OnDestroy {
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
       });
-    }
+    // }
   }
 
     /**
