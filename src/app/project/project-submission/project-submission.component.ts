@@ -89,11 +89,13 @@ export class ProjectSubmissionComponent implements OnInit {
     ) { }
 
 
-
+  /* The logic for stripping expired JWTs and rerouting
+     to the login page is now in the JWTInterceptor.
+  */
   ngOnInit() {
-    if (this.userService.getUser() === null) {
-      this.router.navigate(['/auth/login']);
-    } else {
+    //if (this.userService.getUser() === null) {
+    //  this.router.navigate(['/auth/login']);
+    //} else {
       this.ngmeta.setHead({ title: 'Submit | RPM' });
       this.projectToUpload.groupMembers = [];
       this.projectToUpload.screenShots = [];
@@ -104,7 +106,7 @@ export class ProjectSubmissionComponent implements OnInit {
       this.zipLinksString = '';
       this.githubURLRegex = new RegExp('^(https:\/\/github\.com\/[^/]+\/[^/]+)');
       this.user = this.userService.user;
-    }
+    //}
   }
 
   /**

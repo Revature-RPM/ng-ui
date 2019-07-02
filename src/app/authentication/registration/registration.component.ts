@@ -72,7 +72,7 @@ export class RegistrationComponent implements OnInit {
 
   ngOnInit() {
     //added '\home' routing if user has already logged
-    if (this.userService.getUser() !== null) {
+    if (localStorage.getItem('jwt') !== null) {
       this.router.navigate(['\home']);
     } else {
       this.ngmeta.setHead({ title: 'Register | RPM' });

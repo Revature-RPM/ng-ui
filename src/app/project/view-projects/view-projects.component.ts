@@ -55,9 +55,12 @@ export class ViewProjectsComponent implements OnInit {
     } else if (this.currentUser.role !== 'ROLE_ADMIN') {
       this.tab = 0;
       this.yourProjects();
-    } else if (this.currentUser.role !== 'ROLE_ADMIN') {
-      this.yourProjects();
-    }
+    } 
+
+    //Duplicate check
+    // else if (this.currentUser.role !== 'ROLE_ADMIN') {
+    //   this.yourProjects();
+    // }
   }
 
   /**

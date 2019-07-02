@@ -21,12 +21,8 @@ export class HomePageComponent implements OnInit {
 
 
   /* The logic for stripping expired JWTs and rerouting
-     to the login page is in the JWTInterceptor.
-
-     The logic below is commented out in light of the
-     improvements to the JWTInterceptor.
+     to the login page is now in the JWTInterceptor.
   */
-
   ngOnInit() {
     // if (this.userService.getUser() === null) {
     //   this.router.navigate(['/auth/login']);

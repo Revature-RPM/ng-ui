@@ -44,29 +44,34 @@ export class ViewProjectsLogicComponent implements OnInit, OnDestroy {
    * if the user's role is ROLE_User
    * @ Louis Pipkin (1810-Oct22-Java-USF)
    */
+  
+  /* The logic for stripping expired JWTs and rerouting
+   to the login page is now in the JWTInterceptor.
+  */
   ngOnInit() {
-    if (this.userService.getUser() === null) {
-      this.router.navigate(['/auth/login']);
-    } else {
-      this.currentUser = this.userService.getUser();
-      const trainerFullName = this.currentUser.firstName.trim() + ' ' + this.currentUser.lastName.trim();
-      this.subscription = this.viewProjectsService.getAllProjects()
+
+    // if (this.userService.getUser() === null) {
+    //   this.router.navigate(['/auth/login']);
+    // } else {
+    this.currentUser = this.userService.getUser();
+    const trainerFullName = this.currentUser.firstName.trim() + ' ' + this.currentUser.lastName.trim();
+    this.subscription = this.viewProjectsService.getAllProjects()
       .subscribe((projectResponse) => {
         let u = JSON.parse(localStorage.user);
 
         this.retrievingProjects = false;
 
-        for(let i = 0; i < projectResponse.length; i++) {
-         projectResponse[i].approvingProject = false;
-         projectResponse[i].projectApproved = false;
+        for (let i = 0; i < projectResponse.length; i++) {
+          projectResponse[i].approvingProject = false;
+          projectResponse[i].projectApproved = false;
         }
 
 
 
         if (u.role === "ROLE_USER") {
           let approvedDataSource = [];
-          for(let i = 0; i < projectResponse.length; i++) {
-            if(projectResponse[i].status === 'Approved') {
+          for (let i = 0; i < projectResponse.length; i++) {
+            if (projectResponse[i].status === 'Approved') {
               approvedDataSource.push(projectResponse[i]);
             }
           }
@@ -89,14 +94,14 @@ export class ViewProjectsLogicComponent implements OnInit, OnDestroy {
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
       });
-    }
+    // }
   }
 
-    /**
-   * This method determines if a trainer can edit a project; a trainer can only edit a project if the project was submitted by the trainer.
-   * @param project: the project who's trainer is being validated
-   * @author Shawn Bickel (1810-Oct08-Java-USF)
-   */
+  /**
+ * This method determines if a trainer can edit a project; a trainer can only edit a project if the project was submitted by the trainer.
+ * @param project: the project who's trainer is being validated
+ * @author Shawn Bickel (1810-Oct08-Java-USF)
+ */
   canEdit(project: any) {
     const trainerFullName = this.currentUser.firstName.trim() + ' ' + this.currentUser.lastName.trim();
     if (this.currentUser.role === 'ROLE_ADMIN') {
@@ -108,17 +113,17 @@ export class ViewProjectsLogicComponent implements OnInit, OnDestroy {
     }
   }
 
-    /**
-  * this is a lifecycle method called once by Angular before the component is destroyed;
-  * it is usually used to close resources such as unsubscribing from the observable's data stream;
-  * resources should be released to avoid memory leaks
-  * @author Shawn Bickel (1810-Oct08-Java-USF)
-  */
- ngOnDestroy() {
-  if (this.subscription) {
-    this.subscription.unsubscribe();
+  /**
+* this is a lifecycle method called once by Angular before the component is destroyed;
+* it is usually used to close resources such as unsubscribing from the observable's data stream;
+* resources should be released to avoid memory leaks
+* @author Shawn Bickel (1810-Oct08-Java-USF)
+*/
+  ngOnDestroy() {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
-}
 
   /**
    * This function is used to filter the table based on the inputted string.
@@ -129,12 +134,12 @@ export class ViewProjectsLogicComponent implements OnInit, OnDestroy {
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-    /**
-   * This function is used to increment the page index of the project's screenshot.
-   * Incrementing the page index will render the next project's screenshot.
-   * @param totalAmountOfScreenShots : a number value that contains the total number of screenshots for a particular project
-   * @author Yuki Mano (1810-Oct08-Java-USF)
-   */
+  /**
+ * This function is used to increment the page index of the project's screenshot.
+ * Incrementing the page index will render the next project's screenshot.
+ * @param totalAmountOfScreenShots : a number value that contains the total number of screenshots for a particular project
+ * @author Yuki Mano (1810-Oct08-Java-USF)
+ */
   nextImage(totalAmountOfScreenShots: number) {
     this.imagePage = (this.imagePage + 1) % totalAmountOfScreenShots;
   }
