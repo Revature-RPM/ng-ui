@@ -18,7 +18,7 @@ const httpOptions = {
 export class UserService {
   user: User;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { this.user = JSON.parse(localStorage.getItem('user')); }
 
   // TODO clean this up
   private handleError(error: HttpErrorResponse) {
