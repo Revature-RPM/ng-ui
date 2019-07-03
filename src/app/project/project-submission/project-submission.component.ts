@@ -103,21 +103,23 @@ export class ProjectSubmissionComponent implements OnInit {
     dialogRef.afterClosed().subscribe(
 
       result => {
-        if (e.target.id === 'inputGroupMembers') {
-          this.projectToUpload.groupMembers = result;
-          this.groupMemberString = this.projectToUpload.groupMembers.join(', ');
-        } else {
+        if (result) {
+          if (e.target.id === 'inputGroupMembers') {
+            this.projectToUpload.groupMembers = result;
+            this.groupMemberString = this.projectToUpload.groupMembers.join(', ');
+          } else {
 
-        result.forEach(
-          element => {
-            if (this.githubURLRegex.test(element)) {
-              if (!this.projectToUpload.zipLinks.includes(element)) {
-                this.projectToUpload.zipLinks.push(element);
-              }
-            }
-          });
+            result.forEach(
+              element => {
+                if (this.githubURLRegex.test(element)) {
+                  if (!this.projectToUpload.zipLinks.includes(element)) {
+                    this.projectToUpload.zipLinks.push(element);
+                  }
+                }
+              });
 
-        if (this.projectToUpload.zipLinks.length > 0) this.zipLinksString = this.projectToUpload.zipLinks.join('\n');
+            if (this.projectToUpload.zipLinks.length > 0) this.zipLinksString = this.projectToUpload.zipLinks.join('\n');
+          }
         }
       });
   }
@@ -134,7 +136,7 @@ export class ProjectSubmissionComponent implements OnInit {
    * @editor Justin Kerr
    */
   onFileSelected(e, inputfield) {
-    
+
     for (let i = 0; i < e.target.files.length; i++) {
 
       if (e.target.files[i].size > 10485760) { // 10 MiB
@@ -160,8 +162,8 @@ export class ProjectSubmissionComponent implements OnInit {
     let list = this.projectToUpload.screenShots;
     const index: number = list.indexOf(file);
     if (index !== -1) {
-        list.splice(index, 1);
-    }        
+      list.splice(index, 1);
+    }
   }
 
   /**
@@ -173,7 +175,36 @@ export class ProjectSubmissionComponent implements OnInit {
    */
   submitForm() {
     console.log(this.projectToUpload);
-    this.projectService.createProject(this.projectToUpload).subscribe(
+    //START experiment
+    let formData = new FormData();
+    formData.append('name', this.projectToUpload.name);
+    formData.append('batch', this.projectToUpload.batch);
+    formData.append('trainer', this.projectToUpload.trainer);
+    formData.append('techStack', this.projectToUpload.techStack);
+    formData.append('description', this.projectToUpload.description);
+    formData.append('status', 'pending');
+
+    // elements of an array are appended to the FormData object using the same key name
+    for (let i = 0; i < this.projectToUpload.groupMembers.length; i++) {
+      formData.append('groupMembers', this.projectToUpload.groupMembers[i]);
+    }
+
+    for (let j = 0; j < this.projectToUpload.screenShots.length; j++) {
+      formData.append('screenShots', this.projectToUpload.screenShots[j]);
+    }
+
+    for (let k = 0; k < this.projectToUpload.zipLinks.length; k++) {
+      formData.append('zipLinks', this.projectToUpload.zipLinks[k]);
+    }
+
+    for (let l = 0; l < this.projectToUpload.dataModel.length; l++) {
+      formData.append('dataModel', this.projectToUpload.dataModel[l]);
+
+    }
+    console.log(formData);
+    //END experiment
+
+    this.projectService.createProject(formData).subscribe(
       project => {
         //need implementation for project
         this.snackbar.openSnackBar('The new project will be visible momentarily.', 'Dismiss');
