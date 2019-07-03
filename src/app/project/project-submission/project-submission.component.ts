@@ -150,6 +150,14 @@ export class ProjectSubmissionComponent implements OnInit {
     }
   }
 
+  removeData(formdata: File) {
+    let list = this.projectToUpload.screenShots;
+    const index: number = list.indexOf(formdata);
+    if (index !== -1) {
+        list.splice(index, 1);
+    }        
+  }
+
   /**
    * This method is bound to the submission of the form
    * All the data of the form is placed as key/value pairs into a FormData object
@@ -159,37 +167,10 @@ export class ProjectSubmissionComponent implements OnInit {
    */
   submitForm() {
 
-    // FormData is used to hold form fields and their values as key/value pairs to easily transfer data in a form
-    const formData = new FormData();
-    formData.append('name', this.projectToUpload.name);
-    formData.append('batch', this.projectToUpload.batch);
-    formData.append('trainer', this.projectToUpload.trainer);
-    formData.append('techStack', this.projectToUpload.techStack);
-    formData.append('description', this.projectToUpload.description);
-    formData.append('status', 'pending');
-
-    // elements of an array are appended to the FormData object using the same key name
-    for (let i = 0; i < this.projectToUpload.groupMembers.length; i++) {
-      formData.append('groupMembers', this.projectToUpload.groupMembers[i]);
-    }
-
-    for (let j = 0; j < this.projectToUpload.screenShots.length; j++) {
-      formData.append('screenShots', this.projectToUpload.screenShots[j]);
-    }
-
-    for (let k = 0; k < this.projectToUpload.zipLinks.length; k++) {
-      formData.append('zipLinks', this.projectToUpload.zipLinks[k]);
-    }
-
-    for (let l = 0; l < this.projectToUpload.dataModel.length; l++) {
-      formData.append('dataModel', this.projectToUpload.dataModel[l]);
-    }
-
-    this.projectService.createProject(formData).subscribe(
+    this.projectService.createProject(this.projectToUpload).subscribe(
       project => {
+        //need implementation for project
         this.snackbar.openSnackBar('The new project will be visible momentarily.', 'Dismiss');
-        //WE NEEEEEED TO DO SOMETHING WITH THE PROJECT
-        console.log(project);
         this.router.navigate(['/home']);
       },
       error => {

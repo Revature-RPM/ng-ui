@@ -100,7 +100,7 @@
                     <!-- This button triggers the file input to be clicked by referencing its template variable, uploadScreenshots -->
                     <button id="buttonScreenshotTrigger" mat-flat-button color="accent" (click)="uploadScreenshots.click()">Choose Project Screenshots: </button>
                     <span *ngFor="let screenshot of projectToUpload.screenShots">
-                        <span> {{ screenshot.name }} </span>
+                        <span class="filelist" (click)="removeData(screenshot)"> {{ screenshot.name }} </span>
                     </span>
                 </td>
               </tr>
@@ -115,7 +115,7 @@
                     <!-- <label for="buttonDatamodelTrigger" >SQL scripts only!</label><br> -->
                     <button id="buttonDatamodelTrigger" mat-flat-button color="accent" (click)="uploadDatamodel.click()" title="SQL Scripts only.">Choose Data Model: </button>
                     <span *ngFor="let datamodel of projectToUpload.dataModel">
-                        <span> {{ datamodel.name }} </span>
+                        <span class="filelist" (click)="removeData(datamodel)"> {{ datamodel.name }} </span>
                     </span>
                 </td>
               </tr>
