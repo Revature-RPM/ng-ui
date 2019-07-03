@@ -101,6 +101,8 @@
                     <button id="buttonScreenshotTrigger" mat-flat-button color="accent" (click)="uploadScreenshots.click()">Choose Project Screenshots: </button>
                     <span *ngFor="let screenshot of projectToUpload.screenShots">
                         <span class="filelist" (click)="removeData(screenshot)"> {{ screenshot.name }} </span>
+                        <br>
+                        <img [src]="imgURL" height="100" *ngIf="imgURL">
                     </span>
                 </td>
               </tr>
@@ -139,6 +141,7 @@
 
            <!-- Hidden file input used to retrieve project screenshots -->
            <input id="screenShots" name="screenShotFiles" #uploadScreenshots hidden type="file" (change)="onFileSelected($event, 'screenshots')" accept="image/*" multiple required/>
+
            <!-- Hidden file input used to retrieve project data models-->
            <input id="dataModel" name="dataModelFiles" #uploadDatamodel hidden type="file" (change)="onDataModelSelected($event, 'datamodel')" accept=".sql" />
       </form>

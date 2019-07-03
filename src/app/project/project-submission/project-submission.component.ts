@@ -134,6 +134,9 @@ export class ProjectSubmissionComponent implements OnInit {
    * @param e the event corresponding to the user choosing a file to uplodad
    * @editor Justin Kerr
    */
+  imagePath;
+  imgURL : any;
+
   onFileSelected(e, inputfield) {
     
     for (let i = 0; i < e.target.files.length; i++) {
@@ -145,6 +148,15 @@ export class ProjectSubmissionComponent implements OnInit {
       if (inputfield === 'screenshots') this.projectToUpload.screenShots.push(e.target.files[i]);
       else if (inputfield === 'datamodel') this.projectToUpload.dataModel.push(e.target.files[i]);
     }
+
+    //Display image previews - RODEL
+    let reader = new FileReader();
+    this.imagePath = e.target.files;
+    reader.readAsDataURL(e.target.files[0]);
+    reader.onload = (_event) => {
+      this.imgURL = reader.result;
+    }    
+
   }
 
   /**
