@@ -140,6 +140,6 @@
            <!-- Hidden file input used to retrieve project screenshots -->
            <input id="screenShots" name="screenShotFiles" #uploadScreenshots hidden type="file" (change)="onFileSelected($event, 'screenshots')" accept="image/*" multiple required/>
            <!-- Hidden file input used to retrieve project data models-->
-           <input id="dataModel" name="dataModelFiles" #uploadDatamodel hidden type="file" (change)="onDataModelSelected($event, 'datamodel')" accept=".sql" />
+           <input id="dataModel" name="dataModelFiles" #uploadDatamodel hidden type="file" (change)="onFileSelected($event, 'datamodel')" accept=".sql" />
       </form>
  </div>

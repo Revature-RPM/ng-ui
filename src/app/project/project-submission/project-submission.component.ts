@@ -108,7 +108,6 @@ export class ProjectSubmissionComponent implements OnInit {
           this.groupMemberString = this.projectToUpload.groupMembers.join(', ');
         } else {
 
-        this.projectToUpload.groupMembers = result;
         result.forEach(
           element => {
             if (this.githubURLRegex.test(element)) {
@@ -173,7 +172,7 @@ export class ProjectSubmissionComponent implements OnInit {
    * @author Justin Kerr, Rodel Flores
    */
   submitForm() {
-
+    console.log(this.projectToUpload);
     this.projectService.createProject(this.projectToUpload).subscribe(
       project => {
         //need implementation for project
