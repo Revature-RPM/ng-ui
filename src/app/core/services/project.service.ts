@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 
 import { Project } from '../models/Project';
 import { environment } from 'src/environments/environment';
+import { map } from 'rxjs/operators';
 
 const HTTP_OPTIONS = {
   headers: new HttpHeaders({
@@ -34,9 +35,30 @@ export class ProjectService {
   /*
    *  TODO project-service needs to get rid of the trailing slash
    */
-  createProject(project: FormData): Observable<Project> {
+  createProject = (project: Project) => {
     console.log(project);
-    return this.httpClient.post(environment.url + '/project/', project);
+    return this.httpClient.post(environment.url + '/project/', { project }, { observe: 'response' }).pipe(
+      map( resp => {
+        let respBody = resp.body as Project;
+  
+        let project = new Project(
+          null,
+          respBody.name,
+          respBody.batch,
+          respBody.trainer,
+          respBody.groupMembers,
+          respBody.screenShots,
+          respBody.zipLinks,
+          respBody.techStack,
+          null,
+          respBody.description,
+          null,
+          null,
+          null,
+          respBody.dataModel
+        );
+      })
+    );
   }
 
   setCurrentProject(project: Project) {

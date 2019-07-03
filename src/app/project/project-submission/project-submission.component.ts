@@ -175,7 +175,7 @@ export class ProjectSubmissionComponent implements OnInit {
    */
   submitForm() {
     console.log(this.projectToUpload);
-    //START experiment
+    /*START experiment
     let formData = new FormData();
     formData.append('name', this.projectToUpload.name);
     formData.append('batch', this.projectToUpload.batch);
@@ -202,11 +202,10 @@ export class ProjectSubmissionComponent implements OnInit {
 
     }
     console.log(formData);
-    //END experiment
+    //END experiment*/
 
-    this.projectService.createProject(formData).subscribe(
+    this.projectService.createProject(this.projectToUpload).subscribe(
       project => {
-        //need implementation for project
         this.snackbar.openSnackBar('The new project will be visible momentarily.', 'Dismiss');
         this.router.navigate(['/home']);
       },
