@@ -126,28 +126,43 @@ export class ProjectSubmissionComponent implements OnInit {
   /**
    * When the file input is triggered, the event is passed to this method
    * which uses the properties of the event to retrieve the files chosen and
-   * place them in the array corresponding to the screenShots array of the project to be submitted
+   * place them in the array corresponding to the screenShots/dataModel array of the project to be submitted
+   * 
+   * This method will now check for file size and if the file is too large, open a snackbar message and
+   * not add the file to the project
    *
-   * @param e the event corresponding to the user choosing a screenshot to uplodad
+   * @param e the event corresponding to the user choosing a file to uplodad
+   * @editor Justin Kerr
    */
-  onFileSelected(e) {
+  onFileSelected(e, inputfield) {
+    
     for (let i = 0; i < e.target.files.length; i++) {
-      this.projectToUpload.screenShots.push(e.target.files[i]);
+
+      if (e.target.files[i].size > 10485760) { // 10 MiB
+        this.snackbar.openSnackBar('File too large', 'dismiss');
+        return;
+      }
+      if (inputfield === 'screenshots') this.projectToUpload.screenShots.push(e.target.files[i]);
+      else if (inputfield === 'datamodel') this.projectToUpload.dataModel.push(e.target.files[i]);
     }
   }
 
   /**
-   * When the file input is triggered, the event is passed to this method
-   * which uses the properties of the event to retrieve the files chosen and
-   * place them in the array corresponding to the dataModel array of the project
-   * to be submitted
+   * Finds the index of the file within projectToUpload that was previously uploaded to the form
+   * and removes it using a basic splice method
    * 
-   * @param f the event corresponding to the user choosing a dataModel file to upload 
+   * Currently if you remove a file and try to add the same one back, it won't be added back.
+   * If you try to add another file and then retry adding the previous file, it WILL be added back.
+   *
+   * @param file: the file that was uploaded to the form
+   * @author Justin Kerr
    */
-  onDataModelSelected(f) {
-    for (let i = 0; i < f.target.files.length; i++) {
-      this.projectToUpload.dataModel.push(f.target.files[i]);
-    }
+  removeData(file: File) {
+    let list = this.projectToUpload.screenShots;
+    const index: number = list.indexOf(file);
+    if (index !== -1) {
+        list.splice(index, 1);
+    }        
   }
 
   /**
@@ -159,37 +174,10 @@ export class ProjectSubmissionComponent implements OnInit {
    */
   submitForm() {
 
-    // FormData is used to hold form fields and their values as key/value pairs to easily transfer data in a form
-    const formData = new FormData();
-    formData.append('name', this.projectToUpload.name);
-    formData.append('batch', this.projectToUpload.batch);
-    formData.append('trainer', this.projectToUpload.trainer);
-    formData.append('techStack', this.projectToUpload.techStack);
-    formData.append('description', this.projectToUpload.description);
-    formData.append('status', 'pending');
-
-    // elements of an array are appended to the FormData object using the same key name
-    for (let i = 0; i < this.projectToUpload.groupMembers.length; i++) {
-      formData.append('groupMembers', this.projectToUpload.groupMembers[i]);
-    }
-
-    for (let j = 0; j < this.projectToUpload.screenShots.length; j++) {
-      formData.append('screenShots', this.projectToUpload.screenShots[j]);
-    }
-
-    for (let k = 0; k < this.projectToUpload.zipLinks.length; k++) {
-      formData.append('zipLinks', this.projectToUpload.zipLinks[k]);
-    }
-
-    for (let l = 0; l < this.projectToUpload.dataModel.length; l++) {
-      formData.append('dataModel', this.projectToUpload.dataModel[l]);
-    }
-
-    this.projectService.createProject(formData).subscribe(
+    this.projectService.createProject(this.projectToUpload).subscribe(
       project => {
+        //need implementation for project
         this.snackbar.openSnackBar('The new project will be visible momentarily.', 'Dismiss');
-        //WE NEEEEEED TO DO SOMETHING WITH THE PROJECT
-        console.log(project);
         this.router.navigate(['/home']);
       },
       error => {

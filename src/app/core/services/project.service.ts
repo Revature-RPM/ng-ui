@@ -34,8 +34,9 @@ export class ProjectService {
   /*
    *  TODO project-service needs to get rid of the trailing slash
    */
-  createProject(formData: FormData): Observable<Project> {
-    return this.httpClient.post(environment.url + '/project/', formData);
+  createProject(project: Project): Observable<Project> {
+    console.log(project);
+    return this.httpClient.post(environment.url + '/project/', project);
   }
 
   setCurrentProject(project: Project) {
