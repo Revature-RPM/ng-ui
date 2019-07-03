@@ -126,33 +126,40 @@ export class ProjectSubmissionComponent implements OnInit {
   /**
    * When the file input is triggered, the event is passed to this method
    * which uses the properties of the event to retrieve the files chosen and
-   * place them in the array corresponding to the screenShots array of the project to be submitted
+   * place them in the array corresponding to the screenShots/dataModel array of the project to be submitted
+   * 
+   * This method will now check for file size and if the file is too large, open a snackbar message and
+   * not add the file to the project
    *
-   * @param e the event corresponding to the user choosing a screenshot to uplodad
+   * @param e the event corresponding to the user choosing a file to uplodad
+   * @editor Justin Kerr
    */
-  onFileSelected(e) {
+  onFileSelected(e, inputfield) {
+    
     for (let i = 0; i < e.target.files.length; i++) {
-      this.projectToUpload.screenShots.push(e.target.files[i]);
+
+      if (e.target.files[i].size > 10485760) { // 10 MiB
+        this.snackbar.openSnackBar('File too large', 'dismiss');
+        return;
+      }
+      if (inputfield === 'screenshots') this.projectToUpload.screenShots.push(e.target.files[i]);
+      else if (inputfield === 'datamodel') this.projectToUpload.dataModel.push(e.target.files[i]);
     }
   }
 
   /**
-   * When the file input is triggered, the event is passed to this method
-   * which uses the properties of the event to retrieve the files chosen and
-   * place them in the array corresponding to the dataModel array of the project
-   * to be submitted
+   * Finds the index of the file within projectToUpload that was previously uploaded to the form
+   * and removes it using a basic splice method
    * 
-   * @param f the event corresponding to the user choosing a dataModel file to upload 
+   * Currently if you remove a file and try to add the same one back, it won't be added back.
+   * If you try to add another file and then retry adding the previous file, it WILL be added back.
+   *
+   * @param file: the file that was uploaded to the form
+   * @author Justin Kerr
    */
-  onDataModelSelected(f) {
-    for (let i = 0; i < f.target.files.length; i++) {
-      this.projectToUpload.dataModel.push(f.target.files[i]);
-    }
-  }
-
-  removeData(formdata: File) {
+  removeData(file: File) {
     let list = this.projectToUpload.screenShots;
-    const index: number = list.indexOf(formdata);
+    const index: number = list.indexOf(file);
     if (index !== -1) {
         list.splice(index, 1);
     }        
