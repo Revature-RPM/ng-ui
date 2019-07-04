@@ -72,6 +72,11 @@ form {
   display:flex;
 }
 
+.filelist {
+  display: inline-block;
+  margin: 2%;
+}
+
 .filelist:hover {
   color: red;
 }

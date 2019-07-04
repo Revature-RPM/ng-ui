@@ -137,7 +137,6 @@ export class ProjectSubmissionComponent implements OnInit {
    * @editor Justin Kerr
    */
   onFileSelected(e, inputfield) {
-
     let reader = new FileReader();
     reader.readAsDataURL(e.target.files[0]);
     reader.onload = (_event) => {
@@ -150,10 +149,10 @@ export class ProjectSubmissionComponent implements OnInit {
         this.snackbar.openSnackBar('File too large', 'dismiss');
         return;
       }
-      if (inputfield === 'screenshots') {
+      if (inputfield === 'scs') {
         this.projectToUpload.screenShots.push(e.target.files[i]);
       }
-      else if (inputfield === 'datamodel') this.projectToUpload.dataModel.push(e.target.files[i]);
+      else if (inputfield === 'dms') this.projectToUpload.dataModel.push(e.target.files[i]);
     }
 
   }
@@ -161,6 +160,7 @@ export class ProjectSubmissionComponent implements OnInit {
   /**
    * Finds the index of the file within projectToUpload that was previously uploaded to the form
    * and removes it using a basic splice method
+   * Also removes the picture from the screenshot picture list
    * 
    * Currently if you remove a file and try to add the same one back, it won't be added back.
    * If you try to add another file and then retry adding the previous file, it WILL be added back.
@@ -168,11 +168,23 @@ export class ProjectSubmissionComponent implements OnInit {
    * @param file: the file that was uploaded to the form
    * @author Justin Kerr
    */
-  removeData(file: File) {
-    let list = this.projectToUpload.screenShots;
+  removeData(file: File, inputfield) {
+    let list;
+    let piclist;
+    if(inputfield === 'scs') {
+      list = this.projectToUpload.screenShots;
+      piclist = this.screenshotPicList;
+    }
+    if(inputfield === 'dms') {
+      list = this.projectToUpload.dataModel;
+      piclist = null;
+    }
+console.log(list);
+console.log(this.projectToUpload.dataModel)
     const index: number = list.indexOf(file);
     if (index !== -1) {
       list.splice(index, 1);
+      if(piclist) piclist.splice(index, 1);
     }
   }
 
