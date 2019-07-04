@@ -46,36 +46,21 @@ export class TokenInterceptor implements HttpInterceptor {
 
     // Add check to see if currentTime < tokenExpiration. If it is. Skip all logic and go to
     // else block.
-
-    if (localStorage.getItem('rpmRefresh') && currentTime < tokenExpiration) {
-      // If the URL contains the evironment URL and they have a JWT then attach the value of the
-      // JWT as the header.
-      if (request.url.indexOf(environment.url) >= 0 && window.localStorage.getItem('jwt')) {
+    console.log(currentTime);
+    if (localStorage.getItem('rpmRefresh') && currentTime < tokenExpiration && request.url.indexOf(environment.url) >= 0) {
         request = request.clone({
           setHeaders: {
             Authorization: `Bearer ${window.localStorage.getItem('jwt')}`
           }
         });
-
-        // Reset rpmRefresh token to expireTime. The refreshTime variable is brute forced into a string here.
         localStorage.setItem('rpmRefresh', newRefreshTime + '');
-      }
+
     } else {
-      // If their refresh token is expired then kick them back to the login screen and purge
-      // both refresh and JWT tokens.
-
-
-      // Purge JWT Token
       localStorage.removeItem('jwt');
-
-      // Purge rpmRefresh Token
       localStorage.removeItem('rpmRefresh');
-
-      //Purge user
       localStorage.removeItem('user');
       this.userService.user = null;
 
-      // Reroute to the login page.
       if (this.url.path() != '/auth/login' && this.url.path() != '/auth/register') {
       this.router.navigate(['/auth/login']);
       }

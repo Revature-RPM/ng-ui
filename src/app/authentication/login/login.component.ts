@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
 
     // Reroute to the dashboard if a JWT is present.
-    if (localStorage.getItem('jwt') !== null) {
+    if (localStorage.getItem('jwt')) {
       this.router.navigate(['\home']);
     } else {
       this.ngmeta.setHead({title: 'Login | RPM'});

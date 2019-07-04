@@ -41,6 +41,7 @@ export class ProjectSubmissionComponent implements OnInit {
   zipLinksString: string = '';
 
   //Other fields
+  screenshotPicList = [];
   techStackList = ['Java/J2EE', 'PEGA', 'JavaScript MVC', '.Net', 'React.js', 'Java', 'iOS9'];
   submitting = false;
   githubURL: string;
@@ -139,6 +140,11 @@ export class ProjectSubmissionComponent implements OnInit {
   imgURL : any;
 
   onFileSelected(e, inputfield) {
+    let reader = new FileReader();
+    reader.readAsDataURL(e.target.files[0]);
+    reader.onload = (_event) => {
+    this.screenshotPicList.push(reader.result);
+    }    
 
     for (let i = 0; i < e.target.files.length; i++) {
 
@@ -146,23 +152,18 @@ export class ProjectSubmissionComponent implements OnInit {
         this.snackbar.openSnackBar('File too large', 'dismiss');
         return;
       }
-      if (inputfield === 'screenshots') this.projectToUpload.screenShots.push(e.target.files[i]);
-      else if (inputfield === 'datamodel') this.projectToUpload.dataModel.push(e.target.files[i]);
+      if (inputfield === 'scs') {
+        this.projectToUpload.screenShots.push(e.target.files[i]);
+      }
+      else if (inputfield === 'dms') this.projectToUpload.dataModel.push(e.target.files[i]);
     }
-
-    //Display image previews - RODEL
-    let reader = new FileReader();
-    this.imagePath = e.target.files;
-    reader.readAsDataURL(e.target.files[0]);
-    reader.onload = (_event) => {
-      this.imgURL = reader.result;
-    }    
 
   }
 
   /**
    * Finds the index of the file within projectToUpload that was previously uploaded to the form
    * and removes it using a basic splice method
+   * Also removes the picture from the screenshot picture list
    * 
    * Currently if you remove a file and try to add the same one back, it won't be added back.
    * If you try to add another file and then retry adding the previous file, it WILL be added back.
@@ -170,11 +171,22 @@ export class ProjectSubmissionComponent implements OnInit {
    * @param file: the file that was uploaded to the form
    * @author Justin Kerr
    */
-  removeData(file: File) {
-    let list = this.projectToUpload.screenShots;
+  removeData(file: File, inputfield) {
+    let list;
+    let piclist;
+    if(inputfield === 'scs') {
+      list = this.projectToUpload.screenShots;
+      piclist = this.screenshotPicList;
+    }
+    if(inputfield === 'dms') {
+      list = this.projectToUpload.dataModel;
+      piclist = null;
+    }
+    
     const index: number = list.indexOf(file);
     if (index !== -1) {
       list.splice(index, 1);
+      if(piclist) piclist.splice(index, 1);
     }
   }
 
@@ -186,8 +198,6 @@ export class ProjectSubmissionComponent implements OnInit {
    * @author Justin Kerr, Rodel Flores
    */
   submitForm() {
-    console.log(this.projectToUpload);
-    //START experiment
     let formData = new FormData();
     formData.append('name', this.projectToUpload.name);
     formData.append('batch', this.projectToUpload.batch);
@@ -214,11 +224,9 @@ export class ProjectSubmissionComponent implements OnInit {
 
     }
     console.log(formData);
-    //END experiment
 
     this.projectService.createProject(formData).subscribe(
       project => {
-        //need implementation for project
         this.snackbar.openSnackBar('The new project will be visible momentarily.', 'Dismiss');
         this.router.navigate(['/home']);
       },
