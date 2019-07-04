@@ -41,6 +41,7 @@ export class ProjectSubmissionComponent implements OnInit {
   zipLinksString: string = '';
 
   //Other fields
+  screenshotPicList = [];
   techStackList = ['Java/J2EE', 'PEGA', 'JavaScript MVC', '.Net', 'React.js', 'Java', 'iOS9'];
   submitting = false;
   githubURL: string;
@@ -137,15 +138,24 @@ export class ProjectSubmissionComponent implements OnInit {
    */
   onFileSelected(e, inputfield) {
 
+    let reader = new FileReader();
+    reader.readAsDataURL(e.target.files[0]);
+    reader.onload = (_event) => {
+    this.screenshotPicList.push(reader.result);
+    }    
+
     for (let i = 0; i < e.target.files.length; i++) {
 
       if (e.target.files[i].size > 10485760) { // 10 MiB
         this.snackbar.openSnackBar('File too large', 'dismiss');
         return;
       }
-      if (inputfield === 'screenshots') this.projectToUpload.screenShots.push(e.target.files[i]);
+      if (inputfield === 'screenshots') {
+        this.projectToUpload.screenShots.push(e.target.files[i]);
+      }
       else if (inputfield === 'datamodel') this.projectToUpload.dataModel.push(e.target.files[i]);
     }
+
   }
 
   /**
@@ -174,8 +184,6 @@ export class ProjectSubmissionComponent implements OnInit {
    * @author Justin Kerr, Rodel Flores
    */
   submitForm() {
-    console.log(this.projectToUpload);
-    /*START experiment
     let formData = new FormData();
     formData.append('name', this.projectToUpload.name);
     formData.append('batch', this.projectToUpload.batch);
@@ -202,9 +210,8 @@ export class ProjectSubmissionComponent implements OnInit {
 
     }
     console.log(formData);
-    //END experiment*/
 
-    this.projectService.createProject(this.projectToUpload).subscribe(
+    this.projectService.createProject(formData).subscribe(
       project => {
         this.snackbar.openSnackBar('The new project will be visible momentarily.', 'Dismiss');
         this.router.navigate(['/home']);

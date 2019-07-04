@@ -99,9 +99,11 @@
                     <span id="requiredScreenShotButton">* </span>
                     <!-- This button triggers the file input to be clicked by referencing its template variable, uploadScreenshots -->
                     <button id="buttonScreenshotTrigger" mat-flat-button color="accent" (click)="uploadScreenshots.click()">Choose Project Screenshots: </button>
-                    <span *ngFor="let screenshot of projectToUpload.screenShots">
+                    <br>
+                    <span *ngFor="let screenshot of projectToUpload.screenShots"; let i = index" [attr.data-index]="i">
                         <span class="filelist" (click)="removeData(screenshot)"> {{ screenshot.name }} </span>
-                    </span>
+                        <br>
+                        {{screenshotPicList[i]}}
                 </td>
               </tr>
             </table>
