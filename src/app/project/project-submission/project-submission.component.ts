@@ -136,6 +136,9 @@ export class ProjectSubmissionComponent implements OnInit {
    * @param e the event corresponding to the user choosing a file to uplodad
    * @editor Justin Kerr
    */
+  imagePath;
+  imgURL : any;
+
   onFileSelected(e, inputfield) {
     let reader = new FileReader();
     reader.readAsDataURL(e.target.files[0]);
@@ -179,8 +182,7 @@ export class ProjectSubmissionComponent implements OnInit {
       list = this.projectToUpload.dataModel;
       piclist = null;
     }
-console.log(list);
-console.log(this.projectToUpload.dataModel)
+    
     const index: number = list.indexOf(file);
     if (index !== -1) {
       list.splice(index, 1);
