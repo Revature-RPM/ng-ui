@@ -43,7 +43,6 @@ export class ProjectSubmissionComponent implements OnInit {
   //Other fields
   screenshotPicList = [];
   techStackList = ['Java/J2EE', 'PEGA', 'JavaScript MVC', '.Net', 'React.js', 'Java', 'iOS9'];
-  submitting = false;
   githubURL: string;
   githubURLRegex: RegExp = new RegExp('^(https:\/\/github\.com\/[^/]+\/[^/]+)');
   invalidLink: boolean;
@@ -65,7 +64,7 @@ export class ProjectSubmissionComponent implements OnInit {
     this.ngmeta.setHead({ title: 'Submit | RPM' });
     this.user = this.userService.user;
 
-    this.projectToUpload.groupMembers = [this.user.firstName + " " + this.user.lastName];
+    this.projectToUpload.groupMembers = [];
     this.projectToUpload.screenShots = [];
     this.projectToUpload.zipLinks = [];
     this.projectToUpload.dataModel = [];
@@ -109,20 +108,16 @@ export class ProjectSubmissionComponent implements OnInit {
           if (e.target.id === 'inputGroupMembers') {
             this.projectToUpload.groupMembers = result;
             this.groupMemberString = this.projectToUpload.groupMembers.join(', ');
-          } else {
+          } 
+          else if (e.target.id === 'inputGithubLink') {
+            this.projectToUpload.zipLinks = result;
+            this.zipLinksString = this.projectToUpload.zipLinks.join(', ');
 
-            result.forEach(
-              element => {
-                if (this.githubURLRegex.test(element)) {
-                  if (!this.projectToUpload.zipLinks.includes(element)) {
-                    this.projectToUpload.zipLinks.push(element);
-                  }
-                }
-              });
-
-            if (this.projectToUpload.zipLinks.length > 0) this.zipLinksString = this.projectToUpload.zipLinks.join('\n');
           }
         }
+        // for (let i=0; i<this.projectToUpload.zipLinks.length; i++) {
+        //   if( !this.githubURLRegex.test(this.projectToUpload.zipLinks[i]) ) this.projectToUpload.zipLinks.splice(i,1);
+        // }
       });
   }
 
@@ -141,11 +136,14 @@ export class ProjectSubmissionComponent implements OnInit {
   imgURL : any;
 
   onFileSelected(e, inputfield) {
-    let reader = new FileReader();
-    reader.readAsDataURL(e.target.files[0]);
-    reader.onload = (_event) => {
-    this.screenshotPicList.push(reader.result);
-    }    
+
+    if(e.target.files[0]) {
+      let reader = new FileReader();
+      reader.readAsDataURL(e.target.files[0]);
+      reader.onload = (_event) => {
+      this.screenshotPicList.push(reader.result);
+      }    
+    }
 
     for (let i = 0; i < e.target.files.length; i++) {
 
@@ -155,6 +153,7 @@ export class ProjectSubmissionComponent implements OnInit {
       }
       if (inputfield === 'scs') {
         this.projectToUpload.screenShots.push(e.target.files[i]);
+        this.removeData(e.target.files[i], 'scs');
       }
       else if (inputfield === 'dms') this.projectToUpload.dataModel.push(e.target.files[i]);
     }
@@ -224,7 +223,6 @@ export class ProjectSubmissionComponent implements OnInit {
       formData.append('dataModel', this.projectToUpload.dataModel[l]);
 
     }
-    console.log(formData);
 
     this.projectService.createProject(formData).subscribe(
       project => {

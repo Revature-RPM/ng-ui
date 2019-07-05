@@ -36,8 +36,6 @@ export class ViewProjectsComponent implements OnInit {
    */
   ngOnInit() {
 
-    if (!localStorage.getItem('jwt')) this.router.navigate(['/auth/login']);
-
     this.currentUser = this.userService.getUser();
     if(sessionStorage.getItem('lastPage') == 'project_Submit' && this.currentUser.role == 'ROLE_ADMIN') {
       sessionStorage.removeItem('lastPage');

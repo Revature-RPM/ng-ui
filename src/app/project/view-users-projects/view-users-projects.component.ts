@@ -60,7 +60,6 @@ export class ViewUsersProjectsComponent implements OnInit, OnDestroy {
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
       });
-    // }
   }
 
     /**

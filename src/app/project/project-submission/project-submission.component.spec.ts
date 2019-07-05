@@ -9,7 +9,10 @@ import { ProjectSubmissionComponent } from './project-submission.component';
 import { AppModule } from 'src/app/app.module';
 import { By } from '@angular/platform-browser';
 import { UserService } from 'src/app/core/services/user.service';
+import { ProjectService } from 'src/app/core/services/project.service';
 import { User } from 'src/app/core/models/User';
+import { Project } from 'src/app/core/models/Project';
+import { FormGroup } from '@angular/forms';
 
 /**
  * This test suite serves to check the proper creation of the ProjectSubmission
@@ -23,6 +26,7 @@ describe('ProjectSubmissionComponent', () => {
   let fixture: ComponentFixture<ProjectSubmissionComponent>;
   let router: Router;
   let service: UserService;
+  let projService: ProjectService
   let testUser: User
 
 
@@ -121,19 +125,47 @@ describe('ProjectSubmissionComponent', () => {
   });
     
   /**
-   * Testing whether submitting fields is valid with a valid entry.
+   * Testing that the createProject method in project service is not called on an invalid form submission
    * 
-   * @author Gabriel Zapata (010719-Java-Spark-USF)
+   * @author Gabriel Zapata (010719-Java-Spark-USF) | Justin Kerr (190422-Java-Spark-USF)
    */
-  it('should test submitForm ',() =>{
+  it('submitForm does not call project service on invalid form submission',() =>{
+
     component.projectToUpload = {
-      groupMembers : ['testGroupMember'],
-      screenShots :  ['testScreenShots'],
-      zipLinks : ['testZip'],
+      groupMembers : ['testGroupMember', 'testGroupMember2'],
+      zipLinks : ['https://github.com/Revature-RPM/ng-ui']
     }
-    component.projectToUpload.groupMembers = ['test'];
     component.submitForm();
-    expect(component.submitting).toBeTruthy();
+    expect(projService.createProject).toHaveBeenCalledTimes(0);
+    
+  });
+
+    /**
+   * Testing that the createProject method in project service is called on an valid form submission
+   * 
+   * @author Justin Kerr (190422-Java-Spark-USF)
+   */
+  it('submitForm calls project service on valid form submission',() => {
+
+    let blob = new Blob([""], { type: 'image/png' });
+    blob["lastModifiedDate"] = "";
+    blob["name"] = "filename";
+    let testfile = <File>blob;
+
+    component.projectToUpload = {
+      name : 'testname',
+      batch : 'testbatch',
+      trainer : 'Wezley Singleton',
+      techStack : 'Java',
+      description : 'testdescription',
+      status : 'pending',
+      groupMembers : ['testGroupMember', 'testGroupMember2'],
+      screenShots : [testfile],
+      zipLinks : ['https://github.com/Revature-RPM/ng-ui'],
+      dataModel : []
+    }
+    component.submitForm();
+    expect(projService.createProject).toHaveBeenCalledTimes(1);
     
   })
 
@@ -153,7 +185,7 @@ describe('ProjectSubmissionComponent', () => {
         screenShots: ['test']
       }
 
-      component.onFileSelected(event);
+      component.onFileSelected(event, 'scs');
 
       expect(component.validScreenshots).toBeTruthy();
     })
