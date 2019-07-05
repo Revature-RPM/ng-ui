@@ -35,6 +35,9 @@ export class ViewProjectsComponent implements OnInit {
    * @author Shawn Bickel (1810-Oct08-Java-USF)
    */
   ngOnInit() {
+
+    if (!localStorage.getItem('jwt')) this.router.navigate(['/auth/login']);
+
     this.currentUser = this.userService.getUser();
     if(sessionStorage.getItem('lastPage') == 'project_Submit' && this.currentUser.role == 'ROLE_ADMIN') {
       sessionStorage.removeItem('lastPage');
@@ -56,11 +59,6 @@ export class ViewProjectsComponent implements OnInit {
       this.tab = 0;
       this.yourProjects();
     } 
-
-    //Duplicate check
-    // else if (this.currentUser.role !== 'ROLE_ADMIN') {
-    //   this.yourProjects();
-    // }
   }
 
   /**

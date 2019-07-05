@@ -38,6 +38,7 @@ ${error.error}`
   logout() {
     localStorage.removeItem('jwt');
     localStorage.removeItem('user');
+    localStorage.removeItem('rpmRefresh');
     this.user = null;
   }
   /**
@@ -63,11 +64,10 @@ ${error.error}`
         if (response.headers.get('Authorization')) {
           this.user = response.body;
           let jwtauthtoken = response.headers.get('Authorization').split(' ')[1];
-          localStorage.setItem('user', JSON.stringify(response.body));
 
-          // Add a refresh token.
-          localStorage.setItem('rpmRefresh', (Math.round((new Date()).getTime() / 1000) + 120) + '');
+          localStorage.setItem('user', JSON.stringify(response.body));
           localStorage.setItem('jwt', jwtauthtoken);
+          localStorage.setItem('rpmRefresh', (Math.round((new Date()).getTime() / 1000) + 30) + '');
           return response.body;
         } else {
           return null; // this should throw error
