@@ -61,6 +61,7 @@ export class ProjectSubmissionComponent implements OnInit {
     this.ngmeta.setHead({ title: 'Submit | RPM' });
     this.user = this.userService.user;
 
+    this.projectToUpload.trainer = this.userService.user.firstName + ' ' + this.userService.user.lastName;
     this.projectToUpload.groupMembers = [];
     this.projectToUpload.screenShots = [];
     this.projectToUpload.zipLinks = [];
