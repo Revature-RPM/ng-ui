@@ -32,14 +32,11 @@ describe('ProjectSubmissionComponent', () => {
       imports: [SharedModule, RouterTestingModule, BrowserAnimationsModule, AppModule]
 
     })
-    .compileComponents();
-  });
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(ProjectSubmissionComponent);
-    component = fixture.componentInstance;
-    service = TestBed.get(UserService);
-    
+    .compileComponents().then( () => {
+      fixture = TestBed.createComponent(ProjectSubmissionComponent);
+      component = fixture.componentInstance;
+      service = TestBed.get(UserService);
+    });
   });
 
   it('should create', () => {
@@ -52,11 +49,11 @@ describe('ProjectSubmissionComponent', () => {
    * 
    * @author Alex Johnson (190107-Java-Spark-USF)
    */
-  it('should navigate to login if the user is null', () => {
+  it('should navigate to login if a jwt doesnt exist', () => {
 
     router = TestBed.get(Router);
     localStorage.clear();
-    localStorage.setItem('user', null);
+    localStorage.setItem('jwt', null);
     let navigateSpy = spyOn(router, 'navigate');
 
     component.ngOnInit();
@@ -65,12 +62,16 @@ describe('ProjectSubmissionComponent', () => {
   });
   
   /**
-   * Test ngoninit fields if user is not null
+   * Test ngOnInit if a jwt is in storage and a user is stored in user service.
+   * A group member with the account's firstname and lastname should automatically be populated
    * 
-   * @author Gabriel Zapata | Alex Johnson | (190107-Java-Spark-USF)
+   * @author Gabriel Zapata | Alex Johnson | (190107-Java-Spark-USF) | Justin Kerr (190422-Java-Spark-USF)
    * 
    */
-  it('should verify ngOninit fields if userService.getUser is not null',()=>{
+  it('on ngOnInity, should verify that the account is in the group members field', ()=>{
+    
+    localStorage.setItem('jwt', 'hi');
+
     let testUser: User;
     testUser ={
       username:'testUsername',
@@ -85,55 +86,15 @@ describe('ProjectSubmissionComponent', () => {
 
     component.ngOnInit();
  
-    expect(component.projectToUpload.groupMembers).toBeTruthy();
+    expect(component.projectToUpload.groupMembers).toContain('testFirstName + " " + testLastName');
   
-  })
+  });
 
    /**
-    * Test openDialog with event listener = inputGroupMembers
-    *
-   * @author Gabriel Zapata (190107-Java-Spark-USF)
-   * 
-   */
-  it('should verify openDialog fields, and title, questiontype, when event.target.id = inputGroupMembers ',()=>{
-    
-    let event = {
-      target : {
-        id :'inputGroupMembers'
-      }
-    }
-
-    component.openDialog(event);
-
-    expect(component.title).toContain('New Group Member')
-    expect(component.questionType).toContain('Enter the name of the group member')
-
-  })
-
-   /**
-   * Test openDialog with event listener != inputGroupMembers
-   *
-   * @author Gabriel Zapata (190107-Java-Spark-USF)
-   */
-  it('should verify openDialog fields, and title, questiontype, when event.target.id != inputGroupMembers ',()=>{
-    
-    let event = {
-      target : {
-        id :'notInputGroupMembers'
-      }
-    }
-
-    component.openDialog(event);
-
-    expect(component.title).toContain('Repository Link')
-    expect(component.questionType).toContain('Enter the Github URL of your repository')
-
-  })
-
-   /**
-    * This is a silly redundant test that could be consolidated with the above OOPS.
+    * For both the 'add group members' and 'add github links' fields,
+    * calling the openEditableDialog function should update the appropriate field with their new values
     * 
-    * @author Gabriel Zapata (190107-Java-Spark-USF)
+    * @author Justin Kerr (190422-Java-Spark-USF)
    */
   it('should verify openEditableDialog fields if id is not inputGroupMembers',()=>{
     let event = {
@@ -144,32 +105,20 @@ describe('ProjectSubmissionComponent', () => {
 
     component.openEditableDialog(event);
 
-    expect(component.title).toContain('New Group Member')
-    expect(component.questionType).toContain('Enter the name of the group member')
-    expect(component.width).toEqual(300);
-    
-  })
-
-    /**
-     * This test could also be refactored to consolidate with the above.
-     * 
-    * @author Gabriel Zapata | Slavik Cool-Guy (190107-Java-Spark-USF)
-   */
-  it('should verify openEditableDialog fields if id is not inputGroupMembers',()=>{
-    let event = {
-      target : {
-        id :'notInputGroupMembers'
-      }
+    if (event.target.id === 'inputGroupMembers') {
+      expect(component.projectToUpload.groupMembers).toHaveBeenCalled();
+      expect(component.projectToUpload.zipLinks).toBeFalsy;
     }
-
-    component.openEditableDialog(event);
-
-    expect(component.title).toContain('Repository Link')
-    expect(component.questionType).toContain('Enter the Github URL of your repository')
-    expect(component.width).toEqual(500);
+    else if (event.target.id === 'inputGithubLink') {
+      expect(component.projectToUpload.groupMembers).toBeFalsy();
+      expect(component.projectToUpload.zipLinks).toHaveBeenCalled();
+    }
+    else {
+      expect(component.projectToUpload.groupMembers).toBeFalsy();
+      expect(component.projectToUpload.zipLinks).toBeFalsy();
+    }
     
-  })
-
+  });
     
   /**
    * Testing whether submitting fields is valid with a valid entry.

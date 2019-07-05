@@ -67,7 +67,7 @@ ${error.error}`
 
           localStorage.setItem('user', JSON.stringify(response.body));
           localStorage.setItem('jwt', jwtauthtoken);
-          localStorage.setItem('rpmRefresh', (Math.round((new Date()).getTime() / 1000) + 30) + '');
+          localStorage.setItem('rpmRefresh', (Math.round((new Date()).getTime() / 1000) + 21600000) + '');
           return response.body;
         } else {
           return null; // this should throw error
