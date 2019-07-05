@@ -18,14 +18,8 @@ import {UserService} from 'src/app/core/services/user.service';
 export class HomePageComponent implements OnInit {
 
   constructor(private router: Router, private userService: UserService) { }
-
-
-  /* The logic for stripping expired JWTs and rerouting
-     to the login page is now in the JWTInterceptor.
-  */
+  
   ngOnInit() {
-    // if (this.userService.getUser() === null) {
-    //   this.router.navigate(['/auth/login']);
-    // }
+    if (!localStorage.getItem('jwt')) this.router.navigate(['/auth/login']);
   }
 }

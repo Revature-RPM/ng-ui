@@ -26,7 +26,7 @@ describe('ProjectSubmissionComponent', () => {
   let testUser: User
 
 
-  beforeEach(() => {
+  beforeEach(async() => {
     TestBed.configureTestingModule({
       declarations: [ ],
       imports: [SharedModule, RouterTestingModule, BrowserAnimationsModule, AppModule]

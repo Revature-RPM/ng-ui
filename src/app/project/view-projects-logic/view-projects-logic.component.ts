@@ -44,15 +44,10 @@ export class ViewProjectsLogicComponent implements OnInit, OnDestroy {
    * if the user's role is ROLE_User
    * @ Louis Pipkin (1810-Oct22-Java-USF)
    */
-  
-  /* The logic for stripping expired JWTs and rerouting
-   to the login page is now in the JWTInterceptor.
-  */
   ngOnInit() {
 
-    // if (this.userService.getUser() === null) {
-    //   this.router.navigate(['/auth/login']);
-    // } else {
+    if (!localStorage.getItem('jwt')) this.router.navigate(['/auth/login']);
+
     this.currentUser = this.userService.getUser();
     const trainerFullName = this.currentUser.firstName.trim() + ' ' + this.currentUser.lastName.trim();
     this.subscription = this.viewProjectsService.getAllProjects()

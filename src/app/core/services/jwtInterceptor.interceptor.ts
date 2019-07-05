@@ -23,36 +23,18 @@ export class TokenInterceptor implements HttpInterceptor {
   }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-
-    // If there isn't a jwt in storage, there's no need for the user to be anywhere besides the login/register and no reason
-    // to continue in this function.
-    if (!localStorage.getItem('jwt') && this.url.path() != '/auth/login' && this.url.path() != '/auth/register') {
-      this.router.navigate(['/auth/login']);
-      return next.handle(request);
-    }
-
-    // Set the current time in UNIX
-    const currentTime = Math.round((new Date()).getTime() / 1000); // Set this to current time
-
-    // If rpmRefresh token is found in local storage. Get its value.
-    let tokenExpiration;
-    if (localStorage.getItem('rpmRefresh')) {
-      tokenExpiration = localStorage.getItem('rpmRefresh');
-    }
-
-    // Set the refresh period for the new token.
-    const newRefreshTime = currentTime + 21600000; // Development - Set this to current time + 2 minutes.
-    // const newRefreshTime = currentTime + 21600000; // Production - Set this to current time + 6 hours.
-
-    // Add check to see if currentTime < tokenExpiration. If it is. Skip all logic and go to
-    // else block.
-    console.log(currentTime);
-    if (localStorage.getItem('rpmRefresh') && currentTime < tokenExpiration && request.url.indexOf(environment.url) >= 0) {
+    
+    const currentTime = Math.round((new Date()).getTime() / 1000);
+    
+    console.log("currentTime " + currentTime)
+    console.log("rpmTime " + JSON.parse(localStorage.getItem('rpmRefresh')));
+    if (localStorage.getItem('rpmRefresh') && currentTime < JSON.parse(localStorage.getItem('rpmRefresh')) && request.url.indexOf(environment.url) >= 0) {
         request = request.clone({
           setHeaders: {
             Authorization: `Bearer ${window.localStorage.getItem('jwt')}`
           }
         });
+        const newRefreshTime = currentTime + 21600000;
         localStorage.setItem('rpmRefresh', newRefreshTime + '');
 
     } else {

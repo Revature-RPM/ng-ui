@@ -72,7 +72,7 @@ export class RegistrationComponent implements OnInit {
 
   ngOnInit() {
     //added '\home' routing if user has already logged
-    if (localStorage.getItem('jwt') !== null) {
+    if (localStorage.getItem('jwt')) {
       this.router.navigate(['\home']);
     } else {
       this.ngmeta.setHead({ title: 'Register | RPM' });
@@ -126,10 +126,6 @@ export class RegistrationComponent implements OnInit {
           this.authenticating = false;
           this.router.navigate(['/home']);
           });
-
-
-
-        //this.router.navigate(['/auth/login']);
       }
     });
   }

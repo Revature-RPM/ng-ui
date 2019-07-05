@@ -58,8 +58,10 @@ export class ProjectSubmissionComponent implements OnInit {
     private formBuilder: FormBuilder
   ) { }
 
-  // The logic for stripping expired JWTs and rerouting to the login page is now in the JWTInterceptor.
   ngOnInit() {
+
+    if (!localStorage.getItem('jwt')) this.router.navigate(['/auth/login']);
+
     this.ngmeta.setHead({ title: 'Submit | RPM' });
     this.user = this.userService.user;
 
