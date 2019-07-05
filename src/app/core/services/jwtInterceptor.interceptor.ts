@@ -36,7 +36,7 @@ export class TokenInterceptor implements HttpInterceptor {
 
     // If rpmRefresh token is found in local storage. Get its value.
     let tokenExpiration;
-    if (localStorage.getItem('rpmRefresh')) {
+    if (localStorage.getItem('rpmRefresh') && currentTime < tokenExpiration) {
       tokenExpiration = localStorage.getItem('rpmRefresh');
     }
 
