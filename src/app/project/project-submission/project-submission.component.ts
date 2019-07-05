@@ -147,7 +147,7 @@ export class ProjectSubmissionComponent implements OnInit {
       }
       if (inputfield === 'scs') {
         this.projectToUpload.screenShots.push(e.target.files[i]);
-        this.removeData(e.target.files[i], 'scs');
+        if (!this.projectToUpload.screenShots.includes(e.target.files[i])) this.removeData(e.target.files[i], 'scs');
       }
       else if (inputfield === 'dms') this.projectToUpload.dataModel.push(e.target.files[i]);
     }

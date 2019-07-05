@@ -46,8 +46,6 @@ export class ViewProjectsLogicComponent implements OnInit, OnDestroy {
    */
   ngOnInit() {
 
-    if (!localStorage.getItem('jwt')) this.router.navigate(['/auth/login']);
-
     this.currentUser = this.userService.getUser();
     const trainerFullName = this.currentUser.firstName.trim() + ' ' + this.currentUser.lastName.trim();
     this.subscription = this.viewProjectsService.getAllProjects()
