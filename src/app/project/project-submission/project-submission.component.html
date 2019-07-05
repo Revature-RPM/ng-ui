@@ -108,7 +108,7 @@
           <span id="screenshotspan" *ngFor="let screenshot of projectToUpload.screenShots; let i = index"
             [attr.data-index]="i">
             <span class="filelist" (click)="removeData(screenshot, 'scs')">
-              <img *ngIf="screenshotPicList[i]" [src]="screenshotPicList[i]" height="100">
+              <img *ngIf="screenshotPicList[i]" [src]="screenshotPicList[i]" height="50">
               <br>
               {{ screenshot.name }}
             </span>
@@ -152,7 +152,7 @@
 
     <!-- Hidden file input used to retrieve project screenshots -->
     <input id="screenShots" name="screenShotFiles" #uploadScreenshots hidden type="file"
-      (change)="onFileSelected($event, 'scs')" accept="image/*" multiple required />
+      (change)="onFileSelected($event, 'scs')" accept="image/*" required />
     <!-- Hidden file input used to retrieve project data models-->
     <input id="dataModel" name="dataModelFiles" #uploadDatamodel hidden type="file"
       (change)="onFileSelected($event, 'dms')" accept=".sql" required/>

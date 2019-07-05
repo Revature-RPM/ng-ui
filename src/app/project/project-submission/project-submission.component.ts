@@ -134,12 +134,26 @@ export class ProjectSubmissionComponent implements OnInit {
    * not add the file to the project
    *
    * @param e the event corresponding to the user choosing a file to uplodad
-   * @editor Justin Kerr
+   * @author Justin Kerr, Rodel Flores
    */
   imagePath;
   imgURL : any;
-
+  screenshotCap : number = 4;
+  dataModelCap: number = 6;
+  fileSizeCap: number = 10;
   onFileSelected(e, inputfield) {
+
+    //Check for limits reached
+    if (inputfield === 'scs' && this.projectToUpload.screenShots.length == this.screenshotCap){
+      this.snackbar.openSnackBar('Max limit of ' + this.screenshotCap + ' reached.', 'Dismiss');
+      return;
+    }
+
+    if (inputfield === 'dms' && this.projectToUpload.dataModel.length == this.dataModelCap){
+      this.snackbar.openSnackBar('Max limit of ' + this.dataModelCap + ' reached.', 'Dismiss');
+      return;
+    }
+
     let reader = new FileReader();
     reader.readAsDataURL(e.target.files[0]);
     reader.onload = (_event) => {
@@ -148,7 +162,7 @@ export class ProjectSubmissionComponent implements OnInit {
 
     for (let i = 0; i < e.target.files.length; i++) {
 
-      if (e.target.files[i].size > 10485760) { // 10 MiB
+      if (e.target.files[i].size > 1024*1000*this.fileSizeCap) { // 10 MB
         this.snackbar.openSnackBar('File too large', 'dismiss');
         return;
       }
