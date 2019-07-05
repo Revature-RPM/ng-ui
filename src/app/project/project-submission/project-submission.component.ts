@@ -117,19 +117,23 @@ export class ProjectSubmissionComponent implements OnInit {
   }
 
   /**
-   * When the file input is triggered, the event is passed to this method
+   * When the file input is triggered, the event is passed to this method,
    * which uses the properties of the event to retrieve the files chosen and
-   * place them in the array corresponding to the screenShots/dataModel array of the project to be submitted
+   * places them in the array corresponding to the screenShots/dataModel array of the project to be submitted
    * 
-   * This method will now check for file size and if the file is too large, open a snackbar message and
-   * not add the file to the project
+   * This method will now check for:
+   * Upload limits: If the screenshots and data models uploaded exceed a certain amount, 
+   *    opens a snackbar message and not add the file to the project.
+   * File size: If the file is too large, opens a snackbar message, and does not the file to the project.
    *
    * @param e the event corresponding to the user choosing a file to uplodad
-   * @editor Justin Kerr
+   * @author Justin Kerr, Rodel Flores (190422-Java-USF)
    */
   imagePath;
   imgURL : any;
-
+  screenshotCap : number = 4;
+  dataModelCap: number = 6;
+  fileSizeCap: number = 1000000; //1 MB
   onFileSelected(e, inputfield) {
 
     if(e.target.files[0]) {
@@ -138,12 +142,23 @@ export class ProjectSubmissionComponent implements OnInit {
       reader.onload = (_event) => {
       this.screenshotPicList.push(reader.result);
       }    
+      
+    //Check for limits reached
+    if (inputfield === 'scs' && this.projectToUpload.screenShots.length == this.screenshotCap){
+      this.snackbar.openSnackBar('Max limit of ' + this.screenshotCap + ' reached.', 'Dismiss');
+      return;
+    }
+
+    if (inputfield === 'dms' && this.projectToUpload.dataModel.length == this.dataModelCap){
+      this.snackbar.openSnackBar('Max limit of ' + this.dataModelCap + ' reached.', 'Dismiss');
+      return;
+      
     }
 
     for (let i = 0; i < e.target.files.length; i++) {
 
-      if (e.target.files[i].size > 10485760) { // 10 MiB
-        this.snackbar.openSnackBar('File too large', 'dismiss');
+      if (e.target.files[i].size > this.fileSizeCap) {
+        this.snackbar.openSnackBar('File size exceeds 1 MB', 'dismiss');
         return;
       }
       if (inputfield === 'scs') {
@@ -153,18 +168,25 @@ export class ProjectSubmissionComponent implements OnInit {
       else if (inputfield === 'dms') this.projectToUpload.dataModel.push(e.target.files[i]);
     }
 
+    let reader = new FileReader();
+    reader.readAsDataURL(e.target.files[0]);
+    reader.onload = (_event) => {
+    this.screenshotPicList.push(reader.result);
+    }    
+
   }
 
   /**
-   * Finds the index of the file within projectToUpload that was previously uploaded to the form
-   * and removes it using a basic splice method
-   * Also removes the picture from the screenshot picture list
+   * Finds the index of the file within projectToUpload that was previously 
+   * uploaded to the form and removes it using a basic splice method.
+   * Also removes the picture from the screenshot picture list.
    * 
-   * Currently if you remove a file and try to add the same one back, it won't be added back.
-   * If you try to add another file and then retry adding the previous file, it WILL be added back.
+   * Currently, if you remove a file and sequentially try to add the same one back, it won't be added back.
+   * If you try to add another file and then retry adding the previously-deleted file, it WILL be added back.
+   * Also, if you attempt to upload the same file, it won't be added, and the system doesn't throw an error.
    *
    * @param file: the file that was uploaded to the form
-   * @author Justin Kerr
+   * @author Justin Kerr (190422-Java-USF)
    */
   removeData(file: File, inputfield) {
     let list;
@@ -190,7 +212,7 @@ export class ProjectSubmissionComponent implements OnInit {
    * All the data of the form is placed as key/value pairs into a FormData object
    * This FormData object is then sent to the project service for communication with the server
    * @author Shawn Bickel (1810-Oct08-Java-USF)
-   * @author Justin Kerr, Rodel Flores
+   * @author Justin Kerr, Rodel Flores (190422-Java-USF)
    */
   submitForm() {
     let formData = new FormData();
