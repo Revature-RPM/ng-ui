@@ -11,7 +11,6 @@ import { User } from 'src/app/core/models/User';
 import { SnackbarService } from 'src/app/core/services/snackbar.service';
 import { FormBuilder } from '@angular/forms';
 
-
 // this interface represents data to be held and returned from an input dialog
 export interface DialogData {
   title: string;
@@ -43,8 +42,6 @@ export class ProjectSubmissionComponent implements OnInit {
   //Other fields
   screenshotPicList = [];
   techStackList = ['Java/J2EE', 'PEGA', 'JavaScript MVC', '.Net', 'React.js', 'Java', 'iOS9'];
-  githubURL: string;
-  githubURLRegex: RegExp = new RegExp('^(https:\/\/github\.com\/[^/]+\/[^/]+)');
   invalidLink: boolean;
 
   constructor(
@@ -115,9 +112,6 @@ export class ProjectSubmissionComponent implements OnInit {
 
           }
         }
-        // for (let i=0; i<this.projectToUpload.zipLinks.length; i++) {
-        //   if( !this.githubURLRegex.test(this.projectToUpload.zipLinks[i]) ) this.projectToUpload.zipLinks.splice(i,1);
-        // }
       });
   }
 

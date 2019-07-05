@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 import { ProjectSubmissionComponent, DialogData } from '../project-submission.component';
+import { SnackbarService } from 'src/app/core/services/snackbar.service';
 
 @Component({
   selector: 'app-edit-dialog',
@@ -33,7 +34,7 @@ export class EditDialogComponent implements OnInit {
    * @author Sean Doyle (1810-Oct22-Java-USF)
    */
   constructor(public dialogRef: MatDialogRef<ProjectSubmissionComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
+              @Inject(MAT_DIALOG_DATA) public data: DialogData, private snackbarService: SnackbarService) { }
 
   onNoClick(): string[] {
     this.dialogRef.close();
@@ -97,10 +98,11 @@ export class EditDialogComponent implements OnInit {
   addItem(e) {
     // The if statement treats undefined, null, and empty values as 'falsey' and there for the if-statement will decline the value
     if (this.data.result) {
-      this.data.values.push(this.data.result);
+      let githubURLRegex: RegExp = new RegExp('^(https:\/\/github\.com\/[^/]+\/[^/]+)');
+      if( this.data.questionType === "Enter the name of the group member" || githubURLRegex.test(this.data.result) ) this.data.values.push(this.data.result);
+      else {this.snackbarService.openSnackBar('A Github link is required in format: https://github.com/[Github username]/[Repository Name]', 'dismiss')};
       this.inEditMode.push(false);
       this.editedValues.push(this.data.result);
-      // This clears the input field so that it is ready for another input.
       this.data.result = '';
     }
   }
