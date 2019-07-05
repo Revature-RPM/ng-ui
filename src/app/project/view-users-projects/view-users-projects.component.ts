@@ -45,22 +45,20 @@ export class ViewUsersProjectsComponent implements OnInit, OnDestroy {
       this.currentUser = this.userService.getUser();
       const trainerFullName = this.currentUser.firstName.trim() + ' ' + this.currentUser.lastName.trim();
       this.subscription = this.viewProjectsService.getAllProjects()
-      .subscribe((projectResponse) => {
-        /* place all the current user's project's in an array to easily switch between tabs to see all projects and
-        a particular user's projects without having to make multiple calls to the server */
+      .subscribe(
+        (projectResponse) => {
         this.userProjects = [];
         this.retrievingProjects = false;
         for (let i = 0; i < projectResponse.length; i++) {
           if (projectResponse[i].trainer === trainerFullName) {
             this.userProjects.push(projectResponse[i]);
+            console.log(projectResponse[i].screenShots)
           }
         }
-        // Assign the data to the data source for the table to render
         this.dataSource = new MatTableDataSource(this.userProjects);
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
       });
-    // }
   }
 
     /**

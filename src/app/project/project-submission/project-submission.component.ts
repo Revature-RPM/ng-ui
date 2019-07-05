@@ -11,7 +11,6 @@ import { User } from 'src/app/core/models/User';
 import { SnackbarService } from 'src/app/core/services/snackbar.service';
 import { FormBuilder } from '@angular/forms';
 
-
 // this interface represents data to be held and returned from an input dialog
 export interface DialogData {
   title: string;
@@ -43,9 +42,6 @@ export class ProjectSubmissionComponent implements OnInit {
   //Other fields
   screenshotPicList = [];
   techStackList = ['Java/J2EE', 'PEGA', 'JavaScript MVC', '.Net', 'React.js', 'Java', 'iOS9'];
-  submitting = false;
-  githubURL: string;
-  githubURLRegex: RegExp = new RegExp('^(https:\/\/github\.com\/[^/]+\/[^/]+)');
   invalidLink: boolean;
 
   constructor(
@@ -65,7 +61,8 @@ export class ProjectSubmissionComponent implements OnInit {
     this.ngmeta.setHead({ title: 'Submit | RPM' });
     this.user = this.userService.user;
 
-    this.projectToUpload.groupMembers = [this.user.firstName + " " + this.user.lastName];
+    this.projectToUpload.trainer = this.userService.user.firstName + ' ' + this.userService.user.lastName;
+    this.projectToUpload.groupMembers = [];
     this.projectToUpload.screenShots = [];
     this.projectToUpload.zipLinks = [];
     this.projectToUpload.dataModel = [];
@@ -109,18 +106,11 @@ export class ProjectSubmissionComponent implements OnInit {
           if (e.target.id === 'inputGroupMembers') {
             this.projectToUpload.groupMembers = result;
             this.groupMemberString = this.projectToUpload.groupMembers.join(', ');
-          } else {
+          } 
+          else if (e.target.id === 'inputGithubLink') {
+            this.projectToUpload.zipLinks = result;
+            this.zipLinksString = this.projectToUpload.zipLinks.join(', ');
 
-            result.forEach(
-              element => {
-                if (this.githubURLRegex.test(element)) {
-                  if (!this.projectToUpload.zipLinks.includes(element)) {
-                    this.projectToUpload.zipLinks.push(element);
-                  }
-                }
-              });
-
-            if (this.projectToUpload.zipLinks.length > 0) this.zipLinksString = this.projectToUpload.zipLinks.join('\n');
           }
         }
       });
@@ -146,6 +136,13 @@ export class ProjectSubmissionComponent implements OnInit {
   fileSizeCap: number = 1000000; //1 MB
   onFileSelected(e, inputfield) {
 
+    if(e.target.files[0]) {
+      let reader = new FileReader();
+      reader.readAsDataURL(e.target.files[0]);
+      reader.onload = (_event) => {
+      this.screenshotPicList.push(reader.result);
+      }    
+      
     //Check for limits reached
     if (inputfield === 'scs' && this.projectToUpload.screenShots.length == this.screenshotCap){
       this.snackbar.openSnackBar('Max limit of ' + this.screenshotCap + ' reached.', 'Dismiss');
@@ -155,6 +152,7 @@ export class ProjectSubmissionComponent implements OnInit {
     if (inputfield === 'dms' && this.projectToUpload.dataModel.length == this.dataModelCap){
       this.snackbar.openSnackBar('Max limit of ' + this.dataModelCap + ' reached.', 'Dismiss');
       return;
+      
     }
 
     for (let i = 0; i < e.target.files.length; i++) {
@@ -165,6 +163,7 @@ export class ProjectSubmissionComponent implements OnInit {
       }
       if (inputfield === 'scs') {
         this.projectToUpload.screenShots.push(e.target.files[i]);
+        if (!this.projectToUpload.screenShots.includes(e.target.files[i])) this.removeData(e.target.files[i], 'scs');
       }
       else if (inputfield === 'dms') this.projectToUpload.dataModel.push(e.target.files[i]);
     }
@@ -241,7 +240,6 @@ export class ProjectSubmissionComponent implements OnInit {
       formData.append('dataModel', this.projectToUpload.dataModel[l]);
 
     }
-    console.log(formData);
 
     this.projectService.createProject(formData).subscribe(
       project => {
