@@ -134,8 +134,7 @@ export class ProjectSubmissionComponent implements OnInit {
    * not add the file to the project
    *
    * @param e the event corresponding to the user choosing a file to uplodad
-   * @editor Rodel Flores
-   * @editor Justin Kerr
+   * @author Justin Kerr, Rodel Flores
    */
   imagePath;
   imgURL : any;
