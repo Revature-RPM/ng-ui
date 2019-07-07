@@ -1,19 +1,3 @@
-/*
-EditProjectComponent should set sessionStorage appropriately after back() function is called
-Uncaught Error: Uncaught (in promise): Error: Cannot find module 'src/app/authentication/authentication.module'
-Error: Cannot find module 'src/app/authentication/authentication.module'
-    at http://localhost:9876/_karma_webpack_/webpack:/src/$_lazy_route_resource lazy namespace object:5:1
-    at ZoneDelegate../node_modules/zone.js/dist/zone.js.ZoneDelegate.invoke (http://localhost:9876/_karma_webpack_/webpack:/node_modules/zone.js/dist/zone.js:391:1)
-    at ProxyZoneSpec.push../node_modules/zone.js/dist/zone-testing.js.ProxyZoneSpec.onInvoke (http://localhost:9876/_karma_webpack_/webpack:/node_modules/zone.js/dist/zone-testing.js:289:1)
-    at ZoneDelegate../node_modules/zone.js/dist/zone.js.ZoneDelegate.invoke (http://localhost:9876/_karma_webpack_/webpack:/node_modules/zone.js/dist/zone.js:390:1)
-    at Object.onInvoke (http://localhost:9876/_karma_webpack_/webpack:/node_modules/@angular/core/fesm5/core.js:14060:1)
-    at ZoneDelegate../node_modules/zone.js/dist/zone.js.ZoneDelegate.invoke (http://localhost:9876/_karma_webpack_/webpack:/node_modules/zone.js/dist/zone.js:390:1)
-    at Zone../node_modules/zone.js/dist/zone.js.Zone.run (http://localhost:9876/_karma_webpack_/webpack:/node_modules/zone.js/dist/zone.js:150:1)
-    at http://localhost:9876/_karma_webpack_/webpack:/node_modules/zone.js/dist/zone.js:889:1
-    at ZoneDelegate../node_modules/zone.js/dist/zone.js.ZoneDelegate.invokeTask (http://localhost:9876/_karma_webpack_/webpack:/node_modules/zone.js/dist/zone.js:423:1)
-    at ProxyZoneSpec.push../node_modules/zone.js/dist/zone-testing.js.ProxyZoneSpec.onInvokeTask (http://localhost:9876/_karma_webpack_/webpack:/node_modules/zone.js/dist/zone-testing.js:320:1) thrown
- */
-
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -43,7 +27,8 @@ export class EditProjectComponent implements OnInit {
   // projectToUpdate will hold project information for a specific project returned by id and
   // is bound to the information that users enter in the form
   projectToUpdate: Project = {};
-
+  
+  AllProjects$ =  this.projectService.AllProjects.asObservable();
   allProjects: Project[];
 
   /**
@@ -72,31 +57,34 @@ export class EditProjectComponent implements OnInit {
     if (this.userService.getUser() === null) {
       this.router.navigate(['/auth/login']);
     } else {
-      this.ngmeta.setHead({ title: 'Edit Project | RPM' });
-      this.projectToUpdate.groupMembers = [];
-      this.projectToUpdate.screenShots = [];
-      this.projectToUpdate.zipLinks = [];
 
-      /**
+      this.AllProjects$.subscribe(
+        allprojects => {
+          this.allProjects = allprojects;
+        }
+      )
+
+        /**
        * This will retrieve the path variable which corresponds to the id of the project to be edited.
        * ActivatedRoute has an observable called 'params' which provides a means to do this.
-       * Once the project id is retrieved from the path, it can be passed to the project service to obtain the project to update.
+       * Once the project id is retrieved from the path, it can be passed to the list of projects
        *
-       *  @author Shawn Bickel (1810-Oct08-Java-USF)
+       *  @author Shawn Bickel (1810-Oct08-Java-USF) | Justin Kerr
        */
-      this.subscription = this.route.params.subscribe(params => {
-        // this.projectService.getProjectById(params['id']).pipe(first()).subscribe(projectById => {
-        //   this.projectToUpdate = projectById;
-        // });
-        this.projectService.getAllProjects().pipe(first()).subscribe(allProjects => {
-          this.allProjects = allProjects;
+      this.subscription = this.route.params.subscribe(
+        params => {
           for(var i = 0; i<this.allProjects.length; i++) {
             if (params['id'] == this.allProjects[i].id) {
               this.projectToUpdate = this.allProjects[i];
             }
           }
-        });
       });
+
+      this.ngmeta.setHead({ title: 'Edit Project | RPM' });
+      this.projectToUpdate.groupMembers = [];
+      this.projectToUpdate.screenShots = [];
+      this.projectToUpdate.zipLinks = [];
+
     }
   }
 
@@ -124,14 +112,14 @@ export class EditProjectComponent implements OnInit {
    */
   submitForm() {
     if (JSON.parse(localStorage.getItem('user')).role === 'ROLE_USER') {
-      // if (this.projectToUpdate.status === 'Approved') {
         this.projectToUpdate.status = 'Pending';
-      // }
     }
-    this.projectService.updateProject(this.projectToUpdate, this.projectToUpdate.id).subscribe(project => { });
-    this.snackBar.open('The edited changes may take time to appear', '', {
-      duration: 5000,
-    });
+    this.projectService.updateProject(this.projectToUpdate, this.projectToUpdate.id).subscribe();
+    this.projectService.getAllProjects().subscribe(
+      allprojects => {
+        this.projectService.AllProjects.next(allprojects);
+      }
+    );
     this.router.navigate(['/home']);
   }
 
