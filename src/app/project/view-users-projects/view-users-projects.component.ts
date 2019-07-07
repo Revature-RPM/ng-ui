@@ -21,6 +21,9 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
   ],
 })
 export class ViewUsersProjectsComponent implements OnInit, OnDestroy {
+  
+  constructor(private router: Router, private viewProjectsService: ProjectService, private userService: UserService, private projectService: ProjectService) { }
+
   trainerCanEdit = false;
   currentUser: User;
   displayedColumns: string[] = ['name', 'batch', 'trainer', 'techStack', 'status'];
@@ -31,34 +34,42 @@ export class ViewUsersProjectsComponent implements OnInit, OnDestroy {
 
   imagePage = 0;
 
-  userProjects: Project[];
+  userProjects: Project[] = [];
   subscription: Subscription;
+  AllProjects$ =  this.projectService.AllProjects.asObservable();
 
   retrievingProjects = true;
-
-  constructor(private router: Router, private viewProjectsService: ProjectService, private userService: UserService) { }
 
   ngOnInit() {
 
     if (!localStorage.getItem('jwt')) this.router.navigate(['/auth/login']);
 
       this.currentUser = this.userService.getUser();
-      const trainerFullName = this.currentUser.firstName.trim() + ' ' + this.currentUser.lastName.trim();
       this.subscription = this.viewProjectsService.getAllProjects()
       .subscribe(
         (projectResponse) => {
-        this.userProjects = [];
         this.retrievingProjects = false;
-        for (let i = 0; i < projectResponse.length; i++) {
-          if (projectResponse[i].trainer === trainerFullName) {
-            this.userProjects.push(projectResponse[i]);
-            console.log(projectResponse[i].screenShots);
+        this.projectService.AllProjects.next(projectResponse);
+        console.log(projectResponse);
+        console.log(this.projectService.AllProjects);
+        this.updateProjects();
+      });
+  }
+
+  updateProjects() {
+    const trainerFullName = this.currentUser.firstName.trim() + ' ' + this.currentUser.lastName.trim();
+    this.AllProjects$.subscribe(
+      allprojects => {
+        for (let i = 0; i < allprojects.length; i++){
+          if(allprojects[i].trainer === trainerFullName){
+          this.userProjects.push(allprojects[i]);
           }
         }
         this.dataSource = new MatTableDataSource(this.userProjects);
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
-      });
+      }
+    )
   }
 
     /**

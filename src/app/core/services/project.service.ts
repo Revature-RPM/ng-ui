@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 
 import { Project } from '../models/Project';
 import { environment } from 'src/environments/environment';
@@ -15,6 +15,7 @@ const HTTP_OPTIONS = {
   providedIn: 'root'
 })
 export class ProjectService {
+  AllProjects: BehaviorSubject<Project[]> = new BehaviorSubject<Project[]>(null);
   CurrentProject: Project;
 
   constructor(private httpClient: HttpClient) { }
