@@ -106,7 +106,7 @@ export class ProjectSubmissionComponent implements OnInit {
           if (e.target.id === 'inputGroupMembers') {
             this.projectToUpload.groupMembers = result;
             this.groupMemberString = this.projectToUpload.groupMembers.join(', ');
-          } 
+          }
           else if (e.target.id === 'inputGithubLink') {
             this.projectToUpload.zipLinks = result;
             this.zipLinksString = this.projectToUpload.zipLinks.join(', ');
@@ -130,29 +130,22 @@ export class ProjectSubmissionComponent implements OnInit {
    * @author Justin Kerr, Rodel Flores (190422-Java-USF)
    */
   imagePath;
-  imgURL : any;
-  screenshotCap : number = 4;
+  imgURL: any;
+  screenshotCap: number = 4;
   dataModelCap: number = 6;
   fileSizeCap: number = 1000000; //1 MB
   onFileSelected(e, inputfield) {
 
-    if(e.target.files[0]) {
-      let reader = new FileReader();
-      reader.readAsDataURL(e.target.files[0]);
-      reader.onload = (_event) => {
-      this.screenshotPicList.push(reader.result);
-      }    
-      
     //Check for limits reached
-    if (inputfield === 'scs' && this.projectToUpload.screenShots.length == this.screenshotCap){
+    if (inputfield === 'scs' && this.projectToUpload.screenShots.length == this.screenshotCap) {
       this.snackbar.openSnackBar('Max limit of ' + this.screenshotCap + ' reached.', 'Dismiss');
       return;
     }
 
-    if (inputfield === 'dms' && this.projectToUpload.dataModel.length == this.dataModelCap){
+    if (inputfield === 'dms' && this.projectToUpload.dataModel.length == this.dataModelCap) {
       this.snackbar.openSnackBar('Max limit of ' + this.dataModelCap + ' reached.', 'Dismiss');
       return;
-      
+
     }
 
     for (let i = 0; i < e.target.files.length; i++) {
@@ -168,11 +161,13 @@ export class ProjectSubmissionComponent implements OnInit {
       else if (inputfield === 'dms') this.projectToUpload.dataModel.push(e.target.files[i]);
     }
 
-    let reader = new FileReader();
-    reader.readAsDataURL(e.target.files[0]);
-    reader.onload = (_event) => {
-    this.screenshotPicList.push(reader.result);
-    }    
+    if ( this.projectToUpload.screenShots.includes(e.target.files[0]) ) {
+      let reader = new FileReader();
+      reader.readAsDataURL(e.target.files[0]);
+      reader.onload = (_event) => {
+        this.screenshotPicList.push(reader.result);
+      }
+    }
 
   }
 
@@ -191,19 +186,19 @@ export class ProjectSubmissionComponent implements OnInit {
   removeData(file: File, inputfield) {
     let list;
     let piclist;
-    if(inputfield === 'scs') {
+    if (inputfield === 'scs') {
       list = this.projectToUpload.screenShots;
       piclist = this.screenshotPicList;
     }
-    if(inputfield === 'dms') {
+    if (inputfield === 'dms') {
       list = this.projectToUpload.dataModel;
       piclist = null;
     }
-    
+
     const index: number = list.indexOf(file);
     if (index !== -1) {
       list.splice(index, 1);
-      if(piclist) piclist.splice(index, 1);
+      if (piclist) piclist.splice(index, 1);
     }
   }
 

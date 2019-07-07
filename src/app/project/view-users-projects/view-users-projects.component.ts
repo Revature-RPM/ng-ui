@@ -52,7 +52,7 @@ export class ViewUsersProjectsComponent implements OnInit, OnDestroy {
         for (let i = 0; i < projectResponse.length; i++) {
           if (projectResponse[i].trainer === trainerFullName) {
             this.userProjects.push(projectResponse[i]);
-            console.log(projectResponse[i].screenShots)
+            console.log(projectResponse[i].screenShots);
           }
         }
         this.dataSource = new MatTableDataSource(this.userProjects);

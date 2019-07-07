@@ -28,6 +28,7 @@ export class TokenInterceptor implements HttpInterceptor {
     
     console.log("currentTime " + currentTime)
     console.log("rpmTime " + JSON.parse(localStorage.getItem('rpmRefresh')));
+    
     if (localStorage.getItem('rpmRefresh') && currentTime < JSON.parse(localStorage.getItem('rpmRefresh')) && request.url.indexOf(environment.url) >= 0) {
         request = request.clone({
           setHeaders: {
