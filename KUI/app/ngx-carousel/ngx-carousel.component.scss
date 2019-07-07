@@ -1,0 +1,111 @@
+/*
+    Please don't use Bootstrap! Angular Material
+    and Flexbox are so much better! Once you try
+    it, you won't go back.
+
+    Angular Material documentation:     https://material.angular.io/
+    Excellent, quick Material tutorials:     https://youtu.be/bV8emCBmFHk
+    Flexbox tutorial:     https://www.w3schools.com/css/css3_flexbox.asp
+    20-minute SCSS tutorial:     https://youtu.be/Zz6eOVaaelI
+    Scaling apps in Angular:     https://youtu.be/Bhd2ayEE9mg
+*/
+
+/* 
+    @import src/variables.scss relative to this file
+    in order to use the global SCSS variables within 
+    this file. (Don't include the underscore in 
+    _variables.scss when importing. If you want to 
+    know why: http://alistapart.com/article/getting-started-with-sass/)
+
+    Open the _variables.scss file in a new tab so you 
+    can use and make SCSS variables and make everyone's 
+    lives easier.
+*/
+@import '../../variables';
+
+$transition_time:.2s;
+
+ngx-hm-carousel {
+    max-height: 85%;
+}
+
+.carousel {
+  color:white;
+  max-width: 100%;
+  .content {
+    display: flex;
+
+    .item {
+      width: 100%;
+      display: block;
+      height: 100%;
+      // fade
+      opacity: 0;
+
+      // using delay to prevent left change show error
+      &.fade_animation {
+        transition: opacity 0.295s linear $transition_time;
+      }
+
+      &.fade_animation_0 {
+        transition: opacity 0.295s linear;
+      }
+
+      &.visible {
+        opacity: 1;
+      }
+
+      &:last-child,
+      &:first-child
+      {
+        opacity: 0;
+      }
+
+      &.visible_important {
+        opacity: 1;
+      }
+
+      .img {
+        width: 100%;
+        display: block;
+        background-size: cover;
+        background-position: center;
+        height: 0;
+        padding-bottom: 50%;
+      }
+    }
+
+
+  }
+
+  .ball {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: black;
+    border: 2px solid;
+    opacity: 0.5;
+
+    &.visible {
+      opacity: 1;
+    }
+  }
+
+  .progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: #ff5252;
+  }
+
+  .click-area {
+    width: 50px;
+    text-align: center;
+
+    i {
+      font-size: 3em;
+    }
+  }
+}

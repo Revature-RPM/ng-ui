@@ -1,0 +1,93 @@
+/*
+    Please don't use Bootstrap! Angular Material
+    and Flexbox are so much better! Once you try
+    it, you won't go back.
+
+    Angular Material documentation:     https://material.angular.io/
+    Excellent, quick Material tutorials:     https://youtu.be/bV8emCBmFHk
+    Flexbox tutorial:     https://www.w3schools.com/css/css3_flexbox.asp
+    20-minute SCSS tutorial:     https://youtu.be/Zz6eOVaaelI
+    Scaling apps in Angular:     https://youtu.be/Bhd2ayEE9mg
+*/
+
+/* 
+    @import src/variables.scss relative to this file
+    in order to use the global SCSS variables within 
+    this file. (Don't include the underscore in 
+    _variables.scss when importing. If you want to 
+    know why: http://alistapart.com/article/getting-started-with-sass/)
+
+    Open the _variables.scss file in a new tab so you 
+    can use and make SCSS variables and make everyone's 
+    lives easier.
+*/
+@import '../../variables';
+
+#title {
+    grid-area: title;
+}
+
+#title-name {
+    grid-area: title-name;
+}
+
+#trainer {
+    grid-area: trainer;
+}
+
+#tname {
+    grid-area: tname;
+}
+
+#batch {
+    grid-area: batch;
+}
+
+#bname {
+    grid-area: bname;
+}
+
+#developers {
+    grid-area: developers;
+}
+
+#dnames {
+    grid-area: dnames;
+}
+
+#project-list {
+    display: grid;
+    grid-template: 
+        'title title-name'
+        'trainer tname'
+        'batch bname'
+        'developers dnames';
+    grid-template-columns: 33% 66%;
+    grid-gap: 0;
+    margin: auto;
+    width: 100%;
+}
+
+
+// table {
+//     width: fit-content;
+//    
+//     padding: $section-padding;
+// }
+// tr * {
+//     font-size: 16px;
+// }
+// td {
+//     text-align: left;
+// }
+// th {
+//     text-align: right;
+//     padding-right: 15px;
+//     min-width: 30%;
+//     width: fit-content;
+//     max-width: 50%;
+//     vertical-align: top;
+// }
+// thead {
+//     width: 100%;
+// }

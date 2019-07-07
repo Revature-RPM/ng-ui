@@ -1,0 +1,71 @@
+/*
+    This file defines all of the SCSS variables that
+    are used throughout the application's SCSS files.
+*/
+
+/* 
++==================================================+
+|    This is where the theme colors are declared.  |
+|    These colors are Revature brand colors and    |
+|    should be used for brand consistency.         |
++==================================================+
+*/
+$rev-orange-main: #f26925; 
+    $rev-orange-light: #f37638; 
+    $rev-orange-dark: #dc6022;
+$rev-gray-main: #474c55; 
+    $rev-gray-light: #575c64; 
+    $rev-gray-dark: #41464e;
+$rev-blue-main: #74a3bf; 
+    $rev-blue-light: #80abc4; 
+    $rev-blue-dark: #6a95ae;
+$rev-white: #fff;
+$rev-light-gray: #9b9c9f;
+
+
+// This is where variables are assigned to specific components.
+
+// Universal variables (used in src/styles.scss)
+$default-font-color: $rev-gray-main;
+$bg-color: $rev-white;
+
+// Navbar colors
+$navbar-bg-color: $rev-orange-main;
+$navbar-font-color: $rev-white;
+
+// Sidenav colors (used in src/app/sidenav/sidenav.component.scss)
+$sidenav-bg: $rev-orange-main;
+$sidenav-font-color: $rev-white;
+$menu-hamburger-bg: $rev-blue-main;
+
+
+/*
++=============================================+
+|    This is where the margins and padding    |
+|    for various components are set.          |
++=============================================+
+*/
+
+/* 
+    distance between the bottom of the toolbar and the 
+    top of the page view
+*/ 
+$top-margin: 2%;
+
+// Sidenav variables
+$sidenav-padding: 0;
+$sidenav-width: 250px;
+$sidenav-logo-height: 50px;
+$sidenav-links-margin: 5px auto;
+$sidenav-logo-margin: 5px;
+$view-projects-button-width: 200px;
+
+// Login Register Page variables
+$login-register-page-margin: $top-margin 15%;
+$login-register-page-height: 80vh;
+$login-register-logo-height: 100px;
+$login-register-logo-bottom-margin: 5px;
+
+// Project View Page variables
+$section-padding: 10px;
+$all-projects-breakpoint: 900px;

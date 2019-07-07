@@ -1,0 +1,48 @@
+<div id="nav-menu" class="flex-container">
+    <div id="nav-menu-logo">
+        <a href="#"><img id="nav-logo" src="../../assets/rpm-logo/RPM-Logo-Two-Tone.png"></a>
+    </div>
+    <div *ngIf="loggedIn" id="logged-in-links" class="nav-menu-links">
+        <a href="#" mat-button>All Users</a>
+
+        <!-- The "View Projects" submenu -->
+        <mat-expansion-panel id="view-projects">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    View Projects
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <a href="#" mat-button>Your Projects</a>
+            <a href="#" mat-button>All Projects</a>
+        </mat-expansion-panel>
+        
+        <!-- 
+            <button mat-button [matMenuTriggerFor]="viewProjects">View Projects</button> 
+            <mat-menu #viewProjects="matMenu">
+                <span mat-menu-item><a href="#">Your Projects</a></span>
+                <span mat-menu-item><a href="#">All Projects</a></span>
+            </mat-menu> 
+        -->
+        
+        <!-- <link id="toggle-theme" rel="stylesheet" href="" -->
+        <a href="#" mat-button>Profile</a>
+        <a href="#" mat-button (click)="logout()">Logout</a>
+    </div>
+    <div *ngIf="!loggedIn" id="logged-out-links" class="nav-menu-links">
+        <a href="#" mat-button>Register</a>
+        <a href="#" mat-button (click)="login()">Login</a>
+    </div>
+</div>
+
+
+
+
+
+<!-- 
+<mat-menu #navMenu="matMenu">
+    <button mat-menu-item>Front End</button>
+    <button mat-menu-item>Back End</button>
+</mat-menu>
+
+<button mat-flat-button [matMenuTriggerFor]="navMenu">Menu</button> 
+-->

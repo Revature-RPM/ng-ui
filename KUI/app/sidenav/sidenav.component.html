@@ -1,0 +1,46 @@
+<!-- <mat-sidenav-container>
+    <mat-sidenav #sidenav (opened)="log('Opened')" (closed)="log('Closed')" mode="over">
+      <app-nav-menu></app-nav-menu>
+    </mat-sidenav>
+    <mat-sidenav-content class="flex-container">
+      <app-navbar></app-navbar>
+      <button id="menu-hamburger" (click)="sidenav.toggle()" mat-fab><mat-icon class="material-icons-round">menu</mat-icon></button>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container> -->
+
+  <mat-sidenav-container>
+
+      <mat-sidenav opened=false mode="push" #sidenav class="flex-container">
+      <app-nav-menu></app-nav-menu>
+      </mat-sidenav>
+
+      <mat-sidenav-content>
+
+        <mat-toolbar color="primary" class="flex-container">
+          
+          <button id="hamburger-button" type="button" aria-label="Toggle sidenav" mat-button (click)="sidenav.toggle()">
+            <mat-icon id="hamburger">menu</mat-icon>
+          </button>
+
+          <div id="right-buttons" class="flex-container">
+            <div id="settings-notifications" class="flex-container">
+              <mat-icon>settings</mat-icon>
+              <!-- 
+                Future sprints: It would be really cool 
+                to swap the notifications bell for an 
+                empty bell, ringing bell, crossed-out
+                bell, etc. based on the circumstances. 
+                https://material.io/tools/icons/?search=notification&style=baseline
+              -->
+              <mat-icon>notifications</mat-icon>
+            </div>
+            <img class="user-avatar" src="../../assets/images/chinchilla2.jpg">
+          </div>
+
+        </mat-toolbar>
+
+       <router-outlet></router-outlet>
+
+      </mat-sidenav-content>
+    </mat-sidenav-container>
