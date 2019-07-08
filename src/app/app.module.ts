@@ -21,6 +21,8 @@ import {NgxHmCarouselModule} from 'ngx-hm-carousel';
 import {NgxCarouselComponent} from './components/pages/project/ngx-carousel/ngx-carousel.component';
 import {ProjectInfoComponent} from './components/pages/project/project-info/project-info.component';
 import {EditProjectComponent} from './components/pages/project/edit-project/edit-project.component';
+import {PageNotFoundComponent} from './components/pages/page-not-found/page-not-found.component';
+
 
 @NgModule({
   declarations: [
@@ -36,7 +38,8 @@ import {EditProjectComponent} from './components/pages/project/edit-project/edit
     ProjectGridPageComponent,
     NgxCarouselComponent,
     ProjectInfoComponent,
-    EditProjectComponent
+    EditProjectComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
