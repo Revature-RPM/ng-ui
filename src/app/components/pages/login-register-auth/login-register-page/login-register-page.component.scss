@@ -20,4 +20,38 @@
     can use and make SCSS variables and make everyone's
     lives easier.
 */
-@import '../variables';
+@import '../../../../../variables';
+
+mat-card {
+    margin: 0;
+    height: 100vh;
+    min-height: -webkit-fit-content;
+    min-height: -moz-fit-content;
+    min-height: fit-content;
+}
+
+#logo-title-container {
+    margin: 10px auto;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+}
+
+.flex-container {
+}
+
+#login-register-logo {
+    height: $login-register-logo-height;
+    max-width: initial;
+    margin-bottom: $login-register-logo-bottom-margin;
+}
+
+@media screen and (min-width: 600px) {
+    mat-card {
+        margin: $login-register-page-margin;
+        height: -webkit-fit-content;
+        height: -moz-fit-content;
+        height: fit-content;
+        min-height: $login-register-page-height;
+    }
+}

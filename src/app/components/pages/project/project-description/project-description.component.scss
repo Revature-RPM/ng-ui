@@ -20,4 +20,8 @@
     can use and make SCSS variables and make everyone's
     lives easier.
 */
-@import '../variables';
+@import '../../../../../variables';
+
+#project-description {
+    padding: $section-padding;
+}

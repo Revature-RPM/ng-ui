@@ -20,4 +20,31 @@
     can use and make SCSS variables and make everyone's
     lives easier.
 */
-@import '../variables';
+@import '../../../../../variables';
+
+
+
+
+
+button {
+    width: 100%;
+}
+
+#project-list-tabs {
+    display: none;
+}
+
+@media screen and (min-width: $all-projects-breakpoint) {
+    #project-list-tabs {
+        display: flex;
+        height: 100%;
+        width: 100%;
+        justify-content: start;
+        flex-direction: column;
+        overflow: auto;
+    }
+
+    #project-list-dropdown {
+        display: none;
+    }
+}

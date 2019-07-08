@@ -1,0 +1,91 @@
+/*
+    Please don't use Bootstrap! Angular Material
+    and Flexbox are so much better! Once you try
+    it, you won't go back.
+
+    Angular Material documentation:     https://material.angular.io/
+    Excellent, quick Material tutorials:     https://youtu.be/bV8emCBmFHk
+    Flexbox tutorial:     https://www.w3schools.com/css/css3_flexbox.asp
+    20-minute SCSS tutorial:     https://youtu.be/Zz6eOVaaelI
+    Scaling apps in Angular:     https://youtu.be/Bhd2ayEE9mg
+*/
+/*
+    @import src/variables.scss relative to this file
+    in order to use the global SCSS variables within
+    this file. (Don't include the underscore in
+    _variables.scss when importing. If you want to
+    know why: http://alistapart.com/article/getting-started-with-sass/)
+
+    Open the _variables.scss file in a new tab so you
+    can use and make SCSS variables and make everyone's
+    lives easier.
+*/
+@import '../../../../variables';
+
+#nav-menu {
+    padding: $sidenav-padding;
+    width: $sidenav-width;
+    -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-flow: column;
+            flex-flow: column;
+    width: 100%;
+    height: 100%;
+}
+
+a.mat-button, a.mat-flat-button, a.mat-raised-button, a.mat-stroked-button, a.mat-button-wrapper, {
+    margin: $sidenav-links-margin;
+    width: 100%;
+}
+
+.flex-container {
+    -ms-flex-line-pack: center;
+        align-content: center;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    width: 100%;
+    height: 100%;
+}
+
+mat-expansion-panel {
+    padding: 0;
+    -webkit-box-shadow: 0 0 0 rgba(0,0,0,0) !important;
+            box-shadow: 0 0 0 rgba(0,0,0,0) !important;
+    width: $view-projects-button-width;
+    margin: auto;
+}
+
+#view-projects.mat-expanded {
+    border-bottom: 2px solid $rev-orange-main;
+    border-radius: 0;
+}
+
+#nav-menu div {
+    text-align: center;
+}
+
+#nav-logo {
+    height: $sidenav-logo-height;
+    width: auto;
+    opacity: 1.0;
+    filter: alpha(opacity=100);
+    margin: $sidenav-logo-margin;
+}
+
+#nav-logo:hover {
+    opacity: 0.6;
+    filter: alpha(opacity=60);
+}
+
+a {
+    -ms-flex-item-align: center;
+        align-self: center;
+}
+
+
+@media screen and (min-width: 600px) {
+
+}

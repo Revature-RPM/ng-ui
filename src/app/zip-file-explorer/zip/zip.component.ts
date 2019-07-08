@@ -1,12 +1,11 @@
-import { HttpClient } from '@angular/common/http';
-import { Location } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import {HttpClient} from '@angular/common/http';
+import {Location} from '@angular/common';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 import * as JSZip from 'jszip';
-import { NgMetaService } from 'ngmeta';
+import {NgMetaService} from 'ngmeta';
 
-import { ProjectService } from 'src/app/core/services/project.service';
-import { Title } from '@angular/platform-browser';
+import {ProjectService} from 'src/app/services/project.service';
 
 @Component({
   selector: 'app-zip-component',

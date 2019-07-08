@@ -1,0 +1,23 @@
+<mat-card tabindex="0">
+    <mat-card-title>
+        <div id="logo-title-container">
+          <img id="login-register-logo" src="../../../../../assets/rpm-logo/RPM-Logo-Two-Tone.png">
+            <h2>Revature Project Manager</h2>
+        </div>
+    </mat-card-title>
+    <mat-card-content>
+        <mat-tab-group #loginTabs mat-stretch-tabs>
+            <mat-tab label="Login" id="login-tab">
+                <app-login></app-login>
+            </mat-tab>
+            <mat-tab label="Register" id="register-tab">
+                <app-register></app-register>
+            </mat-tab>
+        </mat-tab-group>
+    </mat-card-content>
+</mat-card>
+
+<!--
+    You can use the code below to call functions when the tab is changed
+    <mat-tab-group #loginTabs (selectedTabChange)="logChange(loginTabs.selectedIndex)">
+-->

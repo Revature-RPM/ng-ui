@@ -1,45 +1,53 @@
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { NgModule } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ServiceWorkerModule } from '@angular/service-worker';
-import { MatJumbotronModule } from '@angular-material-extensions/jumbotron';
-import { NgMetaModule } from 'ngmeta';
-
-import { AppRoutingModule } from './app-routing.module';
-import { ProjectModule } from './project/project.module';
-import { AppComponent } from './app.component';
-import { CoreModule } from './core/core.module';
-import { environment } from 'src/environments/environment';
-import { TokenInterceptor} from 'src/app/core/services/jwtInterceptor.interceptor';
 import 'hammerjs';
-import { AuthenticationModule } from 'src/app/authentication/authentication.module';
 
-export function tokenGetter() {
-  return window.localStorage.getItem('jwt');
-}
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {FormsModule} from '@angular/forms';
+
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
+import {SidenavComponent} from './components/HUD/sidenav/sidenav.component';
+import {MaterialModule} from './misc-modules/material/material.module';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {NavbarComponent} from './components/HUD/navbar/navbar.component';
+import {LoginComponent} from './components/pages/login-register-auth/login/login.component';
+import {NavMenuComponent} from './components/HUD/nav-menu/nav-menu.component';
+import {RegisterComponent} from './components/pages/login-register-auth/register/register.component';
+import {LoginRegisterPageComponent} from './components/pages/login-register-auth/login-register-page/login-register-page.component';
+import {ProjectDescriptionComponent} from './components/pages/project/project-description/project-description.component';
+import {ProjectListComponent} from './components/pages/project/project-list/project-list.component';
+import {ProjectGridPageComponent} from './components/pages/project/project-grid-page/project-grid-page.component';
+import {NgxHmCarouselModule} from 'ngx-hm-carousel';
+import {NgxCarouselComponent} from './components/pages/project/ngx-carousel/ngx-carousel.component';
+import {ProjectInfoComponent} from './components/pages/project/project-info/project-info.component';
+import {EditProjectComponent} from './components/pages/project/edit-project/edit-project.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SidenavComponent,
+    NavbarComponent,
+    LoginComponent,
+    NavMenuComponent,
+    RegisterComponent,
+    LoginRegisterPageComponent,
+    ProjectDescriptionComponent,
+    ProjectListComponent,
+    ProjectGridPageComponent,
+    NgxCarouselComponent,
+    ProjectInfoComponent,
+    EditProjectComponent
   ],
   imports: [
-    AppRoutingModule,
+    BrowserModule,
     BrowserAnimationsModule,
-    CoreModule.forRoot(),
-    HttpClientModule,
-    ProjectModule,
-    MatJumbotronModule.forRoot(),
-    NgMetaModule.forRoot(),
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
-    AuthenticationModule
+    AppRoutingModule,
+    MaterialModule,
+    FormsModule,
+    NgxHmCarouselModule
   ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: TokenInterceptor ,
-      multi: true
-    }
-  ],
+  providers: [],
+  exports: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

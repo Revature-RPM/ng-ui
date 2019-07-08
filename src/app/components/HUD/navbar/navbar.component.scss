@@ -20,4 +20,33 @@
     can use and make SCSS variables and make everyone's
     lives easier.
 */
-@import '../variables';
+@import '../../../../variables';
+
+mat-toolbar {
+    display: none;
+    background-color: $navbar-bg-color;
+    color: $navbar-font-color;
+}
+
+mat-menu a{
+    color: $default-font-color;
+}
+
+.flex-container {
+    height: 100%;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -ms-flex-line-pack: center;
+        align-content: center;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+}
+
+@media screen and (min-width: 600px) {
+    mat-toolbar {
+        display: block;
+    }
+}

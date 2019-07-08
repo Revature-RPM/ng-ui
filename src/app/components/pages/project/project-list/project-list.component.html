@@ -1,0 +1,13 @@
+<div id="project-list-tabs" class="flex-container">
+  <button *ngFor="let project of userProjects" mat-flat-button>{{project.name}}</button>
+</div>
+<div id="project-list-dropdown">
+    <mat-accordion>
+        <mat-expansion-panel id="view-project-list">
+            <mat-expansion-panel-header>
+                <mat-panel-title>Select a Project</mat-panel-title>
+            </mat-expansion-panel-header>
+          <button (click)="swapProject(project)" *ngFor="let project of userProjects" mat-flat-button>{{project.name}}</button>
+        </mat-expansion-panel>
+    </mat-accordion>
+</div>
