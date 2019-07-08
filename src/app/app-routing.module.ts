@@ -7,7 +7,7 @@ import {ProjectGridPageComponent} from './components/pages/project/project-grid-
 const routes: Routes = [
   // {path: '', component: LoginRegisterPageComponent},
   {path: '', component: ProjectGridPageComponent},
-  {path: 'login', component: LoginRegisterPageComponent},
+  {path: 'auth/login', component: LoginRegisterPageComponent},
   {path: 'projects', component: ProjectGridPageComponent},
 
 

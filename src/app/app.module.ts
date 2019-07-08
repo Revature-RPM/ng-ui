@@ -3,7 +3,6 @@ import 'hammerjs';
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
-
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {SidenavComponent} from './components/HUD/sidenav/sidenav.component';
@@ -23,7 +22,6 @@ import {ProjectInfoComponent} from './components/pages/project/project-info/proj
 import {EditProjectComponent} from './components/pages/project/edit-project/edit-project.component';
 import {PageNotFoundComponent} from './components/pages/page-not-found/page-not-found.component';
 import {HttpClientModule} from '@angular/common/http';
-
 
 @NgModule({
   declarations: [
@@ -55,4 +53,5 @@ import {HttpClientModule} from '@angular/common/http';
   exports: [],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }
