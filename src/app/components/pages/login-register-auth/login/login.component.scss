@@ -25,3 +25,60 @@
 body {
     background-color: $rev-orange-main;
 }
+
+#login-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+    min-height: 100%;
+
+    mat-card {
+        margin: 0 auto;
+       
+        mat-card-header {
+            justify-content: center;
+
+            mat-card-title {
+                font-size: 300%;
+            }
+        }
+
+        mat-card-content {
+            justify-content: center;
+
+
+            button {
+                width: 100%;
+                font-size: 120%;
+                margin-top: 23%;
+            }
+
+            a {
+                margin-top: 2%;
+                width: 100%;
+                font-size: 120%;
+            }
+
+            a:hover {
+                text-decoration: none;
+            }
+        }
+    }
+}
+
+#field {
+}
+
+#registerSpinner {
+}
+
+#o {
+
+}
+
+#logUnsuccessful {
+
+}

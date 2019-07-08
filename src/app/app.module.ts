@@ -22,6 +22,8 @@ import {ProjectInfoComponent} from './components/pages/project/project-info/proj
 import {EditProjectComponent} from './components/pages/project/edit-project/edit-project.component';
 import {PageNotFoundComponent} from './components/pages/page-not-found/page-not-found.component';
 import {HttpClientModule} from '@angular/common/http';
+import { NgMetaModule, NgMetaService } from 'ngmeta';
+import { MatInputModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,9 @@ import {HttpClientModule} from '@angular/common/http';
     MaterialModule,
     FormsModule,
     NgxHmCarouselModule,
-    HttpClientModule
+    HttpClientModule,
+    NgMetaModule,
+    MatInputModule
   ],
   providers: [],
   exports: [],
