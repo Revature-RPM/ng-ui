@@ -43,6 +43,7 @@ export class ProjectSubmissionComponent implements OnInit {
   screenshotPicList = [];
   techStackList = ['Java/J2EE', 'PEGA', 'JavaScript MVC', '.Net', 'React.js', 'Java', 'iOS9'];
   invalidLink: boolean;
+  submitting = false;
 
   constructor(
     private router: Router,
@@ -210,6 +211,8 @@ export class ProjectSubmissionComponent implements OnInit {
    * @author Justin Kerr, Rodel Flores (190422-Java-USF)
    */
   submitForm() {
+    this.submitting = true;
+
     let formData = new FormData();
     formData.append('name', this.projectToUpload.name);
     formData.append('batch', this.projectToUpload.batch);
@@ -239,9 +242,11 @@ export class ProjectSubmissionComponent implements OnInit {
     this.projectService.createProject(formData).subscribe(
       project => {
         this.snackbar.openSnackBar('Success!!', 'Dismiss');
+        this.submitting = false;
         this.router.navigate(['/home']);
       },
       error => {
+        this.submitting = false;
         if (error.status === 400) {
           this.snackbar.openSnackBar('Bad Request - Please try again.', 'Dismiss');
         }
