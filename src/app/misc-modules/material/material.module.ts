@@ -9,6 +9,8 @@ import {
   MatFormFieldModule,
   MatIconModule,
   MatMenuModule,
+  MatOptionModule,
+  MatSelectModule,
   MatSidenavModule,
   MatSlideToggleModule,
   MatTabsModule,
@@ -27,7 +29,9 @@ const materials = [
   MatFormFieldModule,
   MatBadgeModule,
   MatCheckboxModule,
-  MatSlideToggleModule
+  MatSlideToggleModule,
+  MatOptionModule,
+  MatSelectModule
 ];
 
 @NgModule({
