@@ -1,13 +1,13 @@
 <div id="login-container">
     <form #formcontrol="ngForm" > 
         <mat-form-field>
-            <input matInput type="text" class="form-control" placeholder="Username" name="username" [(ngModel)]="user.username"
+            <input id="username-input" matInput type="text" class="form-control" placeholder="Username" name="username" [(ngModel)]="user.username"
                 required (keydown.enter)="loginE()" (keydown)="checkE($event)" autofocus>
         </mat-form-field>
         <div id='field' *ngIf="usernameO">Username must be filled out</div>
         <br />
         <mat-form-field>
-            <input matInput type="password" class="form-control" placeholder="Password" name="password" [(ngModel)]="user.password"
+            <input id="password-input" matInput type="password" class="form-control" placeholder="Password" name="password" [(ngModel)]="user.password"
                 required (keydown.enter)="loginE()" (keydown)="checkEP($event)">
         </mat-form-field>
         <div id='field' *ngIf="passwordO">Password must be filled out</div>

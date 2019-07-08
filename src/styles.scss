@@ -57,8 +57,6 @@ h1, h2, h3, h4, h5, h6 {
   height: 100%;
 }
 
-$transition_time: .2s;
-
 .transition {
   transition: all $transition_time ease-in-out;
 }
