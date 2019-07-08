@@ -16,11 +16,12 @@
             <br />
             <mat-form-field>
               <input matInput type="email" placeholder="Revature Email" formControlName="email" required [(ngModel)]="user.email"
-                [pattern]="emailPattern" (focusout)="checkIfEmailIsInUse()" (keyup)="checkIfEmailIsInUseKey()">
+                [pattern]="emailPattern" (focusout)="checkIfEmailIsInUse()">
             </mat-form-field>
-            <div id="registerSpinner" *ngIf='checkingIfEmailIsInUse'><mat-spinner [diameter]="30"></mat-spinner><span>Checking email availability</span></div>
-            <div id="availableEmail" *ngIf='emailIsAvailable'>Email '{{emailToCheck}}' is available!</div>
-            <div id="emailNotAvailable" *ngIf='emailIsNotAvailable'>Email '{{emailToCheck}}' is already in use</div>
+            <div *ngIf="emailCheck">
+              <div id="availableEmail" *ngIf='emailIsAvailable'>Email is available!</div>
+              <div id="emailNotAvailable" *ngIf='!emailIsAvailable'>Email is already in use</div>
+            </div>
             <div>
               <button mat-button matStepperNext type="submit" ng-disabled=!vm.form.$valid>Next</button>
               <a mat-button routerLink="/auth/login">Return to Login</a>
@@ -34,11 +35,12 @@
               <input matInput placeholder="Username" formControlName="username"  minlength="8" required 
                 [pattern]="usernamePattern"
                 matTooltip="No underscores at beginning or end of username. Must be at least 8 characters"
-                [(ngModel)]="user.username" (focusout)="checkIfUsernameIsAvailable()" (keyup)="checkIfUsernameIsAvailableKey()">
+                [(ngModel)]="user.username" (focusout)="checkIfUsernameIsAvailable()">
             </mat-form-field>
-            <div id="registerSpinner" *ngIf='checkingIfUsernameIsAvailable'><mat-spinner [diameter]="30"></mat-spinner><span>Checking Username</span></div>
-            <div id="availableEmail" *ngIf='usernameIsAvailable'>Username '{{usernameToCheck}}' is available!</div>
-            <div id="emailNotAvailable" *ngIf='usernameIsNotAvailable'>Username '{{usernameToCheck}}' is already in use</div>
+            <div *ngIf="usernameCheck">
+              <div id="availableEmail" *ngIf='usernameIsAvailable'>Username is available!</div>
+              <div id="emailNotAvailable" *ngIf='!usernameIsAvailable'>Username is already in use</div>
+            </div>
             <br />
             <mat-form-field>
               <input matInput type="password" placeholder="Password" formControlName="password" id="inputPassword" required minlength="8" [(ngModel)]="user.password">
