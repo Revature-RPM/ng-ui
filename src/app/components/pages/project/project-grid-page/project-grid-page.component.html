@@ -1,17 +1,19 @@
 <mat-card>
-    <div id="view-projects-grid">
-        <nav id="projects-tabs" class="flex-container">
-            <input matInput id="search-projects" type="search" placeholder="Search projects">
-            <app-project-list></app-project-list>
-        </nav>
-        <div id="project-info">
-            <app-project-info></app-project-info>
+    <mat-card-content>
+        <div id="view-projects-grid">
+            <nav id="projects-tabs" class="flex-container">
+                <input matInput id="search-projects" type="search" placeholder="Search projects">
+                <app-project-list></app-project-list>
+            </nav>
+            <div id="project-info">
+                <app-project-info></app-project-info>
+            </div>
+            <div id="carousel-window">
+                <app-ngx-carousel></app-ngx-carousel>
+            </div>
+            <div id="project-description">
+                <app-project-description></app-project-description>
+            </div>
         </div>
-        <div id="carousel-window">
-            <app-ngx-carousel></app-ngx-carousel>
-        </div>
-        <div id="project-description">
-            <app-project-description></app-project-description>
-        </div>
-    </div>
+    </mat-card-content>
 </mat-card>

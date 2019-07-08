@@ -1,5 +1,5 @@
 <div id="login-container">
-    <form #formcontrol="ngForm" > 
+    <form #formcontrol="ngForm"> 
         <mat-form-field>
             <input id="username-input" matInput type="text" class="form-control" placeholder="Username" name="username" [(ngModel)]="user.username"
                 required (keydown.enter)="loginE()" (keydown)="checkE($event)" autofocus>
@@ -10,15 +10,17 @@
             <input id="password-input" matInput type="password" class="form-control" placeholder="Password" name="password" [(ngModel)]="user.password"
                 required (keydown.enter)="loginE()" (keydown)="checkEP($event)">
         </mat-form-field>
-        <div id='field' *ngIf="passwordO">Password must be filled out</div>
-        <mat-error *ngIf="!formcontrol.form.valid">Please enter all fields</mat-error>
-        <div id="registerSpinner" *ngIf='authenticating'><mat-spinner [diameter]="30"></mat-spinner><span>Authenticating</span></div>
-        <div id='o' *ngIf='loggedIn'><mat-icon>check</mat-icon><span>Logging In</span></div>
+        <div id="message-fields">
+            <div id='field' *ngIf="passwordO">Password must be filled out</div>
+            <div id="please-fill-all" *ngIf="!formcontrol.form.valid">Please enter all fields</div>
+            <div id="register-spinner" *ngIf='authenticating'><mat-spinner [diameter]="20"></mat-spinner><div>Authenticating</div></div>
+            <div id='o' *ngIf='loggedIn'><mat-icon>check</mat-icon><span>Logging In</span></div>
 
-        <div id="logUnsuccessful" *ngIf='!logSuccess'>Invalid Username/Password</div>
-    
+            <div id="logUnsuccessful" *ngIf='!logSuccess'>Invalid Username/Password</div>
+        </div>
+  
         <button color="accent" mat-flat-button type="button" [disabled]="!formcontrol.form.valid" (click)="login()">Login</button>
-        <a mat-button routerLink="/auth/register">Register</a>
+        <button mat-button routerLink="/auth/register">Register</button>
         
     </form>
   </div>

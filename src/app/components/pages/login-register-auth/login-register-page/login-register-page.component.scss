@@ -24,10 +24,13 @@
 
 mat-card {
     margin: 0;
-    height: 100vh;
-    min-height: -webkit-fit-content;
-    min-height: -moz-fit-content;
-    min-height: fit-content;
+    min-height: 600px; 
+    max-height: 600px;
+}
+
+mat-card-content {
+    height: 50vh;
+    margin: auto;
 }
 
 #logo-title-container {
@@ -37,21 +40,17 @@ mat-card {
     width: fit-content;
 }
 
-.flex-container {
-}
-
 #login-register-logo {
     height: $login-register-logo-height;
     max-width: initial;
     margin-bottom: $login-register-logo-bottom-margin;
 }
 
+
 @media screen and (min-width: 600px) {
     mat-card {
         margin: $login-register-page-margin;
-        height: -webkit-fit-content;
-        height: -moz-fit-content;
-        height: fit-content;
-        min-height: $login-register-page-height;
+        height: $login-register-page-height;
+        min-height: 550px;
     }
 }

@@ -37,11 +37,46 @@
 #login-container {
     display: flex;
     flex-direction: column;
-    margin: auto;
+    width: fit-content;
+    margin: 20px auto;
+    align-content: center;
+    height: fit-content;
+}
+
+form {
+    width: 300px;
+    flex-shrink: 1;
+    * {
+        width: 300px;
+        flex-shrink: 1;
+    }
+}
+
+
+#message-fields {
+    height: 50px;
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+#message-fields * {
+    font-size: 18px;
+    text-align: center;
+}
+
+#register-spinner {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
     align-content: center;
 }
 
-#login-container * {
-
+mat-spinner {
+    margin-right: 10px;
 }
 
+button {
+    width: 100%;
+    text-align: center;
+}
