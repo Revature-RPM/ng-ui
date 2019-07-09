@@ -8,7 +8,7 @@ import {Component} from '@angular/core';
 export class NgxCarouselComponent {
 
   index = 0;
-  speed = 2000;
+  speed = 3500;
   infinite = true;
   direction = 'right';
   directionToggle = true;

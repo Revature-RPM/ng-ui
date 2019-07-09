@@ -35,7 +35,7 @@ export class ProjectListComponent implements OnInit, OnDestroy {
   AllProjects$ = this.projectService.AllProjects.asObservable();
   retrievingProjects = true;
 
-  constructor(private router: Router, private viewProjectsService: ProjectService, private userService: UserService, private projectService: ProjectService) {
+  constructor(private router: Router, private userService: UserService, private projectService: ProjectService) {
   }
 
   ngOnInit() {
@@ -45,7 +45,7 @@ export class ProjectListComponent implements OnInit, OnDestroy {
     }
 
     this.currentUser = this.userService.getUser();
-    this.subscription = this.viewProjectsService.getAllProjects()
+    this.subscription = this.projectService.getAllProjects()
       .subscribe(
         (projectResponse) => {
           this.retrievingProjects = false;
@@ -64,11 +64,11 @@ export class ProjectListComponent implements OnInit, OnDestroy {
    * @author Ian Baker | Justin Kerr 190422-USF
    */
 
-  updateProjects(mySearch) {
+  updateProjects(projFilter) {
     const trainerFullName = this.currentUser.firstName.trim() + ' ' + this.currentUser.lastName.trim();
     this.AllProjects$.subscribe(
       allprojects => {
-        if (mySearch = 'user') {
+        if (projFilter = 'user') {
           for (let i = 0; i < allprojects.length; i++) {
             if (allprojects[i].trainer === trainerFullName) {
               this.userProjects.push(allprojects[i]);
@@ -81,8 +81,18 @@ export class ProjectListComponent implements OnInit, OnDestroy {
         this.dataSource = new MatTableDataSource(this.userProjects);
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
+        this.updateCurrentProject();
       }
     );
+  }
+
+  updateCurrentProject() {
+    const trainerFullName = this.currentUser.firstName.trim() + ' ' + this.currentUser.lastName.trim();
+    this.projectService.CurrentProject$.asObservable().subscribe(
+      proj => {
+        this.projectService.CurrentProject$.next(proj);
+        this.projectService.CurrentProject = proj;
+      });
   }
 
   /**
@@ -147,7 +157,7 @@ export class ProjectListComponent implements OnInit, OnDestroy {
   }
 
   codebase(project) {
-    this.viewProjectsService.CurrentProject = project;
+    this.projectService.CurrentProject$ = project;
     this.router.navigate(['/codebase']);
   }
 
@@ -157,7 +167,7 @@ export class ProjectListComponent implements OnInit, OnDestroy {
 
 
   swapProject(proj) {
+    this.projectService.CurrentProject$.next(proj);
     this.projectService.CurrentProject = proj;
-    console.log('Switching project to ' + proj.name);
   }
 }

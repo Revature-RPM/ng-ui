@@ -1,10 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { first } from 'rxjs/operators';
-import { User } from 'src/app/models/User';
-import { UserService } from 'src/app/services/user.service';
-import { NgMetaService } from 'ngmeta/dist/ngmeta.service';
-
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {first} from 'rxjs/operators';
+import {User} from 'src/app/models/User';
+import {UserService} from 'src/app/services/user.service';
+import {NgMetaService} from 'ngmeta/dist/ngmeta.service';
 
 
 /**
@@ -31,9 +30,9 @@ export class LoginComponent implements OnInit {
   constructor(private userService: UserService, private router: Router, private ngmeta: NgMetaService) { }
 
   ngOnInit() {
-    //added '\home' to navigate so that if a user is already logged in, landing page routes to home page
+    //added '/projects' to navigate so that if a user is already logged in, landing page routes to home page
     if (this.userService.getUser() !== null) {
-      this.router.navigate(['\home']);
+      this.router.navigate(['/projects']);
     } else {
       this.ngmeta.setHead({ title: 'Login | RPM' });
     }
@@ -45,17 +44,17 @@ export class LoginComponent implements OnInit {
       if (user) {
         this.authenticating = false;
         this.loggedIn = true;
-        this.router.navigate(['/home']);
+        this.router.navigate(['/projects']);
       } else {
         this.authenticating = false;
 
         this.logSuccess = false;
-       
+
       }
-    }, (error) => { 
+    }, (error) => {
       this.authenticating = false;
       this.logSuccess = false;
-     
+
     });
 
   }

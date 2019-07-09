@@ -14,10 +14,12 @@ const HTTP_OPTIONS = {
 @Injectable({
   providedIn: 'root'
 })
+
 export class ProjectService {
   AllProjects: BehaviorSubject<Project[]> = new BehaviorSubject<Project[]>(null);
-  CurrentProject: Project;
+  CurrentProject$: BehaviorSubject<Project> = new BehaviorSubject<Project>(null);
   projFilter: string;
+  CurrentProject: Project;
 
   constructor(private httpClient: HttpClient) { }
 
@@ -38,10 +40,6 @@ export class ProjectService {
    */
   createProject(project: FormData): Observable<Project> {
     return this.httpClient.post(environment.url + '/project/', project);
-  }
-
-  setCurrentProject(project: Project) {
-    this.CurrentProject = project;
   }
 
   deleteProjectById(id): Observable<any> {
