@@ -10,6 +10,7 @@ const routes: Routes = [
   {path: '', component: ProjectGridPageComponent},
   {path: 'auth/login', component: LoginRegisterPageComponent},
   {path: 'projects', component: ProjectGridPageComponent},
+  {path: 'projects/1', component: ProjectGridPageComponent},
   {path: 'submitform', component: ProjectSubmissionPageComponent},
 
 

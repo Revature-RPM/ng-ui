@@ -3,7 +3,7 @@
       <a href="#"><img id="nav-logo" src="../../../../assets/rpm-logo/RPM-Logo-Two-Tone.png"></a>
     </div>
     <div *ngIf="loggedIn" id="logged-in-links" class="nav-menu-links">
-        <a href="#" mat-button>All Users</a>
+        <a mat-button>All Users</a>
 
         <!-- The "View Projects" submenu -->
         <mat-expansion-panel id="view-projects">
@@ -12,13 +12,13 @@
                     View Projects
                 </mat-panel-title>
             </mat-expansion-panel-header>
-          <a (click)="getProjects('user')" href="projects" mat-button>Your Projects</a>
-          <a (click)="getProjects('all')" href="projects" mat-button>All Projects</a>
+          <a (click)="getProjects('user')" mat-button>Your Projects</a>
+          <a (click)="getProjects('all')" mat-button>All Projects</a>
         </mat-expansion-panel>
 
-        <a href="submitform" mat-button>Submit a Project</a>
+        <a (click)="goToSubmit()" mat-button>Submit a Project</a>
 
-        <a href="#" mat-button>Profile</a>
+        <a mat-button>Profile</a>
       <a (click)="logout()" mat-button>Logout</a>
     </div>
     <div *ngIf="!loggedIn" id="logged-out-links" class="nav-menu-links">
