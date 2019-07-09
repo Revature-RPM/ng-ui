@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ProjectService} from '../../../services/project.service';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-nav-menu',
@@ -12,7 +13,7 @@ export class NavMenuComponent implements OnInit {
   loggedIn = false;
   panelOpenState = false;
 
-  constructor(private projectService: ProjectService, private router: Router) {
+  constructor(private projectService: ProjectService, private userService: UserService, private router: Router) {
   }
 
   ngOnInit() {
@@ -25,7 +26,8 @@ export class NavMenuComponent implements OnInit {
   }
 
   logout() {
-    this.loggedIn = false;
+    this.userService.logout();
+    this.router.navigate(['auth/login'])
   }
 
   getProjects(type) {
