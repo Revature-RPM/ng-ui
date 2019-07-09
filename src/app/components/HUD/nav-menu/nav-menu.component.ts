@@ -45,6 +45,6 @@ export class NavMenuComponent implements OnInit {
   }
 
   goToSubmit() {
-  this.router.navigate(['submitform']);
+    this.router.navigate(['submitform']);
   }
 }

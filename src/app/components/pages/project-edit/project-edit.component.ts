@@ -25,10 +25,7 @@ export class ProjectEditComponent implements OnInit {
 
   // projectToUpdate will hold project information for a specific project returned by id and
   // is bound to the information that users enter in the form
-  projectToUpdate: Project = {};
-
-  AllProjects$ = this.projectService.AllProjects$.asObservable();
-  allProjects: Project[];
+  projectToUpdate: Project;
 
   /**
    * title, questionType, and result are all passed to a dialog when the user chooses either the group member or the links input field
@@ -51,36 +48,14 @@ export class ProjectEditComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (localStorage.getItem('jwt')) {
-      this.router.navigate(['auth/login']);
-    } else {
-      this.AllProjects$.subscribe(
-        allprojects => {
-          this.allProjects = allprojects;
+    if (!localStorage.getItem('jwt')) this.router.navigate(['auth/login']);
+    else {
+      this.projectService.CurrentProject$.asObservable().subscribe(
+        project => {
+          this.projectToUpdate = project;
         }
       );
-
-      /**
-       * This will retrieve the path variable which corresponds to the id of the project to be edited.
-       * ActivatedRoute has an observable called 'params' which provides a means to do this.
-       * Once the project id is retrieved from the path, it can be passed to the list of projects
-       *
-       *  @author Shawn Bickel (1810-Oct08-Java-USF) | Justin Kerr
-       */
-      this.subscription = this.route.params.subscribe(
-        params => {
-          for (let i = 0; i < this.allProjects.length; i++) {
-            if (params['id'] === this.allProjects[i].id) {
-              this.projectToUpdate = this.allProjects[i];
-            }
-          }
-        });
-
       this.ngmeta.setHead({title: 'Edit Project | RPM'});
-      this.projectToUpdate.groupMembers = [];
-      this.projectToUpdate.screenShots = [];
-      this.projectToUpdate.zipLinks = [];
-
     }
   }
 
@@ -107,16 +82,23 @@ export class ProjectEditComponent implements OnInit {
    * @author Shawn Bickel (1810-Oct08-Java-USF)
    */
   submitForm() {
-    if (JSON.parse(localStorage.getItem('user')).role === 'ROLE_USER') {
+    if (JSON.parse(localStorage.getItem('rpmUser')).role === 'ROLE_USER') {
       this.projectToUpdate.status = 'Pending';
     }
     this.projectService.updateProject(this.projectToUpdate, this.projectToUpdate.id).subscribe();
+
+    for (let i = 0; i < this.projectService.AllProjects$.value.length; i++) {
+      if (this.projectService.AllProjects$.value[i].id == this.projectToUpdate.id) {
+        this.projectService.AllProjects$.value[i] = this.projectToUpdate;
+      }
+    }
+
     this.projectService.getAllProjects().subscribe(
       allprojects => {
         this.projectService.AllProjects$.next(allprojects);
       }
     );
-    this.router.navigate(['/home']);
+    this.router.navigate(['projects/1']);
   }
 
   deleteProject() {

@@ -158,7 +158,8 @@ export class ProjectListComponent implements OnInit, OnDestroy {
   }
 
 
-  swapProject(proj) {
+  swapProject(proj): void {
     this.projectService.CurrentProject$.next(proj);
+    console.log(this.projectService.CurrentProject$.value);
   }
 }

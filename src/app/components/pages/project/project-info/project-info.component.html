@@ -1,4 +1,4 @@
-<h2>Project Info</h2>
+<h2 (click)="updateProject()">Project Info - Click To Update</h2>
 <div id="project-list" *ngIf="!project">
 
     <div id="title">Title</div>
@@ -9,27 +9,18 @@
     <div id="bname">190422-USF-Java</div>
     <div id="developers">Developers</div>
     <div id="dnames">
-        Justin Kerr - Team Lead,
-        Ian Baker - Scrum Master,
-        Rodel Flores,
-        Aaron Rea,
-        Joshua Karvelis,
-        Kelly Young
+        Justin Kerr, Ian Baker, Rodel Flores, Aaron Rea, Joshua Karvelis, Kelly Young
     </div>
 
 </div>
 
-<div class="project-list" *ngIf="project">
-    <div>
-        <div id="title">{{Title}}</div>
+<div id="project-list" *ngIf="project">
+        <div id="title">Title</div>
         <div id="title-name">{{project.name}}</div>
         <div id="trainer">Trainer</div>
         <div id="tname">{{project.trainer}}</div>
         <div id="batch">Batch</div>
         <div id="bname">{{project.batch}}</div>
         <div id="developers">Developers</div>
-        <div id="dnames" *ngFor="let developer of project.groupmembers">
-            {{developer}}
-        </div>
-    </div>
+        <div id="dnames"><span *ngFor="let developer of project.groupMembers">{{developer}}, </span></div>
 </div>
