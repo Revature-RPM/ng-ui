@@ -1,10 +1,10 @@
-import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
-import {Injectable} from '@angular/core';
-import {Observable, throwError} from 'rxjs';
-import {catchError, map} from 'rxjs/operators';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable, throwError, BehaviorSubject } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 
-import {User} from '../models/User';
-import {environment} from '../../environments/environment';
+import { User } from '../models/User';
+import { environment } from '../../environments/environment';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -16,9 +16,9 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class UserService {
-  user: User;
+  user: BehaviorSubject<User> = new BehaviorSubject<User>(null);
 
-  constructor(private http: HttpClient) { this.user = JSON.parse(localStorage.getItem('user')); }
+  constructor(private http: HttpClient) {}
 
   // TODO clean this up
   private handleError(error: HttpErrorResponse) {
@@ -27,7 +27,7 @@ export class UserService {
     } else {
       console.error(
         `Error code ${error.status}:
-${error.error}`
+        ${error.error}`
       );
     }
 
@@ -41,28 +41,14 @@ ${error.error}`
     localStorage.removeItem('rpmRefresh');
     this.user = null;
   }
-  /**
-   * retrievers the current user from user service. if null for whatever reason. checks local storage for valid
-   * user and jwt
-   * @author Andrew Mitchem
-   */
-  getUser() {
-    if (this.user) {
-      return this.user;
-    } else if (window.localStorage.getItem('user') && window.localStorage.getItem('jwt')) {
-      this.user = JSON.parse(window.localStorage.getItem('user'));
-    } else {
-      return null;
-    }
-    return this.user;
-  }
+  
   // only use environment.url for the base url and concat any restful endpoints
   // user.login(user). login the user and retrieve the jwt token from the header
   login(user: User): Observable<any> {
-    return this.http.post(environment.url + '/auth/login', user, { observe: 'response'})
+    return this.http.post(environment.url + '/auth/login', user, { observe: 'response' })
       .pipe(map(response => {
         if (response.headers.get('Authorization')) {
-          this.user = response.body;
+          this.user.next(response.body);
           let jwtauthtoken = response.headers.get('Authorization').split(' ')[1];
 
           localStorage.setItem('user', JSON.stringify(response.body));

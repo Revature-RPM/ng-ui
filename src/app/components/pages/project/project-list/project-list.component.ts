@@ -44,7 +44,12 @@ export class ProjectListComponent implements OnInit, OnDestroy {
       this.router.navigate(['/auth/login']);
     }
 
-    this.currentUser = this.userService.getUser();
+    this.userService.user.asObservable().subscribe(
+      user => {
+        this.currentUser = user;
+      }
+    );
+
     this.subscription = this.projectService.getAllProjects()
       .subscribe(
         (projectResponse) => {

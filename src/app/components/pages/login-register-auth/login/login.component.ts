@@ -30,12 +30,8 @@ export class LoginComponent implements OnInit {
   constructor(private userService: UserService, private router: Router, private ngmeta: NgMetaService) { }
 
   ngOnInit() {
-    //added '/projects' to navigate so that if a user is already logged in, landing page routes to home page
-    if (this.userService.getUser() !== null) {
-      this.router.navigate(['/projects']);
-    } else {
-      this.ngmeta.setHead({ title: 'Login | RPM' });
-    }
+    if (localStorage.getItem('jwt')) this.router.navigate(['projects']);
+    else this.ngmeta.setHead({ title: 'Login | RPM' });
   }
 
   login() {
@@ -44,7 +40,7 @@ export class LoginComponent implements OnInit {
       if (user) {
         this.authenticating = false;
         this.loggedIn = true;
-        this.router.navigate(['/projects']);
+        this.router.navigate(['projects']);
       } else {
         this.authenticating = false;
 
@@ -81,7 +77,7 @@ export class LoginComponent implements OnInit {
         if (user) {
           this.authenticating = false;
           this.loggedIn = true;
-          this.router.navigate(['/home']);
+          this.router.navigate(['projects']);
         } else {
           this.authenticating = false;
           alert('Error logging in');

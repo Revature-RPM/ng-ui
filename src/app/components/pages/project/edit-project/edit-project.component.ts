@@ -1,12 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {MatDialog, MatSnackBar} from '@angular/material';
 import {ActivatedRoute, Router} from '@angular/router';
 import {NgMetaService} from 'ngmeta'; // TODO use to change title to 'Edit | RPM' or something
 import {Subscription} from 'rxjs';
 
 import {Project} from 'src/app/models/Project';
 import {ProjectService} from 'src/app/services/project.service';
-import {UserService} from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-edit-project',
@@ -49,16 +47,11 @@ export class EditProjectComponent implements OnInit {
   constructor(private router: Router,
     private ngmeta: NgMetaService,
     private projectService: ProjectService,
-    private userService: UserService,
-    private route: ActivatedRoute,
-    private dialog: MatDialog,
-    private snackBar: MatSnackBar) {}
+    private route: ActivatedRoute) {}
 
   ngOnInit() {
-    if (this.userService.getUser() === null) {
-      this.router.navigate(['/auth/login']);
-    } else {
-
+    if (localStorage.getItem('jwt')) this.router.navigate(['auth/login']);
+    else {
       this.AllProjects$.subscribe(
         allprojects => {
           this.allProjects = allprojects;

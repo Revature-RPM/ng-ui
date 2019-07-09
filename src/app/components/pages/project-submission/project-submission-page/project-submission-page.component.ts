@@ -56,10 +56,15 @@ export class ProjectSubmissionPageComponent implements OnInit {
 
     if (!localStorage.getItem('jwt')) this.router.navigate(['/auth/login']);
 
-    this.ngmeta.setHead({ title: 'Submit | RPM' });
-    this.user = this.userService.user;
+    this.userService.user.asObservable().subscribe(
+      user => {
+        this.user = user;
+      }
+    )
 
-    this.projectToUpload.trainer = this.userService.user.firstName + ' ' + this.userService.user.lastName;
+    this.ngmeta.setHead({ title: 'Submit | RPM' });
+
+    this.projectToUpload.trainer = this.user.firstName + ' ' + this.user.lastName;
     this.projectToUpload.groupMembers = [];
     this.projectToUpload.screenShots = [];
     this.projectToUpload.zipLinks = [];

@@ -22,8 +22,7 @@
         <a href="#" mat-button (click)="logout()">Logout</a>
     </div>
     <div *ngIf="!loggedIn" id="logged-out-links" class="nav-menu-links">
-        <a href="#" mat-button>Register</a>
-        <a href="#" mat-button (click)="login()">Login</a>
+        <a href="auth/login" mat-button>Login/Register</a>
     </div>
 </div>
 
