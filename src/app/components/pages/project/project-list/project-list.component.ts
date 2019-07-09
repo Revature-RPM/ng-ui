@@ -58,7 +58,6 @@ export class ProjectListComponent implements OnInit, OnDestroy {
         (projectResponse) => {
           this.retrievingProjects = false;
           this.projectService.AllProjects$.next(projectResponse);
-          console.log(this.projectService.AllProjects$.value)
           this.updateProjects();
         });
   }
@@ -72,7 +71,6 @@ export class ProjectListComponent implements OnInit, OnDestroy {
   updateProjects() {
     this.AllProjects$.subscribe(
       allprojects => {
-        console.log("here");
         if (localStorage.getItem('viewprojects') == 'user') {
           for (let i = 0; i < allprojects.length; i++) {
             if (allprojects[i].trainer == this.trainerFullName) {

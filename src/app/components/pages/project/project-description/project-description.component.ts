@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {ProjectService} from '../../../../services/project.service';
-import {Project} from '../../../../models/Project';
+import { Component, OnInit } from '@angular/core';
+import { ProjectService } from '../../../../services/project.service';
+import { Project } from '../../../../models/Project';
 
 @Component({
   selector: 'app-project-description',
@@ -28,8 +28,10 @@ export class ProjectDescriptionComponent implements OnInit {
 
     this.projectService.CurrentProject$.subscribe(
       proj => {
-        this.project = proj;
-        this.displayText = this.project.description;
+        if (proj) {
+          this.project = proj;
+          this.displayText = this.project.description;
+        }
       });
   }
 }

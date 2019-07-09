@@ -1,41 +1,35 @@
 <h2>Project Info</h2>
-<div id="project-list">    
-    <div id="title">Title</div><div id="title-name">RPM UI</div>
-    <div id="trainer">Trainer</div><div id="tname">Wezley Singleton</div>
-    <div id="batch">Batch</div><div id="bname">190422-USF-Java</div>
+<div id="project-list" *ngIf="!project">
+
+    <div id="title">Title</div>
+    <div id="title-name">RPM UI</div>
+    <div id="trainer">Trainer</div>
+    <div id="tname">Wezley Singleton</div>
+    <div id="batch">Batch</div>
+    <div id="bname">190422-USF-Java</div>
     <div id="developers">Developers</div>
-        <div id="dnames">
-            Justin Kerr - Team Lead,
-            Ian Baker - Scrum Master,
-            Rodel Flores,
-            Aaron Rea,
-            Joshua Karvelis,
-            Kelly Young
-        </div>
+    <div id="dnames">
+        Justin Kerr - Team Lead,
+        Ian Baker - Scrum Master,
+        Rodel Flores,
+        Aaron Rea,
+        Joshua Karvelis,
+        Kelly Young
+    </div>
+
 </div>
 
-
-
-<!-- <table>
-        <tr>
-            <th>Trainer</th>
-            <td>Wezley Singleton</td>
-        </tr>
-        <tr>
-            <th>Batch</th>
-            <td>190422-USF-Java</td>
-        </tr>
-        <tr>
-            <th>Developers</th>
-            <td>
-                <ul>
-                    <li>Justin Kerr - Team Lead</li>
-                    <li>Ian Baker - Scrum Master</li>
-                    <li>Rodel Flores</li>
-                    <li>Aaron Rea</li>
-                    <li>Joshua Karvelis</li>
-                    <li>Kelly Young</li>
-                </ul>
-            </td>
-        </tr>
-    </table> -->
+<div class="project-list" *ngIf="project">
+    <div>
+        <div id="title">{{Title}}</div>
+        <div id="title-name">{{project.name}}</div>
+        <div id="trainer">Trainer</div>
+        <div id="tname">{{project.trainer}}</div>
+        <div id="batch">Batch</div>
+        <div id="bname">{{project.batch}}</div>
+        <div id="developers">Developers</div>
+        <div id="dnames" *ngFor="let developer of project.groupmembers">
+            {{developer}}
+        </div>
+    </div>
+</div>

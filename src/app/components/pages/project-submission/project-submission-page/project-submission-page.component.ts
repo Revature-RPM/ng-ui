@@ -73,10 +73,8 @@ export class ProjectSubmissionPageComponent implements OnInit {
 
     this.userService.user.asObservable().subscribe(
       user => {
-        console.log('BEFORE SUBSCRIPTION\n\n' + user + '\\n\n===================');
         this.user = user;
         this.projectToUpload.trainer = this.user.firstName + ' ' + this.user.lastName;
-        console.log('AFTER SUBSCRIPTION\n\n\n\n' + this.user + '\n\n\n\n===================');
       }
     )
 

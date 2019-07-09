@@ -12,21 +12,19 @@ export class NgxCarouselComponent implements OnInit {
   project: Project;
 
   index = 0;
-  speed = 3500;
+  speed = 2000;
   infinite = true;
   direction = 'right';
   directionToggle = true;
   autoplay = true;
-  avatars: string[];
-
-  // avatars = '12345'.split('').map((x, i) => {
-  //   const num = i;
-  //   // const num = Math.floor(Math.random() * 1000);
-  //   return {
-  //     url: `https://picsum.photos/600/400/?${num}`,
-  //     title: `${num}`
-  //   };
-  // };
+  avatars = '12345'.split('').map((x, i) => {
+    const num = i;
+    // const num = Math.floor(Math.random() * 1000);
+    return {
+      url: `https://picsum.photos/600/400/?${num}`,
+      title: `${num}`
+    };
+  });
 
   constructor(private projectService: ProjectService) {
   }
@@ -34,8 +32,10 @@ export class NgxCarouselComponent implements OnInit {
   ngOnInit() {
     this.projectService.CurrentProject$.subscribe(
       proj => {
+        if(proj) {
         this.project = proj;
         this.avatars = this.project.screenShots;
+        }
       });
   }
 
