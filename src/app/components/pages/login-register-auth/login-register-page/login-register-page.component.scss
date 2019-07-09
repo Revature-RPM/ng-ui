@@ -24,12 +24,11 @@
 
 mat-card {
     margin: 0;
-    min-height: 600px; 
-    max-height: 600px;
+    height: fit-content;
 }
 
 mat-card-content {
-    height: 50vh;
+    height: fit-content;
     margin: auto;
 }
 
@@ -51,6 +50,6 @@ mat-card-content {
     mat-card {
         margin: $login-register-page-margin;
         height: $login-register-page-height;
-        min-height: 550px;
+        height: fit-content;
     }
 }

@@ -24,37 +24,54 @@
 
 #registration-container {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 90%;
-    padding-top: 0%;
-    padding-bottom: 0%;
-    
-    mat-card {
-        margin: 0 auto;
+    flex-direction: column;
+    width: fit-content;
+    margin: 20px auto;
+    align-content: center;
+    height: fit-content;
+}
 
-        mat-card-header {
-            justify-content: center;
-
-
-        }
-
-        mat-card-content {
-            justify-content: center;
-
-        }
+form {
+    width: 300px;
+    flex-shrink: 1;
+    * {
+        width: 300px;
+        flex-shrink: 1;
     }
 }
+
 #registerSpinner {
-    display: inline;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-content: center;
+}
+
+mat-spinner {
+    margin-right: 10px;
 }
 
 #availableEmail {
-    font-size: 12px;
     color: green;
 }
 
 #emailNotAvailable {
-    font-size: 12px;
     color: red;
+}
+
+#errors-div {
+    height: 50px;
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+#errors-div * {
+    font-size: 18px;
+    text-align: center;
+}
+
+button {
+    width: 100%;
+    text-align: center;
 }

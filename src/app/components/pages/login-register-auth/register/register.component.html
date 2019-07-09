@@ -1,29 +1,93 @@
+<div id="registration-container">  
+  <mat-vertical-stepper linear>
+    <mat-step [stepControl]="formGroup1">
+      <form [formGroup]="formGroup1" #formGroup1 (ngSubmit)="onSubmit()">
+        <ng-template matStepLabel>Please provide your details</ng-template>
+        <mat-form-field>
+          <input matInput placeholder="First Name" formControlName="firstName">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <input matInput placeholder="Last Name" formControlName="lastName">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <input matInput placeholder="E-mail" formControlName="email" [pattern]="emailPattern" (focusout)="checkIfEmailIsInUse()" (keyup)="checkIfEmailIsInUseKey()">
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="formGroup2" #formGroup2>
+      <form [formGroup]="formGroup2">
+        <ng-template matStepLabel>Enter a Username and Password</ng-template>
+        <mat-form-field>
+          <input matInput placeholder="Username" formControlName="username">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <input matInput placeholder="Password" formControlName="password">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <input matInput placeholder="Confirm Password" formControlName="confirmPassword">
+        </mat-form-field>
+        <br>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Done!</ng-template>
+      Click 'submit' to create your account.
+      If you need to change something, click on the steps above to edit them.
+      <div>
+        <button mat-button type="submit" [disabled]="!formGroup1.valid || !formGroup2.valid">Submit</button>
+        <br>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+      </div>
+    </mat-step>
+  </mat-vertical-stepper>
+</div>
+
+
+
+
 <!-- <div id="registration-container">
-  <mat-vertical-stepper [linear]="isLinear">
-    <mat-step [stepControl]="firstFormGroup">
-      <form ngNativeValidate [formGroup]="firstFormGroup">
+  <mat-vertical-stepper linear>
+    <mat-step [stepControl]="formGroup1">
+      <form [formGroup]="formGroup2">
         <ng-template matStepLabel>Fill out your name</ng-template>
         <mat-form-field>
-          <input matInput placeholder="First Name" formControlName="firstName" required minlength="1">
+          <input matInput placeholder="First Name" formControlName="firstName">
         </mat-form-field>
+        <br>
         <mat-form-field>
-          <input matInput placeholder="Last Name" formControlName="lastName" required minlength="1">
+          <input matInput placeholder="Last Name" formControlName="lastName">
         </mat-form-field>
+        <br>
         <mat-form-field>
-          <input matInput type="email" placeholder="Revature Email" formControlName="email" required
-            [pattern]="emailPattern" (focusout)="checkIfEmailIsInUse()" (keyup)="checkIfEmailIsInUseKey()">
+          <input matInput type="email" placeholder="E-mail" formControlName="email"
+            (focusout)="checkIfEmailIsInUse()" (keyup)="checkIfEmailIsInUseKey()">
         </mat-form-field>
-        <div id="registerSpinner" *ngIf='checkingIfEmailIsInUse'><mat-spinner [diameter]="30"></mat-spinner><span>Checking email availability</span></div>
-        <div id="availableEmail" *ngIf='emailIsAvailable'>Email '{{emailToCheck}}' is available!</div>
-        <div id="emailNotAvailable" *ngIf='emailIsNotAvailable'>Email '{{emailToCheck}}' is already in use</div>
+        <div id="errors-div">
+          <div id="registerSpinner" *ngIf='checkingIfEmailIsInUse'><mat-spinner [diameter]="20"></mat-spinner><div>Checking e-mail availability</div></div>
+          <div id="availableEmail" *ngIf='emailIsAvailable'>E-mail is available!</div>
+          <div id="emailNotAvailable" *ngIf='emailIsNotAvailable'>E-mail is already in use</div>
+        </div>
         <div>
-          <button mat-button matStepperNext type="submit" ng-disabled=!vm.form.$valid>Next</button>
+          <button mat-flat-button color="accent" matStepperNext>Next</button>
+          <button mat-flat-button color="accent" matStepperNext type="submit" ng-disabled=!vm.form.$valid>Next</button>
           <a mat-button routerLink="/auth/login">Return to Login</a>
         </div>
       </form>
     </mat-step>
-    <mat-step [stepControl]="secondFormGroup">
-      <form ngNativeValidate [formGroup]="secondFormGroup">
+    <mat-step [stepControl]="formGroup2">
+      <form [formGroup]="formGroup2">
         <ng-template matStepLabel>Create a Username and Password</ng-template>
         <mat-form-field>
           <input matInput placeholder="Username" formControlName="username"  minlength="8" required 

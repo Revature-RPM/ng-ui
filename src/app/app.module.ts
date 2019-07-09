@@ -27,6 +27,7 @@ import { ProjectSubmissionPageComponent } from './components/pages/project-submi
 import { EditDialogComponent } from './components/pages/project-submission/edit-dialog/edit-dialog.component';
 import {MatDialogModule} from '@angular/material';
 import { TokenInterceptor } from './services/jwtInterceptor.interceptor';
+import { RegisterComponent } from './components/pages/login-register-auth/register/register.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { TokenInterceptor } from './services/jwtInterceptor.interceptor';
     EditProjectComponent,
     PageNotFoundComponent,
     ProjectSubmissionPageComponent,
-    EditDialogComponent
+    EditDialogComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

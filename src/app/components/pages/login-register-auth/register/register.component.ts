@@ -1,10 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, FormControl, AbstractControl } from '@angular/forms';
+import { User } from 'src/app/models/User';
+import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
 import { NgMetaService } from 'ngmeta';
 import { first } from 'rxjs/operators';
-import { User } from 'src/app/models/User';
-import { UserService } from 'src/app/services/user.service';
 
 
 /**
@@ -16,6 +16,7 @@ import { UserService } from 'src/app/services/user.service';
  * can be hit unless the forms are valid.
  * @author Ryan Beevers (1810-Oct08-Java-USF)
  * @author Slavik Gleanco
+ * @author Kelly Young (190422-Java-USF)
  */
 @Component({
   selector: 'app-register',
@@ -25,7 +26,225 @@ import { UserService } from 'src/app/services/user.service';
 
 export class RegisterComponent implements OnInit {
 
+  formGroup1: FormGroup;
+  formGroup2: FormGroup;
+
+  user: User = {};
+
+  loginUser: User = {};
+  registering = false;
+  authenticating = false;
+
+  confirmPassword: string;
+
+  checkingIfEmailIsInUse = false;
+  emailIsAvailable = false;
+  emailIsNotAvailable = false;
+  emailToCheck: string;
+
+  checkingIfUsernameIsAvailable = false;
+  usernameIsAvailable = false;
+  usernameIsNotAvailable = false;
+  usernameToCheck: string;
+
+  constructor(private userService: UserService,
+              private router: Router,
+              private _formBuilder: FormBuilder,
+              private ngmeta: NgMetaService) { }
+
+  ngOnInit () {
+
+    // this.formGroup1 = new FormGroup({
+    //   firstName: new FormControl('', [Validators.required, Validators.minLength(2)]),
+    //   lastName: new FormControl('', [Validators.required, Validators.minLength(2)]),
+    //   email: new FormControl('', [Validators.required, Validators.email])
+    // });
+
+    // this.formGroup2 = new FormGroup({
+    //   username: new FormControl('', [Validators.required, Validators.minLength(8)]),
+    //   password: new FormControl('', [Validators.required, Validators.minLength(8)])
+    // })
+
+    // this.ngmeta.setHead({ title: 'Register | RPM' });
+
+    
+
+    this.formGroup1 = this._formBuilder.group({
+      firstName: ['', [Validators.required, Validators.minLength(2)]],
+      lastName: ['', [Validators.required, Validators.minLength(2)]],
+      email: ['', [Validators.required, Validators.email]]
+    });
+    this.formGroup2 = this._formBuilder.group(
+      {
+        username: ['', [Validators.required, Validators.minLength(8)]],
+        password: ['', [Validators.required, Validators.minLength(8)]]
+      }
+      // This is legacy code that breaks things
+      // , {
+      //   validator: this.MatchPassword // match password validation
+      // }
+    );
+    console.log("hi");
+  }
+
+  onSubmit() {
+    console.log(this.formGroup1)
+    console.log(this.formGroup2)
+  }
+
+  // this method is called to ensure password was typed correctly
+  MatchPassword(AC: AbstractControl) {
+    const password = AC.get('password').value; // to get value in input tag
+    const confirmPassword = AC.get('confirmPassword').value; // to get value in input tag
+    if (password !== confirmPassword) {
+      AC.get('confirmPassword').setErrors({ MatchPassword: true });
+    } else {
+      return null;
+    }
+  }
+
+  // registration method takes the validated fields packages into a JSON and sends the observable
+  register() {
+    console.log(this.user);
+    this.registering=true;
+    this.userService.register(this.user).pipe(first()).subscribe((user) => {
+      if (user) {
+        this.registering=false;
+        this.authenticating = true;
+        this.loginUser.username = user.username;
+        this.loginUser.password = user.password;
+        this.userService.login(this.loginUser).pipe(first()).subscribe(
+          (user) => {
+          this.authenticating = false;
+          this.router.navigate(['/home']);
+          });
+      }
+    });
+  }
+  
+  /*Function to be called as user types inside email input form.
+    Checks first to see if there is a value for the email, then makes the request
+    over to the "auth" micro-service to see if the email is available.
+  */
+  checkIfEmailIsInUseKey() {
+    var ref = this.user.email;
+    setTimeout(() => {
+      if(ref){
+        
+          this.emailToCheck = this.user.email;
+          this.emailIsAvailable = false;
+          this.emailIsNotAvailable = false;
+          this.checkingIfEmailIsInUse = true;
+          this.userService.checkIfEmailIsInUse(this.user.email).subscribe(
+            result => {
+              if(result['emailIsInUse'] == false) {
+                this.checkingIfEmailIsInUse = false;
+                this.emailIsAvailable = true;
+              } else {
+                this.checkingIfEmailIsInUse = false;
+                this.emailIsNotAvailable = true;
+              }
+            }, err => {
+              this.checkingIfEmailIsInUse = false;
+              this.emailIsAvailable = true;
+            }
+          )    
+    }
+  }, 1000)
+  }
+
+  /*
+ * Function to check the user email is unique
+ */
+  checkIfEmailIsInUse() {  
+      this.emailToCheck = this.user.email;
+      this.emailIsAvailable = false;
+      this.emailIsNotAvailable = false;
+      this.checkingIfEmailIsInUse = true;
+
+      this.userService.checkIfEmailIsInUse(this.user.email).subscribe(
+        result => {
+          if(result['emailIsInUse'] == false) {
+            this.checkingIfEmailIsInUse = false;
+            this.emailIsAvailable = true;
+          } else {
+            this.checkingIfEmailIsInUse = false;
+            this.emailIsNotAvailable = true;
+          }       
+        }, err => {
+          this.checkingIfEmailIsInUse = false;
+          this.emailIsAvailable = true;
+        }
+      )  
+  }
+
+  /*Function to be called as user types on username input form
+    Checks to see if username for registration is available
+  */
+  checkIfUsernameIsAvailableKey() {
+    var ref = this.user.username;
+    setTimeout(() => {
+      if(ref.length >= 8) {
+        this.usernameToCheck = this.user.username;
+        this.usernameIsAvailable = false;
+        this.usernameIsNotAvailable = false;
+        this.checkingIfUsernameIsAvailable = true;
+  
+        this.userService.checkIfUsernameIsAvailable(this.usernameToCheck).subscribe(
+          result => {
+            if(result['usernameIsAvailable'] ==  true) {
+              this.checkingIfUsernameIsAvailable = false;
+              this.usernameIsAvailable = true;
+            } else {
+              this.checkingIfUsernameIsAvailable = false;
+              this.usernameIsNotAvailable = true;
+            }
+          }, err => {
+            this.checkingIfUsernameIsAvailable = false;
+            this.usernameIsNotAvailable = true;
+          }
+        )
+      }
+    }, 1000)
+  }
+
+  /*Function to be called when focus is deselected from username input form
+    Checks to see if username for registration is available
+  */
+  checkIfUsernameIsAvailable() {
+    if(this.user.username.length >= 8) {
+      this.usernameToCheck = this.user.username;
+      this.usernameIsAvailable = false;
+      this.usernameIsNotAvailable = false;
+      this.checkingIfUsernameIsAvailable = true;
+
+      this.userService.checkIfUsernameIsAvailable(this.usernameToCheck).subscribe(
+        result => {
+          if(result['usernameIsAvailable'] ==  true) {
+            this.checkingIfUsernameIsAvailable = false;
+            this.usernameIsAvailable = true;
+          } else {
+            this.checkingIfUsernameIsAvailable = false;
+            this.usernameIsNotAvailable = true;
+          }
+        }, err => {
+          this.checkingIfUsernameIsAvailable = false;
+          this.usernameIsNotAvailable = true;
+        }
+      )
+    }
+  }
+
 }
+
+
+/*
+  +--------------------------------------------+
+  |    This is all legacy code that worked     |
+  |    in the previous iteration of the UI     |
+  +--------------------------------------------+
+*/
+
 
 //   user: User = {};
 //   isLinear = true;
