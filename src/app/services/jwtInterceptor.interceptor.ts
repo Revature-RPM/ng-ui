@@ -41,7 +41,6 @@ export class TokenInterceptor implements HttpInterceptor {
     } else {
       localStorage.removeItem('jwt');
       localStorage.removeItem('rpmRefresh');
-      localStorage.removeItem('user');
       this.userService.user.next(null);
 
       if (this.url.path() !== '/auth/login' && this.url.path() !== '/auth/register') {

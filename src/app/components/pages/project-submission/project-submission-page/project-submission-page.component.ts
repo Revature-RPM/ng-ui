@@ -59,12 +59,12 @@ export class ProjectSubmissionPageComponent implements OnInit {
     this.userService.user.asObservable().subscribe(
       user => {
         this.user = user;
+        this.projectToUpload.trainer = this.user.firstName + ' ' + this.user.lastName;
       }
     )
 
     this.ngmeta.setHead({ title: 'Submit | RPM' });
 
-    this.projectToUpload.trainer = this.user.firstName + ' ' + this.user.lastName;
     this.projectToUpload.groupMembers = [];
     this.projectToUpload.screenShots = [];
     this.projectToUpload.zipLinks = [];

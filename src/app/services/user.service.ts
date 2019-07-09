@@ -39,7 +39,7 @@ export class UserService {
     localStorage.removeItem('jwt');
     localStorage.removeItem('user');
     localStorage.removeItem('rpmRefresh');
-    this.user = null;
+    this.user.next(null);
   }
   
   // only use environment.url for the base url and concat any restful endpoints
@@ -51,7 +51,6 @@ export class UserService {
           this.user.next(response.body);
           let jwtauthtoken = response.headers.get('Authorization').split(' ')[1];
 
-          localStorage.setItem('user', JSON.stringify(response.body));
           localStorage.setItem('jwt', jwtauthtoken);
           localStorage.setItem('rpmRefresh', (Math.round((new Date()).getTime() / 1000) + 21600000) + '');
           return response.body;
