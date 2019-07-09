@@ -24,6 +24,9 @@ import {PageNotFoundComponent} from './components/pages/page-not-found/page-not-
 import {HttpClientModule} from '@angular/common/http';
 import { NgMetaModule, NgMetaService } from 'ngmeta';
 import { MatInputModule } from '@angular/material';
+import { ProjectSubmissionPageComponent } from './components/pages/project-submission/project-submission-page/project-submission-page.component';
+import { EditDialogComponent } from './components/pages/project-submission/edit-dialog/edit-dialog.component';
+import {MatDialogModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -40,7 +43,9 @@ import { MatInputModule } from '@angular/material';
     NgxCarouselComponent,
     ProjectInfoComponent,
     EditProjectComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    ProjectSubmissionPageComponent,
+    EditDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -50,6 +55,7 @@ import { MatInputModule } from '@angular/material';
     FormsModule,
     NgxHmCarouselModule,
     HttpClientModule,
+    MatDialogModule,
     NgMetaModule,
     MatInputModule
   ],
