@@ -22,34 +22,56 @@
 */
 @import '../../../../../variables';
 
-mat-card {
-    margin: 0;
-    height: fit-content;
-}
-
-mat-card-content {
-    height: fit-content;
-    margin: auto;
-}
-
-#logo-title-container {
-    margin: 10px auto;
-    width: -webkit-fit-content;
-    width: -moz-fit-content;
+#registration-container {
+    display: flex;
+    flex-direction: column;
     width: fit-content;
+    margin: 20px auto;
+    align-content: center;
+    height: fit-content;
 }
 
-#login-register-logo {
-    height: $login-register-logo-height;
-    max-width: initial;
-    margin-bottom: $login-register-logo-bottom-margin;
-}
-
-
-@media screen and (min-width: 600px) {
-    mat-card {
-        margin: $login-register-page-margin;
-        height: $login-register-page-height;
-        height: fit-content;
+form {
+    width: 300px;
+    flex-shrink: 1;
+    * {
+        width: 300px;
+        flex-shrink: 1;
     }
+}
+
+#registerSpinner {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-content: center;
+}
+
+mat-spinner {
+    margin-right: 10px;
+}
+
+#availableEmail {
+    color: green;
+}
+
+#emailNotAvailable {
+    color: red;
+}
+
+#errors-div {
+    height: 50px;
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+#errors-div * {
+    font-size: 18px;
+    text-align: center;
+}
+
+button {
+    width: 100%;
+    text-align: center;
 }

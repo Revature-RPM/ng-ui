@@ -1,0 +1,160 @@
+<div id="registration-container">  
+  <mat-vertical-stepper linear>
+    <mat-step [stepControl]="formGroup1">
+      <form [formGroup]="formGroup1" #formGroup1 (ngSubmit)="onSubmit()">
+        <ng-template matStepLabel>Please provide your details</ng-template>
+        <mat-form-field>
+          <input matInput placeholder="First Name" formControlName="firstName">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <input matInput placeholder="Last Name" formControlName="lastName">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <input matInput placeholder="E-mail" formControlName="email" [pattern]="emailPattern" (focusout)="checkIfEmailIsInUse()" (keyup)="checkIfEmailIsInUseKey()">
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="formGroup2" #formGroup2>
+      <form [formGroup]="formGroup2">
+        <ng-template matStepLabel>Enter a Username and Password</ng-template>
+        <mat-form-field>
+          <input matInput placeholder="Username" formControlName="username">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <input matInput placeholder="Password" formControlName="password">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <input matInput placeholder="Confirm Password" formControlName="confirmPassword">
+        </mat-form-field>
+        <br>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Done!</ng-template>
+      Click 'submit' to create your account.
+      If you need to change something, click on the steps above to edit them.
+      <div>
+        <button mat-button type="submit" [disabled]="!formGroup1.valid || !formGroup2.valid">Submit</button>
+        <br>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+      </div>
+    </mat-step>
+  </mat-vertical-stepper>
+</div>
+
+
+
+
+<!-- <div id="registration-container">
+  <mat-vertical-stepper linear>
+    <mat-step [stepControl]="formGroup1">
+      <form [formGroup]="formGroup2">
+        <ng-template matStepLabel>Fill out your name</ng-template>
+        <mat-form-field>
+          <input matInput placeholder="First Name" formControlName="firstName">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <input matInput placeholder="Last Name" formControlName="lastName">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <input matInput type="email" placeholder="E-mail" formControlName="email"
+            (focusout)="checkIfEmailIsInUse()" (keyup)="checkIfEmailIsInUseKey()">
+        </mat-form-field>
+        <div id="errors-div">
+          <div id="registerSpinner" *ngIf='checkingIfEmailIsInUse'><mat-spinner [diameter]="20"></mat-spinner><div>Checking e-mail availability</div></div>
+          <div id="availableEmail" *ngIf='emailIsAvailable'>E-mail is available!</div>
+          <div id="emailNotAvailable" *ngIf='emailIsNotAvailable'>E-mail is already in use</div>
+        </div>
+        <div>
+          <button mat-flat-button color="accent" matStepperNext>Next</button>
+          <button mat-flat-button color="accent" matStepperNext type="submit" ng-disabled=!vm.form.$valid>Next</button>
+          <a mat-button routerLink="/auth/login">Return to Login</a>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="formGroup2">
+      <form [formGroup]="formGroup2">
+        <ng-template matStepLabel>Create a Username and Password</ng-template>
+        <mat-form-field>
+          <input matInput placeholder="Username" formControlName="username"  minlength="8" required 
+            [pattern]="usernamePattern"
+            matTooltip="No underscores at beginning or end of username. Must be at least 8 characters"
+             (focusout)="checkIfUsernameIsAvailable()" (keyup)="checkIfUsernameIsAvailableKey()">
+        </mat-form-field>
+        <div id="registerSpinner" *ngIf='checkingIfUsernameIsAvailable'><mat-spinner [diameter]="30"></mat-spinner><span>Checking Username</span></div>
+        <div id="availableEmail" *ngIf='usernameIsAvailable'>Username '{{usernameToCheck}}' is available!</div>
+        <div id="emailNotAvailable" *ngIf='usernameIsNotAvailable'>Username '{{usernameToCheck}}' is already in use</div>
+        <mat-form-field>
+          <input matInput type="password" placeholder="Password" formControlName="password" id="inputPassword" required minlength="8">
+          <mat-hint>Must be 8 characters</mat-hint>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput type="password" placeholder="Confirm Password" formControlName="confirmPassword" required minlength="8">
+          <mat-hint>Passwords must match</mat-hint>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext type="submit" ng-disabled=!vm.form.$valid>Next</button>
+          <a mat-button routerLink="/auth/login">Return to Login</a>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-flat-button type="button" (click)="register()"><strong>Create Account</strong></button>
+        <a mat-button routerLink="/auth/login">Cancel</a>
+        <div id="registerSpinner" *ngIf='registering'><mat-spinner [diameter]="30"></mat-spinner><span>Registering</span></div>
+        <div id="registerSpinner" *ngIf='authenticating'><mat-spinner [diameter]="30"></mat-spinner><span>Authenticating</span></div>
+      </div>
+    </mat-step>
+  </mat-vertical-stepper>
+</div> -->
+
+
+
+
+
+<!-- <div id="registerdiv">
+
+    <h3>Register</h3>
+   
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <input class="form-group" formControlName="username" placeholder="Username" type="text" value=""
+      [ngClass]="{ 'is-invalid': submitted && form.username.errors }" />
+      <div *ngIf="submitted && form.username.errors">
+        <div *ngIf="form.username.errors.required" class="errors">Username is required!</div>
+        <div *ngIf="form.username.errors.minlength" class="errors">Username must be at least 3 characters long!</div>
+        <div *ngIf="form.username.errors.maxlength" class="errors">Username must be at most 30 characters long!</div>
+      </div>
+      <input class="form-group" formControlName="password" placeholder="Password" type="password" value=""
+      [ngClass]="{ 'is-invalid': submitted && form.password.errors }"/>
+   
+      <div *ngIf="submitted && form.password.errors">
+        <div *ngIf="form.password.errors.required" class="errors">Password is required!</div>
+        <div *ngIf="form.password.errors.minlength" class="errors">Password must be at least 3 characters long!</div>
+        <div *ngIf="form.password.errors.maxlength" class="errors">Password must be at most 30 characters long!</div>
+      </div>
+      <div *ngIf="usrtaken && !form.passworderrors && !form.username.errors" class="errors">Username taken!</div>
+
+      <div>
+        <button id="registersubmitbutton" class="my-btn"> <a> Register </a> </button>
+      </div>
+    </form>
+   </div>
+    -->

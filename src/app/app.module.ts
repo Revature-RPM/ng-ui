@@ -20,6 +20,7 @@ import {NgxCarouselComponent} from './components/pages/project/ngx-carousel/ngx-
 import {ProjectInfoComponent} from './components/pages/project/project-info/project-info.component';
 import {ProjectEditComponent} from './components/pages/project-edit/project-edit.component';
 import {PageNotFoundComponent} from './components/pages/page-not-found/page-not-found.component';
+import { RegisterComponent } from './components/pages/login-register-auth/register/register.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {NgMetaModule} from 'ngmeta';
 import {MatDialogModule, MatInputModule, MatSnackBarModule} from '@angular/material';
@@ -44,6 +45,7 @@ import {TokenInterceptor} from './services/jwtInterceptor.interceptor';
     PageNotFoundComponent,
     ProjectSubmissionPageComponent,
     EditDialogComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
