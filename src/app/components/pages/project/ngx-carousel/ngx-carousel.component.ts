@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {ProjectService} from '../../../../services/project.service';
 
 @Component({
   selector: 'app-ngx-carousel',
@@ -13,6 +14,7 @@ export class NgxCarouselComponent {
   direction = 'right';
   directionToggle = true;
   autoplay = true;
+
   avatars = '12345'.split('').map((x, i) => {
     const num = i;
     // const num = Math.floor(Math.random() * 1000);
@@ -22,7 +24,8 @@ export class NgxCarouselComponent {
     };
   });
 
-  constructor() { }
+  constructor(private projectService: ProjectService) {
+  }
 
   push() {
     this.avatars.push(
