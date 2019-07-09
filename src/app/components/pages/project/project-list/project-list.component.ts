@@ -22,6 +22,7 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 })
 export class ProjectListComponent implements OnInit, OnDestroy {
 
+  trainerFullName;
   trainerCanEdit = false;
   currentUser: User;
   displayedColumns: string[] = ['name', 'batch', 'trainer', 'techStack', 'status'];
@@ -34,6 +35,7 @@ export class ProjectListComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   AllProjects$ = this.projectService.AllProjects$.asObservable();
   retrievingProjects = true;
+  projectView;
 
   constructor(private router: Router, private userService: UserService, private projectService: ProjectService) {
   }
@@ -47,6 +49,7 @@ export class ProjectListComponent implements OnInit, OnDestroy {
     this.userService.user.asObservable().subscribe(
       user => {
         this.currentUser = user;
+        this.trainerFullName = this.currentUser.firstName.trim() + ' ' + this.currentUser.lastName.trim();
       }
     );
 
@@ -55,27 +58,24 @@ export class ProjectListComponent implements OnInit, OnDestroy {
         (projectResponse) => {
           this.retrievingProjects = false;
           this.projectService.AllProjects$.next(projectResponse);
-          console.log(projectResponse);
-          console.log(this.projectService.AllProjects$);
-          this.updateProjects(this.projectService.projFilter);
+          console.log(this.projectService.AllProjects$.value)
+          this.updateProjects();
         });
   }
-
-
+  
   /**
    * This updates the currently shown projects on the left of the Project Page (src/app/components/pages/project).
    * If you provide a string of user you get that users specific project.
    * @param mySearch (String)
    * @author Ian Baker | Justin Kerr 190422-USF
    */
-
-  updateProjects(projFilter) {
-    const trainerFullName = this.currentUser.firstName.trim() + ' ' + this.currentUser.lastName.trim();
+  updateProjects() {
     this.AllProjects$.subscribe(
       allprojects => {
-        if (projFilter = 'user') {
+        console.log("here");
+        if (localStorage.getItem('viewprojects') == 'user') {
           for (let i = 0; i < allprojects.length; i++) {
-            if (allprojects[i].trainer === trainerFullName) {
+            if (allprojects[i].trainer == this.trainerFullName) {
               this.userProjects.push(allprojects[i]);
             }
           }
@@ -86,18 +86,8 @@ export class ProjectListComponent implements OnInit, OnDestroy {
         this.dataSource = new MatTableDataSource(this.userProjects);
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
-        this.updateCurrentProject();
       }
     );
-  }
-
-  updateCurrentProject() {
-    const trainerFullName = this.currentUser.firstName.trim() + ' ' + this.currentUser.lastName.trim();
-    this.projectService.CurrentProject$.asObservable().subscribe(
-      proj => {
-        this.projectService.CurrentProject$.next(proj);
-        this.projectService.CurrentProject = proj;
-      });
   }
 
   /**
@@ -106,10 +96,9 @@ export class ProjectListComponent implements OnInit, OnDestroy {
    * @author Shawn Bickel (1810-Oct08-Java-USF)
    */
   canEdit(project: any) {
-    const trainerFullName = this.currentUser.firstName.trim() + ' ' + this.currentUser.lastName.trim();
     if (this.currentUser.role === 'ROLE_ADMIN') {
       this.trainerCanEdit = true;
-    } else if (trainerFullName === project.trainer) {
+    } else if (this.trainerFullName === project.trainer) {
       this.trainerCanEdit = true;
     } else {
       this.trainerCanEdit = false;

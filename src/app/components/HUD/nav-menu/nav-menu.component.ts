@@ -38,14 +38,7 @@ export class NavMenuComponent implements OnInit {
   }
 
   getProjects(type) {
-    switch (type) {
-      case 'user':
-        this.projectService.projFilter = 'user';
-        break;
-      case 'all':
-        this.projectService.projFilter = 'all';
-        break;
-    }
+        localStorage.removeItem('viewprojects');
+        localStorage.setItem('viewprojects', type);
   }
-
 }

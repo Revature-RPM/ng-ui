@@ -19,7 +19,6 @@ export class ProjectService {
   AllProjects$: BehaviorSubject<Project[]>;
   CurrentProject$: BehaviorSubject<Project>;
   CurrentProject: Project;
-  projFilter: string;
 
   constructor(private httpClient: HttpClient) {
     this.CurrentProject$ = new BehaviorSubject<Project>(null);
