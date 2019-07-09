@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ProjectService} from '../../../services/project.service';
+import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-nav-menu',
@@ -8,14 +10,15 @@ import {ProjectService} from '../../../services/project.service';
 })
 export class NavMenuComponent implements OnInit {
 
-  loggedIn;
+  loggedIn = false;
   panelOpenState = false;
 
-  constructor(private projectService: ProjectService) {
+  constructor(private projectService: ProjectService, private userService: UserService, private router: Router) {
   }
 
   ngOnInit() {
-
+    if (localStorage.getItem('jwt')) this.loggedIn = true;
+    else this.loggedIn = false;
   }
 
   login() {
@@ -23,7 +26,8 @@ export class NavMenuComponent implements OnInit {
   }
 
   logout() {
-    this.loggedIn = false;
+    this.userService.logout();
+    this.router.navigate(['auth/login'])
   }
 
   getProjects(type) {
@@ -36,4 +40,5 @@ export class NavMenuComponent implements OnInit {
         break;
     }
   }
+
 }
