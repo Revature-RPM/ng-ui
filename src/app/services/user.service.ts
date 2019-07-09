@@ -20,7 +20,8 @@ export class UserService {
 
 
   constructor(private http: HttpClient) {
-    this.user = new BehaviorSubject<User>( (JSON.parse(localStorage.getItem('rpmUser'))) );
+    if (localStorage.getItem('jwt')) this.user = new BehaviorSubject<User>( (JSON.parse(localStorage.getItem('rpmUser'))) );
+    else this.user = new BehaviorSubject<User>( null );
   }
 
   getCurrentUser(): User {
