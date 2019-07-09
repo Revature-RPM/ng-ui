@@ -30,21 +30,18 @@ export class LoginComponent implements OnInit {
   constructor(private userService: UserService, private router: Router, private ngmeta: NgMetaService) { }
 
   ngOnInit() {
-    //added '/projects' to navigate so that if a user is already logged in, landing page routes to home page
-    if (this.userService.getUser() !== null) {
-      this.router.navigate(['/projects']);
-    } else {
-      this.ngmeta.setHead({ title: 'Login | RPM' });
-    }
+    if (localStorage.getItem('jwt')) this.router.navigate(['projects']);
+    else this.ngmeta.setHead({ title: 'Login | RPM' });
   }
 
   login() {
     this.authenticating = true;
-    this.userService.login(this.user).pipe(first()).subscribe((user) => {
+    this.userService.login(this.user).pipe(first()).subscribe(
+      (user) => {
       if (user) {
         this.authenticating = false;
         this.loggedIn = true;
-        this.router.navigate(['/projects']);
+        this.router.navigate(['projects']);
       } else {
         this.authenticating = false;
 
@@ -77,18 +74,20 @@ export class LoginComponent implements OnInit {
 
     if(this.user.username.length != 0 && this.user.password.length != 0) {
       this.authenticating = true;
-      this.userService.login(this.user).pipe(first()).subscribe((user) => {
+      this.userService.login(this.user).pipe(first()).subscribe(
+        (user) => {
         if (user) {
           this.authenticating = false;
           this.loggedIn = true;
-          this.router.navigate(['/home']);
+          this.router.navigate(['projects']);
         } else {
           this.authenticating = false;
           alert('Error logging in');
         }
-       }, (error) => { this.authenticating = false; alert('ERROR LOGGING IN'); });
+       },
+       (error) => { this.authenticating = false; alert('ERROR LOGGING IN'); });
     }
-
+    
   }
 
   /* Listens to key input on password input field to remove 'Password is required'

@@ -48,7 +48,8 @@ export class ZipComponent implements OnInit {
               private location: Location,
               private ngmeta: NgMetaService,
               private projectService: ProjectService,
-              private router: Router) { }
+              private router: Router) {
+  }
 
   ngOnInit() {
     if (localStorage.getItem('user') === null) {

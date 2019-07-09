@@ -1,6 +1,6 @@
 import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import {Injectable} from '@angular/core';
-import {Observable, throwError} from 'rxjs';
+import {BehaviorSubject, Observable, throwError} from 'rxjs';
 import {catchError, map} from 'rxjs/operators';
 
 import {User} from '../models/User';
@@ -16,9 +16,16 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class UserService {
-  user: User;
+  user: BehaviorSubject<User>;
 
-  constructor(private http: HttpClient) { this.user = JSON.parse(localStorage.getItem('user')); }
+
+  constructor(private http: HttpClient) {
+    this.user = new BehaviorSubject<User>( (JSON.parse(localStorage.getItem('rpmUser'))) );
+  }
+
+  getCurrentUser(): User {
+    return this.user.value;
+  }
 
   // TODO clean this up
   private handleError(error: HttpErrorResponse) {
@@ -27,47 +34,33 @@ export class UserService {
     } else {
       console.error(
         `Error code ${error.status}:
-${error.error}`
+        ${error.error}`
       );
     }
 
     return throwError('Something went wrong; please try again later.');
   }
 
-  // user.logout()... remove the user information from app and storage.
+  // user.logout()... remove the session information from app and storage.
   logout() {
     localStorage.removeItem('jwt');
-    localStorage.removeItem('user');
     localStorage.removeItem('rpmRefresh');
-    this.user = null;
+    localStorage.removeItem('rpmUser');
+    this.user.next(null);
   }
-  /**
-   * retrievers the current user from user service. if null for whatever reason. checks local storage for valid
-   * user and jwt
-   * @author Andrew Mitchem
-   */
-  getUser() {
-    if (this.user) {
-      return this.user;
-    } else if (window.localStorage.getItem('user') && window.localStorage.getItem('jwt')) {
-      this.user = JSON.parse(window.localStorage.getItem('user'));
-    } else {
-      return null;
-    }
-    return this.user;
-  }
+
   // only use environment.url for the base url and concat any restful endpoints
   // user.login(user). login the user and retrieve the jwt token from the header
-  login(user: User): Observable<any> {
-    return this.http.post(environment.url + '/auth/login', user, { observe: 'response'})
+  login(newuser: User): Observable<any> {
+    return this.http.post(environment.url + '/auth/login', newuser, {observe: 'response'})
       .pipe(map(response => {
         if (response.headers.get('Authorization')) {
-          this.user = response.body;
+          this.user.next(response.body);
           let jwtauthtoken = response.headers.get('Authorization').split(' ')[1];
 
-          localStorage.setItem('user', JSON.stringify(response.body));
           localStorage.setItem('jwt', jwtauthtoken);
           localStorage.setItem('rpmRefresh', (Math.round((new Date()).getTime() / 1000) + 21600000) + '');
+          localStorage.setItem('rpmUser', JSON.stringify(response.body));
           return response.body;
         } else {
           return null; // this should throw error

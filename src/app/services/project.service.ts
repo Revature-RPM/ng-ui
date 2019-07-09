@@ -16,13 +16,15 @@ const HTTP_OPTIONS = {
 })
 
 export class ProjectService {
-  AllProjects$: BehaviorSubject<Project[]> = new BehaviorSubject<Project[]>(null);
-  AllProjects: Project[];
-  CurrentProject$: BehaviorSubject<Project> = new BehaviorSubject<Project>(null);
+  AllProjects$: BehaviorSubject<Project[]>;
+  CurrentProject$: BehaviorSubject<Project>;
   CurrentProject: Project;
   projFilter: string;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {
+    this.CurrentProject$ = new BehaviorSubject<Project>(null);
+    this.AllProjects$ = new BehaviorSubject<Project[]>(null);
+  }
 
   getAllProjects(): Observable<Project[]> {
     return this.httpClient.get<Project[]>(environment.url + '/project/', HTTP_OPTIONS);

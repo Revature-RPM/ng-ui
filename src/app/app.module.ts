@@ -18,16 +18,15 @@ import {ProjectGridPageComponent} from './components/pages/project/project-grid-
 import {NgxHmCarouselModule} from 'ngx-hm-carousel';
 import {NgxCarouselComponent} from './components/pages/project/ngx-carousel/ngx-carousel.component';
 import {ProjectInfoComponent} from './components/pages/project/project-info/project-info.component';
-import {EditProjectComponent} from './components/pages/project/edit-project/edit-project.component';
+import {ProjectEditComponent} from './components/pages/project-edit/project-edit.component';
 import {PageNotFoundComponent} from './components/pages/page-not-found/page-not-found.component';
-import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
-import { NgMetaModule } from 'ngmeta';
-import { MatInputModule, MatSnackBarModule } from '@angular/material';
-import { ProjectSubmissionPageComponent } from './components/pages/project-submission/project-submission-page/project-submission-page.component';
-import { EditDialogComponent } from './components/pages/project-submission/edit-dialog/edit-dialog.component';
-import {MatDialogModule} from '@angular/material';
-import { TokenInterceptor } from './services/jwtInterceptor.interceptor';
 import { RegisterComponent } from './components/pages/login-register-auth/register/register.component';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {NgMetaModule} from 'ngmeta';
+import {MatDialogModule, MatInputModule, MatSnackBarModule} from '@angular/material';
+import {ProjectSubmissionPageComponent} from './components/pages/project-submission/project-submission-page/project-submission-page.component';
+import {EditDialogComponent} from './components/pages/project-submission/edit-dialog/edit-dialog.component';
+import {TokenInterceptor} from './services/jwtInterceptor.interceptor';
 
 @NgModule({
   declarations: [
@@ -42,7 +41,7 @@ import { RegisterComponent } from './components/pages/login-register-auth/regist
     ProjectGridPageComponent,
     NgxCarouselComponent,
     ProjectInfoComponent,
-    EditProjectComponent,
+    ProjectEditComponent,
     PageNotFoundComponent,
     ProjectSubmissionPageComponent,
     EditDialogComponent,

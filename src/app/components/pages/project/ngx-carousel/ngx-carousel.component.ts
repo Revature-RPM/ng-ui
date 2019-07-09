@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ProjectService} from '../../../../services/project.service';
+import {Project} from '../../../../models/Project';
 
 @Component({
   selector: 'app-ngx-carousel',
@@ -7,6 +8,8 @@ import {ProjectService} from '../../../../services/project.service';
   styleUrls: ['./ngx-carousel.component.scss']
 })
 export class NgxCarouselComponent implements OnInit {
+
+  project: Project;
 
   index = 0;
   speed = 3500;
@@ -31,7 +34,8 @@ export class NgxCarouselComponent implements OnInit {
   ngOnInit() {
     this.projectService.CurrentProject$.subscribe(
       proj => {
-        this.avatars = this.projectService.CurrentProject.screenShots;
+        this.project = proj;
+        this.avatars = this.project.screenShots;
       });
   }
 

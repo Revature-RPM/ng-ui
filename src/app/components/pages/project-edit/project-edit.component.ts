@@ -1,24 +1,22 @@
 import {Component, OnInit} from '@angular/core';
-import {MatDialog, MatSnackBar} from '@angular/material';
 import {ActivatedRoute, Router} from '@angular/router';
 import {NgMetaService} from 'ngmeta'; // TODO use to change title to 'Edit | RPM' or something
 import {Subscription} from 'rxjs';
 
 import {Project} from 'src/app/models/Project';
 import {ProjectService} from 'src/app/services/project.service';
-import {UserService} from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-edit-project',
-  templateUrl: './edit-project.component.html',
-  styleUrls: ['./edit-project.component.scss']
+  templateUrl: './project-edit.component.html',
+  styleUrls: ['./project-edit.component.scss']
 })
 
 /* This component adds functionality to edit a project. However, the server is adding an extra header to the response causing the following
     error: The 'Access-Control-Allow-Origin' header contains multiple values 'http://localhost:4200, http://localhost:4200', but only one is allowed.
     This needs to be addressed on the server to move forward. */
 
-export class EditProjectComponent implements OnInit {
+export class ProjectEditComponent implements OnInit {
   techStackList = ['Java/J2EE', 'PEGA', 'JavaScript MVC', '.Net', 'React.js', 'Java', 'iOS9'];
 
   /* This field is initially true since the project contents for a particular project are placed in the form fields using two-way binding when
@@ -47,25 +45,22 @@ export class EditProjectComponent implements OnInit {
   subscription: Subscription; // will be used to subscribe to the results of an observable
 
   constructor(private router: Router,
-    private ngmeta: NgMetaService,
-    private projectService: ProjectService,
-    private userService: UserService,
-    private route: ActivatedRoute,
-    private dialog: MatDialog,
-    private snackBar: MatSnackBar) {}
+              private ngmeta: NgMetaService,
+              private projectService: ProjectService,
+              private route: ActivatedRoute) {
+  }
 
   ngOnInit() {
-    if (this.userService.getUser() === null) {
-      this.router.navigate(['/auth/login']);
+    if (localStorage.getItem('jwt')) {
+      this.router.navigate(['auth/login']);
     } else {
-
       this.AllProjects$.subscribe(
         allprojects => {
           this.allProjects = allprojects;
         }
       );
 
-        /**
+      /**
        * This will retrieve the path variable which corresponds to the id of the project to be edited.
        * ActivatedRoute has an observable called 'params' which provides a means to do this.
        * Once the project id is retrieved from the path, it can be passed to the list of projects
@@ -79,9 +74,9 @@ export class EditProjectComponent implements OnInit {
               this.projectToUpdate = this.allProjects[i];
             }
           }
-      });
+        });
 
-      this.ngmeta.setHead({ title: 'Edit Project | RPM' });
+      this.ngmeta.setHead({title: 'Edit Project | RPM'});
       this.projectToUpdate.groupMembers = [];
       this.projectToUpdate.screenShots = [];
       this.projectToUpdate.zipLinks = [];
@@ -113,7 +108,7 @@ export class EditProjectComponent implements OnInit {
    */
   submitForm() {
     if (JSON.parse(localStorage.getItem('user')).role === 'ROLE_USER') {
-        this.projectToUpdate.status = 'Pending';
+      this.projectToUpdate.status = 'Pending';
     }
     this.projectService.updateProject(this.projectToUpdate, this.projectToUpdate.id).subscribe();
     this.projectService.getAllProjects().subscribe(
@@ -136,8 +131,7 @@ export class EditProjectComponent implements OnInit {
   }
 
 
-
-    /**
+  /**
    * These methods allow removal and adding users to projects when editing.
    * @author Ryan Williams (1810-Oct20-Java-USF)
    */
@@ -148,6 +142,7 @@ export class EditProjectComponent implements OnInit {
     updatedArr.splice(index, 1);
     this.projectToUpdate.groupMembers = updatedArr;
   }
+
   addGroupMember() {
     const updatedArr = this.projectToUpdate.groupMembers;
     const nameToAdd = this.groupMember;

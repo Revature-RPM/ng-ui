@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { NgMetaService } from 'ngmeta';
-import { MatDialog } from '@angular/material';
-import { ProjectService } from 'src/app/services/project.service';
-import { UserService } from 'src/app/services/user.service';
-import { SnackbarService } from 'src/app/services/snackbar.service';
-import { FormBuilder } from '@angular/forms';
-import { EditDialogComponent } from '../edit-dialog/edit-dialog.component';
-import { Project } from 'src/app/models/Project';
-import { User } from 'src/app/models/User';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {NgMetaService} from 'ngmeta';
+import {MatDialog} from '@angular/material';
+import {ProjectService} from 'src/app/services/project.service';
+import {UserService} from 'src/app/services/user.service';
+import {SnackbarService} from 'src/app/services/snackbar.service';
+import {FormBuilder} from '@angular/forms';
+import {EditDialogComponent} from '../edit-dialog/edit-dialog.component';
+import {Project} from 'src/app/models/Project';
+import {User} from 'src/app/models/User';
 
 export interface DialogData {
   title: string;
@@ -52,14 +52,36 @@ export class ProjectSubmissionPageComponent implements OnInit {
     private formBuilder: FormBuilder
   ) { }
 
+  /**
+   * When the file input is triggered, the event is passed to this method,
+   * which uses the properties of the event to retrieve the files chosen and
+   * places them in the array corresponding to the screenShots/dataModel array of the project to be submitted
+   *
+   * This method will now check for:
+   * Upload limits: If the screenshots and data models uploaded exceed a certain amount,
+   *    opens a snackbar message and not add the file to the project.
+   * File size: If the file is too large, opens a snackbar message, and does not the file to the project.
+   *
+   * @param e the event corresponding to the user choosing a file to uplodad
+   * @author Justin Kerr, Rodel Flores (190422-Java-USF)
+   */
+  imagePath;
+
   ngOnInit() {
 
     if (!localStorage.getItem('jwt')) this.router.navigate(['/auth/login']);
 
-    this.ngmeta.setHead({ title: 'Submit | RPM' });
-    this.user = this.userService.user;
+    this.userService.user.asObservable().subscribe(
+      user => {
+        console.log('BEFORE SUBSCRIPTION\n\n' + user + '\\n\n===================');
+        this.user = user;
+        this.projectToUpload.trainer = this.user.firstName + ' ' + this.user.lastName;
+        console.log('AFTER SUBSCRIPTION\n\n\n\n' + this.user + '\n\n\n\n===================');
+      }
+    )
 
-    this.projectToUpload.trainer = this.userService.user.firstName + ' ' + this.userService.user.lastName;
+    this.ngmeta.setHead({ title: 'Submit | RPM' });
+
     this.projectToUpload.groupMembers = [];
     this.projectToUpload.screenShots = [];
     this.projectToUpload.zipLinks = [];
@@ -70,7 +92,7 @@ export class ProjectSubmissionPageComponent implements OnInit {
  * This method opens the dialog defined in the edit-dialog component, which is decided by
  * the field id of which you access this method from using an if/else If statement.
  * After the dialog is closed, the user's updated data is placed in the groupMembers array.
- * 
+   *
  * @param e: the event of clicking either the group member or zip links fields, which both trigger the dialog to open
  * @author Sean Doyle (1810-Oct22-Java-USF)
  * @author Justin Kerr, Rodel Flores
@@ -113,21 +135,6 @@ export class ProjectSubmissionPageComponent implements OnInit {
         }
       });
   }
-
-  /**
-   * When the file input is triggered, the event is passed to this method,
-   * which uses the properties of the event to retrieve the files chosen and
-   * places them in the array corresponding to the screenShots/dataModel array of the project to be submitted
-   * 
-   * This method will now check for:
-   * Upload limits: If the screenshots and data models uploaded exceed a certain amount, 
-   *    opens a snackbar message and not add the file to the project.
-   * File size: If the file is too large, opens a snackbar message, and does not the file to the project.
-   *
-   * @param e the event corresponding to the user choosing a file to uplodad
-   * @author Justin Kerr, Rodel Flores (190422-Java-USF)
-   */
-  imagePath;
   imgURL: any;
   screenshotCap: number = 4;
   dataModelCap: number = 6;
@@ -170,10 +177,10 @@ export class ProjectSubmissionPageComponent implements OnInit {
   }
 
   /**
-   * Finds the index of the file within projectToUpload that was previously 
+   * Finds the index of the file within projectToUpload that was previously
    * uploaded to the form and removes it using a basic splice method.
    * Also removes the picture from the screenshot picture list.
-   * 
+   *
    * Currently, if you remove a file and sequentially try to add the same one back, it won't be added back.
    * If you try to add another file and then retry adding the previously-deleted file, it WILL be added back.
    * Also, if you attempt to upload the same file, it won't be added, and the system doesn't throw an error.

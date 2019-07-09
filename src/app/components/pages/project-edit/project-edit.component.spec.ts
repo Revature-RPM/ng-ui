@@ -1,14 +1,12 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {EditProjectComponent} from './edit-project.component';
-import {SharedModule} from 'src/old-components/shared/shared.module';
+import {ProjectEditComponent} from './project-edit.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {RouterTestingModule} from '@angular/router/testing';
-import {AppModule} from 'src/old-components/app.module';
-import {ProjectModule} from '../../../../../old-components/project/project.module';
 import {UserService} from 'src/app/services/user.service';
 import {ProjectService} from 'src/app/services/project.service';
 import {Router} from '@angular/router';
+import {AppModule} from '../../../app.module';
 
 /**
  * Edit Project tests.
@@ -16,9 +14,9 @@ import {Router} from '@angular/router';
  * https://codecraft.tv/courses/angular/unit-testing/routing/
  * @author Gabriel Zapata | Fadi Alzoubi | Slavik Gleanco | Alex Johnson | Edward Bechtold | (190107-Java-Spark-USF)
  */
-describe('EditProjectComponent', () => {
-  let component: EditProjectComponent;
-  let fixture: ComponentFixture<EditProjectComponent>;
+describe('ProjectEditComponent', () => {
+  let component: ProjectEditComponent;
+  let fixture: ComponentFixture<ProjectEditComponent>;
   let userService: UserService;
   let projectService: ProjectService;
   let router: Router;
@@ -26,13 +24,13 @@ describe('EditProjectComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ ],
-      imports: [SharedModule, RouterTestingModule, BrowserAnimationsModule, AppModule, ProjectModule]
+      imports: [RouterTestingModule, BrowserAnimationsModule, AppModule]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EditProjectComponent);
+    fixture = TestBed.createComponent(ProjectEditComponent);
     component = fixture.componentInstance;
     userService = TestBed.get(UserService);
     projectService = TestBed.get(ProjectService);

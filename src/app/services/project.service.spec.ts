@@ -2,10 +2,9 @@ import {TestBed} from '@angular/core/testing';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {RouterTestingModule} from '@angular/router/testing';
-import {SharedModule} from '../../old-components/shared/shared.module';
-import {AppModule} from '../../old-components/app.module';
 
 import {ProjectService} from './project.service';
+import {AppModule} from '../app.module';
 
 /**
  * Not enough time to implement unit tests for http requests and responses. Refer to link below for assistance in writing future tests.
@@ -16,7 +15,8 @@ import {ProjectService} from './project.service';
 describe('ProjectService', () => {
   beforeEach(() => TestBed.configureTestingModule({
     declarations: [ ],
-    imports: [SharedModule, RouterTestingModule, BrowserAnimationsModule, AppModule]}));
+    imports: [RouterTestingModule, BrowserAnimationsModule, AppModule]
+  }));
 
   it('should be created', () => {
     const service: ProjectService = TestBed.get(ProjectService);
