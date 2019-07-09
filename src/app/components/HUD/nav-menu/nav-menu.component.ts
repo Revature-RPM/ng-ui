@@ -28,7 +28,6 @@ export class NavMenuComponent implements OnInit {
         } else {
           this.loggedIn = false;
         }
-
       }
     );
   }

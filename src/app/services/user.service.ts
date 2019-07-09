@@ -18,8 +18,13 @@ const httpOptions = {
 export class UserService {
   user: BehaviorSubject<User>;
 
+
   constructor(private http: HttpClient) {
-    this.user = new BehaviorSubject<User>(null);
+    this.user = new BehaviorSubject<User>( (JSON.parse(localStorage.getItem('rpmUser'))) );
+  }
+
+  getCurrentUser(): User {
+    return this.user.value;
   }
 
   // TODO clean this up
