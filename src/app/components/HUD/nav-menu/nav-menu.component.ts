@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ProjectService} from '../../../services/project.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav-menu',
@@ -11,7 +12,7 @@ export class NavMenuComponent implements OnInit {
   loggedIn;
   panelOpenState = false;
 
-  constructor(private projectService: ProjectService) {
+  constructor(private projectService: ProjectService, private router: Router) {
   }
 
   ngOnInit() {
@@ -36,4 +37,5 @@ export class NavMenuComponent implements OnInit {
         break;
     }
   }
+
 }

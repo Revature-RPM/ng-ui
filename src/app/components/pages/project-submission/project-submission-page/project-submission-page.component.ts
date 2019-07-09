@@ -240,7 +240,7 @@ export class ProjectSubmissionPageComponent implements OnInit {
       project => {
         this.snackbar.openSnackBar('Success!!', 'Dismiss');
         this.submitting = false;
-        this.router.navigate(['/home']);
+        this.router.navigate(['projects']);
       },
       error => {
         this.submitting = false;

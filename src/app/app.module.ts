@@ -2,7 +2,7 @@ import 'hammerjs';
 
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {SidenavComponent} from './components/HUD/sidenav/sidenav.component';
@@ -21,12 +21,13 @@ import {NgxCarouselComponent} from './components/pages/project/ngx-carousel/ngx-
 import {ProjectInfoComponent} from './components/pages/project/project-info/project-info.component';
 import {EditProjectComponent} from './components/pages/project/edit-project/edit-project.component';
 import {PageNotFoundComponent} from './components/pages/page-not-found/page-not-found.component';
-import {HttpClientModule} from '@angular/common/http';
-import { NgMetaModule, NgMetaService } from 'ngmeta';
-import { MatInputModule } from '@angular/material';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import { NgMetaModule } from 'ngmeta';
+import { MatInputModule, MatSnackBarModule } from '@angular/material';
 import { ProjectSubmissionPageComponent } from './components/pages/project-submission/project-submission-page/project-submission-page.component';
 import { EditDialogComponent } from './components/pages/project-submission/edit-dialog/edit-dialog.component';
 import {MatDialogModule} from '@angular/material';
+import { TokenInterceptor } from './services/jwtInterceptor.interceptor';
 
 @NgModule({
   declarations: [
@@ -57,9 +58,19 @@ import {MatDialogModule} from '@angular/material';
     HttpClientModule,
     MatDialogModule,
     NgMetaModule,
-    MatInputModule
+    MatInputModule,
+    MatSnackBarModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor ,
+      multi: true
+    }
+  ],
+  entryComponents: [EditDialogComponent],
   exports: [],
   bootstrap: [AppComponent]
 })
