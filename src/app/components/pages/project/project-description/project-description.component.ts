@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ProjectService} from '../../../../services/project.service';
+import {Project} from '../../../../models/Project';
 
 @Component({
   selector: 'app-project-description',
@@ -8,6 +9,7 @@ import {ProjectService} from '../../../../services/project.service';
 })
 export class ProjectDescriptionComponent implements OnInit {
 
+  project: Project;
   displayText: string;
 
   constructor(private projectService: ProjectService) {
@@ -26,7 +28,8 @@ export class ProjectDescriptionComponent implements OnInit {
 
     this.projectService.CurrentProject$.subscribe(
       proj => {
-        this.displayText = this.projectService.CurrentProject.description;
+        this.project = proj;
+        this.displayText = this.project.description;
       });
   }
 }

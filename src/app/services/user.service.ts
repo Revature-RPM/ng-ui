@@ -1,10 +1,10 @@
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable, throwError, BehaviorSubject } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {BehaviorSubject, Observable, throwError} from 'rxjs';
+import {catchError, map} from 'rxjs/operators';
 
-import { User } from '../models/User';
-import { environment } from '../../environments/environment';
+import {User} from '../models/User';
+import {environment} from '../../environments/environment';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -16,9 +16,11 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class UserService {
-  user: BehaviorSubject<User> = new BehaviorSubject<User>(null);
+  user: BehaviorSubject<User>;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.user = new BehaviorSubject<User>(null);
+  }
 
   // TODO clean this up
   private handleError(error: HttpErrorResponse) {
@@ -34,18 +36,18 @@ export class UserService {
     return throwError('Something went wrong; please try again later.');
   }
 
-  // user.logout()... remove the user information from app and storage.
+  // user.logout()... remove the session information from app and storage.
   logout() {
     localStorage.removeItem('jwt');
-    localStorage.removeItem('user');
     localStorage.removeItem('rpmRefresh');
+    localStorage.removeItem('rpmUser');
     this.user.next(null);
   }
-  
+
   // only use environment.url for the base url and concat any restful endpoints
   // user.login(user). login the user and retrieve the jwt token from the header
-  login(user: User): Observable<any> {
-    return this.http.post(environment.url + '/auth/login', user, { observe: 'response' })
+  login(newuser: User): Observable<any> {
+    return this.http.post(environment.url + '/auth/login', newuser, {observe: 'response'})
       .pipe(map(response => {
         if (response.headers.get('Authorization')) {
           this.user.next(response.body);
@@ -53,6 +55,7 @@ export class UserService {
 
           localStorage.setItem('jwt', jwtauthtoken);
           localStorage.setItem('rpmRefresh', (Math.round((new Date()).getTime() / 1000) + 21600000) + '');
+          localStorage.setItem('rpmUser', JSON.stringify(response.body));
           return response.body;
         } else {
           return null; // this should throw error

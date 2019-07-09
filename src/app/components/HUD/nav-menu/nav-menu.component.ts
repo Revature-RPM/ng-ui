@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ProjectService} from '../../../services/project.service';
-import { Router } from '@angular/router';
-import { UserService } from 'src/app/services/user.service';
-import { User } from 'src/app/models/User';
+import {Router} from '@angular/router';
+import {UserService} from 'src/app/services/user.service';
+import {User} from 'src/app/models/User';
 
 @Component({
   selector: 'app-nav-menu',
@@ -23,15 +23,19 @@ export class NavMenuComponent implements OnInit {
     this.userService.user.asObservable().subscribe(
       user => {
         this.user = user;
-        if (this.user) this.loggedIn = true;
-        else this.loggedIn = false;
+        if (this.user) {
+          this.loggedIn = true;
+        } else {
+          this.loggedIn = false;
+        }
+
       }
-    )
+    );
   }
 
   logout() {
     this.userService.logout();
-    this.router.navigate(['auth/login'])
+    this.router.navigate(['auth/login']);
   }
 
   getProjects(type) {

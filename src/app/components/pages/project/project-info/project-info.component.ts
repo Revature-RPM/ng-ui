@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ProjectService} from '../../../../services/project.service';
+import {Project} from '../../../../models/Project';
 
 @Component({
   selector: 'app-project-info',
@@ -16,6 +17,9 @@ import {ProjectService} from '../../../../services/project.service';
  */
 
 export class ProjectInfoComponent implements OnInit {
+
+  project: Project;
+
   private displayName: string;
   private displayBatch: string;
   private displayApprovingProject: boolean;
@@ -26,9 +30,11 @@ export class ProjectInfoComponent implements OnInit {
   ngOnInit() {
     this.projectService.CurrentProject$.subscribe(
       proj => {
-        this.displayName = this.projectService.CurrentProject.name;
-        this.displayBatch = this.projectService.CurrentProject.batch;
-        this.displayApprovingProject = this.projectService.CurrentProject.approvingProject;
+
+        this.project = proj;
+        this.displayName = this.project.name;
+        this.displayBatch = this.project.batch;
+        this.displayApprovingProject = this.project.approvingProject;
       });
   }
 
