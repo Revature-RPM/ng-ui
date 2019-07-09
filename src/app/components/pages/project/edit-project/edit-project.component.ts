@@ -29,7 +29,7 @@ export class EditProjectComponent implements OnInit {
   // is bound to the information that users enter in the form
   projectToUpdate: Project = {};
 
-  AllProjects$ =  this.projectService.AllProjects.asObservable();
+  AllProjects$ = this.projectService.AllProjects$.asObservable();
   allProjects: Project[];
 
   /**
@@ -118,7 +118,7 @@ export class EditProjectComponent implements OnInit {
     this.projectService.updateProject(this.projectToUpdate, this.projectToUpdate.id).subscribe();
     this.projectService.getAllProjects().subscribe(
       allprojects => {
-        this.projectService.AllProjects.next(allprojects);
+        this.projectService.AllProjects$.next(allprojects);
       }
     );
     this.router.navigate(['/home']);

@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ProjectService} from '../../../../services/project.service';
 
 @Component({
@@ -6,7 +6,7 @@ import {ProjectService} from '../../../../services/project.service';
   templateUrl: './ngx-carousel.component.html',
   styleUrls: ['./ngx-carousel.component.scss']
 })
-export class NgxCarouselComponent {
+export class NgxCarouselComponent implements OnInit {
 
   index = 0;
   speed = 3500;
@@ -14,26 +14,29 @@ export class NgxCarouselComponent {
   direction = 'right';
   directionToggle = true;
   autoplay = true;
+  avatars: string[];
 
-  avatars = '12345'.split('').map((x, i) => {
-    const num = i;
-    // const num = Math.floor(Math.random() * 1000);
-    return {
-      url: `https://picsum.photos/600/400/?${num}`,
-      title: `${num}`
-    };
-  });
+  // avatars = '12345'.split('').map((x, i) => {
+  //   const num = i;
+  //   // const num = Math.floor(Math.random() * 1000);
+  //   return {
+  //     url: `https://picsum.photos/600/400/?${num}`,
+  //     title: `${num}`
+  //   };
+  // };
 
   constructor(private projectService: ProjectService) {
   }
 
-  push() {
-    this.avatars.push(
-      {
-        url: `https://picsum.photos/600/400/?${this.avatars.length + 1}`,
-        title: `${this.avatars.length + 1}`
-      }
-    );
+  ngOnInit() {
+    this.projectService.CurrentProject$.subscribe(
+      proj => {
+        this.avatars = this.projectService.CurrentProject.screenShots;
+      });
+  }
+
+  push(image) {
+    this.avatars.push(image);
   }
 
   remove() {

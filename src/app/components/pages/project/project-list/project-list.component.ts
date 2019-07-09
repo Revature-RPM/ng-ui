@@ -32,7 +32,7 @@ export class ProjectListComponent implements OnInit, OnDestroy {
   imagePage = 0;
   userProjects: Project[] = [];
   subscription: Subscription;
-  AllProjects$ = this.projectService.AllProjects.asObservable();
+  AllProjects$ = this.projectService.AllProjects$.asObservable();
   retrievingProjects = true;
 
   constructor(private router: Router, private userService: UserService, private projectService: ProjectService) {
@@ -49,9 +49,9 @@ export class ProjectListComponent implements OnInit, OnDestroy {
       .subscribe(
         (projectResponse) => {
           this.retrievingProjects = false;
-          this.projectService.AllProjects.next(projectResponse);
+          this.projectService.AllProjects$.next(projectResponse);
           console.log(projectResponse);
-          console.log(this.projectService.AllProjects);
+          console.log(this.projectService.AllProjects$);
           this.updateProjects(this.projectService.projFilter);
         });
   }

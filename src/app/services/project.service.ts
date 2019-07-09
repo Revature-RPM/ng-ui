@@ -16,10 +16,11 @@ const HTTP_OPTIONS = {
 })
 
 export class ProjectService {
-  AllProjects: BehaviorSubject<Project[]> = new BehaviorSubject<Project[]>(null);
+  AllProjects$: BehaviorSubject<Project[]> = new BehaviorSubject<Project[]>(null);
+  AllProjects: Project[];
   CurrentProject$: BehaviorSubject<Project> = new BehaviorSubject<Project>(null);
-  projFilter: string;
   CurrentProject: Project;
+  projFilter: string;
 
   constructor(private httpClient: HttpClient) { }
 
