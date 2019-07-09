@@ -21,3 +21,40 @@
     lives easier.
 */
 @import '../../../../../variables';
+
+#registration-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 90%;
+    padding-top: 0%;
+    padding-bottom: 0%;
+    
+    mat-card {
+        margin: 0 auto;
+
+        mat-card-header {
+            justify-content: center;
+
+
+        }
+
+        mat-card-content {
+            justify-content: center;
+
+        }
+    }
+}
+#registerSpinner {
+    display: inline;
+}
+
+#availableEmail {
+    font-size: 12px;
+    color: green;
+}
+
+#emailNotAvailable {
+    font-size: 12px;
+    color: red;
+}

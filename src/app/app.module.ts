@@ -11,7 +11,6 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NavbarComponent} from './components/HUD/navbar/navbar.component';
 import {LoginComponent} from './components/pages/login-register-auth/login/login.component';
 import {NavMenuComponent} from './components/HUD/nav-menu/nav-menu.component';
-import {RegisterComponent} from './components/pages/login-register-auth/register/register.component';
 import {LoginRegisterPageComponent} from './components/pages/login-register-auth/login-register-page/login-register-page.component';
 import {ProjectDescriptionComponent} from './components/pages/project/project-description/project-description.component';
 import {ProjectListComponent} from './components/pages/project/project-list/project-list.component';
@@ -36,7 +35,6 @@ import { TokenInterceptor } from './services/jwtInterceptor.interceptor';
     NavbarComponent,
     LoginComponent,
     NavMenuComponent,
-    RegisterComponent,
     LoginRegisterPageComponent,
     ProjectDescriptionComponent,
     ProjectListComponent,
