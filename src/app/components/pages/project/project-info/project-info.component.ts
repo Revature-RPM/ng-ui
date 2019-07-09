@@ -20,6 +20,7 @@ import { Router } from '@angular/router';
 export class ProjectInfoComponent implements OnInit {
 
   project: Project;
+  yourProject = false;
 
   constructor(private projectService: ProjectService, private router: Router) {
   }
@@ -32,10 +33,12 @@ export class ProjectInfoComponent implements OnInit {
           this.project = proj;
         }
       });
+      if (localStorage.getItem('viewprojects') == 'user') this.yourProject = true;
+      else this.yourProject = false;
   }
 
   updateProject() {
-    if (this.project && localStorage.getItem('viewprojects') == 'user') this.router.navigate(['/updateform']);
+    if (this.project) this.router.navigate(['/updateform']);
   }
 
 }
