@@ -14,9 +14,9 @@
         <mat-form-field>
           <input matInput placeholder="E-mail" formControlName="email" [pattern]="emailPattern" (focusout)="checkIfEmailIsInUse()" (keyup)="checkIfEmailIsInUseKey()">
         </mat-form-field>
-        <div>
+        <!-- <div>
           <button mat-button matStepperNext>Next</button>
-        </div>
+        </div> -->
       </form>
     </mat-step>
     <mat-step [stepControl]="formGroup2" #formGroup2>
@@ -34,10 +34,10 @@
           <input matInput placeholder="Confirm Password" formControlName="confirmPassword">
         </mat-form-field>
         <br>
-        <div>
+        <!-- <div>
           <button mat-button matStepperPrevious>Back</button>
           <button mat-button matStepperNext>Next</button>
-        </div>
+        </div> -->
       </form>
     </mat-step>
     <mat-step>
@@ -46,9 +46,9 @@
       If you need to change something, click on the steps above to edit them.
       <div>
         <button mat-button type="submit" [disabled]="!formGroup1.valid || !formGroup2.valid">Submit</button>
-        <br>
+        <!-- <br>
         <button mat-button matStepperPrevious>Back</button>
-        <button mat-button (click)="stepper.reset()">Reset</button>
+        <button mat-button (click)="stepper.reset()">Reset</button> -->
       </div>
     </mat-step>
   </mat-vertical-stepper>
