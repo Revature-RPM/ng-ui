@@ -9,14 +9,15 @@ import { Router } from '@angular/router';
 })
 export class NavMenuComponent implements OnInit {
 
-  loggedIn;
+  loggedIn = false;
   panelOpenState = false;
 
   constructor(private projectService: ProjectService, private router: Router) {
   }
 
   ngOnInit() {
-
+    if (localStorage.getItem('jwt')) this.loggedIn = true;
+    else this.loggedIn = false;
   }
 
   login() {
