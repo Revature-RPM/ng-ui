@@ -87,7 +87,7 @@ export class LoginComponent implements OnInit {
        },
        (error) => { this.authenticating = false; alert('ERROR LOGGING IN'); });
     }
-
+    
   }
 
   /* Listens to key input on password input field to remove 'Password is required'
