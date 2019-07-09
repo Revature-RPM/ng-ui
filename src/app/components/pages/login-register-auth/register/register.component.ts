@@ -25,6 +25,8 @@ import { UserService } from 'src/app/services/user.service';
 
 export class RegisterComponent implements OnInit {
 
+}
+
 //   user: User = {};
 //   isLinear = true;
 //   firstFormGroup: FormGroup;
