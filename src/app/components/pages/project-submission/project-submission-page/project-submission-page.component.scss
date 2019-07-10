@@ -28,12 +28,16 @@
         background-color: rgba($rev-gray-main, 0.5);
     }
 }
+
+mat-card {
+    margin: 0;
+}
+
 #submit-project-form {
     display: flex;
     flex-direction: column;
     align-content: center;
     flex-wrap: nowrap;
-    margin: $top-margin 15%;
     height: fit-content;
     padding-bottom: 50px;
 }
@@ -111,6 +115,10 @@ mat-error {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
+    width: 100%;
+    justify-content: center;
+    align-content: center;
+    margin-top: 10px;
 }
 
 // .filelist {
@@ -138,4 +146,10 @@ mat-spinner {
     margin-right: 15px;
 }
 
+
+@media screen and (min-width: 600px) {
+    mat-card {
+    margin: $top-margin 15%;
+    }
+}
 
