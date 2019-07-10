@@ -62,6 +62,7 @@ export class UserService {
           localStorage.setItem('jwt', jwtauthtoken);
           localStorage.setItem('rpmRefresh', (Math.round((new Date()).getTime() / 1000) + 21600000) + '');
           localStorage.setItem('rpmUser', JSON.stringify(response.body));
+          localStorage.setItem('viewprojects', 'all');
           return response.body;
         } else {
           return null; // this should throw error

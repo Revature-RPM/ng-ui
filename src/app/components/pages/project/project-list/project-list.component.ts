@@ -48,8 +48,10 @@ export class ProjectListComponent implements OnInit, OnDestroy {
 
     this.userService.user.asObservable().subscribe(
       user => {
+        if (user) {
         this.currentUser = user;
         this.trainerFullName = this.currentUser.firstName.trim() + ' ' + this.currentUser.lastName.trim();
+        }
       }
     );
 

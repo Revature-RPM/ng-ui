@@ -33,6 +33,8 @@ export class RegisterComponent implements OnInit {
   emailIsAvailable: boolean;
   usernameIsAvailable: boolean;
   user: User = {};
+  loginUser: User = {};
+  submitted: boolean = false;
 
   constructor(private userService: UserService,
     private router: Router,
@@ -62,10 +64,7 @@ export class RegisterComponent implements OnInit {
       {
         username: ['', [Validators.required, Validators.minLength(8)]],
         password: ['', [Validators.required, Validators.minLength(8)]],
-        confirmPassword: [
-          Validators.required,
-          Validators.minLength(8)
-        ]
+        confirmPassword: ['', [Validators.required, Validators.minLength(8)]]
       }, {
           validator: RegisterComponent.passMatchValidator
         });
@@ -84,10 +83,11 @@ export class RegisterComponent implements OnInit {
     this.user.password = this.form2.password.value;
 
     this.userService.register(this.user).pipe(first()).subscribe(
-      newuser => {
-        console.log(newuser);
-        if (newuser) {
-          this.userService.login(newuser).pipe(first()).subscribe(
+      user => {
+        if (user) {
+          this.loginUser.username = user.username;
+          this.loginUser.password = user.password;
+          this.userService.login(this.loginUser).pipe(first()).subscribe(
             (user) => {
               this.router.navigate(['projects']);
             });

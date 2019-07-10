@@ -7,8 +7,7 @@ import { ProjectSubmissionPageComponent } from './components/pages/project-submi
 import { ProjectEditComponent } from './components/pages/project-edit/project-edit.component';
 
 const routes: Routes = [
-  // {path: '', component: LoginRegisterPageComponent},
-  {path: '', component: ProjectGridPageComponent},
+  {path: '', redirectTo: 'auth/login', pathMatch: 'full'},
   {path: 'auth/login', component: LoginRegisterPageComponent},
   {path: 'projects', component: ProjectGridPageComponent},
   {path: 'projects/1', component: ProjectGridPageComponent},

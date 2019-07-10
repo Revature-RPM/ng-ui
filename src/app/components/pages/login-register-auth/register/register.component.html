@@ -14,12 +14,6 @@
         <mat-form-field>
           <input matInput placeholder="E-mail" formControlName="email">
         </mat-form-field>
-        <!-- <div *ngIf="submitted && form.name.errors">
-            <div *ngIf="form.email.errors.required" class="errors">Character name is required!</div>
-            <div *ngIf="form.email.errors.minlength" class="errors">Character name must be at least 3 characters long!</div>
-            <div *ngIf="form.email.errors.maxlength" class="errors">Character name must be at most 30 characters long!</div>
-            <div *ngIf="form.email.errors.whitespace" class="errors">Your character name cannot contain spaces!</div>
-          </div> -->
       </form>
     </mat-step>
     <mat-step [stepControl]="formGroup2">
