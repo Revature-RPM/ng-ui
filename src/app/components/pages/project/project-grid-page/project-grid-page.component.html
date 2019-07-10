@@ -2,11 +2,12 @@
     <mat-card-content>
         <div id="view-projects-grid">
             <div id="project-title">
-                <h1>project.title</h1>
+              <h1 *ngIf="project">{{ project.name }}</h1>
+              <h1 *ngIf="!project">Project Viewer</h1>
                 <div>
-                    <!-- <button mat-flat-button *ngIf="yourProject" (click)="updateProject()">Update Project</button>            
+                    <!-- <button mat-flat-button *ngIf="yourProject" (click)="updateProject()">Update Project</button>
                     <button mat-flat-button>Codebase</button> -->
-                    <button mat-fab matTooltip="Update project" matTooltipPosition="above" (click)="updateProject()"><mat-icon>edit</mat-icon></button>            
+                    <button mat-fab matTooltip="Update project" matTooltipPosition="above" (click)="updateProject()"><mat-icon>edit</mat-icon></button>
                     <button mat-fab matTooltip="Codebase viewer" matTooltipPosition="above"><mat-icon>code</mat-icon></button>
                 </div>
             </div>

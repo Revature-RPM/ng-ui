@@ -22,8 +22,7 @@ export class ProjectInfoComponent implements OnInit {
   project: Project;
   yourProject = false;
 
-  constructor(private projectService: ProjectService, private router: Router) {
-  }
+  constructor(private projectService: ProjectService, private router: Router) {}
 
   ngOnInit() {
     this.projectService.CurrentProject$.asObservable().subscribe(
