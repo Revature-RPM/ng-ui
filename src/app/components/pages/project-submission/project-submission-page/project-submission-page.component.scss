@@ -32,17 +32,18 @@
     display: flex;
     flex-direction: column;
     align-content: center;
-    height: 100%;
     flex-wrap: nowrap;
     margin: $top-margin 15%;
+    height: fit-content;
+    padding-bottom: 50px;
 }
 h1 {
     text-align: center;
     font-size: 1.5em;
-    width: 90%;
+    width: 80%;
     border-bottom: 3px solid $rev-orange-main;
     padding: 15px;
-    margin: 20px;
+    margin: 20px auto;
 }
 form {
     display: flex;
@@ -52,12 +53,19 @@ form {
     flex-wrap: wrap;
 }
 
+.row {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
 .mat-input-element {
     width: fit-content;
 }
 
 mat-form-field {
-    margin: 0 15px;
+    margin: 0 30px;
     flex-basis: 300px;
     flex-grow: 1;
 }
@@ -66,10 +74,68 @@ input, textarea {
     width: 100% !important;
 }
 
-button {
-    height: fit-content;
+#repository-links {
+    flex-basis: 80%;
+    flex-shrink: 0;
+    flex-grow: 0;
+}
+
+#description, #group-members {
+    flex-basis: 500px;
 }
 
 mat-error {
     font-size: 14px;
 }
+
+.file-spacer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    min-height: 20px;
+    height: fit-content;
+    width: 100%;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+    padding: 10px;
+    background-color: rgba($rev-light-gray, 0.3);
+}
+
+#buttonScreenshotTrigger {
+    margin-top: 30px;
+    
+}
+
+#register-spinner {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+// .filelist {
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: center;
+//     align-content: center;
+// }
+
+.filelist {
+    text-align: center;
+    margin: 0 15px;
+    cursor: pointer;
+    img {
+        margin: auto;
+    }
+}
+
+.filelist:hover {
+    color: red;
+}
+
+
+mat-spinner {
+    margin-right: 15px;
+}
+
+
