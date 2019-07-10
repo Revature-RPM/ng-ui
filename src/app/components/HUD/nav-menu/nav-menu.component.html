@@ -1,0 +1,27 @@
+<div id="nav-menu" class="flex-container">
+    <div id="nav-menu-logo">
+      <a href="#"><img id="nav-logo" src="../../../../assets/rpm-logo/RPM-Logo-Two-Tone.png"></a>
+    </div>
+    <div *ngIf="loggedIn" id="logged-in-links" class="nav-menu-links">
+        <a mat-button>All Users</a>
+
+        <!-- The "View Projects" submenu -->
+        <mat-expansion-panel id="view-projects">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    View Projects
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+          <a (click)="getProjects('user')" mat-button>Your Projects</a>
+          <a (click)="getProjects('all')" mat-button>All Projects</a>
+        </mat-expansion-panel>
+
+        <a (click)="goToSubmit()" mat-button>Submit a Project</a>
+
+        <a mat-button (click)="goToProfile()">Profile</a>
+      <a (click)="logout()" mat-button>Logout</a>
+    </div>
+    <div *ngIf="!loggedIn" id="logged-out-links" class="nav-menu-links">
+        <a mat-button>Login/Register</a>
+    </div>
+</div>

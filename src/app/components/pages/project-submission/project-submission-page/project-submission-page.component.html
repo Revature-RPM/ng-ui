@@ -1,0 +1,122 @@
+<mat-card>
+  <div id="submit-project-form">
+    <h1 id="title">Submit a Project</h1>
+    <form #projectForm="ngForm" novalidate>
+      <mat-form-field>
+        <mat-label>Project Name</mat-label>
+        <mat-error *ngIf="!name.valid || name.pristine">Project name is required</mat-error>
+        <input id="project-name" name="projectName" type="text" matInput placeholder="Project Name"
+          [(ngModel)]="projectToUpload.name" [ngModelOptions]="{standalone: true}" required #name="ngModel">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Batch Name</mat-label>
+        <mat-error *ngIf="!batch.valid || batch.pristine">Batch name is required</mat-error>
+        <input type="text" name="batchName" matInput placeholder="Batch Name" [(ngModel)]="projectToUpload.batch"
+          [ngModelOptions]="{standalone: true}" required #batch="ngModel">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Trainer Name</mat-label>
+        <mat-error *ngIf="!trainerName.valid || trainerName.pristine">Trainer name is required</mat-error>
+        <!-- TODO: make this a dropdown where it lists all of the trainers -->
+        <input type="text" name="trainers" matInput placeholder="Trainer Name" [(ngModel)]="projectToUpload.trainer"
+          [ngModelOptions]="{standalone: true}" required #trainerName="ngModel">
+        <!-- [disabled]="(user.role !== 'ROLE_ADMIN')" -->
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Technology Stack</mat-label>
+        <mat-error *ngIf="!techStack.valid || techStack.pristine">Technology stack is required</mat-error>
+        <mat-select placeholder="Select Batch" [(ngModel)]="projectToUpload.techStack"
+          [ngModelOptions]="{standalone: true}" required #techStack="ngModel">
+          <mat-option *ngFor="let tech of techStackList" [value]="tech">
+            {{tech}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div class="row">
+        <mat-form-field id="group-members">
+          <mat-label>Group Members</mat-label>
+          <mat-error *ngIf="!groupMembers.valid || groupMembers.pristine">Group members are required</mat-error>
+          <textarea type="text" id="inputGroupMembers" matInput name="groupMembers" placeholder="Group Members" readonly
+            [(ngModel)]="groupMemberString" [ngModelOptions]="{standalone: true}" (click)="openEditableDialog($event)"
+            required #groupMembers="ngModel"></textarea>
+        </mat-form-field>
+
+        <mat-form-field id="description">
+          <mat-label>Description</mat-label>
+          <mat-error *ngIf="!description.valid || description.pristine">Description is required</mat-error>
+          <textarea matInput name="description" placeholder="Project Description"
+            [(ngModel)]="projectToUpload.description" [ngModelOptions]="{standalone: true}" #description="ngModel"
+            required></textarea>
+        </mat-form-field>
+      </div>
+
+      <mat-form-field id="repository-links">
+        <mat-label>Repository Links</mat-label>
+        <mat-error *ngIf="!zipLinks.valid || zipLinks.pristine || invalidLink">A Github link is required in format:
+          https://github.com/[Github username]/[Repository Name]</mat-error>
+        <textarea type="text" id="inputGithubLink" name="repoLinks" readonly matInput
+          placeholder="Project Repository Links" [(ngModel)]="zipLinksString" [ngModelOptions]="{standalone: true}"
+          (click)="openEditableDialog($event)" #zipLinks="ngModel" required></textarea>
+        <!--<mat-hint id="editGithubLink" (click)="openEditDialog($event)" aria-label="editGithubLink" name="editGithubLink" align="end">Edit</mat-hint>-->
+      </mat-form-field>
+
+
+      <!-- <mat-form-field>
+                      <mat-label>Technology Stack</mat-label>
+                    <mat-error *ngIf="!techStack.valid || techStack.pristine">Technology stack is required</mat-error>
+                    <input type=text matInput name="stack" placeholder="Project Technology Stack" [(ngModel)]="projectToUpload.techStack"
+                    [ngModelOptions]="{standalone: true}" required #techStack="ngModel">
+                  </mat-form-field> -->
+      
+        <button id="buttonScreenshotTrigger" mat-flat-button color="accent" (click)="uploadScreenshots.click()">
+                      Choose Project Screenshots</button>
+        <div class="file-spacer">
+        <!-- This button triggers the file input to be clicked by referencing its template variable, uploadScreenshots -->
+          
+
+          <div id="screenshotdiv" *ngFor="let screenshot of projectToUpload.screenShots; let i = index"
+            [attr.data-index]="i">
+            <div class="filelist" (click)="removeData(screenshot, 'scs')">
+              <img *ngIf="screenshotPicList[i]" [src]="screenshotPicList[i]" height="50">
+
+              <div class="file-name">{{ screenshot.name }}</div>
+            </div>
+          </div>
+        </div>
+
+
+      <button mat-flat-button color="accent" (click)="uploadDatamodel.click()"
+      title="SQL Scripts only.">Choose Data Model</button>
+      <div class="file-spacer">
+        <!-- This button triggers the file input to be clicked by referencing its template variable, uploadDatamodel -->
+        <!-- <label for="buttonDatamodelTrigger" >SQL scripts only!</label> -->
+      
+        <div *ngFor="let datamodel of projectToUpload.dataModel">
+          <div class="filelist" (click)="removeData(datamodel, 'dms')"> {{ datamodel.name }} </div>
+        </div>
+      </div>
+
+      <button (click)="submitForm()" type="submit" id="submit" mat-flat-button color="accent">Submit Project</button>
+
+        <div id="register-spinner" *ngIf='submitting'>
+            <mat-spinner [diameter]="20"></mat-spinner>
+            Submitting...
+        </div>
+    
+
+
+
+
+      <!-- Hidden file input used to retrieve project screenshots -->
+      <input id="screenShots" name="screenShotFiles" #uploadScreenshots hidden type="file"
+        (change)="onFileSelected($event, 'scs')" accept="image/*" required />
+      <!-- Hidden file input used to retrieve project data models-->
+      <input id="dataModel" name="dataModelFiles" #uploadDatamodel hidden type="file"
+        (change)="onFileSelected($event, 'dms')" accept=".sql" required />
+    </form>
+
+  </div>
+</mat-card>

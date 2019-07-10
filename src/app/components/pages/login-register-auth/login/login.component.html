@@ -1,0 +1,26 @@
+<div id="login-container">
+    <form #formcontrol="ngForm"> 
+        <mat-form-field>
+            <input id="username-input" matInput type="text" class="form-control" placeholder="Username" name="username" [(ngModel)]="user.username"
+                required (keydown.enter)="loginE()" (keydown)="checkE($event)" autofocus>
+        </mat-form-field>
+        <div id='field' *ngIf="usernameO">Username must be filled out</div>
+        <br />
+        <mat-form-field>
+            <input id="password-input" matInput type="password" class="form-control" placeholder="Password" name="password" [(ngModel)]="user.password"
+                required (keydown.enter)="loginE()" (keydown)="checkEP($event)">
+        </mat-form-field>
+        <div id="message-fields">
+            <div id='field' *ngIf="passwordO">Password must be filled out</div>
+            <div id="please-fill-all" *ngIf="!formcontrol.form.valid">Please enter all fields</div>
+            <div id="register-spinner" *ngIf='authenticating'><mat-spinner [diameter]="20"></mat-spinner><div>Authenticating</div></div>
+            <div id='o' *ngIf='loggedIn'><mat-icon>check</mat-icon><span>Logging In</span></div>
+
+            <div id="logUnsuccessful" *ngIf='!logSuccess'>Invalid Username/Password</div>
+        </div>
+  
+        <button color="accent" mat-flat-button type="button" [disabled]="!formcontrol.form.valid" (click)="login()">Login</button>
+        <!-- <button mat-button routerLink="/auth/register">Register</button> -->
+        
+    </form>
+  </div>

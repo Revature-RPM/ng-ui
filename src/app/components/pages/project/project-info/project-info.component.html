@@ -1,0 +1,31 @@
+<h2>Project Info</h2>
+<div id="project-list" *ngIf="!project">
+    <div id="title">Title</div>
+    <div id="title-name">RPM UI</div>
+    <div id="trainer">Trainer</div>
+    <div id="tname">Wezley Singleton</div>
+    <div id="batch">Batch</div>
+    <div id="bname">190422-USF-Java</div>
+    <div id="developers">Developers</div>
+    <div id="dnames">
+       - Justin Kerr -- Ian Baker -- Rodel Flores -- Aaron Rea -- Joshua Karvelis -- Kelly Young -
+    </div>
+
+</div>
+
+<div id="project-list" *ngIf="project">
+        <div id="title">Title</div>
+        <div id="title-name">{{project.name}}</div>
+        <div id="trainer">Trainer</div>
+        <div id="tname">{{project.trainer}}</div>
+        <div id="batch">Batch</div>
+        <div id="bname">{{project.batch}}</div>
+        <div id="developers">Developers</div>
+        <div id="dnames"><span *ngFor="let developer of project.groupMembers"> - {{developer}} -</span></div>
+        <div>
+            <br>
+            <button *ngIf="yourProject" (click)="updateProject()">Update Project</button>            
+            <br>
+            <button>Codebase</button>
+        </div>
+</div>

@@ -1,0 +1,5 @@
+<div id="project-list-tabs" class="flex-container">
+  <h4>Projects:</h4>
+  <br>
+  <button *ngFor="let project of userProjects" mat-flat-button (click)="swapProject(project)">{{project.name}}</button>
+</div>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -6,11 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'ng-ui';
+  title = 'rev-theme';
 }
-
-/**
- * To future batches: if things in this project confuse you, I understand
- * This might help: https://youtu.be/Bhd2ayEE9mg
- * Good luck!
- */
