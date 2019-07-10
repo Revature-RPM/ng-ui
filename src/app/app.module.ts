@@ -27,6 +27,7 @@ import {MatDialogModule, MatInputModule, MatSnackBarModule} from '@angular/mater
 import {ProjectSubmissionPageComponent} from './components/pages/project-submission/project-submission-page/project-submission-page.component';
 import {EditDialogComponent} from './components/pages/project-submission/edit-dialog/edit-dialog.component';
 import {TokenInterceptor} from './services/jwtInterceptor.interceptor';
+import { ProfileComponent } from './components/pages/user-management/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import {TokenInterceptor} from './services/jwtInterceptor.interceptor';
     PageNotFoundComponent,
     ProjectSubmissionPageComponent,
     EditDialogComponent,
-    RegisterComponent
+    RegisterComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

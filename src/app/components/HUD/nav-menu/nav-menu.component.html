@@ -18,20 +18,10 @@
 
         <a (click)="goToSubmit()" mat-button>Submit a Project</a>
 
-        <a mat-button>Profile</a>
+        <a mat-button (click)="goToProfile()">Profile</a>
       <a (click)="logout()" mat-button>Logout</a>
     </div>
     <div *ngIf="!loggedIn" id="logged-out-links" class="nav-menu-links">
-        <a href="auth/login" mat-button>Login/Register</a>
+        <a mat-button>Login/Register</a>
     </div>
 </div>
-
-
-<!--
-<mat-menu #navMenu="matMenu">
-    <button mat-menu-item>Front End</button>
-    <button mat-menu-item>Back End</button>
-</mat-menu>
-
-<button mat-flat-button [matMenuTriggerFor]="navMenu">Menu</button>
--->

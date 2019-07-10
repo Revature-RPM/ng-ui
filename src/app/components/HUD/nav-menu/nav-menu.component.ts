@@ -47,4 +47,8 @@ export class NavMenuComponent implements OnInit {
   goToSubmit() {
     this.router.navigate(['submitform']);
   }
+
+  goToProfile() {
+    this.router.navigate(['profile']);
+  }
 }
