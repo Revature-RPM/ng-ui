@@ -5,6 +5,7 @@ import {LoginRegisterPageComponent} from './components/pages/login-register-auth
 import {ProjectGridPageComponent} from './components/pages/project/project-grid-page/project-grid-page.component';
 import { ProjectSubmissionPageComponent } from './components/pages/project-submission/project-submission-page/project-submission-page.component';
 import { ProjectEditComponent } from './components/pages/project-edit/project-edit.component';
+import { ProfileComponent } from './components/pages/user-management/profile/profile.component';
 
 const routes: Routes = [
   // {path: '', redirectTo: 'auth/login', pathMatch: 'full'},
@@ -14,7 +15,7 @@ const routes: Routes = [
   {path: 'projects/1', component: ProjectGridPageComponent},
   {path: 'submitform', component: ProjectSubmissionPageComponent},
   {path: 'updateform', component: ProjectEditComponent},
-
+  {path: 'profile', component: ProfileComponent},
 
   // Do not put any routes below this one!
   {path: '**', component: PageNotFoundComponent}
