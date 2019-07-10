@@ -29,7 +29,6 @@ export class ProjectInfoComponent implements OnInit {
     this.projectService.CurrentProject$.asObservable().subscribe(
       proj => {
         if (proj) {
-          console.log(proj);
           this.project = proj;
         }
       });

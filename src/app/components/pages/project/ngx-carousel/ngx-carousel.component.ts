@@ -32,9 +32,11 @@ export class NgxCarouselComponent implements OnInit {
   ngOnInit() {
     this.projectService.CurrentProject$.subscribe(
       proj => {
-        if(proj) {
-        this.project = proj;
-        this.avatars = this.project.screenShots;
+        //the proj.screenShots.length check is temporary because project screenshots are currently not persisted
+        //in the server side application
+        if(proj && proj.screenShots.length>1) {
+          this.project = proj;
+          this.avatars = this.project.screenShots;
         }
       });
   }

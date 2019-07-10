@@ -1,7 +1,7 @@
-<!-- <div id="registration-container">  
+<div id="registration-container">  
   <mat-vertical-stepper linear>
     <mat-step [stepControl]="formGroup1">
-      <form [formGroup]="formGroup1" #formGroup1 (ngSubmit)="onSubmit()">
+      <form [formGroup]="formGroup1">
         <ng-template matStepLabel>Please provide your details</ng-template>
         <mat-form-field>
           <input matInput placeholder="First Name" formControlName="firstName">
@@ -12,11 +12,17 @@
         </mat-form-field>
         <br>
         <mat-form-field>
-          <input matInput placeholder="E-mail" formControlName="email" [pattern]="emailPattern" (focusout)="checkIfEmailIsInUse()" (keyup)="checkIfEmailIsInUseKey()">
+          <input matInput placeholder="E-mail" formControlName="email">
         </mat-form-field>
+        <!-- <div *ngIf="submitted && form.name.errors">
+            <div *ngIf="form.email.errors.required" class="errors">Character name is required!</div>
+            <div *ngIf="form.email.errors.minlength" class="errors">Character name must be at least 3 characters long!</div>
+            <div *ngIf="form.email.errors.maxlength" class="errors">Character name must be at most 30 characters long!</div>
+            <div *ngIf="form.email.errors.whitespace" class="errors">Your character name cannot contain spaces!</div>
+          </div> -->
       </form>
     </mat-step>
-    <mat-step [stepControl]="formGroup2" #formGroup2>
+    <mat-step [stepControl]="formGroup2">
       <form [formGroup]="formGroup2">
         <ng-template matStepLabel>Enter a Username and Password</ng-template>
         <mat-form-field>
@@ -35,11 +41,9 @@
     </mat-step>
     <mat-step>
       <ng-template matStepLabel>Done!</ng-template>
-      Click 'submit' to create your account.
-      If you need to change something, click on the steps above to edit them.
       <div>
-        <button mat-button type="submit" [disabled]="!formGroup1.valid || !formGroup2.valid">Submit</button>
+        <button mat-button type="submit" [disabled]="!formGroup1.valid || !formGroup2.valid" (click)="register()">Submit</button>
       </div>
     </mat-step>
   </mat-vertical-stepper>
-</div> -->
+</div>
