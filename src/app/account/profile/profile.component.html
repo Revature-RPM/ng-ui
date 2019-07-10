@@ -101,7 +101,7 @@
               <div fxLayout.xs="column"></div>
               <div fxLayout.xs="column">
                 <mat-form-field *ngIf="!setReadOnly">
-                  <input matInput readonly={{setReadOnly}} type="password" id="inputPassword" placeholder="Password"
+                  <input matInput readonly={{setReadOnly}} type="password" id="inputPassword" placeholder="New Password"
                     formControlName="password" (blur)=retypeConfirmPassword() minlength="8">
                   <mat-error *ngIf="form.get('password').hasError('minlength')">
                     Must be at least <strong>8 characters</strong>
@@ -110,7 +110,7 @@
               </div>
               <div fxLayout.xs="column">
                 <mat-form-field *ngIf="!setReadOnly">
-                  <input matInput type="password" id="inputConfirmPassword" placeholder="Confirm Password"
+                  <input matInput type="password" id="inputConfirmPassword" placeholder="Confirm New Password"
                     formControlName="confirmPassword" (blur)=formFilled() (mouseleave)=formFilled()>
                   <mat-error *ngIf="form.controls.confirmPassword.errors?.MatchPassword">
                     Password must <strong>match</strong>
