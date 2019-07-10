@@ -74,6 +74,7 @@ app-project-list {
 #search-projects {
     flex-basis: 150px;
     flex-grow: 1;
+    max-height: 45px;
 }
 
 mat-card {
@@ -85,6 +86,7 @@ mat-card {
     display: grid;
   grid-template:
         'tabs'
+        'title'
         'carousel'
         'info'
         'description';
