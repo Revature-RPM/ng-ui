@@ -34,7 +34,7 @@ export class TokenInterceptor implements HttpInterceptor {
         });
         const newRefreshTime = currentTime + 21600000;
         localStorage.setItem('rpmRefresh', newRefreshTime + '');
-        localStorage.setItem('viewprojects', 'all');
+        if(!localStorage.getItem('viewprojects')) localStorage.setItem('viewprojects', 'all');
 
     } else {
       localStorage.removeItem('jwt');
