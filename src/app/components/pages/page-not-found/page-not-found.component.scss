@@ -21,3 +21,20 @@
     lives easier.
 */
 @import '../../../../variables';
+
+#page {
+    padding-top: $top-margin;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+}
+
+#error {
+    font-size: 100px;
+}
+
+#message {
+    font-size: 50px;
+}
