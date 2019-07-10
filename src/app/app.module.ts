@@ -28,6 +28,8 @@ import {ProjectSubmissionPageComponent} from './components/pages/project-submiss
 import {EditDialogComponent} from './components/pages/project-submission/edit-dialog/edit-dialog.component';
 import {TokenInterceptor} from './services/jwtInterceptor.interceptor';
 import { ProfileComponent } from './components/pages/user-management/profile/profile.component';
+import { CodebasePageComponent } from './components/pages/codebase-page/codebase-page.component';
+import { AllUsersPageComponent } from './components/pages/user-management/all-users-page/all-users-page.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,9 @@ import { ProfileComponent } from './components/pages/user-management/profile/pro
     ProjectSubmissionPageComponent,
     EditDialogComponent,
     RegisterComponent,
-    ProfileComponent
+    ProfileComponent,
+    CodebasePageComponent,
+    AllUsersPageComponent
   ],
   imports: [
     BrowserModule,
