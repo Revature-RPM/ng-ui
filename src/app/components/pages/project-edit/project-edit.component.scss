@@ -110,7 +110,7 @@ mat-error {
 
 #buttonScreenshotTrigger {
     margin-top: 30px;
-    
+
 }
 
 #register-spinner {
@@ -155,3 +155,13 @@ mat-spinner {
     }
 }
 
+textarea {
+  height: 50%;
+  width: 22%;
+}
+
+button {
+ height: fit-content;
+ width: fit-content;
+  margin: 5px;
+}
