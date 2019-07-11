@@ -29,6 +29,7 @@ import {TokenInterceptor} from './services/jwtInterceptor.interceptor';
 import { ProfileComponent } from './components/pages/user-management/profile/profile.component';
 import { CodebasePageComponent } from './components/pages/codebase-page/codebase-page.component';
 import { AllUsersPageComponent } from './components/pages/user-management/all-users-page/all-users-page.component';
+import { EllipsisPipe } from './ellipsis.pipe';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { AllUsersPageComponent } from './components/pages/user-management/all-us
     RegisterComponent,
     ProfileComponent,
     CodebasePageComponent,
-    AllUsersPageComponent
+    AllUsersPageComponent,
+    EllipsisPipe
   ],
   imports: [
     BrowserModule,
