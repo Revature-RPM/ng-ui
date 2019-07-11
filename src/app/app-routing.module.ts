@@ -8,9 +8,8 @@ import { ProjectEditComponent } from './components/pages/project-edit/project-ed
 import { ProfileComponent } from './components/pages/user-management/profile/profile.component';
 
 const routes: Routes = [
-  // {path: '', redirectTo: 'auth/login', pathMatch: 'full'},
-  // {path: 'auth/login', component: LoginRegisterPageComponent},
-  {path: 'auth/login', component: ProjectGridPageComponent},
+  {path: '', redirectTo: 'auth/login', pathMatch: 'full'},
+  {path: 'auth/login', component: LoginRegisterPageComponent},
   {path: 'projects', component: ProjectGridPageComponent},
   {path: 'projects/1', component: ProjectGridPageComponent},
   {path: 'submitform', component: ProjectSubmissionPageComponent},
