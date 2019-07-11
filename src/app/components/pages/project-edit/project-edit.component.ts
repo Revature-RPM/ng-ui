@@ -133,4 +133,8 @@ export class ProjectEditComponent implements OnInit {
     this.groupMember = '';
   }
 
+  cancelEdit() {
+    this.router.navigate(['projects']);
+  }
+
 }

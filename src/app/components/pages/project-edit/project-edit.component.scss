@@ -33,9 +33,7 @@ mat-card {
     margin: 0;
 }
 
-
-
-#submit-project-form {
+#edit-project-page {
     display: flex;
     flex-direction: column;
     align-content: center;
@@ -51,6 +49,7 @@ h1 {
     padding: 15px;
     margin: 20px auto;
 }
+
 form {
     display: flex;
     flex-direction: row;
@@ -72,7 +71,6 @@ form {
 
 mat-form-field {
     margin: 0 30px;
-    flex-basis: 300px;
     flex-grow: 1;
 }
 
@@ -86,72 +84,72 @@ input, textarea {
     flex-grow: 0;
 }
 
-#description, #group-members {
-    flex-basis: 500px;
-}
-
 mat-error {
     font-size: 14px;
 }
 
-.file-spacer {
+#control-buttons {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-content: center;
-    min-height: 20px;
-    height: fit-content;
-    width: 100%;
-    margin-bottom: 15px;
-    flex-wrap: wrap;
-    padding: 10px;
-    background-color: rgba($rev-light-gray, 0.3);
-}
-
-#buttonScreenshotTrigger {
-    margin-top: 30px;
-
-}
-
-#register-spinner {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    width: 100%;
-    justify-content: center;
-    align-content: center;
-    margin-top: 10px;
-}
-
-// .filelist {
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: center;
-//     align-content: center;
-// }
-
-.filelist {
-    text-align: center;
-    margin: 0 15px;
-    cursor: pointer;
-    img {
-        margin: auto;
+    flex-direction: column;
+    button {
+        width: 100%;
     }
 }
 
-.filelist:hover {
-    color: red;
+#add-members {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin: 20px;
 }
 
+#group-members, #add-members-inner {
+    margin: 20px;
+}
 
-mat-spinner {
-    margin-right: 15px;
+.parent-div {
+    div {
+        border-radius: 5px;
+        background-color: rgba($rev-gray-main, 0.3);
+        width: fit-content;
+        padding: 5px 15px;
+        margin: 5px;
+        box-shadow: 0 1px 1px 1px rgba(#000, 0.2);
+    }
+}
+
+#control-buttons {
+    display: flex;
+    flex-direction: column;
+
+}
+
+#group-members {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    h3 {
+        width: 100%;
+    }
+}
+
+#back-icon {
+    height: 58px;
+    width: 58px;
 }
 
 
 @media screen and (min-width: 600px) {
     mat-card {
     margin: $top-margin 15%;
+    }
+
+    #control-buttons {
+        flex-direction: row;
+        button {
+            flex-grow: 1;
+            min-width: fit-content;
+        }
     }
 }
 
