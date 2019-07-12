@@ -18,6 +18,7 @@ import { SnackbarService } from 'src/app/services/snackbar.service';
  * @author Ryan Beevers (1810-Oct08-Java-USF)
  * @author Slavik Gleanco
  * @author Kelly Young (190422-Java-USF)
+ * @author Justin Kerr (190422-USF)
  */
 @Component({
   selector: 'app-register',
