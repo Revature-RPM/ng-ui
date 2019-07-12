@@ -8,7 +8,6 @@ import {AppComponent} from './app.component';
 import {SidenavComponent} from './components/HUD/sidenav/sidenav.component';
 import {MaterialModule} from './misc-modules/material/material.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {NavbarComponent} from './components/HUD/navbar/navbar.component';
 import {LoginComponent} from './components/pages/login-register-auth/login/login.component';
 import {NavMenuComponent} from './components/HUD/nav-menu/nav-menu.component';
 import {LoginRegisterPageComponent} from './components/pages/login-register-auth/login-register-page/login-register-page.component';
@@ -30,12 +29,12 @@ import {TokenInterceptor} from './services/jwtInterceptor.interceptor';
 import { ProfileComponent } from './components/pages/user-management/profile/profile.component';
 import { CodebasePageComponent } from './components/pages/codebase-page/codebase-page.component';
 import { AllUsersPageComponent } from './components/pages/user-management/all-users-page/all-users-page.component';
+import { EllipsisPipe } from './ellipsis.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     SidenavComponent,
-    NavbarComponent,
     LoginComponent,
     NavMenuComponent,
     LoginRegisterPageComponent,
@@ -51,7 +50,8 @@ import { AllUsersPageComponent } from './components/pages/user-management/all-us
     RegisterComponent,
     ProfileComponent,
     CodebasePageComponent,
-    AllUsersPageComponent
+    AllUsersPageComponent,
+    EllipsisPipe
   ],
   imports: [
     BrowserModule,

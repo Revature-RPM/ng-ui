@@ -1,64 +1,165 @@
-@import '../../../../../node_modules/@angular/material/theming';
+/*
+    Please don't use Bootstrap! Angular Material
+    and Flexbox are so much better! Once you try
+    it, you won't go back.
 
-$black: mat-color($mat-grey, 900);
-$font: 'Courier New', sans-serif;
-$alignment: center;
-$minimal-padding: 1%;
+    Angular Material documentation:     https://material.angular.io/
+    Excellent, quick Material tutorials:     https://youtu.be/bV8emCBmFHk
+    Flexbox tutorial:     https://www.w3schools.com/css/css3_flexbox.asp
+    20-minute SCSS tutorial:     https://youtu.be/Zz6eOVaaelI
+    Scaling apps in Angular:     https://youtu.be/Bhd2ayEE9mg
+*/
+/*
+    @import src/variables.scss relative to this file
+    in order to use the global SCSS variables within
+    this file. (Don't include the underscore in
+    _variables.scss when importing. If you want to
+    know why: http://alistapart.com/article/getting-started-with-sass/)
 
-#grid {
-  height: 85%;
-  width: 100%;
-  margin: 0;
+    Open the _variables.scss file in a new tab so you
+    can use and make SCSS variables and make everyone's
+    lives easier.
+*/
+@import '../../../../variables';
+
+
+::ng-deep .mat-form-field {
+    .mat-form-field-underline {
+        background-color: rgba($rev-gray-main, 0.5);
+    }
 }
 
-#title {
-  text-align: $alignment;
-  padding: $minimal-padding;
-  display: inline-block;
-  margin-left: 34%;
-
+mat-card {
+    margin: 0;
 }
 
-#submit {
-  text-align: $alignment;
-  padding-left: 10%;;
-  padding-right: 10%;
+#edit-project-page {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    flex-wrap: nowrap;
+    height: fit-content;
+    padding-bottom: 50px;
+}
+h1 {
+    text-align: center;
+    font-size: 1.5em;
+    width: 80%;
+    border-bottom: 3px solid $rev-orange-main;
+    padding: 15px;
+    margin: 20px auto;
 }
 
 form {
-  width: 85%;
-  text-align: $alignment;
-  height: 85%;
-  max-width: 100%;
-  max-height: 100%;
-  padding-left: 5%;
-  padding-right: 5%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 100%;
+    flex-wrap: wrap;
 }
 
-.example-full-width {
-  width: 100%;
+.row {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    flex-wrap: wrap;
 }
 
-#buttonScreenshotTrigger {
-  background-color: #ff8a00;
+.mat-input-element {
+    width: fit-content;
 }
 
-#requiredScreenShotButton {
-  color: red;
-  font-size: 23px;
+mat-form-field {
+    margin: 0 30px;
+    flex-grow: 1;
+}
+
+input, textarea {
+    width: 100% !important;
+}
+
+#repository-links {
+    flex-basis: 80%;
+    flex-shrink: 0;
+    flex-grow: 0;
+}
+
+mat-error {
+    font-size: 14px;
+}
+
+#control-buttons {
+    display: flex;
+    flex-direction: column;
+    button {
+        width: 100%;
+    }
+}
+
+#add-members {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin: 20px;
+}
+
+#group-members, #add-members-inner {
+    margin: 20px;
+}
+
+.parent-div {
+    div {
+        border-radius: 5px;
+        background-color: rgba($rev-gray-main, 0.3);
+        width: fit-content;
+        padding: 5px 15px;
+        margin: 5px;
+        box-shadow: 0 1px 1px 1px rgba(#000, 0.2);
+    }
+}
+
+#control-buttons {
+    display: flex;
+    flex-direction: column;
+
+}
+
+#group-members {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    h3 {
+        width: 100%;
+    }
+}
+
+#back-icon {
+    height: 58px;
+    width: 58px;
 }
 
 
-#icon {
-  float: left;
-  margin-left: 5%;
-  margin-top: 2%;
+@media screen and (min-width: 600px) {
+    mat-card {
+    margin: $top-margin 15%;
+    }
+
+    #control-buttons {
+        flex-direction: row;
+        button {
+            flex-grow: 1;
+            min-width: fit-content;
+        }
+    }
 }
 
-#hideMePlease {
-  display: none;
+textarea {
+  height: 50%;
+  width: 2%;
 }
 
-.marginDiv {
-  margin: 25px;
+button {
+ height: fit-content;
+ width: fit-content;
+  margin: 5px;
 }

@@ -37,6 +37,21 @@ app-project-list {
     border-bottom: 3px solid $rev-orange-main;
 }
 
+#project-title {
+    grid-area: title;
+    margin-left: 7px;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: space-between;
+    h1 {
+        font-size: 60px;
+    }
+    button {
+        margin: 10px;
+    }
+}
+
 #project-info {
     grid-area: info;
     width: 100%;
@@ -59,6 +74,7 @@ app-project-list {
 #search-projects {
     flex-basis: 150px;
     flex-grow: 1;
+    max-height: 45px;
 }
 
 mat-card {
@@ -70,6 +86,7 @@ mat-card {
     display: grid;
   grid-template:
         'tabs'
+        'title'
         'carousel'
         'info'
         'description';
@@ -99,8 +116,8 @@ input::placeholder {
 @media screen and (min-width: $all-projects-breakpoint) {
     #view-projects-grid {
       grid-template:
+        'tabs title title'
         'tabs info carousel'
-        'tabs description description'
         'tabs description description';
         grid-template-columns: 20% 40% 40%;
     }
