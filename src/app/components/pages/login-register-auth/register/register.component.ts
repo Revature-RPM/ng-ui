@@ -42,7 +42,15 @@ export class RegisterComponent implements OnInit {
     private ngmeta: NgMetaService,
     private snackbarService: SnackbarService) { }
 
-  // custom validator to ensure password was typed correctly
+  /**
+   * Function that:
+   * Is bound to this class. Acts as a custom validator.
+   * Used to check if there's a difference between the password and confirmpassword fields.
+   * If they are not equal, an error will be displayed.
+   * 
+   * @param AC - A formGroup field value.
+   * @author unknown, Documentation: Justin Kerr (190422-USF)
+   */
   static passMatchValidator(AC: AbstractControl) {
     const password = AC.get('password').value;
     const confirmPassword = AC.get('confirmPassword').value;
@@ -53,29 +61,46 @@ export class RegisterComponent implements OnInit {
     }
   }
 
+  /**
+   * On component instantiation:
+   * Takes the two existing formGroups and sets their corresponding validators.
+   * @author unknown, Documentation: Justin Kerr (190422-USF)
+   */
   ngOnInit() {
-
     this.formGroup1 = this._formBuilder.group({
       firstName: ['', [Validators.required, Validators.minLength(2)]],
       lastName: ['', [Validators.required, Validators.minLength(2)]],
       email: ['', [Validators.required, Validators.email]]
     });
-    this.formGroup2 = this._formBuilder.group(
-      {
+    this.formGroup2 = this._formBuilder.group({
         username: ['', [Validators.required, Validators.minLength(8)]],
         password: ['', [Validators.required, Validators.minLength(8)]],
         confirmPassword: ['', [Validators.required, Validators.minLength(8)]]
-      }, {
-          validator: RegisterComponent.passMatchValidator
-        });
+      },
+      { validator: RegisterComponent.passMatchValidator });
   }
-  
-  //getter for easy access to form fields
+
+  /**
+   * Getter functions that provide easy access to formGroup fields
+   * @author Justin Kerr (190422-USF)
+   */
   get form1() { return this.formGroup1.controls; }
   get form2() { return this.formGroup2.controls; }
 
-   // registration method takes the validated fields packages into a JSON and sends the observable
-   register() {
+  /**
+   * Function that:
+   * Fills the component's user variable with values from the formGroup.
+   * (On retrospection, this user variable can be declared as a local function variable)
+   * Calls and subscribes to the user service register method with this user variable.
+   * Takes the returned user from the subscribtion and sets a new loginUser to log in with.
+   * (A new user is necessary because the returned user has too many properties)
+   * (On retrospection, this loginUser variable can be declared as a local function variable)
+   * Calls and subscribes to the user service login method. (only taking the first returned user with the *first* operator, similar to a promise)
+   * Finally redirects the user to the project-grid-page component if registration is successful.
+   * 
+   * @author Justin Kerr (190422-USF)
+   */
+  register() {
     this.user.firstName = this.form1.firstName.value;
     this.user.lastName = this.form1.lastName.value;
     this.user.email = this.form1.email.value;
@@ -95,35 +120,35 @@ export class RegisterComponent implements OnInit {
       });
   }
 
-  /*
- * Function to check the user email is unique
+/**
+ * Currently not used function that needs to be reworked slightly and re-implemented.
  */
   checkIfEmailIsInUse() {
 
-      this.userService.checkIfEmailIsInUse(this.form1.email).subscribe(
-        result => {
-          if (!result['emailIsInUse']) this.emailIsAvailable = true;
-          else this.emailIsAvailable = false;
-        },
-        error => {
-          this.snackbarService.openSnackBar('Internal server error!', 'dismiss');
-        }
-      )
+    this.userService.checkIfEmailIsInUse(this.form1.email).subscribe(
+      result => {
+        if (!result['emailIsInUse']) this.emailIsAvailable = true;
+        else this.emailIsAvailable = false;
+      },
+      error => {
+        this.snackbarService.openSnackBar('Internal server error!', 'dismiss');
+      }
+    )
   }
 
-  /*Function to be called when focus is deselected from username input form
-    Checks to see if username for registration is available
-  */
+/**
+ * Currently not used function that needs to be reworked slightly and re-implemented.
+ */
   checkIfUsernameIsAvailable() {
 
-      this.userService.checkIfUsernameIsAvailable(this.form2.username).subscribe(
-        result => {
-          if (result['usernameIsAvailable']) this.usernameIsAvailable = true;
-          this.emailIsAvailable = false;
-        },
-        error => {
-          this.snackbarService.openSnackBar('Internal server error!', 'dismiss');
-        }
-      )
-    }
+    this.userService.checkIfUsernameIsAvailable(this.form2.username).subscribe(
+      result => {
+        if (result['usernameIsAvailable']) this.usernameIsAvailable = true;
+        this.emailIsAvailable = false;
+      },
+      error => {
+        this.snackbarService.openSnackBar('Internal server error!', 'dismiss');
+      }
+    )
   }
+}
