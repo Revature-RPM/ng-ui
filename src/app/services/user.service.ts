@@ -103,8 +103,11 @@ export class UserService {
    * the ' special' is parsed and bypasses the password needed in auth service
    * */
   updateUserToAdmin(user: User): Observable<User> {
+    console.log("before update user to admin in user service.ts");
     user.role = 'ROLE_ADMIN' + ' special';
-    return this.http.put<User>(environment.url + '/auth/users/', user, httpOptions)
+    console.log("after role-admin update user to admin in user service.ts");
+    console.log(user);
+   return this.http.put<User>(environment.url + '/auth/users/id/', user, httpOptions)
       .pipe(catchError(this.handleError));
   }
 
