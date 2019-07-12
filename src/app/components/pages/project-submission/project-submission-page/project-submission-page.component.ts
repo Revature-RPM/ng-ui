@@ -28,7 +28,7 @@ export class ProjectSubmissionPageComponent implements OnInit {
   user: User;
 
   /**
-   * groupMemberString and zipLinkString are both bound to the user's input of the group member field and the zip links field
+   * GroupMemberString and zipLinkString are both bound to the user's input of the group member field and the zip links field
    * When a new group member or zip link is added, then that information is concatenated to the string.
    * Because of two-way binding, the result is placed in either the group member field or the zip links field
    * @author Shawn Bickel (1810-Oct08-Java-USF)
