@@ -15,16 +15,28 @@ const HTTP_OPTIONS = {
   providedIn: 'root'
 })
 
+/**
+ * Service that communicates with the project controller at /project
+ * @author unknown
+ */
 export class ProjectService {
+
+  //BehaviorSubjects are able to be casted as observables in different components and subscribed to.
+  //(You're able to make changes in one place and see those changes immediately in multiple other places)
   AllProjects$: BehaviorSubject<Project[]>;
   CurrentProject$: BehaviorSubject<Project>;
-  CurrentProject: Project;
+
+  CurrentProject: Project; //this is an outdated variable
 
   constructor(private httpClient: HttpClient) {
     this.CurrentProject$ = new BehaviorSubject<Project>(null);
     this.AllProjects$ = new BehaviorSubject<Project[]>(null);
   }
 
+  /**
+   * CRUD functions sending out requests using the HttpClient module and casting the response as an observable
+   * @author unknown
+   */
   getAllProjects(): Observable<Project[]> {
     return this.httpClient.get<Project[]>(environment.url + '/project/', HTTP_OPTIONS);
   }
@@ -37,9 +49,6 @@ export class ProjectService {
     return this.httpClient.put(environment.url + `/project/${id}`, project, HTTP_OPTIONS);
   }
 
-  /*
-   *  TODO project-service needs to get rid of the trailing slash
-   */
   createProject(project: FormData): Observable<Project> {
     return this.httpClient.post(environment.url + '/project/', project);
   }
