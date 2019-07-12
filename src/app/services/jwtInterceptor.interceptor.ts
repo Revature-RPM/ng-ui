@@ -14,6 +14,10 @@ import {LocationStrategy} from '@angular/common';
  *
  * In addition this interceptor is responsible for checking and replacing rpmRefresh tokens
  * which have an expiration of 6 hours from the time of the last successful transaction.
+ *
+ * It only has one method which is provider by HttpInterceptor that reacts when an Http
+ * requests are sent out. Attaching JWTs before they go out in an effort to provide
+ * authentication and other details to the back end.
  * @author Andrew Mitchem
  * @author Ian Baker
  */
