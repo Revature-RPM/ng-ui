@@ -61,7 +61,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/project/edit-project/edit-project.component.ts</code>
+          <code>src/app/project/edit-project/project-edit.component.ts</code>
         </p>
 
 
@@ -213,7 +213,7 @@ export interface DialogData {
   templateUrl: &#x27;./edit-project.component.html&#x27;,
   styleUrls: [&#x27;./edit-project.component.scss&#x27;]
 })
-export class EditProjectComponent implements OnInit {
+export class ProjectEditComponent implements OnInit {
 
   validForm: Boolean &#x3D; true;
 
@@ -253,7 +253,7 @@ export class EditProjectComponent implements OnInit {
      * This will retrieve the path variable which corresponds to the id of the project to be edited.
      * ActivatedRoute has an observable called &#x27;params&#x27; which provides a means to do this.
      * Once the project id is retrieved from the path, it can be passed to the project service to obtain the project to update.
-     * 
+     *
      *  @author Shawn Bickel (1810-Oct08-Java-USF)
      */
     this.subscription &#x3D; this.route.params.subscribe(params &#x3D;&gt; {

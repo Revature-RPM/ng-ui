@@ -5,6 +5,7 @@ import { UserService } from 'src/app/core/services/user.service';
 import { Subscription } from 'rxjs';
 import { MatSort, MatPaginator, MatTableDataSource } from '@angular/material';
 import { User } from 'src/app/core/models/User';
+import { SnackbarService } from 'src/app/core/services/snackbar.service';
 
 @Component({
   selector: 'app-view-users',
@@ -22,9 +23,12 @@ export class ViewUsersComponent implements OnInit {
 
   retrievingProjects = true;
 
-  constructor(private router: Router, private viewProjectsService: ProjectService, private userService: UserService) { }
+  constructor(private router: Router, private viewProjectsService: ProjectService, private userService: UserService, private snackbar: SnackbarService) { }
 
   ngOnInit() {
+
+    if (!localStorage.getItem('jwt')) this.router.navigate(['/auth/login']);
+    
     if (this.userService.user.role === 'ROLE_ADMIN') {
     this.userSubscription = this.userService.getAllUsers().subscribe(
       data => {
@@ -41,18 +45,21 @@ export class ViewUsersComponent implements OnInit {
   applyUserFilter(filterValue: string) {
     this.dataSourceUsers.filter = filterValue.trim().toLowerCase();
   }
+  
   updateToAdmin(user){
+    console.log('before if of view user component.ts');
     if(user.username !=='admin') {
-      // console.log('Clicked');
+      console.log('in if of view user component.ts');
       // user.role = 'ROLE_ADMIN' + ' special';
       this.userService.updateUserToAdmin(user).subscribe(
         result => {
           user.role = 'ROLE_ADMIN';
-         // alert(user.firstName + ' has been updated to' + user.role)
+          console.log('in result of view user component.ts');
         },
-        err => {
+        error => {
           user.role = 'ROLE_USER';
-         alert(user.firstName + ' role has not been updated Successfully')
+          console.log('in error of view user component.ts');
+          this.snackbar.openSnackBar(user.firstName + ' role has not been updated Successfully', 'Dismiss');
         }
       );
     }

@@ -1,0 +1,82 @@
+/*
+    Please don't use Bootstrap! Angular Material
+    and Flexbox are so much better! Once you try
+    it, you won't go back.
+
+    Angular Material documentation:     https://material.angular.io/
+    Excellent, quick Material tutorials:     https://youtu.be/bV8emCBmFHk
+    Flexbox tutorial:     https://www.w3schools.com/css/css3_flexbox.asp
+    20-minute SCSS tutorial:     https://youtu.be/Zz6eOVaaelI
+    Scaling apps in Angular:     https://youtu.be/Bhd2ayEE9mg
+*/
+/*
+    @import src/variables.scss relative to this file
+    in order to use the global SCSS variables within
+    this file. (Don't include the underscore in
+    _variables.scss when importing. If you want to
+    know why: http://alistapart.com/article/getting-started-with-sass/)
+
+    Open the _variables.scss file in a new tab so you
+    can use and make SCSS variables and make everyone's
+    lives easier.
+*/
+@import '../../../../../variables';
+
+::ng-deep .mat-form-field {
+    .mat-form-field-underline {
+        background-color: rgba($rev-gray-main, 0.5);
+    }
+}
+
+::ng-deep .mat-form-field.mat-focused {
+    .mat-form-field-required-marker {
+        color: $rev-orange-main;
+    }
+}
+
+#login-container {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    margin: 20px auto;
+    align-content: center;
+    height: fit-content;
+}
+
+form {
+    width: 300px;
+    flex-shrink: 1;
+    * {
+        width: 300px;
+        flex-shrink: 1;
+    }
+}
+
+
+#message-fields {
+    height: 50px;
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+#message-fields * {
+    font-size: 18px;
+    text-align: center;
+}
+
+#register-spinner {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-content: center;
+}
+
+mat-spinner {
+    margin-right: 10px;
+}
+
+button {
+    width: 100%;
+    text-align: center;
+}

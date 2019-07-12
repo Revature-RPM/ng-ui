@@ -1,57 +1,67 @@
-@import 'theme.scss';
+/* You can add global styles to this file, and also import other style files */
+@import '../src/theme.scss';
+@import 'variables';
+@import 'assets/fonts/fonts';
 
-html, body {
-  margin: 0px;
-  height: 100%;
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  font-family: 'futura pt', 'arial', sans-serif;
+  font-size: 20px;
+  letter-spacing: 1px;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  font-family: 'Raleway', sans-serif;
+  color: $default-font-color;
+  background-color: $bg-color;
+  background-attachment: fixed;
+}
+
+a {
+  text-decoration: none;
+  color: $rev-white;
+}
+
+a:visited {
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.flex-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
   width: 100%;
-  min-width: 100%;
-  min-height: 100%;
-  overflow: auto;
+  height: 100%;
 }
 
-// this class can be used anywhere in the application to implement the custom theme
-.my-theme {
-    @include angular-material-theme($my-app-theme);
+.transition {
+  transition: all $transition_time ease-in-out;
 }
 
-.basic-container {
-  padding: 30px;
-}
+@media screen and (min-width: 600px) {
 
-.version-info {
-  font-size: 8pt;
-  float: right;
-}
 
-span.token1 {
-  color:rgb(0, 0, 0);
 }
-
-span.token2 {
-  color: rgb(25, 38, 216);
-}
-
-span.token3, span.token17 {
-  color: rgb(71, 211, 125);
-}
-
-span.token4 {
-  color: rgb(133, 133, 133);
-  font-family: monospace;
-}
-
-span.token5 {
-  color: rgb(117, 180, 151);
-}
-
-span.token6 {color: rgb(212, 18, 238);}
-span.token7 {color: rgb(197, 148, 58);}
-span.token8 {color: rgb(253, 248, 182);}
-span.token9,.token10,.token11,.token12 {color:gold;}
-span.token13 {color:green;}
-span.token14 {color:rgb(243, 102, 161)}
-span.token14 * {color:rgb(243, 102, 161)}
-span.token13 * {color:green;}
-span.token15 {color: rgb(236, 24, 24)}
-span.token15 * {color: rgb(236, 127, 127)}
-span.token16 {color: rgb(0, 255, 149)}

@@ -1,0 +1,108 @@
+/*
+    Please don't use Bootstrap! Angular Material
+    and Flexbox are so much better! Once you try
+    it, you won't go back.
+
+    Angular Material documentation:     https://material.angular.io/
+    Excellent, quick Material tutorials:     https://youtu.be/bV8emCBmFHk
+    Flexbox tutorial:     https://www.w3schools.com/css/css3_flexbox.asp
+    20-minute SCSS tutorial:     https://youtu.be/Zz6eOVaaelI
+    Scaling apps in Angular:     https://youtu.be/Bhd2ayEE9mg
+*/
+/*
+    @import src/variables.scss relative to this file
+    in order to use the global SCSS variables within
+    this file. (Don't include the underscore in
+    _variables.scss when importing. If you want to
+    know why: http://alistapart.com/article/getting-started-with-sass/)
+
+    Open the _variables.scss file in a new tab so you
+    can use and make SCSS variables and make everyone's
+    lives easier.
+*/
+@import '../../../../variables';
+
+mat-sidenav-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+mat-sidenav {
+    padding: 20px;
+    width: $sidenav-width;
+    -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    min-width: fit-content;
+}
+mat-sidenav div {
+    text-align: center;
+}
+
+mat-toolbar {
+    flex-direction: row;
+    align-content: center;
+}
+
+.user-avatar {
+    width: 50px;
+    height: 50px;
+    margin-right: 0;
+    cursor: pointer;
+}
+
+#settings-notifications {
+    height: 100%;
+    width: fit-content;
+    flex-direction: row;
+    align-content: center;
+}
+
+mat-icon {
+    margin: 7px;
+    cursor: pointer;
+}
+
+.user-avatar {
+    align-self: center;
+    border-radius: 100%;
+    box-shadow: 0 2px 5px rgba($color: #000000, $alpha: 0.5)
+}
+
+#right-buttons {
+    width: 150px;
+    justify-content: space-between;
+    align-content: center;
+    flex-direction: row;
+}
+
+
+// Please don't mess with the hamburger icon style (it's finely-tuned)
+#hamburger-button {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-flow: row;
+            flex-flow: row;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -ms-flex-line-pack: center;
+        align-content: center;
+}
+#hamburger {
+    font-size: 40px;
+    height: 40px;
+    line-height: 100%;
+    margin: auto;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+}

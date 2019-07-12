@@ -1,0 +1,155 @@
+/*
+    Please don't use Bootstrap! Angular Material
+    and Flexbox are so much better! Once you try
+    it, you won't go back.
+
+    Angular Material documentation:     https://material.angular.io/
+    Excellent, quick Material tutorials:     https://youtu.be/bV8emCBmFHk
+    Flexbox tutorial:     https://www.w3schools.com/css/css3_flexbox.asp
+    20-minute SCSS tutorial:     https://youtu.be/Zz6eOVaaelI
+    Scaling apps in Angular:     https://youtu.be/Bhd2ayEE9mg
+*/
+/*
+    @import src/variables.scss relative to this file
+    in order to use the global SCSS variables within
+    this file. (Don't include the underscore in
+    _variables.scss when importing. If you want to
+    know why: http://alistapart.com/article/getting-started-with-sass/)
+
+    Open the _variables.scss file in a new tab so you
+    can use and make SCSS variables and make everyone's
+    lives easier.
+*/
+@import '../../../../../variables';
+
+
+::ng-deep .mat-form-field {
+    .mat-form-field-underline {
+        background-color: rgba($rev-gray-main, 0.5);
+    }
+}
+
+mat-card {
+    margin: 0;
+}
+
+#submit-project-form {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    flex-wrap: nowrap;
+    height: fit-content;
+    padding-bottom: 50px;
+}
+h1 {
+    text-align: center;
+    font-size: 1.5em;
+    width: 80%;
+    border-bottom: 3px solid $rev-orange-main;
+    padding: 15px;
+    margin: 20px auto;
+}
+form {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 100%;
+    flex-wrap: wrap;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.mat-input-element {
+    width: fit-content;
+}
+
+mat-form-field {
+    margin: 0 30px;
+    flex-basis: 300px;
+    flex-grow: 1;
+}
+
+input, textarea {
+    width: 100% !important;
+}
+
+#repository-links {
+    flex-basis: 80%;
+    flex-shrink: 0;
+    flex-grow: 0;
+}
+
+#description, #group-members {
+    flex-basis: 500px;
+}
+
+mat-error {
+    font-size: 14px;
+}
+
+.file-spacer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    min-height: 20px;
+    height: fit-content;
+    width: 100%;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+    padding: 10px;
+    background-color: rgba($rev-light-gray, 0.3);
+}
+
+#buttonScreenshotTrigger {
+    margin-top: 30px;
+    
+}
+
+#register-spinner {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: 100%;
+    justify-content: center;
+    align-content: center;
+    margin-top: 10px;
+}
+
+// .filelist {
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: center;
+//     align-content: center;
+// }
+
+.filelist {
+    text-align: center;
+    margin: 0 15px;
+    cursor: pointer;
+    img {
+        margin: auto;
+    }
+}
+
+.filelist:hover {
+    color: red;
+}
+
+
+mat-spinner {
+    margin-right: 15px;
+}
+
+
+@media screen and (min-width: 600px) {
+    mat-card {
+    margin: $top-margin 15%;
+    }
+}
+

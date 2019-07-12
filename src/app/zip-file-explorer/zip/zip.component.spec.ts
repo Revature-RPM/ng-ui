@@ -1,14 +1,12 @@
-import { UserService } from 'src/app/core/services/user.service';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { RouterTestingModule } from '@angular/router/testing';
-import { Router } from '@angular/router';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {RouterTestingModule} from '@angular/router/testing';
+import {Router} from '@angular/router';
 
-import { AppModule} from '../../app.module';
-import { ZipComponent } from './zip.component';
-import { ZipFileExplorerModule } from '../zip-file-explorer.module';
-import { ProjectService } from 'src/app/core/services/project.service';
-import { Observable } from 'rxjs';
+import {AppModule} from '../../../old-components/app.module';
+import {ZipComponent} from './zip.component';
+import {ZipFileExplorerModule} from '../zip-file-explorer.module';
+import {ProjectService} from 'src/app/services/project.service';
 
 describe('ZipComponent', () => {
   let component: ZipComponent;
@@ -39,11 +37,11 @@ describe('ZipComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  
+
   /**
    * testing that when the zip component is rendered, if the user is null
    * then the user should be navigated back to login
-   * 
+   *
    * Remove the 'x' from 'xit' to run this test. Does not work because router is not properly mocked.
    * @author Alex Johnson (190107-Java-Spark-USF)
    */
@@ -59,32 +57,32 @@ describe('ZipComponent', () => {
 
     expect(navigateSpy).toHaveBeenCalledWith(['/auth/login']);
   });
-  
+
   /**
    * This test should display error messages. This test does not function properly. Refactor.
-   * 
+   *
    * @author Gabriel Zapata | Edward Bechtold (190107-Java-Spark-USF)
    */
   xit('should call ErrorFile an error', () => {
-    
+
     fixture.detectChanges();
     let message = 'test';
-    
+
     component.errorFile(message);
-    
+
     expect(message).toBeTruthy();
-  })
+  });
 
   /**
    * This tests the safeTitle method to ensure links are being properly created.This test does not function properly. Refactor.
-   * 
+   *
    * @author Gabriel Zapata | Edward Bechtold (190107-Java-Spark-USF)
    */
   xit('should return a substring of link', () => {
-    
+
     fixture.detectChanges();
     let link = 'test';
-    
+
     component.safeTitle(link);
 
     expect(link).toBe('test');
@@ -92,20 +90,20 @@ describe('ZipComponent', () => {
 
   /**
    * Test will verify ngOnInit field SelectedFile to be truthy. This test does not function properly. Refactor.
-   * 
+   *
    * @author Gabriel Zapata (190107-Java-Spark-USF)
    */
 
   xit('should verify to fields if the user is NOT null', () => {
-    
-    let testFile : RenderFile
-    testFile ={
+
+    let testFile: RenderFile;
+    testFile = {
       fileName: 'testFileName',
       fileContent: 'testFileContent'
-    }
+    };
 
 
-    spyOn(component,'defaultFile').and.returnValue(testFile);
+    spyOn(component, 'defaultFile').and.returnValue(testFile);
     component.ngOnInit();
 
     expect(component.SelectedFile).toBeTruthy();
@@ -113,14 +111,14 @@ describe('ZipComponent', () => {
 
 
    /**
-   * Test openRenderFile. 
-   * 
+    * Test openRenderFile.
+    *
    * @author Gabriel Zapata (190107-Java-Spark-USF)
-   * 
+    *
    */
-  it('should test openRenderFile and verify that testFile is being added to OpenFile ',()=>{
-    let testFile : RenderFile
-    testFile ={
+   it('should test openRenderFile and verify that testFile is being added to OpenFile ', () => {
+     let testFile: RenderFile;
+     testFile = {
       fileName: 'testFileName',
       fileContent: 'testFileContent'
     }
@@ -135,19 +133,19 @@ describe('ZipComponent', () => {
 
    /**
    * Test closeRenderFile.
-   * 
+    *
    * @author Gabriel Zapata (190107-Java-Spark-USF)
-   * 
+    *
    */
 
   it('should test closeRenderFile if OpenFile array removes testFile but still contain testFile2  ',()=>{
-    let testFile : RenderFile
+    let testFile: RenderFile;
     testFile ={
       fileName: 'testFileName',
       fileContent: 'testFileContent'
     }
-    let testFile2 : RenderFile
-    testFile ={
+    let testFile2: RenderFile;
+    testFile = {
       fileName: 'testFileName',
       fileContent: 'testFileContent'
     }
@@ -165,7 +163,7 @@ describe('ZipComponent', () => {
    /**
    * Test to ensure getFileNameFromHttpResponse is called.
    * This was one of the first tests I wrote and I didn't know what I was doing. Should be refactored. Works tho
-   * 
+    *
    * @author Gabriel Zapata (190107-Java-Spark-USF)
    */
 
@@ -177,7 +175,7 @@ describe('ZipComponent', () => {
   })
   /**
    * Test openData function with a not null name.
-   * 
+   *
    * @author Gabriel Zapata (190107-Java-Spark-USF)
    */
 
@@ -190,13 +188,13 @@ describe('ZipComponent', () => {
     component.openData(data,datafilename);
 
     expect(component.OpenFile).toBeTruthy();
-   
+
 
   })
 
    /**
    * Test openData function with a parameter of 'test' on the datafilename.
-   * 
+    *
    * @author Gabriel Zapata (190107-Java-Spark-USF)
    */
 
@@ -212,5 +210,5 @@ describe('ZipComponent', () => {
     expect(component.OpenFile).toBeTruthy();
   })
 
-   
+
 });
