@@ -16,7 +16,7 @@ Futher information concerning the details of our application, application workfl
 
 Compodoc is a documentation generator for Angular applications. It provides a concise view of the project's source code and dependencies.
 
-[RPM Compodoc Angular Documentation](http://rpmdocs.s3-website.us-east-2.amazonaws.com)
+[RPM Compodoc Angular Documentation](http://rpmdocs.s3-website.us-east-2.amazonaws.com) OUTDATED
 
 ## Contributing Information
 Information concerning submitting code for review or making pull requests can be found by reading our [contributing documentation](https://github.com/1810-oct08-java-usf/ng-ui/blob/dev/docs/contributing.md)
