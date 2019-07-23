@@ -20,8 +20,3 @@ Compodoc is a documentation generator for Angular applications. It provides a co
 
 ## Contributing Information
 Information concerning submitting code for review or making pull requests can be found by reading our [contributing documentation](https://github.com/1810-oct08-java-usf/ng-ui/blob/dev/docs/contributing.md)
-
-## Current Authors
-**Sahil Makhijani**, **Ryan Beevers**, **Shawn Bickel**, **Jeffly Luctamar**, **Yuki Mano**, **Andrew Mitchem** 
-
-
