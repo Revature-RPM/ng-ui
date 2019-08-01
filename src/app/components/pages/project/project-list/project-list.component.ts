@@ -42,10 +42,6 @@ export class ProjectListComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-    if (!localStorage.getItem('jwt')) {
-      this.router.navigate(['/auth/login']);
-    }
-
     this.userService.user.asObservable().subscribe(
       user => {
         if (user) {
