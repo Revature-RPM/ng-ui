@@ -59,7 +59,7 @@ export class ProjectListComponent implements OnInit, OnDestroy {
           this.updateProjects();
         });
   }
-  
+
   /**
    * This updates the currently shown projects on the left of the Project Page (src/app/components/pages/project).
    * If you provide a string of user you get that users specific project.
