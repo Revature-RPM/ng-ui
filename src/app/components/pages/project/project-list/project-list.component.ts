@@ -51,7 +51,7 @@ export class ProjectListComponent implements OnInit, OnDestroy {
       }
     );
 
-    this.subscription = this.projectService.getAllProjects()
+    this.subscription = this.projectService.getAllApprovedProjects()
       .subscribe(
         (projectResponse) => {
           this.retrievingProjects = false;
