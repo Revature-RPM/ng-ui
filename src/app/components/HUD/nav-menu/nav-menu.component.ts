@@ -77,4 +77,13 @@ export class NavMenuComponent implements OnInit {
   goToProfile() {
     this.router.navigate(['profile']);
   }
+
+  /**
+   * Function that:
+   * Navigates to the LoginRegisterComponent.
+   */
+
+  goToLoginRegister () {
+    this.router.navigate(['auth/login']);
+  }
 }
