@@ -1,6 +1,12 @@
 <mat-card>
   <mat-card-content>
     <!-- pending projects table -->
-    <app-pending-projects-table></app-pending-projects-table>
+    <app-pending-projects-table (swapProject)="onSwapProject($event)" ></app-pending-projects-table>
+
+    <!-- pending edit requests table -->
+
+
+    <!-- #TODO project viewer -->
+    <!-- #TODO <app-project-approval *ngIf="selected"></app-project-approval> -->
   </mat-card-content>
 </mat-card>

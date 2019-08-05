@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ProjectService } from 'src/app/services/project.service';
 
 @Component({
   selector: 'app-projects-pending-approval-page',
@@ -7,12 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProjectsPendingApprovalPageComponent implements OnInit {
 
+  selected: boolean;
 
-  constructor() {
+  constructor(private projectService: ProjectService) {
   }
 
   ngOnInit() {
 
+  }
+
+  onSwapProject(row): void {
+    this.selected = true;
+    console.log(this.selected);
+    this.projectService.CurrentProject$.next(row);
   }
 
 }

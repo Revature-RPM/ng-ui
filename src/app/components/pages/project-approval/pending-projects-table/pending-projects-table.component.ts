@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ProjectService } from 'src/app/services/project.service';
 import { Router } from '@angular/router';
 import { Project } from 'src/app/models/Project';
@@ -9,6 +9,8 @@ import { Project } from 'src/app/models/Project';
   styleUrls: ['./pending-projects-table.component.scss']
 })
 export class PendingProjectsTableComponent implements OnInit {
+
+  @Output() swapProject = new EventEmitter<{row: any}>();
 
   dataSource: Project[];
   selected: boolean;
@@ -24,10 +26,8 @@ export class PendingProjectsTableComponent implements OnInit {
     });
   }
 
-  swapProject(row): void {
-    this.selected = true;
-    console.log(this.selected);
-    this.projectService.CurrentProject$.next(row);
+  onSwapProject(row): void {
+    this.swapProject.emit({row: row});
   }
 
 }
