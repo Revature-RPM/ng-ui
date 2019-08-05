@@ -10,8 +10,6 @@
     <p id="profile-text">Edit your profile information, and then press the 'Save' button to update your
       information.</p>
   </div><br>
-​
-  <!-- display the form that contains user's profile information -->
   
     <hr id="line" color="#f26925"><br><br>
     <form [formGroup]="form">
@@ -43,24 +41,13 @@
     <div class="container">
         <mat-form-field>
           <input matInput readonly=true id="inputEmail" placeholder="Email" formControlName="email"
-            (blur)=formFilled() (mouseleave)=formFilled() [pattern]="emailPattern"><!--required>
-          <mat-error *ngIf="form.controls.email.errors?.RevatureEmail">
-            Must end with <strong>@revature.com</strong>
-          </mat-error>
-          -->
+            (blur)=formFilled() (mouseleave)=formFilled() [pattern]="emailPattern">
         </mat-form-field>
     
       <div>
         <mat-form-field>
           <input matInput readonly=true id="inputUsername" placeholder="Username" formControlName="username"
-            (blur)=formFilled() (mouseleave)=formFilled()> <!--required>
-          <mat-error *ngIf="form.get('username').hasError('minlength') && !form.get('username').hasError('required')">
-            Must be at least <strong>8 characters</strong> long
-          </mat-error>
-          <mat-error *ngIf="form.get('username').hasError('required')">
-            Username is <strong>required</strong>
-          </mat-error>
-          -->
+            (blur)=formFilled() (mouseleave)=formFilled()>
         </mat-form-field>
       </div>
     </div>
