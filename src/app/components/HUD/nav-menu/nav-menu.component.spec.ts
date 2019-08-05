@@ -1,6 +1,9 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {NavMenuComponent} from './nav-menu.component';
+import { MatButtonModule, MatExpansionModule } from '@angular/material';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('NavMenuComponent', () => {
   let component: NavMenuComponent;
@@ -8,7 +11,9 @@ describe('NavMenuComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NavMenuComponent ]
+      declarations: [ NavMenuComponent ],
+      imports: [ MatButtonModule, MatExpansionModule, HttpClientTestingModule,
+      RouterTestingModule]
     })
     .compileComponents();
   }));

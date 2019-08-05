@@ -6,7 +6,10 @@ import {RouterTestingModule} from '@angular/router/testing';
 import {UserService} from 'src/app/services/user.service';
 import {ProjectService} from 'src/app/services/project.service';
 import {Router} from '@angular/router';
-import {AppModule} from '../../../app.module';
+import { NgMetaService } from 'ngmeta';
+import { MatIconModule, MatCardModule, MatFormFieldModule, MatOptionModule, MatSelectModule } from '@angular/material';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 /**
  * Edit Project tests.
@@ -23,8 +26,13 @@ describe('ProjectEditComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ],
-      imports: [RouterTestingModule, BrowserAnimationsModule, AppModule]
+      declarations: [ ProjectEditComponent ],
+      imports: [MatIconModule, MatCardModule, MatFormFieldModule,
+        MatOptionModule, MatSelectModule,
+        HttpClientTestingModule, RouterTestingModule,
+        BrowserAnimationsModule, FormsModule,
+        ReactiveFormsModule],
+      providers: [ NgMetaService, ProjectService ]
     })
     .compileComponents();
   }));
@@ -77,7 +85,7 @@ describe('ProjectEditComponent', () => {
     let testUser = {
       username: 'test'
     };
-    let spy = spyOn(userService, 'getUser').and.returnValue(testUser);
+    let spy = spyOn(userService, 'getCurrentUser').and.returnValue(testUser);
 
     component.projectToUpdate.groupMembers = null;
     component.projectToUpdate.screenShots = null;

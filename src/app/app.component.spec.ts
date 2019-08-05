@@ -1,16 +1,23 @@
 import {async, TestBed} from '@angular/core/testing';
 import {RouterTestingModule} from '@angular/router/testing';
+import { MatSidenavModule, MatIconModule, MatMenuModule, MatToolbarModule,
+  MatExpansionModule } from '@angular/material';
+  import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+  
+import { SidenavComponent } from './components/HUD/sidenav/sidenav.component';
+import { NavMenuComponent } from './components/HUD/nav-menu/nav-menu.component';
 import {AppComponent} from './app.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule
-      ],
+      imports: [ MatSidenavModule, MatIconModule, MatMenuModule,
+        MatToolbarModule, MatExpansionModule,
+        RouterTestingModule, NoopAnimationsModule,
+        HttpClientTestingModule],
       declarations: [
-        AppComponent
-      ],
+        AppComponent, SidenavComponent, NavMenuComponent],
     }).compileComponents();
   }));
 
