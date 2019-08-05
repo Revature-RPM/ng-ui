@@ -33,6 +33,8 @@ import { EllipsisPipe } from './ellipsis.pipe';
 import { ProjectWelcomePageComponent } from './components/pages/project/project-welcome-page/project-welcome-page.component';
 import { ProjectsPendingApprovalPageComponent } from './components/pages/project-approval/projects-pending-approval-page/projects-pending-approval-page.component';
 import { PendingProjectsTableComponent } from './components/pages/project-approval/pending-projects-table/pending-projects-table.component';
+import { SelectedProjectViewerComponent } from './components/pages/project-approval/selected-project-viewer/selected-project-viewer.component';
+import { PendingEditRequestsTableComponent } from './components/pages/project-approval/pending-edit-requests-table/pending-edit-requests-table.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +59,9 @@ import { PendingProjectsTableComponent } from './components/pages/project-approv
     EllipsisPipe,
     ProjectWelcomePageComponent,
     ProjectsPendingApprovalPageComponent,
-    PendingProjectsTableComponent
+    PendingProjectsTableComponent,
+    SelectedProjectViewerComponent,
+    PendingEditRequestsTableComponent
   ],
   imports: [
     BrowserModule,

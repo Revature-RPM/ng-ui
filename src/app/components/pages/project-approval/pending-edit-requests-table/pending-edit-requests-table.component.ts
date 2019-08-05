@@ -1,14 +1,14 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter  } from '@angular/core';
 import { ProjectService } from 'src/app/services/project.service';
 import { Router } from '@angular/router';
 import { Project } from 'src/app/models/Project';
 
 @Component({
-  selector: 'app-pending-projects-table',
-  templateUrl: './pending-projects-table.component.html',
-  styleUrls: ['./pending-projects-table.component.scss']
+  selector: 'app-pending-edit-requests-table',
+  templateUrl: './pending-edit-requests-table.component.html',
+  styleUrls: ['./pending-edit-requests-table.component.scss']
 })
-export class PendingProjectsTableComponent implements OnInit {
+export class PendingEditRequestsTableComponent implements OnInit {
 
   @Output() swapProject = new EventEmitter<{row: any}>();
 
@@ -21,7 +21,7 @@ export class PendingProjectsTableComponent implements OnInit {
 
   ngOnInit() {
     this.selected = false;
-    this.projectService.getProjectsByStatus('Pending').subscribe(response => {
+    this.projectService.getProjectsByStatus('PendingEdit').subscribe(response => {
       this.dataSource = response;
     });
   }

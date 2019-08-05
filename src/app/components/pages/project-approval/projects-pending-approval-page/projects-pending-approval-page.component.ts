@@ -19,7 +19,6 @@ export class ProjectsPendingApprovalPageComponent implements OnInit {
 
   onSwapProject(row): void {
     this.selected = true;
-    console.log(this.selected);
     this.projectService.CurrentProject$.next(row);
   }
 
