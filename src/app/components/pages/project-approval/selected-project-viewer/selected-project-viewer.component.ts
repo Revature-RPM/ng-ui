@@ -31,25 +31,12 @@ export class SelectedProjectViewerComponent implements OnInit {
   approveProject() {
     this.project.status = 'Approved';
     this.projectService.updateProject(this.project, this.project.id).subscribe(response => {
-      console.log(response);
     });
   }
 
   denyProject() {
     this.project.status = 'Denied';
     this.projectService.updateProject(this.project, this.project.id).subscribe(response => {
-      console.log(response);
     });
   }
-
-  updateProject() {
-    this.httpClient.post('', this.project).subscribe(response => {
-      if (response === true) {
-        //  dosomething
-      } else {
-        //  dosomething
-      }
-    });
-  }
-
 }

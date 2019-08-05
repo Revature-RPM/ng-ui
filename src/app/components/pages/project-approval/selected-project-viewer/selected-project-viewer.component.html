@@ -2,8 +2,7 @@
   <mat-card-content>
     <div id="view-projects-grid">
       <div id="project-title">
-        <h1 *ngIf="project">{{ project.name }}</h1>
-        <h1 *ngIf="!project">Project Viewer</h1>
+        <h1>{{ project.name }}</h1>
         <div>
           <button mat-flat-button color="accent" (click)="approveProject()">Approve Project</button>
           <button mat-flat-button color="accent" (click)="denyProject()">Deny Project</button>

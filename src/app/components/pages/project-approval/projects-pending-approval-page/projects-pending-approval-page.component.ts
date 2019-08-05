@@ -14,7 +14,6 @@ export class ProjectsPendingApprovalPageComponent implements OnInit {
   }
 
   ngOnInit() {
-
   }
 
   onSwapProject(row): void {
