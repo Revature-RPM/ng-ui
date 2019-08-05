@@ -3,7 +3,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {RouterTestingModule} from '@angular/router/testing';
 import {Router} from '@angular/router';
 
-import {AppModule} from '../../../old-components/app.module';
+import {AppModule} from 'src/app/app.module';
 import {ZipComponent} from './zip.component';
 import {ZipFileExplorerModule} from '../zip-file-explorer.module';
 import {ProjectService} from 'src/app/services/project.service';
@@ -22,8 +22,8 @@ describe('ZipComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ ],
-      imports: [BrowserAnimationsModule, RouterTestingModule, AppModule, ZipFileExplorerModule],
-      providers:[ProjectService]
+      imports: [BrowserAnimationsModule, RouterTestingModule, ZipFileExplorerModule, AppModule],
+      providers: [ProjectService]
     })
     .compileComponents();
   }));

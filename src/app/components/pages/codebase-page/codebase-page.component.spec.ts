@@ -1,4 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
+import { RouterTestingModule } from '@angular/router/testing';
+import { NgMetaService } from 'ngmeta';
 
 import { CodebasePageComponent } from './codebase-page.component';
 
@@ -8,7 +12,10 @@ describe('CodebasePageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CodebasePageComponent ]
+      declarations: [ CodebasePageComponent ],
+      imports: [ HttpClientTestingModule, RouterTestingModule ],
+      providers: [ Location, {provide: LocationStrategy,
+        useClass: PathLocationStrategy }, NgMetaService ]
     })
     .compileComponents();
   }));
