@@ -20,7 +20,8 @@ describe('ProjectsPendingApprovalPageComponent', () => {
         MatGridListModule,
         RouterTestingModule,
         HttpClientTestingModule,
-        NoopAnimationsModule ],
+        NoopAnimationsModule
+      ],
       declarations: [ProjectsPendingApprovalPageComponent],
       schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
     })

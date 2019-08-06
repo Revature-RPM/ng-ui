@@ -1,6 +1,5 @@
 <h1>Edit Requests</h1>
 <div class="mat-elevation-z8">
-
   <mat-table [dataSource]="dataSource" matSort>
     <!-- Column -->
     <ng-container matColumnDef="Trainer">
@@ -21,7 +20,7 @@
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row (click)="onSwapProject(row)" *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    <mat-row id="swapProjectRow" (click)="onSwapProject(row)" *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>
   <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 

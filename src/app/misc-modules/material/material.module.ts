@@ -18,7 +18,6 @@ import {
   MatProgressSpinnerModule,
   MatStepperModule,
   MatTooltipModule,
-  //start
   MatTableModule,
   MatPaginatorModule,
   MatListModule,
@@ -43,7 +42,6 @@ const materials = [
   MatProgressSpinnerModule,
   MatStepperModule,
   MatTooltipModule,
-  //start
   MatTableModule,
   MatPaginatorModule,
   MatListModule,

@@ -1,19 +1,28 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { PendingEditRequestsTableComponent } from './pending-edit-requests-table.component';
-import { Project } from 'src/app/models/Project';
+import { MatTableModule, MatPaginatorModule, MatListModule, MatGridListModule } from '@angular/material';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('PendingEditRequestsTableComponent', () => {
   let component: PendingEditRequestsTableComponent;
   let fixture: ComponentFixture<PendingEditRequestsTableComponent>;
-  let row: Project;
-
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PendingEditRequestsTableComponent ]
+      imports: [
+        MatTableModule,
+        MatPaginatorModule,
+        MatListModule,
+        MatGridListModule,
+        RouterTestingModule,
+        HttpClientTestingModule,
+        NoopAnimationsModule
+      ],
+      declarations: [PendingEditRequestsTableComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -26,13 +35,13 @@ describe('PendingEditRequestsTableComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should emit on click', () => {
-    spyOn(component.swapProject, 'emit');
-    const nativeElement = fixture.nativeElement;
-    const matRow = nativeElement.querySelector('mat-row');
-    matRow.dispatchElement(new Event('click'));
+  it('should test the pending edit request table headers', () => {
     fixture.detectChanges();
+    const matHeaderCell = fixture.nativeElement.querySelectorAll('mat-header-cell');
+    expect(matHeaderCell.length).toBe(3);
 
-    expect(component.swapProject.emit).toHaveBeenCalledWith(this.row);
+    expect(matHeaderCell[0].innerHTML).toBe(' Trainer\'s Name ');
+    expect(matHeaderCell[1].innerHTML).toBe(' Project\'s Name ');
+    expect(matHeaderCell[2].innerHTML).toBe(' Status of Request ');
   });
 });

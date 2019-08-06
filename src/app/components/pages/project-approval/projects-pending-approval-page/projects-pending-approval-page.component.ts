@@ -8,7 +8,7 @@ import { ProjectService } from 'src/app/services/project.service';
 })
 export class ProjectsPendingApprovalPageComponent implements OnInit {
 
-  selected: boolean;
+  selected = false;
 
   constructor(private projectService: ProjectService) {
   }
