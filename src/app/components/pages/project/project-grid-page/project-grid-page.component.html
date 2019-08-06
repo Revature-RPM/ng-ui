@@ -7,10 +7,10 @@
                     <app-project-welcome-page></app-project-welcome-page>
                 </div>
                 <div *ngIf="project">
-                    <button mat-fab matTooltip="Update Project" matTooltipPosition="above" (click)="updateProject()">
+                    <button mat-fab matTooltip="Update Project" matTooltipPosition="above" id="updateProjectButton" (click)="updateProject()">
                         <mat-icon>edit</mat-icon>
                     </button>
-                    <button mat-fab matTooltip="Codebase Viewer" matTooltipPosition="above" (click)="codebasePage()">
+                    <button mat-fab matTooltip="Codebase Viewer" matTooltipPosition="above" id="codeBaseButton" (click)="viewCodeBase()">
                         <mat-icon>code</mat-icon>
                     </button>
                 </div>

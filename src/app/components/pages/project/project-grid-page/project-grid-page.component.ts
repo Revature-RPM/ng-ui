@@ -35,7 +35,7 @@ export class ProjectGridPageComponent implements OnInit {
    *
    *  @author Michael James | Ashton Sullivan 1906-Java-USF
    */
-  codebasePage() {
+  viewCodeBase() {
     if (this.project) {
       this.router.navigate(['/codebase']);
     }
