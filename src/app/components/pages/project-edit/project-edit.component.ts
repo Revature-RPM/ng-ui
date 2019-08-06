@@ -82,7 +82,7 @@ export class ProjectEditComponent implements OnInit {
    * @author Shawn Bickel (1810-Oct08-Java-USF)
    */
   submitForm() {
-    if (JSON.parse(localStorage.getItem('rpmUser')).role === 'ROLE_USER') {
+    if (JSON.parse(localStorage.getItem('user')).role === 'ROLE_USER') { // Updated this line from 'revUser' to 'user' to match rest of project - MJ 1906
       this.projectToUpdate.status = 'Pending';
     }
     this.projectService.updateProject(this.projectToUpdate, this.projectToUpdate.id).subscribe();

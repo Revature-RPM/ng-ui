@@ -15,8 +15,6 @@ export class ProjectGridPageComponent implements OnInit {
   constructor(private projectService: ProjectService, private router: Router) { }
 
   ngOnInit() {
-    console.log('user: ', localStorage.getItem('user'));
-    console.log('rpmUser', localStorage.getItem('rpmUser'));
     this.projectService.CurrentProject$.asObservable().subscribe(
       proj => {
         if (proj) {
