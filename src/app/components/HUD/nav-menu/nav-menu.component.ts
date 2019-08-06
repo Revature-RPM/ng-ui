@@ -72,6 +72,14 @@ export class NavMenuComponent implements OnInit {
 
   /**
    * Function that:
+   * Navigates to the projects-pending-approval-page component.
+   */
+  goToPendingProjects() {
+    this.router.navigate(['projects/pending']);
+  }
+
+  /**
+   * Function that:
    * Navigates to the profile component.
    */
   goToProfile() {
