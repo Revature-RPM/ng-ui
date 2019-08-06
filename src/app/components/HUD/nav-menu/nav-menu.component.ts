@@ -82,8 +82,15 @@ export class NavMenuComponent implements OnInit {
    * Function that:
    * Navigates to the LoginRegisterComponent.
    */
-
   goToLoginRegister () {
     this.router.navigate(['auth/login']);
+  }
+
+  /**
+   * Function that:
+   * Navigates to the AdminChangeRoles.
+   */
+  goToEditRoles() {
+    this.router.navigate(['adminchangeroles']);
   }
 }
