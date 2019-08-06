@@ -6,7 +6,11 @@ import {ProjectGridPageComponent} from './components/pages/project/project-grid-
 import { ProjectSubmissionPageComponent } from './components/pages/project-submission/project-submission-page/project-submission-page.component';
 import { ProjectEditComponent } from './components/pages/project-edit/project-edit.component';
 import { ProfileComponent } from './components/pages/user-management/profile/profile.component';
+<<<<<<< HEAD
 import { AdminChangeRolesComponent } from './components/pages/user-management/admin-change-roles/admin-change-roles.component';
+=======
+import { ProjectsPendingApprovalPageComponent } from './components/pages/project-approval/projects-pending-approval-page/projects-pending-approval-page.component';
+>>>>>>> dev
 
 const routes: Routes = [
   {path: '', redirectTo: 'projects', pathMatch: 'full'},
@@ -16,8 +20,12 @@ const routes: Routes = [
   {path: 'submitform', component: ProjectSubmissionPageComponent},
   {path: 'updateform', component: ProjectEditComponent},
   {path: 'profile', component: ProfileComponent},
+<<<<<<< HEAD
   {path: 'adminchangeroles', component: AdminChangeRolesComponent},
   
+=======
+  {path: 'projects/pending', component: ProjectsPendingApprovalPageComponent},
+>>>>>>> dev
 
   // Do not put any routes below this one!
   {path: '**', component: PageNotFoundComponent}

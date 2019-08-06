@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import { NgModule } from '@angular/core';
 
 import {
   MatBadgeModule,
@@ -21,7 +21,7 @@ import {
   MatTableModule,
   MatPaginatorModule,
   MatListModule,
-  MatGridListModule,
+  MatGridListModule
 } from '@angular/material';
 
 const materials = [
