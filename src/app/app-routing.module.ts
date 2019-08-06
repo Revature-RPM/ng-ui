@@ -17,6 +17,7 @@ const routes: Routes = [
   {path: 'updateform', component: ProjectEditComponent},
   {path: 'profile', component: ProfileComponent},
   {path: 'adminchangeroles', component: AdminChangeRolesComponent},
+  
 
   // Do not put any routes below this one!
   {path: '**', component: PageNotFoundComponent}
