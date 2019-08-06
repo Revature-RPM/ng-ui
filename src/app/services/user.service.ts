@@ -20,7 +20,7 @@ export class UserService {
 
 
   constructor(private http: HttpClient) {
-    if (localStorage.getItem('jwt')) this.user = new BehaviorSubject<User>( (JSON.parse(localStorage.getItem('rpmUser'))) );
+    if (localStorage.getItem('jwt')) this.user = new BehaviorSubject<User>( (JSON.parse(localStorage.getItem('user'))) );
     else this.user = new BehaviorSubject<User>( null );
   }
 
@@ -46,7 +46,7 @@ export class UserService {
   logout() {
     localStorage.removeItem('jwt');
     localStorage.removeItem('rpmRefresh');
-    localStorage.removeItem('rpmUser');
+    localStorage.removeItem('user');
     this.user.next(null);
   }
 
@@ -61,7 +61,7 @@ export class UserService {
 
           localStorage.setItem('jwt', jwtauthtoken);
           localStorage.setItem('rpmRefresh', (Math.round((new Date()).getTime() / 1000) + 21600000) + '');
-          localStorage.setItem('rpmUser', JSON.stringify(response.body));
+          localStorage.setItem('user', JSON.stringify(response.body));
           localStorage.setItem('viewprojects', 'all');
           return response.body;
         } else {
