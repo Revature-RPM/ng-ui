@@ -4,7 +4,7 @@
       <input matInput (keyup)="applyFilter($event.target.value)" id="search-users" class="search" type="search"
         placeholder="Search users">
     </mat-form-field>
-    <button mat-flat-button color="accent" (click)="updateChanges()">Submit Changes</button>
+    <button id="update-to-admin-btn" mat-flat-button color="accent" (click)="updateToAdmin()">Submit Changes</button>
   </div>
   <div class="mat-elevation-z8">
     <mat-table [dataSource]="dataSource" matSort>
@@ -37,7 +37,7 @@
         <mat-cell *matCellDef="let user"> {{user.email}} </mat-cell>
       </ng-container>
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row (click)="logData(row)" *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
     </mat-table>
     <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
   </div>
