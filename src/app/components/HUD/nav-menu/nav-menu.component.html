@@ -4,7 +4,8 @@
     </div>
     <div *ngIf="loggedIn" id="logged-in-links" class="nav-menu-links">
         <a mat-button>All Users</a>
-
+        <!-- only show if user is admin! -->
+        <a *ngIf="admin" (click)="goToEditRoles()" id="go-to-edit" mat-button>Edit User</a>
         <!-- The "View Projects" submenu -->
         <mat-expansion-panel id="view-projects">
             <mat-expansion-panel-header>
