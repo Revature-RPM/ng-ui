@@ -31,6 +31,7 @@ import { CodebasePageComponent } from './components/pages/codebase-page/codebase
 import { AllUsersPageComponent } from './components/pages/user-management/all-users-page/all-users-page.component';
 import { EllipsisPipe } from './ellipsis.pipe';
 import { ProjectWelcomePageComponent } from './components/pages/project/project-welcome-page/project-welcome-page.component';
+import { CodebaseComponent } from './components/pages/codebase/codebase.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { ProjectWelcomePageComponent } from './components/pages/project/project-
     CodebasePageComponent,
     AllUsersPageComponent,
     EllipsisPipe,
-    ProjectWelcomePageComponent
+    ProjectWelcomePageComponent,
+    CodebaseComponent
   ],
   imports: [
     BrowserModule,

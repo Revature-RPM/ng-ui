@@ -12,7 +12,8 @@ export class ProjectGridPageComponent implements OnInit {
 
   project: Project;
 
-  constructor(private projectService: ProjectService, private router: Router) { }
+  constructor(private projectService: ProjectService,
+              private router: Router ) { }
 
   ngOnInit() {
     this.projectService.CurrentProject$.asObservable().subscribe(

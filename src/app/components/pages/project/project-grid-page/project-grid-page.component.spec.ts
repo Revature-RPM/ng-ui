@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed, fakeAsync } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -6,6 +6,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Router, Route } from '@angular/router';
 import { MatCardModule, MatIconModule, MatInputModule, MatOptionModule, MatExpansionModule, MatSelectModule } from '@angular/material';
 import { NgxHmCarouselModule } from 'ngx-hm-carousel';
+import { BehaviorSubject, of } from 'rxjs';
 
 import { ProjectListComponent } from '../project-list/project-list.component';
 import { ProjectInfoComponent } from '../project-info/project-info.component';
@@ -17,10 +18,20 @@ import { ProjectWelcomePageComponent } from '../project-welcome-page/project-wel
 import { CodebasePageComponent } from '../../codebase-page/codebase-page.component';
 import { ProjectEditComponent } from '../../project-edit/project-edit.component';
 import { Project } from 'src/app/models/Project';
-import { By } from 'protractor';
 
+class MockProjectService {
+  CurrentProject$: BehaviorSubject<Project> = new BehaviorSubject<Project>(null);
+  project: Project;
 
-describe('ProjectGridPageComponent', () => {
+  constructor() {
+    this.project = {
+      status: 'approved',
+    };
+    this.CurrentProject$.next(this.project);
+  }
+}
+
+fdescribe('ProjectGridPageComponent', () => {
   let component: ProjectGridPageComponent;
   let fixture: ComponentFixture<ProjectGridPageComponent>;
   const routes: Route[] = [
@@ -99,4 +110,11 @@ describe('ProjectGridPageComponent', () => {
 
     expect(component.updateProject).toHaveBeenCalled();
   });
+
+  it('should be able to Initialize', fakeAsync(() => {
+    component.project = null;
+    component.ngOnInit();
+    tick();
+    expect(component.project).toBeTruthy();
+  }));
 });
