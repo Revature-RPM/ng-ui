@@ -4,6 +4,7 @@ import {NavMenuComponent} from './nav-menu.component';
 import { MatButtonModule, MatExpansionModule } from '@angular/material';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { By } from '@angular/platform-browser';
 
 describe('NavMenuComponent', () => {
   let component: NavMenuComponent;
@@ -27,4 +28,8 @@ describe('NavMenuComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should hide goToEditRoles function if admin is false', () => {
+    expect(fixture.debugElement.query(By.css('#go-to-edit'))).toBeNull();
+});
 });
