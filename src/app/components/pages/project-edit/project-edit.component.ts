@@ -26,6 +26,7 @@ export class ProjectEditComponent implements OnInit {
   // projectToUpdate will hold project information for a specific project returned by id and
   // is bound to the information that users enter in the form
   projectToUpdate: Project;
+  originalProject: Project;
 
   /**
    * title, questionType, and result are all passed to a dialog when the user chooses either the group member or the links input field
@@ -52,7 +53,8 @@ export class ProjectEditComponent implements OnInit {
     else {
       this.projectService.CurrentProject$.asObservable().subscribe(
         project => {
-          this.projectToUpdate = project;
+          this.projectToUpdate = JSON.parse(JSON.stringify(project));
+          this.originalProject = project;
         }
       );
       this.ngmeta.setHead({title: 'Edit Project | RPM'});
@@ -82,30 +84,15 @@ export class ProjectEditComponent implements OnInit {
    * @author Shawn Bickel (1810-Oct08-Java-USF)
    */
   submitForm() {
-    if (JSON.parse(localStorage.getItem('rpmUser')).role === 'ROLE_USER') {
-      this.projectToUpdate.status = 'Pending';
-    }
-    this.projectService.updateProject(this.projectToUpdate, this.projectToUpdate.id).subscribe();
-
-    for (let i = 0; i < this.projectService.AllProjects$.value.length; i++) {
-      if (this.projectService.AllProjects$.value[i].id == this.projectToUpdate.id) {
-        this.projectService.AllProjects$.value[i] = this.projectToUpdate;
-      }
-    }
-
-    this.projectService.getAllProjects().subscribe(
-      allprojects => {
-        this.projectService.AllProjects$.next(allprojects);
-      }
-    );
-    this.router.navigate(['projects/1']);
+ 
+    this.projectToUpdate.status = 'PendingEdit';
+    this.projectToUpdate.oldProject = null;
+    this.projectToUpdate.oldProject = this.originalProject;  //Setting the original project inside the updated project
+    this.projectToUpdate.oldProject.oldProject = null;
+    this.projectService.submitEditRequest(this.projectToUpdate).subscribe();
+    this.router.navigate(['user/projects']);
   }
 
-  deleteProject() {
-    this.projectService.deleteProjectById(this.projectToUpdate.id).subscribe(hello => {
-      this.router.navigate(['projects/1']);
-    });
-  }
 
   back() {
     sessionStorage.setItem('lastPage', 'edit');
