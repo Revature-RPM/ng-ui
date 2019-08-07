@@ -43,7 +43,7 @@ export class TokenInterceptor implements HttpInterceptor {
     } else {
       localStorage.removeItem('jwt');
       localStorage.removeItem('rpmRefresh');
-      localStorage.removeItem('rpmUser');
+      localStorage.removeItem('user'); // Updated from rpmUser to user to match rest of project MJ 1906
       this.userService.user.next(null);
 
 
