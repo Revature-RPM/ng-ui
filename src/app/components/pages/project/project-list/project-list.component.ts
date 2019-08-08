@@ -4,7 +4,7 @@ import {Project} from 'src/app/models/Project';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {ProjectService} from 'src/app/services/project.service';
 import {UserService} from 'src/app/services/user.service';
-import {Router} from '@angular/router';
+import {Router, Params, ActivatedRoute} from '@angular/router';
 import {Subscription} from 'rxjs';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 
@@ -36,8 +36,10 @@ export class ProjectListComponent implements OnInit, OnDestroy {
   AllProjects$ = this.projectService.AllProjects$.asObservable();
   retrievingProjects = true;
   projectView;
+  userId: string;
+  projectList: Project[] = [];
 
-  constructor(private router: Router, private userService: UserService, private projectService: ProjectService) {
+  constructor(private router: Router, private userService: UserService, private projectService: ProjectService, private route: ActivatedRoute) {
   }
 
   ngOnInit() {
@@ -51,13 +53,34 @@ export class ProjectListComponent implements OnInit, OnDestroy {
       }
     );
 
-    this.subscription = this.projectService.getAllApprovedProjects()
-      .subscribe(
-        (projectResponse) => {
-          this.retrievingProjects = false;
-          this.projectService.AllProjects$.next(projectResponse);
-          this.updateProjects();
-        });
+
+
+
+
+    this.userId = this.route.snapshot.params['userId'];
+
+
+    if (this.userId === undefined) {
+      this.projectService.getAllProjects().subscribe(projects => {
+        this.projectList = projects;
+        console.log('in all projects');
+        console.log(this.userId);
+      });
+    } else {
+      this.projectService.getProjectsByUserId(this.userId).subscribe(projects => {
+        console.log('in user id');
+        console.log(this.userId);
+        this.projectList = projects;
+      });
+    }
+    // if(this.route)
+      // this.subscription = this.projectService.getAllApprovedProjects()
+      //   .subscribe(
+      //     (projectResponse) => {
+      //       this.retrievingProjects = false;
+      //       this.projectService.AllProjects$.next(projectResponse);
+      //       this.updateProjects();
+      //     });
   }
 
   /**
@@ -66,25 +89,25 @@ export class ProjectListComponent implements OnInit, OnDestroy {
    * @param mySearch (String)
    * @author Ian Baker | Justin Kerr 190422-USF
    */
-  updateProjects() {
-    this.AllProjects$.subscribe(
-      allprojects => {
-        if (localStorage.getItem('viewprojects') == 'user') {
-          for (let i = 0; i < allprojects.length; i++) {
-            if (allprojects[i].trainer == this.trainerFullName) {
-              this.userProjects.push(allprojects[i]);
-            }
-          }
-        } else {
-          this.userProjects = allprojects;
-        }
+  // updateProjects() {
+  //   this.AllProjects$.subscribe(
+  //     allprojects => {
+  //       if (localStorage.getItem('viewprojects') == 'user') {
+  //         for (let i = 0; i < allprojects.length; i++) {
+  //           if (allprojects[i].trainer == this.trainerFullName) {
+  //             this.userProjects.push(allprojects[i]);
+  //           }
+  //         }
+  //       } else {
+  //         this.userProjects = allprojects;
+  //       }
 
-        this.dataSource = new MatTableDataSource(this.userProjects);
-        this.dataSource.sort = this.sort;
-        this.dataSource.paginator = this.paginator;
-      }
-    );
-  }
+  //       this.dataSource = new MatTableDataSource(this.userProjects);
+  //       this.dataSource.sort = this.sort;
+  //       this.dataSource.paginator = this.paginator;
+  //     }
+  //   );
+  // }
 
   /**
    * This method determines if a trainer can edit a project; a trainer can only edit a project if the project was submitted by the trainer.

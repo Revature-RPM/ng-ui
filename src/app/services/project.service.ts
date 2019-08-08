@@ -49,6 +49,12 @@ export class ProjectService {
     return this.httpClient.get<Project[]>(environment.url + `/project/status/${status}`, HTTP_OPTIONS);
   }
 
+
+  getProjectsByUserId(userId: string): Observable<Project[]> {
+    return this.httpClient.get<Project[]>(environment.url + `/project/userId/${userId}`, HTTP_OPTIONS);
+  }
+
+
   getProjectById(id): Observable<Project> {
     return this.httpClient.get<Project>(environment.url + `/project/id/${id}`, HTTP_OPTIONS);
   }
