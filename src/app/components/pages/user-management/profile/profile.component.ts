@@ -48,6 +48,15 @@ export class ProfileComponent implements OnInit {
       return null;
     }
   }
+  static ValidEmail(AC: AbstractControl) {
+    const email = AC.get('email').value; // to get value in input tag
+    const emailPattern = '^[a-zA-Z0-9_.+-]+(?:(?:[a-zA-Z0-9-]+\.)?[a-zA-Z]+\.)?@(.+)\.(.+)$'; // regex for Revature email
+    if (!email.match(emailPattern)) {
+      AC.get('email').setErrors({ ValidEmail: true });
+    } else {
+      return null;
+    }
+  }
 
   constructor(private userService: UserService,
               private router: Router,
@@ -88,7 +97,7 @@ export class ProfileComponent implements OnInit {
 
         role: this.user.role,
       };
-      console.log(this.form.get('currPassword').value + ' ' + pass);
+
       this.userService.updateProfile(updatedUserInfo).subscribe(
         (user) => {
         if (user) {
@@ -130,14 +139,14 @@ export class ProfileComponent implements OnInit {
       email: [email.trim(), [Validators.required, Validators.email]],
       username: [username.trim(), [Validators.required, Validators.minLength]],
       currPassword: ['', [Validators.required, Validators.minLength]],
-      
+
       password: ['', Validators.minLength],
       confirmPassword: ['', Validators.minLength],
 
     }, {
         validator: [
           ProfileComponent.MatchPassword, // match password validation
-          ProfileComponent.RevatureEmail, // must be Revature email
+          ProfileComponent.ValidEmail, // must be Valid email
         ]
     });
   }
