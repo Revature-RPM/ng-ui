@@ -37,8 +37,8 @@
         <summary >{{help.fileName}}</summary>
       </details> -->
     </div>
-  <div class="editor" [innerHTML]="SelectedFile.fileContent">  </div>
-
+    <pre><code class="editor" [highlight]="SelectedFile.fileContent"></code></pre>
+    <!-- <div class="editor" [innerHTML]="SelectedFile.fileContent">  </div> -->
     <!--  <textarea hidden #editortext (scroll)="scrollEditor()" autocomplete="off" autocorrect="off" autocapitalize="off"
                 spellcheck="false" class="editor-input" [(ngModel)]="SelectedFile.fileContent">  </textarea> -->
   </div>

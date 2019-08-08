@@ -6,8 +6,10 @@ import {ProjectGridPageComponent} from './components/pages/project/project-grid-
 import { ProjectSubmissionPageComponent } from './components/pages/project-submission/project-submission-page/project-submission-page.component';
 import { ProjectEditComponent } from './components/pages/project-edit/project-edit.component';
 import { ProfileComponent } from './components/pages/user-management/profile/profile.component';
-import { CodebasePageComponent } from './components/pages/codebase-page/codebase-page.component';
 import { CodebaseComponent } from './components/pages/codebase/codebase.component';
+import { zip } from 'rxjs';
+import { ZipComponent } from './zip-file-explorer/zip/zip.component';
+import { CodebasePageComponent } from './components/pages/codebase-page/codebase-page.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'projects', pathMatch: 'full'},
@@ -17,7 +19,7 @@ const routes: Routes = [
   {path: 'submitform', component: ProjectSubmissionPageComponent},
   {path: 'updateform', component: ProjectEditComponent},
   {path: 'profile', component: ProfileComponent},
-  {path: 'codebase', component: CodebaseComponent},
+  {path: 'codebase', component: CodebasePageComponent},
 
   // Do not put any routes below this one!
   {path: '**', component: PageNotFoundComponent}

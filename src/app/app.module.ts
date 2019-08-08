@@ -34,13 +34,25 @@ import { ProjectWelcomePageComponent } from './components/pages/project/project-
 import { CodebaseComponent } from './components/pages/codebase/codebase.component';
 import { HighlightModule } from 'ngx-highlightjs';
 
+import typescript from 'highlight.js/lib/languages/typescript';
+import javascript from 'highlight.js/lib/languages/javascript';
+import xml from 'highlight.js/lib/languages/xml';
+import html from 'highlight.js/lib/languages/xml';
+import scss from 'highlight.js/lib/languages/scss';
+import css from 'highlight.js/lib/languages/css';
 import java from 'highlight.js/lib/languages/java';
 
-// export function hljsLanguages() {
-//   return [
-//     {name: 'java', func: java},
-//   ];
-// }
+export function hljsLanguages() {
+  return [
+    {name: 'typescript', func: typescript},
+    {name: 'javascript', func: javascript},
+    {name: 'scss', func: scss},
+    {name: 'xml', func: xml},
+    {name: 'html', func: html},
+    {name: 'css', func: css},
+    {name: 'java', func: java},
+  ];
+}
 
 @NgModule({
   declarations: [
@@ -80,7 +92,7 @@ import java from 'highlight.js/lib/languages/java';
     MatSnackBarModule,
     ReactiveFormsModule,
     FormsModule,
-    // HighlightModule.forRoot({ languages: hljsLanguages }),
+    HighlightModule.forRoot({ languages: hljsLanguages }),
   ],
   providers: [
     {
