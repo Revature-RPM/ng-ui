@@ -23,6 +23,7 @@ import { RegisterComponent } from './components/pages/login-register-auth/regist
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {NgMetaModule} from 'ngmeta';
 import {MatDialogModule, MatInputModule, MatSnackBarModule} from '@angular/material';
+import { HighlightModule } from 'ngx-highlightjs';
 import {ProjectSubmissionPageComponent} from './components/pages/project-submission/project-submission-page/project-submission-page.component';
 import {EditDialogComponent} from './components/pages/project-submission/edit-dialog/edit-dialog.component';
 import {TokenInterceptor} from './services/jwtInterceptor.interceptor';
@@ -32,7 +33,11 @@ import { AllUsersPageComponent } from './components/pages/user-management/all-us
 import { EllipsisPipe } from './ellipsis.pipe';
 import { ProjectWelcomePageComponent } from './components/pages/project/project-welcome-page/project-welcome-page.component';
 import { CodebaseComponent } from './components/pages/codebase/codebase.component';
-import { HighlightModule } from 'ngx-highlightjs';
+import { AdminChangeRolesComponent } from './components/pages/user-management/admin-change-roles/admin-change-roles.component';
+import { ProjectsPendingApprovalPageComponent } from './components/pages/project-approval/projects-pending-approval-page/projects-pending-approval-page.component';
+import { PendingProjectsTableComponent } from './components/pages/project-approval/pending-projects-table/pending-projects-table.component';
+import { SelectedProjectViewerComponent } from './components/pages/project-approval/selected-project-viewer/selected-project-viewer.component';
+import { PendingEditRequestsTableComponent } from './components/pages/project-approval/pending-edit-requests-table/pending-edit-requests-table.component';
 
 import typescript from 'highlight.js/lib/languages/typescript';
 import javascript from 'highlight.js/lib/languages/javascript';
@@ -76,7 +81,12 @@ export function hljsLanguages() {
     AllUsersPageComponent,
     EllipsisPipe,
     ProjectWelcomePageComponent,
-    CodebaseComponent
+    CodebaseComponent,
+    AdminChangeRolesComponent,
+    ProjectsPendingApprovalPageComponent,
+    PendingProjectsTableComponent,
+    SelectedProjectViewerComponent,
+    PendingEditRequestsTableComponent,
   ],
   imports: [
     BrowserModule,
