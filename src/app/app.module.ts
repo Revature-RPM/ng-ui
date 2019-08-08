@@ -32,6 +32,15 @@ import { AllUsersPageComponent } from './components/pages/user-management/all-us
 import { EllipsisPipe } from './ellipsis.pipe';
 import { ProjectWelcomePageComponent } from './components/pages/project/project-welcome-page/project-welcome-page.component';
 import { CodebaseComponent } from './components/pages/codebase/codebase.component';
+import { HighlightModule } from 'ngx-highlightjs';
+
+import java from 'highlight.js/lib/languages/java';
+
+// export function hljsLanguages() {
+//   return [
+//     {name: 'java', func: java},
+//   ];
+// }
 
 @NgModule({
   declarations: [
@@ -70,7 +79,8 @@ import { CodebaseComponent } from './components/pages/codebase/codebase.componen
     MatInputModule,
     MatSnackBarModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    // HighlightModule.forRoot({ languages: hljsLanguages }),
   ],
   providers: [
     {

@@ -68,6 +68,7 @@ export class CodebasePageComponent implements OnInit {
       }
     }
   }
+
   /**
    * Zip.errorFile()
    * sets the defualt display for error messages
@@ -81,6 +82,7 @@ export class CodebasePageComponent implements OnInit {
     `ERROR:${message}`;
     return testfile;
   }
+
   /**
    * Zip.defualtFile()
    * sets the defualt display message as a helpme file
@@ -101,6 +103,7 @@ Currently can open and navigate to the src directory of Angular and Java Reposit
     this.title = link.substring(link.lastIndexOf('/') + 1);
     return this.title;
   }
+
   /**
    * Zip.goBack()
    * Redirects back to the last page
@@ -121,6 +124,7 @@ Currently can open and navigate to the src directory of Angular and Java Reposit
       this.SelectedFile = this.defaultFile();
     }
   }
+
   /**
    * Zip.sendRequest()
    * Fire off an http request to retrieve the zip file
@@ -142,6 +146,7 @@ Currently can open and navigate to the src directory of Angular and Java Reposit
       this.SelectedFile = this.errorFile('Yeah we couldn\'t find this file: we\'re Sorry');
     });
   }
+
   /**
    * Zip.getFileNameFromHttpResponse()
    * splits content-dispotion header ; attachmenent file=filename.ext into file name
@@ -152,52 +157,119 @@ Currently can open and navigate to the src directory of Angular and Java Reposit
     const result = contentDispositionHeader.split(';')[1].trim().split('=')[1];
     return result.replace(/"/g, '');
   }
-  /**
+
+ /**
    * Zip.openData()
    * unpacks a zip blob(ui8array) and opens with JSZip (zip is the reference variable)
-   * @param data. ui8array blob object that "is" a valid zip file.
+   * @param ui8array blob object that "is" a valid zip file.
    * @param datafilename, optional. passed in file name.
    * @author Andrew Mitchem (1810-Oct08-Java-USF)
    */
-  openData(data , datafilename?) {
-    this.RenderFile = [];
-    this.SelectedFile = this.defaultFile();
-    this.OpenFile = [];
-    let dataname = '';
-    if (data.name) {
-        dataname = data.name.substring(0, data.name.lastIndexOf('.'));
-    } else {
-        dataname = datafilename.substring(0, datafilename.lastIndexOf('.'));
-    }
-    const zip = new JSZip();
-    // new instance of JSZip. note this object lifecycle needs to be undone after rendering
-    // as such it not a class member but function member only for the scope of this function closure
-    zip.loadAsync(data)
-    .then(contents => {
-      // move to the sub folder inside the zip file: replace with pass paramater variables
-      if (!zip.folder(new RegExp(dataname)).length) {
-        this.SelectedFile = this.errorFile('Package didn\'t match zip filename');
-        return;
+  openData(data: Blob, datafilename?: string) {
+
+    // new instance of JSZip.
+    // Should only exist through the end of this function
+    let zipDir: JSZip = new JSZip();
+
+    this.openDataPrep();
+    const dataname: string = this.extractDataname(data, datafilename);
+
+    zipDir.loadAsync(data).then( contents => {
+      // Checks if the zip contains a directory matching dataname, changes to that directory
+      zipDir = this.setRootFolder(dataname, zipDir);
+
+      if (!zipDir) {
+        return; // If no such folder, return.
       }
-      let dirFolder =  zip.folder(dataname);
-      if (dirFolder.folder(/src\/main\/java/).length) {
-        dirFolder =  dirFolder.folder('src/main/java');
-        this.filepath = dataname + '/src/main/java';
-      } else if (dirFolder.folder(/src\/app/).length) {
-        dirFolder =  dirFolder.folder('src/app');
-        this.filepath = dataname + '/src/app';
-      } else {
-        console.log('malformed package. not angular or java');
-        this.SelectedFile = this.errorFile('cannot determined repo language type');
-        return;
+
+      // Uses Regex to determine if Java, Angular, or neither and moves to correct directory
+      zipDir = this.setRootByLanguage(zipDir, dataname);
+
+      if (!this.filepath) {
+        return; // If neither Java nor Angular, return.
       }
-      const fileArray = dirFolder.file(/^.*/); // get the array of all files in this subdirectory
+
+      const fileArray = zipDir.file(/^.*/); // get the array of all files in this subdirectory
+
+      // List out all files on screen
       for (let i = 0; i < fileArray.length; i++) {
         const file = fileArray[i];
         this.parseFiles(file);
       }
     });
   }
+  
+  /**
+   * Helper Method:
+   * Get the correct value for the dataname variable.
+   * Action depends on blob data having name field.
+   * @param ui8array blob object that "is" a valid zip file.
+   * @param datafilename, optional. passed in file name.
+   */
+  private extractDataname(data: any, datafilename?: any): string {
+    let dataname = '';
+    datafilename = (!datafilename) ? '' : datafilename; // Allows the value to remain optional
+
+    if (data.name) {
+      dataname = data.name.substring(0, data.name.lastIndexOf('.'));
+    } else {
+      dataname = datafilename.substring(0, datafilename.lastIndexOf('.'));
+    }
+
+    return dataname;
+  }
+
+  /**
+   * Helper Method:
+   * Searches for directories matching dataname string as RegExp. 
+   * @param dataname name of root folder determined from incoming parameters
+   * @param zipDir JsZip object
+   */
+  private setRootFolder(dataname: string, zipDir: JSZip) {
+    // Uses a regex to check that the folder exists (null check)
+    if (zipDir.folder(new RegExp(dataname)).length) {
+      // Changes to the folder specified in dataname
+      return zipDir.folder(dataname);
+    } else {
+      this.SelectedFile = this.errorFile(`Package didn't match zip filename`);
+      return null;
+    }
+  }
+
+  /**
+   * Helper Method:
+   * Determines whether Java or Angular based on file structure
+   * Sets zipDir appropriately and returns
+   * @param zipDir - JSZip object currently at the root directory
+   * @param dataname - A String representing the root directory
+   * @returns updated zipDir if matching, initial otherwise.
+   */
+  private setRootByLanguage(zipDir: any, dataname: string) {
+    if (zipDir.folder(/src\/main\/java/).length) {
+      zipDir = zipDir.folder('src/main/java');
+      this.filepath = dataname + '/src/main/java';
+    } else if (zipDir.folder(/src\/app/).length) {
+      zipDir = zipDir.folder('src/app');
+      this.filepath = dataname + '/src/app';
+    } else {
+      console.log('malformed package. not angular or java');
+      this.SelectedFile = this.errorFile('cannot determined repo language type');
+      this.filepath = null;
+    }
+
+    return zipDir;
+  }
+
+  /**
+   * Helper Method:
+   * Prepares the fields used in the openData function for use
+   */
+  private openDataPrep() {
+    this.RenderFile = [];
+    this.SelectedFile = this.defaultFile();
+    this.OpenFile = [];
+  }
+
   /**
    * Zip.parseFiles(file)
    * opens and individual zip file. This method ignores files that are directories (ie. not files with contnet)
@@ -208,15 +280,19 @@ Currently can open and navigate to the src directory of Angular and Java Reposit
     // check if file is a directory
     if (!file.dir) {
       let fileName = file.name;
+
       // save ZipObject file name as once unzip into a  standard file  we loose acess to this data
       fileName = fileName.replace(this.filepath, '');
-      fileName = fileName.substring(fileName.lastIndexOf('/') + 1);
+
       // remove leading path in name
+      fileName = fileName.substring(fileName.lastIndexOf('/') + 1);
+
       const helpme = file.async('uint8array').then(function (data) { // converts the ZipObject
         let string = 'Placeholder Text \n we are sorry your browser may not be supported';
         string = new TextDecoder('utf-8').decode(data);
         return string;
       });
+
       helpme.then(string => {
         const file = new RenderFile();
         file.fileName = fileName;
@@ -289,6 +365,7 @@ Currently can open and navigate to the src directory of Angular and Java Reposit
       }
     }
   }
+
   /**
   * Tree
   * SubClass for storing render related structure
@@ -299,6 +376,7 @@ Currently can open and navigate to the src directory of Angular and Java Reposit
     files: File[] = [];
     tree: Tree[] = [];
   }
+
   /**
   * RenderFile
   * SubClass for storing render related structure
