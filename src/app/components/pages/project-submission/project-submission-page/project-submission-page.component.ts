@@ -61,6 +61,7 @@ export class ProjectSubmissionPageComponent implements OnInit {
     this.userService.user.asObservable().subscribe(
       user => {
         this.user = user;
+        this.projectToUpload.userId = user.id; // setting owner to the project
         this.projectToUpload.trainer = this.user.firstName + ' ' + this.user.lastName;
       }
     )
@@ -225,6 +226,7 @@ export class ProjectSubmissionPageComponent implements OnInit {
     formData.append('techStack', this.projectToUpload.techStack);
     formData.append('description', this.projectToUpload.description);
     formData.append('status', 'pending');
+    formData.append("userId", this.projectToUpload.userId);
 
     // elements of an array are appended to the FormData object using the same key name
     for (let i = 0; i < this.projectToUpload.groupMembers.length; i++) {

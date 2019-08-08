@@ -14,6 +14,7 @@ export class NavMenuComponent implements OnInit {
   loggedIn = false;
   panelOpenState = false;
   user: User;
+  admin = false;
 
   constructor(private projectService: ProjectService, private userService: UserService, private router: Router) {
   }
@@ -33,8 +34,12 @@ export class NavMenuComponent implements OnInit {
         this.user = user;
         if (this.user) {
           this.loggedIn = true;
+          if (this.user.role === 'ROLE_ADMIN') {
+            this.admin = true;
+          }
         } else {
           this.loggedIn = false;
+          this.admin = false;
         }
       }
     );
@@ -72,6 +77,14 @@ export class NavMenuComponent implements OnInit {
 
   /**
    * Function that:
+   * Navigates to the projects-pending-approval-page component.
+   */
+  goToPendingProjects() {
+    this.router.navigate(['projects/pending']);
+  }
+
+  /**
+   * Function that:
    * Navigates to the profile component.
    */
   goToProfile() {
@@ -82,8 +95,15 @@ export class NavMenuComponent implements OnInit {
    * Function that:
    * Navigates to the LoginRegisterComponent.
    */
-
   goToLoginRegister () {
     this.router.navigate(['auth/login']);
+  }
+
+  /**
+   * Function that:
+   * Navigates to the AdminChangeRoles.
+   */
+  goToEditRoles() {
+    this.router.navigate(['adminchangeroles']);
   }
 }
