@@ -23,6 +23,7 @@ export class AdminChangeRolesComponent implements OnInit {
   displayedColumns: string[] = ['ID#', 'Name', 'Role', 'Username', 'Email'];
   displayedColumnsData: string[] = ['id', 'firstName', 'lastName', 'email', 'username', 'role'];
   dataSource = new MatTableDataSource(users);
+  //dataSource: User[];
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -34,6 +35,7 @@ export class AdminChangeRolesComponent implements OnInit {
     }
     this.userService.getAllUsers().subscribe(
       response => {
+        // this.dataSource = response;
         users = response;
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
