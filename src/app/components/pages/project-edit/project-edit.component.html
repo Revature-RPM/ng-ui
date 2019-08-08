@@ -56,6 +56,8 @@
             (click)="removeGroupMember($event)">{{groupMember}}</div>
         </div>
       </div>
+      </div>
+
 
       <div class="parent-div" id="control-buttons">
         <button (click)="submitForm()" [disabled]="(!name.valid) || (!batch.valid) || (!trainerName.valid) ||
@@ -63,8 +65,6 @@
           color="accent">Submit Request</button>
         <button (click)="cancelEdit()" color="warn" mat-flat-button>Cancel</button>
       </div>
-
     </form>
-
   </div>
 </mat-card>

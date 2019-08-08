@@ -84,7 +84,6 @@ export class ProjectEditComponent implements OnInit {
    * @author Shawn Bickel (1810-Oct08-Java-USF)
    */
   submitForm() {
- 
     this.projectToUpdate.status = 'PendingEdit';
     this.projectToUpdate.oldProject = null;
     this.projectToUpdate.oldProject = this.originalProject;  //Setting the original project inside the updated project
