@@ -2,9 +2,11 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { RouterTestingModule } from '@angular/router/testing';
+import { HighlightModule } from 'ngx-highlightjs';
 import { NgMetaService } from 'ngmeta';
 
 import { CodebasePageComponent } from './codebase-page.component';
+import { hljsLanguages } from 'src/app/app.module';
 
 describe('CodebasePageComponent', () => {
   let component: CodebasePageComponent;
@@ -13,7 +15,7 @@ describe('CodebasePageComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ CodebasePageComponent ],
-      imports: [ HttpClientTestingModule, RouterTestingModule ],
+      imports: [ HttpClientTestingModule, RouterTestingModule, HighlightModule.forRoot({ languages: hljsLanguages }) ],
       providers: [ Location, {provide: LocationStrategy,
         useClass: PathLocationStrategy }, NgMetaService ]
     })

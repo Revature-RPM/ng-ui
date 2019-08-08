@@ -46,6 +46,7 @@ import html from 'highlight.js/lib/languages/xml';
 import scss from 'highlight.js/lib/languages/scss';
 import css from 'highlight.js/lib/languages/css';
 import java from 'highlight.js/lib/languages/java';
+import python from 'highlight.js/lib/languages/python';
 
 export function hljsLanguages() {
   return [
@@ -56,6 +57,7 @@ export function hljsLanguages() {
     {name: 'html', func: html},
     {name: 'css', func: css},
     {name: 'java', func: java},
+    {name: 'python', func: python},
   ];
 }
 

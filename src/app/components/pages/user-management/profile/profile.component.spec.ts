@@ -5,7 +5,7 @@ import { ProfileComponent } from './profile.component';
 import { UserService } from 'src/app/services/user.service';
 import { RouterTestingModule } from '@angular/router/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ReactiveFormsModule, FormsModule, AbstractControl } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AppModule } from 'src/app/app.module';
 import { Router } from '@angular/router';
 
@@ -113,13 +113,15 @@ describe('ProfileComponent', () => {
      expect(component.form.controls['confirmPassword'].errors.MatchPassword).toEqual(true);
   });
 
-  it ('#RevatureEmail works with complying email', () => {
+  fit ('#RevatureEmail works with complying email', () => {
     // Arrange
     component.fillFormGroup('aaaaaaaa', 'aaaaaaaa', 'aaaaaaaa@revature.com', 'aaaaaaaa', 'aaaaaaaa');
     component.form.controls['email'].setValue('anEmail@email.com');
 
      // Act
      let retVal = ProfileComponent.RevatureEmail(component.form);
+     console.log(retVal);
+     console.log(component.form.controls['email'].errors.RevatureEmail);
 
      // Assert
      expect(retVal).toBeNull();
