@@ -99,6 +99,7 @@ Currently can open and navigate to the src directory of Angular and Java Reposit
     `;
     return testfile;
   }
+  
   safeTitle(link: string) {
     this.title = link.substring(link.lastIndexOf('/') + 1);
     return this.title;
@@ -270,6 +271,41 @@ Currently can open and navigate to the src directory of Angular and Java Reposit
     this.OpenFile = [];
   }
 
+  dirSchema: DirectoryObject;
+
+  addToDirSchema(filePath: string) {
+    let filePathArray: string[] = filePath.split('/');
+    let baseFolder: DirectoryObject[];
+
+    addToDirSchemaRecur(filePath, filePathArray, baseFolder);
+  }
+
+  addToDirSchemaRecur(filePath: string, filePathArray: string[], baseFolder: DirectoryObject[]): DirectoryObject {
+    
+    if (filePathArray.length !== 1) { // recurring case
+      let nextDirectory: DirectoryObject = null;
+      
+      for (item of baseFolder) {
+        if (item.name === filePathArray[0]){
+          nextDirectory = item;
+          break;
+        }
+      }
+
+      // If the directory doesn't already exist, create it.
+      if (nextDirectory === null) {
+        nextDirectory = new DirectoryObject({name: filePathArray[0]});
+        baseFolder.push(nextDirectory);
+      }
+
+      // Remove the first element and move into the next directory
+      return addToDirSchemaRecur(filePath, filePathArray.remove(1), nextDirectory);
+
+    } else { // base case
+      return baseFolder.push(new DirectoryObject({name: string[0], contents: filePath}));
+    }
+  }
+
   /**
    * Zip.parseFiles(file)
    * opens and individual zip file. This method ignores files that are directories (ie. not files with contnet)
@@ -364,6 +400,15 @@ Currently can open and navigate to the src directory of Angular and Java Reposit
         this.RenderFile.push(file);
       }
     }
+  }
+
+  /**
+   * Subclass for storing either a directory or a path string
+   * @author Mike James (1906-Aug08)
+   */
+  class DirectoryObject {
+    name: string;
+    contents: string | DirectoryObject[];
   }
 
   /**
