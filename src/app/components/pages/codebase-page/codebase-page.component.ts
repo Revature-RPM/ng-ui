@@ -7,6 +7,7 @@ import { NgMetaService } from 'ngmeta';
 import { ProjectService } from 'src/app/services/project.service';
 
 
+
 @Component({
   selector: 'codebase-page-component',
   templateUrl: './codebase-page.component.html',
@@ -36,6 +37,9 @@ export class CodebasePageComponent implements OnInit {
   browserSupported = true;
   availableUrls: string [] = [];
   title = '';
+
+  dirSchema: DirectoryObject[];
+
   /**
    * Constructur: Injects Http Client into the component for use of resource request
    * @param HttpClient standard angular dependency to fire http request.
@@ -61,12 +65,14 @@ export class CodebasePageComponent implements OnInit {
         isTextDecoderSupported  = !!new TextDecoder('utf-8');
       } catch (e) {
       }
-
+      
       this.browserSupported = isTextDecoderSupported;
       if (this.projectService.CurrentProject) {
         this.availableUrls = this.projectService.CurrentProject.zipLinks;
-      }
+      }  
     }
+
+    this.dirSchema = [];
   }
 
   /**
@@ -78,8 +84,7 @@ export class CodebasePageComponent implements OnInit {
   errorFile(message: string): RenderFile {
     const testfile = new  RenderFile();
     testfile.fileName = 'HELP';
-    testfile.fileContent =
-    `ERROR:${message}`;
+    testfile.fileContent = `ERROR:${message}`;
     return testfile;
   }
 
@@ -91,11 +96,10 @@ export class CodebasePageComponent implements OnInit {
   defaultFile(): RenderFile {
     const testfile = new  RenderFile();
     testfile.fileName = 'HELP';
-    testfile.fileContent =
-    `HELPME: use the first 🗁 (blue) to import the remote saved codebase zip.
-use the second 🗁 (green) to open a local repo zip.
-⌂ to return to the websites
-Currently can open and navigate to the src directory of Angular and Java Repositories
+    testfile.fileContent = `HELPME: use the first 🗁 (blue) to import the remote saved codebase zip.
+                            use the second 🗁 (green) to open a local repo zip.
+                            ⌂ to return to the websites
+                            Currently can open and navigate to the src directory of Angular and Java Repositories
     `;
     return testfile;
   }
@@ -167,7 +171,6 @@ Currently can open and navigate to the src directory of Angular and Java Reposit
    * @author Andrew Mitchem (1810-Oct08-Java-USF)
    */
   openData(data: Blob, datafilename?: string) {
-
     // new instance of JSZip.
     // Should only exist through the end of this function
     let zipDir: JSZip = new JSZip();
@@ -192,11 +195,15 @@ Currently can open and navigate to the src directory of Angular and Java Reposit
 
       const fileArray = zipDir.file(/^.*/); // get the array of all files in this subdirectory
 
+      this.dirSchema = [];
+
       // List out all files on screen
       for (let i = 0; i < fileArray.length; i++) {
         const file = fileArray[i];
         this.parseFiles(file);
+        this.addToDirSchema(file.name);
       }
+      console.log(this.dirSchema);
     });
   }
   
@@ -271,20 +278,22 @@ Currently can open and navigate to the src directory of Angular and Java Reposit
     this.OpenFile = [];
   }
 
-  dirSchema: DirectoryObject;
-
-  addToDirSchema(filePath: string) {
+  addToDirSchema(filePath: string): DirectoryObject[] {
     let filePathArray: string[] = filePath.split('/');
-    let baseFolder: DirectoryObject[];
+    let baseFolder: DirectoryObject[] = [];
 
-    addToDirSchemaRecur(filePath, filePathArray, baseFolder);
+    
+    return this.addToDirSchemaRecur(filePath, filePathArray, this.dirSchema);
   }
-
-  addToDirSchemaRecur(filePath: string, filePathArray: string[], baseFolder: DirectoryObject[]): DirectoryObject {
+  
+  private addToDirSchemaRecur(filePath: string, filePathArray: string[], baseFolder: DirectoryObject[]):
+     DirectoryObject[] {
+    
+    let item: DirectoryObject;
     
     if (filePathArray.length !== 1) { // recurring case
       let nextDirectory: DirectoryObject = null;
-      
+
       for (item of baseFolder) {
         if (item.name === filePathArray[0]){
           nextDirectory = item;
@@ -294,15 +303,21 @@ Currently can open and navigate to the src directory of Angular and Java Reposit
 
       // If the directory doesn't already exist, create it.
       if (nextDirectory === null) {
-        nextDirectory = new DirectoryObject({name: filePathArray[0]});
+        const name = filePathArray[0];
+        const contents: DirectoryObject[] = [];
+        nextDirectory = new DirectoryObject(name, contents);
         baseFolder.push(nextDirectory);
       }
 
       // Remove the first element and move into the next directory
-      return addToDirSchemaRecur(filePath, filePathArray.remove(1), nextDirectory);
+      // Assertion - Will not get here unless the contents is a DirectoryObject[]
+      this.addToDirSchemaRecur(filePath, filePathArray.slice(1), nextDirectory.contents as DirectoryObject[]);
 
+      return baseFolder;
     } else { // base case
-      return baseFolder.push(new DirectoryObject({name: string[0], contents: filePath}));
+      item = new DirectoryObject( filePathArray[0], filePath );
+      baseFolder.push(item);
+      return baseFolder;
     }
   }
 
@@ -400,15 +415,22 @@ Currently can open and navigate to the src directory of Angular and Java Reposit
         this.RenderFile.push(file);
       }
     }
-  }
+  };
 
   /**
    * Subclass for storing either a directory or a path string
    * @author Mike James (1906-Aug08)
    */
-  class DirectoryObject {
+  export class DirectoryObject {
     name: string;
     contents: string | DirectoryObject[];
+
+    constructor(name?: string,
+                contents?: string | DirectoryObject[])
+    {
+      this.name = name;
+      this.contents = contents;
+    }
   }
 
   /**
