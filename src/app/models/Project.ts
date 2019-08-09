@@ -14,4 +14,5 @@ export interface Project {
     projectDeclined?: boolean;
     dataModel?: any[];
     oldProject?: Project;
- }
+    userId?: any; // Track userId (owner of the project)
+   }
