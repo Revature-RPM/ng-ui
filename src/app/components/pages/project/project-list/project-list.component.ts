@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {User} from 'src/app/models/User';
 import {Project} from 'src/app/models/Project';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
@@ -20,7 +20,7 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
     ]),
   ],
 })
-export class ProjectListComponent implements OnInit, OnDestroy {
+export class ProjectListComponent implements OnInit {
 
   trainerFullName;
   trainerCanEdit = false;
@@ -31,11 +31,6 @@ export class ProjectListComponent implements OnInit, OnDestroy {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   expandedProject: Project | null;
   imagePage = 0;
-  userProjects: Project[] = [];
-  subscription: Subscription;
-  AllProjects$ = this.projectService.AllProjects$.asObservable();
-  retrievingProjects = true;
-  projectView;
   userId: string;
   projectList: Project[] = [];
 
@@ -43,7 +38,6 @@ export class ProjectListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-
     this.userService.user.asObservable().subscribe(
       user => {
         if (user) {
@@ -53,61 +47,26 @@ export class ProjectListComponent implements OnInit, OnDestroy {
       }
     );
 
-
-
-
-
     this.userId = this.route.snapshot.params['userId'];
 
-
+    // Basically, if the route contains no param for userId, then get all projects;
+    // else get projects by userId
     if (this.userId === undefined) {
       this.projectService.getAllProjects().subscribe(projects => {
         this.projectList = projects;
-        console.log('in all projects');
-        console.log(this.userId);
       });
+
     } else {
       this.projectService.getProjectsByUserId(this.userId).subscribe(projects => {
-        console.log('in user id');
-        console.log(this.userId);
         this.projectList = projects;
       });
     }
-    // if(this.route)
-      // this.subscription = this.projectService.getAllApprovedProjects()
-      //   .subscribe(
-      //     (projectResponse) => {
-      //       this.retrievingProjects = false;
-      //       this.projectService.AllProjects$.next(projectResponse);
-      //       this.updateProjects();
-      //     });
+
+    this.dataSource = new MatTableDataSource(this.projectList);
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
   }
 
-  /**
-   * This updates the currently shown projects on the left of the Project Page (src/app/components/pages/project).
-   * If you provide a string of user you get that users specific project.
-   * @param mySearch (String)
-   * @author Ian Baker | Justin Kerr 190422-USF
-   */
-  // updateProjects() {
-  //   this.AllProjects$.subscribe(
-  //     allprojects => {
-  //       if (localStorage.getItem('viewprojects') == 'user') {
-  //         for (let i = 0; i < allprojects.length; i++) {
-  //           if (allprojects[i].trainer == this.trainerFullName) {
-  //             this.userProjects.push(allprojects[i]);
-  //           }
-  //         }
-  //       } else {
-  //         this.userProjects = allprojects;
-  //       }
-
-  //       this.dataSource = new MatTableDataSource(this.userProjects);
-  //       this.dataSource.sort = this.sort;
-  //       this.dataSource.paginator = this.paginator;
-  //     }
-  //   );
-  // }
 
   /**
    * This method determines if a trainer can edit a project; a trainer can only edit a project if the project was submitted by the trainer.
@@ -124,17 +83,7 @@ export class ProjectListComponent implements OnInit, OnDestroy {
     }
   }
 
-  /**
-   * this is a lifecycle method called once by Angular before the component is destroyed;
-   * it is usually used to close resources such as unsubscribing from the observable's data stream;
-   * resources should be released to avoid memory leaks
-   * @author Shawn Bickel (1810-Oct08-Java-USF)
-   */
-  ngOnDestroy() {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
-    }
-  }
+
 
   /**
    * This function is used to filter the table based on the inputted string.
