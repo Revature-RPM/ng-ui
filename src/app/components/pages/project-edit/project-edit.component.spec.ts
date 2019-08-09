@@ -10,9 +10,9 @@ import { NgMetaService } from 'ngmeta';
 import { MatIconModule, MatCardModule, MatFormFieldModule, MatOptionModule, MatSelectModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { stringify } from '@angular/core/src/util';
 import { Project } from 'src/app/models/Project';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 /**
  * Edit Project tests.
@@ -45,19 +45,23 @@ fdescribe('ProjectEditComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ProjectEditComponent);
-    component = fixture.componentInstance;
-    userService = TestBed.get(UserService);
-    projectService = TestBed.get(ProjectService);
-    fixture.detectChanges();
-    project = {
+  project = {
       name: 'Fake Project',
       batch: '3rd Batch Java',
       trainer: 'Nick',
       groupMembers: ['Mike', 'Molly', 'Sam'],
       techStack: 'Java',
       description: 'This is a fake project for testing',
-    }
+      status: 'not pending',
+    };
+    fixture = TestBed.createComponent(ProjectEditComponent);
+    const fakeProject = new BehaviorSubject<Project>(null).subscribe;
+    component = fixture.componentInstance;
+    userService = TestBed.get(UserService);
+    projectService = TestBed.get(ProjectService);
+    // projectService.CurrentProject$ = 
+    fixture.detectChanges();
+   
     // spyOn(component, 'submitForm');
   });
 
@@ -184,8 +188,10 @@ fdescribe('ProjectEditComponent', () => {
 
     fixture.detectChanges();
     expect(mockRouter.navigate).toHaveBeenCalledWith(['/updateform']);
-    // spyOn(component.router, 'navigate').and.returnValue(true);
-    // expect(component.router.navigate).toHaveBeenCalledWith(['updateform']);
-    // expect(projectService.submitEditRequest).toHaveBeenCalled();
+     spyOn(component.router, 'navigate').and.returnValue(true);
+     expect(component.router.navigate).toHaveBeenCalledWith(['updateform']);
+     expect(projectService.submitEditRequest).toHaveBeenCalled();
   });
+
 });
+
