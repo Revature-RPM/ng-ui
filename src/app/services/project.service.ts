@@ -73,7 +73,3 @@ export class ProjectService {
  submitEditRequest(project: Project): Observable<Project> {
    return this.httpClient.post(environment.url + `/project/edit`, project, HTTP_OPTIONS);
  }
-
-
-
-}

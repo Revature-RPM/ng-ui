@@ -20,7 +20,7 @@ export class UserService {
 
 
   constructor(private http: HttpClient) {
-    if (localStorage.getItem('jwt')) this.user = new BehaviorSubject<User>( (JSON.parse(localStorage.getItem('rpmUser'))) );
+    if (localStorage.getItem('jwt')) this.user = new BehaviorSubject<User>( (JSON.parse(localStorage.getItem('user'))) );
     else this.user = new BehaviorSubject<User>( null );
   }
 
@@ -46,7 +46,7 @@ export class UserService {
   logout() {
     localStorage.removeItem('jwt');
     localStorage.removeItem('rpmRefresh');
-    localStorage.removeItem('rpmUser');
+    localStorage.removeItem('user'); // updated to 'user' from 'rpmUser' to match rest of project - MJ 1906
     this.user.next(null);
   }
 
@@ -61,7 +61,7 @@ export class UserService {
 
           localStorage.setItem('jwt', jwtauthtoken);
           localStorage.setItem('rpmRefresh', (Math.round((new Date()).getTime() / 1000) + 21600000) + '');
-          localStorage.setItem('rpmUser', JSON.stringify(response.body));
+          localStorage.setItem('user', JSON.stringify(response.body));
           localStorage.setItem('viewprojects', 'all');
           return response.body;
         } else {
@@ -103,10 +103,7 @@ export class UserService {
    * the ' special' is parsed and bypasses the password needed in auth service
    * */
   updateUserToAdmin(user: User): Observable<User> {
-    console.log("before update user to admin in user service.ts");
     user.role = 'ROLE_ADMIN' + ' special';
-    console.log("after role-admin update user to admin in user service.ts");
-    console.log(user);
    return this.http.put<User>(environment.url + '/auth/users/id/', user, httpOptions)
       .pipe(catchError(this.handleError));
   }
