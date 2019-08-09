@@ -46,7 +46,7 @@ export class UserService {
   logout() {
     localStorage.removeItem('jwt');
     localStorage.removeItem('rpmRefresh');
-    localStorage.removeItem('user'); // Updated from rpmUser to user to match rest of project MJ 1906
+    localStorage.removeItem('user'); // updated to 'user' from 'rpmUser' to match rest of project - MJ 1906
     this.user.next(null);
   }
 
@@ -61,7 +61,7 @@ export class UserService {
 
           localStorage.setItem('jwt', jwtauthtoken);
           localStorage.setItem('rpmRefresh', (Math.round((new Date()).getTime() / 1000) + 21600000) + '');
-          localStorage.setItem('user', JSON.stringify(response.body)); // Updated from rpmUser to user to match rest of project MJ 1906
+          localStorage.setItem('user', JSON.stringify(response.body));
           localStorage.setItem('viewprojects', 'all');
           return response.body;
         } else {

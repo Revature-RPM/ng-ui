@@ -12,7 +12,8 @@ export class ProjectGridPageComponent implements OnInit {
 
   project: Project;
 
-  constructor(private projectService: ProjectService, private router: Router) { }
+  constructor(private projectService: ProjectService,
+              private router: Router ) { }
 
   ngOnInit() {
     this.projectService.CurrentProject$.asObservable().subscribe(
@@ -24,6 +25,20 @@ export class ProjectGridPageComponent implements OnInit {
   }
 
   updateProject() {
-    if (this.project) this.router.navigate(['/updateform']);
+    if (this.project) {
+      this.router.navigate(['/updateform']);
+    }
+  }
+
+  /**
+   * Iff a project is selected, 
+   *  updates the view to the codebase view.
+   *
+   *  @author Michael James | Ashton Sullivan 1906-Java-USF
+   */
+  viewCodeBase() {
+    if (this.project) {
+      this.router.navigate(['/codebase']);
+    }
   }
 }
