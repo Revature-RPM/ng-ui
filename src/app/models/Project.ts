@@ -1,5 +1,4 @@
 export interface Project {
-
     id?: any;
     name?: string;
     batch?: string;
@@ -14,5 +13,6 @@ export interface Project {
     projectApproved?: boolean;
     projectDeclined?: boolean;
     dataModel?: any[];
+    oldProject?: Project;
     userId?: any; // Track userId (owner of the project)
- }
+   }
