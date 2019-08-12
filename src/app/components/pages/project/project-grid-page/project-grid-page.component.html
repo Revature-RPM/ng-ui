@@ -11,7 +11,7 @@
                     *ngIf="user.id === project.userId || user.role == 'ROLE_ADMIN'" matTooltipPosition="above" (click)="updateProject()">
                         <mat-icon>edit</mat-icon>
                     </button>
-                    <button mat-fab matTooltip="Codebase viewer" matTooltipPosition="above">
+                    <button mat-fab matTooltip="Codebase Viewer" matTooltipPosition="above" id="codeBaseButton" (click)="viewCodeBase()">
                         <mat-icon>code</mat-icon>
                     </button>
                 </div>

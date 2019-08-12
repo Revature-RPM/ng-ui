@@ -23,6 +23,7 @@ import { RegisterComponent } from './components/pages/login-register-auth/regist
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {NgMetaModule} from 'ngmeta';
 import {MatDialogModule, MatInputModule, MatSnackBarModule} from '@angular/material';
+import { HighlightModule } from 'ngx-highlightjs';
 import {ProjectSubmissionPageComponent} from './components/pages/project-submission/project-submission-page/project-submission-page.component';
 import {EditDialogComponent} from './components/pages/project-submission/edit-dialog/edit-dialog.component';
 import {TokenInterceptor} from './services/jwtInterceptor.interceptor';
@@ -31,6 +32,34 @@ import { CodebasePageComponent } from './components/pages/codebase-page/codebase
 import { AllUsersPageComponent } from './components/pages/user-management/all-users-page/all-users-page.component';
 import { EllipsisPipe } from './ellipsis.pipe';
 import { ProjectWelcomePageComponent } from './components/pages/project/project-welcome-page/project-welcome-page.component';
+import { CodebaseComponent } from './components/pages/codebase/codebase.component';
+import { AdminChangeRolesComponent } from './components/pages/user-management/admin-change-roles/admin-change-roles.component';
+import { ProjectsPendingApprovalPageComponent } from './components/pages/project-approval/projects-pending-approval-page/projects-pending-approval-page.component';
+import { PendingProjectsTableComponent } from './components/pages/project-approval/pending-projects-table/pending-projects-table.component';
+import { SelectedProjectViewerComponent } from './components/pages/project-approval/selected-project-viewer/selected-project-viewer.component';
+import { PendingEditRequestsTableComponent } from './components/pages/project-approval/pending-edit-requests-table/pending-edit-requests-table.component';
+
+import typescript from 'highlight.js/lib/languages/typescript';
+import javascript from 'highlight.js/lib/languages/javascript';
+import xml from 'highlight.js/lib/languages/xml';
+import html from 'highlight.js/lib/languages/xml';
+import scss from 'highlight.js/lib/languages/scss';
+import css from 'highlight.js/lib/languages/css';
+import java from 'highlight.js/lib/languages/java';
+import python from 'highlight.js/lib/languages/python';
+
+export function hljsLanguages() {
+  return [
+    {name: 'typescript', func: typescript},
+    {name: 'javascript', func: javascript},
+    {name: 'scss', func: scss},
+    {name: 'xml', func: xml},
+    {name: 'html', func: html},
+    {name: 'css', func: css},
+    {name: 'java', func: java},
+    {name: 'python', func: python},
+  ];
+}
 
 @NgModule({
   declarations: [
@@ -53,7 +82,13 @@ import { ProjectWelcomePageComponent } from './components/pages/project/project-
     CodebasePageComponent,
     AllUsersPageComponent,
     EllipsisPipe,
-    ProjectWelcomePageComponent
+    ProjectWelcomePageComponent,
+    CodebaseComponent,
+    AdminChangeRolesComponent,
+    ProjectsPendingApprovalPageComponent,
+    PendingProjectsTableComponent,
+    SelectedProjectViewerComponent,
+    PendingEditRequestsTableComponent,
   ],
   imports: [
     BrowserModule,
@@ -68,7 +103,8 @@ import { ProjectWelcomePageComponent } from './components/pages/project/project-
     MatInputModule,
     MatSnackBarModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    HighlightModule.forRoot({ languages: hljsLanguages }),
   ],
   providers: [
     {
