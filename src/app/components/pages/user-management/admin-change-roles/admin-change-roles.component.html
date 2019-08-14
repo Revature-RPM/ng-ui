@@ -4,7 +4,7 @@
       <input matInput (keyup)="applyFilter($event.target.value)" id="search-users" class="search" type="search"
         placeholder="Search users">
     </mat-form-field>
-    <button id="update-to-admin-btn" mat-flat-button color="accent" (click)="updateToAdmin()">Submit Changes</button>
+    <button id="update-to-admin-btn" mat-flat-button color="accent" (click)="updateUserRoles()">Submit Changes</button>
   </div>
   <div class="mat-elevation-z8">
     <mat-table [dataSource]="dataSource" matSort>
