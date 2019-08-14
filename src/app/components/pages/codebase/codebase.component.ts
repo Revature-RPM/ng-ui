@@ -3,7 +3,7 @@ import { Location } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Router} from '@angular/router';
 import * as JSZip from 'jszip';
-import { NgMetaService } from 'ngmeta'; // TODO use to change title to 'Edit | RPM' or something
+import { NgMetaService } from 'ngmeta';
 import { ProjectService } from 'src/app/services/project.service';
 import { EllipsisPipe } from 'src/app/ellipsis.pipe';
 import { Project } from 'src/app/models/Project';
@@ -55,7 +55,6 @@ export class CodebaseComponent implements OnInit {
     const lsStore = this.saveLocalStorage();
 
     if (!localStorage.getItem('user')) {
-      console.log('oops! got here.')
       this.router.navigate(['/auth/login']);
     } else {
       this.ngmeta.setHead({ title: 'Code | RPM' });
@@ -94,13 +93,11 @@ export class CodebaseComponent implements OnInit {
    */
   private saveLocalStorage() {
     const lsStore = [];
-    console.log(localStorage);
+    
     for (let i = 0; i < localStorage.length; i++) {
-      const key = localStorage.key(i);
-      console.log(key, localStorage.getItem(key));
+      const key = localStorage.key(i); 
       lsStore.push({ key: key, value: localStorage.getItem(key) });
     }
-    console.log(lsStore);
     return lsStore;
   }
   
@@ -350,7 +347,6 @@ export class CodebaseComponent implements OnInit {
   private setRootFolder(dataname: string, zipDir: JSZip) {
     // Uses a regex to check that the folder exists (null check)
     if (zipDir.folder(new RegExp(dataname)).length) {
-      console.log(dataname);
       // Changes to the folder specified in dataname
       return zipDir.folder(dataname);
     } else {
