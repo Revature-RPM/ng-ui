@@ -33,7 +33,7 @@ class MockProjectService {
   }
 }
 
-fdescribe('CodebaseComponent', () => {
+describe('CodebaseComponent', () => {
   let component: CodebaseComponent;
   let fixture: ComponentFixture<CodebaseComponent>;
   let user: User;
