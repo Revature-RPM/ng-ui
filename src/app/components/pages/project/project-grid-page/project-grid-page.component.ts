@@ -26,12 +26,15 @@ export class ProjectGridPageComponent implements OnInit {
           this.project = proj;
         }
       });
-    this.userService.user.asObservable().subscribe ( user => {
+    if (localStorage.getItem('user')) {
+      this.user = JSON.parse(localStorage.getItem('user'));
+    } else {
+      this.userService.user.asObservable().subscribe ( user => {
         if (user) {
           this.user = user;
         }
       }
-    );
+    );}
   }
 
   updateProject() {
