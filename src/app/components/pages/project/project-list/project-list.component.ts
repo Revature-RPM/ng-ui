@@ -49,6 +49,16 @@ export class ProjectListComponent implements OnInit {
 
     this.userId = this.route.snapshot.params['userId'];
 
+    this.loadProjects();
+
+    this.dataSource = new MatTableDataSource(this.projectList);
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
+  }
+
+
+
+  loadProjects() {
     // Basically, if the route contains no param for userId, then get all projects;
     // else get projects by userId
     if (this.userId === undefined) {
@@ -61,12 +71,7 @@ export class ProjectListComponent implements OnInit {
         this.projectList = projects;
       });
     }
-
-    this.dataSource = new MatTableDataSource(this.projectList);
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
   }
-
 
   /**
    * This method determines if a trainer can edit a project; a trainer can only edit a project if the project was submitted by the trainer.
