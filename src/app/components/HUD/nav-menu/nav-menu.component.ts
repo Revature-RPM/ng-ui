@@ -54,18 +54,7 @@ export class NavMenuComponent implements OnInit {
     this.router.navigate(['auth/login']);
   }
 
-  /**
-   * Function that:
-   * Sets the type of project view to local storage (type can be set to 'view' or 'all').
-   * Both types are routed to the project-grid-page component, but a /1 is denoted for user projects.
-   * The 1 was a test variable but can be changed to more appropriately represent the user Id.
-   */
-  getProjects(type) {
-        localStorage.removeItem('viewprojects');
-        localStorage.setItem('viewprojects', type);
-        if (type == 'user') this.router.navigate(['projects/1']);
-        else this.router.navigate(['projects'])
-  }
+
 
   /**
    * Function that:

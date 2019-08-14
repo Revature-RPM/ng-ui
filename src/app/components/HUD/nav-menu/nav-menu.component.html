@@ -14,7 +14,7 @@
                 </mat-panel-title>
             </mat-expansion-panel-header>
           <a  [routerLink]= "['projects', this.user.id]" mat-button>Your Projects</a>
-          <a (click)="getProjects('all')" mat-button>All Projects</a>
+          <a [routerLink]= "['projects']" mat-button>All Projects</a>
         </mat-expansion-panel>
 
         <!-- only show if user is admin! -->
