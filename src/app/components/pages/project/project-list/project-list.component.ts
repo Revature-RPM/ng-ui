@@ -49,7 +49,7 @@ export class ProjectListComponent implements OnInit {
 
     this.userId = this.route.snapshot.params['userId'];
 
-    this.loadProjects();
+    this.projectList = this.loadProjects(this.userId);
 
     this.dataSource = new MatTableDataSource(this.projectList);
     this.dataSource.sort = this.sort;
@@ -58,19 +58,26 @@ export class ProjectListComponent implements OnInit {
 
 
 
-  loadProjects() {
+  loadProjects(userId): Project[] {
+    let projects: Project[];
     // Basically, if the route contains no param for userId, then get all projects;
     // else get projects by userId
-    if (this.userId === undefined) {
-      this.projectService.getAllProjects().subscribe(projects => {
-        this.projectList = projects;
+    if (!userId) {
+      console.log(66);
+      this.projectService.getAllProjects().subscribe(proj => {
+        projects = proj;
+        console.log(68);
+        console.log(projects);
       });
-
     } else {
-      this.projectService.getProjectsByUserId(this.userId).subscribe(projects => {
-        this.projectList = projects;
+      console.log(71);
+      this.projectService.getProjectsByUserId(this.userId).subscribe(proj => {
+        projects = proj;
+        console.log(74);
+        console.log(projects);
       });
     }
+    return projects;
   }
 
   /**
