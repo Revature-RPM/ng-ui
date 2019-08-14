@@ -19,6 +19,8 @@ export class MockProjectService {
               techStack: 'Java',
               description: 'This is a fake project for testing',
               status: 'not pending',
+              screenShots: ['aValue'],
+              zipLinks: ['value'],
     };
  
     this.CurrentProject$.next(this.CurrentProject);
@@ -32,4 +34,8 @@ export class MockProjectService {
     // getAllApprovedProjects(): Observable<Project[]> {
  
     // }
+
+    submitEditRequest(project: Project): Observable<Project> {
+          return this.CurrentProject$.asObservable();
+    }
 }

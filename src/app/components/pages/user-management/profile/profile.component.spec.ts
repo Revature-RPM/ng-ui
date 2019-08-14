@@ -9,7 +9,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AppModule } from 'src/app/app.module';
 import { Router } from '@angular/router';
 
-fdescribe('ProfileComponent', () => {
+describe('ProfileComponent', () => {
   let component: ProfileComponent;
   let fixture: ComponentFixture<ProfileComponent>;
   let router: Router;
@@ -113,15 +113,13 @@ fdescribe('ProfileComponent', () => {
      expect(component.form.controls['confirmPassword'].errors.MatchPassword).toEqual(true);
   });
 
-  fit ('#RevatureEmail works with complying email', () => {
+  it ('#RevatureEmail works with complying email', () => {
     // Arrange
     component.fillFormGroup('aaaaaaaa', 'aaaaaaaa', 'aaaaaaaa@revature.com', 'aaaaaaaa', 'aaaaaaaa');
     component.form.controls['email'].setValue('anEmail@email.com');
 
      // Act
      let retVal = ProfileComponent.RevatureEmail(component.form);
-     console.log(retVal);
-     console.log(component.form.controls['email'].errors.RevatureEmail);
 
      // Assert
      expect(retVal).toBeNull();
@@ -168,11 +166,8 @@ fdescribe('ProfileComponent', () => {
     component.form.controls['confirmPassword'].setValue('myPassword');
 
     component.formFilled();
-
-    console.log(component.form);
-    console.log(component.form.valid);
-
   });
+
   it ('#ValidEmail works with complying email', () => {
     // Arrange
     component.fillFormGroup('aaaaaaaa', 'aaaaaaaa', 'aaaaaaaa@revature.com', 'aaaaaaaa', 'aaaaaaaa');

@@ -52,8 +52,7 @@ describe('CodebaseComponent', () => {
         RouterTestingModule,
         HighlightModule.forRoot({ languages: hljsLanguages }),
         HttpClientTestingModule ],
-      providers: [ Location, {provide: LocationStrategy,
-        useClass: PathLocationStrategy }, NgMetaService,
+      providers: [ Location, NgMetaService,
         {provide: ProjectService, useClass: MockProjectService } ],
     })
     .compileComponents();

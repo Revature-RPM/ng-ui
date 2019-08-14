@@ -24,8 +24,8 @@
               -->
               <mat-icon>notifications</mat-icon>
             </div>
-            <img class="user-avatar" [matMenuTriggerFor]="avatarMenu" src="../../../../assets/images/chinchilla2.jpg">
-            <mat-menu #avatarMenu="matMenu">
+            <img class="user-avatar" [matMenuTriggerFor]="avatarMenu" src="assets/images/chinchilla2.jpg" (click)="routeToProfile();">
+              <mat-menu #avatarMenu="matMenu">
             </mat-menu>
           </div>
 
