@@ -55,7 +55,7 @@ export class CodebaseComponent implements OnInit {
     const lsStore = this.saveLocalStorage();
 
     if (!localStorage.getItem('user')) {
-      this.router.navigate(['/auth/login']);
+      this.router.navigate(['auth/login']);
     } else {
       this.ngmeta.setHead({ title: 'Code | RPM' });
       let isTextDecoderSupported = false;

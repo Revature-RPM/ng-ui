@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { LocationStrategy, PathLocationStrategy, Location } from '@angular/common';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
@@ -7,8 +7,7 @@ import { MatIconModule, MatCardModule, MatGridListModule, MatButtonModule } from
 import { NgMetaService } from 'ngmeta';
 import { HighlightModule } from 'ngx-highlightjs';
 import { BehaviorSubject } from 'rxjs';
-import * as JSZip from 'jszip';
-import * as JSZipUtils from 'jszip-utils';
+import * as JSZip from 'jszip';;
 
 import { hljsLanguages } from 'src/app/app.module';
 import { ProjectService } from 'src/app/services/project.service';
@@ -18,6 +17,7 @@ import { CodebaseComponent } from './codebase.component';
 import { DirectoryObject } from './directory_object';
 import { EllipsisPipe } from 'src/app/ellipsis.pipe';
 import { RenderFile } from './render_file';
+import { Router } from '@angular/router';
 
 class MockProjectService {
   CurrentProject$: BehaviorSubject<Project> = new BehaviorSubject<Project>(null);
@@ -33,12 +33,16 @@ class MockProjectService {
   }
 }
 
-describe('CodebaseComponent', () => {
+fdescribe('CodebaseComponent', () => {
   let component: CodebaseComponent;
   let fixture: ComponentFixture<CodebaseComponent>;
   let user: User;
   let httpClient: HttpClient;
   let httpTestingController: HttpTestingController;
+  let store;
+  let router: Router;
+  let location: Location;
+  let projectService: ProjectService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -56,7 +60,7 @@ describe('CodebaseComponent', () => {
   }));
 
   beforeEach(() => {
-    let store = {};
+    store = {};
 
     spyOn(localStorage, 'getItem').and.callFake(function (key) {
       return store[key];
@@ -64,14 +68,16 @@ describe('CodebaseComponent', () => {
     spyOn(localStorage, 'setItem').and.callFake(function (key, value) {
       return store[key] = value;
     });
+
     user = {firstName: 'Bill' };
-
     localStorage.setItem('user', JSON.stringify(user));
-
+    
     httpClient = TestBed.get(HttpClient);
     httpTestingController = TestBed.get(HttpTestingController);
     fixture = TestBed.createComponent(CodebaseComponent);
     component = fixture.componentInstance;
+    router = TestBed.get(Router);
+    location = TestBed.get(Location);
     fixture.detectChanges();
   });
   
@@ -177,6 +183,17 @@ describe('CodebaseComponent', () => {
 
     expect(component['filterFiles'](files)).toEqual([file1, file3, file4]);
   });
+
+  it('should filter files appropriately, skip path', () => {
+    const file1 = {name: 'fileName.js' };
+    const file2 = {name: undefined };
+    const file3 = {name: 'fileName.html' };
+    const file4 = {name: 'fileName.java' };
+
+    const files = [file1, file2, file3, file4 ];
+
+    expect(component['filterFiles'](files)).toEqual([file1, file3, file4]);
+  });
   
   it('should build the arrays and folders to display as expected', () => {
     const file1: DirectoryObject = {name: 'fileName.js', contents: './filename.fs' };
@@ -205,5 +222,101 @@ describe('CodebaseComponent', () => {
 
     expect(component.directoryChain).toContain(directory);
     expect(component.directoryChain.length).toEqual(1);
+  });
+
+  it('should restore localStorage from Array', () => {
+    const cats = {key: 'cats', value: JSON.stringify(['Maisy', 'Mario', 'Archie', 'Bella', 'Bart', 'Sara'])};
+    const proj = {key: 'project', value: JSON.stringify(component.project)};
+    let array = [user, proj, cats];
+
+    component['restoreLocalStorage'](array);
+    expect(localStorage.getItem('cats')).toEqual(cats.value);
+    expect(localStorage.getItem('project')).toEqual(JSON.stringify(component.project));
+    expect(localStorage.getItem('user')).toEqual(JSON.stringify(user));
+  });
+
+  it('should be able to run sendRequest from a .zip location', () => {
+    component.sendRequest(component.project.zipLinks[0]);
+  });
+
+  it ('should route to home if no user', () => {
+    localStorage.setItem('user', null);
+    let navitageSpy = spyOn(router, 'navigate');
+
+    component.ngOnInit();
+    expect(navitageSpy).toHaveBeenCalledWith(['auth/login']);
+  });
+
+  it('should get dataname from data', () => {
+    const data = {name: 'this.is.my.boomstick' };
+    const dataFileName = 'file.Name';
+
+    expect(component['extractDataname'](data, dataFileName)).toEqual('this.is.my');
+  });
+
+  it('should get dataname from data, empty data.name', () => {
+    const data = {name: ''};
+    const dataFileName = 'file.Name';
+
+    expect(component['extractDataname'](data, dataFileName)).toEqual('file');
+  });
+
+  it('should get dataname from data, empty dataFileName', () => {
+    const data = {name: 'this.is.my.boomstick' };
+    const dataFileName = '';
+
+    expect(component['extractDataname'](data, dataFileName)).toEqual('this.is.my');
+  });
+
+  it('should get dataname from data, empty both', () => {
+    const data = {name: '' };
+    const dataFileName = '';
+
+    expect(component['extractDataname'](data, dataFileName)).toEqual('');
+  });
+
+  it('should be able to get filename from content-disposition header', () => {
+    const headerString = 'Content-Disposition: attachment; filename=myfilename.txt'
+    const expectedResult = 'myfilename.txt';
+
+    expect(component['getFileNameFromHttpResponse'](headerString)).toEqual(expectedResult);
+  });
+
+  it('should be able to navigate to root folder', () => {
+    // Creates a simple zip in ram, from https://stuk.github.io/jszip/
+    var zip = new JSZip();
+    zip.file("Hello.txt", "Hello World\n");
+    var img = zip.folder("img1"); // Modified
+    var img2 = img.folder("img2"); // Modified
+    // End borrowed code
+    let retVal: JSZip = component['setRootFolder']('img1', zip);
+
+    expect(retVal.files).toEqual(img.files);
+  });
+
+  it('should return an error if sent a non-compliant zip', () => {
+    // Creates a simple zip in ram, from https://stuk.github.io/jszip/
+    var zip = new JSZip();
+    zip.file("Hello.txt", "Hello World\n");
+    var img = zip.folder("images"); 
+    // End borrowed code
+
+    const theSpyWhoZippedMe = spyOn(component, 'errorFile').and
+      .callFake(function() {return null;});
+
+    let retVal: JSZip = component['setRootFolder']('llamas', zip);
+
+    expect(retVal).toBeNull;
+    expect(theSpyWhoZippedMe)
+      .toHaveBeenCalledWith(`Package didn't match zip filename`);
+  });
+
+  it('should call the location.back method to go back', () => {
+    let mySpy = spyOn(location, 'back').and
+      .callFake(function() {return null;});
+
+    component.goBack();
+
+    expect(mySpy).toHaveBeenCalled();
   });
 });
