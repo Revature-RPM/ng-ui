@@ -32,9 +32,9 @@ describe('AdminChangeRolesComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should call updateToAdmin Method', async(() => {
+  it('should call updateUserRoles Method', async(() => {
     spyOn(component, 'updateUserRoles');
-    const button = fixture.debugElement.nativeElement.querySelector('#update-to-admin-btn');
+    const button = fixture.debugElement.nativeElement.querySelector('#update-user-btn');
     button.click();
     fixture.whenStable().then(() => {
       expect(component.updateUserRoles).toHaveBeenCalled();
