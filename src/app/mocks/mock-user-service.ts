@@ -4,8 +4,8 @@ import { OnInit } from '@angular/core';
 
 /**
  * A Mock of the UserService
- * 
- * 
+ *
+ *
  */
 export class MockUserService {
     user: BehaviorSubject<User> = new BehaviorSubject<User>(null);
@@ -26,7 +26,7 @@ export class MockUserService {
             this.user.next(this.u);
             this.test = true;
             this.url = 'http://www.google.com/NotAUsefulAnswer';
-    };
+    }
 
 
 

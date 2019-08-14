@@ -55,9 +55,9 @@ export class AdminChangeRolesComponent implements OnInit {
    * @author Aisha Hodge (1905-Java-USF)
    * @author Toyin Fadiran (1905-Java-USF)
    */
-  updateToAdmin() {
+  updateUserRoles() {
     updatedRoles.forEach(user => {
-      this.userService.updateUserToAdmin(user).subscribe(
+      this.userService.updateUserRoles(user).subscribe(
         response => {
           console.log(response);
         }
