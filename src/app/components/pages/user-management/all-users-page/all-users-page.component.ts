@@ -47,7 +47,7 @@ export class AllUsersPageComponent implements OnInit {
   }
   updateToAdmin(user){
     if(user.username !=='admin') {
-      this.userService.updateUserToAdmin(user).subscribe(
+      this.userService.updateUserRoles(user).subscribe(
         result => {
           user.role = 'ROLE_ADMIN';
         },

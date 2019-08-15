@@ -102,8 +102,18 @@ export class UserService {
    * Updates the user role to admin only if current the user is admin
    * the ' special' is parsed and bypasses the password needed in auth service
    * */
-  updateUserToAdmin(user: User): Observable<User> {
-    user.role = 'ROLE_ADMIN' + ' special';
+  updateUserRoles(user: User): Observable<User> {
+    console.log('before if else:');
+    console.log(user);
+    if (user.role === 'admin') {
+    user.role = 'ROLE_ADMIN';
+    console.log('inside if for admin:' + 'User role is Admin');
+    console.log(user);
+    } else {
+      user.role = 'ROLE_USER';
+      console.log('else, user was user:, User role is User');
+      console.log(user);
+    }
    return this.http.put<User>(environment.url + '/auth/users/id/', user, httpOptions)
       .pipe(catchError(this.handleError));
   }
