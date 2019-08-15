@@ -23,62 +23,90 @@ import { RegisterComponent } from './components/pages/login-register-auth/regist
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {NgMetaModule} from 'ngmeta';
 import {MatDialogModule, MatInputModule, MatSnackBarModule} from '@angular/material';
+import { HighlightModule } from 'ngx-highlightjs';
 import {ProjectSubmissionPageComponent} from './components/pages/project-submission/project-submission-page/project-submission-page.component';
 import {EditDialogComponent} from './components/pages/project-submission/edit-dialog/edit-dialog.component';
 import {TokenInterceptor} from './services/jwtInterceptor.interceptor';
 import { ProfileComponent } from './components/pages/user-management/profile/profile.component';
-import { CodebasePageComponent } from './components/pages/codebase-page/codebase-page.component';
 import { AllUsersPageComponent } from './components/pages/user-management/all-users-page/all-users-page.component';
 import { EllipsisPipe } from './ellipsis.pipe';
 import { ProjectWelcomePageComponent } from './components/pages/project/project-welcome-page/project-welcome-page.component';
+import { CodebaseComponent } from './components/pages/codebase/codebase.component';
 import { AdminChangeRolesComponent } from './components/pages/user-management/admin-change-roles/admin-change-roles.component';
 import { ProjectsPendingApprovalPageComponent } from './components/pages/project-approval/projects-pending-approval-page/projects-pending-approval-page.component';
 import { PendingProjectsTableComponent } from './components/pages/project-approval/pending-projects-table/pending-projects-table.component';
 import { SelectedProjectViewerComponent } from './components/pages/project-approval/selected-project-viewer/selected-project-viewer.component';
 import { PendingEditRequestsTableComponent } from './components/pages/project-approval/pending-edit-requests-table/pending-edit-requests-table.component';
+import { LexPipe } from './zip-file-explorer/lex.pipe';
+import { LineNumberPipe } from './zip-file-explorer/line-number.pipe';
+
+
+import typescript from 'highlight.js/lib/languages/typescript';
+import javascript from 'highlight.js/lib/languages/javascript';
+import xml from 'highlight.js/lib/languages/xml';
+import html from 'highlight.js/lib/languages/xml';
+import scss from 'highlight.js/lib/languages/scss';
+import css from 'highlight.js/lib/languages/css';
+import java from 'highlight.js/lib/languages/java';
+import python from 'highlight.js/lib/languages/python';
+
+export function hljsLanguages() {
+  return [
+    {name: 'typescript', func: typescript},
+    {name: 'javascript', func: javascript},
+    {name: 'scss', func: scss},
+    {name: 'xml', func: xml},
+    {name: 'html', func: html},
+    {name: 'css', func: css},
+    {name: 'java', func: java},
+    {name: 'python', func: python},
+  ];
+}
 
 @NgModule({
   declarations: [
-    AppComponent,
-    SidenavComponent,
-    LoginComponent,
-    NavMenuComponent,
-    LoginRegisterPageComponent,
-    ProjectDescriptionComponent,
-    ProjectListComponent,
-    ProjectGridPageComponent,
-    NgxCarouselComponent,
-    ProjectInfoComponent,
-    ProjectEditComponent,
-    PageNotFoundComponent,
-    ProjectSubmissionPageComponent,
-    EditDialogComponent,
-    RegisterComponent,
-    ProfileComponent,
-    CodebasePageComponent,
-    AllUsersPageComponent,
-    EllipsisPipe,
-    ProjectWelcomePageComponent,
     AdminChangeRolesComponent,
-    ProjectsPendingApprovalPageComponent,
+    AllUsersPageComponent,
+    AppComponent,
+    CodebaseComponent,
+    EditDialogComponent,
+    EllipsisPipe,
+    LexPipe,
+    LineNumberPipe,
+    LoginComponent,
+    LoginRegisterPageComponent,
+    NavMenuComponent,
+    NgxCarouselComponent,
+    PageNotFoundComponent,
+    ProfileComponent,
+    PendingEditRequestsTableComponent,
     PendingProjectsTableComponent,
+    ProjectDescriptionComponent,
+    ProjectEditComponent,
+    ProjectGridPageComponent,
+    ProjectInfoComponent,
+    ProjectListComponent,
+    ProjectsPendingApprovalPageComponent,
+    ProjectSubmissionPageComponent,
+    ProjectWelcomePageComponent,
+    RegisterComponent,
     SelectedProjectViewerComponent,
-    PendingEditRequestsTableComponent
+    SidenavComponent,
   ],
   imports: [
+    AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
-    AppRoutingModule,
-    MaterialModule,
     FormsModule,
-    NgxHmCarouselModule,
     HttpClientModule,
-    MatDialogModule,
+    MaterialModule,
+    NgxHmCarouselModule,
     NgMetaModule,
+    MatDialogModule,
     MatInputModule,
     MatSnackBarModule,
     ReactiveFormsModule,
-    FormsModule
+    HighlightModule.forRoot({ languages: hljsLanguages }),
   ],
   providers: [
     {

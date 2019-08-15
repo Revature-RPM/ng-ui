@@ -5,11 +5,11 @@ import { ProfileComponent } from './profile.component';
 import { UserService } from 'src/app/services/user.service';
 import { RouterTestingModule } from '@angular/router/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ReactiveFormsModule, FormsModule, AbstractControl } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AppModule } from 'src/app/app.module';
 import { Router } from '@angular/router';
 
-describe('ProfileComponent', () => {
+fdescribe('ProfileComponent', () => {
   let component: ProfileComponent;
   let fixture: ComponentFixture<ProfileComponent>;
   let router: Router;
@@ -113,13 +113,15 @@ describe('ProfileComponent', () => {
      expect(component.form.controls['confirmPassword'].errors.MatchPassword).toEqual(true);
   });
 
-  it ('#RevatureEmail works with complying email', () => {
+  fit ('#RevatureEmail works with complying email', () => {
     // Arrange
     component.fillFormGroup('aaaaaaaa', 'aaaaaaaa', 'aaaaaaaa@revature.com', 'aaaaaaaa', 'aaaaaaaa');
     component.form.controls['email'].setValue('anEmail@email.com');
 
      // Act
      let retVal = ProfileComponent.RevatureEmail(component.form);
+     console.log(retVal);
+     console.log(component.form.controls['email'].errors.RevatureEmail);
 
      // Assert
      expect(retVal).toBeNull();
@@ -152,10 +154,10 @@ describe('ProfileComponent', () => {
   it ('#trying to make form valid', () => {
     // Arrange
     component.fillFormGroup('aaaaaaaa', 'aaaaaaaa', 'aaaaaaaa@revature.com', 'aaaaaaaa', 'aaaaaaaa');
-    
+
     let button = fixture.debugElement.nativeElement.querySelector('button');
     button.click();
-    
+
     component.form.controls['firstName'].setValue('Michael');
     component.form.controls['lastName'].setValue('James');
     // component.form.controls['email'].setValue('admin@revature.com');
@@ -170,5 +172,16 @@ describe('ProfileComponent', () => {
     console.log(component.form);
     console.log(component.form.valid);
 
+  });
+  it ('#ValidEmail works with complying email', () => {
+    // Arrange
+    component.fillFormGroup('aaaaaaaa', 'aaaaaaaa', 'aaaaaaaa@revature.com', 'aaaaaaaa', 'aaaaaaaa');
+    component.form.controls['email'].setValue('anEmail@any.com');
+
+     // Act
+     let retVal = ProfileComponent.ValidEmail(component.form);
+
+     // Assert
+     expect(retVal).toBeNull();
   });
 });

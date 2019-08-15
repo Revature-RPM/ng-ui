@@ -8,6 +8,7 @@ import { ProjectEditComponent } from './components/pages/project-edit/project-ed
 import { ProfileComponent } from './components/pages/user-management/profile/profile.component';
 import { AdminChangeRolesComponent } from './components/pages/user-management/admin-change-roles/admin-change-roles.component';
 import { ProjectsPendingApprovalPageComponent } from './components/pages/project-approval/projects-pending-approval-page/projects-pending-approval-page.component';
+import { CodebaseComponent } from './components/pages/codebase/codebase.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'projects', pathMatch: 'full'},
@@ -17,6 +18,7 @@ const routes: Routes = [
   {path: 'submitform', component: ProjectSubmissionPageComponent},
   {path: 'updateform', component: ProjectEditComponent},
   {path: 'profile', component: ProfileComponent},
+  {path: 'codebase', component: CodebaseComponent},
   {path: 'adminchangeroles', component: AdminChangeRolesComponent},
   {path: 'projects/pending', component: ProjectsPendingApprovalPageComponent},
 
