@@ -59,25 +59,18 @@ export class ProjectListComponent implements OnInit {
 
 
   loadProjects(userId): Project[] {
-    let projects: Project[];
     // Basically, if the route contains no param for userId, then get all projects;
     // else get projects by userId
     if (!userId) {
-      console.log(66);
       this.projectService.getAllProjects().subscribe(proj => {
-        projects = proj;
-        console.log(68);
-        console.log(projects);
+        this.projectList = proj;
       });
     } else {
-      console.log(71);
       this.projectService.getProjectsByUserId(this.userId).subscribe(proj => {
-        projects = proj;
-        console.log(74);
-        console.log(projects);
+        this.projectList = proj;
       });
     }
-    return projects;
+    return this.projectList;
   }
 
   /**
@@ -85,6 +78,8 @@ export class ProjectListComponent implements OnInit {
    * @param project: the project who's trainer is being validated
    * @author Shawn Bickel (1810-Oct08-Java-USF)
    */
+  
+  //Dead Code?; should probably be deleted
   canEdit(project: any) {
     if (this.currentUser.role === 'ROLE_ADMIN') {
       this.trainerCanEdit = true;
@@ -130,11 +125,13 @@ export class ProjectListComponent implements OnInit {
     }
   }
 
+  //Dead Code?; should probably be deleted
   codebase(project) {
     this.projectService.CurrentProject$ = project;
     this.router.navigate(['/codebase']);
   }
 
+  //Dead Code?; should probably be deleted
   edit(project) {
     this.router.navigate([project.id + '/edit']);
   }
