@@ -23,7 +23,6 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 export class ProjectListComponent implements OnInit {
 
   trainerFullName;
-  trainerCanEdit = false;
   currentUser: User;
   displayedColumns: string[] = ['name', 'batch', 'trainer', 'techStack', 'status'];
   dataSource: MatTableDataSource<Project>;
@@ -58,9 +57,9 @@ export class ProjectListComponent implements OnInit {
 
 
 
+  /* Basically, if the route contains no param for userId, then get all projects;
+    else get projects by userId */
   loadProjects(userId): Project[] {
-    // Basically, if the route contains no param for userId, then get all projects;
-    // else get projects by userId
     if (!userId) {
       this.projectService.getAllProjects().subscribe(proj => {
         this.projectList = proj;
@@ -71,23 +70,6 @@ export class ProjectListComponent implements OnInit {
       });
     }
     return this.projectList;
-  }
-
-  /**
-   * This method determines if a trainer can edit a project; a trainer can only edit a project if the project was submitted by the trainer.
-   * @param project: the project who's trainer is being validated
-   * @author Shawn Bickel (1810-Oct08-Java-USF)
-   */
-  
-  //Dead Code?; should probably be deleted
-  canEdit(project: any) {
-    if (this.currentUser.role === 'ROLE_ADMIN') {
-      this.trainerCanEdit = true;
-    } else if (this.trainerFullName === project.trainer) {
-      this.trainerCanEdit = true;
-    } else {
-      this.trainerCanEdit = false;
-    }
   }
 
 
@@ -125,16 +107,7 @@ export class ProjectListComponent implements OnInit {
     }
   }
 
-  //Dead Code?; should probably be deleted
-  codebase(project) {
-    this.projectService.CurrentProject$ = project;
-    this.router.navigate(['/codebase']);
-  }
 
-  //Dead Code?; should probably be deleted
-  edit(project) {
-    this.router.navigate([project.id + '/edit']);
-  }
 
 
   swapProject(proj): void {
