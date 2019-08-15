@@ -27,16 +27,15 @@ import { hljsLanguages } from 'src/app/app.module';
 import { CodebaseComponent } from '../../codebase/codebase.component';
 import { ProjectService } from 'src/app/services/project.service';
 import { MockProjectService } from 'src/app/mocks/mock-project-service';
+import { MockUserService } from 'src/app/mocks/mock-user-service';
 
-fdescribe('ProjectGridPageComponent', () => {
+describe('ProjectGridPageComponent', () => {
   let component: ProjectGridPageComponent;
   let fixture: ComponentFixture<ProjectGridPageComponent>;
   let router: Router;
   let routerSpy;
-  let user: User;
-  let project: Project;
-  let userService: UserService;
   let http: HttpClient;
+  let store;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -53,8 +52,8 @@ fdescribe('ProjectGridPageComponent', () => {
         FormsModule, ReactiveFormsModule,
         HighlightModule.forRoot({ languages: hljsLanguages }) ],
         schemas: [NO_ERRORS_SCHEMA],
-      providers: [ {provide: ProjectService, useClass: MockProjectService},
-        UserService
+      providers: [ { provide: ProjectService, useClass: MockProjectService },
+        { provide: UserService, useClass: MockUserService }
       ]
     })
     .compileComponents();
@@ -64,9 +63,18 @@ fdescribe('ProjectGridPageComponent', () => {
     router = TestBed.get(Router);
     routerSpy = spyOn(router, 'navigate').and.callFake(function() { return null; });
 
+    store = {};
+
+    spyOn(localStorage, 'setItem').and
+      .callFake(function(key, value) {store[key] = value;});
+    spyOn(localStorage, 'getItem').and
+      .callFake(function(key) { return store[key]; });
+    spyOn(localStorage, 'clear').and
+      .callFake(function() { store = {}; });
+
     fixture = TestBed.createComponent(ProjectGridPageComponent);
     component = fixture.componentInstance;
-    component.project = project;
+    fixture.detectChanges();
   });
 
   afterEach(() => {
@@ -74,6 +82,7 @@ fdescribe('ProjectGridPageComponent', () => {
     routerSpy = null;
     fixture = null;
     component = null;
+    store = null;
   })
 
   it('should create', () => {
@@ -100,19 +109,64 @@ fdescribe('ProjectGridPageComponent', () => {
     }
   });
 
-  fit('should tell ROUTER to navigate when CodeViewerButton is clicked',  async(() => {
+  it('shoould load user from localStorage if available', () => {
+    let user = {firstName: 'Bill', lastName: 'BoBaggins'};
+    localStorage.setItem('user', JSON.stringify(user));
+
+    component.ngOnInit();
+
+    expect(component.user).toEqual(user);
+  });
+
+  it('should fail to set project if given a falsey value', () => {
+    let projectService = TestBed.get(ProjectService);
+    projectService.CurrentProject$ = new BehaviorSubject<Project>(null);
+
+    component.project = null;
+
+    component.ngOnInit();
+
+    expect(component.project).toBeNull();
+  });
+
+  it('should fail to set user if given a falsey value', () => {
+    let userService = TestBed.get(UserService);
+    userService.user = new BehaviorSubject<User>(null);
+
+    component.user = null;
+    localStorage.clear(); // Must ensure there is no user in localStorage
+
+    component.ngOnInit();
+
+    expect(component.user).toBeNull();
+  });
+
+  xit('should tell ROUTER to navigate when CodeViewerButton is clicked', () => {
       component.viewCodeBase();
       expect(routerSpy).toHaveBeenCalledWith( ['/codebase'] );
-  }));
+  });
 
-  // it('should tell ROUTER to navigate when ProjectEditComponent is clicked',  async(() => {
-  //     component.updateProject();
+ xit('should NOT tell ROUTER to navigate when CodeViewerButton is clicked and project is falsey', () => {
+      component.project = null;
 
-  //     expect(mockRouter.navigate).toHaveBeenCalledWith( ['/updateform'] );
-  // }));
+      component.viewCodeBase();
+      expect(routerSpy).not.toHaveBeenCalled();
+  });
+
+  it('should tell ROUTER to navigate when ProjectEditComponent is clicked',  () => {
+      component.updateProject();
+
+      expect(routerSpy).toHaveBeenCalledWith( ['/updateform'] );
+  });
+
+  it('should NOT tell ROUTER to navigate when ProjectEditComponent is clicked and project is falsey', () => {
+      component.project = null;
+
+      component.updateProject();
+      expect(routerSpy).not.toHaveBeenCalled();
+  });
 
   it('should call viewCodeBase when Code Base button is clicked',  () => {
-    fixture.detectChanges();
     
     spyOn( component, 'viewCodeBase').and.callFake(function() { return null; });
 
@@ -124,23 +178,32 @@ fdescribe('ProjectGridPageComponent', () => {
     expect(component.viewCodeBase).toHaveBeenCalled();
   });
   
-  it('should call updateProject when Update Project button is clicked',  () => {
+  it('should call updateProject when Update Project button is clicked if user.id and project.userId',  () => {
+    spyOn( component, 'updateProject').and.callFake(function() {return null; });
+
+    component.user.id = component.project.userId = 1234;
     fixture.detectChanges();
-
-    spyOn( component, 'updateProject').and.returnValue(null);
-
-    const button = fixture.debugElement.nativeElement.querySelector('#updateProjectButton');
+    const button = fixture.debugElement.nativeElement.querySelector('#editbtn');
     button.click();
-
-    fixture.detectChanges();
-
+ 
     expect(component.updateProject).toHaveBeenCalled();
   });
 
-  xit('should be able to Initialize', fakeAsync(() => {
+  it('should call updateProject when Update Project button is clicked if ROLE_ADMIN',  () => {
+    spyOn( component, 'updateProject').and.callFake(function() {return null; });
+
+    component.user = {id: 5678, role: 'ROLE_ADMIN'};
+    component.project.userId = 1234;
+    fixture.detectChanges();
+    const button = fixture.debugElement.nativeElement.querySelector('#editbtn');
+    button.click();
+ 
+    expect(component.updateProject).toHaveBeenCalled();
+  });
+
+  xit('should be able to Initialize', () => {
     component.project = null;
     component.ngOnInit();
-    tick();
     expect(component.project).toBeTruthy();
-  }));
+  });
 });

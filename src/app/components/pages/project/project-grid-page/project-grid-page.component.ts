@@ -41,6 +41,7 @@ export class ProjectGridPageComponent implements OnInit {
     if (this.project) {
       this.router.navigate(['/updateform']);
     }
+    console.log('this is called');
   }
 
   /**

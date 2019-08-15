@@ -69,11 +69,13 @@ export class ProfileComponent implements OnInit {
         this.user = user;
       }
     );
+
     if (!this.user) {
-      this.router.navigate(['/auth/login']);
-    }
-    this.ngmeta.setHead({ title: 'Profile | RPM' });
+      this.router.navigate(['auth/login']);
+    } else {
     this.fillFormGroup(this.user.firstName, this.user.lastName, this.user.email, this.user.username, this.user.password);
+    this.ngmeta.setHead({ title: 'Profile | RPM' });
+    }
   }
 
   /**

@@ -31,9 +31,9 @@ export class MockProjectService {
          return this.AllProjects$.asObservable();
     }
  
-    // getAllApprovedProjects(): Observable<Project[]> {
- 
-    // }
+    getAllApprovedProjects(): Observable<Project[]> {
+         return this.AllProjects$.asObservable();
+    }
 
     submitEditRequest(project: Project): Observable<Project> {
           return this.CurrentProject$.asObservable();
