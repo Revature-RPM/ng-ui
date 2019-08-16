@@ -89,7 +89,7 @@ export class ProjectEditComponent implements OnInit {
    this.projectToUpdate.oldProject = this.originalProject;  //Setting the original project inside the updated project
    this.projectToUpdate.oldProject.oldProject = null;
    this.projectService.submitEditRequest(this.projectToUpdate).subscribe();
-   this.router.navigate(['user/projects']);
+   this.router.navigate(['projects/1']);
  }
 
  back() {
@@ -98,7 +98,7 @@ export class ProjectEditComponent implements OnInit {
  }
 
  /**
-  * These methods allow removal and adding users to projects when editing.
+  * These methods allow for the removal and addition of users to projects when editing.
   * @author Ryan Williams (1810-Oct20-Java-USF)
   */
  removeGroupMember(e) {// project : Project

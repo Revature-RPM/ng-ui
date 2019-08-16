@@ -16,7 +16,7 @@ const HTTP_OPTIONS = {
 })
  
 /**
-* Service that communicates with the project controller at /project
+* Service that communicates with the project controller at '/project'
 * @author unknown
 */
 export class ProjectService {
@@ -69,6 +69,8 @@ export class ProjectService {
   * The submitEditRequest method is used to submit a changed version of a project that
   * a user would like to update.
   * @param project
+  * @author Mikaela Enters
+  * @author Tevin Thomas
   */
  submitEditRequest(project: Project): Observable<Project> {
    return this.httpClient.post(environment.url + `/project/edit`, project, HTTP_OPTIONS);

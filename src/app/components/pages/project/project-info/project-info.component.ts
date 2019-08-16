@@ -34,7 +34,9 @@ export class ProjectInfoComponent implements OnInit {
       if (localStorage.getItem('viewprojects') == 'user') this.yourProject = true;
       else this.yourProject = false;
   }
-
+/**
+ * This method routes to the update project form page
+ */
   updateProject() {
     if (this.project) this.router.navigate(['/updateform']);
   }

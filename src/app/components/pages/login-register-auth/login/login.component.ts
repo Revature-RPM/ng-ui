@@ -34,6 +34,9 @@ export class LoginComponent implements OnInit {
     else this.ngmeta.setHead({ title: 'Login | RPM' });
   }
 
+  /**
+   * logs in user after being authenticated
+   */
   login() {
     this.authenticating = true;
     this.userService.login(this.user).pipe(first()).subscribe(
@@ -56,8 +59,11 @@ export class LoginComponent implements OnInit {
 
   }
 
-  /* Logs in user upon enter
-  */
+  /**
+   * Login when program is started, no matter any authentication
+   * Needs to be removed, no longer necessary
+   * @author Matthew Alston
+   */
   loginE() {
     if(!this.user.username || this.user.username.length == 0) {
       this.usernameO = true;

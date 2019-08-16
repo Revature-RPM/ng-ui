@@ -42,7 +42,7 @@ export class UserService {
     return throwError('Something went wrong; please try again later.');
   }
 
-  // user.logout()... remove the session information from app and storage.
+  // user.logout()... removes the session information from app and storage.
   logout() {
     localStorage.removeItem('jwt');
     localStorage.removeItem('rpmRefresh');
@@ -51,7 +51,7 @@ export class UserService {
   }
 
   // only use environment.url for the base url and concat any restful endpoints
-  // user.login(user). login the user and retrieve the jwt token from the header
+  // user.login(user). logs in the user and retrieves the jwt token from the header
   login(newuser: User): Observable<any> {
     return this.http.post(environment.url + '/auth/login', newuser, {observe: 'response'})
       .pipe(map(response => {
@@ -120,15 +120,15 @@ export class UserService {
 
 
   /* Requests if email is in use
-    Resource true if avail, false else
+    Resource true if avail, else false
   */
   checkIfEmailIsInUse(email): Observable<string> {
     return this.http.get<string>(environment.url + '/auth/users/emailInUse/' + email)
       .pipe(catchError(this.handleError));
   }
 
-  /* Requests if username if available
-    Resource true if avail, false else
+  /* Requests if username is available
+    Resource true if avail, else false
   */
   checkIfUsernameIsAvailable(username): Observable<string> {
     return this.http.get<string>(environment.url + '/auth/users/usernameAvailable/' + username)
