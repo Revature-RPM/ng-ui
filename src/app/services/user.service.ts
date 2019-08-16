@@ -99,8 +99,15 @@ export class UserService {
   /**
    * @author Clement Dikoko
    * @author Vanessa Fountain
-   * Updates the user role to admin only if current the user is admin
-   * the ' special' is parsed and bypasses the password needed in auth service
+   * Changed function name from updateToAdmin to updateUserRoles,
+   * every reference to updateToAdmin should be changed in order
+   * to reflect the change in functionality. Due to time constraints
+   * we were not able to change every reference. The next one is located
+   * in the file all-users-page.component.ts
+   * @author Tevin Thomas
+   * @author Aisha Hodge
+   * @author Toyin Fadiran
+   * @author Glory Umeasalugo
    * */
   updateUserRoles(user: User): Observable<User> {
     console.log('before if else:');

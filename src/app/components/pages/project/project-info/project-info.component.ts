@@ -41,4 +41,19 @@ export class ProjectInfoComponent implements OnInit {
     if (this.project) this.router.navigate(['/updateform']);
   }
 
+  devString() {
+    let members = this.project.groupMembers;
+    let returnString = '';
+    
+    if (members.length > 0) {
+      returnString += members[0];
+    }
+
+    for (let i = 1; i < members.length; i++) {
+      returnString += ', ' + members[i];
+    }
+
+    return returnString;
+  }
+
 }

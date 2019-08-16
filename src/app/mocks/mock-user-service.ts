@@ -38,6 +38,8 @@ export class MockUserService {
         return of(this.test);
     }
 
+    logout (): void {}
+
     register(newuser: User): Observable<User> {
         return  this.user.asObservable();
     }

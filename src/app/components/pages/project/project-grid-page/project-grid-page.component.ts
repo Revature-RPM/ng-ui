@@ -10,7 +10,7 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './project-grid-page.component.html',
   styleUrls: ['./project-grid-page.component.scss']
 })
-export class ProjectGridPageComponent implements OnInit {
+export class ProjectGridPageComponent implements OnInit{
 
   project: Project;
   user: User;
@@ -20,7 +20,7 @@ export class ProjectGridPageComponent implements OnInit {
               private router: Router ) { }
 
   ngOnInit() {
-    this.projectService.CurrentProject$.asObservable().subscribe(
+    this.projectService.CurrentProject$.subscribe(
       proj => {
         if (proj) {
           this.project = proj;
@@ -37,10 +37,12 @@ export class ProjectGridPageComponent implements OnInit {
     );}
   }
 
+
   updateProject() {
     if (this.project) {
       this.router.navigate(['/updateform']);
     }
+    console.log('this is called');
   }
 
   /**

@@ -36,7 +36,9 @@ export class ProfileComponent implements OnInit {
 
   /**
    * Enable validation error when email does not end with '@revature.com'
-   * @param AC : grab the form that uses this function's validation
+   * @param AC : was the previous validator, may be dead code to be removed
+   *        at the next batch's descretion. There are tests that refer to
+   *        this function that have to be removed as well.
    * @author Yuki Mano (1810-Oct08-Java-USF)
    */
   static RevatureEmail(AC: AbstractControl) {
@@ -48,9 +50,23 @@ export class ProfileComponent implements OnInit {
       return null;
     }
   }
+
+  /**
+   *
+   * @param AC : grab the form that uses this function's validation.
+   *             The new validator for emails meaning they must have the
+   *             proper format. Included in the Validator at line 159.
+   * @author Ashton Sullivan
+   * @author Tan Ho
+   * @author Tevin Thomas
+   * @author Glory Umeasalugo
+   */
   static ValidEmail(AC: AbstractControl) {
+    // to get value in input tag
     const email = AC.get('email').value; // to get value in input tag
-    const emailPattern = '^[a-zA-Z0-9_.+-]+(?:(?:[a-zA-Z0-9-]+\.)?[a-zA-Z]+\.)?@(.+)\.(.+)$'; // regex for Revature email
+    // regex for Email with any domain
+    const emailPattern =
+    '^[a-zA-Z0-9_.+-]+(?:(?:[a-zA-Z0-9-]+\.)?[a-zA-Z]+\.)?@(.+)\.(.+)$';
     if (!email.match(emailPattern)) {
       AC.get('email').setErrors({ ValidEmail: true });
     } else {
@@ -69,11 +85,13 @@ export class ProfileComponent implements OnInit {
         this.user = user;
       }
     );
+
     if (!this.user) {
-      this.router.navigate(['/auth/login']);
-    }
-    this.ngmeta.setHead({ title: 'Profile | RPM' });
+      this.router.navigate(['auth/login']);
+    } else {
     this.fillFormGroup(this.user.firstName, this.user.lastName, this.user.email, this.user.username, this.user.password);
+    this.ngmeta.setHead({ title: 'Profile | RPM' });
+    }
   }
 
   /**

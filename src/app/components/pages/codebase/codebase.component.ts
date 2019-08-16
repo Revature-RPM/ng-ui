@@ -89,7 +89,7 @@ export class CodebaseComponent implements OnInit {
    * This page wipes out several values of local storage.
    * Hopefully a wiser soul than I can find a better method.
    * This solution saves a copy as an array, and restores it after the ngInit block.
-   * @author - Mike James (1906-Java)
+   * @author - Mike James (1905-Java-USF)
    */
   private saveLocalStorage() {
     const lsStore = [];
@@ -104,6 +104,7 @@ export class CodebaseComponent implements OnInit {
   /**
    * Restores values to localStorage
    * @param lsStore Stored values of localStorage
+   * @author Mike James (1905-Java-USF)
    */
   private restoreLocalStorage(lsStore: any[]) {
     for (let i = 0; i < lsStore.length; i++) {
@@ -146,7 +147,7 @@ export class CodebaseComponent implements OnInit {
   /**
    * Zip.sendRequest()
    * Fire off an http request to retrieve the zip file
-   * @author Andrew Mitchem (1810-Oct08-Java-USF) | Mike James (1906-Java)
+   * @author Andrew Mitchem (1810-Oct08-Java-USF) | Mike James (1905-Java)
    */
   sendRequest(url: string) {
     // reponse type is arraybuffer so the get request knows this is a oclet-array-stream request
@@ -183,7 +184,7 @@ export class CodebaseComponent implements OnInit {
    * unpacks a zip blob(ui8array) and opens with JSZip (zip is the reference variable)
    * @param ui8array blob object that "is" a valid zip file.
    * @param datafilename, optional. passed in file name.
-   * @author Andrew Mitchem (1810-Oct08-Java-USF) | Mike James (1906-Java-USF)
+   * @author Andrew Mitchem (1810-Oct08-Java-USF) | Mike James (1905-Java-USF)
    */
   private openData(datafilename?: string): void {
     let zipDir: JSZip = new JSZip();
@@ -220,7 +221,7 @@ export class CodebaseComponent implements OnInit {
    * openFileInCodeWindow()
    * Pushes the selected file to the code window.
    * @param fileName - The path of the selected file.
-   * @author Andrew Mitchem (1810-Oct08-Java-USF) | Mike James (1906-Java)
+   * @author Andrew Mitchem (1810-Oct08-Java-USF) | Mike James (1905-Java)
    */
   openFileInCodeWindow(fileName: string): void {
     const zipDir: JSZip = new JSZip();
@@ -245,10 +246,11 @@ export class CodebaseComponent implements OnInit {
   }
 
   /**
+   * filterFiles
    * Filters files from .zip file to prevent display of undsirable (non-text) files
    * @param filesArray - Array of files to be filtered
    * @returns filtered array of files
-   * @author Mike James (1906-Java)
+   * @author Mike James (1905-Java)
    */
   private filterFiles(filesArray: any[]) {
 
@@ -270,9 +272,10 @@ export class CodebaseComponent implements OnInit {
   }
 
   /**
+   * displayDirectory
    * Pushes the contents of a directory to the display projects area
    * @param directory - The directory to be displayed
-   * @author Mike James (1906-Java)
+   * @author Mike James (1905-Java)
    */
   displayDirectory(directory: DirectoryObject): void {
     this.currLevelDirs = [];
@@ -308,22 +311,24 @@ export class CodebaseComponent implements OnInit {
   }
   
   /**
-   * Helper Method:
+   * Helper Method: caseInsensitiveSort_DirectoryObject
    * Sorts DirectoryObjects by name in a case-insensative manner.
    * Source: https://stackoverflow.com/questions/8996963/how-to-perform-case-insensitive-sorting-in-javascript
    * @param a A DirectoryObject
    * @param b Another DirectoryObject
+   * @author Andrew Mitchem (1810-Oct08-Java-USF) | Mike James (1905-Java-USF)
    */
   private caseInsensitiveSort_DirectoryObject(a: DirectoryObject, b: DirectoryObject) {
     return a.name.toLowerCase().localeCompare(b.name.toLowerCase());
   }
 
   /**
-   * Helper Method:
+   * Helper Method: extractDataname
    * Get the correct value for the dataname variable.
    * Action depends on blob data having name field.
    * @param ui8array blob object that "is" a valid zip file.
    * @param datafilename, optional. passed in file name.
+   * @author Andrew Mitchem (1810-Oct08-Java-USF) | Mike James (1905-Java-USF)
    */
   private extractDataname(data: any, datafilename?: any): string {
     let dataname = '';
@@ -339,10 +344,11 @@ export class CodebaseComponent implements OnInit {
   }
 
   /**
-   * Helper Method:
+   * Helper Method: setRootFolder
    * Searches for directories matching dataname string as RegExp
    * @param dataname name of root folder determined from incoming parameters
    * @param zipDir JsZip object
+   * @author Andrew Mitchem (1810-Oct08-Java-USF) | Mike James (1905-Java-USF)
    */
   private setRootFolder(dataname: string, zipDir: JSZip) {
     // Uses a regex to check that the folder exists (null check)
@@ -356,8 +362,10 @@ export class CodebaseComponent implements OnInit {
   }
 
   /**
+   * addToDirStructure
    * Entry point to the method which adds files to directory structure
    * @param filePath - Path of tile to be added to directory structure
+   * @author Mike James (1905-Java-USF)
    */
   addToDirStructure(filePath: string): DirectoryObject[] {
     const filePathArray: string[] = filePath.split('/');
@@ -366,13 +374,14 @@ export class CodebaseComponent implements OnInit {
   }
 
   /**
+   * addToDirStructureRecur
    * Builds the directory structure from the filepaths passed in
    * 
    * @param filePath - Full path of current file under consideration 
    * @param filePathArray - Array of substrings broken by / character
    * @param baseFolder - Root folder to begin building from
    * @returns Constructed base folder as DirectoryObject[]
-   * @author Mike James (1906-Java)
+   * @author Mike James (1905-Java-USF)
    */
   private addToDirSchemaRecur(filePath: string, filePathArray: string[], baseFolder: DirectoryObject[]): DirectoryObject[] {
 
