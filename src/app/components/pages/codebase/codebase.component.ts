@@ -10,6 +10,14 @@ import { Project } from 'src/app/models/Project';
 import { DirectoryObject } from './directory_object';
 import { RenderFile } from './render_file';
 
+/*
+ * Future work on the codebase viewer could include making the viewer work 
+ *   for multiple .zip files on a single project.
+ * Currently, the project object includes an array of projectURLs, 
+ *   of which only first is downloaded and displayed.
+ * For a meta-repo or other multiple .zip project, this solution would be inadequate.
+ */
+
 @Component({
   selector: 'app-codebase',
   templateUrl: './codebase.component.html',
