@@ -7,6 +7,11 @@ import {Project} from '../../../../models/Project';
   templateUrl: './ngx-carousel.component.html',
   styleUrls: ['./ngx-carousel.component.scss']
 })
+
+/**
+ * This Component houses the pictures of a project after a project is selected from the project list.
+ * The list of pictures are rotated through using a set timer.
+ */
 export class NgxCarouselComponent implements OnInit {
 
   project: Project;

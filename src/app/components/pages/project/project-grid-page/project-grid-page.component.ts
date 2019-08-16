@@ -46,10 +46,10 @@ export class ProjectGridPageComponent implements OnInit{
   }
 
   /**
-   * Iff a project is selected, 
+   * If a project is selected,
    *  updates the view to the codebase view.
    *
-   *  @author Michael James | Ashton Sullivan 1906-Java-USF
+   *  @author Michael James | Ashton Sullivan 1905-Java-USF
    */
   viewCodeBase() {
     if (this.project) {

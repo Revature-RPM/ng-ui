@@ -36,7 +36,7 @@ export class AdminChangeRolesComponent implements OnInit {
   }
 
   /**
-   * This function keeps track of all the changes made on the table.
+   * This function keeps track of all the changes made in the change roles table.
    * @author Zak Noori (1905-Java-USF)
    * @author Glory Umeasalugo (1905-Java-USF)
    * @author Aisha Hodge (1905-Java-USF)
@@ -49,7 +49,7 @@ export class AdminChangeRolesComponent implements OnInit {
   }
 
   /**
-   * This function saves all changes made on the table and updates a role.
+   * This function saves all changes made in the change roles table and updates a role.
    * @author Zak Noori (1905-Java-USF)
    * @author Glory Umeasalugo (1905-Java-USF)
    * @author Aisha Hodge (1905-Java-USF)
