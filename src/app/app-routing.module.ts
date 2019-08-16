@@ -14,7 +14,7 @@ const routes: Routes = [
   {path: '', redirectTo: 'projects', pathMatch: 'full'},
   {path: 'auth/login', component: LoginRegisterPageComponent},
   {path: 'projects', component: ProjectGridPageComponent},
-  {path: 'projects/1', component: ProjectGridPageComponent},
+  {path: 'projects/:userId', component: ProjectGridPageComponent},
   {path: 'submitform', component: ProjectSubmissionPageComponent},
   {path: 'updateform', component: ProjectEditComponent},
   {path: 'profile', component: ProfileComponent},
