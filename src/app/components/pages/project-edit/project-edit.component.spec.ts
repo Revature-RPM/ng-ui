@@ -1,19 +1,21 @@
+import { Location } from '@angular/common';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import { MatIconModule, MatCardModule, MatFormFieldModule, MatOptionModule, MatSelectModule, MatInputModule } from '@angular/material';
 import { By } from '@angular/platform-browser';
-import {ProjectEditComponent} from './project-edit.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {RouterTestingModule} from '@angular/router/testing';
-import {UserService} from 'src/app/services/user.service';
-import {ProjectService} from 'src/app/services/project.service';
 import {Router, ActivatedRoute} from '@angular/router';
-import { MatIconModule, MatCardModule, MatFormFieldModule, MatOptionModule, MatSelectModule, MatInputModule } from '@angular/material';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { of } from 'rxjs';
+
 import { Project } from 'src/app/models/Project';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import {ProjectService} from 'src/app/services/project.service';
 import { MockProjectService } from 'src/app/mocks/mock-project-service';
 import { MockUserService } from 'src/app/mocks/mock-user-service';
-import { of } from 'rxjs';
+import {UserService} from 'src/app/services/user.service';
+import {ProjectEditComponent} from './project-edit.component';
 
 /**
 * Edit Project tests.
@@ -21,15 +23,14 @@ import { of } from 'rxjs';
 * https://codecraft.tv/courses/angular/unit-testing/routing/
 * @author Gabriel Zapata | Fadi Alzoubi | Slavik Gleanco | Alex Johnson | Edward Bechtold | (190107-Java-Spark-USF)
 */
-fdescribe('ProjectEditComponent', () => {
+describe('ProjectEditComponent', () => {
  let component: ProjectEditComponent;
  let fixture: ComponentFixture<ProjectEditComponent>;
- let userService: UserService;
- let mockRouter = {
-   navigate: jasmine.createSpy('navigate')
- };
+//  let userService: UserService;
  let project: Project;
  let router: Router;
+ let routerSpy;
+ let projectService: ProjectService;
 
  beforeEach(async(() => {
    TestBed.configureTestingModule({
@@ -40,10 +41,9 @@ fdescribe('ProjectEditComponent', () => {
        HttpClientTestingModule, RouterTestingModule,
        BrowserAnimationsModule, FormsModule,
        ReactiveFormsModule],
-     providers: [
+     providers: [ 
        { provide: ActivatedRoute, useValue: { params: of({ id: 'test' })}},
        { provide: ProjectService, useClass: MockProjectService },
-       { provide: Router, useValue: mockRouter },
        { provide: UserService, useClass: MockUserService } ],
      schemas: [CUSTOM_ELEMENTS_SCHEMA]
    })
@@ -54,8 +54,19 @@ fdescribe('ProjectEditComponent', () => {
    setJWTObject('pickles and popcorn');
    fixture = TestBed.createComponent(ProjectEditComponent);
    component = fixture.componentInstance;
+   
+   router = TestBed.get(Router);
+   routerSpy = spyOn(router, 'navigate')
+     .and.callFake(function() { return null; }); 
+
    fixture.detectChanges();
  });
+
+ afterEach(() => {
+   component = null;
+   router = null;
+   routerSpy = null;
+ })
 
  it('should create', () => {
    expect(component).toBeTruthy();
@@ -90,22 +101,15 @@ fdescribe('ProjectEditComponent', () => {
 
  /**
   * Supposed to test initialization variables within ngoninit. Implementation is wrong but might be salvageable.
-  * Remove 'x' from 'xit' to unskip.
   * @author Gabriel Zapata | Edward Bechtold | (190107-Java-Spark-USF)
   */
  it('should test initialization variables', () => {
-   let testUser = {
-     username: 'test'
-   };
-   let spy = spyOn(userService, 'getCurrentUser').and.returnValue(testUser);
-
    component.projectToUpdate.groupMembers = null;
    component.projectToUpdate.screenShots = null;
    component.projectToUpdate.zipLinks = null;
 
    component.ngOnInit();
 
-   expect(spy).toHaveBeenCalled();
    expect(component.projectToUpdate.groupMembers).toBeTruthy();
    expect(component.projectToUpdate.screenShots).toBeTruthy();
    expect(component.projectToUpdate.zipLinks).toBeTruthy();
@@ -132,16 +136,13 @@ fdescribe('ProjectEditComponent', () => {
   * then the user should be navigated back to login
   * @author Alex Johnson (190107-Java-Spark-USF)
   */
- xit('should navigate to login if the user is null', () => {
-
-   router = TestBed.get(Router);
+ it('should navigate to login if the jwt is null', () => {
    localStorage.clear();
-   localStorage.setItem('user', null);
-   let navigateSpy = spyOn(router, 'navigate');
+   localStorage.setItem('jwt', null);
 
    component.ngOnInit();
 
-   expect(navigateSpy).toHaveBeenCalledWith(['/auth/login']);
+   expect(routerSpy).toHaveBeenCalledWith(['auth/login']);
  });
 
  /**
@@ -149,39 +150,33 @@ fdescribe('ProjectEditComponent', () => {
   * Implementation is not correct ; needs refactoring.
   * @author Alex Johnson (190107-Java-Spark-USF)
   */
- xit('should navigate to home', () => {
+ it('should navigate to home on submit', () => {
+  projectService = TestBed.get(ProjectService);
+  let projectSpy = spyOn(projectService, 'submitEditRequest').and
+    .callThrough();
 
-   router = TestBed.get(Router);
-   let navigateSpy = spyOn(router, 'navigate');
+  component.submitForm();
 
-   component.submitForm();
-
-   expect(navigateSpy).toHaveBeenCalledWith(['/home']);
+  expect(projectSpy).toHaveBeenCalled();
+  expect(routerSpy).toHaveBeenCalledWith(['projects']);
  });
 
  /**
   * The back() method should navigate to home.
   * @author Alex Johnson (190107-Java-Spark-USF)
   */
- it('should navigate to home', () => {
-
-   router = TestBed.get(Router);
-   let navigateSpy = spyOn(router, 'navigate');
-
+ it('should go to projects/1 on back', () => {
    component.back();
 
-   expect(navigateSpy).toHaveBeenCalledWith(['/home']);
+   expect(sessionStorage.getItem('lastPage')).toEqual('edit');
+   expect(routerSpy).toHaveBeenCalledWith(['projects/1']);
  });
 
- it('should return a project', () => {
-   const submitbutton = fixture.debugElement.nativeElement.querySelector('#submit-update');
-   console.log(submitbutton);
-   submitbutton.click();
-   fixture.detectChanges();
-   expect(mockRouter.navigate).toHaveBeenCalledWith(['projects/1']);
+ it ('should navigate to projects on #cancelEdit', () => {
+    component.cancelEdit();
 
+    expect(routerSpy).toHaveBeenCalledWith(['projects']);
  });
-
 
  it('#submitForm should update the form data', () => {
    // Arrange
@@ -195,7 +190,6 @@ fdescribe('ProjectEditComponent', () => {
    // Act
    const submitbutton = fixture.debugElement.nativeElement.querySelector('#submit-update');
    submitbutton.click();
-
 
    //Assert
    expect(component.projectToUpdate.status).toEqual(status);

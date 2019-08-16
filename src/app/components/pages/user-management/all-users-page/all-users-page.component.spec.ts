@@ -8,6 +8,8 @@ import { MatSnackBarModule, MatSidenavModule, MatIconModule,
   import { SidenavComponent } from 'src/app/components/HUD/sidenav/sidenav.component';
   import { NavMenuComponent } from 'src/app/components/HUD/nav-menu/nav-menu.component';
   import { AllUsersPageComponent } from './all-users-page.component';
+import { UserService } from 'src/app/services/user.service';
+import { MockUserService } from 'src/app/mocks/mock-user-service';
 
 describe('AllUsersPageComponent', () => {
   let component: AllUsersPageComponent;
@@ -20,6 +22,7 @@ describe('AllUsersPageComponent', () => {
         MatMenuModule, MatToolbarModule, 
         MatExpansionModule, RouterTestingModule, 
         HttpClientTestingModule ],
+        providers: [{ provide: UserService, useClass: MockUserService }]
     })
     .compileComponents();
   }));
