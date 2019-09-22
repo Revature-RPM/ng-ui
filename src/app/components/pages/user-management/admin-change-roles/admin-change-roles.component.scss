@@ -1,0 +1,28 @@
+.mat-elevation-z8{
+    width: 90%;
+    max-height: 100vh;
+    text-align: center;
+    margin: 0 auto;
+}
+
+#search {
+    width: 35%;
+    margin-right: 49.5%;
+}
+.controls {
+    width: 90%;
+    margin: 0 auto;
+}
+
+button {
+    margin-left: auto;
+    margin-right: 0;
+}
+
+mat-row {
+    margin-bottom: -2%;
+}
+mat-header-cell {
+    background-color: rgba(71, 76, 85, 0.87);
+    color: white;
+}

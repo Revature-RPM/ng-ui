@@ -1,37 +1,112 @@
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { NgModule } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ServiceWorkerModule } from '@angular/service-worker';
-import { MatJumbotronModule } from '@angular-material-extensions/jumbotron';
-import { NgMetaModule } from 'ngmeta';
-
-import { AppRoutingModule } from './app-routing.module';
-import { ProjectModule } from './project/project.module';
-import { AppComponent } from './app.component';
-import { CoreModule } from './core/core.module';
-import { environment } from 'src/environments/environment';
-import { TokenInterceptor} from 'src/app/core/services/jwtInterceptor.interceptor';
 import 'hammerjs';
-import { AuthenticationModule } from 'src/app/authentication/authentication.module';
 
-export function tokenGetter() {
-  return window.localStorage.getItem('jwt');
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
+import {SidenavComponent} from './components/HUD/sidenav/sidenav.component';
+import {MaterialModule} from './misc-modules/material/material.module';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {LoginComponent} from './components/pages/login-register-auth/login/login.component';
+import {NavMenuComponent} from './components/HUD/nav-menu/nav-menu.component';
+import {LoginRegisterPageComponent} from './components/pages/login-register-auth/login-register-page/login-register-page.component';
+import {ProjectDescriptionComponent} from './components/pages/project/project-description/project-description.component';
+import {ProjectListComponent} from './components/pages/project/project-list/project-list.component';
+import {ProjectGridPageComponent} from './components/pages/project/project-grid-page/project-grid-page.component';
+import {NgxHmCarouselModule} from 'ngx-hm-carousel';
+import {NgxCarouselComponent} from './components/pages/project/ngx-carousel/ngx-carousel.component';
+import {ProjectInfoComponent} from './components/pages/project/project-info/project-info.component';
+import {ProjectEditComponent} from './components/pages/project-edit/project-edit.component';
+import {PageNotFoundComponent} from './components/pages/page-not-found/page-not-found.component';
+import { RegisterComponent } from './components/pages/login-register-auth/register/register.component';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {NgMetaModule} from 'ngmeta';
+import {MatDialogModule, MatInputModule, MatSnackBarModule} from '@angular/material';
+import { HighlightModule } from 'ngx-highlightjs';
+import {ProjectSubmissionPageComponent} from './components/pages/project-submission/project-submission-page/project-submission-page.component';
+import {EditDialogComponent} from './components/pages/project-submission/edit-dialog/edit-dialog.component';
+import {TokenInterceptor} from './services/jwtInterceptor.interceptor';
+import { ProfileComponent } from './components/pages/user-management/profile/profile.component';
+import { AllUsersPageComponent } from './components/pages/user-management/all-users-page/all-users-page.component';
+import { EllipsisPipe } from './ellipsis.pipe';
+import { ProjectWelcomePageComponent } from './components/pages/project/project-welcome-page/project-welcome-page.component';
+import { CodebaseComponent } from './components/pages/codebase/codebase.component';
+import { AdminChangeRolesComponent } from './components/pages/user-management/admin-change-roles/admin-change-roles.component';
+import { ProjectsPendingApprovalPageComponent } from './components/pages/project-approval/projects-pending-approval-page/projects-pending-approval-page.component';
+import { PendingProjectsTableComponent } from './components/pages/project-approval/pending-projects-table/pending-projects-table.component';
+import { SelectedProjectViewerComponent } from './components/pages/project-approval/selected-project-viewer/selected-project-viewer.component';
+import { PendingEditRequestsTableComponent } from './components/pages/project-approval/pending-edit-requests-table/pending-edit-requests-table.component';
+import { LexPipe } from './zip-file-explorer/lex.pipe';
+import { LineNumberPipe } from './zip-file-explorer/line-number.pipe';
+
+
+import typescript from 'highlight.js/lib/languages/typescript';
+import javascript from 'highlight.js/lib/languages/javascript';
+import xml from 'highlight.js/lib/languages/xml';
+import html from 'highlight.js/lib/languages/xml';
+import scss from 'highlight.js/lib/languages/scss';
+import css from 'highlight.js/lib/languages/css';
+import java from 'highlight.js/lib/languages/java';
+import python from 'highlight.js/lib/languages/python';
+
+export function hljsLanguages() {
+  return [
+    {name: 'typescript', func: typescript},
+    {name: 'javascript', func: javascript},
+    {name: 'scss', func: scss},
+    {name: 'xml', func: xml},
+    {name: 'html', func: html},
+    {name: 'css', func: css},
+    {name: 'java', func: java},
+    {name: 'python', func: python},
+  ];
 }
 
 @NgModule({
   declarations: [
+    AdminChangeRolesComponent,
+    AllUsersPageComponent,
     AppComponent,
+    CodebaseComponent,
+    EditDialogComponent,
+    EllipsisPipe,
+    LexPipe,
+    LineNumberPipe,
+    LoginComponent,
+    LoginRegisterPageComponent,
+    NavMenuComponent,
+    NgxCarouselComponent,
+    PageNotFoundComponent,
+    ProfileComponent,
+    PendingEditRequestsTableComponent,
+    PendingProjectsTableComponent,
+    ProjectDescriptionComponent,
+    ProjectEditComponent,
+    ProjectGridPageComponent,
+    ProjectInfoComponent,
+    ProjectListComponent,
+    ProjectsPendingApprovalPageComponent,
+    ProjectSubmissionPageComponent,
+    ProjectWelcomePageComponent,
+    RegisterComponent,
+    SelectedProjectViewerComponent,
+    SidenavComponent,
   ],
   imports: [
     AppRoutingModule,
+    BrowserModule,
     BrowserAnimationsModule,
-    CoreModule.forRoot(),
+    FormsModule,
     HttpClientModule,
-    ProjectModule,
-    MatJumbotronModule.forRoot(),
-    NgMetaModule.forRoot(),
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
-    AuthenticationModule
+    MaterialModule,
+    NgxHmCarouselModule,
+    NgMetaModule,
+    MatDialogModule,
+    MatInputModule,
+    MatSnackBarModule,
+    ReactiveFormsModule,
+    HighlightModule.forRoot({ languages: hljsLanguages }),
   ],
   providers: [
     {
@@ -40,6 +115,9 @@ export function tokenGetter() {
       multi: true
     }
   ],
+  entryComponents: [EditDialogComponent],
+  exports: [],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

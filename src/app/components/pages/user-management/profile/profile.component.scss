@@ -1,0 +1,36 @@
+@import '../../../../../variables';
+.container{
+  position: relative;
+  width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  
+}
+.container mat-form-field{
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  width: 500px;
+  font-size: 20px;
+}
+mat-form-field input{
+  background-color: #e3fafc;
+  font-size: 20px;
+}
+#line{
+  width: 70%;
+  size: 7;
+  margin-left: auto;
+  margin-right: auto;
+  
+}
+.btn{
+  background-color: $rev-orange-main;
+  width: 100px;
+  margin-bottom: 10px;
+  color: $rev-white;
+}
+#homeButton {
+  height: 56px;
+  width: 56px;
+}

@@ -1,0 +1,44 @@
+<div class="body">
+  <div class="controls">
+    <mat-form-field id="search">
+      <input matInput (keyup)="applyFilter($event.target.value)" id="search-users" class="search" type="search"
+        placeholder="Search users">
+    </mat-form-field>
+    <button id="update-user-btn" mat-flat-button color="accent" (click)="updateUserRoles()">Submit Changes</button>
+  </div>
+  <div class="mat-elevation-z8">
+    <mat-table [dataSource]="dataSource" matSort>
+      <ng-container matColumnDef="ID#">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> ID# </mat-header-cell>
+        <mat-cell *matCellDef="let user"> {{user.id}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="Name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+        <mat-cell *matCellDef="let user"> {{user.firstName + ' ' + user.lastName}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="Role">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Role </mat-header-cell>
+        <mat-cell *matCellDef="let user">
+          <mat-form-field>
+            <mat-select [(ngModel)]="user.role" [placeholder]="user.role" (ngModelChange)="userChanged(user)">
+              <mat-option *ngFor="let role of roles" [value]="role">
+                {{role}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="Username">
+        <mat-header-cell *matHeaderCellDef> Username </mat-header-cell>
+        <mat-cell *matCellDef="let user"> {{user.username}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="Email">
+        <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+        <mat-cell *matCellDef="let user"> {{user.email}} </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </div>
+</div>

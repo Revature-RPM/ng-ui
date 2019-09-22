@@ -1,0 +1,43 @@
+<div id="registration-container">  
+  <mat-vertical-stepper linear>
+    <mat-step [stepControl]="formGroup1">
+      <form [formGroup]="formGroup1">
+        <ng-template matStepLabel>Please provide your details</ng-template>
+        <mat-form-field>
+          <input matInput placeholder="First Name" formControlName="firstName">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <input matInput placeholder="Last Name" formControlName="lastName">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <input matInput placeholder="E-mail" formControlName="email">
+        </mat-form-field>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="formGroup2">
+      <form [formGroup]="formGroup2">
+        <ng-template matStepLabel>Enter a Username and Password</ng-template>
+        <mat-form-field>
+          <input matInput placeholder="Username" formControlName="username">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <input matInput placeholder="Password" formControlName="password">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <input matInput placeholder="Confirm Password" formControlName="confirmPassword">
+        </mat-form-field>
+        <br>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Done!</ng-template>
+      <div>
+        <button mat-button type="submit" [disabled]="!formGroup1.valid || !formGroup2.valid" (click)="register()">Submit</button>
+      </div>
+    </mat-step>
+  </mat-vertical-stepper>
+</div>
