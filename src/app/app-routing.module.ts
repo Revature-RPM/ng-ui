@@ -25,7 +25,7 @@ const routes: Routes = [
   {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   {path: 'codebase', component: CodebaseComponent},
   {path: 'adminchangeroles', component: AdminChangeRolesComponent, canActivate: [AuthGuard] },
-  {path: 'projects/pending', component: ProjectsPendingApprovalPageComponent},
+  {path: 'projects/pending', component: ProjectsPendingApprovalPageComponent, canActivate: [AuthGuard]},
 
   // Do not put any routes below this one!
   {path: '**', component: PageNotFoundComponent}
