@@ -56,8 +56,6 @@ export class ProjectSubmissionPageComponent implements OnInit {
 
   ngOnInit() {
 
-    if (!localStorage.getItem('jwt')) this.router.navigate(['/auth/login']);
-
     this.userService.user.asObservable().subscribe(
       user => {
         this.user = user;
