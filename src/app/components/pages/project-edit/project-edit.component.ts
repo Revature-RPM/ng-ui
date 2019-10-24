@@ -89,7 +89,7 @@ export class ProjectEditComponent implements OnInit {
    this.projectToUpdate.oldProject = this.originalProject;  //Setting the original project inside the updated project
    this.projectToUpdate.oldProject.oldProject = null;
    this.projectService.submitEditRequest(this.projectToUpdate).subscribe();
-   this.router.navigate(['projects/1']);
+   this.router.navigate(['projects']);
  }
 
  back() {

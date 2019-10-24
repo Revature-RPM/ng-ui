@@ -23,7 +23,7 @@ import {ProjectEditComponent} from './project-edit.component';
 * https://codecraft.tv/courses/angular/unit-testing/routing/
 * @author Gabriel Zapata | Fadi Alzoubi | Slavik Gleanco | Alex Johnson | Edward Bechtold | (190107-Java-Spark-USF)
 */
-describe('ProjectEditComponent', () => {
+fdescribe('ProjectEditComponent', () => {
  let component: ProjectEditComponent;
  let fixture: ComponentFixture<ProjectEditComponent>;
 //  let userService: UserService;
@@ -150,7 +150,7 @@ describe('ProjectEditComponent', () => {
   * Implementation is not correct ; needs refactoring.
   * @author Alex Johnson (190107-Java-Spark-USF)
   */
- it('should navigate to home on submit', () => {
+ it('should navigate to projects list page on submit', () => {
   projectService = TestBed.get(ProjectService);
   let projectSpy = spyOn(projectService, 'submitEditRequest').and
     .callThrough();
