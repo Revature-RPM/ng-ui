@@ -45,7 +45,7 @@ fdescribe('ProjectListComponent', () => {
     expect(retVal).toBeTruthy();
   });
   
-  it('should call getAllProjects when userId is not undefined', async(() => {
+  xit('should call getAllProjects when userId is not undefined', async(() => {
     component.projectList = null;
     projectService = TestBed.get(ProjectService);
     
@@ -55,7 +55,7 @@ fdescribe('ProjectListComponent', () => {
     expect(retVal).toBeTruthy();
   }));
 
-  fit('should call swap project when expected', async(() => {
+  xit('should call swap project when expected', async(() => {
     projectService = TestBed.get(ProjectService);
     let project$ = projectService.CurrentProject$;
 

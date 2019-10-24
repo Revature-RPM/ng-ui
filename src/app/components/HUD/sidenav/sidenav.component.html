@@ -1,37 +1,31 @@
 <mat-sidenav-container>
 
-      <mat-sidenav opened=false mode="push" #sidenav class="flex-container">
-      <app-nav-menu></app-nav-menu>
-      </mat-sidenav>
+	<mat-sidenav opened=false mode="push" #sidenav class="flex-container">
+		<app-nav-menu></app-nav-menu>
+	</mat-sidenav>
 
-      <mat-sidenav-content>
+   <mat-sidenav-content>
 
-        <mat-toolbar color="primary" class="flex-container">
+		<mat-toolbar color="primary" class="flex-container">
 
-          <button id="hamburger-button" type="button" aria-label="Toggle sidenav" mat-button (click)="sidenav.toggle()">
-            <mat-icon id="hamburger">menu</mat-icon>
-          </button>
+			<button id="hamburger-button" type="button" aria-label="Toggle sidenav" mat-button (click)="sidenav.toggle()">
+				<mat-icon id="hamburger">menu</mat-icon>
+			</button>
 
-          <div id="right-buttons" class="flex-container">
-            <div id="settings-notifications" class="flex-container">
-              <mat-icon>settings</mat-icon>
-              <!--
-                Future sprints: It would be really cool
-                to swap the notifications bell for an
-                empty bell, ringing bell, crossed-out
-                bell, etc. based on the circumstances.
-                https://material.io/tools/icons/?search=notification&style=baseline
-              -->
-              <mat-icon>notifications</mat-icon>
-            </div>
-            <img class="user-avatar" [matMenuTriggerFor]="avatarMenu" src="assets/images/chinchilla2.jpg" (click)="routeToProfile();">
-              <mat-menu #avatarMenu="matMenu">
-            </mat-menu>
-          </div>
+			<div id="right-buttons" class="flex-container">
+				<div id="settings-notifications" class="flex-container">
+				<mat-icon>settings</mat-icon>
+				<mat-icon>notifications</mat-icon>
+				</div>
+				<img class="user-avatar" [matMenuTriggerFor]="avatarMenu" src="assets/images/chinchilla2.jpg" (click)="routeToProfile();">
+				<mat-menu #avatarMenu="matMenu">
+				</mat-menu>
+			</div>
 
-        </mat-toolbar>
+		</mat-toolbar>
 
-       <router-outlet></router-outlet>
+		<router-outlet></router-outlet>
 
-      </mat-sidenav-content>
-    </mat-sidenav-container>
+	</mat-sidenav-content>
+
+</mat-sidenav-container>
