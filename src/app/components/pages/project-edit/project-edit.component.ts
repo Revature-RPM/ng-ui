@@ -4,6 +4,8 @@ import {NgMetaService} from 'ngmeta'; // TODO use to change title to 'Edit | RPM
 import {Subscription} from 'rxjs';
 import {Project} from 'src/app/models/Project';
 import {ProjectService} from 'src/app/services/project.service';
+import { UserService } from 'src/app/services/user.service';
+import { User } from 'src/app/models/User';
 
 @Component({
  selector: 'app-edit-project',
@@ -26,6 +28,7 @@ export class ProjectEditComponent implements OnInit {
  // is bound to the information that users enter in the form
  projectToUpdate: Project;
  originalProject: Project;
+ user: User;
 
  /**
   * title, questionType, and result are all passed to a dialog when the user chooses either the group member or the links input field
@@ -44,6 +47,7 @@ export class ProjectEditComponent implements OnInit {
  constructor(private router: Router,
    private projectService: ProjectService,
    private route: ActivatedRoute,
+	private userService: UserService,
    //private ngmeta: NgMetaService,
    ) { }
 
@@ -53,6 +57,10 @@ export class ProjectEditComponent implements OnInit {
       this.projectToUpdate = JSON.parse(JSON.stringify(project));
       this.originalProject = project;
     }
+	this.userService.user.asObservable().subscribe(
+		user => {
+			this.user = user;
+		}
   );
   //this.ngmeta.setHead({ title: 'Edit Project | RPM' });
  }
@@ -85,12 +93,12 @@ export class ProjectEditComponent implements OnInit {
    this.projectToUpdate.oldProject = this.originalProject;  //Setting the original project inside the updated project
    this.projectToUpdate.oldProject.oldProject = null;
    this.projectService.submitEditRequest(this.projectToUpdate).subscribe();
-   this.router.navigate(['projects/1']);
+   this.router.navigate(['projects/'+this.user.id]);
  }
 
  back() {
    sessionStorage.setItem('lastPage', 'edit');
-   this.router.navigate(['projects/1']);
+   this.router.navigate(['projects/'+this.user.id]);
  }
 
  /**
@@ -114,7 +122,7 @@ export class ProjectEditComponent implements OnInit {
  }
 
  cancelEdit() {
-   this.router.navigate(['projects']);
+   this.router.navigate(['projects/'+this.user.id]);
  }
 
 }
