@@ -52,22 +52,17 @@ export class ProjectEditComponent implements OnInit {
    ) { }
 
  ngOnInit() {
-   if (!localStorage.getItem('jwt')) {
-     this.router.navigate(['auth/login']);
-   } else {
-     this.projectService.CurrentProject$.asObservable().subscribe(
-       project => {
-         this.projectToUpdate = JSON.parse(JSON.stringify(project));
-         this.originalProject = project;
-       }
-     );
-     //this.ngmeta.setHead({ title: 'Edit Project | RPM' });
-	}
+  this.projectService.CurrentProject$.asObservable().subscribe(
+    project => {
+      this.projectToUpdate = JSON.parse(JSON.stringify(project));
+      this.originalProject = project;
+    }
 	this.userService.user.asObservable().subscribe(
 		user => {
 			this.user = user;
 		}
-	)
+  );
+  //this.ngmeta.setHead({ title: 'Edit Project | RPM' });
  }
 
  /**
