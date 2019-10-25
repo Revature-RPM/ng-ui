@@ -56,7 +56,7 @@ export class ProjectEditComponent implements OnInit {
     project => {
       this.projectToUpdate = JSON.parse(JSON.stringify(project));
       this.originalProject = project;
-    }
+    })
 	this.userService.user.asObservable().subscribe(
 		user => {
 			this.user = user;
