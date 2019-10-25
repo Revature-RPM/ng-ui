@@ -1,29 +1,29 @@
+import { Router } from '@angular/router';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
-import { Router, ActivatedRoute } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import {
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { 
 	MatCardModule, 
-	MatFormFieldModule, 
+	MatInputModule, 
 	MatOptionModule, 
-	MatSelectModule,
-	MatProgressSpinnerModule, 
 	MatDialogModule, 
+	MatSelectModule, 
 	MatSnackBarModule, 
-	MatInputModule
+	MatFormFieldModule, 
+	MatProgressSpinnerModule
 } from '@angular/material';
 
-import { ProjectSubmissionPageComponent } from './project-submission-page.component';
 import { NgMetaService } from 'ngmeta';
-import { MockProjectService } from 'src/app/mocks/mock-project-service';
-import { ProjectService } from 'src/app/services/project.service';
-import { MockUserService } from 'src/app/mocks/mock-user-service';
-import { UserService } from 'src/app/services/user.service';
-import { ProjectEditComponent } from '../../project-edit/project-edit.component';
+import { browser, by, element } from 'protractor';
 
+import { UserService } from 'src/app/services/user.service';
+import { MockUserService } from 'src/app/mocks/mock-user-service';
+import { ProjectService } from 'src/app/services/project.service';
+import { MockProjectService } from 'src/app/mocks/mock-project-service';
+import { ProjectSubmissionPageComponent } from './project-submission-page.component';
 
 fdescribe('ProjectSubmissionPageComponent', () => {
 	let router: Router;
@@ -36,24 +36,24 @@ fdescribe('ProjectSubmissionPageComponent', () => {
 			declarations: [ ProjectSubmissionPageComponent ],
 			schemas: [CUSTOM_ELEMENTS_SCHEMA],
 			imports: [
-				MatCardModule, 
-				MatFormFieldModule, 
 				FormsModule,
+				MatCardModule, 
+				MatInputModule,
 				MatOptionModule, 
 				MatSelectModule,
-				MatProgressSpinnerModule, 
 				MatDialogModule,
 				MatSnackBarModule, 
-				MatInputModule,
+				MatFormFieldModule, 
 				ReactiveFormsModule, 
 				RouterTestingModule,
-				HttpClientTestingModule, 
 				NoopAnimationsModule,
+				HttpClientTestingModule, 
+				MatProgressSpinnerModule, 
 			],
 			providers: [
 				NgMetaService,
+				{provide: UserService, useClass: MockUserService},
 				{provide: ProjectService, useClass: MockProjectService},
-				{provide: UserService, useClass: MockUserService}
 			]
 		})
 			.compileComponents();
@@ -74,8 +74,8 @@ fdescribe('ProjectSubmissionPageComponent', () => {
 	});
 
 	afterEach(() => {
-		component = null;
 		router = null;
+		component = null;
 		routerSpy = null;
 	})
 
@@ -115,7 +115,25 @@ fdescribe('ProjectSubmissionPageComponent', () => {
 		expect(component.projectToUpload).toBeTruthy();
 	})
 
-
+	it('should go end to end and add a project', () => {
+		browser.get('http://localhost:4200/submitform');
+		element(by.id("project-name")).sendKeys("Fake Project");
+		element(by.id("project-batch")).sendKeys("3rd Batch Java");
+		element(by.id("project-trainer")).sendKeys("Nick");
+		var stackOptions = element(by.id("project-stack"))
+			.then((stackOptions) => {
+				stackOptions[2].click();
+			}
+		)
+		var result = element(by.id('group-members'));
+		expect(result.getAttribute('value')).toEqual(['Mike', 'Molly', 'Sam']);
+		element(by.id("descriptionArea")).sendKeys("This is a fake project for testing");
+		element(by.id("inputGithubLink")).sendKeys("https://github.com/NicoloPerrelli/revtaroomapi");
+		element(by.id("submit")).click();
+		
+		var 
+		expect
+	})
 });
 
 function setJWTObject(jwt: string) {

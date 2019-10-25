@@ -239,7 +239,7 @@ export class ProjectSubmissionPageComponent {
 			project => {
 				this.snackbar.openSnackBar('Success!!', 'Dismiss');
 				this.submitting = false;
-				this.router.navigate(['projects/1']);
+				this.router.navigate(['projects/'+this.user.id]);
 			},
 			error => {
 				this.submitting = false;

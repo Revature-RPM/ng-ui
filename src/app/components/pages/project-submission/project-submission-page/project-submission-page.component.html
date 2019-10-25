@@ -15,7 +15,7 @@
 			<mat-form-field>
 				<mat-label>Batch Name</mat-label>
 				<mat-error *ngIf="!batch.valid || batch.pristine">Batch name is required</mat-error>
-				<input type="text" name="batchName" matInput placeholder="Batch Name" [(ngModel)]="projectToUpload.batch"
+				<input id="project-batch" type="text" name="batchName" matInput placeholder="Batch Name" [(ngModel)]="projectToUpload.batch"
 					[ngModelOptions]="{standalone: true}" required #batch="ngModel">
 			</mat-form-field>
 
@@ -23,7 +23,7 @@
 				<mat-label>Trainer Name</mat-label>
 				<mat-error *ngIf="!trainerName.valid || trainerName.pristine">Trainer name is required</mat-error>
 				<!-- TODO: make this a dropdown where it lists all of the trainers -->
-				<input type="text" name="trainers" matInput placeholder="Trainer Name" [(ngModel)]="projectToUpload.trainer"
+				<input id="project-trainer" type="text" name="trainers" matInput placeholder="Trainer Name" [(ngModel)]="projectToUpload.trainer"
 					[ngModelOptions]="{standalone: true}" required #trainerName="ngModel">
 				<!-- [disabled]="(user.role !== 'ROLE_ADMIN')" -->
 			</mat-form-field>
@@ -33,7 +33,7 @@
 				<mat-error *ngIf="!techStack.valid || techStack.pristine">Technology stack is required</mat-error>
 				<mat-select placeholder="Select Batch" [(ngModel)]="projectToUpload.techStack"
 					[ngModelOptions]="{standalone: true}" required #techStack="ngModel">
-					<mat-option *ngFor="let tech of techStackList" [value]="tech">
+					<mat-option id="project-stack" *ngFor="let tech of techStackList" [value]="tech">
 						{{tech}}
 					</mat-option>
 				</mat-select>
@@ -52,7 +52,7 @@
 				<mat-form-field id="description">
 					<mat-label>Description</mat-label>
 					<mat-error *ngIf="!description.valid || description.pristine">Description is required</mat-error>
-					<textarea matInput name="description" placeholder="Project Description"
+					<textarea id="descriptionArea" matInput name="description" placeholder="Project Description"
 						[(ngModel)]="projectToUpload.description" [ngModelOptions]="{standalone: true}" #description="ngModel"
 						required></textarea>
 				</mat-form-field>
