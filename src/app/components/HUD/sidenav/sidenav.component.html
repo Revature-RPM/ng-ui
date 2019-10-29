@@ -1,7 +1,7 @@
 <mat-sidenav-container>
 
 	<mat-sidenav opened=false mode="push" #sidenav class="flex-container">
-		<app-nav-menu></app-nav-menu>
+		<app-nav-menu (menuOptionClicked)="sidenav.toggle()"></app-nav-menu>
 	</mat-sidenav>
 
    <mat-sidenav-content>

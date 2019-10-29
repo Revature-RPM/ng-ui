@@ -11,30 +11,30 @@
               </mat-panel-title>
           </mat-expansion-panel-header>
           
-          <mat-list-item *ngIf="loggedIn" [routerLink]= "['projects', this.user.id]">
+          <mat-list-item (click)="goToRoute('projects')">
+            <span>All Projects</span>
+          </mat-list-item>
+
+          <mat-list-item *ngIf="loggedIn" (click)="goToRoute('projects/' + user.id)">
             <span>Your Projects</span>
           </mat-list-item>
 
-          <mat-list-item [routerLink]= "['/projects']">
-            <span>All Projects</span>
+          <mat-list-item *ngIf="loggedIn && user.role === 'ROLE_ADMIN'" (click)="goToRoute('projects/pending')">
+            <span>Pending Projects</span>
+          </mat-list-item>
+
+          <mat-list-item *ngIf="loggedIn" (click)="goToRoute('submitform')">
+            <span>Submit a Project</span>
           </mat-list-item>
           
       </mat-expansion-panel>
 
       <div *ngIf="loggedIn">
-        <mat-list-item *ngIf="user.role === 'ROLE_ADMIN'" (click)="goToEditRoles()">
+        <mat-list-item *ngIf="user.role === 'ROLE_ADMIN'" (click)="goToRoute('adminchangeroles')">
             <span>Edit User</span>
           </mat-list-item>
-          
-          <mat-list-item *ngIf="user.role === 'ROLE_ADMIN'" (click)="goToPendingProjects()">
-            <span>View Pending Projects</span>
-          </mat-list-item>
     
-          <mat-list-item (click)="goToSubmit()">
-            <span>Submit a Project</span>
-          </mat-list-item>
-    
-          <mat-list-item (click)="goToProfile()">
+          <mat-list-item (click)="goToRoute('profile')">
             <span>Profile</span>
           </mat-list-item>
 
@@ -44,7 +44,7 @@
 
       </div>
 
-      <mat-list-item *ngIf="!loggedIn" (click)="goToLoginRegister()">
+      <mat-list-item *ngIf="!loggedIn" (click)="goToRoute('auth/login')">
         <span>Login/Register</span>
       </mat-list-item>
 

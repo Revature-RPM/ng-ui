@@ -9,11 +9,11 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class SidenavComponent implements OnInit {
 
+  loggedIn = false;
+
   log(state) {
     console.log(state);
   }
-
-  loggedIn:boolean = false;
 
   constructor(
     private userService: UserService,
@@ -25,6 +25,7 @@ export class SidenavComponent implements OnInit {
         else this.loggedIn = false;
       }
     );
+
   }
 
   ngOnInit() {
@@ -34,4 +35,5 @@ export class SidenavComponent implements OnInit {
   routeToProfile() {
     this.router.navigate(['/profile']);
   }
+
 }
