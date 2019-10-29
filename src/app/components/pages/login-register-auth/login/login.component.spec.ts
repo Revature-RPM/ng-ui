@@ -5,16 +5,20 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NgMetaService } from 'ngmeta';
 import { Router } from '@angular/router';
+import { By } from '@angular/platform-browser';
 
 import { MatFormFieldModule, MatProgressSpinnerModule, MatIconModule, MatInputModule } from '@angular/material';
 
 import {LoginComponent} from './login.component';
+import { Button } from 'protractor';
+import { UserService } from 'src/app/services/user.service';
 
 fdescribe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
   let router: Router;
   let routerSpy;
+  let userService: UserService;
 
 
   beforeEach(async(() => {
@@ -65,6 +69,29 @@ fdescribe('LoginComponent', () => {
 
   it('Submitting the form calls login', () => {
     
+    const submitButton = fixture.debugElement.nativeElement.querySelector('button');
+    console.log(submitButton)
+    let spy = spyOn(component, 'login').and
+      .callThrough();
+
+    console.log(spy);
+
+    submitButton.click();
+
+    expect(spy).toHaveBeenCalled();
+    expect(component.authenticating).toBeTruthy;
+    
+  })
+
+  it('login should call to user service login', () => {
+    userService = TestBed.get(UserService);
+    let userSpy = spyOn(userService, 'login').and 
+      .callThrough();
+    
+    component.login();
+
+    expect(userSpy).toHaveBeenCalled();
+
   })
 
 });
