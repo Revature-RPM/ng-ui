@@ -77,6 +77,6 @@ export class ProjectService {
   * @author Tevin Thomas
   */
  submitEditRequest(project: Project): Observable<Project> {
-   return this.httpClient.post(environment.url + `/project/edit`, project, HTTP_OPTIONS);
+   return this.httpClient.put(environment.url + `/project/edit`, project, HTTP_OPTIONS);
  }
 }

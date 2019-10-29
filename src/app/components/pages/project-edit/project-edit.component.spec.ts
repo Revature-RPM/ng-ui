@@ -150,7 +150,7 @@ fdescribe('ProjectEditComponent', () => {
   * Implementation is not correct ; needs refactoring.
   * @author Alex Johnson (190107-Java-Spark-USF)
   */
- it('should navigate to projects list page on submit', () => {
+ it('should navigate to projects list route on submit', () => {
   projectService = TestBed.get(ProjectService);
   let projectSpy = spyOn(projectService, 'submitEditRequest').and
     .callThrough();
@@ -199,7 +199,7 @@ fdescribe('ProjectEditComponent', () => {
    expect(component.projectToUpdate.techStack).toEqual(techStack);
    expect(component.projectToUpdate.description).toEqual(description);
  });
-});
+ });
 
 function setJWTObject(jwt: string) {
  let store = {};
