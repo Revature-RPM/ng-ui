@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-sidenav',
@@ -14,13 +15,16 @@ export class SidenavComponent implements OnInit {
 
   loggedIn:boolean = false;
 
-  constructor(private router: Router) {
-    this.router.events.subscribe((e) => {
-      if(e instanceof NavigationEnd) {
-        this.loggedIn = e.url.includes("auth/login") ? false : true;
-        console.log("loggedIn", this.loggedIn);
+  constructor(
+    private userService: UserService,
+    private router: Router)
+  {
+    this.userService.user.asObservable().subscribe(
+      user => {
+        if(user) this.loggedIn = true;
+        else this.loggedIn = false;
       }
-    });
+    );
   }
 
   ngOnInit() {

@@ -21,6 +21,7 @@ $rev-blue-main: #74a3bf;
     $rev-blue-dark: #6a95ae;
 $rev-white: #fff;
 $rev-light-gray: #9b9c9f;
+$rev-lighter-gray: #f6f6f6;
 
 
 // This is where variables are assigned to specific components.
@@ -53,7 +54,7 @@ $menu-hamburger-bg: $rev-blue-main;
 $top-margin: 2%;
 
 // Sidenav variables
-$sidenav-padding: 0;
+$sidenav-padding: 1rem;
 $sidenav-width: 250px;
 $sidenav-logo-height: 50px;
 $sidenav-links-margin: 5px auto;
