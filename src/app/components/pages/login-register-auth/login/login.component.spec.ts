@@ -9,9 +9,10 @@ import { MatFormFieldModule, MatProgressSpinnerModule, MatIconModule, MatInputMo
 
 import {LoginComponent} from './login.component';
 
-describe('LoginComponent', () => {
+fdescribe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
+
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -34,4 +35,13 @@ describe('LoginComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('component initial state', () => {
+    expect(component.user).toEqual({ });
+    expect(component.passwordO).toBeFalsy();
+    expect(component.usernameO).toBeFalsy();
+    expect(component.authenticating).toBeFalsy();
+    expect(component.loggedIn).toBeFalsy();
+    expect(component.logSuccess).toBeTruthy();
+  })
 });
