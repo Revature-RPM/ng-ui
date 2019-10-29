@@ -10,7 +10,7 @@ import { EllipsisPipe } from '../../../../ellipsis.pipe';
 import { projection, detectChanges } from '@angular/core/src/render3';
 import { BehaviorSubject } from 'rxjs';
 
-fdescribe('ProjectListComponent', () => {
+describe('ProjectListComponent', () => {
   let component: ProjectListComponent;
   let fixture: ComponentFixture<ProjectListComponent>;
   let projectService: ProjectService;
@@ -55,7 +55,7 @@ fdescribe('ProjectListComponent', () => {
     expect(retVal).toBeTruthy();
   }));
 
-  fit('should call swap project when expected', async(() => {
+  xit('should call swap project when expected', async(() => {
     projectService = TestBed.get(ProjectService);
     let project$ = projectService.CurrentProject$;
 

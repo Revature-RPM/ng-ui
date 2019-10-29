@@ -5,3 +5,5 @@
 [0417/095510.288:ERROR:exception_snapshot_win.cc(98)] thread ID 6700 not found in process
 [0417/095643.105:ERROR:process_reader_win.cc(123)] NtOpenThread: {Access Denied} A process has requested access to an object, but has not been granted those access rights. (0xc0000022)
 [0417/095643.108:ERROR:exception_snapshot_win.cc(98)] thread ID 13168 not found in process
+[1024/114725.885:ERROR:process_info.cc(359)] UncheckedAllocate
+[1024/114726.000:ERROR:process_info.cc(359)] UncheckedAllocate
