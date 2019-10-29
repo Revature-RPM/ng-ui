@@ -12,7 +12,7 @@
 				<mat-icon id="hamburger">menu</mat-icon>
 			</button>
 
-			<div id="right-buttons" class="flex-container">
+			<div *ngIf="loggedIn" id="right-buttons" class="flex-container">
 				<div id="settings-notifications" class="flex-container">
 				<mat-icon>settings</mat-icon>
 				<mat-icon>notifications</mat-icon>
