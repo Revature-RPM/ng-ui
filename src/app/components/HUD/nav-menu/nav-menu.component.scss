@@ -23,66 +23,47 @@
 @import '../../../../variables';
 
 #nav-menu {
-    padding: $sidenav-padding;
-    width: $sidenav-width;
-    -ms-flex-wrap: nowrap;
-        flex-wrap: nowrap;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-flow: column;
-            flex-flow: column;
-    width: 100%;
-    height: 100%;
-}
 
-a.mat-button, a.mat-flat-button, a.mat-raised-button, a.mat-stroked-button, a.mat-button-wrapper, {
-    margin: $sidenav-links-margin;
-    width: 100%;
-}
+    #nav-menu-logo {
+        padding: $sidenav-padding;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        a {
+            img {
+                width: 75%;
+            }
+        }
 
-.flex-container {
-    -ms-flex-line-pack: center;
-        align-content: center;
-    -webkit-box-pack: start;
-        -ms-flex-pack: start;
-            justify-content: flex-start;
-    width: 100%;
-    height: 100%;
-}
+    }
 
-mat-expansion-panel {
-    padding: 0;
-    -webkit-box-shadow: 0 0 0 rgba(0,0,0,0) !important;
-            box-shadow: 0 0 0 rgba(0,0,0,0) !important;
-    width: $view-projects-button-width;
-    margin: auto;
-}
+    mat-list {
+        width: 100%;
 
-#view-projects.mat-expanded {
-    border-bottom: 2px solid $rev-orange-main;
-    border-radius: 0;
-}
+        span {
+            display: block;
+            width: 100%;
+            text-align: center;
+        }
 
-#nav-menu div {
-    text-align: center;
-}
+        mat-list-item {
+			background: $rev-white;
 
-#nav-logo {
-    height: $sidenav-logo-height;
-    width: auto;
-    opacity: 1.0;
-    filter: alpha(opacity=100);
-    margin: $sidenav-logo-margin;
-}
+            mat-expansion-panel {
+                padding: 0;
+                -webkit-box-shadow: 0 0 0 rgba(0,0,0,0) !important;
+                        box-shadow: 0 0 0 rgba(0,0,0,0) !important;
+                width: $view-projects-button-width;
+                margin: auto;
+            }
+		}
+	
+		mat-list-item:hover {
+			cursor: pointer;
+            background: $rev-lighter-gray;
+		}
+    }
 
-#nav-logo:hover {
-    opacity: 0.6;
-    filter: alpha(opacity=60);
-}
-
-a {
-    -ms-flex-item-align: center;
-        align-self: center;
 }
 
 
