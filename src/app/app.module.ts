@@ -14,6 +14,7 @@ import {LoginRegisterPageComponent} from './components/pages/login-register-auth
 import {ProjectDescriptionComponent} from './components/pages/project/project-description/project-description.component';
 import {ProjectListComponent} from './components/pages/project/project-list/project-list.component';
 import {ProjectGridPageComponent} from './components/pages/project/project-grid-page/project-grid-page.component';
+import { ProjectViewComponent } from './components/pages/project-view/project-view.component';
 import {NgxHmCarouselModule} from 'ngx-hm-carousel';
 import {NgxCarouselComponent} from './components/pages/project/ngx-carousel/ngx-carousel.component';
 import {ProjectInfoComponent} from './components/pages/project/project-info/project-info.component';
@@ -48,6 +49,7 @@ import scss from 'highlight.js/lib/languages/scss';
 import css from 'highlight.js/lib/languages/css';
 import java from 'highlight.js/lib/languages/java';
 import python from 'highlight.js/lib/languages/python';
+
 
 export function hljsLanguages() {
   return [
@@ -91,6 +93,7 @@ export function hljsLanguages() {
     RegisterComponent,
     SelectedProjectViewerComponent,
     SidenavComponent,
+    ProjectViewComponent,
   ],
   imports: [
     AppRoutingModule,

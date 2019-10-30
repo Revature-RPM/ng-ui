@@ -6,7 +6,7 @@
   <mat-accordion>
       <mat-expansion-panel id="view-project-list">
           <mat-expansion-panel-header>
-              <mat-panel-title>Select a Project</mat-panel-title>
+            <mat-panel-title>Select a Project</mat-panel-title>
           </mat-expansion-panel-header>
           <button *ngFor="let project of projectList" mat-flat-button (click)="swapProject(project)">{{ project.name | ellipsis:20 }}</button>
       </mat-expansion-panel>

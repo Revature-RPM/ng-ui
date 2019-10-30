@@ -34,28 +34,33 @@ export class ProjectService {
  }
  
  /**
-  * CRUD functions sending out requests using the HttpClient module and casting the response as an observable
-  * @author unknown
+  * Get projects from project service API
+  * Fields can be: status, name, trainer, techStack, batch, userId, all
   */
- getAllProjects(): Observable<Project[]> {
-   return this.httpClient.get<Project[]>(environment.url + '/project/', HTTP_OPTIONS);
- }
+    getProjectByField(field: string, value?: string) {
+      let queryUrl = '/project/q?field=' + field + '&value=';
+      if(value) queryUrl += value;
+      return this.httpClient.get<Project[]>(environment.url + queryUrl, HTTP_OPTIONS);
+    }
+//  getAllProjects(): Observable<Project[]> {
+//    return this.httpClient.get<Project[]>(environment.url + '/project/q?field=all&value=', HTTP_OPTIONS);
+//  }
  
- getAllApprovedProjects(): Observable<Project[]> {
-   return this.httpClient.get<Project[]>(environment.url + '/project/status/Approved', HTTP_OPTIONS);
- }
+//  getAllApprovedProjects(): Observable<Project[]> {
+//    return this.httpClient.get<Project[]>(environment.url + '/project/status/Approved', HTTP_OPTIONS);
+//  }
  
- getProjectById(id): Observable<Project> {
-   return this.httpClient.get<Project>(environment.url + `/project/id/${id}`, HTTP_OPTIONS);
- }
+//  getProjectById(id): Observable<Project> {
+//    return this.httpClient.get<Project>(environment.url + `/project/id/${id}`, HTTP_OPTIONS);
+//  }
 
- getProjectsByUserId(userId: string): Observable<Project[]> {
-  return this.httpClient.get<Project[]>(environment.url + `/project/userId/${userId}`, HTTP_OPTIONS);
- }
+//  getProjectsByUserId(userId: string): Observable<Project[]> {
+//   return this.httpClient.get<Project[]>(environment.url + `/project/userId/${userId}`, HTTP_OPTIONS);
+//  }
  
- getProjectsByStatus(status: string): Observable<Project[]> {
-   return this.httpClient.get<Project[]>(environment.url + `/project/status/${status}`, HTTP_OPTIONS);
- }
+//  getProjectsByStatus(status: string): Observable<Project[]> {
+//    return this.httpClient.get<Project[]>(environment.url + `/project/status/${status}`, HTTP_OPTIONS);
+//  }
  
  updateProject(project: Project, id): Observable<Project> {
    return this.httpClient.put(environment.url + `/project/${id}`, project, HTTP_OPTIONS);
@@ -77,6 +82,6 @@ export class ProjectService {
   * @author Tevin Thomas
   */
  submitEditRequest(project: Project): Observable<Project> {
-   return this.httpClient.post(environment.url + `/project/edit`, project, HTTP_OPTIONS);
+   return this.httpClient.put(environment.url + `/project/edit`, project, HTTP_OPTIONS);
  }
 }
