@@ -1,31 +1,53 @@
-<div id="nav-menu" class="flex-container">
-    <div id="nav-menu-logo">
-      <a href="#"><img id="nav-logo" src="../../../../assets/rpm-logo/RPM-Logo-Two-Tone.png"></a>
-    </div>
-    <div *ngIf="loggedIn" id="logged-in-links" class="nav-menu-links">
-        <a mat-button>All Users</a>
-        <!-- only show if user is admin! -->
-        <a *ngIf="admin" (click)="goToEditRoles()" id="go-to-edit" mat-button>Edit User</a>
-        <!-- The "View Projects" submenu -->
-        <mat-expansion-panel id="view-projects">
-            <mat-expansion-panel-header>
-                <mat-panel-title>
-                    View Projects
-                </mat-panel-title>
-            </mat-expansion-panel-header>
-          <a  [routerLink]= "['projects', this.user.id]" mat-button>Your Projects</a>
-          <a [routerLink]= "['projects']" mat-button>All Projects</a>
-        </mat-expansion-panel>
+<div id="nav-menu">
+  <div id="nav-menu-logo">
+    <a href="#"><img id="nav-logo" src="../../../../assets/rpm-logo/RPM-Logo-Two-Tone.png"></a>
+  </div>
+  
+  <mat-list>
+      <mat-expansion-panel>
+          <mat-expansion-panel-header>
+              <mat-panel-title>
+                <span>View Projects</span>
+              </mat-panel-title>
+          </mat-expansion-panel-header>
+          
+          <mat-list-item (click)="goToRoute('projects')">
+            <span>All Projects</span>
+          </mat-list-item>
 
-        <!-- only show if user is admin! -->
-        <a *ngIf="user.role === 'ROLE_ADMIN'" (click)="goToPendingProjects()" mat-button>View Pending Projects</a>
+          <mat-list-item *ngIf="loggedIn" (click)="goToRoute('projects/' + user.id)">
+            <span>Your Projects</span>
+          </mat-list-item>
 
-        <a (click)="goToSubmit()" mat-button>Submit a Project</a>
+          <mat-list-item *ngIf="loggedIn && user.role === 'ROLE_ADMIN'" (click)="goToRoute('projects/pending')">
+            <span>Pending Projects</span>
+          </mat-list-item>
 
-        <a mat-button (click)="goToProfile()">Profile</a>
-      <a (click)="logout()" mat-button>Logout</a>
-    </div>
-    <div *ngIf="!loggedIn" id="logged-out-links" class="nav-menu-links">
-        <a (click)="goToLoginRegister()" mat-button>Login/Register</a>
-    </div>
+          <mat-list-item *ngIf="loggedIn" (click)="goToRoute('submitform')">
+            <span>Submit a Project</span>
+          </mat-list-item>
+          
+      </mat-expansion-panel>
+
+      <div *ngIf="loggedIn">
+        <mat-list-item *ngIf="user.role === 'ROLE_ADMIN'" (click)="goToRoute('adminchangeroles')">
+            <span>Edit User</span>
+          </mat-list-item>
+    
+          <mat-list-item (click)="goToRoute('profile')">
+            <span>Profile</span>
+          </mat-list-item>
+
+          <mat-list-item (click)="logout()">
+            <span>Logout</span>
+          </mat-list-item>
+
+      </div>
+
+      <mat-list-item *ngIf="!loggedIn" (click)="goToRoute('auth/login')">
+        <span>Login/Register</span>
+      </mat-list-item>
+
+  </mat-list>
+
 </div>

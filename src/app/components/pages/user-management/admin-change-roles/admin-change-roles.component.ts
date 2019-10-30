@@ -26,13 +26,11 @@ export class AdminChangeRolesComponent implements OnInit {
   constructor(private router: Router, private userService: UserService) { }
 
   ngOnInit() {
-    if (!localStorage.getItem('jwt')) {
-      this.router.navigate(['/auth/login']);
-    }
     this.userService.getAllUsers().subscribe(
       response => {
         this.dataSource = response;
-      });
+      }
+    );
   }
 
   /**

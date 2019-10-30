@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 
+import { MatDividerModule } from '@angular/material/divider';
+
 import {
   MatBadgeModule,
   MatButtonModule,
@@ -21,7 +23,10 @@ import {
   MatTableModule,
   MatPaginatorModule,
   MatListModule,
-  MatGridListModule
+  MatGridListModule,
+  MatDialogModule,
+  MatInputModule,
+  MatSnackBarModule
 } from '@angular/material';
 
 const materials = [
@@ -45,7 +50,11 @@ const materials = [
   MatTableModule,
   MatPaginatorModule,
   MatListModule,
-  MatGridListModule
+  MatDividerModule,
+  MatGridListModule,
+  MatDialogModule,
+  MatInputModule,
+  MatSnackBarModule
 ];
 
 @NgModule({

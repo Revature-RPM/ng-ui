@@ -1,5 +1,10 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
+
+// Guards
+import { AuthGuard } from './guards/auth.guard';
+
+// Components
 import {PageNotFoundComponent} from './components/pages/page-not-found/page-not-found.component';
 import {LoginRegisterPageComponent} from './components/pages/login-register-auth/login-register-page/login-register-page.component';
 import {ProjectGridPageComponent} from './components/pages/project/project-grid-page/project-grid-page.component';
@@ -14,13 +19,13 @@ const routes: Routes = [
   {path: '', redirectTo: 'projects', pathMatch: 'full'},
   {path: 'auth/login', component: LoginRegisterPageComponent},
   {path: 'projects', component: ProjectGridPageComponent},
-  {path: 'projects/:userId', component: ProjectGridPageComponent},
-  {path: 'submitform', component: ProjectSubmissionPageComponent},
-  {path: 'updateform', component: ProjectEditComponent},
-  {path: 'profile', component: ProfileComponent},
+  {path: 'projects/:userId', component: ProjectGridPageComponent, canActivate: [AuthGuard] },
+  {path: 'submitform', component: ProjectSubmissionPageComponent, canActivate: [AuthGuard] },
+  {path: 'updateform', component: ProjectEditComponent, canActivate: [AuthGuard] },
+  {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   {path: 'codebase', component: CodebaseComponent},
-  {path: 'adminchangeroles', component: AdminChangeRolesComponent},
-  {path: 'projects/pending', component: ProjectsPendingApprovalPageComponent},
+  {path: 'adminchangeroles', component: AdminChangeRolesComponent, canActivate: [AuthGuard] },
+  {path: 'projects/pending', component: ProjectsPendingApprovalPageComponent, canActivate: [AuthGuard]},
 
   // Do not put any routes below this one!
   {path: '**', component: PageNotFoundComponent}

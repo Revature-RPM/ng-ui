@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Output, EventEmitter} from '@angular/core';
 import {ProjectService} from '../../../services/project.service';
 import {Router} from '@angular/router';
 import {UserService} from 'src/app/services/user.service';
@@ -10,6 +10,8 @@ import {User} from 'src/app/models/User';
   styleUrls: ['./nav-menu.component.scss']
 })
 export class NavMenuComponent implements OnInit {
+
+  @Output("menuOptionClicked") menuOptionClicked = new EventEmitter<void>();
 
   loggedIn = false;
   panelOpenState = false;
@@ -51,48 +53,17 @@ export class NavMenuComponent implements OnInit {
    */
   logout() {
     this.userService.logout();
-    this.router.navigate(['auth/login']);
-  }
-
-
-
-  /**
-   * Function that:
-   * Navigates to the project-submission-page component.
-   */
-  goToSubmit() {
-    this.router.navigate(['submitform']);
-  }
-
-  /**
-   * Function that:
-   * Navigates to the projects-pending-approval-page component.
-   */
-  goToPendingProjects() {
-    this.router.navigate(['projects/pending']);
-  }
-
-  /**
-   * Function that:
-   * Navigates to the profile component.
-   */
-  goToProfile() {
-    this.router.navigate(['profile']);
-  }
-
-  /**
-   * Function that:
-   * Navigates to the LoginRegisterComponent.
-   */
-  goToLoginRegister () {
+    this.menuOptionClicked.emit();
     this.router.navigate(['auth/login']);
   }
 
   /**
    * Function that:
-   * Navigates to the AdminChangeRoles.
+   * Navigates to component related to provided route.
    */
-  goToEditRoles() {
-    this.router.navigate(['adminchangeroles']);
+  goToRoute(route: string) {
+    this.menuOptionClicked.emit();
+    this.router.navigate([route]); 
   }
+  
 }

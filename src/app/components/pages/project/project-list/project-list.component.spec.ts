@@ -45,7 +45,7 @@ describe('ProjectListComponent', () => {
     expect(retVal).toBeTruthy();
   });
   
-  it('should call getAllProjects when userId is not undefined', async(() => {
+  xit('should call getAllProjects when userId is not undefined', async(() => {
     component.projectList = null;
     projectService = TestBed.get(ProjectService);
     

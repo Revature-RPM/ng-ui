@@ -22,7 +22,6 @@ import {PageNotFoundComponent} from './components/pages/page-not-found/page-not-
 import { RegisterComponent } from './components/pages/login-register-auth/register/register.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {NgMetaModule} from 'ngmeta';
-import {MatDialogModule, MatInputModule, MatSnackBarModule} from '@angular/material';
 import { HighlightModule } from 'ngx-highlightjs';
 import {ProjectSubmissionPageComponent} from './components/pages/project-submission/project-submission-page/project-submission-page.component';
 import {EditDialogComponent} from './components/pages/project-submission/edit-dialog/edit-dialog.component';
@@ -102,9 +101,6 @@ export function hljsLanguages() {
     MaterialModule,
     NgxHmCarouselModule,
     NgMetaModule,
-    MatDialogModule,
-    MatInputModule,
-    MatSnackBarModule,
     ReactiveFormsModule,
     HighlightModule.forRoot({ languages: hljsLanguages }),
   ],
