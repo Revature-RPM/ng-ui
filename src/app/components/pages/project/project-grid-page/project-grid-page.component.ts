@@ -20,12 +20,6 @@ export class ProjectGridPageComponent implements OnInit{
               private router: Router ) { }
 
   ngOnInit() {
-    this.projectService.CurrentProject$.subscribe(
-      proj => {
-        if (proj) {
-          this.project = proj;
-        }
-      });
     if (localStorage.getItem('user')) {
       this.user = JSON.parse(localStorage.getItem('user'));
     } else {
@@ -33,27 +27,9 @@ export class ProjectGridPageComponent implements OnInit{
         if (user) {
           this.user = user;
         }
-      }
-    );}
-  }
-
-
-  updateProject() {
-    if (this.project) {
-      this.router.navigate(['/updateform']);
+      });
     }
-    console.log('this is called');
+
   }
 
-  /**
-   * If a project is selected,
-   *  updates the view to the codebase view.
-   *
-   *  @author Michael James | Ashton Sullivan 1905-Java-USF
-   */
-  viewCodeBase() {
-    if (this.project) {
-      this.router.navigate(['/codebase']);
-    }
-  }
 }

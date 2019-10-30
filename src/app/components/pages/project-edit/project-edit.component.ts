@@ -6,6 +6,7 @@ import {Project} from 'src/app/models/Project';
 import {ProjectService} from 'src/app/services/project.service';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/User';
+import { SnackbarService } from 'src/app/services/snackbar.service';
 
 @Component({
  selector: 'app-edit-project',
@@ -45,6 +46,7 @@ export class ProjectEditComponent implements OnInit {
  subscription: Subscription; // will be used to subscribe to the results of an observable
 
  constructor(private router: Router,
+   private snackbarService: SnackbarService,
    private projectService: ProjectService,
    private route: ActivatedRoute,
 	private userService: UserService,
@@ -88,17 +90,26 @@ export class ProjectEditComponent implements OnInit {
   * @author Shawn Bickel (1810-Oct08-Java-USF)
   */
  submitForm() {
-   this.projectToUpdate.status = 'PendingEdit';
-   this.projectToUpdate.oldProject = null;
-   this.projectToUpdate.oldProject = this.originalProject;  //Setting the original project inside the updated project
-   this.projectToUpdate.oldProject.oldProject = null;
-   this.projectService.submitEditRequest(this.projectToUpdate).subscribe();
-   this.router.navigate(['projects/'+this.user.id]);
+  this.projectToUpdate.status = 'PendingEdit';
+  this.projectToUpdate.oldProject = null;
+  this.projectToUpdate.oldProject = this.originalProject;  //Setting the original project inside the updated project
+  this.projectToUpdate.oldProject.oldProject = null;
+  this.projectService.submitEditRequest(this.projectToUpdate).subscribe(
+    (res) => {
+      this.snackbarService.openSnackBar("Your update was successful", "Success");
+      window.history.back();
+    },
+    (err) => {
+      console.log("Error obj from project edit", err);
+      this.snackbarService.openSnackBar("Something went wrong. Try again", "Failed");
+    }
+  );
+  
+
  }
 
  back() {
-   sessionStorage.setItem('lastPage', 'edit');
-   this.router.navigate(['projects/'+this.user.id]);
+   window.history.back();
  }
 
  /**
