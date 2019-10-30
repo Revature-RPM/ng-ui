@@ -25,7 +25,7 @@ import { ProjectService } from 'src/app/services/project.service';
 import { MockProjectService } from 'src/app/mocks/mock-project-service';
 import { ProjectSubmissionPageComponent } from './project-submission-page.component';
 
-fdescribe('ProjectSubmissionPageComponent', () => {
+describe('ProjectSubmissionPageComponent', () => {
 	let router: Router;
 	let routerSpy;
 	let component: ProjectSubmissionPageComponent;
@@ -115,25 +115,25 @@ fdescribe('ProjectSubmissionPageComponent', () => {
 		expect(component.projectToUpload).toBeTruthy();
 	})
 
-	it('should go end to end and add a project', () => {
-		browser.get('http://localhost:4200/submitform');
-		element(by.id("project-name")).sendKeys("Fake Project");
-		element(by.id("project-batch")).sendKeys("3rd Batch Java");
-		element(by.id("project-trainer")).sendKeys("Nick");
-		var stackOptions = element(by.id("project-stack"))
-			.then((stackOptions) => {
-				stackOptions[2].click();
-			}
-		)
-		var result = element(by.id('group-members'));
-		expect(result.getAttribute('value')).toEqual(['Mike', 'Molly', 'Sam']);
-		element(by.id("descriptionArea")).sendKeys("This is a fake project for testing");
-		element(by.id("inputGithubLink")).sendKeys("https://github.com/NicoloPerrelli/revtaroomapi");
-		element(by.id("submit")).click();
+	// it('should go end to end and add a project', () => {
+	// 	browser.get('http://localhost:4200/submitform');
+	// 	element(by.id("project-name")).sendKeys("Fake Project");
+	// 	element(by.id("project-batch")).sendKeys("3rd Batch Java");
+	// 	element(by.id("project-trainer")).sendKeys("Nick");
+	// 	var stackOptions = element(by.id("project-stack"))
+	// 		.then((stackOptions) => {
+	// 			stackOptions[2].click();
+	// 		}
+	// 	)
+	// 	var result = element(by.id('group-members'));
+	// 	expect(result.getAttribute('value')).toEqual(['Mike', 'Molly', 'Sam']);
+	// 	element(by.id("descriptionArea")).sendKeys("This is a fake project for testing");
+	// 	element(by.id("inputGithubLink")).sendKeys("https://github.com/NicoloPerrelli/revtaroomapi");
+	// 	element(by.id("submit")).click();
 		
-		var 
-		expect
-	})
+	// 	var list = element(by.id("project-list-tabs"))
+	// 	expect(list.getSize).toBeTruthy();
+	// })
 });
 
 function setJWTObject(jwt: string) {

@@ -103,20 +103,20 @@ describe('NavMenuComponent', () => {
     expect(routerSpy).toHaveBeenCalledWith(['auth/login']);
   });
 
-  it('should route as expected for type on getProjects, if type = user', () => {
-    let type = 'user';
+//   xit('should route as expected for type on getProjects, if type = user', () => {
+//     let type = 'user';
 
-    component.getProjects(type);
+//     component.getProjects(type);
 
-    expect(routerSpy).toHaveBeenCalledWith(['projects/1']);
-  });
+//     expect(routerSpy).toHaveBeenCalledWith(['projects/1']);
+//   });
 
-  it('should route as expected for type on getProjects, if type != user', () => {
-    let type = 'cat';
-    component.getProjects(type);
+//   xit('should route as expected for type on getProjects, if type != user', () => {
+//     let type = 'cat';
+//     component.getProjects(type);
 
-    expect(routerSpy).toHaveBeenCalledWith(['projects']);
-  });
+//     expect(routerSpy).toHaveBeenCalledWith(['projects']);
+//   });
 
   it('should not login if user does not exist', () => {
     component.loggedIn = component.admin = true;
