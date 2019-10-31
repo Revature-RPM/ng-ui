@@ -23,25 +23,14 @@
 @import '../../../../variables';
 
 mat-sidenav-container {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-}
+	height: 100%;
 
-mat-sidenav {
-    padding: 20px;
-    width: $sidenav-width;
-    -ms-flex-wrap: nowrap;
-        flex-wrap: nowrap;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    min-width: fit-content;
-}
-mat-sidenav div {
-    text-align: center;
+	mat-sidenav {
+		width: 18rem;
+		height: 100%;
+		// background: $rev-gray-light;
+	}
+
 }
 
 mat-toolbar {

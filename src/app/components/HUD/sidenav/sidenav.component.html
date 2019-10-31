@@ -1,7 +1,7 @@
 <mat-sidenav-container>
 
 	<mat-sidenav opened=false mode="push" #sidenav class="flex-container">
-		<app-nav-menu></app-nav-menu>
+		<app-nav-menu (menuOptionClicked)="sidenav.toggle()"></app-nav-menu>
 	</mat-sidenav>
 
    <mat-sidenav-content>
@@ -12,7 +12,7 @@
 				<mat-icon id="hamburger">menu</mat-icon>
 			</button>
 
-			<div id="right-buttons" class="flex-container">
+			<div *ngIf="loggedIn" id="right-buttons" class="flex-container">
 				<div id="settings-notifications" class="flex-container">
 				<mat-icon>settings</mat-icon>
 				<mat-icon>notifications</mat-icon>

@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 
+import { MatDividerModule } from '@angular/material/divider';
+
 import {
   MatBadgeModule,
   MatButtonModule,
@@ -48,6 +50,7 @@ const materials = [
   MatTableModule,
   MatPaginatorModule,
   MatListModule,
+  MatDividerModule,
   MatGridListModule,
   MatDialogModule,
   MatInputModule,

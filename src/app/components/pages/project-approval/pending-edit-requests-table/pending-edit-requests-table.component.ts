@@ -18,7 +18,7 @@ export class PendingEditRequestsTableComponent implements OnInit {
    *This object is used to communicate with the parent component (pending-projects-approval-page)
    *that the click event has happened in this child component
    */
-  @Output() swapProject = new EventEmitter<{row: any}>();
+  @Output() readonly swapProject = new EventEmitter<{row: any}>();
 
   /**
    * These fields are used to display the collected data about the projects that
@@ -33,7 +33,7 @@ export class PendingEditRequestsTableComponent implements OnInit {
 
   ngOnInit() {
     this.selected = false;
-    this.projectService.getProjectsByStatus('PendingEdit').subscribe(response => {
+    this.projectService.getProjectByField('status', 'Pending').subscribe(response => {
       this.dataSource = response;
     });
   }

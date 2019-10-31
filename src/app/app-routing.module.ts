@@ -14,18 +14,20 @@ import { ProfileComponent } from './components/pages/user-management/profile/pro
 import { AdminChangeRolesComponent } from './components/pages/user-management/admin-change-roles/admin-change-roles.component';
 import { ProjectsPendingApprovalPageComponent } from './components/pages/project-approval/projects-pending-approval-page/projects-pending-approval-page.component';
 import { CodebaseComponent } from './components/pages/codebase/codebase.component';
+import { ProjectViewComponent } from './components/pages/project-view/project-view.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'projects', pathMatch: 'full'},
-  {path: 'auth/login', component: LoginRegisterPageComponent},
+  {path: 'login', component: LoginRegisterPageComponent},
   {path: 'projects', component: ProjectGridPageComponent},
-  {path: 'projects/:userId', component: ProjectGridPageComponent, canActivate: [AuthGuard] },
-  {path: 'submitform', component: ProjectSubmissionPageComponent, canActivate: [AuthGuard] },
-  {path: 'updateform', component: ProjectEditComponent, canActivate: [AuthGuard] },
+  {path: 'projects-user', component: ProjectGridPageComponent, canActivate: [AuthGuard] },
+  {path: 'projects-pending', component: ProjectsPendingApprovalPageComponent, canActivate: [AuthGuard]},
+  {path: 'project-submission', component: ProjectSubmissionPageComponent, canActivate: [AuthGuard] },
+  {path: 'project-update', component: ProjectEditComponent, canActivate: [AuthGuard] },
+  {path: 'project-view', component: ProjectViewComponent },
   {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   {path: 'codebase', component: CodebaseComponent},
   {path: 'adminchangeroles', component: AdminChangeRolesComponent, canActivate: [AuthGuard] },
-  {path: 'projects/pending', component: ProjectsPendingApprovalPageComponent, canActivate: [AuthGuard]},
 
   // Do not put any routes below this one!
   {path: '**', component: PageNotFoundComponent}
