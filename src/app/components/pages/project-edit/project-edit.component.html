@@ -4,34 +4,44 @@
       <mat-icon>arrow_back</mat-icon>
     </button>
     <h1 id="title">Edit Project</h1>
-    <form #projectForm="ngForm" novalidate>
-
+    <!--<form #projectForm="ngForm" novalidate>-->
+    <form [formGroup]="editForm" novalidate (ngSubmit)="submitForm(editForm.value)">
       <mat-form-field>
-        <mat-error *ngIf="!validForm">Project name is required</mat-error>
-        <input [(ngModel)]="projectToUpdate.name" id="project_name" matInput name="projectName"
-          placeholder="Project Name" type="text" [ngModelOptions]="{standalone: true}" #name="ngModel">
+        <input matInput type="text" placeholder="Project Name" formControlName="projectName" id="project_name">
+        <!--<mat-hint align="end">Not more than 60 characters long.</mat-hint>-->
+        <mat-error *ngIf="!validField('projectName', 'required')">Project name is required, No longer than 40 characters</mat-error>
+       <!-- <input [(ngModel)]="projectToUpdate.name" id="project_name" matInput name="projectName"
+          placeholder="Project Name" type="text" [ngModelOptions]="{standalone: true}" #name="ngModel">-->
       </mat-form-field>
 
       <mat-form-field>
-        <mat-error *ngIf="!validForm">Batch name is required</mat-error>
-        <input name="batchName" type="text" matInput placeholder="Batch Name" [(ngModel)]="projectToUpdate.batch"
-          [ngModelOptions]="{standalone: true}" #batch="ngModel">
+        <input matInput type="text" placeholder="Batch Name" formControlName="batchName" id="batch_name">
+        <!--<mat-hint align="end">Not more than 60 characters long</mat-hint>-->
+        <mat-error *ngIf="!validField('batchName', 'required')">Batch name is required, No longer than 40 characters</mat-error>
+        <!--<input name="batchName" type="text" matInput placeholder="Batch Name" [(ngModel)]="projectToUpdate.batch"
+          [ngModelOptions]="{standalone: true}" #batch="ngModel">-->
       </mat-form-field>
 
       <mat-form-field>
-        <mat-error *ngIf="!validForm">Trainer name is required</mat-error>
-        <input [(ngModel)]="projectToUpdate.trainer" matInput name="trainers" placeholder="Trainer Name" type="text"
-          [ngModelOptions]="{standalone: true}" #trainerName="ngModel">
+        <input matInput type="text" placeholder="Trainer Name" formControlName="trainerName" id="trainer_name">
+        <mat-error *ngIf="!validField('trainerName', 'required')">Trainer name is required</mat-error>
+        <!--<input [(ngModel)]="projectToUpdate.trainer" matInput name="trainers" placeholder="Trainer Name" type="text"
+          [ngModelOptions]="{standalone: true}" #trainerName="ngModel">-->
       </mat-form-field>
 
       <mat-form-field>
-        <mat-error *ngIf="!validForm">Technology stack is required</mat-error>
-        <mat-select #techStack="ngModel" [(ngModel)]="projectToUpdate.techStack" [ngModelOptions]="{standalone: true}"
-          placeholder="Select Batch" required #techStack="ngModel">
+        <mat-select formControlName="techStack" placeholder="Select Stack">
           <mat-option *ngFor="let tech of techStackList" [value]="tech">
             {{tech}}
           </mat-option>
         </mat-select>
+        <mat-error *ngIf="!validField('techStack', 'required')">Technology stack is required</mat-error>
+       <!-- <mat-select #techStack="ngModel" [(ngModel)]="projectToUpdate.techStack" [ngModelOptions]="{standalone: true}"
+          placeholder="Select Stack" required #techStack="ngModel">
+          <mat-option *ngFor="let tech of techStackList" [value]="tech">
+            {{tech}}
+          </mat-option>
+        </mat-select>-->
       </mat-form-field>
 
       <mat-form-field>
@@ -60,8 +70,7 @@
 
 
       <div class="parent-div" id="control-buttons">
-        <button (click)="submitForm()" [disabled]="(!name.valid) || (!batch.valid) || (!trainerName.valid) ||
-            (!description.valid) || (!techStack.valid)" id="submit-update" mat-flat-button
+        <button (click)="submitForm()" [disabled]="!editForm.valid" id="submit-update" mat-flat-button
           color="accent">Submit Request</button>
         <button (click)="cancelEdit()" color="warn" mat-flat-button>Cancel</button>
       </div>

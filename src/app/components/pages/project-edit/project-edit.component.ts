@@ -6,6 +6,8 @@ import {Project} from 'src/app/models/Project';
 import {ProjectService} from 'src/app/services/project.service';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/User';
+import { SnackbarService } from 'src/app/services/snackbar.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
  selector: 'app-edit-project',
@@ -20,6 +22,7 @@ import { User } from 'src/app/models/User';
 export class ProjectEditComponent implements OnInit {
  techStackList = ['Java/J2EE', 'PEGA', 'JavaScript MVC', '.Net', 'React.js', 'Java', 'iOS9'];
 
+ public editForm: FormGroup;
  /* This field is initially true since the project contents for a particular project are placed in the form fields using two-way binding when
        ngOnInit() is called and the project is retrieved by id from the server */
  validForm: Boolean = true;
@@ -34,7 +37,7 @@ export class ProjectEditComponent implements OnInit {
   * title, questionType, and result are all passed to a dialog when the user chooses either the group member or the links input field
   * title and questionType represent the information which will displayed in an input dialog
   * result will hold the user's response, either a group member or a link to be validated as a Github repository link
-  * @author Shawn Bickel (1810-Oct08-Java-USF)
+  * 
   */
  title = 'New Group Member';
  questionType = 'Enter the name of the group member';
@@ -47,11 +50,12 @@ export class ProjectEditComponent implements OnInit {
  constructor(private router: Router,
    private projectService: ProjectService,
    private route: ActivatedRoute,
-	private userService: UserService,
+	 private userService: UserService,
    //private ngmeta: NgMetaService,
    ) { }
 
  ngOnInit() {
+
   this.projectService.CurrentProject$.asObservable().subscribe(
     project => {
       this.projectToUpdate = JSON.parse(JSON.stringify(project));
@@ -62,7 +66,17 @@ export class ProjectEditComponent implements OnInit {
 			this.user = user;
 		}
   );
+  this.editForm = new FormGroup({
+    projectName: new FormControl(this.projectToUpdate.name, [Validators.required, Validators.maxLength(40)]),
+    batchName: new FormControl(this.projectToUpdate.batch, [Validators.required, Validators.maxLength(20)]),
+    trainerName: new FormControl(this.projectToUpdate.trainer, [Validators.required]),
+    techStack: new FormControl(this.projectToUpdate.techStack, [Validators.required])
+  })
   //this.ngmeta.setHead({ title: 'Edit Project | RPM' });
+ }
+
+ validField(controlName: string, errorName: string) {
+   return this.editForm.controls[controlName].hasError(errorName)
  }
 
  /**
@@ -72,7 +86,7 @@ export class ProjectEditComponent implements OnInit {
   * @param trainerField : the template variable for the trainer name input field which holds validation information
   * @param descriptionField : the template variable for the description input field which holds validation information
   * @param techStackField : the template variable for the technology stack input field which holds validation information
-  * @author Shawn Bickel (1810-Oct08-Java-USF)
+  * 
   */
  checkForValidField(nameField, batchField, trainerField, descriptionField, techStackField) {
    if (!nameField.valid || !batchField.valid || !trainerField.valid || !descriptionField.valid || !techStackField.valid) {
@@ -85,7 +99,7 @@ export class ProjectEditComponent implements OnInit {
  /**
   * This method is bound to the event that the form is submitted;
   * The updated project is sent to a service where it is sent to the server with an http put method
-  * @author Shawn Bickel (1810-Oct08-Java-USF)
+  * 
   */
  submitForm() {
    this.projectToUpdate.status = 'PendingEdit';
@@ -103,7 +117,7 @@ export class ProjectEditComponent implements OnInit {
 
  /**
   * These methods allow for the removal and addition of users to projects when editing.
-  * @author Ryan Williams (1810-Oct20-Java-USF)
+  * 
   */
  removeGroupMember(e) {// project : Project
    const updatedArr = this.projectToUpdate.groupMembers;
