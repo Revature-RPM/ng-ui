@@ -1,7 +1,7 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {NavMenuComponent} from './nav-menu.component';
-import { MatButtonModule, MatExpansionModule } from '@angular/material';
+import { MatButtonModule, MatExpansionModule, MatListModule } from '@angular/material';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { By } from '@angular/platform-browser';
@@ -22,7 +22,7 @@ fdescribe('NavMenuComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ NavMenuComponent ],
-      imports: [ MatButtonModule, MatExpansionModule, HttpClientTestingModule,
+      imports: [ MatButtonModule, MatExpansionModule, MatListModule, HttpClientTestingModule,
       RouterTestingModule, NoopAnimationsModule],
       providers: [{provide: UserService, useClass: MockUserService}],
     })
@@ -61,7 +61,7 @@ fdescribe('NavMenuComponent', () => {
 
   it('should hide goToEditRoles function if admin is false', () => {
     expect(fixture.debugElement.query(By.css('#go-to-edit'))).toBeNull();
-});
+  });
 
   it('should route to adminchangeroles on goToEditRoles', () => {
     component.goToEditRoles();
