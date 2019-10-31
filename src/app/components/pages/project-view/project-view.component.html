@@ -1,5 +1,8 @@
 <mat-card>
     <mat-card-content>
+        <button mat-fab matTooltip="Last page" matTooltipPosition="above" (click)="back()">
+            <mat-icon>arrow_back</mat-icon>
+        </button>
         <div id="view-projects-grid">
             <div id="project-title">
             <h1>{{ project.name }}</h1>
@@ -27,4 +30,4 @@
             <button id="deny-project-btn" (click)="approveOrDenyProject(false)" mat-flat-button color="accent">Deny Project</button>
         </div>
     </mat-card-content>
-  </mat-card>
+</mat-card>

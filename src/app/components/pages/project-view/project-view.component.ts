@@ -57,6 +57,14 @@ export class ProjectViewComponent implements OnInit {
 
 
   /**
+   * Return to last page
+   */
+  back() {
+    window.history.back();
+  }
+
+
+  /**
    * This function is used to increment the page index of the project's screenshot.
    * Incrementing the page index will render the next project's screenshot.
    * @param totalAmountOfScreenShots : a number value that contains the total number of screenshots for a particular project
