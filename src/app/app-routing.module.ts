@@ -15,6 +15,7 @@ import { AdminChangeRolesComponent } from './components/pages/user-management/ad
 import { ProjectsPendingApprovalPageComponent } from './components/pages/project-approval/projects-pending-approval-page/projects-pending-approval-page.component';
 import { CodebaseComponent } from './components/pages/codebase/codebase.component';
 import { ProjectViewComponent } from './components/pages/project-view/project-view.component';
+import { ProjectViewGuard } from './guards/project-view.guard';
 
 const routes: Routes = [
   {path: '', redirectTo: 'projects', pathMatch: 'full'},
