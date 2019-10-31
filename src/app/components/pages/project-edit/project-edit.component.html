@@ -67,7 +67,7 @@
         </div>
         <div class="parent-div" id="group-members">
           <h3>Select a Group Member to Remove</h3>
-          <div *ngFor="let groupMember of this.projectToUpdate.groupMembers" mat-flat-button color="accent"
+          <div class="member-div" *ngFor="let groupMember of this.projectToUpdate.groupMembers" mat-flat-button color="accent"
             (click)="removeGroupMember($event)">{{groupMember}}</div>
         </div>
       </div>

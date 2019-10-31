@@ -106,7 +106,7 @@ export class ProjectEditComponent implements OnInit {
   */
  submitForm() {
    console.log(this.projectToUpdate);
-   this.projectToUpdate.status = 'PendingEdit';
+   this.projectToUpdate.status = 'Pending';
    this.projectToUpdate.oldProject = null;
    this.projectToUpdate.oldProject = this.originalProject;  //Setting the original project inside the updated project
    this.projectToUpdate.oldProject.oldProject = null;
