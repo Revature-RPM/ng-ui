@@ -14,7 +14,7 @@ import { UserService } from 'src/app/services/user.service';
 import { User } from '../../../../models/User';
 import {first} from 'rxjs/operators';
 import {from} from 'rxjs';
-import { HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse, HttpHeaders, HttpEventType } from '@angular/common/http';
 
 
 
@@ -127,13 +127,24 @@ fdescribe('LoginComponent', () => {
 
   it('sets logSuccess to false when login sends back an error', () => {
     let error: HttpErrorResponse;
+    error = {
+      name: 'HttpErrorResponse',
+      message: 'fake error', 
+      error: '404', 
+      ok: false,
+      headers: new HttpHeaders(),
+      status: 404,
+      statusText: 'fake error',
+      url: null,
+      type: HttpEventType.Response
+     };
     console.log(error);
     userService = TestBed.get(UserService);
     let userSpy = spyOn(userService, 'login').and.returnValue(of(error));
 
     component.login();
 
-    expect(component.logSuccess).toEqual(false);
+    expect(component.authenticating).toEqual(false);
   })
 
 });
