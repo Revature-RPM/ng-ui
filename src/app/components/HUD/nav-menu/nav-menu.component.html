@@ -19,7 +19,7 @@
             <span>My Projects</span>
           </mat-list-item>
 
-          <mat-list-item *ngIf="loggedIn && user.role === 'ROLE_ADMIN'" (click)="goToRoute('projects/pending')">
+          <mat-list-item *ngIf="loggedIn && user.role === 'ROLE_ADMIN'" (click)="goToRoute('projects-pending')">
             <span>Pending Projects</span>
           </mat-list-item>
 

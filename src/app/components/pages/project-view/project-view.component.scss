@@ -1,9 +1,9 @@
+
 /*
     Please don't use Bootstrap! Angular Material
     and Flexbox are so much better! Once you try
     it, you won't go back.
-
-    Angular Material documentation:     https://material.angular.io/
+     Angular Material documentation:     https://material.angular.io/
     Excellent, quick Material tutorials:     https://youtu.be/bV8emCBmFHk
     Flexbox tutorial:     https://www.w3schools.com/css/css3_flexbox.asp
     20-minute SCSS tutorial:     https://youtu.be/Zz6eOVaaelI
@@ -15,29 +15,46 @@
     this file. (Don't include the underscore in
     _variables.scss when importing. If you want to
     know why: http://alistapart.com/article/getting-started-with-sass/)
-
-    Open the _variables.scss file in a new tab so you
+     Open the _variables.scss file in a new tab so you
     can use and make SCSS variables and make everyone's
     lives easier.
 */
 @import '../../../../variables';
 
-#projects-tabs {
+.approval-deny-box {
+    text-align: right;
+    width: 75%;
+    margin: 1rem auto;
+
+    button {
+        margin-left: 1rem;
+    }
+
+    #approve-project-btn {
+        border: 1px solid #74a3bf;
+    }
+
+    #deny-project-btn {
+        color: #fff;
+    }
+}
+
+ #projects-tabs {
     flex-direction: row;
 }
 
-app-project-list {
+ app-project-list {
     flex-basis: 200px;
     flex-grow: 1;
 }
 
-:host ::ng-deep h2 {
+ :host ::ng-deep h2 {
     padding-bottom: 5px;
     margin: 10px 0;
     border-bottom: 3px solid $rev-orange-main;
 }
 
-#project-title {
+ #project-title {
     grid-area: title;
     margin-left: 7px;
     display: flex;
@@ -52,37 +69,37 @@ app-project-list {
     }
 }
 
-#project-info {
+ #project-info {
     grid-area: info;
     width: 100%;
     padding: $section-padding;
 }
 
-#carousel-window {
+ #carousel-window {
     grid-area: carousel;
     height: 100%;
     width: 100%;
     padding: $section-padding;
 }
 
-#project-description {
+ #project-description {
     grid-area: description;
     min-height: 30vh;
     padding: $section-padding;
 }
 
-#search-projects {
+ #search-projects {
     flex-basis: 150px;
     flex-grow: 1;
     max-height: 45px;
 }
 
-mat-card {
-    width: 90vw;
+ mat-card {
+    width: 75vw;
     margin: 1% auto;
 }
 
-#view-projects-grid {
+ #view-projects-grid {
     display: grid;
   grid-template:
         'tabs'
@@ -93,14 +110,14 @@ mat-card {
     grid-template-columns: 100%;
     grid-gap: 0;
     margin: auto;
-    width: 100%;
+    width:75%;
 }
 
-input::placeholder {
+ input::placeholder {
     font-size: 18px;
 }
 
-:host ::ng-deep mat-expansion-panel {
+ :host ::ng-deep mat-expansion-panel {
     padding: 0;
     -webkit-box-shadow: 0 0 0 rgba(0,0,0,0) !important;
             box-shadow: 0 0 0 rgba(0,0,0,0) !important;
@@ -108,21 +125,21 @@ input::placeholder {
     margin: auto;
 }
 
-:host ::ng-deep #view-project-list.mat-expanded {
+ :host ::ng-deep #view-project-list.mat-expanded {
     border-bottom: 2px solid $rev-orange-main;
     border-radius: 0;
 }
 
-@media screen and (min-width: $all-projects-breakpoint) {
+ @media screen and (min-width: $all-projects-breakpoint) {
     #view-projects-grid {
       grid-template:
         'tabs title title'
         'tabs info carousel'
         'tabs description description';
-        grid-template-columns: 20% 40% 40%;
+        grid-template-columns: 0% 50% 50%;
     }
 
-    #projects-tabs {
+     #projects-tabs {
         display: block;
         grid-area: tabs;
         justify-content: start;
@@ -131,7 +148,7 @@ input::placeholder {
         padding-right: 0;
     }
 
-    #search-projects {
+     #search-projects {
         width: 90%;
     }
 }
