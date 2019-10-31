@@ -9,7 +9,8 @@
 				<mat-label>Project Name</mat-label>
 				<mat-error *ngIf="!name.valid || name.pristine">Project name is required</mat-error>
 				<input id="project-name" name="projectName" type="text" matInput placeholder="Project Name"
-					[(ngModel)]="projectToUpload.name" [ngModelOptions]="{standalone: true}" required #name="ngModel">
+					[(ngModel)]="projectToUpload.name" [ngModelOptions]="{standalone: true}" required #name="ngModel"
+					[formControl] = "projectNameFormControl" [errorStateMatcher]="matcher">
 			</mat-form-field>
 
 			<mat-form-field>

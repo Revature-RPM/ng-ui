@@ -5,7 +5,7 @@ import { MatDialog } from '@angular/material';
 import { ProjectService } from 'src/app/services/project.service';
 import { UserService } from 'src/app/services/user.service';
 import { SnackbarService } from 'src/app/services/snackbar.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { EditDialogComponent } from '../edit-dialog/edit-dialog.component';
 import { Project } from 'src/app/models/Project';
 import { User } from 'src/app/models/User';
@@ -26,6 +26,8 @@ export class ProjectSubmissionPageComponent {
 	form: FormGroup;
 	projectToUpload: Project = {};
 	user: User;
+	
+	projectNameFormControl = new FormControl('', [ Validators.required ]);
 
 	/**
 	 * GroupMemberString and zipLinkString are both bound to the user's input of the group member field and the zip links field
@@ -50,8 +52,6 @@ export class ProjectSubmissionPageComponent {
 		private snackbar: SnackbarService,
 		private formBuilder: FormBuilder
 	) { }
-
-	imagePath;
 
 	ngOnInit() {
 		this.userService.user.asObservable().subscribe(
@@ -209,6 +209,10 @@ export class ProjectSubmissionPageComponent {
 		this.submitting = true;
 
 		let formData = new FormData();
+		if(this. || this.) {
+			this.snackbar.openSnackBar('Input form is filled wrong.', 'Dismiss');
+			return;
+		}
 		formData.append('name', this.projectToUpload.name);
 		formData.append('batch', this.projectToUpload.batch);
 		formData.append('trainer', this.projectToUpload.trainer);
@@ -239,7 +243,7 @@ export class ProjectSubmissionPageComponent {
 			project => {
 				this.snackbar.openSnackBar('Success!!', 'Dismiss');
 				this.submitting = false;
-				this.router.navigate(['projects/'+this.user.id]);
+				this.router.navigate(['projects-user']);
 			},
 			error => {
 				this.submitting = false;

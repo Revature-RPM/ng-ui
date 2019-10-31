@@ -1,7 +1,7 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {NavMenuComponent} from './nav-menu.component';
-import { MatButtonModule, MatExpansionModule } from '@angular/material';
+import { NavMenuComponent } from './nav-menu.component';
+import { MatButtonModule, MatExpansionModule, MatListModule } from '@angular/material';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { By } from '@angular/platform-browser';
@@ -12,7 +12,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BehaviorSubject } from 'rxjs';
 import { User } from 'src/app/models/User';
 
-describe('NavMenuComponent', () => {
+fdescribe('NavMenuComponent', () => {
   let component: NavMenuComponent;
   let fixture: ComponentFixture<NavMenuComponent>;
   let router: Router;
@@ -23,7 +23,7 @@ describe('NavMenuComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ NavMenuComponent ],
       imports: [ MatButtonModule, MatExpansionModule, HttpClientTestingModule,
-      RouterTestingModule, NoopAnimationsModule],
+      RouterTestingModule, NoopAnimationsModule, MatListModule],
       providers: [{provide: UserService, useClass: MockUserService}],
     })
     .compileComponents();
@@ -63,36 +63,6 @@ describe('NavMenuComponent', () => {
     expect(fixture.debugElement.query(By.css('#go-to-edit'))).toBeNull();
 });
 
-  it('should route to adminchangeroles on goToEditRoles', () => {
-    component.goToEditRoles();
-
-    expect(routerSpy).toHaveBeenCalledWith(['adminchangeroles']);
-  });
-  
-  it('should route to auth/login on goToLoginRegister', () => {
-    component.goToLoginRegister();
-
-    expect(routerSpy).toHaveBeenCalledWith(['auth/login']);
-  });
-
-  it('should route to profile on goToProfile', () => {
-    component.goToProfile();
-
-    expect(routerSpy).toHaveBeenCalledWith(['profile']);
-  });
-
-  it('should route to projects/pending on goToProjectsPending', () => {
-    component.goToPendingProjects();
-
-    expect(routerSpy).toHaveBeenCalledWith(['projects/pending']);
-  });
-
-  it('should route to submitform on goToSubmit', () => {
-    component.goToSubmit();
-
-    expect(routerSpy).toHaveBeenCalledWith(['submitform']);
-  });
-
   it('should call logout from userService', () => {
     let userService = TestBed.get(UserService);
     spyOn(userService, 'logout');
@@ -102,21 +72,6 @@ describe('NavMenuComponent', () => {
     expect(userService.logout).toHaveBeenCalled();
     expect(routerSpy).toHaveBeenCalledWith(['auth/login']);
   });
-
-//   xit('should route as expected for type on getProjects, if type = user', () => {
-//     let type = 'user';
-
-//     component.getProjects(type);
-
-//     expect(routerSpy).toHaveBeenCalledWith(['projects/1']);
-//   });
-
-//   xit('should route as expected for type on getProjects, if type != user', () => {
-//     let type = 'cat';
-//     component.getProjects(type);
-
-//     expect(routerSpy).toHaveBeenCalledWith(['projects']);
-//   });
 
   it('should not login if user does not exist', () => {
     component.loggedIn = component.admin = true;
