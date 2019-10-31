@@ -8,6 +8,7 @@ import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/User';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { nodeValue } from '@angular/core/src/view';
 
 @Component({
  selector: 'app-edit-project',
@@ -68,14 +69,16 @@ export class ProjectEditComponent implements OnInit {
   );
   this.editForm = new FormGroup({
     projectName: new FormControl(this.projectToUpdate.name, [Validators.required, Validators.maxLength(40)]),
-    batchName: new FormControl(this.projectToUpdate.batch, [Validators.required, Validators.maxLength(20)]),
+    batchName: new FormControl(this.projectToUpdate.batch, [Validators.required, Validators.maxLength(40)]),
     trainerName: new FormControl(this.projectToUpdate.trainer, [Validators.required]),
-    techStack: new FormControl(this.projectToUpdate.techStack, [Validators.required])
+    techStack: new FormControl(this.projectToUpdate.techStack, [Validators.required]),
+    description: new FormControl(this.projectToUpdate.description, [Validators.required]),
+    groupMembers: new FormControl(this.projectToUpdate.groupMembers, [Validators.required])
   })
   //this.ngmeta.setHead({ title: 'Edit Project | RPM' });
  }
 
- validField(controlName: string, errorName: string) {
+ public validField = (controlName: string, errorName: string) => {
    return this.editForm.controls[controlName].hasError(errorName)
  }
 
@@ -88,13 +91,13 @@ export class ProjectEditComponent implements OnInit {
   * @param techStackField : the template variable for the technology stack input field which holds validation information
   * 
   */
- checkForValidField(nameField, batchField, trainerField, descriptionField, techStackField) {
-   if (!nameField.valid || !batchField.valid || !trainerField.valid || !descriptionField.valid || !techStackField.valid) {
-     this.validForm = false;
-   } else {
-     this.validForm = true;
-   }
- }
+//  checkForValidField(nameField, batchField, trainerField, descriptionField, techStackField) {
+//    if (!nameField.valid || !batchField.valid || !trainerField.valid || !descriptionField.valid || !techStackField.valid) {
+//      this.validForm = false;
+//    } else {
+//      this.validForm = true;
+//    }
+//  }
 
  /**
   * This method is bound to the event that the form is submitted;
@@ -102,6 +105,7 @@ export class ProjectEditComponent implements OnInit {
   * 
   */
  submitForm() {
+   console.log(this.projectToUpdate);
    this.projectToUpdate.status = 'PendingEdit';
    this.projectToUpdate.oldProject = null;
    this.projectToUpdate.oldProject = this.originalProject;  //Setting the original project inside the updated project
@@ -128,10 +132,14 @@ export class ProjectEditComponent implements OnInit {
  }
 
  addGroupMember() {
+   console.log(this.groupMember);
+   console.log(document.querySelector("#addMember").value);
+   this.groupMember = document.querySelector('#addMember').value;
    const updatedArr = this.projectToUpdate.groupMembers;
    const nameToAdd = this.groupMember;
    updatedArr.push(nameToAdd);
    this.projectToUpdate.groupMembers = updatedArr;
+   document.querySelector('#addMember').value = '';
    this.groupMember = '';
  }
 
