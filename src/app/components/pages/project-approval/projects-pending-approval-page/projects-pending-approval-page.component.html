@@ -1,14 +1,3 @@
-<mat-card>
-  <mat-card-content>
-    <mat-grid-list cols="2" rowHeight="2:1">
-      <mat-grid-tile id="pending_projects_table">
-          <app-pending-projects-table (swapProject)="onSwapProject($event)"></app-pending-projects-table>
-      </mat-grid-tile>
-      <mat-grid-tile id="pending_edit_requests_table">
-          <app-pending-edit-requests-table (swapProject)="onSwapProject($event)"></app-pending-edit-requests-table>
-      </mat-grid-tile>
-    </mat-grid-list>
-    <!--project viewer -->
-    <app-selected-project-viewer class="project-viewer" *ngIf="selected"></app-selected-project-viewer>
-  </mat-card-content>
-</mat-card>
+<div class="box">
+  <app-pending-projects-table (swapProject)="onSwapProject($event)"></app-pending-projects-table>
+</div>
