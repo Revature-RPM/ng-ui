@@ -5,7 +5,6 @@ import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {ProjectService} from 'src/app/services/project.service';
 import {UserService} from 'src/app/services/user.service';
 import {Router, Params, ActivatedRoute} from '@angular/router';
-import {Subscription} from 'rxjs';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 
 @Component({
@@ -34,6 +33,7 @@ export class ProjectListComponent implements OnInit {
   projectList: Project[] = [];
 
   constructor(private router: Router, private userService: UserService, private projectService: ProjectService, private route: ActivatedRoute) {
+    
   }
 
   ngOnInit() {
@@ -45,8 +45,11 @@ export class ProjectListComponent implements OnInit {
         }
       }
     );
-
-    this.userId = this.route.snapshot.params['userId'];
+    
+    // If the current page is 'projects-user' get the userId
+    if(this.router.url.includes('projects-user')) {
+      this.userId = this.currentUser.id + "";
+    }
 
     this.projectList = this.loadProjects(this.userId);
 
@@ -61,11 +64,11 @@ export class ProjectListComponent implements OnInit {
     else get projects by userId */
   loadProjects(userId): Project[] {
     if (!userId) {
-      this.projectService.getAllProjects().subscribe(proj => {
+      this.projectService.getProjectByField("status", "Approved").subscribe(proj => {
         this.projectList = proj;
       });
     } else {
-      this.projectService.getProjectsByUserId(this.userId).subscribe(proj => {
+      this.projectService.getProjectByField("userId", this.userId).subscribe(proj => {
         this.projectList = proj;
       });
     }
@@ -84,33 +87,8 @@ export class ProjectListComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  /**
-   * This function is used to increment the page index of the project's screenshot.
-   * Incrementing the page index will render the next project's screenshot.
-   * @param totalAmountOfScreenShots : a number value that contains the total number of screenshots for a particular project
-   * @author Yuki Mano (1810-Oct08-Java-USF)
-   */
-  nextImage(totalAmountOfScreenShots: number) {
-    this.imagePage = (this.imagePage + 1) % totalAmountOfScreenShots;
-  }
-
-  /**
-   * This function is used to decrement the page index of the project's screenshot.
-   * Decrementing the page index will render the next project's screenshot.
-   * @param totalAmountOfScreenShots : a number value that contains the total number of screenshots for a particular project
-   * @author Yuki Mano (1810-Oct08-Java-USF)
-   */
-  previousImage(totalAmountOfScreenShots: number) {
-    this.imagePage--;
-    if (this.imagePage < 0) {
-      this.imagePage = totalAmountOfScreenShots;
-    }
-  }
-
-
-
-
   swapProject(proj): void {
     this.projectService.CurrentProject$.next(proj);
+    this.router.navigate(['/project-view']);
   }
 }

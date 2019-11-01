@@ -17,7 +17,7 @@ export class PendingProjectsTableComponent implements OnInit {
    *This object is used to communicate with the parent component that the click event 
    * has happened in this child component
    */
-  @Output() swapProject = new EventEmitter<{row: any}>();
+  @Output() readonly swapProject = new EventEmitter<{row: any}>();
 
   /**
    * These fields are used to store and display the pending projects from the
@@ -25,27 +25,22 @@ export class PendingProjectsTableComponent implements OnInit {
    */
   dataSource: Project[];
   selected: boolean;
-  displayedColumns: string[] = ['Trainer', 'Project', 'Status of Request'];
-  displayedColumnsData: string[] = ['trainer', 'name', 'status'];
+  displayedColumns: string[] = ['Project', 'Trainer', 'Tech Stack', 'Batch', 'Status of Request'];
+  displayedColumnsData: string[] = ['name', 'trainer', 'techStack', 'batch', 'status'];
 
   constructor(private router: Router, private projectService: ProjectService) { }
 
   ngOnInit() {
     this.selected = false;
-    this.projectService.getProjectsByStatus('Pending').subscribe(response => {
+    this.projectService.getProjectByField('status','Pending').subscribe(response => {
       this.dataSource = response;
     });
   }
 
-  /**
-   * The method is called from a click event in the pending-projects-table html.
-   * This method emits the row selected to the project-pending-approval-page component.
-   * @param row
-   * @author Donald Henderson
-   * @author Mikaela Enters
-   */
-  onSwapProject(row): void {
-    this.swapProject.emit(row);
+  goToProject(project: Project) {
+    console.log(project);
+    this.projectService.CurrentProject$.next(project);
+    this.router.navigate(['/project-view']);
   }
 
 }

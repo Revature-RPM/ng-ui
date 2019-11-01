@@ -15,15 +15,15 @@
             <span>All Projects</span>
           </mat-list-item>
 
-          <mat-list-item *ngIf="loggedIn" (click)="goToRoute('projects/' + user.id)">
-            <span>Your Projects</span>
+          <mat-list-item *ngIf="loggedIn" (click)="goToRoute('projects-user')">
+            <span>My Projects</span>
           </mat-list-item>
 
-          <mat-list-item *ngIf="loggedIn && user.role === 'ROLE_ADMIN'" (click)="goToRoute('projects/pending')">
+          <mat-list-item *ngIf="loggedIn && user.role === 'ROLE_ADMIN'" (click)="goToRoute('projects-pending')">
             <span>Pending Projects</span>
           </mat-list-item>
 
-          <mat-list-item *ngIf="loggedIn" (click)="goToRoute('submitform')">
+          <mat-list-item *ngIf="loggedIn" (click)="goToRoute('project-submission')">
             <span>Submit a Project</span>
           </mat-list-item>
           
@@ -44,7 +44,7 @@
 
       </div>
 
-      <mat-list-item *ngIf="!loggedIn" (click)="goToRoute('auth/login')">
+      <mat-list-item *ngIf="!loggedIn" (click)="goToRoute('login')">
         <span>Login/Register</span>
       </mat-list-item>
 

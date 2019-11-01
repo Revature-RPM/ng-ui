@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { User } from '../models/User';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate {
-  
+export class MyprojectViewGuard implements CanActivate {
+
   constructor(private router: Router) {
 
   }
@@ -15,12 +16,9 @@ export class AuthGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean
   {
-    if(localStorage.getItem('jwt')) {
-      return true;
-    }
-    else {
-      this.router.navigate(["login"]);
-      return false;
-    }
+    let user:User = JSON.parse(localStorage.getItem("user"));
+
+    // if(user && user.role.toLowerCase() != "admin")
+
   }
 }

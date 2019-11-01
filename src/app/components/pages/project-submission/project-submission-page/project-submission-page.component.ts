@@ -214,7 +214,7 @@ export class ProjectSubmissionPageComponent {
 		formData.append('trainer', this.projectToUpload.trainer);
 		formData.append('techStack', this.projectToUpload.techStack);
 		formData.append('description', this.projectToUpload.description);
-		formData.append('status', 'pending');
+		formData.append('status', 'Pending');
 		formData.append("userId", this.projectToUpload.userId);
 
 		// elements of an array are appended to the FormData object using the same key name
