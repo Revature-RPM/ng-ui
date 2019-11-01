@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import { Router} from '@angular/router';
 import {NgMetaService} from 'ngmeta'; // TODO use to change title to 'Edit | RPM' or something
 import {Subscription} from 'rxjs';
 import {Project} from 'src/app/models/Project';
@@ -36,7 +35,7 @@ export class ProjectEditComponent implements OnInit {
 
  subscription: Subscription; // will be used to subscribe to the results of an observable
 
- constructor(private router: Router,
+ constructor(
    private snackbarService: SnackbarService,
    private projectService: ProjectService,
 	 private userService: UserService
@@ -102,7 +101,7 @@ export class ProjectEditComponent implements OnInit {
  }
 
  /**
-  * These methods allow for the removal and addition of users to projects when editing.
+  * This method allows for the removal of users to projects when editing.
   * 
   */
  removeGroupMember(name: string) {
@@ -115,17 +114,24 @@ export class ProjectEditComponent implements OnInit {
    this.projectToUpdate.groupMembers = updatedArr;
  }
 
+ /**
+  * This method allows to add users to projects when editing.
+  *   -In an if check block because when a form field is empty and when enter is pressed,
+  *     the inner Add button is fired. The check keeps the list from adding an empty string
+  *     to its list if this situation were to occur.
+  */
  addGroupMember() {
-   console.log('adding ',this.groupMember);
-   const updatedArr = this.projectToUpdate.groupMembers;
-   const nameToAdd = this.groupMember;
-   updatedArr.push(nameToAdd);
-   this.projectToUpdate.groupMembers = updatedArr;
-   this.groupMember = '';
+   if(this.groupMember !== '') {
+    const updatedArr = this.projectToUpdate.groupMembers;
+    const nameToAdd = this.groupMember;
+    updatedArr.push(nameToAdd);
+    this.projectToUpdate.groupMembers = updatedArr;
+    this.groupMember = '';
+   }
  }
 
  cancelEdit() {
-   this.router.navigate(['projects/'+this.user.id]);
+   window.history.back();
  }
 
 }
