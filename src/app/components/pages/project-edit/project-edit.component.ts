@@ -8,6 +8,7 @@ import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/User';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { EventEmitter } from '@angular/core';
 
 @Component({
  selector: 'app-edit-project',
@@ -23,6 +24,7 @@ export class ProjectEditComponent implements OnInit {
  techStackList = ['Java/J2EE', 'PEGA', 'JavaScript MVC', '.Net', 'React.js', 'Java', 'iOS9'];
 
  public editForm: FormGroup;
+ clickToRemove = new EventEmitter<String>();
  /* This field is initially true since the project contents for a particular project are placed in the form fields using two-way binding when
        ngOnInit() is called and the project is retrieved by id from the server */
  validForm: Boolean = true;
@@ -132,16 +134,18 @@ export class ProjectEditComponent implements OnInit {
   * These methods allow for the removal and addition of users to projects when editing.
   * 
   */
- removeGroupMember(e: Event) {// project : Project
+ removeGroupMember(name: string) {// project : Project
    const updatedArr = this.projectToUpdate.groupMembers;
-   const nameToRemove = e.target.textContent;
+   const nameToRemove = name;
+   console.log('removing ', nameToRemove);
+   //const nameToRemove = e.target.textContent;
    const index = updatedArr.indexOf(nameToRemove);
    updatedArr.splice(index, 1);
    this.projectToUpdate.groupMembers = updatedArr;
  }
 
  addGroupMember() {
-   console.log(this.groupMember);
+   console.log('adding ',this.groupMember);
    const updatedArr = this.projectToUpdate.groupMembers;
    const nameToAdd = this.groupMember;
    updatedArr.push(nameToAdd);
