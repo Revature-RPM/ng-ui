@@ -41,7 +41,7 @@ export class ProjectEditComponent implements OnInit {
   */
  title = 'New Group Member';
  questionType = 'Enter the name of the group member';
- result;
+ 
 
  groupMember = '';
 
@@ -131,7 +131,7 @@ export class ProjectEditComponent implements OnInit {
   * These methods allow for the removal and addition of users to projects when editing.
   * 
   */
- removeGroupMember(e) {// project : Project
+ removeGroupMember(e: Event) {// project : Project
    const updatedArr = this.projectToUpdate.groupMembers;
    const nameToRemove = e.target.textContent;
    const index = updatedArr.indexOf(nameToRemove);
@@ -141,13 +141,10 @@ export class ProjectEditComponent implements OnInit {
 
  addGroupMember() {
    console.log(this.groupMember);
-   console.log(document.querySelector("#addMember").value);
-   this.groupMember = document.querySelector('#addMember').value;
    const updatedArr = this.projectToUpdate.groupMembers;
    const nameToAdd = this.groupMember;
    updatedArr.push(nameToAdd);
    this.projectToUpdate.groupMembers = updatedArr;
-   document.querySelector('#addMember').value = '';
    this.groupMember = '';
  }
 

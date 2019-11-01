@@ -60,7 +60,8 @@
         <div id="add-members-inner">
         <h3>Add a Group Member</h3>
         <mat-form-field>
-          <input id="addMember" matInput type="text" placeholder="Add Group Member">
+          <input id="addMember" matInput type="text" placeholder="Add Group Member" name="addMember" 
+            [(ngModel)]="groupMember" [ngModelOptions]="{standalone: true}">
         </mat-form-field>
         <div>
         <button (click)="addGroupMember()" mat-raised-button color="accent">Add</button>
