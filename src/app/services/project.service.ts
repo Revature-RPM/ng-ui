@@ -71,37 +71,4 @@ export class ProjectService {
     return this.httpClient.put(environment.url + `/project`, project, HTTP_OPTIONS);
   }
 
-<<<<<<< HEAD
- getProjectsByUserId(userId: string): Observable<Project[]> {
-  return this.httpClient.get<Project[]>(environment.url + `/project/userId/${userId}`, HTTP_OPTIONS);
- }
- 
- getProjectsByStatus(status: string): Observable<Project[]> {
-   return this.httpClient.get<Project[]>(environment.url + `/project/status/${status}`, HTTP_OPTIONS);
- }
- 
- updateProject(project: Project, id): Observable<Project> {
-   return this.httpClient.put(environment.url + `/project/${id}`, project, HTTP_OPTIONS);
- }
- 
- createProject(project: FormData): Observable<Project> {
-   return this.httpClient.post(environment.url + '/project/', project);
- }
- 
- deleteProjectById(id): Observable<any> {
-   return this.httpClient.delete<any>(environment.url + `/project/id/${id}`);
- }
- 
- /**
-  * The submitEditRequest method is used to submit a changed version of a project that
-  * a user would like to update.
-  * @param project
-  * @author Mikaela Enters
-  * @author Tevin Thomas
-  */
- submitEditRequest(project: Project): Observable<Project> {
-   return this.httpClient.put(environment.url + `/project/edit`, project, HTTP_OPTIONS);
- }
-=======
->>>>>>> b41718b7cd07451ddab84b77f383c90fd6d27922
 }
