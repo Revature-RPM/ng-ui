@@ -112,6 +112,7 @@ export class ProjectEditComponent implements OnInit {
   this.projectService.submitEditRequest(this.projectToUpdate).subscribe(
     (res) => {
       this.snackbarService.openSnackBar("Your update was successful", "Success");
+      this.projectService.CurrentProject$.next(this.projectToUpdate);
       window.history.back();
     },
     (err) => {
