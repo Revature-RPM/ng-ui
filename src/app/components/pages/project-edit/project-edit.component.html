@@ -4,29 +4,21 @@
       <mat-icon>arrow_back</mat-icon>
     </button>
     <h1 id="title">Edit Project</h1>
-    <!--<form #projectForm="ngForm" novalidate>-->
+    
     <form [formGroup]="editForm" novalidate >
       <mat-form-field>
         <input matInput type="text" placeholder="Project Name" formControlName="projectName" id="project_name">
-        <!--<mat-hint align="end">Not more than 60 characters long.</mat-hint>-->
         <mat-error *ngIf="validField('projectName', 'required')">Project name is required. Max 40 characters</mat-error>
-       <!-- <input [(ngModel)]="projectToUpdate.name" id="project_name" matInput name="projectName"
-          placeholder="Project Name" type="text" [ngModelOptions]="{standalone: true}" #name="ngModel">-->
       </mat-form-field>
 
       <mat-form-field>
         <input matInput type="text" placeholder="Batch Name" formControlName="batchName" id="batch_name">
-        <!--<mat-hint align="end">Not more than 60 characters long</mat-hint>-->
         <mat-error *ngIf="validField('batchName', 'required')">Batch name is required. Max 40 characters</mat-error>
-        <!--<input name="batchName" type="text" matInput placeholder="Batch Name" [(ngModel)]="projectToUpdate.batch"
-          [ngModelOptions]="{standalone: true}" #batch="ngModel">-->
       </mat-form-field>
 
       <mat-form-field>
         <input matInput type="text" placeholder="Trainer Name" formControlName="trainerName" id="trainer_name">
         <mat-error *ngIf="validField('trainerName', 'required')">Trainer name is required</mat-error>
-        <!--<input [(ngModel)]="projectToUpdate.trainer" matInput name="trainers" placeholder="Trainer Name" type="text"
-          [ngModelOptions]="{standalone: true}" #trainerName="ngModel">-->
       </mat-form-field>
 
       <mat-form-field>
@@ -36,12 +28,6 @@
           </mat-option>
         </mat-select>
         <mat-error *ngIf="validField('techStack', 'required')">Technology stack is required</mat-error>
-       <!-- <mat-select #techStack="ngModel" [(ngModel)]="projectToUpdate.techStack" [ngModelOptions]="{standalone: true}"
-          placeholder="Select Stack" required #techStack="ngModel">
-          <mat-option *ngFor="let tech of techStackList" [value]="tech">
-            {{tech}}
-          </mat-option>
-        </mat-select>-->
       </mat-form-field>
 
       <mat-form-field>
@@ -51,9 +37,6 @@
           id="description"
         ></textarea>
         <mat-error *ngIf="validField('description', 'required')">Description is required</mat-error>
-        <!--<textarea [(ngModel)]="projectToUpdate.description" matInput name="description"
-          placeholder="Project Description" [ngModelOptions]="{standalone: true}" #description="ngModel"
-          required></textarea>-->
       </mat-form-field>
 
       <div id="add-members">
