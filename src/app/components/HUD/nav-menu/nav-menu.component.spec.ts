@@ -1,5 +1,5 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-
+import { DebugElement } from '@angular/core';
 import {NavMenuComponent} from './nav-menu.component';
 import { MatButtonModule, MatExpansionModule, MatListModule } from '@angular/material';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
@@ -18,6 +18,12 @@ fdescribe('NavMenuComponent', () => {
   let router: Router;
   let routerSpy;
   let store;
+  let links;
+  let allProjectsLink;
+  let myProjectsLink;
+  let mySubmitProjectLink;
+  let profileLink;
+  let logoutLink;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -45,6 +51,17 @@ fdescribe('NavMenuComponent', () => {
     fixture = TestBed.createComponent(NavMenuComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    links = fixture.debugElement.queryAll(By.css('mat-list-item'));
+    //0 => All Projects
+    allProjectsLink = links[0].nativeElement;
+    //1 => My Projects
+    myProjectsLink = links[1].nativeElement;
+    //2 => Submit a project
+    mySubmitProjectLink = links[2].nativeElement;
+    //3 => Profile
+    profileLink = links[3].nativeElement;
+    //4 => logout
+    logoutLink = links[4].nativeElement;
   });
 
   afterEach(() => {
@@ -59,38 +76,36 @@ fdescribe('NavMenuComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should hide goToEditRoles function if admin is false', () => {
-    expect(fixture.debugElement.query(By.css('#go-to-edit'))).toBeNull();
-  });
+  it('should route to projects when All Projects link is clicked', () => {
+    spyOn(component.menuOptionClicked, 'emit');
 
-  it('should route to adminchangeroles on goToEditRoles', () => {
-    component.goToEditRoles();
-
-    expect(routerSpy).toHaveBeenCalledWith(['adminchangeroles']);
+    allProjectsLink.click()
+    expect(component.menuOptionClicked.emit).toHaveBeenCalled();
+    expect(routerSpy).toHaveBeenCalledWith(['projects']);
   });
   
-  it('should route to auth/login on goToLoginRegister', () => {
-    component.goToLoginRegister();
+  it('should route to projects-user when My Projects is clicked', () => {
 
-    expect(routerSpy).toHaveBeenCalledWith(['auth/login']);
+    myProjectsLink.click();
+    expect(routerSpy).toHaveBeenCalledWith(['projects-user']);
   });
 
-  it('should route to profile on goToProfile', () => {
-    component.goToProfile();
+  it('should route to project-submission when Submit a Project is clicked', () => {
+    mySubmitProjectLink.click();
+
+    expect(routerSpy).toHaveBeenCalledWith(['project-submission']);
+  });
+
+  it('should route to profile when Profile is clicked', () => {
+    profileLink.click();
 
     expect(routerSpy).toHaveBeenCalledWith(['profile']);
   });
 
-  it('should route to projects/pending on goToProjectsPending', () => {
-    component.goToPendingProjects();
+  it('should route to login when Logout is clicked', () => {
+    logoutLink.click();
 
-    expect(routerSpy).toHaveBeenCalledWith(['projects/pending']);
-  });
-
-  it('should route to submitform on goToSubmit', () => {
-    component.goToSubmit();
-
-    expect(routerSpy).toHaveBeenCalledWith(['submitform']);
+    expect(routerSpy).toHaveBeenCalledWith(['login']);
   });
 
   it('should call logout from userService', () => {
@@ -100,25 +115,10 @@ fdescribe('NavMenuComponent', () => {
     component.logout();
 
     expect(userService.logout).toHaveBeenCalled();
-    expect(routerSpy).toHaveBeenCalledWith(['auth/login']);
+    expect(routerSpy).toHaveBeenCalledWith(['login']);
   });
 
-  xit('should route as expected for type on getProjects, if type = user', () => {
-    let type = 'user';
-
-    component.getProjects(type);
-
-    expect(routerSpy).toHaveBeenCalledWith(['projects/1']);
-  });
-
-  xit('should route as expected for type on getProjects, if type != user', () => {
-    let type = 'cat';
-    component.getProjects(type);
-
-    expect(routerSpy).toHaveBeenCalledWith(['projects']);
-  });
-
-  it('should not login if user does not exist', () => {
+  it('should not be logged in if user does not exist', () => {
     component.loggedIn = component.admin = true;
     
     let userService = TestBed.get(UserService);
@@ -130,7 +130,7 @@ fdescribe('NavMenuComponent', () => {
     expect(component.admin).toEqual(false);
   });
 
-  it('should not login if user does not exist', () => {
+  it('should not display be an Admin if user role is ROLE_ADMIN', () => {
     let userService = TestBed.get(UserService);
     let u = {role: 'ROLE_ADMIN'};
     userService.user.next(u);
@@ -140,4 +140,5 @@ fdescribe('NavMenuComponent', () => {
     expect(component.loggedIn).toEqual(true);
     expect(component.admin).toEqual(true);
   });
+
 });

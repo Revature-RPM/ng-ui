@@ -1,15 +1,19 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-
+import { BehaviorSubject } from 'rxjs';
+import { User } from 'src/app/models/User';
 import {SidenavComponent} from './sidenav.component';
-import { MatSidenavModule, MatIconModule, MatMenuModule, MatToolbarModule, MatExpansionModule } from '@angular/material';
+import { MatSidenavModule, MatIconModule, MatMenuModule, MatToolbarModule, MatExpansionModule, MatListModule } from '@angular/material';
 import { NavMenuComponent } from '../nav-menu/nav-menu.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
+import { MockUserService } from 'src/app/mocks/mock-user-service';
+import { By } from '@angular/platform-browser';
 import { RouterScroller } from '@angular/router/src/router_scroller';
 
-describe('SidenavComponent', () => {
+fdescribe('SidenavComponent', () => {
   let component: SidenavComponent;
   let fixture: ComponentFixture<SidenavComponent>;
   let router;
@@ -20,8 +24,9 @@ describe('SidenavComponent', () => {
       declarations: [ SidenavComponent, NavMenuComponent ],
       imports: [ MatSidenavModule, MatIconModule, MatMenuModule,
         MatToolbarModule, MatExpansionModule,
-        HttpClientTestingModule, NoopAnimationsModule,
+        HttpClientTestingModule, NoopAnimationsModule, MatListModule,
         RouterTestingModule ],
+        providers: [{provide: UserService, useClass: MockUserService}],
     })
     .compileComponents();
   }));
@@ -44,6 +49,26 @@ describe('SidenavComponent', () => {
 
     expect(routerSpy).toHaveBeenCalledWith(['/profile']);
   });
+
+  it('should route to profile when avatar is clicked on', () => {
+    let avatar = fixture.debugElement.query(By.css('.user-avatar'));
+    
+    avatar.nativeElement.click();
+
+    expect(routerSpy).toHaveBeenCalledWith(['/profile']);
+  });
+
+  xit('loggedIn should be false if user is not logged in', () => {
+    component.loggedIn = true;
+    
+    let userService = TestBed.get(UserService);
+    userService.user = new BehaviorSubject(null);
+
+    component.ngOnInit();
+
+    expect(component.loggedIn).toEqual(false);
+  }) 
+    
 
   it('should write to console.log when log is called', () => {
     let consoleSpy = spyOn(console, 'log').and
