@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
 import { Router, Route } from '@angular/router';
-import { MatCardModule, MatIconModule, MatInputModule, MatOptionModule, MatExpansionModule, MatSelectModule } from '@angular/material';
+import { MatCardModule, MatIconModule, MatInputModule, MatOptionModule, MatExpansionModule, MatSelectModule, MatListModule } from '@angular/material';
 import { NgxHmCarouselModule } from 'ngx-hm-carousel';
 import { BehaviorSubject, of } from 'rxjs';
 
@@ -49,7 +49,7 @@ describe('ProjectGridPageComponent', () => {
         MatExpansionModule, MatSelectModule,
         NgxHmCarouselModule, HttpClientTestingModule,
         RouterTestingModule, NoopAnimationsModule,
-        FormsModule, ReactiveFormsModule,
+        FormsModule, ReactiveFormsModule, MatListModule,
         HighlightModule.forRoot({ languages: hljsLanguages }) ],
         schemas: [NO_ERRORS_SCHEMA],
       providers: [ { provide: ProjectService, useClass: MockProjectService },

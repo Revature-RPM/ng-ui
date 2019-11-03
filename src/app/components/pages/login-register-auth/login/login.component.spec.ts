@@ -19,7 +19,7 @@ import { By } from '@angular/platform-browser';
 import { MockUserService } from 'src/app/mocks/mock-user-service';
 
 
-fdescribe('LoginComponent', () => {
+describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
   let router: Router;
@@ -70,7 +70,7 @@ fdescribe('LoginComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('component initial state', () => {
+  it('initializes with correct state', () => {
     expect(component.user).toEqual({ });
     expect(component.passwordO).toBeFalsy();
     expect(component.usernameO).toBeFalsy();

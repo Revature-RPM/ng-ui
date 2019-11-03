@@ -19,6 +19,6 @@ export class MyprojectViewGuard implements CanActivate {
     let user:User = JSON.parse(localStorage.getItem("user"));
 
     // if(user && user.role.toLowerCase() != "admin")
-
+    
   }
 }

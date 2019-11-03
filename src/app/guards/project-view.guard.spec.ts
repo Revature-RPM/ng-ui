@@ -9,7 +9,7 @@ describe('ProjectViewGuard', () => {
     });
   });
 
-  it('should ...', inject([ProjectViewGuard], (guard: ProjectViewGuard) => {
+  xit('should ...', inject([ProjectViewGuard], (guard: ProjectViewGuard) => {
     expect(guard).toBeTruthy();
   }));
 });

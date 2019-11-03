@@ -2,12 +2,12 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { MatSnackBarModule, MatSidenavModule, MatIconModule,
-  MatMenuModule, MatToolbarModule, MatExpansionModule }
+  MatMenuModule, MatToolbarModule, MatExpansionModule, MatListModule }
   from '@angular/material';
 
-  import { SidenavComponent } from 'src/app/components/HUD/sidenav/sidenav.component';
-  import { NavMenuComponent } from 'src/app/components/HUD/nav-menu/nav-menu.component';
-  import { AllUsersPageComponent } from './all-users-page.component';
+import { SidenavComponent } from 'src/app/components/HUD/sidenav/sidenav.component';
+import { NavMenuComponent } from 'src/app/components/HUD/nav-menu/nav-menu.component';
+import { AllUsersPageComponent } from './all-users-page.component';
 import { UserService } from 'src/app/services/user.service';
 import { MockUserService } from 'src/app/mocks/mock-user-service';
 
@@ -20,7 +20,7 @@ describe('AllUsersPageComponent', () => {
       declarations: [ AllUsersPageComponent, SidenavComponent, NavMenuComponent ],
       imports: [ MatSnackBarModule, MatSidenavModule, MatIconModule,
         MatMenuModule, MatToolbarModule, 
-        MatExpansionModule, RouterTestingModule, 
+        MatExpansionModule, RouterTestingModule, MatListModule,
         HttpClientTestingModule ],
         providers: [{ provide: UserService, useClass: MockUserService }]
     })
