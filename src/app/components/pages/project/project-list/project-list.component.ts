@@ -21,6 +21,8 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 })
 export class ProjectListComponent implements OnInit {
 
+  title:string = "Projects" || "My Projects";
+
   trainerFullName;
   currentUser: User;
   displayedColumns: string[] = ['name', 'batch', 'trainer', 'techStack', 'status'];
@@ -49,6 +51,7 @@ export class ProjectListComponent implements OnInit {
     // If the current page is 'projects-user' get the userId
     if(this.router.url.includes('projects-user')) {
       this.userId = this.currentUser.id + "";
+      this.title = "My Projects";
     }
 
     this.projectList = this.loadProjects(this.userId);

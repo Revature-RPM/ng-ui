@@ -13,7 +13,7 @@
   </mat-accordion>
 </div>  -->
 
-<h2 id="projects">Projects</h2>
+<h2 id="projects">{{ title }}</h2>
 <div *ngIf="projectList" class="section flex-section">
 	<mat-card *ngFor="let project of projectList" (click)="swapProject(project)" mat-fab matTooltip={{project.name}} matTooltipPosition="above">
 		<mat-card-content>
