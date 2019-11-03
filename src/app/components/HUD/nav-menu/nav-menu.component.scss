@@ -46,16 +46,17 @@
             text-align: center;
         }
 
+        mat-expansion-panel {
+            mat-panel-title {
+                margin-right: -16px;
+            }
+            mat-list-item {
+                padding-left: 16px;
+            }
+        }
+
         mat-list-item {
 			background: $rev-white;
-
-            mat-expansion-panel {
-                padding: 0;
-                -webkit-box-shadow: 0 0 0 rgba(0,0,0,0) !important;
-                        box-shadow: 0 0 0 rgba(0,0,0,0) !important;
-                width: $view-projects-button-width;
-                margin: auto;
-            }
 		}
 	
 		mat-list-item:hover {

@@ -3,6 +3,7 @@ import {ProjectService} from '../../../services/project.service';
 import {Router} from '@angular/router';
 import {UserService} from 'src/app/services/user.service';
 import {User} from 'src/app/models/User';
+import { nonUserMenu, userMenu, adminMenu } from 'src/app/utils/menus';
 
 @Component({
   selector: 'app-nav-menu',
@@ -17,6 +18,7 @@ export class NavMenuComponent implements OnInit {
   panelOpenState = false;
   user: User;
   admin = false;
+  menu: any = [];
 
   constructor(private projectService: ProjectService, private userService: UserService, private router: Router) {
   }
@@ -34,27 +36,11 @@ export class NavMenuComponent implements OnInit {
     this.userService.user.asObservable().subscribe(
       user => {
         this.user = user;
-        if (this.user) {
-          this.loggedIn = true;
-          if (this.user.role === 'ROLE_ADMIN') {
-            this.admin = true;
-          }
-        } else {
-          this.loggedIn = false;
-          this.admin = false;
-        }
+        if (this.user && this.user.role === 'ROLE_ADMIN') this.menu = adminMenu;
+        else if(this.user) this.menu = userMenu
+        else this.menu = nonUserMenu;
       }
     );
-  }
-
-   /**
-   * Function that:
-   * Calls the user service logout function and re-routes to the login page.
-   */
-  logout() {
-    this.userService.logout();
-    this.menuOptionClicked.emit();
-    this.router.navigate(['']);
   }
 
   /**
@@ -63,7 +49,11 @@ export class NavMenuComponent implements OnInit {
    */
   goToRoute(route: string) {
     this.menuOptionClicked.emit();
-    this.router.navigate([route]); 
+    if(route == "logout") {
+      this.userService.logout();
+      this.router.navigate(['']);
+    }
+    else this.router.navigate([route]); 
   }
   
 }

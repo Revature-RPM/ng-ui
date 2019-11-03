@@ -4,44 +4,24 @@
   </div>
   
   <mat-list>
-      <mat-list-item (click)="goToRoute('home')">
-        <span>Home</span>
-      </mat-list-item>
-
-      <div *ngIf="loggedIn">
-        <mat-list-item (click)="goToRoute('projects')">
-          <span>All Projects</span>
+      <div *ngFor="let item of menu">
+        <mat-list-item *ngIf="!item.subMenu" (click)="goToRoute(item.route)">
+          <span>{{ item.name }}</span>
         </mat-list-item>
   
-        <mat-list-item (click)="goToRoute('projects-user')">
-          <span>My Projects</span>
-        </mat-list-item>
-  
-        <mat-list-item *ngIf="loggedIn && user.role === 'ROLE_ADMIN'" (click)="goToRoute('projects-pending')">
-          <span>Pending Projects</span>
-        </mat-list-item>
+        <mat-expansion-panel *ngIf="item.subMenu">
+          <mat-expansion-panel-header>
+              <mat-panel-title>
+                <span> {{ item.name }} </span>
+              </mat-panel-title>
+          </mat-expansion-panel-header>
 
-        <mat-list-item (click)="goToRoute('project-submission')">
-          <span>Submit a Project</span>
-        </mat-list-item>
-        
-        <mat-list-item *ngIf="user.role === 'ROLE_ADMIN'" (click)="goToRoute('adminchangeroles')">
-          <span>Edit User</span>
-        </mat-list-item>
-  
-        <mat-list-item (click)="goToRoute('profile')">
-          <span>Profile</span>
-        </mat-list-item>
+          <mat-list-item *ngFor="let subItem of item.subMenu" (click)="goToRoute(subItem.route)">
+            <span>{{ subItem.name }}</span>
+          </mat-list-item>
 
-        <mat-list-item (click)="logout()">
-          <span>Logout</span>
-        </mat-list-item>
-
+        </mat-expansion-panel>
       </div>
-
-      <mat-list-item *ngIf="!loggedIn" (click)="goToRoute('login')">
-        <span>Login/Register</span>
-      </mat-list-item>
 
   </mat-list>
 
