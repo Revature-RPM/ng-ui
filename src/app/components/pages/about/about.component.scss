@@ -20,27 +20,29 @@
     can use and make SCSS variables and make everyone's
     lives easier.
 */
-@import '../../../../../variables';
 
-.welcome-backg {
-    height: 100%;
+@import '../../../../variables';
+
+h2 {
     margin-top: -2rem;
-    background: url('../../../../../assets/images/BackgRpm2.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-.main-blocks {
-    width: $main-blocks-width;
-    margin: $main-blocks-margin;
-    margin-bottom: 2rem;
 }
 
 .section {
-    width: 90%;
-    margin: 0 auto;
+    width: 70%;
+    margin: 1rem auto;
+    margin-bottom: 5rem;
 }
 
-@media screen and (min-width: $all-projects-breakpoint) {
-    
+#description-box {
+    padding: $section-padding;
 }
+
+// Small devices
+@media (max-width: 767.98px) {
+    mat-card {
+        width: 90%;
+    }
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) and (max-width: 991.98px) { }

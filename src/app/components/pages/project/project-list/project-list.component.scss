@@ -22,29 +22,32 @@
 */
 @import '../../../../../variables';
 
-h4 {
-    margin: 10px auto 0 auto;
+.section {
+    width: 90%;
+    margin: 2rem auto;
 }
 
-button {
-    width: 100%;
-}
+.flex-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
 
-#project-list-tabs {
-    display: none;
-}
+    mat-card {
+        height: 8rem;
+        width: 15rem;
+        overflow: hidden;
+        margin: 0.5rem;
 
-@media screen and (min-width: $all-projects-breakpoint) {
-    #project-list-tabs {
-        display: flex;
-        height: 100%;
-        width: 100%;
-        justify-content: flex-start;
-        flex-direction: column;
-        overflow: auto;
-    }
+        border: 1px solid $rev-light-gray;
+        border-radius: 12px;
+        cursor: pointer;
 
-    #project-list-dropdown {
-        display: none;
+        h4 {
+            margin-bottom: 1rem;
+        }
+
+        span {
+            display: block;
+        }
     }
 }

@@ -26,8 +26,6 @@ export class ProjectService {
  AllProjects$: BehaviorSubject<Project[]>;
  CurrentProject$: BehaviorSubject<Project>;
  
- CurrentProject: Project; //this is an outdated variable
- 
  constructor(private httpClient: HttpClient) {
    this.CurrentProject$ = new BehaviorSubject<Project>(null);
    this.AllProjects$ = new BehaviorSubject<Project[]>(null);

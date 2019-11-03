@@ -16,7 +16,7 @@ export class ProjectViewGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean
   {
-    if(this.projectService.CurrentProject) return true;
+    if(this.projectService.CurrentProject$.value) return true;
     else {
       this.router.navigate([""]);
       return false;
