@@ -20,7 +20,7 @@ export class MyprojectViewGuard implements CanActivate {
     if(user) return true;
     else {
       this.router.navigate([""]);
-      return false;
     }
+    return false;
   }
 }
