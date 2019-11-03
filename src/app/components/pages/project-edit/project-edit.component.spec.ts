@@ -25,7 +25,7 @@ import {Observable, throwError} from 'rxjs';
 * Edit Project tests.
 * Skipped tests do not work- router is not being correctly mocked. Use below resource for more information on mocking a router.
 */
-fdescribe('ProjectEditComponent', () => {
+describe('ProjectEditComponent', () => {
  let component: ProjectEditComponent;
  let fixture: ComponentFixture<ProjectEditComponent>;
  let project: Project;
