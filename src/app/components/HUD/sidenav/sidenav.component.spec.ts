@@ -11,9 +11,10 @@ import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { MockUserService } from 'src/app/mocks/mock-user-service';
 import { By } from '@angular/platform-browser';
+import { of } from 'rxjs';
 import { RouterScroller } from '@angular/router/src/router_scroller';
 
-fdescribe('SidenavComponent', () => {
+describe('SidenavComponent', () => {
   let component: SidenavComponent;
   let fixture: ComponentFixture<SidenavComponent>;
   let router;
@@ -62,7 +63,8 @@ fdescribe('SidenavComponent', () => {
     component.loggedIn = true;
     
     let userService = TestBed.get(UserService);
-    userService.user = new BehaviorSubject(null);
+    
+    userService.user = new BehaviorSubject<User>(null);
 
     component.ngOnInit();
 

@@ -25,7 +25,7 @@ import { UserService } from 'src/app/services/user.service';
 import { ProjectEditComponent } from '../../project-edit/project-edit.component';
 
 
-fdescribe('ProjectSubmissionPageComponent', () => {
+describe('ProjectSubmissionPageComponent', () => {
 	let router: Router;
 	let routerSpy;
 	let component: ProjectSubmissionPageComponent;
