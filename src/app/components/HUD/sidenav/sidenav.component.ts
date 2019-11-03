@@ -10,6 +10,7 @@ import { UserService } from 'src/app/services/user.service';
 export class SidenavComponent implements OnInit {
 
   loggedIn = false;
+  homepage = false;
 
   log(state) {
     console.log(state);
@@ -25,6 +26,18 @@ export class SidenavComponent implements OnInit {
         else this.loggedIn = false;
       }
     );
+    
+    /**
+     * Subscribe to router changes in order to know when to display content in the toolbar
+     */
+    this.router.events.subscribe(e => {
+      console.log(e);
+      if(e instanceof NavigationEnd) {
+        if( e.url == "/" || e.url.includes("home")) this.homepage = true;
+        else this.homepage = false;
+      }
+
+    });
 
   }
 
@@ -34,6 +47,15 @@ export class SidenavComponent implements OnInit {
 
   routeToProfile() {
     this.router.navigate(['/profile']);
+  }
+
+  /**
+   * Navigate to the element in the screen that matches the id passed to the method
+   * @param id
+   */
+  goToElement(id: string) {
+    let elem = document.getElementById(id);
+    elem.scrollIntoView({behavior: "smooth"});
   }
 
 }

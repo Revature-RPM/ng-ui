@@ -11,7 +11,7 @@ import {User} from 'src/app/models/User';
 })
 export class NavMenuComponent implements OnInit {
 
-  @Output("menuOptionClicked") menuOptionClicked = new EventEmitter<void>();
+  @Output() readonly menuOptionClicked = new EventEmitter<void>();
 
   loggedIn = false;
   panelOpenState = false;
@@ -27,7 +27,7 @@ export class NavMenuComponent implements OnInit {
    * The user is used to keep track of the nav-menu display rather than the jwt because
    * the nav-menu needs to be aware of session changes at every page and an observable is the most
    * reliable way to constantly check for these changes. You cannot subscribe to an item in local storage.
-   * @author Justin Kerr (190422-USF)
+   * 
    */
   ngOnInit() {
 
@@ -54,7 +54,7 @@ export class NavMenuComponent implements OnInit {
   logout() {
     this.userService.logout();
     this.menuOptionClicked.emit();
-    this.router.navigate(['login']);
+    this.router.navigate(['']);
   }
 
   /**

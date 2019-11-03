@@ -16,9 +16,11 @@ export class MyprojectViewGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean
   {
-    let user:User = JSON.parse(localStorage.getItem("user"));
-
-    // if(user && user.role.toLowerCase() != "admin")
-
+    let user = localStorage.getItem("user");
+    if(user) return true;
+    else {
+      this.router.navigate([""]);
+    }
+    return false;
   }
 }
