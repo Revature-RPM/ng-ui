@@ -29,7 +29,7 @@ import { ProjectService } from 'src/app/services/project.service';
 import { MockProjectService } from 'src/app/mocks/mock-project-service';
 import { MockUserService } from 'src/app/mocks/mock-user-service';
 
-describe('ProjectGridPageComponent', () => {
+fdescribe('ProjectGridPageComponent', () => {
   let component: ProjectGridPageComponent;
   let fixture: ComponentFixture<ProjectGridPageComponent>;
   let router: Router;

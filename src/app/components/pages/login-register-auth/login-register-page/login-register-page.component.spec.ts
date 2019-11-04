@@ -12,7 +12,7 @@ import { RegisterComponent } from '../register/register.component';
 import {LoginRegisterPageComponent} from './login-register-page.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
-describe('LoginRegisterPageComponent', () => {
+fdescribe('LoginRegisterPageComponent', () => {
   let component: LoginRegisterPageComponent;
   let fixture: ComponentFixture<LoginRegisterPageComponent>;
 

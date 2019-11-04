@@ -7,7 +7,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
 
-describe('ProjectsPendingApprovalPageComponent', () => {
+fdescribe('ProjectsPendingApprovalPageComponent', () => {
   let component: ProjectsPendingApprovalPageComponent;
   let fixture: ComponentFixture<ProjectsPendingApprovalPageComponent>;
 

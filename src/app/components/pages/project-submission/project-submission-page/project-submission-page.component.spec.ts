@@ -26,7 +26,7 @@ import { ProjectEditComponent } from '../../project-edit/project-edit.component'
 
 /* tslint:disable: no-lifecycle-call */
 
-describe('ProjectSubmissionPageComponent', () => {
+fdescribe('ProjectSubmissionPageComponent', () => {
 	let router: Router;
 	let routerSpy;
 	let component: ProjectSubmissionPageComponent;

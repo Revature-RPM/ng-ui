@@ -14,7 +14,7 @@ import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
 import { RouterScroller } from '@angular/router/src/router_scroller';
 
-describe('SidenavComponent', () => {
+fdescribe('SidenavComponent', () => {
   let component: SidenavComponent;
   let fixture: ComponentFixture<SidenavComponent>;
   let router;
