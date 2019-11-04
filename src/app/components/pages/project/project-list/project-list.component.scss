@@ -24,7 +24,21 @@
 
 .section {
     width: 90%;
-    margin: 2rem auto;
+    margin: 0 auto;
+}
+
+.filter-block {
+    font-size: 0.7rem;
+
+    mat-form-field {
+        display: inline-block;
+        margin: 0.5rem 1rem;
+    }
+
+    mat-select {
+        display: inline-block;
+        width: 10rem;
+    }
 }
 
 .flex-section {

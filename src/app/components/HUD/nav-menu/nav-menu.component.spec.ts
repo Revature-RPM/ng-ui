@@ -135,6 +135,7 @@ describe('NavMenuComponent', () => {
     let u = {role: 'ROLE_ADMIN'};
     userService.user.next(u);
 
+    // tslint:disable-next-line: no-lifecycle-call
     component.ngOnInit();
 
     expect(component.menu).toEqual(adminMenu);
