@@ -23,10 +23,18 @@ export interface DialogData {
 	styleUrls: ['./project-submission-page.component.scss']
 })
 export class ProjectSubmissionPageComponent {
+
+	projectName = new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z0-9\'\" ]*')]);
+	batchName  = new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z0-9-/ ]*')]);
+	trainerName  = new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z0-9 ]*')]);
+	techStack  = new FormControl('');
+	groupMembers  = new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z, ]*')]);
+	description  = new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z0-9\'\"\n ]*')]);
+	zipLinks  = new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z0-9/:.@-_, ]*')]);
+
 	form: FormGroup;
 	projectToUpload: Project = {};
 	user: User;
-	
 	projectNameFormControl = new FormControl('', [ Validators.required ]);
 
 	/**
@@ -51,7 +59,7 @@ export class ProjectSubmissionPageComponent {
 		private userService: UserService,
 		private snackbar: SnackbarService,
 		private formBuilder: FormBuilder
-	) { }
+	) {}
 
 	ngOnInit() {
 		this.userService.user.asObservable().subscribe(
@@ -102,14 +110,16 @@ export class ProjectSubmissionPageComponent {
 		dialogRef.afterClosed().subscribe(
 
 			result => {
-				if (result) {
+				if (result && result!="") {
 					if (e.target.id === 'inputGroupMembers') {
 						this.projectToUpload.groupMembers = result;
 						this.groupMemberString = this.projectToUpload.groupMembers.join(', ');
+						this.groupMembers.setValue(this.groupMemberString);
 					}
 					else if (e.target.id === 'inputGithubLink') {
 						this.projectToUpload.zipLinks = result;
 						this.zipLinksString = this.projectToUpload.zipLinks.join(', ');
+						this.zipLinks.setValue(this.zipLinksString);
 					}
 				}
 			}
@@ -207,17 +217,34 @@ export class ProjectSubmissionPageComponent {
 	 */
 	submitForm() {
 		this.submitting = true;
-
 		let formData = new FormData();
-		if(this. || this.) {
-			this.snackbar.openSnackBar('Input form is filled wrong.', 'Dismiss');
+		let problems = "";
+
+		if(this.projectName.invalid) {problems=problems + " Project name has problems."}
+		if(this.batchName.invalid) {problems=problems + " Batch name has problems."}
+		if(this.trainerName.invalid) {problems=problems + " Trainer name has problems."}
+		if(this.techStack.invalid) {problems=problems + " Tech stack was not picked."}
+		if(this.groupMembers.invalid) {problems=problems + " Group members has problem."}
+		if(this.description.invalid) {problems=problems + " Description has problem."}
+		if(this.zipLinks.invalid) {problems=problems + " Github link has problems."}
+
+		if(problems != ""){
+			this.snackbar.openSnackBar(problems, 'Dismiss');
 			return;
 		}
-		formData.append('name', this.projectToUpload.name);
-		formData.append('batch', this.projectToUpload.batch);
-		formData.append('trainer', this.projectToUpload.trainer);
-		formData.append('techStack', this.projectToUpload.techStack);
-		formData.append('description', this.projectToUpload.description);
+
+		console.log(this.projectName.value);
+		console.log(this.batchName.value);
+		console.log(this.trainerName.value);
+		console.log(this.techStack.value);
+		console.log(this.description.value);
+		console.log(this.projectToUpload.userId);
+		
+		formData.append('name', this.projectName.value);
+		formData.append('batch', this.batchName.value);
+		formData.append('trainer', this.trainerName.value);
+		formData.append('techStack', this.techStack.value);
+		formData.append('description', this.description.value);
 		formData.append('status', 'pending');
 		formData.append("userId", this.projectToUpload.userId);
 
