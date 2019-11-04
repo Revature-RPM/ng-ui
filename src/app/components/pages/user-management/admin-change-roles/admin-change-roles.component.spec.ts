@@ -5,7 +5,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { MatTableModule } from '@angular/material';
 
-fdescribe('AdminChangeRolesComponent', () => {
+describe('AdminChangeRolesComponent', () => {
   let component: AdminChangeRolesComponent;
   let fixture: ComponentFixture<AdminChangeRolesComponent>;
 

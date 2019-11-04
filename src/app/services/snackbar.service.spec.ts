@@ -3,7 +3,7 @@ import {TestBed} from '@angular/core/testing';
 import {SnackbarService} from './snackbar.service';
 import { MatSnackBarModule } from '@angular/material';
 
-fdescribe('SnackbarService', () => {
+describe('SnackbarService', () => {
   beforeEach(() => TestBed.configureTestingModule({
     imports: [ MatSnackBarModule ],
   }));

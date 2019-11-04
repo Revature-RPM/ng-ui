@@ -5,7 +5,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
-fdescribe('PendingProjectsTableComponent', () => {
+describe('PendingProjectsTableComponent', () => {
   let component: PendingProjectsTableComponent;
   let fixture: ComponentFixture<PendingProjectsTableComponent>;
 

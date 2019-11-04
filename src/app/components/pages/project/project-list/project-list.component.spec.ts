@@ -14,7 +14,7 @@ import { MockUserService } from 'src/app/mocks/mock-user-service';
 import { Router } from '@angular/router';
 
 
-fdescribe('ProjectListComponent', () => {
+describe('ProjectListComponent', () => {
   let component: ProjectListComponent;
   let fixture: ComponentFixture<ProjectListComponent>;
   let projectService: ProjectService;

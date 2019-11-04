@@ -12,7 +12,7 @@ import {AppModule} from '../app.module';
  *
  * @author Gabriel Zapata (190107-Java-Spark-USF)
  */
-fdescribe('ProjectService', () => {
+describe('ProjectService', () => {
   beforeEach(() => TestBed.configureTestingModule({
     declarations: [ ],
     imports: [RouterTestingModule, BrowserAnimationsModule, AppModule]

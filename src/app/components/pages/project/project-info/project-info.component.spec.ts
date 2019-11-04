@@ -4,7 +4,7 @@ import {ProjectInfoComponent} from './project-info.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
-fdescribe('ProjectInfoComponent', () => {
+describe('ProjectInfoComponent', () => {
   let component: ProjectInfoComponent;
   let fixture: ComponentFixture<ProjectInfoComponent>;
 

@@ -5,7 +5,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
-fdescribe('SelectedProjectViewerComponent', () => {
+describe('SelectedProjectViewerComponent', () => {
   let component: SelectedProjectViewerComponent;
   let fixture: ComponentFixture<SelectedProjectViewerComponent>;
 

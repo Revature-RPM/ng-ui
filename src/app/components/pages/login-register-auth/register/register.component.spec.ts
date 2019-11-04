@@ -13,7 +13,7 @@ import {from} from 'rxjs';
 import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
 
-fdescribe('RegisterComponent', () => {
+describe('RegisterComponent', () => {
   let component: RegisterComponent;
   let fixture: ComponentFixture<RegisterComponent>;
   let router: Router;
@@ -79,7 +79,7 @@ fdescribe('RegisterComponent', () => {
     expect(component.submitted).toEqual(false);
   });
 
-  xit('when valid form is submitted it calls the UserService Register', () => {
+  it('when valid form is submitted it calls the UserService Register', () => {
 
     component.form1.firstName.setValue('Jack');
     component.form1.lastName.setValue('Smith');

@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ProjectWelcomePageComponent } from './project-welcome-page.component';
 import { MatCardModule} from '@angular/material';
 
-fdescribe('ProjectWelcomePageComponent', () => {
+describe('ProjectWelcomePageComponent', () => {
   let component: ProjectWelcomePageComponent;
   let fixture: ComponentFixture<ProjectWelcomePageComponent>;
 

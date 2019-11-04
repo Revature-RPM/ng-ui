@@ -6,7 +6,7 @@ import { NgxHmCarouselModule } from 'ngx-hm-carousel';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
-fdescribe('NgxCarouselComponent', () => {
+describe('NgxCarouselComponent', () => {
   let component: NgxCarouselComponent;
   let fixture: ComponentFixture<NgxCarouselComponent>;
 
