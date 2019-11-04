@@ -31,7 +31,6 @@ export class SidenavComponent implements OnInit {
      * Subscribe to router changes in order to know when to display content in the toolbar
      */
     this.router.events.subscribe(e => {
-      console.log(e);
       if(e instanceof NavigationEnd) {
         if( e.url == "/" || e.url.includes("home")) this.homepage = true;
         else this.homepage = false;
