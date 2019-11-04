@@ -3,6 +3,8 @@ import {RouterModule, Routes} from '@angular/router';
 
 // Guards
 import { AuthGuard } from './guards/auth.guard';
+import { ProjectViewGuard } from './guards/project-view.guard';
+import { AdminGuard } from './guards/admin.guard';
 
 // Components
 import {PageNotFoundComponent} from './components/pages/page-not-found/page-not-found.component';
@@ -15,17 +17,19 @@ import { AdminChangeRolesComponent } from './components/pages/user-management/ad
 import { ProjectsPendingApprovalPageComponent } from './components/pages/project-approval/projects-pending-approval-page/projects-pending-approval-page.component';
 import { CodebaseComponent } from './components/pages/codebase/codebase.component';
 import { ProjectViewComponent } from './components/pages/project-view/project-view.component';
-import { ProjectViewGuard } from './guards/project-view.guard';
+import { HomePageComponent } from './components/pages/home-page/home-page.component';
+
 
 const routes: Routes = [
-  {path: '', redirectTo: 'projects', pathMatch: 'full'},
+  {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'login', component: LoginRegisterPageComponent},
+  {path: 'home', component: HomePageComponent},
   {path: 'projects', component: ProjectGridPageComponent},
   {path: 'projects-user', component: ProjectGridPageComponent, canActivate: [AuthGuard] },
-  {path: 'projects-pending', component: ProjectsPendingApprovalPageComponent, canActivate: [AuthGuard]},
+  {path: 'projects-pending', component: ProjectsPendingApprovalPageComponent, canActivate: [AdminGuard]},
   {path: 'project-submission', component: ProjectSubmissionPageComponent, canActivate: [AuthGuard] },
   {path: 'project-update', component: ProjectEditComponent, canActivate: [AuthGuard] },
-  {path: 'project-view', component: ProjectViewComponent },
+  {path: 'project-view', component: ProjectViewComponent, canActivate: [ProjectViewGuard] },
   {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   {path: 'codebase', component: CodebaseComponent},
   {path: 'adminchangeroles', component: AdminChangeRolesComponent, canActivate: [AuthGuard] },

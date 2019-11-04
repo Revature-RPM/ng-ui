@@ -22,7 +22,7 @@ export interface DialogData {
 	templateUrl: './project-submission-page.component.html',
 	styleUrls: ['./project-submission-page.component.scss']
 })
-export class ProjectSubmissionPageComponent {
+export class ProjectSubmissionPageComponent implements OnInit {
 	form: FormGroup;
 	projectToUpload: Project = {};
 	user: User;
@@ -54,6 +54,8 @@ export class ProjectSubmissionPageComponent {
 	imagePath;
 
 	ngOnInit() {
+		console.log("Teste");
+		
 		this.userService.user.asObservable().subscribe(
 			user => {
 				this.user = user;
@@ -239,7 +241,7 @@ export class ProjectSubmissionPageComponent {
 			project => {
 				this.snackbar.openSnackBar('Success!!', 'Dismiss');
 				this.submitting = false;
-				this.router.navigate(['projects/1']);
+				this.router.navigate(['projects-user']);
 			},
 			error => {
 				this.submitting = false;
