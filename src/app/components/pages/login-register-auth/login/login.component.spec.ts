@@ -154,7 +154,7 @@ describe('LoginComponent', () => {
     usernameInput.nativeElement.dispatchEvent(new KeyboardEvent('keydown', {
       "code": "9",
       "key": "5",
-      "cancelable": "true"
+      "cancelable": true
     }));
    
     fixture.detectChanges();
@@ -177,7 +177,7 @@ describe('LoginComponent', () => {
     passwordInput.nativeElement.dispatchEvent(new KeyboardEvent('keydown', {
       "code": "8",
       "key": "6",
-      "cancelable": "true"
+      "cancelable": true
     }));
 
     fixture.detectChanges();

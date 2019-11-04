@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ProjectWelcomePageComponent } from './project-welcome-page.component';
+import { MatCardModule} from '@angular/material';
 
 describe('ProjectWelcomePageComponent', () => {
   let component: ProjectWelcomePageComponent;
@@ -7,7 +8,8 @@ describe('ProjectWelcomePageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ProjectWelcomePageComponent]
+      declarations: [ProjectWelcomePageComponent],
+      imports: [MatCardModule]
     })
       .compileComponents();
   }));
@@ -20,11 +22,6 @@ describe('ProjectWelcomePageComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  it('should display title text correctly', () => {
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h2').textContent).toContain('Revature Project Manager');
   });
 
   it('should display description text correctly', () => {

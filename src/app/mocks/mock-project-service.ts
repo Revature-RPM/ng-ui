@@ -26,6 +26,10 @@ export class MockProjectService {
     this.CurrentProject$.next(this.CurrentProject);
     this.AllProjects$.next([this.CurrentProject]);
     }
+
+    getProjectByField(field: string, value?: string) {
+         return this.AllProjects$.asObservable();
+   }
  
     getAllProjects(): Observable<Project[]> {
          return this.AllProjects$.asObservable();
