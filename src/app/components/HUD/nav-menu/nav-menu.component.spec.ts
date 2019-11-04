@@ -63,15 +63,15 @@ fdescribe('NavMenuComponent', () => {
     expect(fixture.debugElement.query(By.css('#go-to-edit'))).toBeNull();
 });
 
-  it('should call logout from userService', () => {
-    let userService = TestBed.get(UserService);
-    spyOn(userService, 'logout');
+  // it('should call logout from userService', () => {
+  //   let userService = TestBed.get(UserService);
+  //   spyOn(userService, 'logout');
 
-    component.logout();
+  //   component.();
 
-    expect(userService.logout).toHaveBeenCalled();
-    expect(routerSpy).toHaveBeenCalledWith(['auth/login']);
-  });
+  //   expect(userService.logout).toHaveBeenCalled();
+  //   expect(routerSpy).toHaveBeenCalledWith(['auth/login']);
+  // });
 
   it('should not login if user does not exist', () => {
     component.loggedIn = component.admin = true;

@@ -24,13 +24,13 @@ export interface DialogData {
 })
 export class ProjectSubmissionPageComponent {
 
-	projectName = new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z0-9\'\" ]*')]);
-	batchName  = new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z0-9-/ ]*')]);
-	trainerName  = new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z0-9 ]*')]);
+	projectName = new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z0-9/\-\_\\ ]*')]);
+	batchName  = new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z0-9/\-\_\\ ]*')]);
+	trainerName  = new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z ]*')]);
 	techStack  = new FormControl('');
 	groupMembers  = new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z, ]*')]);
-	description  = new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z0-9\'\"\n ]*')]);
-	zipLinks  = new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z0-9/:.@-_, ]*')]);
+	description  = new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z0-9/\-\_\n\\ ]*')]);
+	zipLinks  = new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z0-9/\:\.\@\-\_\,\\ ]*')]);
 
 	form: FormGroup;
 	projectToUpload: Project = {};
