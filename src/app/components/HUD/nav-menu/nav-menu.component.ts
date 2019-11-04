@@ -37,7 +37,7 @@ export class NavMenuComponent implements OnInit {
       user => {
         this.user = user;
         if (this.user && this.user.role === 'ROLE_ADMIN') this.menu = adminMenu;
-        else if(this.user) this.menu = userMenu
+        else if(this.user) this.menu = userMenu;
         else this.menu = nonUserMenu;
       }
     );
