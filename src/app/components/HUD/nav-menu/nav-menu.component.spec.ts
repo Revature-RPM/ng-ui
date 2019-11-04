@@ -11,19 +11,20 @@ import { Router } from '@angular/router';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BehaviorSubject } from 'rxjs';
 import { User } from 'src/app/models/User';
+import { userMenu, nonUserMenu, adminMenu } from 'src/app/utils/menus';
 
-describe('NavMenuComponent', () => {
+fdescribe('NavMenuComponent', () => {
   let component: NavMenuComponent;
   let fixture: ComponentFixture<NavMenuComponent>;
   let router: Router;
   let routerSpy;
   let store;
   let links;
+  let homeLink;
   let allProjectsLink;
   let myProjectsLink;
-  let mySubmitProjectLink;
+  let submitProjectLink;
   let profileLink;
-  let logoutLink;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -53,15 +54,15 @@ describe('NavMenuComponent', () => {
     fixture.detectChanges();
     links = fixture.debugElement.queryAll(By.css('mat-list-item'));
     //0 => All Projects
-    allProjectsLink = links[0].nativeElement;
+    homeLink = links[0].nativeElement;
     //1 => My Projects
-    myProjectsLink = links[1].nativeElement;
+    allProjectsLink = links[1].nativeElement;
     //2 => Submit a project
-    mySubmitProjectLink = links[2].nativeElement;
+    myProjectsLink = links[2].nativeElement;
     //3 => Profile
-    profileLink = links[3].nativeElement;
+    submitProjectLink = links[3].nativeElement;
     //4 => logout
-    logoutLink = links[4].nativeElement;
+    profileLink = links[4].nativeElement;
   });
 
   afterEach(() => {
@@ -76,22 +77,28 @@ describe('NavMenuComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should route to projects when All Projects link is clicked', () => {
+  it('should route to home when Home link is clicked', () => {
     spyOn(component.menuOptionClicked, 'emit');
 
-    allProjectsLink.click()
+    homeLink.click()
     expect(component.menuOptionClicked.emit).toHaveBeenCalled();
-    expect(routerSpy).toHaveBeenCalledWith(['projects']);
+    expect(routerSpy).toHaveBeenCalledWith(['/home']);
   });
   
-  it('should route to projects-user when My Projects is clicked', () => {
+  it('should route to projects when All Projects is clicked', () => {
 
+    allProjectsLink.click();
+    expect(routerSpy).toHaveBeenCalledWith(['projects']);
+  });
+
+  it('should route to projects-user when My Project is clicked', () => {
     myProjectsLink.click();
+
     expect(routerSpy).toHaveBeenCalledWith(['projects-user']);
   });
 
-  it('should route to project-submission when Submit a Project is clicked', () => {
-    mySubmitProjectLink.click();
+  it('should route to project-submission when Submit Project is clicked', () => {
+    submitProjectLink.click();
 
     expect(routerSpy).toHaveBeenCalledWith(['project-submission']);
   });
@@ -102,43 +109,43 @@ describe('NavMenuComponent', () => {
     expect(routerSpy).toHaveBeenCalledWith(['profile']);
   });
 
-  it('should route to login when Logout is clicked', () => {
-    logoutLink.click();
-
-    expect(routerSpy).toHaveBeenCalledWith(['login']);
-  });
-
   it('should call logout from userService', () => {
     let userService = TestBed.get(UserService);
     spyOn(userService, 'logout');
 
-    component.logout();
+    component.goToRoute('logout');
 
     expect(userService.logout).toHaveBeenCalled();
-    expect(routerSpy).toHaveBeenCalledWith(['login']);
+    expect(routerSpy).toHaveBeenCalledWith(['']);
   });
 
   it('should not be logged in if user does not exist', () => {
-    component.loggedIn = component.admin = true;
     
     let userService = TestBed.get(UserService);
     userService.user = new BehaviorSubject<User>(null);
 
     component.ngOnInit();
 
+    expect(component.menu).toEqual(nonUserMenu);
     expect(component.loggedIn).toEqual(false);
-    expect(component.admin).toEqual(false);
   });
 
-  it('should not display be an Admin if user role is ROLE_ADMIN', () => {
+  it('should display adminMenu if user role is ROLE_ADMIN', () => {
     let userService = TestBed.get(UserService);
     let u = {role: 'ROLE_ADMIN'};
     userService.user.next(u);
 
     component.ngOnInit();
 
-    expect(component.loggedIn).toEqual(true);
-    expect(component.admin).toEqual(true);
+    expect(component.menu).toEqual(adminMenu);
+  });
+
+  it('should display userMenu if user role is user', () => {
+    let userService = TestBed.get(UserService);
+
+    component.ngOnInit();
+
+    expect(component.menu).toEqual(userMenu);
   });
 
 });
