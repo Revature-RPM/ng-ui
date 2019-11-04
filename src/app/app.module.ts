@@ -49,6 +49,8 @@ import scss from 'highlight.js/lib/languages/scss';
 import css from 'highlight.js/lib/languages/css';
 import java from 'highlight.js/lib/languages/java';
 import python from 'highlight.js/lib/languages/python';
+import { HomePageComponent } from './components/pages/home-page/home-page.component';
+import { AboutComponent } from './components/pages/about/about.component';
 
 
 export function hljsLanguages() {
@@ -94,6 +96,8 @@ export function hljsLanguages() {
     SelectedProjectViewerComponent,
     SidenavComponent,
     ProjectViewComponent,
+    HomePageComponent,
+    AboutComponent,
   ],
   imports: [
     AppRoutingModule,

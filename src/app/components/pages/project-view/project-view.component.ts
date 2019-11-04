@@ -5,6 +5,7 @@ import { Project } from 'src/app/models/Project';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { ProjectService } from 'src/app/services/project.service';
+import { SnackbarService } from 'src/app/services/snackbar.service';
 
 @Component({
   selector: 'app-project-view',
@@ -16,6 +17,7 @@ export class ProjectViewComponent implements OnInit {
   // In development (Iago)
   project: Project;
   enableEditFunctionality = false;
+  enableApprovalDenialBtns = false;
 
   // Previous Code
   trainerFullName;
@@ -30,7 +32,7 @@ export class ProjectViewComponent implements OnInit {
   projectList: Project[] = [];
 
 
-  constructor(private router: Router, private userService: UserService, private projectService: ProjectService) {
+  constructor(private router: Router, private userService: UserService, private projectService: ProjectService, private snackbarService: SnackbarService) {
   }
 
   ngOnInit() {
@@ -38,14 +40,27 @@ export class ProjectViewComponent implements OnInit {
       proj => {
         if (proj) {
           this.project = proj;
+          
           // Enabling project edition if the user owns the project
           this.currentUser = JSON.parse(localStorage.getItem('user'));
           if(this.currentUser && this.currentUser.id == this.project.userId) this.enableEditFunctionality = true;
           else this.enableEditFunctionality = false;
+
+          // Enabling project approval and denial buttons
+          if(this.currentUser && this.currentUser.role.toLowerCase() == "role_admin" && this.project.status.toLowerCase() == "pending") this.enableApprovalDenialBtns = true;
+          else this.enableApprovalDenialBtns = false;
         }
       }
     );
 
+  }
+
+
+  /**
+   * Return to last page
+   */
+  back() {
+    window.history.back();
   }
 
 
@@ -83,15 +98,33 @@ export class ProjectViewComponent implements OnInit {
     }
   }
 
-
   /**
    * Let the user who owns the project, update the project
    */
   updateProject() {
-    if (this.project) {
+    if(this.project) {
       this.router.navigate(['/project-update']);
     }
     console.log('this is called');
+  }
+
+
+  /**
+   * Let an admin approve or deny a project
+   */
+  approveOrDenyProject(approve: boolean) {
+    if(approve) this.project.status = "Approved";
+    else this.project.status = "Denied";
+    this.projectService.approveOrDenyProject(this.project).subscribe(
+      (res) => {
+        console.log(res);
+        if(approve) this.snackbarService.openSnackBar("Project successfully approved","Success");
+        if(!approve) this.snackbarService.openSnackBar("Project was denied","");
+      },
+      (err) => {
+        this.snackbarService.openSnackBar("Some error happened. Try again later","Failed");
+      }
+    );
   }
 
 }

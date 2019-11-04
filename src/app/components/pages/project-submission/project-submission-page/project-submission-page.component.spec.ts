@@ -18,7 +18,6 @@ import {
 
 import { NgMetaService } from 'ngmeta';
 import { browser, by, element } from 'protractor';
-
 import { UserService } from 'src/app/services/user.service';
 import { MockUserService } from 'src/app/mocks/mock-user-service';
 import { ProjectService } from 'src/app/services/project.service';
