@@ -36,7 +36,7 @@ export class ProjectSubmissionPageComponent {
 	projectToUpload: Project = {};
 	user: User;
 	projectNameFormControl = new FormControl('', [ Validators.required ]);
-
+	problems;
 	/**
 	 * GroupMemberString and zipLinkString are both bound to the user's input of the group member field and the zip links field
 	 * When a new group member or zip link is added, then that information is concatenated to the string.
@@ -218,18 +218,18 @@ export class ProjectSubmissionPageComponent {
 	submitForm() {
 		this.submitting = true;
 		let formData = new FormData();
-		let problems = "";
+		this.problems = "";
 
-		if(this.projectName.invalid) {problems=problems + " Project name has problems."}
-		if(this.batchName.invalid) {problems=problems + " Batch name has problems."}
-		if(this.trainerName.invalid) {problems=problems + " Trainer name has problems."}
-		if(this.techStack.invalid) {problems=problems + " Tech stack was not picked."}
-		if(this.groupMembers.invalid) {problems=problems + " Group members has problem."}
-		if(this.description.invalid) {problems=problems + " Description has problem."}
-		if(this.zipLinks.invalid) {problems=problems + " Github link has problems."}
+		if(this.projectName.invalid) {this.problems=this.problems + " Project name has problems."}
+		if(this.batchName.invalid) {this.problems=this.problems + " Batch name has problems."}
+		if(this.trainerName.invalid) {this.problems=this.problems + " Trainer name has problems."}
+		if(this.techStack.invalid) {this.problems=this.problems + " Tech stack was not picked."}
+		if(this.groupMembers.invalid) {this.problems=this.problems + " Group members has problem."}
+		if(this.description.invalid) {this.problems=this.problems + " Description has problem."}
+		if(this.zipLinks.invalid) {this.problems=this.problems + " Github link has problems."}
 
-		if(problems != ""){
-			this.snackbar.openSnackBar(problems, 'Dismiss');
+		if(this.problems != ""){
+			this.snackbar.openSnackBar(this.problems, 'Dismiss');
 			return;
 		}
 

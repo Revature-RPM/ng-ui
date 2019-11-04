@@ -113,7 +113,13 @@ describe('ProjectSubmissionPageComponent', () => {
 		component.projectToUpload.zipLinks = ['value'];
 
 		expect(component.projectToUpload).toBeTruthy();
-	})
+	});
+
+	//testing if it will enter the snackbar block
+	it('should throw problems if there is no data on submit press', () => {
+		component.submitForm();
+		expect(component.problems).toBeTruthy();
+	});
 
 	// it('should go end to end and add a project', () => {
 	// 	browser.get('http://localhost:4200/submitform');
