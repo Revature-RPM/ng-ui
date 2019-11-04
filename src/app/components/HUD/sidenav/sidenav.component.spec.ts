@@ -65,6 +65,7 @@ describe('SidenavComponent', () => {
     let userService = TestBed.get(UserService);
     
     userService.user = new BehaviorSubject<User>(null);
+    
 
     component.ngOnInit();
 
@@ -80,4 +81,5 @@ describe('SidenavComponent', () => {
 
     expect(consoleSpy).toHaveBeenCalledWith('words');
   });
+
 });
