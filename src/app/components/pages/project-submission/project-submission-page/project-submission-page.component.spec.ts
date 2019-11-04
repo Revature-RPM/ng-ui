@@ -24,6 +24,7 @@ import { MockUserService } from 'src/app/mocks/mock-user-service';
 import { UserService } from 'src/app/services/user.service';
 import { ProjectEditComponent } from '../../project-edit/project-edit.component';
 
+/* tslint:disable: no-lifecycle-call */
 
 fdescribe('ProjectSubmissionPageComponent', () => {
 	let router: Router;

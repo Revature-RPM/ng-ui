@@ -16,9 +16,7 @@ export class AdminGuard implements CanActivate {
   {
     let user: User = JSON.parse(localStorage.getItem("user"));
     if(user && user.role.toLowerCase().includes("admin")) return true;
-    else {
-      this.router.navigate([""]);
-      return false;
-    }
+    else this.router.navigate([""]);
+    return false;
   }
 }

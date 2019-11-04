@@ -1,24 +1,10 @@
-<!-- <div id="project-list-tabs" class="flex-container">
-  <h4>Projects&nbsp;&nbsp;</h4>
-  <button *ngFor="let project of projectList" mat-flat-button (click)="swapProject(project)">{{ project.name | ellipsis:20 }}</button>
-</div>
-<div id="project-list-dropdown">
-  <mat-accordion>
-      <mat-expansion-panel id="view-project-list">
-          <mat-expansion-panel-header>
-            <mat-panel-title>Select a Project</mat-panel-title>
-          </mat-expansion-panel-header>
-          <button *ngFor="let project of projectList" mat-flat-button (click)="swapProject(project)">{{ project.name | ellipsis:20 }}</button>
-      </mat-expansion-panel>
-  </mat-accordion>
-</div>  -->
-
 <h2 id="projects">{{ title }}</h2>
 <div *ngIf="projectList" class="section flex-section">
 	<mat-card *ngFor="let project of projectList" (click)="swapProject(project)" mat-fab matTooltip={{project.name}} matTooltipPosition="above">
 		<mat-card-content>
       <h4> {{ project.name }} </h4>
       <span>Tech Stack: {{ project.techStack }}</span>
+      <span *ngIf="userId" class="status" [ngClass]="{'approved': project.status==='Approved', 'denied': project.status==='Denied', 'pending': project.status==='Pending' }"> </span>
 		</mat-card-content>
 	</mat-card>
 </div>

@@ -55,7 +55,7 @@
     margin-bottom: 2rem;
 }
 
-@media (max-width: 767.98px) {
+@media (max-width: 768px) {
     #logo-block {
         position: relative;
         top: 10%;
@@ -67,9 +67,11 @@
         span {
             font-size: 1rem;
         }
+    }
+}
 
-        .btn {
-
-        }
+@media (min-width: 769px) and (max-width: 1360px) {
+    #logo-block {
+        top: 15%;
     }
 }
