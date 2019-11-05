@@ -124,32 +124,32 @@ export class RegisterComponent implements OnInit {
 /**
  * Currently not used function that needs to be reworked slightly and re-implemented.
  */
-  checkIfEmailIsInUse() {
+//   checkIfEmailIsInUse() {
 
-    this.userService.checkIfEmailIsInUse(this.form1.email).subscribe(
-      result => {
-        if (!result['emailIsInUse']) this.emailIsAvailable = true;
-        else this.emailIsAvailable = false;
-      },
-      error => {
-        this.snackbarService.openSnackBar('Internal server error!', 'dismiss');
-      }
-    )
-  }
+//     this.userService.checkIfEmailIsInUse(this.form1.email).subscribe(
+//       result => {
+//         if (!result['emailIsInUse']) this.emailIsAvailable = true;
+//         else this.emailIsAvailable = false;
+//       },
+//       error => {
+//         this.snackbarService.openSnackBar('Internal server error!', 'dismiss');
+//       }
+//     )
+//   }
 
-/**
- * Currently not used function that needs to be reworked slightly and re-implemented.
- */
-  checkIfUsernameIsAvailable() {
+// /**
+//  * Currently not used function that needs to be reworked slightly and re-implemented.
+//  */
+//   checkIfUsernameIsAvailable() {
 
-    this.userService.checkIfUsernameIsAvailable(this.form2.username).subscribe(
-      result => {
-        if (result['usernameIsAvailable']) this.usernameIsAvailable = true;
-        this.emailIsAvailable = false;
-      },
-      error => {
-        this.snackbarService.openSnackBar('Internal server error!', 'dismiss');
-      }
-    )
-  }
+//     this.userService.checkIfUsernameIsAvailable(this.form2.username).subscribe(
+//       result => {
+//         if (result['usernameIsAvailable']) this.usernameIsAvailable = true;
+//         this.emailIsAvailable = false;
+//       },
+//       error => {
+//         this.snackbarService.openSnackBar('Internal server error!', 'dismiss');
+//       }
+//     )
+//   }
 }
