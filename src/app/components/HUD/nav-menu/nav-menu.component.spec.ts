@@ -36,9 +36,11 @@ describe('NavMenuComponent', () => {
     
     store = {};
     spyOn(localStorage, 'setItem').and
-      .callFake(function (key, value) { store[key] = value; })
+      .callFake(function (key, value) { store[key] = value; });
     spyOn(localStorage, 'getItem').and
-      .callFake(function(key) { return store[key]});
+      .callFake(function(key) { return store[key];
+      }
+    );
     spyOn(localStorage, 'removeItem').and
       .callFake(function () { return null;}); 
       
@@ -61,62 +63,8 @@ describe('NavMenuComponent', () => {
 
   it('should hide goToEditRoles function if admin is false', () => {
     expect(fixture.debugElement.query(By.css('#go-to-edit'))).toBeNull();
-});
-
-  it('should route to adminchangeroles on goToEditRoles', () => {
-    component.goToEditRoles();
-
-    expect(routerSpy).toHaveBeenCalledWith(['adminchangeroles']);
   });
   
-  it('should route to auth/login on goToLoginRegister', () => {
-    component.goToLoginRegister();
-
-    expect(routerSpy).toHaveBeenCalledWith(['auth/login']);
-  });
-
-  it('should route to profile on goToProfile', () => {
-    component.goToProfile();
-
-    expect(routerSpy).toHaveBeenCalledWith(['profile']);
-  });
-
-  it('should route to projects/pending on goToProjectsPending', () => {
-    component.goToPendingProjects();
-
-    expect(routerSpy).toHaveBeenCalledWith(['projects/pending']);
-  });
-
-  it('should route to submitform on goToSubmit', () => {
-    component.goToSubmit();
-
-    expect(routerSpy).toHaveBeenCalledWith(['submitform']);
-  });
-
-  it('should call logout from userService', () => {
-    let userService = TestBed.get(UserService);
-    spyOn(userService, 'logout');
-
-    component.logout();
-
-    expect(userService.logout).toHaveBeenCalled();
-    expect(routerSpy).toHaveBeenCalledWith(['auth/login']);
-  });
-
-  it('should route as expected for type on getProjects, if type = user', () => {
-    let type = 'user';
-
-    component.getProjects(type);
-
-    expect(routerSpy).toHaveBeenCalledWith(['projects/1']);
-  });
-
-  it('should route as expected for type on getProjects, if type != user', () => {
-    let type = 'cat';
-    component.getProjects(type);
-
-    expect(routerSpy).toHaveBeenCalledWith(['projects']);
-  });
 
   it('should not login if user does not exist', () => {
     component.loggedIn = component.admin = true;
@@ -124,6 +72,7 @@ describe('NavMenuComponent', () => {
     let userService = TestBed.get(UserService);
     userService.user = new BehaviorSubject<User>(null);
 
+    // tslint:disable-next-line: no-lifecycle-call
     component.ngOnInit();
 
     expect(component.loggedIn).toEqual(false);

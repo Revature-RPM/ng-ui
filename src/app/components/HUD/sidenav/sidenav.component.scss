@@ -57,8 +57,8 @@ mat-sidenav-container {
 }
 
 .user-avatar {
-    width: 50px;
-    height: 50px;
+    width: 2rem;
+    height: 2rem;
     border-radius: 50%;
     display: inline-block;
     margin-bottom: -10px;
@@ -67,23 +67,10 @@ mat-sidenav-container {
 
 
 // Please don't mess with the hamburger icon style (it's finely-tuned)
-#hamburger-button {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-        -ms-flex-flow: row;
-            flex-flow: row;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -ms-flex-line-pack: center;
-        align-content: center;
-}
+
 #hamburger {
-    font-size: 40px;
-    height: 40px;
+    font-size: 2rem;
+    height: 2rem;
     line-height: 100%;
     margin: auto;
     width: -webkit-fit-content;
