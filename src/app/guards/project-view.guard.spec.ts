@@ -7,7 +7,7 @@ import { ProjectService } from '../services/project.service';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-fdescribe('ProjectViewGuard', () => {
+describe('ProjectViewGuard', () => {
   
   let component: ProjectViewGuard;
   let router: Router;

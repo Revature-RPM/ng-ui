@@ -4,7 +4,7 @@ import { AuthGuard } from './auth.guard';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 
-fdescribe('AuthGuard', () => {
+describe('AuthGuard', () => {
 
   let component: AuthGuard;
   let router: Router;

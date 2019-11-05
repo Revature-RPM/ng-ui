@@ -1,6 +1,11 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+<<<<<<< HEAD
 
 import { NavMenuComponent } from './nav-menu.component';
+=======
+import { DebugElement } from '@angular/core';
+import {NavMenuComponent} from './nav-menu.component';
+>>>>>>> 33b5992375bb51392862001e55af1c73cd9274f7
 import { MatButtonModule, MatExpansionModule, MatListModule } from '@angular/material';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -11,19 +16,26 @@ import { Router } from '@angular/router';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BehaviorSubject } from 'rxjs';
 import { User } from 'src/app/models/User';
+import { userMenu, nonUserMenu, adminMenu } from 'src/app/utils/menus';
 
-fdescribe('NavMenuComponent', () => {
+describe('NavMenuComponent', () => {
   let component: NavMenuComponent;
   let fixture: ComponentFixture<NavMenuComponent>;
   let router: Router;
   let routerSpy;
   let store;
+  let links;
+  let homeLink;
+  let allProjectsLink;
+  let myProjectsLink;
+  let submitProjectLink;
+  let profileLink;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ NavMenuComponent ],
-      imports: [ MatButtonModule, MatExpansionModule, HttpClientTestingModule,
-      RouterTestingModule, NoopAnimationsModule, MatListModule],
+      imports: [ MatButtonModule, MatExpansionModule, MatListModule, HttpClientTestingModule,
+      RouterTestingModule, NoopAnimationsModule],
       providers: [{provide: UserService, useClass: MockUserService}],
     })
     .compileComponents();
@@ -47,6 +59,17 @@ fdescribe('NavMenuComponent', () => {
     fixture = TestBed.createComponent(NavMenuComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    links = fixture.debugElement.queryAll(By.css('mat-list-item'));
+    //0 => All Projects
+    homeLink = links[0].nativeElement;
+    //1 => My Projects
+    allProjectsLink = links[1].nativeElement;
+    //2 => Submit a project
+    myProjectsLink = links[2].nativeElement;
+    //3 => Profile
+    submitProjectLink = links[3].nativeElement;
+    //4 => logout
+    profileLink = links[4].nativeElement;
   });
 
   afterEach(() => {
@@ -61,7 +84,50 @@ fdescribe('NavMenuComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should hide goToEditRoles function if admin is false', () => {
+  it('should route to home when Home link is clicked', () => {
+    spyOn(component.menuOptionClicked, 'emit');
+
+    homeLink.click()
+    expect(component.menuOptionClicked.emit).toHaveBeenCalled();
+    expect(routerSpy).toHaveBeenCalledWith(['/home']);
+  });
+  
+  it('should route to projects when All Projects is clicked', () => {
+
+    allProjectsLink.click();
+    expect(routerSpy).toHaveBeenCalledWith(['projects']);
+  });
+
+  it('should route to projects-user when My Project is clicked', () => {
+    myProjectsLink.click();
+
+    expect(routerSpy).toHaveBeenCalledWith(['projects-user']);
+  });
+
+  it('should route to project-submission when Submit Project is clicked', () => {
+    submitProjectLink.click();
+
+    expect(routerSpy).toHaveBeenCalledWith(['project-submission']);
+  });
+
+  it('should route to profile when Profile is clicked', () => {
+    profileLink.click();
+
+    expect(routerSpy).toHaveBeenCalledWith(['profile']);
+  });
+
+  it('should call logout from userService', () => {
+    let userService = TestBed.get(UserService);
+    spyOn(userService, 'logout');
+
+    component.goToRoute('logout');
+
+    expect(userService.logout).toHaveBeenCalled();
+    expect(routerSpy).toHaveBeenCalledWith(['']);
+  });
+
+  // it('should not be logged in if user does not exist', () => {
+  it('should hide goToEditRoles function if admin is false  ERROR', () => {
     expect(fixture.debugElement.query(By.css('#go-to-edit'))).toBeNull();
   });
   
@@ -75,11 +141,11 @@ fdescribe('NavMenuComponent', () => {
     // tslint:disable-next-line: no-lifecycle-call
     component.ngOnInit();
 
+    expect(component.menu).toEqual(nonUserMenu);
     expect(component.loggedIn).toEqual(false);
-    expect(component.admin).toEqual(false);
   });
 
-  it('should not login if user does not exist', () => {
+  it('should display adminMenu if user role is ROLE_ADMIN', () => {
     let userService = TestBed.get(UserService);
     let u = {role: 'ROLE_ADMIN'};
     userService.user.next(u);
@@ -87,7 +153,15 @@ fdescribe('NavMenuComponent', () => {
     // tslint:disable-next-line: no-lifecycle-call
     component.ngOnInit();
 
-    expect(component.loggedIn).toEqual(true);
-    expect(component.admin).toEqual(true);
+    expect(component.menu).toEqual(adminMenu);
   });
+
+  it('should display userMenu if user role is user', () => {
+    let userService = TestBed.get(UserService);
+
+    component.ngOnInit();
+
+    expect(component.menu).toEqual(userMenu);
+  });
+
 });

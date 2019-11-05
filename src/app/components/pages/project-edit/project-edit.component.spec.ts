@@ -1,32 +1,33 @@
 import { Location } from '@angular/common';
+
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import { MatIconModule, MatCardModule, MatFormFieldModule, MatOptionModule, MatSelectModule, MatInputModule } from '@angular/material';
+import { MatIconModule, MatCardModule, MatFormFieldModule, MatOptionModule, MatSelectModule, MatInputModule, MatSnackBarModule } from '@angular/material';
 import { By } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {RouterTestingModule} from '@angular/router/testing';
 import {Router, ActivatedRoute} from '@angular/router';
 import { of } from 'rxjs';
-
+import {BrowserDynamicTestingModule} from '@angular/platform-browser-dynamic/testing';
 import { Project } from 'src/app/models/Project';
 import {ProjectService} from 'src/app/services/project.service';
 import { MockProjectService } from 'src/app/mocks/mock-project-service';
 import { MockUserService } from 'src/app/mocks/mock-user-service';
 import {UserService} from 'src/app/services/user.service';
 import {ProjectEditComponent} from './project-edit.component';
-
+import { SnackbarService } from 'src/app/services/snackbar.service';
+import { BehaviorSubject } from 'rxjs';
+import { HttpErrorResponse, HttpHeaders, HttpEventType } from '@angular/common/http';
+import {Observable, throwError} from 'rxjs'; 
 /**
 * Edit Project tests.
-* Skipped tests do not work- router is not being correctly mocked. Use below resource for more information on mocking a router.
-* https://codecraft.tv/courses/angular/unit-testing/routing/
-* @author Gabriel Zapata | Fadi Alzoubi | Slavik Gleanco | Alex Johnson | Edward Bechtold | (190107-Java-Spark-USF)
+* 
 */
 describe('ProjectEditComponent', () => {
  let component: ProjectEditComponent;
  let fixture: ComponentFixture<ProjectEditComponent>;
-//  let userService: UserService;
  let project: Project;
  let router: Router;
  let routerSpy;
@@ -36,15 +37,17 @@ describe('ProjectEditComponent', () => {
    TestBed.configureTestingModule({
      declarations: [ ProjectEditComponent ],
      imports: [MatIconModule, MatCardModule, MatFormFieldModule,
-       MatOptionModule, MatSelectModule,
+       MatOptionModule, MatSelectModule, MatSnackBarModule,
        MatFormFieldModule, MatInputModule,
        HttpClientTestingModule, RouterTestingModule,
-       BrowserAnimationsModule, FormsModule,
+       BrowserAnimationsModule, FormsModule, BrowserDynamicTestingModule,
        ReactiveFormsModule],
      providers: [ 
        { provide: ActivatedRoute, useValue: { params: of({ id: 'test' })}},
        { provide: ProjectService, useClass: MockProjectService },
-       { provide: UserService, useClass: MockUserService } ],
+       { provide: UserService, useClass: MockUserService },
+       { provide: SnackbarService, useClass: SnackbarService} 
+      ],
      schemas: [CUSTOM_ELEMENTS_SCHEMA]
    })
    .compileComponents();
@@ -66,6 +69,7 @@ describe('ProjectEditComponent', () => {
    component = null;
    router = null;
    routerSpy = null;
+   sessionStorage.clear();
  })
 
  it('should create', () => {
@@ -75,19 +79,21 @@ describe('ProjectEditComponent', () => {
  /**
   * Back function on component sets 'lastPage' in sessionStorage to 'edit'.
   * the 'toBe' matcher expects an exact match.
-  * @author Edward Bechtold | Gabriel Zapata | (190107-Java-Spark-USF)
+  * 
   */
- it('should set sessionStorage appropriately after back() function is called', () => {
+ it('clicking the back button will invoke window.history.back()', () => {
 
-   component.back();
+  let backIcon = fixture.debugElement.query(By.css('#back-icon'));
+  
+  backIcon.nativeElement.click();
 
-   expect(sessionStorage.getItem('lastPage')).toBe('edit');
+  expect(window.history.back).toHaveBeenCalled;
+   
  });
-
+ 
  /**
   * AddGroupMember function should add a value to the updatedArr. The array
   * will have a value of truthy if a value is successfully added to it.
-  * @author Gabriel Zapata | Edward Bechtold | (190107-Java-Spark-USF)
   */
  it('should add a group member to the updatedArr', () => {
 
@@ -101,7 +107,6 @@ describe('ProjectEditComponent', () => {
 
  /**
   * Supposed to test initialization variables within ngoninit. Implementation is wrong but might be salvageable.
-  * @author Gabriel Zapata | Edward Bechtold | (190107-Java-Spark-USF)
   */
  it('should test initialization variables', () => {
    component.projectToUpdate.groupMembers = null;
@@ -113,92 +118,73 @@ describe('ProjectEditComponent', () => {
    expect(component.projectToUpdate.groupMembers).toBeTruthy();
    expect(component.projectToUpdate.screenShots).toBeTruthy();
    expect(component.projectToUpdate.zipLinks).toBeTruthy();
+   expect(component.groupMember).toEqual('');
  });
 
  /**
-  * This method should test if fields are invalid inside checkForValidField function.
-  * @author Gabriel Zapata | Alex Johnson | (190107-Java-Spark-USF)
+  * This method should test if the form has any errors/invalid fields.
   */
  it('should validateFields', () => {
-   let nameField = { valid: false };
-   let batchField = { valid: false };
-   let trainerField = { valid: false };
-   let descriptionField = { valid: false };
-   let techStackField = { valid: false };
+  
+  let projectService = TestBed.get(ProjectService);
+ // projectService. = new BehaviorSubject<Project>(null);
+  projectService.CurrentProject$.next(new BehaviorSubject<Project>(null))
 
-   component.checkForValidField(nameField, batchField, trainerField, descriptionField, techStackField);
+  component.ngOnInit();
 
-   expect(component.validForm).toBeFalsy();
- });
+  expect(component.editForm.hasError).toBeTruthy();
+  expect(component.editForm.controls['projectName'].hasError('required')).toBeTruthy();
+  expect(component.editForm.controls['trainerName'].hasError('required')).toBeTruthy();
+  expect(component.editForm.controls['batchName'].hasError('required')).toBeTruthy();
+  expect(component.editForm.controls['techStack'].hasError('required')).toBeTruthy();
+  expect(component.editForm.controls['description'].hasError('required')).toBeTruthy();
+  expect(component.editForm.controls['groupMembers'].hasError('required')).toBeTruthy();
 
- /**
-  * testing that when the edit-project component is rendered, if the user is null
-  * then the user should be navigated back to login
-  * @author Alex Johnson (190107-Java-Spark-USF)
-  */
- it('should navigate to login if the jwt is null', () => {
-   localStorage.clear();
-   localStorage.setItem('jwt', null);
-
-   component.ngOnInit();
-
-   expect(routerSpy).toHaveBeenCalledWith(['auth/login']);
  });
 
  /**
   * The tested method should navigate to home.
   * Implementation is not correct ; needs refactoring.
-  * @author Alex Johnson (190107-Java-Spark-USF)
   */
- it('should navigate to home on submit', () => {
+ it('should navigate to projects list route on submit', () => {
   projectService = TestBed.get(ProjectService);
-  let projectSpy = spyOn(projectService, 'submitEditRequest').and
-    .callThrough();
+  let projectSpy = spyOn(projectService, 'submitEditRequest').and.returnValue(of(component.projectToUpdate));
 
   component.submitForm();
 
   expect(projectSpy).toHaveBeenCalled();
-  expect(routerSpy).toHaveBeenCalledWith(['projects']);
+  expect(window.history.back).toHaveBeenCalled;
  });
 
- /**
-  * The back() method should navigate to home.
-  * @author Alex Johnson (190107-Java-Spark-USF)
-  */
- it('should go to projects/1 on back', () => {
-   component.back();
+ it('if submission has error, it console logs error, and opens a SnackBar msg', () => {
 
-   expect(sessionStorage.getItem('lastPage')).toEqual('edit');
-   expect(routerSpy).toHaveBeenCalledWith(['projects/1']);
+   projectService = TestBed.get(ProjectService);
+   let snackbarService = TestBed.get(SnackbarService);
+   let snackSpy = spyOn(snackbarService, 'openSnackBar').and.returnValue(of("Something went wrong"));
+   let projectSpy = spyOn(projectService, 'submitEditRequest').and.returnValue(throwError('error message'));
+
+   component.submitForm();
+
+   expect(projectSpy).toHaveBeenCalled();
+   expect(snackSpy).toHaveBeenCalled() 
  });
 
- it ('should navigate to projects on #cancelEdit', () => {
-    component.cancelEdit();
-
-    expect(routerSpy).toHaveBeenCalledWith(['projects']);
+ it('Should remove group member when member is clicked on', () => {
+  let memberDivs = fixture.debugElement.queryAll(By.css('.member-div'));
+  
+  let mike = memberDivs[0].nativeElement
+  mike.click();
+  expect(component.projectToUpdate.groupMembers.length).toEqual(2);
+  expect(component.projectToUpdate.groupMembers.includes('Mike')).toBeFalsy();
  });
 
- it('#submitForm should update the form data', () => {
-   // Arrange
-   const batch = '3rd Batch Java';
-   const trainer = 'Nick';
-   const groupMembers = ['Mike', 'Molly', 'Sam'];
-   const techStack = 'Java';
-   const description = 'This is a fake project for testing';
-   const status = 'not pending';
+ it('Should cancel the edit attempt and return you back to project view when cancel is clicked.', () => {
+   let cancelButton = fixture.debugElement.query(By.css('#cancel'));
+   cancelButton.nativeElement.click();
 
-   // Act
-   const submitbutton = fixture.debugElement.nativeElement.querySelector('#submit-update');
-   submitbutton.click();
-
-   //Assert
-   expect(component.projectToUpdate.status).toEqual(status);
-   expect(component.projectToUpdate.batch).toEqual(batch);
-   expect(component.projectToUpdate.trainer).toEqual(trainer);
-   expect(component.projectToUpdate.groupMembers).toEqual(groupMembers);
-   expect(component.projectToUpdate.techStack).toEqual(techStack);
-   expect(component.projectToUpdate.description).toEqual(description);
+   expect(window.history.back).toHaveBeenCalled;
  });
+
 });
 
 function setJWTObject(jwt: string) {

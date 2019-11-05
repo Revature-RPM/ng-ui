@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
 import {NgMetaService} from 'ngmeta'; // TODO use to change title to 'Edit | RPM' or something
 import {Subscription} from 'rxjs';
 import {Project} from 'src/app/models/Project';
@@ -7,6 +6,7 @@ import {ProjectService} from 'src/app/services/project.service';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/User';
 import { SnackbarService } from 'src/app/services/snackbar.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
  selector: 'app-edit-project',
@@ -21,39 +21,28 @@ import { SnackbarService } from 'src/app/services/snackbar.service';
 export class ProjectEditComponent implements OnInit {
  techStackList = ['Java/J2EE', 'PEGA', 'JavaScript MVC', '.Net', 'React.js', 'Java', 'iOS9'];
 
- /* This field is initially true since the project contents for a particular project are placed in the form fields using two-way binding when
-       ngOnInit() is called and the project is retrieved by id from the server */
- validForm: Boolean = true;
+ //Set form to FormGroup
+ public editForm: FormGroup;
 
  // projectToUpdate will hold project information for a specific project returned by id and
  // is bound to the information that users enter in the form
  projectToUpdate: Project;
  originalProject: Project;
  user: User;
-
- /**
-  * title, questionType, and result are all passed to a dialog when the user chooses either the group member or the links input field
-  * title and questionType represent the information which will displayed in an input dialog
-  * result will hold the user's response, either a group member or a link to be validated as a Github repository link
-  * @author Shawn Bickel (1810-Oct08-Java-USF)
-  */
- title = 'New Group Member';
- questionType = 'Enter the name of the group member';
- result;
-
+ 
+//This is a two-way binding variable with our form to use in the addGroupMember()
  groupMember = '';
 
  subscription: Subscription; // will be used to subscribe to the results of an observable
 
- constructor(private router: Router,
+ constructor(
    private snackbarService: SnackbarService,
    private projectService: ProjectService,
-   private route: ActivatedRoute,
-	private userService: UserService,
-   //private ngmeta: NgMetaService,
+	 private userService: UserService
    ) { }
 
  ngOnInit() {
+
   this.projectService.CurrentProject$.asObservable().subscribe(
     project => {
       this.projectToUpdate = JSON.parse(JSON.stringify(project));
@@ -64,30 +53,28 @@ export class ProjectEditComponent implements OnInit {
 			this.user = user;
 		}
   );
-  //this.ngmeta.setHead({ title: 'Edit Project | RPM' });
+  this.editForm = new FormGroup({
+    projectName: new FormControl(this.projectToUpdate.name, [Validators.required, Validators.maxLength(40)]),
+    batchName: new FormControl(this.projectToUpdate.batch, [Validators.required, Validators.maxLength(40)]),
+    trainerName: new FormControl(this.projectToUpdate.trainer, [Validators.required]),
+    techStack: new FormControl(this.projectToUpdate.techStack, [Validators.required]),
+    description: new FormControl(this.projectToUpdate.description, [Validators.required]),
+    groupMembers: new FormControl(this.projectToUpdate.groupMembers, [Validators.required])
+  })
  }
 
  /**
-  * This method determines if the entire form is valid when focus is removed from an input field
-  * @param nameField : the template variable for the name input field which holds validation information
-  * @param batchField : the template variable for the batch input field which holds validation information
-  * @param trainerField : the template variable for the trainer name input field which holds validation information
-  * @param descriptionField : the template variable for the description input field which holds validation information
-  * @param techStackField : the template variable for the technology stack input field which holds validation information
-  * @author Shawn Bickel (1810-Oct08-Java-USF)
+  * Method checks to see if mat-error should be displayed.
+  * Returns a Boolean.
   */
- checkForValidField(nameField, batchField, trainerField, descriptionField, techStackField) {
-   if (!nameField.valid || !batchField.valid || !trainerField.valid || !descriptionField.valid || !techStackField.valid) {
-     this.validForm = false;
-   } else {
-     this.validForm = true;
-   }
+ public validField = (controlName: string, errorName: string) => {
+   return this.editForm.controls[controlName].hasError(errorName)
  }
 
  /**
   * This method is bound to the event that the form is submitted;
   * The updated project is sent to a service where it is sent to the server with an http put method
-  * @author Shawn Bickel (1810-Oct08-Java-USF)
+  * On success will set the current project to be watched to the updated project.
   */
  submitForm() {
   this.projectToUpdate.status = 'Pending';
@@ -114,27 +101,37 @@ export class ProjectEditComponent implements OnInit {
  }
 
  /**
-  * These methods allow for the removal and addition of users to projects when editing.
-  * @author Ryan Williams (1810-Oct20-Java-USF)
+  * This method allows for the removal of users to projects when editing.
+  * 
   */
- removeGroupMember(e) {// project : Project
+ removeGroupMember(name: string) {
    const updatedArr = this.projectToUpdate.groupMembers;
-   const nameToRemove = e.target.textContent;
+   const nameToRemove = name;
+   console.log('removing ', nameToRemove);
+   //const nameToRemove = e.target.textContent;
    const index = updatedArr.indexOf(nameToRemove);
    updatedArr.splice(index, 1);
    this.projectToUpdate.groupMembers = updatedArr;
  }
 
+ /**
+  * This method allows to add users to projects when editing.
+  *   -In an if check block because when a form field is empty and when enter is pressed,
+  *     the inner Add button is fired. The check keeps the list from adding an empty string
+  *     to its list if this situation were to occur.
+  */
  addGroupMember() {
-   const updatedArr = this.projectToUpdate.groupMembers;
-   const nameToAdd = this.groupMember;
-   updatedArr.push(nameToAdd);
-   this.projectToUpdate.groupMembers = updatedArr;
-   this.groupMember = '';
+   if(this.groupMember !== '') {
+    const updatedArr = this.projectToUpdate.groupMembers;
+    const nameToAdd = this.groupMember;
+    updatedArr.push(nameToAdd);
+    this.projectToUpdate.groupMembers = updatedArr;
+    this.groupMember = '';
+   }
  }
 
  cancelEdit() {
-   this.router.navigate(['projects/'+this.user.id]);
+   window.history.back();
  }
 
 }

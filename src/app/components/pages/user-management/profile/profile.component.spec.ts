@@ -5,12 +5,13 @@ import { MockUserService } from 'src/app/mocks/mock-user-service';
 import { ProfileComponent } from './profile.component';
 import { UserService } from 'src/app/services/user.service';
 import { RouterTestingModule } from '@angular/router/testing';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AppModule } from 'src/app/app.module';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { User } from 'src/app/models/User';
+import { BrowserModule } from '@angular/platform-browser';
 
 describe('ProfileComponent', () => {
   let component: ProfileComponent;
@@ -21,7 +22,7 @@ describe('ProfileComponent', () => {
       TestBed.configureTestingModule({
         declarations: [ ],
         imports: [RouterTestingModule, BrowserAnimationsModule, 
-          ReactiveFormsModule, FormsModule, AppModule],
+          ReactiveFormsModule, FormsModule, AppModule, NoopAnimationsModule, BrowserModule],
         providers: [
           {provide:UserService, useClass:MockUserService},
           {provide: APP_BASE_HREF, useValue: '/'}],
@@ -38,7 +39,7 @@ describe('ProfileComponent', () => {
       component = null;
     });
 
-  xit('#ProfileComponent should set up correctly', () => {
+  it('#ProfileComponent should set up correctly', () => {
       expect(component).toBeTruthy();
     });
 

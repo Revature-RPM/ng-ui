@@ -17,7 +17,7 @@ export class ProjectViewGuard implements CanActivate {
     if(this.projectService.CurrentProject$.value) return true;
     else {
       this.router.navigate([""]);
-      return false;
     }
+    return false;
   }
 }
