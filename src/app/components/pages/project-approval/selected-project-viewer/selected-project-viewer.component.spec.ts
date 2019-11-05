@@ -9,7 +9,7 @@ import { ProjectService } from 'src/app/services/project.service';
 import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
 
-describe('SelectedProjectViewerComponent', () => {
+fdescribe('SelectedProjectViewerComponent', () => {
   let component: SelectedProjectViewerComponent;
   let fixture: ComponentFixture<SelectedProjectViewerComponent>;
 

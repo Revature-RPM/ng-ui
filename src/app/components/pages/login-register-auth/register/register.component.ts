@@ -121,9 +121,9 @@ export class RegisterComponent implements OnInit {
       });
   }
 
-/**
- * Currently not used function that needs to be reworked slightly and re-implemented.
- */
+// /**
+//  * Currently not used function that needs to be reworked slightly and re-implemented.
+//  */
 //   checkIfEmailIsInUse() {
 
 //     this.userService.checkIfEmailIsInUse(this.form1.email).subscribe(

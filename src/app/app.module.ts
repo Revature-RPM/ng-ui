@@ -41,6 +41,7 @@ import { LexPipe } from './zip-file-explorer/lex.pipe';
 import { LineNumberPipe } from './zip-file-explorer/line-number.pipe';
 
 
+
 import typescript from 'highlight.js/lib/languages/typescript';
 import javascript from 'highlight.js/lib/languages/javascript';
 import xml from 'highlight.js/lib/languages/xml';

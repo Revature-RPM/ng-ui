@@ -14,7 +14,7 @@ import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
 import { RouterScroller } from '@angular/router/src/router_scroller';
 
-describe('SidenavComponent', () => {
+fdescribe('SidenavComponent', () => {
   let component: SidenavComponent;
   let fixture: ComponentFixture<SidenavComponent>;
   let router;
@@ -60,13 +60,12 @@ describe('SidenavComponent', () => {
   });
 
   xit('loggedIn should be false if user is not logged in', () => {
-    component.loggedIn = true;
+    //component.loggedIn = true;
     
     let userService = TestBed.get(UserService);
     
     userService.user = new BehaviorSubject<User>(null);
     
-
     component.ngOnInit();
 
     expect(component.loggedIn).toEqual(false);

@@ -4,7 +4,7 @@ import { EditDialogComponent } from './edit-dialog.component';
 import { MatDialogModule, MatFormFieldModule, MatTooltipModule, MatDialogRef } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-describe('EditDialogComponent', () => {
+fdescribe('EditDialogComponent', () => {
   let component: EditDialogComponent;
   let fixture: ComponentFixture<EditDialogComponent>;
 

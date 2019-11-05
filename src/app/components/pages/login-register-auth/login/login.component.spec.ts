@@ -19,7 +19,7 @@ import { By } from '@angular/platform-browser';
 import { MockUserService } from 'src/app/mocks/mock-user-service';
 
 
-describe('LoginComponent', () => {
+fdescribe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
   let router: Router;

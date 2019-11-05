@@ -25,7 +25,7 @@ import {Observable, throwError} from 'rxjs';
 * Edit Project tests.
 * 
 */
-describe('ProjectEditComponent', () => {
+fdescribe('ProjectEditComponent', () => {
  let component: ProjectEditComponent;
  let fixture: ComponentFixture<ProjectEditComponent>;
  let project: Project;

@@ -13,7 +13,7 @@ import {from} from 'rxjs';
 import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
 
-describe('RegisterComponent', () => {
+fdescribe('RegisterComponent', () => {
   let component: RegisterComponent;
   let fixture: ComponentFixture<RegisterComponent>;
   let router: Router;

@@ -13,7 +13,7 @@ import { BehaviorSubject } from 'rxjs';
 import { User } from 'src/app/models/User';
 import { userMenu, nonUserMenu, adminMenu } from 'src/app/utils/menus';
 
-describe('NavMenuComponent', () => {
+fdescribe('NavMenuComponent', () => {
   let component: NavMenuComponent;
   let fixture: ComponentFixture<NavMenuComponent>;
   let router: Router;
@@ -128,7 +128,7 @@ describe('NavMenuComponent', () => {
   
 
   it('should not login if user does not exist', () => {
-    component.loggedIn = component.admin = true;
+    //component.loggedIn = component.admin = true;
     
     let userService = TestBed.get(UserService);
     userService.user = new BehaviorSubject<User>(null);
