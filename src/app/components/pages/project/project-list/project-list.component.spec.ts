@@ -1,7 +1,7 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { MatExpansionModule, MatListModule, MatTooltipModule, MatCardModule } from '@angular/material';
+import { MatExpansionModule, MatListModule, MatTooltipModule, MatCardModule, MatFormFieldModule, MatOptionModule, MatSelectModule, MatInputModule } from '@angular/material';
 import {ProjectListComponent} from './project-list.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {ProjectService} from 'src/app/services/project.service';
@@ -12,6 +12,7 @@ import { BehaviorSubject } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
 import { MockUserService } from 'src/app/mocks/mock-user-service';
 import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 
 describe('ProjectListComponent', () => {
@@ -25,7 +26,9 @@ describe('ProjectListComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ ProjectListComponent, EllipsisPipe ],
       imports: [ MatExpansionModule, RouterTestingModule, HttpClientTestingModule, MatListModule,
-        NoopAnimationsModule, MatTooltipModule, MatCardModule],
+        NoopAnimationsModule, MatTooltipModule, MatCardModule, FormsModule, MatFormFieldModule,
+        MatOptionModule, MatSelectModule, MatInputModule
+      ],
       providers: [{ provide: ProjectService, useClass: MockProjectService},
         {provide: UserService, useClass: MockUserService}
       ]
