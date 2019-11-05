@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgMetaService } from 'ngmeta';
 import { MatDialog } from '@angular/material';
@@ -30,7 +30,7 @@ export class ProjectSubmissionPageComponent {
 	techStack  = new FormControl('');
 	groupMembers  = new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z, ]*')]);
 	description  = new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z0-9/\-\_\n\\ ]*')]);
-	zipLinks  = new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z0-9/\:\.\@\-\_\,\\ ]*')]);
+	zipLinks  = new FormControl('', [Validators.required, Validators.pattern('^(https:\/\/github\.com\/[^/]+\/[^/]+)* *')]);
 
 	form: FormGroup;
 	projectToUpload: Project = {};
@@ -70,7 +70,7 @@ export class ProjectSubmissionPageComponent {
 				this.projectToUpload.userId = user.id; // setting owner to the project
 				this.projectToUpload.trainer = this.user.firstName + ' ' + this.user.lastName;
 			}
-		)
+		);
 
 		this.ngmeta.setHead({ title: 'Submit | RPM' });
 
@@ -122,16 +122,14 @@ export class ProjectSubmissionPageComponent {
 
 						var goodArray=[];
 						for(i = 0; i < result.length; i++) {
-							if(!(result[i]=="") && !(result[i]==" ")) { 
-								goodArray[j]=result[i].trim();
-								j++;
-							}
+							if((result[i]!="") && (result[i]!=" ")) { goodArray[j++]=result[i].trim(); }
 						}
 
 						this.projectToUpload.groupMembers = goodArray;
 						this.groupMemberString = this.projectToUpload.groupMembers.join(', ');
 						this.groupMembers.setValue(this.groupMemberString);
 					}
+
 					else if (e.target.id === 'inputGithubLink') {
 						this.projectToUpload.zipLinks = result;
 						this.zipLinksString = this.projectToUpload.zipLinks.join(', ');
@@ -191,7 +189,7 @@ export class ProjectSubmissionPageComponent {
 			reader.readAsDataURL(e.target.files[0]);
 			reader.onload = (_event) => {
 				this.screenshotPicList.push(reader.result);
-			}
+			};
 		}
 	}
 
