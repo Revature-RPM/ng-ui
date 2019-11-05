@@ -114,15 +114,22 @@ export class ProjectSubmissionPageComponent {
 			result => {
 				if (result && result!="") {
 					if (e.target.id === 'inputGroupMembers') {
-						var i;
+						var i,j=0;
 						for(i = 0; i < result.length; i++) {
 							result[i] = result[i].replace(/,|[^[ ]\W]/g,"");
 							result[i] = result[i].replace(/[ ]{2,}/g," ");
 						}
-						if(result[result.length]=="" || result[result.length]==" ") return;
-						this.projectToUpload.groupMembers = result;
+
+						var goodArray=[];
+						for(i = 0; i < result.length; i++) {
+							if(!(result[i]=="") && !(result[i]==" ")) { 
+								goodArray[j]=result[i].trim();
+								j++;
+							}
+						}
+
+						this.projectToUpload.groupMembers = goodArray;
 						this.groupMemberString = this.projectToUpload.groupMembers.join(', ');
-						console.log(this.groupMemberString);
 						this.groupMembers.setValue(this.groupMemberString);
 					}
 					else if (e.target.id === 'inputGithubLink') {
