@@ -39,8 +39,6 @@ describe('UserService', () => {
 
   /**
    * The following test is not a unit test. No spyOn is called. Isolation is not maintained. Needs refactoring.
-   *
-   * @author (1810-Oct08-Java-USF)
    */
   it('should return \'{emailIsInUse:true}\' on checking if email is in use with \'admin@revature.com\'', () => {
     const response = {emailIsInUse: true};
@@ -51,8 +49,7 @@ describe('UserService', () => {
 
   /**
    * The following test is not an isolated unit test. No spy method is used to mock the service. Refactor by implementing HttpTestingController.
-   * HttpTestingController will be used to mock a fake application-tier. Read more here on mocking http services: https://angular.io/guide/http - Gabriel Zapata
-   * @author (1810-Oct08-Java-USF)
+   * HttpTestingController will be used to mock a fake application-tier. Read more here on mocking http services: https://angular.io/guide/http -
    */
   it('should return \'{emailIsInUse:false}\' on checking if email is in use with \'(╯• ◡•)╯︵ ┻━┻@email.o\'', () => {
     const response = {emailIsInUse: false};
@@ -63,8 +60,7 @@ describe('UserService', () => {
 
   /**
    * The following test is not an isolated unit test. No spy method is used to mock the service. Refactor by implementing HttpTestingController.
-   * HttpTestingController will be used to mock a fake application-tier. Read more here on mocking http services: https://angular.io/guide/http - Gabriel Zapata
-   * @author (1810-Oct08-Java-USF)
+   * HttpTestingController will be used to mock a fake application-tier. Read more here on mocking http services: https://angular.io/guide/http 
    */
   it('should return \'{usernameIsAvailable:false}\' on checking if username is available with \'admin\'', () => {
     const response = {usernameIsAvailable: false};
@@ -76,7 +72,6 @@ describe('UserService', () => {
 
   /**
    * Verifies local storage is cleared upon logging out
-   * @author Gabriel Zapata (190107-Java-Spark-USF)
    */
   it('should remove items from local storage and return null for jwtauth and user', () => {
 
