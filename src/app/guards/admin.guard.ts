@@ -10,9 +10,7 @@ export class AdminGuard implements CanActivate {
   
   constructor(private router: Router) {}
 
-  canActivate(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean
+  canActivate(): Observable<boolean> | Promise<boolean> | boolean
   {
     let user: User = JSON.parse(localStorage.getItem("user"));
     if(user && user.role.toLowerCase().includes("admin")) return true;
