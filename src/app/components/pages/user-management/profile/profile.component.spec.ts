@@ -11,6 +11,7 @@ import { AppModule } from 'src/app/app.module';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { User } from 'src/app/models/User';
+import { BrowserModule } from '@angular/platform-browser';
 
 describe('ProfileComponent', () => {
   let component: ProfileComponent;
@@ -21,7 +22,7 @@ describe('ProfileComponent', () => {
       TestBed.configureTestingModule({
         declarations: [ ],
         imports: [RouterTestingModule, BrowserAnimationsModule, 
-          ReactiveFormsModule, FormsModule, AppModule, NoopAnimationsModule],
+          ReactiveFormsModule, FormsModule, AppModule, NoopAnimationsModule, BrowserModule],
         providers: [
           {provide:UserService, useClass:MockUserService},
           {provide: APP_BASE_HREF, useValue: '/'}],
