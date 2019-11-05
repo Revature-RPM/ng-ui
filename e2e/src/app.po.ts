@@ -14,11 +14,14 @@ export class AppPage {
   getLoginPageEvidence() { return element(by.css('app-login-register-page h2')).getText(); }
   fillLoginUser() { element(by.id('username-input')).sendKeys('username'); }
   fillLoginPass() { element(by.id('password-input')).sendKeys('password'); }
+  fillBadLoginUser() { element(by.id('username-input')).sendKeys('asdfnotuser'); }
+  fillBadLoginPass() { element(by.id('password-input')).sendKeys('asdfnotpass'); }
   pressButton() { element(by.className('mat-flat-button mat-accent')).click(); }
 
   //the project submition page
   navigationToProjectSubmission() { return browser.get('/project-submission'); }
-  getProjSubPageEvidence() { return element(by.css('app-project-submission-page h1')).getText(); }
+  getProjSubPageEvidence() { return element(by.id('title')).getText(); }
+  getErrorSubPageEvidence() { return element(by.css('ng-star-inserted span')).getText(); }
   fillProjectName() { element(by.id("project-name")).sendKeys("Fake Project"); }
   fillProjectBatch() { element(by.id("project-batch")).sendKeys("3rd Batch Java"); }
   fillProjectTrainer() { element(by.id("project-trainer")).sendKeys("Nick"); }
@@ -28,12 +31,18 @@ export class AppPage {
     });
   }
   fillProjectMembers() { 
-    const result = element(by.id('group-members'));
-    result.getAttribute('value')
-    element(by.id('group-members')).getAttribute('value').then(() => {
-
-    });
+    element(by.id('group-members')).click();
+    element(by.id('userItemText')).sendKeys('tim the gym');
+    element(by.id('submitbtn')).click();
   }
+  fillProjectDescription() { element(by.id("descriptionArea")).sendKeys("description of a fake project"); }
+  fillProjectZipLink() { 
+    element(by.id('inputGithubLink')).click();
+    element(by.id('userItemText')).sendKeys('https://github.com/Revature-RPM/ng-ui');
+    element(by.id('submitbtn')).click();
+  }
+  submitProjectForm() { element(by.id('submit')).click(); }
+  getSuccessfulProjectSubmit() { element(by.css('mat-card')).getAttribute('ng-reflect-message'); }
 }
 
 
