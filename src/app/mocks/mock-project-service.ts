@@ -26,6 +26,10 @@ export class MockProjectService {
     this.CurrentProject$.next(this.CurrentProject);
     this.AllProjects$.next([this.CurrentProject]);
     }
+
+    getProjectByField(field: string, value?: string) {
+         return this.AllProjects$.asObservable();
+   }
  
     getAllProjects(): Observable<Project[]> {
          return this.AllProjects$.asObservable();
@@ -36,6 +40,10 @@ export class MockProjectService {
     }
 
     submitEditRequest(project: Project): Observable<Project> {
+          return this.CurrentProject$.asObservable();
+    }
+
+    updateProject(project: Project, id: Number): Observable<Project> {
           return this.CurrentProject$.asObservable();
     }
 }

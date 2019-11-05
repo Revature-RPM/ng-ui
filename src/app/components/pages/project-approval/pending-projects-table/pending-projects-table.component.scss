@@ -1,0 +1,20 @@
+@import '../../../../../variables';
+
+h1 {
+	margin-bottom: 1rem;
+}
+
+mat-table {
+	mat-header-cell {
+		font-size: 1rem;
+	}
+
+	mat-cell {
+		font-size: 0.8rem;
+	}
+
+	mat-row:hover {
+		cursor: pointer;
+		background: $rev-lighter-gray;
+	}
+}

@@ -22,8 +22,9 @@ export interface DialogData {
 	templateUrl: './project-submission-page.component.html',
 	styleUrls: ['./project-submission-page.component.scss']
 })
-export class ProjectSubmissionPageComponent {
 
+export class ProjectSubmissionPageComponent {
+  
 	projectName = new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z0-9\'\" ]*')]);
 	batchName  = new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z0-9-/ ]*')]);
 	trainerName  = new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z0-9 ]*')]);
@@ -62,6 +63,8 @@ export class ProjectSubmissionPageComponent {
 	) {}
 
 	ngOnInit() {
+		console.log("Teste");
+		
 		this.userService.user.asObservable().subscribe(
 			user => {
 				this.user = user;

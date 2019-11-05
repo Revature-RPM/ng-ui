@@ -1,6 +1,12 @@
-<h1>Pending Projects</h1>
+<h2>Pending Projects</h2>
 <div class="mat-elevation-z8">
   <mat-table [dataSource]="dataSource" matSort>
+    <!-- Column -->
+    <ng-container matColumnDef="Project">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Project </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+    </ng-container>
+    
     <!-- Column -->
     <ng-container matColumnDef="Trainer">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Trainer's Name </mat-header-cell>
@@ -8,9 +14,15 @@
     </ng-container>
 
     <!-- Column -->
-    <ng-container matColumnDef="Project">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Project's Name </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+    <ng-container matColumnDef="Tech Stack">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Tech Stack </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.techStack}} </mat-cell>
+    </ng-container>
+
+    <!-- Column -->
+    <ng-container matColumnDef="Batch">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Batch </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.batch}} </mat-cell>
     </ng-container>
 
     <!-- Column -->
@@ -20,7 +32,7 @@
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row id="swapProjectRow" (click)="onSwapProject(row)" *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    <mat-row id="swapProjectRow" (click)="goToProject(row)" *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>
   <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 </div>

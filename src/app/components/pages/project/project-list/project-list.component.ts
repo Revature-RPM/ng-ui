@@ -6,6 +6,7 @@ import {ProjectService} from 'src/app/services/project.service';
 import {UserService} from 'src/app/services/user.service';
 import {Router, Params, ActivatedRoute} from '@angular/router';
 import {animate, state, style, transition, trigger} from '@angular/animations';
+import { ProjectFilterService } from 'src/app/services/project-filter.service';
 
 @Component({
   selector: 'app-project-list',
@@ -21,18 +22,17 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 })
 export class ProjectListComponent implements OnInit {
 
-  trainerFullName;
+  title:string = "Projects" || "My Projects";
   currentUser: User;
-  displayedColumns: string[] = ['name', 'batch', 'trainer', 'techStack', 'status'];
-  dataSource: MatTableDataSource<Project>;
-  @ViewChild(MatSort) sort: MatSort;
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  expandedProject: Project | null;
-  imagePage = 0;
   userId: string;
   projectList: Project[] = [];
+  filteredProjectList: Project[] = [];
+  searchByName = "";
+  searchByStatus = "";
 
-  constructor(private router: Router, private userService: UserService, private projectService: ProjectService, private route: ActivatedRoute) {
+  constructor(private router: Router, private userService: UserService,
+    private projectService: ProjectService, private filterService: ProjectFilterService,
+    private route: ActivatedRoute) {
     
   }
 
@@ -40,8 +40,7 @@ export class ProjectListComponent implements OnInit {
     this.userService.user.asObservable().subscribe(
       user => {
         if (user) {
-        this.currentUser = user;
-        this.trainerFullName = this.currentUser.firstName.trim() + ' ' + this.currentUser.lastName.trim();
+          this.currentUser = user;
         }
       }
     );
@@ -49,13 +48,11 @@ export class ProjectListComponent implements OnInit {
     // If the current page is 'projects-user' get the userId
     if(this.router.url.includes('projects-user')) {
       this.userId = this.currentUser.id + "";
+      this.title = "My Projects";
     }
 
     this.projectList = this.loadProjects(this.userId);
-
-    this.dataSource = new MatTableDataSource(this.projectList);
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
+    this.filterProjects();
   }
 
 
@@ -66,25 +63,25 @@ export class ProjectListComponent implements OnInit {
     if (!userId) {
       this.projectService.getProjectByField("status", "Approved").subscribe(proj => {
         this.projectList = proj;
+        this.filteredProjectList = proj;
       });
     } else {
       this.projectService.getProjectByField("userId", this.userId).subscribe(proj => {
         this.projectList = proj;
+        this.filteredProjectList = proj;
       });
     }
     return this.projectList;
   }
 
-
-
-  /**
-   * This function is used to filter the table based on the inputted string.
-   * It is binded as an event listener.
-   * @param filterValue : a string value that is used to filter the dataSource for the MatTable
-   * @author Yuki Mano (1810-Oct08-Java-USF)
-   */
-  applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+  filterProjects() {
+    this.filteredProjectList = this.projectList;
+    if(this.searchByStatus && this.searchByStatus != "All") {
+      this.filteredProjectList = this.filterService.filterProjectByStatus(this.filteredProjectList, this.searchByStatus);
+    }
+    if(this.searchByName.trim() != "") {
+      this.filteredProjectList = this.filterService.filterProjectByName(this.filteredProjectList, this.searchByName.toLowerCase());
+    }
   }
 
   swapProject(proj): void {

@@ -57,6 +57,10 @@ export class MockUserService {
         return  this.user.asObservable();
     }
 
+    updateUserRoles(user: User): Observable<User> {
+        return this.user.asObservable();
+    }
+
     checkIfEmailIsInUse(email): Observable<string> {
         return of(this.url);
     }

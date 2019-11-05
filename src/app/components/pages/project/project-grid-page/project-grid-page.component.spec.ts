@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
 import { Router, Route } from '@angular/router';
-import { MatCardModule, MatIconModule, MatInputModule, MatOptionModule, MatExpansionModule, MatSelectModule } from '@angular/material';
+import { MatCardModule, MatIconModule, MatInputModule, MatOptionModule, MatExpansionModule, MatSelectModule, MatListModule } from '@angular/material';
 import { NgxHmCarouselModule } from 'ngx-hm-carousel';
 import { BehaviorSubject, of } from 'rxjs';
 
@@ -49,7 +49,7 @@ describe('ProjectGridPageComponent', () => {
         MatExpansionModule, MatSelectModule,
         NgxHmCarouselModule, HttpClientTestingModule,
         RouterTestingModule, NoopAnimationsModule,
-        FormsModule, ReactiveFormsModule,
+        FormsModule, ReactiveFormsModule, MatListModule,
         HighlightModule.forRoot({ languages: hljsLanguages }) ],
         schemas: [NO_ERRORS_SCHEMA],
       providers: [ { provide: ProjectService, useClass: MockProjectService },
@@ -139,66 +139,6 @@ describe('ProjectGridPageComponent', () => {
     component.ngOnInit();
 
     expect(component.user).toBeNull();
-  });
-
-  xit('should tell ROUTER to navigate when CodeViewerButton is clicked', () => {
-      component.viewCodeBase();
-      expect(routerSpy).toHaveBeenCalledWith( ['/codebase'] );
-  });
-
- xit('should NOT tell ROUTER to navigate when CodeViewerButton is clicked and project is falsey', () => {
-      component.project = null;
-
-      component.viewCodeBase();
-      expect(routerSpy).not.toHaveBeenCalled();
-  });
-
-  it('should tell ROUTER to navigate when ProjectEditComponent is clicked',  () => {
-      component.updateProject();
-
-      expect(routerSpy).toHaveBeenCalledWith( ['/updateform'] );
-  });
-
-  it('should NOT tell ROUTER to navigate when ProjectEditComponent is clicked and project is falsey', () => {
-      component.project = null;
-
-      component.updateProject();
-      expect(routerSpy).not.toHaveBeenCalled();
-  });
-
-  it('should call viewCodeBase when Code Base button is clicked',  () => {
-    
-    spyOn( component, 'viewCodeBase').and.callFake(function() { return null; });
-
-    const button = fixture.debugElement.nativeElement.querySelector('#codeBaseButton');
-    button.click();
-
-    fixture.detectChanges();
-
-    expect(component.viewCodeBase).toHaveBeenCalled();
-  });
-  
-  it('should call updateProject when Update Project button is clicked if user.id and project.userId',  () => {
-    spyOn( component, 'updateProject').and.callFake(function() {return null; });
-
-    component.user.id = component.project.userId = 1234;
-    fixture.detectChanges();
-    const button = fixture.debugElement.nativeElement.querySelector('#editbtn');
-    button.click();
- 
-    expect(component.updateProject).toHaveBeenCalled();
-  });
-
-  it('should call updateProject when Update Project button is clicked if ROLE_ADMIN',  () => {
-    spyOn( component, 'updateProject').and.callFake(function() {return null; });
-
-    component.user = {id: 5678, role: 'ROLE_ADMIN'};
-    component.project.userId = 1234;
-    fixture.detectChanges();
-    const button = fixture.debugElement.nativeElement.querySelector('#editbtn');
-    button.click();
- 
-    expect(component.updateProject).toHaveBeenCalled();
   });
 
   xit('should be able to Initialize', () => {

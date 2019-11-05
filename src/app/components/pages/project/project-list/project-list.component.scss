@@ -22,29 +22,73 @@
 */
 @import '../../../../../variables';
 
-h4 {
-    margin: 10px auto 0 auto;
+.section {
+    width: 90%;
+    margin: 0 auto;
 }
 
-button {
-    width: 100%;
-}
+.filter-block {
+    font-size: 0.7rem;
 
-#project-list-tabs {
-    display: none;
-}
-
-@media screen and (min-width: $all-projects-breakpoint) {
-    #project-list-tabs {
-        display: flex;
-        height: 100%;
-        width: 100%;
-        justify-content: flex-start;
-        flex-direction: column;
-        overflow: auto;
+    mat-form-field {
+        display: inline-block;
+        margin: 0.5rem 1rem;
     }
 
-    #project-list-dropdown {
-        display: none;
+    mat-select {
+        display: inline-block;
+        width: 10rem;
+    }
+}
+
+.flex-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+
+    mat-card {
+        height: 8rem;
+        width: 15rem;
+        position: relative;
+        overflow: hidden;
+        margin: 0.5rem;
+
+        border: 1px solid $rev-light-gray;
+        border-radius: 12px;
+        cursor: pointer;
+
+        h4 {
+            margin-bottom: 1rem;
+        }
+
+        span {
+            display: block;
+        }
+
+        .status {
+            position: absolute;
+            bottom: 5%;
+            right: 5%;
+            width: 1rem;
+            height: 1rem;
+            border-radius: 50%;
+        }
+
+        .approved {
+            background: green;
+        }
+
+        .denied {
+            background: red;
+        }
+
+        .pending {
+            background: yellow;
+        }
+
+    }
+
+    mat-card:hover {
+        background: $rev-lighter-gray;
     }
 }

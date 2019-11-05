@@ -1,6 +1,6 @@
 import {async, TestBed} from '@angular/core/testing';
 import {RouterTestingModule} from '@angular/router/testing';
-import { MatSidenavModule, MatIconModule, MatMenuModule, MatToolbarModule,
+import { MatSidenavModule, MatIconModule, MatMenuModule, MatToolbarModule, MatListModule,
   MatExpansionModule } from '@angular/material';
   import { NoopAnimationsModule } from '@angular/platform-browser/animations';
   
@@ -14,7 +14,7 @@ describe('AppComponent', () => {
     TestBed.configureTestingModule({
       imports: [ MatSidenavModule, MatIconModule, MatMenuModule,
         MatToolbarModule, MatExpansionModule,
-        RouterTestingModule, NoopAnimationsModule,
+        RouterTestingModule, NoopAnimationsModule, MatListModule,
         HttpClientTestingModule],
       declarations: [
         AppComponent, SidenavComponent, NavMenuComponent],

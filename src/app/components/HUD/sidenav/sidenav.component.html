@@ -6,21 +6,29 @@
 
    <mat-sidenav-content>
 
-		<mat-toolbar color="primary" class="flex-container">
-
-			<button id="hamburger-button" type="button" aria-label="Toggle sidenav" mat-button (click)="sidenav.toggle()">
-				<mat-icon id="hamburger">menu</mat-icon>
-			</button>
-
-			<div *ngIf="loggedIn" id="right-buttons" class="flex-container">
-				<div id="settings-notifications" class="flex-container">
-				<mat-icon>settings</mat-icon>
-				<mat-icon>notifications</mat-icon>
+		<mat-toolbar color="primary">
+			<mat-toolbar-row>
+				<button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="sidenav.toggle()">
+					<mat-icon id="hamburger">menu</mat-icon>
+				</button>
+				<div class="spacer"></div>
+				<div class="toolbar-options">
+				
+					<div class="inline-block-div" *ngIf="homepage">
+						<a (click)="goToElement('about')">About RPM</a>		
+						<a (click)="goToElement('projects')">Projects</a>
+					</div>
+					
+					<div class="inline-block-div" *ngIf="loggedIn">
+						<a><mat-icon>settings</mat-icon></a>
+				
+						<a><mat-icon>notifications</mat-icon></a>
+						
+						<img class="user-avatar" src="assets/images/chinchilla2.jpg" (click)="routeToProfile();">
+					</div>
+	
 				</div>
-				<img class="user-avatar" [matMenuTriggerFor]="avatarMenu" src="assets/images/chinchilla2.jpg" (click)="routeToProfile();">
-				<mat-menu #avatarMenu="matMenu">
-				</mat-menu>
-			</div>
+			</mat-toolbar-row>
 
 		</mat-toolbar>
 
