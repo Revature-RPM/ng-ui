@@ -22,12 +22,21 @@ export class AppPage {
   fillProjectName() { element(by.id("project-name")).sendKeys("Fake Project"); }
   fillProjectBatch() { element(by.id("project-batch")).sendKeys("3rd Batch Java"); }
   fillProjectTrainer() { element(by.id("project-trainer")).sendKeys("Nick"); }
-  fillProjectStack() { element(by.id("project-name")).sendKeys("Fake Project"); }
-  stackOptions = element(by.id("project-stack")).then((stackOptions) => {
-    stackOptions[2].click();
-  });
+  fillProjectStack() {
+    const stackOptions = element(by.id("project-stack")).then((stackOptions) => { 
+      stackOptions[2].click();
+    });
+  }
+  fillProjectMembers() { 
+    const result = element(by.id('group-members'));
+    result.getAttribute('value')
+    element(by.id('group-members')).getAttribute('value').then(() => {
 
+    });
+  }
 }
+
+
 
 
 	// it('should go end to end and add a project', () => {

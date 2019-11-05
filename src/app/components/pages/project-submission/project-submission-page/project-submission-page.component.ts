@@ -114,8 +114,15 @@ export class ProjectSubmissionPageComponent {
 			result => {
 				if (result && result!="") {
 					if (e.target.id === 'inputGroupMembers') {
+						var i;
+						for(i = 0; i < result.length; i++) {
+							result[i] = result[i].replace(/,|[^[ ]\W]/g,"");
+							result[i] = result[i].replace(/[ ]{2,}/g," ");
+						}
+						if(result[result.length]=="" || result[result.length]==" ") return;
 						this.projectToUpload.groupMembers = result;
 						this.groupMemberString = this.projectToUpload.groupMembers.join(', ');
+						console.log(this.groupMemberString);
 						this.groupMembers.setValue(this.groupMemberString);
 					}
 					else if (e.target.id === 'inputGithubLink') {
@@ -234,13 +241,6 @@ export class ProjectSubmissionPageComponent {
 			this.snackbar.openSnackBar(this.problems, 'Dismiss');
 			return;
 		}
-
-		console.log(this.projectName.value);
-		console.log(this.batchName.value);
-		console.log(this.trainerName.value);
-		console.log(this.techStack.value);
-		console.log(this.description.value);
-		console.log(this.projectToUpload.userId);
 		
 		formData.append('name', this.projectName.value);
 		formData.append('batch', this.batchName.value);
