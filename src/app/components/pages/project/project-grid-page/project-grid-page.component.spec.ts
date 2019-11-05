@@ -141,4 +141,9 @@ describe('ProjectGridPageComponent', () => {
     expect(component.user).toBeNull();
   });
 
+  xit('should be able to Initialize', () => {
+    component.project = null;
+    component.ngOnInit();
+    expect(component.project).toBeTruthy();
+  });
 });

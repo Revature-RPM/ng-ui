@@ -43,9 +43,11 @@ describe('NavMenuComponent', () => {
     
     store = {};
     spyOn(localStorage, 'setItem').and
-      .callFake(function (key, value) { store[key] = value; })
+      .callFake(function (key, value) { store[key] = value; });
     spyOn(localStorage, 'getItem').and
-      .callFake(function(key) { return store[key]});
+      .callFake(function(key) { return store[key];
+      }
+    );
     spyOn(localStorage, 'removeItem').and
       .callFake(function () { return null;}); 
       
@@ -119,11 +121,19 @@ describe('NavMenuComponent', () => {
     expect(routerSpy).toHaveBeenCalledWith(['']);
   });
 
-  it('should not be logged in if user does not exist', () => {
+  // it('should not be logged in if user does not exist', () => {
+  it('should hide goToEditRoles function if admin is false  ERROR', () => {
+    expect(fixture.debugElement.query(By.css('#go-to-edit'))).toBeNull();
+  });
+  
+
+  it('should not login if user does not exist', () => {
+    component.loggedIn = component.admin = true;
     
     let userService = TestBed.get(UserService);
     userService.user = new BehaviorSubject<User>(null);
 
+    // tslint:disable-next-line: no-lifecycle-call
     component.ngOnInit();
 
     expect(component.menu).toEqual(nonUserMenu);
