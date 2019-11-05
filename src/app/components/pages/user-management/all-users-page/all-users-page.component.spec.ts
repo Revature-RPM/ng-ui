@@ -58,7 +58,7 @@ describe('AllUsersPageComponent', () => {
   });
 
   it('should be instatiated with a users page and display columns', () => {
-    console.log(userService.user);
+    
     expect(component.usersPage).toEqual(true);
     expect(component.displayedUserColumns).toEqual(['username', 'firstName', 'lastName', 'email', 'role']);
   });
@@ -80,7 +80,6 @@ describe('AllUsersPageComponent', () => {
   });
 
   it('should update the user to an admin', () => {
-    console.log(userService.user.value.role);
 
     component.updateToAdmin(userService.user.value);
 
