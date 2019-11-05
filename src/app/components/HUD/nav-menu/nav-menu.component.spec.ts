@@ -1,11 +1,6 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-<<<<<<< HEAD
-
-import { NavMenuComponent } from './nav-menu.component';
-=======
 import { DebugElement } from '@angular/core';
 import {NavMenuComponent} from './nav-menu.component';
->>>>>>> 33b5992375bb51392862001e55af1c73cd9274f7
 import { MatButtonModule, MatExpansionModule, MatListModule } from '@angular/material';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
