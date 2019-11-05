@@ -42,4 +42,8 @@ export class MockProjectService {
     submitEditRequest(project: Project): Observable<Project> {
           return this.CurrentProject$.asObservable();
     }
+
+    updateProject(project: Project, id: Number): Observable<Project> {
+          return this.CurrentProject$.asObservable();
+    }
 }
