@@ -36,9 +36,11 @@ fdescribe('NavMenuComponent', () => {
     
     store = {};
     spyOn(localStorage, 'setItem').and
-      .callFake(function (key, value) { store[key] = value; })
+      .callFake(function (key, value) { store[key] = value; });
     spyOn(localStorage, 'getItem').and
-      .callFake(function(key) { return store[key]});
+      .callFake(function(key) { return store[key];
+      }
+    );
     spyOn(localStorage, 'removeItem').and
       .callFake(function () { return null;}); 
       
@@ -61,17 +63,8 @@ fdescribe('NavMenuComponent', () => {
 
   it('should hide goToEditRoles function if admin is false', () => {
     expect(fixture.debugElement.query(By.css('#go-to-edit'))).toBeNull();
-});
-
-  // it('should call logout from userService', () => {
-  //   let userService = TestBed.get(UserService);
-  //   spyOn(userService, 'logout');
-
-  //   component.();
-
-  //   expect(userService.logout).toHaveBeenCalled();
-  //   expect(routerSpy).toHaveBeenCalledWith(['auth/login']);
-  // });
+  });
+  
 
   it('should not login if user does not exist', () => {
     component.loggedIn = component.admin = true;
@@ -79,6 +72,7 @@ fdescribe('NavMenuComponent', () => {
     let userService = TestBed.get(UserService);
     userService.user = new BehaviorSubject<User>(null);
 
+    // tslint:disable-next-line: no-lifecycle-call
     component.ngOnInit();
 
     expect(component.loggedIn).toEqual(false);

@@ -12,9 +12,7 @@ export class ProjectViewGuard implements CanActivate {
 
   }
   
-  canActivate(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean
+  canActivate(): Observable<boolean> | Promise<boolean> | boolean
   {
     if(this.projectService.CurrentProject$.value) return true;
     else {

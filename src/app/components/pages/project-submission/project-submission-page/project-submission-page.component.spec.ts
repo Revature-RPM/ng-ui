@@ -83,21 +83,21 @@ describe('ProjectSubmissionPageComponent', () => {
 	});
 
 	//all formData from start after ngOnInit()
-	it('approvingProject falsy when empty', () => { expect(component.projectToUpload.approvingProject).toBeFalsy(); })
-	it('batch falsy when empty', () => { expect(component.projectToUpload.batch).toBeFalsy(); })
-	it('dataModel starts empty', () => { expect(component.projectToUpload.dataModel.length).toBe(0); })
-	it('description falsy when empty', () => { expect(component.projectToUpload.description).toBeFalsy(); })
-	it('groupMembers starts empty', () => { expect(component.projectToUpload.groupMembers.length).toBe(0); })
-	it('id falsy when empty', () => { expect(component.projectToUpload.id).toBeFalsy(); })
-	it('name falsy when empty', () => { expect(component.projectToUpload.name).toBeFalsy(); })
-	it('oldProject falsy when empty', () => { expect(component.projectToUpload.oldProject).toBeFalsy(); })
-	it('projectApproved falsy when empty', () => { expect(component.projectToUpload.projectApproved).toBeFalsy(); })
-	it('projectDeclined falsy when empty', () => { expect(component.projectToUpload.projectDeclined).toBeFalsy(); })
-	it('screenShots starts empty', () => { expect(component.projectToUpload.screenShots.length).toBe(0); })
-	it('status falsy when empty', () => { expect(component.projectToUpload.status).toBeFalsy(); })
-	it('techStack falsy when empty', () => { expect(component.projectToUpload.techStack).toBeFalsy(); })
-	it('trainer starts with value from user', () => { expect(component.projectToUpload.trainer).toBe("Bob White"); })
-	it('userId starts with value from user', () => { expect(component.projectToUpload.userId).toBe(1234); })
+	it('approvingProject falsy when empty', () => { expect(component.projectToUpload.approvingProject).toBeFalsy(); });
+	it('batch falsy when empty', () => { expect(component.projectToUpload.batch).toBeFalsy(); });
+	it('dataModel starts empty', () => { expect(component.projectToUpload.dataModel.length).toBe(0); });
+	it('description falsy when empty', () => { expect(component.projectToUpload.description).toBeFalsy(); });
+	it('groupMembers starts empty', () => { expect(component.projectToUpload.groupMembers.length).toBe(0); });
+	it('id falsy when empty', () => { expect(component.projectToUpload.id).toBeFalsy(); });
+	it('name falsy when empty', () => { expect(component.projectToUpload.name).toBeFalsy(); });
+	it('oldProject falsy when empty', () => { expect(component.projectToUpload.oldProject).toBeFalsy(); });
+	it('projectApproved falsy when empty', () => { expect(component.projectToUpload.projectApproved).toBeFalsy(); });
+	it('projectDeclined falsy when empty', () => { expect(component.projectToUpload.projectDeclined).toBeFalsy(); });
+	it('screenShots starts empty', () => { expect(component.projectToUpload.screenShots.length).toBe(0); });
+	it('status falsy when empty', () => { expect(component.projectToUpload.status).toBeFalsy(); });
+	it('techStack falsy when empty', () => { expect(component.projectToUpload.techStack).toBeFalsy(); });
+	it('trainer starts with value from user', () => { expect(component.projectToUpload.trainer).toBe("Bob White"); });
+	it('userId starts with value from user', () => { expect(component.projectToUpload.userId).toBe(1234); });
 
 	//testing form when filled with mockProject
 	it('testing all inputs being filled with mock', () => {
@@ -120,25 +120,6 @@ describe('ProjectSubmissionPageComponent', () => {
 		expect(component.problems).toBeTruthy();
 	});
 
-	// it('should go end to end and add a project', () => {
-	// 	browser.get('http://localhost:4200/submitform');
-	// 	element(by.id("project-name")).sendKeys("Fake Project");
-	// 	element(by.id("project-batch")).sendKeys("3rd Batch Java");
-	// 	element(by.id("project-trainer")).sendKeys("Nick");
-	// 	var stackOptions = element(by.id("project-stack"))
-	// 		.then((stackOptions) => {
-	// 			stackOptions[2].click();
-	// 		}
-	// 	)
-	// 	var result = element(by.id('group-members'));
-	// 	expect(result.getAttribute('value')).toEqual(['Mike', 'Molly', 'Sam']);
-	// 	element(by.id("descriptionArea")).sendKeys("This is a fake project for testing");
-	// 	element(by.id("inputGithubLink")).sendKeys("https://github.com/NicoloPerrelli/revtaroomapi");
-	// 	element(by.id("submit")).click();
-		
-	// 	var list = element(by.id("project-list-tabs"))
-	// 	expect(list.getSize).toBeTruthy();
-	// })
 });
 
 function setJWTObject(jwt: string) {
