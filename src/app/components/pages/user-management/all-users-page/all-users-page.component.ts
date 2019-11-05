@@ -27,7 +27,7 @@ export class AllUsersPageComponent implements OnInit {
 
   ngOnInit() {
 
-    if (!localStorage.getItem('jwt')) this.router.navigate(['/auth/login']);
+    if (!this.userService.user) this.router.navigate(['login']);
     
     if (this.userService.user.value.role === 'ROLE_ADMIN') {
     this.userSubscription = this.userService.getAllUsers().subscribe(

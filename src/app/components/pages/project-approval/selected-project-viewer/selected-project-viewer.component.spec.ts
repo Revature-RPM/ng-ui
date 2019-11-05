@@ -9,7 +9,7 @@ import { ProjectService } from 'src/app/services/project.service';
 import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
 
-fdescribe('SelectedProjectViewerComponent', () => {
+describe('SelectedProjectViewerComponent', () => {
   let component: SelectedProjectViewerComponent;
   let fixture: ComponentFixture<SelectedProjectViewerComponent>;
 
@@ -40,29 +40,22 @@ fdescribe('SelectedProjectViewerComponent', () => {
   });
 
   it('should be instantiated with a project', () => {
-    let projectService = TestBed.get(ProjectService);
-    console.log(component.project);
 
     expect(component.project.name).toEqual('Fake Project');
   })
 
   it('should call approveProject Method', () => {
     let projectService = TestBed.get(ProjectService);
-    let projectSpy = spyOn(projectService, 'updateProject')
-
 
     let approveSpy = spyOn(component, 'approveProject');
     console.log(component.project);
 
     const button = fixture.debugElement.query(By.css('#approve-project-btn'));
-    console.log(button.nativeElement);
     button.nativeElement.click();
     fixture.detectChanges();
 
-    //expect(projectSpy).toHaveBeenCalled();
     expect(approveSpy).toHaveBeenCalled();
     expect(component.approveProject).toHaveBeenCalled();
-    //expect(component.project.status).toEqual('Approved');
 
   });
 
@@ -82,7 +75,6 @@ fdescribe('SelectedProjectViewerComponent', () => {
     let projectSpy = spyOn(projectService, 'updateProject').and.returnValue(of(component.project));
 
     component.approveProject();
-    console.log(component.project);
 
     expect(component.project.status).toEqual('Approved');
     expect(projectSpy).toHaveBeenCalled();
@@ -93,7 +85,6 @@ fdescribe('SelectedProjectViewerComponent', () => {
     let projectSpy = spyOn(projectService, 'updateProject').and.returnValue(of(component.project));
 
     component.denyProject();
-    console.log(component.project);
 
     expect(component.project.status).toEqual('Denied');
     expect(projectSpy).toHaveBeenCalled();
