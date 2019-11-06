@@ -1,11 +1,8 @@
 <mat-card>
-
 	<div id="submit-project-form">
-
 		<h1 id="title">Submit a Project</h1>
-
-		
 		<div class="row">
+
 			<mat-form-field>
 				<mat-label>Project Name</mat-label>
 				<mat-error *ngIf="projectName.required">Project name is required</mat-error>
@@ -75,25 +72,13 @@
 				https://github.com/[Github username]/[Repository Name]</mat-error>
 			<textarea matInput readonly id="inputGithubLink" type="text" name="repoLinks" placeholder="Project Repository Links"
 				[formControl]="zipLinks" (click)="openEditableDialog($event)"></textarea>
-			<!--<mat-hint id="editGithubLink" (click)="openEditDialog($event)" aria-label="editGithubLink" name="editGithubLink" align="end">Edit</mat-hint>-->
 		</mat-form-field>
 
+		<button id="buttonScreenshotTrigger" mat-flat-button color="accent" (click)="uploadScreenshots.click()">Choose Project Screenshots</button>
 
-		<!-- <mat-form-field>
-					<mat-label>Technology Stack</mat-label>
-				<mat-error *ngIf="!techStack.valid || techStack.pristine">Technology stack is required</mat-error>
-				<input type=text matInput name="stack" placeholder="Project Technology Stack" [(ngModel)]="projectToUpload.techStack"
-				[ngModelOptions]="{standalone: true}" required #techStack="ngModel">
-				</mat-form-field> -->
-
-		<button id="buttonScreenshotTrigger" mat-flat-button color="accent" (click)="uploadScreenshots.click()">
-			Choose Project Screenshots</button>
 		<div class="file-spacer">
-			<!-- This button triggers the file input to be clicked by referencing its template variable, uploadScreenshots -->
-
 			<div id="screenshotdiv" *ngFor="let screenshot of projectToUpload.screenShots; let i = index"
 				[attr.data-index]="i">
-
 				<div class="filelist" (click)="removeData(screenshot, 'scs')">
 					<img *ngIf="screenshotPicList[i]" [src]="screenshotPicList[i]" height="50">
 					<div class="file-name">{{ screenshot.name }}</div>
@@ -101,12 +86,9 @@
 			</div>
 		</div>
 
-		<button mat-flat-button color="accent" (click)="uploadDatamodel.click()" title="SQL Scripts only.">Choose Data
-			Model</button>
+		<button mat-flat-button color="accent" (click)="uploadDatamodel.click()" title="SQL Scripts only.">Choose Data Model</button>
 
 		<div class="file-spacer">
-			<!-- This button triggers the file input to be clicked by referencing its template variable, uploadDatamodel -->
-			<!-- <label for="buttonDatamodelTrigger" >SQL scripts only!</label> -->
 			<div *ngFor="let datamodel of projectToUpload.dataModel">
 				<div class="filelist" (click)="removeData(datamodel, 'dms')"> {{ datamodel.name }} </div>
 			</div>

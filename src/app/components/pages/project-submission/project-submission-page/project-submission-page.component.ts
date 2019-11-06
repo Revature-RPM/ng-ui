@@ -27,12 +27,11 @@ export class ProjectSubmissionPageComponent {
 	projectName = new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z0-9/\-\_\\ ]*')]);
 	batchName  = new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z0-9/\-\_\\ ]*')]);
 	trainerName  = new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z ]*')]);
-	techStack  = new FormControl('');
+	techStack  = new FormControl('', [Validators.required]);
 	groupMembers  = new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z, ]*')]);
 	description  = new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z0-9/\-\_\n\\ ]*')]);
 	zipLinks  = new FormControl('', [Validators.required, Validators.pattern('^(https:\/\/github\.com\/[^/]+\/[^/]+)* *')]);
 
-	form: FormGroup;
 	projectToUpload: Project = {};
 	user: User;
 	projectNameFormControl = new FormControl('', [ Validators.required ]);
@@ -58,7 +57,6 @@ export class ProjectSubmissionPageComponent {
 		private projectService: ProjectService,
 		private userService: UserService,
 		private snackbar: SnackbarService,
-		private formBuilder: FormBuilder
 	) {}
 
 	ngOnInit() {
@@ -119,7 +117,8 @@ export class ProjectSubmissionPageComponent {
 							result[i] = result[i].replace(/,|[^[ ]\W]/g,"");
 							result[i] = result[i].replace(/[ ]{2,}/g," ");
 						}
-
+						//if goodArray isnt used, regardless of if does or doesnt hit "this.projectToUpload.groupMembers = goodArray;"
+						//it will change the value when the dialogRef's value is set when dealing with spaces.
 						var goodArray=[];
 						for(i = 0; i < result.length; i++) {
 							if((result[i]!="") && (result[i]!=" ")) { goodArray[j++]=result[i].trim(); }
@@ -208,16 +207,19 @@ export class ProjectSubmissionPageComponent {
 	removeData(file: File, inputfield) {
 		let list;
 		let piclist;
+
 		if (inputfield === 'scs') {
 			list = this.projectToUpload.screenShots;
 			piclist = this.screenshotPicList;
 		}
+
 		if (inputfield === 'dms') {
 			list = this.projectToUpload.dataModel;
 			piclist = null;
 		}
 
 		const index: number = list.indexOf(file);
+
 		if (index !== -1) {
 			list.splice(index, 1);
 			if (piclist) piclist.splice(index, 1);
@@ -227,6 +229,7 @@ export class ProjectSubmissionPageComponent {
 	/**
 	 * This method is bound to the submission of the form
 	 * All the data from the form is placed as key-value pairs into a FormData object.
+	 * Will not send data but rather give user a snackbar notification on what is wrong if there is a validation issue.
 	 * This FormData object is then sent to the project service for communication with the server.
 	 */
 	submitForm() {
@@ -234,16 +237,17 @@ export class ProjectSubmissionPageComponent {
 		let formData = new FormData();
 		this.problems = "";
 
-		if(this.projectName.invalid) {this.problems=this.problems + " Project name has problems."}
-		if(this.batchName.invalid) {this.problems=this.problems + " Batch name has problems."}
-		if(this.trainerName.invalid) {this.problems=this.problems + " Trainer name has problems."}
-		if(this.techStack.invalid) {this.problems=this.problems + " Tech stack was not picked."}
-		if(this.groupMembers.invalid) {this.problems=this.problems + " Group members has problem."}
-		if(this.description.invalid) {this.problems=this.problems + " Description has problem."}
-		if(this.zipLinks.invalid) {this.problems=this.problems + " Github link has problems."}
+		if(this.projectName.invalid) {this.problems=this.problems + " Project name has problems.";}
+		if(this.batchName.invalid) {this.problems=this.problems + " Batch name has problems.";}
+		if(this.trainerName.invalid) {this.problems=this.problems + " Trainer name has problems.";}
+		if(this.techStack.invalid) {this.problems=this.problems + " Tech stack was not picked.";}
+		if(this.groupMembers.invalid) {this.problems=this.problems + " Group members has problem.";}
+		if(this.description.invalid) {this.problems=this.problems + " Description has problem.";}
+		if(this.zipLinks.invalid) {this.problems=this.problems + " Github link has problems.";}
 
 		if(this.problems != ""){
 			this.snackbar.openSnackBar(this.problems, 'Dismiss');
+			this.submitting = false;
 			return;
 		}
 		
@@ -270,7 +274,6 @@ export class ProjectSubmissionPageComponent {
 
 		for (let l = 0; l < this.projectToUpload.dataModel.length; l++) {
 			formData.append('dataModel', this.projectToUpload.dataModel[l]);
-
 		}
 
 		this.projectService.createProject(formData).subscribe(
