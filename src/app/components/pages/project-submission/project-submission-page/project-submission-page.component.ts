@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgMetaService } from 'ngmeta';
 import { MatDialog } from '@angular/material';
 import { ProjectService } from 'src/app/services/project.service';
 import { UserService } from 'src/app/services/user.service';
 import { SnackbarService } from 'src/app/services/snackbar.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { EditDialogComponent } from '../edit-dialog/edit-dialog.component';
 import { Project } from 'src/app/models/Project';
 import { User } from 'src/app/models/User';
@@ -22,11 +22,21 @@ export interface DialogData {
 	templateUrl: './project-submission-page.component.html',
 	styleUrls: ['./project-submission-page.component.scss']
 })
-export class ProjectSubmissionPageComponent implements OnInit {
+export class ProjectSubmissionPageComponent {
+
+	projectName = new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z0-9/\-\_\\ ]*')]);
+	batchName  = new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z0-9/\-\_\\ ]*')]);
+	trainerName  = new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z ]*')]);
+	techStack  = new FormControl('');
+	groupMembers  = new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z, ]*')]);
+	description  = new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z0-9/\-\_\n\\ ]*')]);
+	zipLinks  = new FormControl('', [Validators.required, Validators.pattern('^(https:\/\/github\.com\/[^/]+\/[^/]+)* *')]);
+
 	form: FormGroup;
 	projectToUpload: Project = {};
 	user: User;
-
+	projectNameFormControl = new FormControl('', [ Validators.required ]);
+	problems;
 	/**
 	 * GroupMemberString and zipLinkString are both bound to the user's input of the group member field and the zip links field
 	 * When a new group member or zip link is added, then that information is concatenated to the string.
@@ -49,9 +59,7 @@ export class ProjectSubmissionPageComponent implements OnInit {
 		private userService: UserService,
 		private snackbar: SnackbarService,
 		private formBuilder: FormBuilder
-	) { }
-
-	imagePath;
+	) {}
 
 	ngOnInit() {
 		console.log("Teste");
@@ -62,7 +70,7 @@ export class ProjectSubmissionPageComponent implements OnInit {
 				this.projectToUpload.userId = user.id; // setting owner to the project
 				this.projectToUpload.trainer = this.user.firstName + ' ' + this.user.lastName;
 			}
-		)
+		);
 
 		this.ngmeta.setHead({ title: 'Submit | RPM' });
 
@@ -104,14 +112,28 @@ export class ProjectSubmissionPageComponent implements OnInit {
 		dialogRef.afterClosed().subscribe(
 
 			result => {
-				if (result) {
+				if (result && result!="") {
 					if (e.target.id === 'inputGroupMembers') {
-						this.projectToUpload.groupMembers = result;
+						var i,j=0;
+						for(i = 0; i < result.length; i++) {
+							result[i] = result[i].replace(/,|[^[ ]\W]/g,"");
+							result[i] = result[i].replace(/[ ]{2,}/g," ");
+						}
+
+						var goodArray=[];
+						for(i = 0; i < result.length; i++) {
+							if((result[i]!="") && (result[i]!=" ")) { goodArray[j++]=result[i].trim(); }
+						}
+
+						this.projectToUpload.groupMembers = goodArray;
 						this.groupMemberString = this.projectToUpload.groupMembers.join(', ');
+						this.groupMembers.setValue(this.groupMemberString);
 					}
+
 					else if (e.target.id === 'inputGithubLink') {
 						this.projectToUpload.zipLinks = result;
 						this.zipLinksString = this.projectToUpload.zipLinks.join(', ');
+						this.zipLinks.setValue(this.zipLinksString);
 					}
 				}
 			}
@@ -167,7 +189,7 @@ export class ProjectSubmissionPageComponent implements OnInit {
 			reader.readAsDataURL(e.target.files[0]);
 			reader.onload = (_event) => {
 				this.screenshotPicList.push(reader.result);
-			}
+			};
 		}
 	}
 
@@ -209,14 +231,28 @@ export class ProjectSubmissionPageComponent implements OnInit {
 	 */
 	submitForm() {
 		this.submitting = true;
-
 		let formData = new FormData();
-		formData.append('name', this.projectToUpload.name);
-		formData.append('batch', this.projectToUpload.batch);
-		formData.append('trainer', this.projectToUpload.trainer);
-		formData.append('techStack', this.projectToUpload.techStack);
-		formData.append('description', this.projectToUpload.description);
-		formData.append('status', 'Pending');
+		this.problems = "";
+
+		if(this.projectName.invalid) {this.problems=this.problems + " Project name has problems."}
+		if(this.batchName.invalid) {this.problems=this.problems + " Batch name has problems."}
+		if(this.trainerName.invalid) {this.problems=this.problems + " Trainer name has problems."}
+		if(this.techStack.invalid) {this.problems=this.problems + " Tech stack was not picked."}
+		if(this.groupMembers.invalid) {this.problems=this.problems + " Group members has problem."}
+		if(this.description.invalid) {this.problems=this.problems + " Description has problem."}
+		if(this.zipLinks.invalid) {this.problems=this.problems + " Github link has problems."}
+
+		if(this.problems != ""){
+			this.snackbar.openSnackBar(this.problems, 'Dismiss');
+			return;
+		}
+		
+		formData.append('name', this.projectName.value);
+		formData.append('batch', this.batchName.value);
+		formData.append('trainer', this.trainerName.value);
+		formData.append('techStack', this.techStack.value);
+		formData.append('description', this.description.value);
+		formData.append('status', 'pending');
 		formData.append("userId", this.projectToUpload.userId);
 
 		// elements of an array are appended to the FormData object using the same key name

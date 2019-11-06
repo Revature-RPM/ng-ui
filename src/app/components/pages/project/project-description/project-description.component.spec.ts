@@ -24,5 +24,14 @@ describe('ProjectDescriptionComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+    expect(component.project).toBeFalsy();
+    expect(component.displayText).toBeFalsy();
   });
+
+  it('on init fill the variables', () => {
+    component.ngOnInit();
+    expect(component.project).toBeTruthy();
+    expect(component.displayText).toBeTruthy();
+  });
+  
 });

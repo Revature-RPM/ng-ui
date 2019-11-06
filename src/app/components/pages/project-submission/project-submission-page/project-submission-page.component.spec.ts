@@ -1,30 +1,28 @@
+import { Router } from '@angular/router';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
-import { Router, ActivatedRoute } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import {
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { 
 	MatCardModule, 
-	MatFormFieldModule, 
+	MatInputModule, 
 	MatOptionModule, 
-	MatSelectModule,
-	MatProgressSpinnerModule, 
 	MatDialogModule, 
+	MatSelectModule, 
 	MatSnackBarModule, 
-	MatInputModule
+	MatFormFieldModule, 
+	MatProgressSpinnerModule
 } from '@angular/material';
 
-import { ProjectSubmissionPageComponent } from './project-submission-page.component';
 import { NgMetaService } from 'ngmeta';
-import { MockProjectService } from 'src/app/mocks/mock-project-service';
-import { ProjectService } from 'src/app/services/project.service';
-import { MockUserService } from 'src/app/mocks/mock-user-service';
+import { browser, by, element } from 'protractor';
 import { UserService } from 'src/app/services/user.service';
-import { ProjectEditComponent } from '../../project-edit/project-edit.component';
-
-/* tslint:disable: no-lifecycle-call */
+import { MockUserService } from 'src/app/mocks/mock-user-service';
+import { ProjectService } from 'src/app/services/project.service';
+import { MockProjectService } from 'src/app/mocks/mock-project-service';
+import { ProjectSubmissionPageComponent } from './project-submission-page.component';
 
 describe('ProjectSubmissionPageComponent', () => {
 	let router: Router;
@@ -37,24 +35,24 @@ describe('ProjectSubmissionPageComponent', () => {
 			declarations: [ ProjectSubmissionPageComponent ],
 			schemas: [CUSTOM_ELEMENTS_SCHEMA],
 			imports: [
-				MatCardModule, 
-				MatFormFieldModule, 
 				FormsModule,
+				MatCardModule, 
+				MatInputModule,
 				MatOptionModule, 
 				MatSelectModule,
-				MatProgressSpinnerModule, 
 				MatDialogModule,
 				MatSnackBarModule, 
-				MatInputModule,
+				MatFormFieldModule, 
 				ReactiveFormsModule, 
 				RouterTestingModule,
-				HttpClientTestingModule, 
 				NoopAnimationsModule,
+				HttpClientTestingModule, 
+				MatProgressSpinnerModule, 
 			],
 			providers: [
 				NgMetaService,
+				{provide: UserService, useClass: MockUserService},
 				{provide: ProjectService, useClass: MockProjectService},
-				{provide: UserService, useClass: MockUserService}
 			]
 		})
 			.compileComponents();
@@ -75,8 +73,8 @@ describe('ProjectSubmissionPageComponent', () => {
 	});
 
 	afterEach(() => {
-		component = null;
 		router = null;
+		component = null;
 		routerSpy = null;
 	})
 
@@ -85,21 +83,21 @@ describe('ProjectSubmissionPageComponent', () => {
 	});
 
 	//all formData from start after ngOnInit()
-	it('approvingProject falsy when empty', () => { expect(component.projectToUpload.approvingProject).toBeFalsy(); })
-	it('batch falsy when empty', () => { expect(component.projectToUpload.batch).toBeFalsy(); })
-	it('dataModel starts empty', () => { expect(component.projectToUpload.dataModel.length).toBe(0); })
-	it('description falsy when empty', () => { expect(component.projectToUpload.description).toBeFalsy(); })
-	it('groupMembers starts empty', () => { expect(component.projectToUpload.groupMembers.length).toBe(0); })
-	it('id falsy when empty', () => { expect(component.projectToUpload.id).toBeFalsy(); })
-	it('name falsy when empty', () => { expect(component.projectToUpload.name).toBeFalsy(); })
-	it('oldProject falsy when empty', () => { expect(component.projectToUpload.oldProject).toBeFalsy(); })
-	it('projectApproved falsy when empty', () => { expect(component.projectToUpload.projectApproved).toBeFalsy(); })
-	it('projectDeclined falsy when empty', () => { expect(component.projectToUpload.projectDeclined).toBeFalsy(); })
-	it('screenShots starts empty', () => { expect(component.projectToUpload.screenShots.length).toBe(0); })
-	it('status falsy when empty', () => { expect(component.projectToUpload.status).toBeFalsy(); })
-	it('techStack falsy when empty', () => { expect(component.projectToUpload.techStack).toBeFalsy(); })
-	it('trainer starts with value from user', () => { expect(component.projectToUpload.trainer).toBe("Bob White"); })
-	it('userId starts with value from user', () => { expect(component.projectToUpload.userId).toBe(1234); })
+	it('approvingProject falsy when empty', () => { expect(component.projectToUpload.approvingProject).toBeFalsy(); });
+	it('batch falsy when empty', () => { expect(component.projectToUpload.batch).toBeFalsy(); });
+	it('dataModel starts empty', () => { expect(component.projectToUpload.dataModel.length).toBe(0); });
+	it('description falsy when empty', () => { expect(component.projectToUpload.description).toBeFalsy(); });
+	it('groupMembers starts empty', () => { expect(component.projectToUpload.groupMembers.length).toBe(0); });
+	it('id falsy when empty', () => { expect(component.projectToUpload.id).toBeFalsy(); });
+	it('name falsy when empty', () => { expect(component.projectToUpload.name).toBeFalsy(); });
+	it('oldProject falsy when empty', () => { expect(component.projectToUpload.oldProject).toBeFalsy(); });
+	it('projectApproved falsy when empty', () => { expect(component.projectToUpload.projectApproved).toBeFalsy(); });
+	it('projectDeclined falsy when empty', () => { expect(component.projectToUpload.projectDeclined).toBeFalsy(); });
+	it('screenShots starts empty', () => { expect(component.projectToUpload.screenShots.length).toBe(0); });
+	it('status falsy when empty', () => { expect(component.projectToUpload.status).toBeFalsy(); });
+	it('techStack falsy when empty', () => { expect(component.projectToUpload.techStack).toBeFalsy(); });
+	it('trainer starts with value from user', () => { expect(component.projectToUpload.trainer).toBe("Bob White"); });
+	it('userId starts with value from user', () => { expect(component.projectToUpload.userId).toBe(1234); });
 
 	//testing form when filled with mockProject
 	it('testing all inputs being filled with mock', () => {
@@ -114,8 +112,13 @@ describe('ProjectSubmissionPageComponent', () => {
 		component.projectToUpload.zipLinks = ['value'];
 
 		expect(component.projectToUpload).toBeTruthy();
-	})
+	});
 
+	//testing if it will enter the snackbar block
+	it('should throw problems if there is no data on submit press', () => {
+		component.submitForm();
+		expect(component.problems).toBeTruthy();
+	});
 
 });
 
