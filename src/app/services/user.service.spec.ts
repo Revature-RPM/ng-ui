@@ -1,13 +1,14 @@
-import {HttpClientTestingModule} from '@angular/common/http/testing';
-import {getTestBed, TestBed} from '@angular/core/testing';
+import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import {getTestBed, TestBed, ComponentFixture} from '@angular/core/testing';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {RouterTestingModule} from '@angular/router/testing';
-
 // import {AuthenticationModule} from 'src/old-components/authentication/authentication.module';
 // import {AppModule} from '../../old-components/app.module';
 // import {AuthenticationModule} from 'src/old-components/authentication/authentication.module';
- import {AppModule} from 'src/app/app.module';
+import {AppModule} from 'src/app/app.module';
 import {UserService} from './user.service';
+import { MockUserService } from '../mocks/mock-user-service';
 
 /**
  * UserService tests. For future testing research implementing HttpClientTestingModule
@@ -30,6 +31,7 @@ describe('UserService', () => {
     injector = getTestBed();
     service = injector.get(UserService);
     httpMock = injector.get(HttpClientTestingModule);
+    localStorage.setItem('jwt', 'testJWT');
   });
 
   it('should be created', () => {
@@ -37,9 +39,10 @@ describe('UserService', () => {
     expect(userService).toBeTruthy();
   });
 
-  /**
-   * The following test is not a unit test. No spyOn is called. Isolation is not maintained. Needs refactoring.
-   */
+  // it('should have valid user if local storage has a jwt', () => {
+    
+  // })
+
   it('should return \'{emailIsInUse:true}\' on checking if email is in use with \'admin@revature.com\'', () => {
     const response = {emailIsInUse: true};
     service.checkIfEmailIsInUse('admin@revature.com').subscribe(res => {

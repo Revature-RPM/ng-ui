@@ -77,6 +77,11 @@ export class ProjectEditComponent implements OnInit {
   * On success will set the current project to be watched to the updated project.
   */
  submitForm() {
+  this.projectToUpdate.name = this.editForm.controls.projectName.value;
+  this.projectToUpdate.batch = this.editForm.controls.batchName.value;
+  this.projectToUpdate.trainer = this.editForm.controls.trainerName.value;
+  this.projectToUpdate.techStack = this.editForm.controls.techStack.value;
+  this.projectToUpdate.description = this.editForm.controls.description.value;
   this.projectToUpdate.status = 'Pending';
   this.projectToUpdate.oldProject = null;
   this.projectToUpdate.oldProject = this.originalProject;  //Setting the original project inside the updated project

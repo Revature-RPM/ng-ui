@@ -60,13 +60,12 @@ describe('SidenavComponent', () => {
   });
 
   xit('loggedIn should be false if user is not logged in', () => {
-    component.loggedIn = true;
+    //component.loggedIn = true;
     
     let userService = TestBed.get(UserService);
     
     userService.user = new BehaviorSubject<User>(null);
     
-
     component.ngOnInit();
 
     expect(component.loggedIn).toEqual(false);
