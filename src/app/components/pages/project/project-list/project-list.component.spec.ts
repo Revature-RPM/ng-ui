@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
 
-fdescribe('ProjectListComponent', () => {
+describe('ProjectListComponent', () => {
   let component: ProjectListComponent;
   let fixture: ComponentFixture<ProjectListComponent>;
   let projectService: ProjectService;

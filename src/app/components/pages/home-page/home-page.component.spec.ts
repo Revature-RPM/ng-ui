@@ -12,7 +12,7 @@ import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 
 
-fdescribe('HomePageComponent', () => {
+describe('HomePageComponent', () => {
   let component: HomePageComponent;
   let fixture: ComponentFixture<HomePageComponent>;
 

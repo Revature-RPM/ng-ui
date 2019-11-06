@@ -15,9 +15,10 @@ import { MockProjectService } from 'src/app/mocks/mock-project-service';
 import { Router } from '@angular/router';
 import {User} from 'src/app/models/User';
 import {of, BehaviorSubject, Observable, throwError} from 'rxjs';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
-fdescribe('AllUsersPageComponent', () => {
+describe('AllUsersPageComponent', () => {
   let component: AllUsersPageComponent;
   let fixture: ComponentFixture<AllUsersPageComponent>;
   let router: Router;
@@ -31,7 +32,7 @@ fdescribe('AllUsersPageComponent', () => {
       imports: [ MatSnackBarModule, MatSidenavModule, MatIconModule,
         MatMenuModule, MatToolbarModule, 
         MatExpansionModule, RouterTestingModule, MatListModule,
-        HttpClientTestingModule ],
+        HttpClientTestingModule, BrowserAnimationsModule ],
         providers: [{ provide: UserService, useClass: MockUserService },
           { provide: ProjectService, useClass: MockProjectService }
         ]

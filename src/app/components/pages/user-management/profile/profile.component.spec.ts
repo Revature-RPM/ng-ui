@@ -13,7 +13,7 @@ import { BehaviorSubject } from 'rxjs';
 import { User } from 'src/app/models/User';
 import { BrowserModule } from '@angular/platform-browser';
 
-fdescribe('ProfileComponent', () => {
+describe('ProfileComponent', () => {
   let component: ProfileComponent;
   let fixture: ComponentFixture<ProfileComponent>;
   let router: Router;
