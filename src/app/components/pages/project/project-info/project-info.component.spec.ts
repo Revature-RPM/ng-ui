@@ -25,4 +25,20 @@ describe('ProjectInfoComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should init', () => {
+    component.ngOnInit();
+
+  });
+
+  it('on update move to /updateform route', () => {
+    component.updateProject();
+    //move to a differnt page if project is truthy
+  });
+
+  it('devString should return a string', () => {
+    component.ngOnInit();
+    let string = component.devString();
+    expect(string).toBeTruthy();
+  });
 });

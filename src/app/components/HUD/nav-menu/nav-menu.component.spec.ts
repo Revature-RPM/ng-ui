@@ -79,6 +79,10 @@ describe('NavMenuComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should hide goToEditRoles function if admin is false', () => {
+    expect(fixture.debugElement.query(By.css('#go-to-edit'))).toBeNull();
+  });
+  
   it('should route to home when Home link is clicked', () => {
     spyOn(component.menuOptionClicked, 'emit');
 
@@ -126,7 +130,6 @@ describe('NavMenuComponent', () => {
     expect(fixture.debugElement.query(By.css('#go-to-edit'))).toBeNull();
   });
   
-
   it('should not login if user does not exist', () => {
     //component.loggedIn = component.admin = true;
     

@@ -6,18 +6,18 @@
   <mat-list>
       <div *ngFor="let item of menu">
         <mat-list-item *ngIf="!item.subMenu" (click)="goToRoute(item.route)">
-          <span>{{ item.name }}</span>
+          <span id=itemMenu>{{ item.name }}</span>
         </mat-list-item>
   
         <mat-expansion-panel *ngIf="item.subMenu">
           <mat-expansion-panel-header>
               <mat-panel-title>
-                <span> {{ item.name }} </span>
+                <span id=subMenu> {{ item.name }} </span>
               </mat-panel-title>
           </mat-expansion-panel-header>
 
           <mat-list-item *ngFor="let subItem of item.subMenu" (click)="goToRoute(subItem.route)">
-            <span>{{ subItem.name }}</span>
+            <span id=subItemMenu>{{ subItem.name }}</span>
           </mat-list-item>
 
         </mat-expansion-panel>

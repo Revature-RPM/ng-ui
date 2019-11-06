@@ -32,6 +32,7 @@ export class ProjectDescriptionComponent implements OnInit {
           this.project = proj;
           this.displayText = this.project.description;
         }
-      });
+      }
+    );
   }
 }
