@@ -3,6 +3,8 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import {ProjectDescriptionComponent} from './project-description.component';
+import { ProjectService } from 'src/app/services/project.service';
+import { MockProjectService } from 'src/app/mocks/mock-project-service';
 
 describe('ProjectDescriptionComponent', () => {
   let component: ProjectDescriptionComponent;
@@ -12,6 +14,7 @@ describe('ProjectDescriptionComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ ProjectDescriptionComponent],
       imports: [ HttpClientTestingModule],
+      providers: [{provide: ProjectService, useClass: MockProjectService}]
     })
     .compileComponents();
   }));
@@ -24,8 +27,6 @@ describe('ProjectDescriptionComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-    expect(component.project).toBeFalsy();
-    expect(component.displayText).toBeFalsy();
   });
 
   it('on init fill the variables', () => {
