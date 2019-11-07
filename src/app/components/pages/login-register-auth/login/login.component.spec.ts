@@ -64,7 +64,7 @@ describe('LoginComponent', () => {
 
   afterEach(() => {
     localStorage.removeItem('jwt');
-  })
+  });
 
   it('should create', () => {
     expect(component).toBeTruthy();
@@ -77,14 +77,14 @@ describe('LoginComponent', () => {
     expect(component.authenticating).toBeFalsy();
     expect(component.loggedIn).toBeFalsy();
     expect(component.logSuccess).toBeTruthy();
-  })
+  });
 
   it('redirects to projects if user is logged in already', () => {
     localStorage.setItem('jwt', "fake");
     component.ngOnInit();
 
     expect(routerSpy).toHaveBeenCalledWith(['projects']);
-  })
+  });
 
   it('Submitting the form calls login', () => {
     
@@ -97,7 +97,7 @@ describe('LoginComponent', () => {
     expect(spy).toHaveBeenCalled();
     expect(component.authenticating).toBeTruthy;
     
-  })
+  });
 
   it('login should call to user service login', () => {
     userService = TestBed.get(UserService);
@@ -108,7 +108,7 @@ describe('LoginComponent', () => {
 
     expect(userService.login).toHaveBeenCalled();
 
-  })
+  });
 
   it('sucesssful login redirects to projects', () => {
     userService = TestBed.get(UserService);
@@ -117,7 +117,7 @@ describe('LoginComponent', () => {
     component.login();
 
     expect(routerSpy).toHaveBeenCalledWith(['projects']);
-  })
+  });
 
   it('sets logSuccess to false when login unsuccessful', () => {
     userService = TestBed.get(UserService);
@@ -126,7 +126,7 @@ describe('LoginComponent', () => {
     component.login();
 
     expect(component.logSuccess).toEqual(false);
-  })
+  });
 
   it('sets logSuccess to false when login sends back an error', () => {
     userService = TestBed.get(UserService);
@@ -136,7 +136,7 @@ describe('LoginComponent', () => {
 
     expect(userSpy).toHaveBeenCalled();
     expect(component.authenticating).toEqual(false);
-  })
+  });
 
   it('checks username validations', () => {
     let usernameInput = fixture.debugElement.query(By.css('#username-input'));

@@ -53,7 +53,7 @@ describe('NgxCarouselComponent', () => {
 		component.push(frame);
 		expect(component.avatars.length).toBe(6);
 		expect(component.avatars[5]).toBe(frame);
-	})
+	});
 
 	it('should change on indexChange', () => {
 		let frame = {
