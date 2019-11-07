@@ -14,9 +14,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
  styleUrls: ['./project-edit.component.scss']
 })
 
-/* This component adds functionality to edit a project. However, the server is adding an extra header to the response causing the following
-   error: The 'Access-Control-Allow-Origin' header contains multiple values 'http://localhost:4200, http://localhost:4200', but only one is allowed.
-   This needs to be addressed on the server to move forward. */
+/* This component adds functionality to edit a project. 
+*/
 
 export class ProjectEditComponent implements OnInit {
  techStackList = ['Java/J2EE', 'PEGA', 'JavaScript MVC', '.Net', 'React.js', 'Java', 'iOS9'];

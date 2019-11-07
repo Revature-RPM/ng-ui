@@ -5,6 +5,9 @@ import { NgxCarouselComponent } from './ngx-carousel.component';
 import { NgxHmCarouselModule } from 'ngx-hm-carousel';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { UserService } from 'src/app/services/user.service';
+import { ProjectService } from 'src/app/services/project.service';
+import { MockProjectService } from 'src/app/mocks/mock-project-service';
 
 describe('NgxCarouselComponent', () => {
 	let component: NgxCarouselComponent;
@@ -15,6 +18,7 @@ describe('NgxCarouselComponent', () => {
 			declarations: [NgxCarouselComponent],
 			imports: [FormsModule, ReactiveFormsModule, NgxHmCarouselModule,
 				HttpClientTestingModule, RouterTestingModule],
+			providers: [{provide: ProjectService, useClass: MockProjectService}]
 		})
 			.compileComponents();
 	}));
