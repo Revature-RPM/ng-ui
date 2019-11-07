@@ -18,14 +18,15 @@ import { ProjectsPendingApprovalPageComponent } from './components/pages/project
 import { CodebaseComponent } from './components/pages/codebase/codebase.component';
 import { ProjectViewComponent } from './components/pages/project-view/project-view.component';
 import { HomePageComponent } from './components/pages/home-page/home-page.component';
+import { ProjectListComponent } from './components/pages/project/project-list/project-list.component';
 
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'login', component: LoginRegisterPageComponent},
   {path: 'home', component: HomePageComponent},
-  {path: 'projects', component: ProjectGridPageComponent},
-  {path: 'projects-user', component: ProjectGridPageComponent, canActivate: [AuthGuard] },
+  {path: 'projects', component: ProjectListComponent},
+  {path: 'projects-user', component: ProjectListComponent, canActivate: [AuthGuard] },
   {path: 'projects-pending', component: ProjectsPendingApprovalPageComponent, canActivate: [AdminGuard]},
   {path: 'project-submission', component: ProjectSubmissionPageComponent, canActivate: [AuthGuard] },
   {path: 'project-update', component: ProjectEditComponent, canActivate: [AuthGuard] },
