@@ -1,23 +1,25 @@
-<h2 id="projects">{{ title }}</h2>
-<div class="section filter-block">
-	<mat-form-field class="">
-		<input [(ngModel)]="searchByName" (keyup)="filterProjects()" matInput type="search" placeholder="Search projects">
-	</mat-form-field>
-	<mat-form-field *ngIf="userId">
-		<mat-select [(ngModel)]="searchByStatus" (ngModelChange)="filterProjects()" placeholder="Status">
-			<mat-option [value]="'All'">All</mat-option>
-			<mat-option [value]="'Approved'">Approved</mat-option>
-			<mat-option [value]="'Denied'">Denied</mat-option>
-			<mat-option [value]="'Pending'">Pending</mat-option>
-		</mat-select>
-	</mat-form-field>
-</div>
-<div *ngIf="filteredProjectList" class="section flex-section">
-	<mat-card *ngFor="let project of filteredProjectList" (click)="swapProject(project)" mat-fab matTooltip={{project.name}} matTooltipPosition="above">
-		<mat-card-content>
-      <h4> {{ project.name }} </h4>
-      <span>Tech Stack: {{ project.techStack }}</span>
-      <span *ngIf="userId" class="status" [ngClass]="{'approved': project.status==='Approved', 'denied': project.status==='Denied', 'pending': project.status==='Pending' }"> </span>
-		</mat-card-content>
-	</mat-card>
+<div class="main-blocks">
+	<h2 id="projects">{{ title }}</h2>
+	<div class="section filter-block">
+		<mat-form-field class="">
+			<input [(ngModel)]="searchByName" (keyup)="filterProjects()" matInput type="search" placeholder="Search projects">
+		</mat-form-field>
+		<mat-form-field *ngIf="userId">
+			<mat-select [(ngModel)]="searchByStatus" (ngModelChange)="filterProjects()" placeholder="Status">
+				<mat-option [value]="'All'">All</mat-option>
+				<mat-option [value]="'Approved'">Approved</mat-option>
+				<mat-option [value]="'Denied'">Denied</mat-option>
+				<mat-option [value]="'Pending'">Pending</mat-option>
+			</mat-select>
+		</mat-form-field>
+	</div>
+	<div *ngIf="filteredProjectList" class="section flex-section">
+		<mat-card *ngFor="let project of filteredProjectList" (click)="swapProject(project)" mat-fab matTooltip={{project.name}} matTooltipPosition="above">
+			<mat-card-content>
+		<h4> {{ project.name }} </h4>
+		<span>Tech Stack: {{ project.techStack }}</span>
+		<span *ngIf="userId" class="status" [ngClass]="{'approved': project.status==='Approved', 'denied': project.status==='Denied', 'pending': project.status==='Pending' }"> </span>
+			</mat-card-content>
+		</mat-card>
+	</div>
 </div>
