@@ -76,6 +76,12 @@ h2 {
   transition: all $transition_time ease-in-out;
 }
 
+.main-blocks {
+  width: $main-blocks-width;
+  margin: $main-blocks-margin;
+  margin-bottom: 2rem;
+}
+
 @media screen and (min-width: 600px) {
 
 
