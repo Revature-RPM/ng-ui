@@ -60,7 +60,6 @@ export class ProjectSubmissionPageComponent {
 	) {}
 
 	ngOnInit() {
-		console.log("Teste");
 		
 		this.userService.user.asObservable().subscribe(
 			user => {
