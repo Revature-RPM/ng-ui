@@ -42,7 +42,7 @@ describe('SelectedProjectViewerComponent', () => {
   it('should be instantiated with a project', () => {
 
     expect(component.project.name).toEqual('Fake Project');
-  })
+  });
 
   it('should call approveProject Method', () => {
     let projectService = TestBed.get(ProjectService);
@@ -88,6 +88,6 @@ describe('SelectedProjectViewerComponent', () => {
 
     expect(component.project.status).toEqual('Denied');
     expect(projectSpy).toHaveBeenCalled();
-  })
+  });
 
 });
