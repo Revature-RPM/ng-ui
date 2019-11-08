@@ -13,7 +13,6 @@ import {NavMenuComponent} from './components/HUD/nav-menu/nav-menu.component';
 import {LoginRegisterPageComponent} from './components/pages/login-register-auth/login-register-page/login-register-page.component';
 import {ProjectDescriptionComponent} from './components/pages/project/project-description/project-description.component';
 import {ProjectListComponent} from './components/pages/project/project-list/project-list.component';
-import {ProjectGridPageComponent} from './components/pages/project/project-grid-page/project-grid-page.component';
 import { ProjectViewComponent } from './components/pages/project-view/project-view.component';
 import {NgxHmCarouselModule} from 'ngx-hm-carousel';
 import {NgxCarouselComponent} from './components/pages/project/ngx-carousel/ngx-carousel.component';
@@ -30,7 +29,6 @@ import {TokenInterceptor} from './services/jwtInterceptor.interceptor';
 import { ProfileComponent } from './components/pages/user-management/profile/profile.component';
 import { AllUsersPageComponent } from './components/pages/user-management/all-users-page/all-users-page.component';
 import { EllipsisPipe } from './ellipsis.pipe';
-import { ProjectWelcomePageComponent } from './components/pages/project/project-welcome-page/project-welcome-page.component';
 import { CodebaseComponent } from './components/pages/codebase/codebase.component';
 import { AdminChangeRolesComponent } from './components/pages/user-management/admin-change-roles/admin-change-roles.component';
 import { ProjectsPendingApprovalPageComponent } from './components/pages/project-approval/projects-pending-approval-page/projects-pending-approval-page.component';
@@ -39,6 +37,7 @@ import { SelectedProjectViewerComponent } from './components/pages/project-appro
 import { PendingEditRequestsTableComponent } from './components/pages/project-approval/pending-edit-requests-table/pending-edit-requests-table.component';
 import { LexPipe } from './zip-file-explorer/lex.pipe';
 import { LineNumberPipe } from './zip-file-explorer/line-number.pipe';
+
 
 
 import typescript from 'highlight.js/lib/languages/typescript';
@@ -86,12 +85,10 @@ export function hljsLanguages() {
     PendingProjectsTableComponent,
     ProjectDescriptionComponent,
     ProjectEditComponent,
-    ProjectGridPageComponent,
     ProjectInfoComponent,
     ProjectListComponent,
     ProjectsPendingApprovalPageComponent,
     ProjectSubmissionPageComponent,
-    ProjectWelcomePageComponent,
     RegisterComponent,
     SelectedProjectViewerComponent,
     SidenavComponent,

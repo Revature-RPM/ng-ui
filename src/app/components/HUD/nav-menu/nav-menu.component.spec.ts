@@ -131,7 +131,7 @@ describe('NavMenuComponent', () => {
   });
   
   it('should not login if user does not exist', () => {
-    component.loggedIn = component.admin = true;
+    //component.loggedIn = component.admin = true;
     
     let userService = TestBed.get(UserService);
     userService.user = new BehaviorSubject<User>(null);

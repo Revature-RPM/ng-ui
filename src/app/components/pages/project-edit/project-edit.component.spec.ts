@@ -70,7 +70,7 @@ describe('ProjectEditComponent', () => {
    router = null;
    routerSpy = null;
    sessionStorage.clear();
- })
+ });
 
  it('should create', () => {
    expect(component).toBeTruthy();
@@ -127,7 +127,7 @@ describe('ProjectEditComponent', () => {
  it('should validateFields', () => {
   
   let projectService = TestBed.get(ProjectService);
- // projectService. = new BehaviorSubject<Project>(null);
+ 
   projectService.CurrentProject$.next(new BehaviorSubject<Project>(null))
 
   component.ngOnInit();

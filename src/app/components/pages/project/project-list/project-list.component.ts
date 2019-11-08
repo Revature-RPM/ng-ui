@@ -74,6 +74,9 @@ export class ProjectListComponent implements OnInit {
     return this.projectList;
   }
 
+  /**
+   * This method filter Projects by name and status.
+   */
   filterProjects() {
     this.filteredProjectList = this.projectList;
     if(this.searchByStatus && this.searchByStatus != "All") {
@@ -84,6 +87,11 @@ export class ProjectListComponent implements OnInit {
     }
   }
 
+  /**
+   * This method updates the subject CurrentProject in the project service and
+   * then navigates to the project-view component which will display the project selected here
+   * @param proj 
+   */
   swapProject(proj): void {
     this.projectService.CurrentProject$.next(proj);
     this.router.navigate(['/project-view']);

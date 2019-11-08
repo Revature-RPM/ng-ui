@@ -45,7 +45,7 @@ export class NavMenuComponent implements OnInit {
 
   /**
    * Function that:
-   * Navigates to component related to provided route.
+   * Navigates to component related to the provided route.
    */
   goToRoute(route: string) {
     this.menuOptionClicked.emit();

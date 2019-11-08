@@ -18,26 +18,26 @@ describe('ProfileComponent', () => {
   let fixture: ComponentFixture<ProfileComponent>;
   let router: Router;
 
-    beforeEach(async(() => {
-      TestBed.configureTestingModule({
-        declarations: [ ],
-        imports: [RouterTestingModule, BrowserAnimationsModule, 
-          ReactiveFormsModule, FormsModule, AppModule, NoopAnimationsModule, BrowserModule],
-        providers: [
-          {provide:UserService, useClass:MockUserService},
-          {provide: APP_BASE_HREF, useValue: '/'}],
-      }).compileComponents();
-    }));
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [ ],
+      imports: [RouterTestingModule, BrowserAnimationsModule, 
+        ReactiveFormsModule, FormsModule, AppModule, NoopAnimationsModule, BrowserModule],
+      providers: [
+        {provide:UserService, useClass:MockUserService},
+        {provide: APP_BASE_HREF, useValue: '/'}],
+    }).compileComponents();
+  }));
 
-    beforeEach(() => {
-      fixture = TestBed.createComponent(ProfileComponent);
-      component = fixture.componentInstance;
-    });
+  beforeEach(() => {
+    fixture = TestBed.createComponent(ProfileComponent);
+    component = fixture.componentInstance;
+  });
 
-    afterEach(() => {
-      fixture = null;
-      component = null;
-    });
+  afterEach(() => {
+    fixture = null;
+    component = null;
+  });
 
   it('#ProfileComponent should set up correctly', () => {
       expect(component).toBeTruthy();
@@ -76,7 +76,7 @@ describe('ProfileComponent', () => {
     expect(component.form.get('username').value).toEqual(username);
   });
 
-  it ('should router to login if no user', () => {
+  it('should router to login if no user', () => {
     let userService = TestBed.get(UserService);
     userService.user = new BehaviorSubject<User>(null);
 
@@ -88,7 +88,7 @@ describe('ProfileComponent', () => {
     expect(routerSpy).toHaveBeenCalledWith(['auth/login']);
   });
 
-  it ('#MatchPassword works with matched passwords', () => {
+  it('#MatchPassword works with matched passwords', () => {
     // Arrange
     component.fillFormGroup('aaaaaaaa', 'aaaaaaaa', 'aaaaaaaa@revature.com', 'aaaaaaaa', 'aaaaaaaa');
     component.form.controls['password'].setValue('password');
@@ -101,7 +101,7 @@ describe('ProfileComponent', () => {
      expect(retVal).toBeNull();
   });
 
-  it ('#MatchPassword records error with un-matched passwords', () => {
+  it('#MatchPassword records error with un-matched passwords', () => {
     // Arrange
     component.fillFormGroup('aaaaaaaa', 'aaaaaaaa', 'aaaaaaaa@revature.com', 'aaaaaaaa', 'aaaaaaaa');
     component.form.controls['password'].setValue('password');
@@ -114,7 +114,7 @@ describe('ProfileComponent', () => {
      expect(component.form.controls['confirmPassword'].errors.MatchPassword).toEqual(true);
   });
 
-  it ('#RevatureEmail works with complying email', () => {
+  it('#RevatureEmail works with complying email', () => {
     // Arrange
     component.fillFormGroup('aaaaaaaa', 'aaaaaaaa', 'aaaaaaaa@revature.com', 'aaaaaaaa', 'aaaaaaaa');
     component.form.controls['email'].setValue('anEmail@email.com');
@@ -126,7 +126,7 @@ describe('ProfileComponent', () => {
      expect(retVal).toBeNull();
   });
 
-  it ('#RevatureEmail records error with non-complying email', () => {
+  it('#RevatureEmail records error with non-complying email', () => {
     // Arrange
     component.fillFormGroup('aaaaaaaa', 'aaaaaaaa', 'aaaaaaaa@revature.com', 'aaaaaaaa', 'aaaaaaaa');
     component.form.controls['email'].setValue('chicken');
@@ -138,7 +138,7 @@ describe('ProfileComponent', () => {
      expect(component.form.controls['email'].errors.RevatureEmail).toEqual(true);
   });
 
-  it ('#retypeConfirmPassword properly clears confirmPassword box', () => {
+  it('#retypeConfirmPassword properly clears confirmPassword box', () => {
     // Arrange
     component.fillFormGroup('aaaaaaaa', 'aaaaaaaa', 'aaaaaaaa@revature.com', 'aaaaaaaa', 'aaaaaaaa');
     component.form.controls['confirmPassword'].setValue('ptarmigan');
@@ -150,7 +150,7 @@ describe('ProfileComponent', () => {
     expect(component.form.controls['confirmPassword'].value).toEqual('');
   });
 
-  it ('#trying to make form valid', () => {
+  it('#trying to make form valid', () => {
     // Arrange
     component.fillFormGroup('aaaaaaaa', 'aaaaaaaa', 'aaaaaaaa@revature.com', 'aaaaaaaa', 'aaaaaaaa');
 
@@ -169,7 +169,7 @@ describe('ProfileComponent', () => {
     component.formFilled();
   });
 
-  it ('#ValidEmail works with complying email', () => {
+  it('#ValidEmail works with complying email', () => {
     // Arrange
     component.fillFormGroup('aaaaaaaa', 'aaaaaaaa', 'aaaaaaaa@revature.com', 'aaaaaaaa', 'aaaaaaaa');
     component.form.controls['email'].setValue('anEmail@any.com');

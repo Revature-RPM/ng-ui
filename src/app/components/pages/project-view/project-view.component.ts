@@ -14,7 +14,6 @@ import { SnackbarService } from 'src/app/services/snackbar.service';
 })
 export class ProjectViewComponent implements OnInit {
 
-  // In development (Iago)
   project: Project;
   enableEditFunctionality = false;
   enableApprovalDenialBtns = false;
@@ -32,7 +31,8 @@ export class ProjectViewComponent implements OnInit {
   projectList: Project[] = [];
 
 
-  constructor(private router: Router, private userService: UserService, private projectService: ProjectService, private snackbarService: SnackbarService) {
+  constructor(private router: Router, private userService: UserService,
+    private projectService: ProjectService, private snackbarService: SnackbarService) {
   }
 
   ngOnInit() {

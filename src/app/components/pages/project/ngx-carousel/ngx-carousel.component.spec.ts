@@ -5,8 +5,11 @@ import { NgxCarouselComponent } from './ngx-carousel.component';
 import { NgxHmCarouselModule } from 'ngx-hm-carousel';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { UserService } from 'src/app/services/user.service';
+import { ProjectService } from 'src/app/services/project.service';
+import { MockProjectService } from 'src/app/mocks/mock-project-service';
 
-fdescribe('NgxCarouselComponent', () => {
+describe('NgxCarouselComponent', () => {
 	let component: NgxCarouselComponent;
 	let fixture: ComponentFixture<NgxCarouselComponent>;
 
@@ -15,6 +18,7 @@ fdescribe('NgxCarouselComponent', () => {
 			declarations: [NgxCarouselComponent],
 			imports: [FormsModule, ReactiveFormsModule, NgxHmCarouselModule,
 				HttpClientTestingModule, RouterTestingModule],
+			providers: [{provide: ProjectService, useClass: MockProjectService}]
 		})
 			.compileComponents();
 	}));
@@ -49,7 +53,7 @@ fdescribe('NgxCarouselComponent', () => {
 		component.push(frame);
 		expect(component.avatars.length).toBe(6);
 		expect(component.avatars[5]).toBe(frame);
-	})
+	});
 
 	it('should change on indexChange', () => {
 		let frame = {

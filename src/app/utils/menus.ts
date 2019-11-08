@@ -12,7 +12,7 @@ export const userMenu = [
 	]},
 	{ name: "Profile", route: "profile" },
 	{ name: "Logout", route: "logout" }
-]
+];
 
 export const adminMenu = [
 	{ name: "Home", route: "/home" },
@@ -24,4 +24,4 @@ export const adminMenu = [
 	]},
 	{ name: "Profile", route: "profile" },
 	{ name: "Logout", route: "logout" }
-]
+];
