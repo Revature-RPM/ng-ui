@@ -34,8 +34,8 @@ export class ProjectSubmissionPageComponent {
 
 	projectToUpload: Project = {};
 	user: User;
-	projectNameFormControl = new FormControl('', [ Validators.required ]);
 	problems;
+
 	/**
 	 * GroupMemberString and zipLinkString are both bound to the user's input of the group member field and the zip links field
 	 * When a new group member or zip link is added, then that information is concatenated to the string.
@@ -65,7 +65,6 @@ export class ProjectSubmissionPageComponent {
 			user => {
 				this.user = user;
 				this.projectToUpload.userId = user.id; // setting owner to the project
-				this.projectToUpload.trainer = this.user.firstName + ' ' + this.user.lastName;
 			}
 		);
 
@@ -108,6 +107,7 @@ export class ProjectSubmissionPageComponent {
 
 		dialogRef.afterClosed().subscribe(
 
+			// tslint:disable-next-line: cyclomatic-complexity
 			result => {
 				if (result && result!="") {
 					if (e.target.id === 'inputGroupMembers') {
@@ -117,7 +117,7 @@ export class ProjectSubmissionPageComponent {
 							result[i] = result[i].replace(/[ ]{2,}/g," ");
 						}
 						//if goodArray isnt used, regardless of if does or doesnt hit "this.projectToUpload.groupMembers = goodArray;"
-						//it will change the value when the dialogRef's value is set when dealing with spaces.
+						//it will change the value when the dialogRef's value is set when dealing with single space submitions.
 						var goodArray=[];
 						for(i = 0; i < result.length; i++) {
 							if((result[i]!="") && (result[i]!=" ")) { goodArray[j++]=result[i].trim(); }
@@ -155,6 +155,7 @@ export class ProjectSubmissionPageComponent {
 	screenshotCap: number = 4;
 	dataModelCap: number = 6;
 	fileSizeCap: number = 1000000; //1 MB
+	// tslint:disable-next-line: cyclomatic-complexity
 	onFileSelected(e, inputfield) {
 
 		//Check for limits reached
@@ -166,7 +167,6 @@ export class ProjectSubmissionPageComponent {
 		if (inputfield === 'dms' && this.projectToUpload.dataModel.length == this.dataModelCap) {
 			this.snackbar.openSnackBar('Max limit of ' + this.dataModelCap + ' reached.', 'Dismiss');
 			return;
-
 		}
 
 		for (let i = 0; i < e.target.files.length; i++) {
@@ -203,6 +203,7 @@ export class ProjectSubmissionPageComponent {
 	 *
 	 * @param file: the file that was uploaded to the form
 	 */
+	// tslint:disable-next-line: cyclomatic-complexity
 	removeData(file: File, inputfield) {
 		let list;
 		let piclist;
@@ -231,6 +232,7 @@ export class ProjectSubmissionPageComponent {
 	 * Will not send data but rather give user a snackbar notification on what is wrong if there is a validation issue.
 	 * This FormData object is then sent to the project service for communication with the server.
 	 */
+	// tslint:disable-next-line: cyclomatic-complexity
 	submitForm() {
 		this.submitting = true;
 		let formData = new FormData();

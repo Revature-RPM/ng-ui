@@ -50,6 +50,6 @@
     "use-component-view-encapsulation": true,
     "use-lifecycle-interface": true,
     "use-pipe-transform-interface": true,
-    "cyclomatic-complexity": [true,3]
+    "cyclomatic-complexity": [true,5]
   }
 }
