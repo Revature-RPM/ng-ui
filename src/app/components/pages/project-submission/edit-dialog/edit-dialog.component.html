@@ -22,6 +22,6 @@
     </li>
 </div>
 <div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">Cancel</button>
-  <button mat-button (click)="addItem($event)" [mat-dialog-close]="data.values">Submit</button>
+  <button mat-button (click)="onNoClick()" id="cancelbtn">Cancel</button>
+  <button mat-button (click)="addItem($event)" [mat-dialog-close]="data.values" id="submitbtn">Submit</button>
 </div>

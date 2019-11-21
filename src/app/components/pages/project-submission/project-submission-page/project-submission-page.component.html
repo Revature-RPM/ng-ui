@@ -1,23 +1,20 @@
 <mat-card>
-
 	<div id="submit-project-form">
-
 		<h1 id="title">Submit a Project</h1>
-
-		
 		<div class="row">
+
 			<mat-form-field>
 				<mat-label>Project Name</mat-label>
-				<mat-error *ngIf="projectName.required">Project name is required</mat-error>
-				<mat-error *ngIf="projectName.pattern">Special characters not allowed</mat-error>
+				<mat-error *ngIf="projectName.hasError('required')">Project name is required</mat-error>
+				<mat-error *ngIf="projectName.hasError('pattern')">Special characters not allowed</mat-error>
 				<input matInput id="project-name" type="text" name="projectName" placeholder="Project Name"
 				[formControl]="projectName">
 			</mat-form-field>
 
 			<mat-form-field>
 				<mat-label>Batch Name</mat-label>
-				<mat-error *ngIf="batchName.required">Batch name is required</mat-error>
-				<mat-error *ngIf="projectName.pattern">Special characters not allowed</mat-error>
+				<mat-error *ngIf="batchName.hasError('required')">Batch name is required</mat-error>
+				<mat-error *ngIf="batchName.hasError('pattern')">Special characters not allowed</mat-error>
 				<input matInput id="project-batch" type="text" name="batchName" placeholder="Batch Name"
 					[formControl]="batchName">
 			</mat-form-field>
@@ -28,8 +25,8 @@
 
 			<mat-form-field>
 				<mat-label>Trainer Name</mat-label>
-				<mat-error *ngIf="trainerName.required">Trainer name is required</mat-error>
-				<mat-error *ngIf="projectName.pattern">Special characters not allowed</mat-error>
+				<mat-error *ngIf="trainerName.hasError('required')">Trainer name is required</mat-error>
+				<mat-error *ngIf="trainerName.hasError('pattern')">Special characters not allowed</mat-error>
 				<!-- TODO: make this a dropdown where it lists all of the trainers -->
 				<input matInput id="project-trainer" type="text" name="trainers" placeholder="Trainer Name"
 					[formControl]="trainerName">
@@ -38,7 +35,7 @@
 
 			<mat-form-field>
 				<mat-label>Technology Stack</mat-label>
-				<mat-error *ngIf="techStack.required">Technology stack is required</mat-error>
+				<mat-error *ngIf="techStack.hasError('required')">Technology stack is required</mat-error>
 				<mat-select placeholder="Select Batch" [formControl]="techStack">
 					<mat-option id="project-stack" *ngFor="let tech of techStackList" [value]="tech">
 						{{tech}}
@@ -52,16 +49,16 @@
 
 			<mat-form-field id="group-members">
 				<mat-label>Group Members</mat-label>
-				<mat-error *ngIf="groupMembers.required">Group members are required</mat-error>
-				<mat-error *ngIf="projectName.pattern">Special characters not allowed</mat-error>
+				<mat-error *ngIf="groupMembers.hasError('required')">Group members are required</mat-error>
+				<mat-error *ngIf="groupMembers.hasError('pattern')">Special characters not allowed</mat-error>
 				<textarea matInput readonly id="inputGroupMembers" type="text" name="groupMembers" placeholder="Group Members"
 					[formControl]="groupMembers" (click)="openEditableDialog($event)"></textarea>
 			</mat-form-field>
 
 			<mat-form-field id="description">
 				<mat-label>Description</mat-label>
-				<mat-error *ngIf="description.required">Description is required</mat-error>
-				<mat-error *ngIf="projectName.pattern">Special characters not allowed</mat-error>
+				<mat-error *ngIf="description.hasError('required')">Description is required</mat-error>
+				<mat-error *ngIf="description.hasError('pattern')">Special characters not allowed</mat-error>
 				<textarea matInput id="descriptionArea" name="description" placeholder="Project Description"
 					[formControl]="description"></textarea>
 			</mat-form-field>
@@ -70,30 +67,18 @@
 
 		<mat-form-field id="repository-links">
 			<mat-label>Repository Links</mat-label>
-			<mat-error *ngIf="zipLinks.required">A Github link is required</mat-error>
-			<mat-error *ngIf="projectName.pattern">must be in correct format: 
+			<mat-error *ngIf="zipLinks.hasError('required')">A Github link is required</mat-error>
+			<mat-error *ngIf="zipLinks.hasError('pattern')">must be in correct format: 
 				https://github.com/[Github username]/[Repository Name]</mat-error>
 			<textarea matInput readonly id="inputGithubLink" type="text" name="repoLinks" placeholder="Project Repository Links"
 				[formControl]="zipLinks" (click)="openEditableDialog($event)"></textarea>
-			<!--<mat-hint id="editGithubLink" (click)="openEditDialog($event)" aria-label="editGithubLink" name="editGithubLink" align="end">Edit</mat-hint>-->
 		</mat-form-field>
 
+		<button id="buttonScreenshotTrigger" mat-flat-button color="accent" (click)="uploadScreenshots.click()">Choose Project Screenshots</button>
 
-		<!-- <mat-form-field>
-					<mat-label>Technology Stack</mat-label>
-				<mat-error *ngIf="!techStack.valid || techStack.pristine">Technology stack is required</mat-error>
-				<input type=text matInput name="stack" placeholder="Project Technology Stack" [(ngModel)]="projectToUpload.techStack"
-				[ngModelOptions]="{standalone: true}" required #techStack="ngModel">
-				</mat-form-field> -->
-
-		<button id="buttonScreenshotTrigger" mat-flat-button color="accent" (click)="uploadScreenshots.click()">
-			Choose Project Screenshots</button>
 		<div class="file-spacer">
-			<!-- This button triggers the file input to be clicked by referencing its template variable, uploadScreenshots -->
-
 			<div id="screenshotdiv" *ngFor="let screenshot of projectToUpload.screenShots; let i = index"
 				[attr.data-index]="i">
-
 				<div class="filelist" (click)="removeData(screenshot, 'scs')">
 					<img *ngIf="screenshotPicList[i]" [src]="screenshotPicList[i]" height="50">
 					<div class="file-name">{{ screenshot.name }}</div>
@@ -101,12 +86,9 @@
 			</div>
 		</div>
 
-		<button mat-flat-button color="accent" (click)="uploadDatamodel.click()" title="SQL Scripts only.">Choose Data
-			Model</button>
+		<button mat-flat-button color="accent" (click)="uploadDatamodel.click()" title="SQL Scripts only.">Choose Data Model</button>
 
 		<div class="file-spacer">
-			<!-- This button triggers the file input to be clicked by referencing its template variable, uploadDatamodel -->
-			<!-- <label for="buttonDatamodelTrigger" >SQL scripts only!</label> -->
 			<div *ngFor="let datamodel of projectToUpload.dataModel">
 				<div class="filelist" (click)="removeData(datamodel, 'dms')"> {{ datamodel.name }} </div>
 			</div>

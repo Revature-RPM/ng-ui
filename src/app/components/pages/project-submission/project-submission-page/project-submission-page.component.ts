@@ -5,7 +5,7 @@ import { MatDialog } from '@angular/material';
 import { ProjectService } from 'src/app/services/project.service';
 import { UserService } from 'src/app/services/user.service';
 import { SnackbarService } from 'src/app/services/snackbar.service';
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import { EditDialogComponent } from '../edit-dialog/edit-dialog.component';
 import { Project } from 'src/app/models/Project';
 import { User } from 'src/app/models/User';
@@ -24,31 +24,29 @@ export interface DialogData {
 })
 export class ProjectSubmissionPageComponent {
 
-	projectName = new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z0-9/\-\_\\ ]*')]);
-	batchName  = new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z0-9/\-\_\\ ]*')]);
-	trainerName  = new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z ]*')]);
-	techStack  = new FormControl('');
+	projectName = new FormControl('', [Validators.required, Validators.max(40), Validators.pattern('[a-zA-Z0-9\-/_\\ ]*')]);
+	batchName  = new FormControl('', [Validators.required, Validators.max(40), Validators.pattern('[a-zA-Z0-9\-/_\\ ]*')]);
+	trainerName  = new FormControl('', [Validators.required, Validators.max(40), Validators.pattern('[a-zA-Z ]*')]);
+	techStack  = new FormControl('', [Validators.required]);
 	groupMembers  = new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z, ]*')]);
-	description  = new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z0-9/\-\_\n\\ ]*')]);
+	description  = new FormControl('', [Validators.required, Validators.max(800), Validators.pattern('[a-zA-Z0-9\-/_\n\\ ]*')]);
 	zipLinks  = new FormControl('', [Validators.required, Validators.pattern('^(https:\/\/github\.com\/[^/]+\/[^/]+)* *')]);
 
-	form: FormGroup;
 	projectToUpload: Project = {};
 	user: User;
-	projectNameFormControl = new FormControl('', [ Validators.required ]);
 	problems;
+
 	/**
 	 * GroupMemberString and zipLinkString are both bound to the user's input of the group member field and the zip links field
 	 * When a new group member or zip link is added, then that information is concatenated to the string.
 	 * Because of two-way binding, the result is placed in either the group member field or the zip links field
 	 */
-	groupMemberString: string = '';
-	zipLinksString: string = '';
+	groupMemberString = '';
+	zipLinksString = '';
 
 	//Other fields
 	screenshotPicList = [];
 	techStackList = ['Java/J2EE', 'PEGA', 'JavaScript MVC', '.Net', 'React.js', 'Java', 'iOS9'];
-	invalidLink: boolean;
 	submitting = false;
 
 	constructor(
@@ -58,17 +56,14 @@ export class ProjectSubmissionPageComponent {
 		private projectService: ProjectService,
 		private userService: UserService,
 		private snackbar: SnackbarService,
-		private formBuilder: FormBuilder
 	) {}
 
 	ngOnInit() {
-		console.log("Teste");
 		
 		this.userService.user.asObservable().subscribe(
 			user => {
 				this.user = user;
 				this.projectToUpload.userId = user.id; // setting owner to the project
-				this.projectToUpload.trainer = this.user.firstName + ' ' + this.user.lastName;
 			}
 		);
 
@@ -111,15 +106,17 @@ export class ProjectSubmissionPageComponent {
 
 		dialogRef.afterClosed().subscribe(
 
+			// tslint:disable-next-line: cyclomatic-complexity
 			result => {
 				if (result && result!="") {
 					if (e.target.id === 'inputGroupMembers') {
-						var i,j=0;
+						var i = 0, j = 0;
 						for(i = 0; i < result.length; i++) {
 							result[i] = result[i].replace(/,|[^[ ]\W]/g,"");
 							result[i] = result[i].replace(/[ ]{2,}/g," ");
 						}
-
+						//if goodArray isnt used, regardless of if does or doesnt hit "this.projectToUpload.groupMembers = goodArray;"
+						//it will change the value when the dialogRef's value is set when dealing with single space submitions when using result.
 						var goodArray=[];
 						for(i = 0; i < result.length; i++) {
 							if((result[i]!="") && (result[i]!=" ")) { goodArray[j++]=result[i].trim(); }
@@ -154,9 +151,10 @@ export class ProjectSubmissionPageComponent {
 	 * @param e the event corresponding to the user choosing a file to uplodad
 	 */
 	imgURL: any;
-	screenshotCap: number = 4;
-	dataModelCap: number = 6;
-	fileSizeCap: number = 1000000; //1 MB
+	screenshotCap = 4;
+	dataModelCap = 6;
+	fileSizeCap = 1000000; //1 MB
+	// tslint:disable-next-line: cyclomatic-complexity
 	onFileSelected(e, inputfield) {
 
 		//Check for limits reached
@@ -168,7 +166,6 @@ export class ProjectSubmissionPageComponent {
 		if (inputfield === 'dms' && this.projectToUpload.dataModel.length == this.dataModelCap) {
 			this.snackbar.openSnackBar('Max limit of ' + this.dataModelCap + ' reached.', 'Dismiss');
 			return;
-
 		}
 
 		for (let i = 0; i < e.target.files.length; i++) {
@@ -208,16 +205,19 @@ export class ProjectSubmissionPageComponent {
 	removeData(file: File, inputfield) {
 		let list;
 		let piclist;
+
 		if (inputfield === 'scs') {
 			list = this.projectToUpload.screenShots;
 			piclist = this.screenshotPicList;
 		}
+
 		if (inputfield === 'dms') {
 			list = this.projectToUpload.dataModel;
 			piclist = null;
 		}
 
 		const index: number = list.indexOf(file);
+
 		if (index !== -1) {
 			list.splice(index, 1);
 			if (piclist) piclist.splice(index, 1);
@@ -227,23 +227,26 @@ export class ProjectSubmissionPageComponent {
 	/**
 	 * This method is bound to the submission of the form
 	 * All the data from the form is placed as key-value pairs into a FormData object.
+	 * Will not send data but rather give user a snackbar notification on what is wrong if there is a validation issue.
 	 * This FormData object is then sent to the project service for communication with the server.
 	 */
+	// tslint:disable-next-line: cyclomatic-complexity
 	submitForm() {
 		this.submitting = true;
 		let formData = new FormData();
 		this.problems = "";
 
-		if(this.projectName.invalid) {this.problems=this.problems + " Project name has problems."}
-		if(this.batchName.invalid) {this.problems=this.problems + " Batch name has problems."}
-		if(this.trainerName.invalid) {this.problems=this.problems + " Trainer name has problems."}
-		if(this.techStack.invalid) {this.problems=this.problems + " Tech stack was not picked."}
-		if(this.groupMembers.invalid) {this.problems=this.problems + " Group members has problem."}
-		if(this.description.invalid) {this.problems=this.problems + " Description has problem."}
-		if(this.zipLinks.invalid) {this.problems=this.problems + " Github link has problems."}
+		if(this.projectName.invalid) {this.problems=this.problems + " Project name has problems.";}
+		if(this.batchName.invalid) {this.problems=this.problems + " Batch name has problems.";}
+		if(this.trainerName.invalid) {this.problems=this.problems + " Trainer name has problems.";}
+		if(this.techStack.invalid) {this.problems=this.problems + " Tech stack was not picked.";}
+		if(this.groupMembers.invalid) {this.problems=this.problems + " Group members has problem.";}
+		if(this.description.invalid) {this.problems=this.problems + " Description has problem.";}
+		if(this.zipLinks.invalid) {this.problems=this.problems + " Github link has problems.";}
 
 		if(this.problems != ""){
 			this.snackbar.openSnackBar(this.problems, 'Dismiss');
+			this.submitting = false;
 			return;
 		}
 		
@@ -270,7 +273,6 @@ export class ProjectSubmissionPageComponent {
 
 		for (let l = 0; l < this.projectToUpload.dataModel.length; l++) {
 			formData.append('dataModel', this.projectToUpload.dataModel[l]);
-
 		}
 
 		this.projectService.createProject(formData).subscribe(

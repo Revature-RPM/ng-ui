@@ -7,7 +7,6 @@ import {MatSnackBar} from '@angular/material';
 
 /**
  * The Snackbar Service is responsible for delivering quick non-invasive communications to the end user.
- * @author Justin Kerr  (190422-USF)
  */
 export class SnackbarService {
 
