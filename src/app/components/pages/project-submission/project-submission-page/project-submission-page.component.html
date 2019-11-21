@@ -5,8 +5,8 @@
 
 			<mat-form-field>
 				<mat-label>Project Name</mat-label>
-				<mat-error *ngIf="projectName.required">Project name is required</mat-error>
-				<mat-error *ngIf="projectName.pattern">Special characters not allowed</mat-error>
+				<mat-error *ngIf="projectName.errors.required">Project name is required</mat-error>
+				<mat-error *ngIf="projectName.errors.pattern">Special characters not allowed</mat-error>
 				<input matInput id="project-name" type="text" name="projectName" placeholder="Project Name"
 				[formControl]="projectName">
 			</mat-form-field>
@@ -14,7 +14,7 @@
 			<mat-form-field>
 				<mat-label>Batch Name</mat-label>
 				<mat-error *ngIf="batchName.required">Batch name is required</mat-error>
-				<mat-error *ngIf="projectName.pattern">Special characters not allowed</mat-error>
+				<mat-error *ngIf="projectName.errors">Special characters not allowed</mat-error>
 				<input matInput id="project-batch" type="text" name="batchName" placeholder="Batch Name"
 					[formControl]="batchName">
 			</mat-form-field>
@@ -26,7 +26,7 @@
 			<mat-form-field>
 				<mat-label>Trainer Name</mat-label>
 				<mat-error *ngIf="trainerName.required">Trainer name is required</mat-error>
-				<mat-error *ngIf="projectName.pattern">Special characters not allowed</mat-error>
+				<mat-error *ngIf="projectName.errors">Special characters not allowed</mat-error>
 				<!-- TODO: make this a dropdown where it lists all of the trainers -->
 				<input matInput id="project-trainer" type="text" name="trainers" placeholder="Trainer Name"
 					[formControl]="trainerName">
@@ -50,7 +50,7 @@
 			<mat-form-field id="group-members">
 				<mat-label>Group Members</mat-label>
 				<mat-error *ngIf="groupMembers.required">Group members are required</mat-error>
-				<mat-error *ngIf="projectName.pattern">Special characters not allowed</mat-error>
+				<mat-error *ngIf="projectName.errors">Special characters not allowed</mat-error>
 				<textarea matInput readonly id="inputGroupMembers" type="text" name="groupMembers" placeholder="Group Members"
 					[formControl]="groupMembers" (click)="openEditableDialog($event)"></textarea>
 			</mat-form-field>
@@ -58,7 +58,7 @@
 			<mat-form-field id="description">
 				<mat-label>Description</mat-label>
 				<mat-error *ngIf="description.required">Description is required</mat-error>
-				<mat-error *ngIf="projectName.pattern">Special characters not allowed</mat-error>
+				<mat-error *ngIf="projectName.errors">Special characters not allowed</mat-error>
 				<textarea matInput id="descriptionArea" name="description" placeholder="Project Description"
 					[formControl]="description"></textarea>
 			</mat-form-field>
@@ -68,7 +68,7 @@
 		<mat-form-field id="repository-links">
 			<mat-label>Repository Links</mat-label>
 			<mat-error *ngIf="zipLinks.required">A Github link is required</mat-error>
-			<mat-error *ngIf="projectName.pattern">must be in correct format: 
+			<mat-error *ngIf="projectName.errors">must be in correct format: 
 				https://github.com/[Github username]/[Repository Name]</mat-error>
 			<textarea matInput readonly id="inputGithubLink" type="text" name="repoLinks" placeholder="Project Repository Links"
 				[formControl]="zipLinks" (click)="openEditableDialog($event)"></textarea>

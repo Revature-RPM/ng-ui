@@ -5,7 +5,7 @@ import { MatDialog } from '@angular/material';
 import { ProjectService } from 'src/app/services/project.service';
 import { UserService } from 'src/app/services/user.service';
 import { SnackbarService } from 'src/app/services/snackbar.service';
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import { EditDialogComponent } from '../edit-dialog/edit-dialog.component';
 import { Project } from 'src/app/models/Project';
 import { User } from 'src/app/models/User';
@@ -24,12 +24,12 @@ export interface DialogData {
 })
 export class ProjectSubmissionPageComponent {
 
-	projectName = new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z0-9/\-\_\\ ]*')]);
-	batchName  = new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z0-9/\-\_\\ ]*')]);
-	trainerName  = new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z ]*')]);
+	projectName = new FormControl('', [Validators.required, Validators.max(40), Validators.pattern('[a-zA-Z0-9\-/_\\ ]*')]);
+	batchName  = new FormControl('', [Validators.required, Validators.max(40), Validators.pattern('[a-zA-Z0-9\-/_\\ ]*')]);
+	trainerName  = new FormControl('', [Validators.required, Validators.max(40), Validators.pattern('[a-zA-Z ]*')]);
 	techStack  = new FormControl('', [Validators.required]);
 	groupMembers  = new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z, ]*')]);
-	description  = new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z0-9/\-\_\n\\ ]*')]);
+	description  = new FormControl('', [Validators.required, Validators.max(800), Validators.pattern('[a-zA-Z0-9\-/_\n\\ ]*')]);
 	zipLinks  = new FormControl('', [Validators.required, Validators.pattern('^(https:\/\/github\.com\/[^/]+\/[^/]+)* *')]);
 
 	projectToUpload: Project = {};
@@ -41,13 +41,12 @@ export class ProjectSubmissionPageComponent {
 	 * When a new group member or zip link is added, then that information is concatenated to the string.
 	 * Because of two-way binding, the result is placed in either the group member field or the zip links field
 	 */
-	groupMemberString: string = '';
-	zipLinksString: string = '';
+	groupMemberString = '';
+	zipLinksString = '';
 
 	//Other fields
 	screenshotPicList = [];
 	techStackList = ['Java/J2EE', 'PEGA', 'JavaScript MVC', '.Net', 'React.js', 'Java', 'iOS9'];
-	invalidLink: boolean;
 	submitting = false;
 
 	constructor(
@@ -111,13 +110,13 @@ export class ProjectSubmissionPageComponent {
 			result => {
 				if (result && result!="") {
 					if (e.target.id === 'inputGroupMembers') {
-						var i,j=0;
+						var i = 0, j = 0;
 						for(i = 0; i < result.length; i++) {
 							result[i] = result[i].replace(/,|[^[ ]\W]/g,"");
 							result[i] = result[i].replace(/[ ]{2,}/g," ");
 						}
 						//if goodArray isnt used, regardless of if does or doesnt hit "this.projectToUpload.groupMembers = goodArray;"
-						//it will change the value when the dialogRef's value is set when dealing with single space submitions.
+						//it will change the value when the dialogRef's value is set when dealing with single space submitions when using result.
 						var goodArray=[];
 						for(i = 0; i < result.length; i++) {
 							if((result[i]!="") && (result[i]!=" ")) { goodArray[j++]=result[i].trim(); }
@@ -152,9 +151,9 @@ export class ProjectSubmissionPageComponent {
 	 * @param e the event corresponding to the user choosing a file to uplodad
 	 */
 	imgURL: any;
-	screenshotCap: number = 4;
-	dataModelCap: number = 6;
-	fileSizeCap: number = 1000000; //1 MB
+	screenshotCap = 4;
+	dataModelCap = 6;
+	fileSizeCap = 1000000; //1 MB
 	// tslint:disable-next-line: cyclomatic-complexity
 	onFileSelected(e, inputfield) {
 
@@ -203,7 +202,6 @@ export class ProjectSubmissionPageComponent {
 	 *
 	 * @param file: the file that was uploaded to the form
 	 */
-	// tslint:disable-next-line: cyclomatic-complexity
 	removeData(file: File, inputfield) {
 		let list;
 		let piclist;
