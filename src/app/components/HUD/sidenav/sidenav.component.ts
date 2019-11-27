@@ -11,6 +11,8 @@ export class SidenavComponent implements OnInit {
 
   loggedIn = false;
   homepage = false;
+  notification = false;
+  count = 1;
 
   log(state) {
     console.log(state);
@@ -56,5 +58,4 @@ export class SidenavComponent implements OnInit {
     let elem = document.getElementById(id);
     elem.scrollIntoView({behavior: "smooth"});
   }
-
 }
