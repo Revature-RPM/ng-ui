@@ -50,6 +50,7 @@ import java from 'highlight.js/lib/languages/java';
 import python from 'highlight.js/lib/languages/python';
 import { HomePageComponent } from './components/pages/home-page/home-page.component';
 import { AboutComponent } from './components/pages/about/about.component';
+import { NotificationsComponent } from './components/pages/notifications/notifications.component';
 
 
 export function hljsLanguages() {
@@ -95,6 +96,7 @@ export function hljsLanguages() {
     ProjectViewComponent,
     HomePageComponent,
     AboutComponent,
+    NotificationsComponent,
   ],
   imports: [
     AppRoutingModule,
