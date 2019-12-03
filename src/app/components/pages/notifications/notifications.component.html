@@ -11,7 +11,7 @@
     </mat-card>
     <br>
   </div>
-    <div>
+    <div *ngIf="pageMax>1">
       <button class="btn" mat-stroked-button (click)="firstPage()"><mat-icon>first_page</mat-icon></button>
       <button class="btn" mat-stroked-button (click)="previousPage()"><mat-icon>chevron_left</mat-icon></button>
       <input type="number" [(ngModel)]="pageNumber" (ngModelChange)="changedPage()" pattern="[0-9]*" min=1 max={{pageMax}} step=1>

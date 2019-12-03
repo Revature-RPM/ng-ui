@@ -1,6 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, OnChanges} from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
+import { NotificationsService } from 'src/app/services/notifications.service';
+import { Notification } from 'src/app/models/Notification';
 
 @Component({
   selector: 'app-sidenav',
@@ -11,21 +13,24 @@ export class SidenavComponent implements OnInit {
 
   loggedIn = false;
   homepage = false;
-  notification = false;
-  count = 1;
+  activeNotifications = false;
+  count = 0;
+  userID: number;
+  notifications:Notification[];
 
   log(state) {
     console.log(state);
   }
 
   constructor(
-    private userService: UserService,
+    private userService: UserService, private notificationService: NotificationsService,
     private router: Router)
   {
     this.userService.$userObservable.subscribe(
       user => {
         if(user) this.loggedIn = true;
         else this.loggedIn = false;
+        this.userID = user.id;
       }
     );
     
@@ -43,7 +48,16 @@ export class SidenavComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.notificationService.getAllNotifications(this.userID).subscribe(notices =>{
+      this.notifications = notices;
+      this.count = 0;
+      this.notifications.forEach(notification => {
+        if (notification.read == false){
+          this.activeNotifications = true;
+          this.count++;
+        }
+      });
+    });
   }
 
   routeToProfile() {
@@ -61,4 +75,5 @@ export class SidenavComponent implements OnInit {
   AllNotifications(){
     this.router.navigate(['notifications']);
   }
+  
 }
