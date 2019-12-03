@@ -83,3 +83,20 @@ mat-sidenav-container {
         visibility: hidden;
     }
 }
+
+::ng-deep .mat-menu-panel {
+    width: 397px !important;
+    max-width: none !important;
+}
+
+.mat-menu-item {
+    line-height: 30px;
+}
+
+.unread:hover:not([disabled]){
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.unread {
+    background: rgba(155, 156, 159, .3);
+}
