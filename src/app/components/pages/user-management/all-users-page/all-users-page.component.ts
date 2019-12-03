@@ -26,10 +26,10 @@ export class AllUsersPageComponent implements OnInit {
   constructor(private router: Router, private viewProjectsService: ProjectService, private userService: UserService, private snackbar: SnackbarService) { }
 
   ngOnInit() {
-
-    if (!this.userService.user) this.router.navigate(['login']);
+    // doesn't test if user exists - only if subject was created
+    if (!this.userService.userSubject) this.router.navigate(['login']);
     
-    if (this.userService.user.value.role === 'ROLE_ADMIN') {
+    if (this.userService.userSubject.value.role === 'ROLE_ADMIN') {
     this.userSubscription = this.userService.getAllUsers().subscribe(
       data => {
         // console.log(data);

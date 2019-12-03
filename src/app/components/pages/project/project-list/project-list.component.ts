@@ -37,7 +37,7 @@ export class ProjectListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.userService.user.asObservable().subscribe(
+    this.userService.$userObservable.subscribe(
       user => {
         if (user) {
           this.currentUser = user;

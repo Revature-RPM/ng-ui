@@ -1,0 +1,93 @@
+/*
+    Please don't use Bootstrap! Angular Material
+    and Flexbox are so much better! Once you try
+    it, you won't go back.
+
+    Angular Material documentation:     https://material.angular.io/
+    Excellent, quick Material tutorials:     https://youtu.be/bV8emCBmFHk
+    Flexbox tutorial:     https://www.w3schools.com/css/css3_flexbox.asp
+    20-minute SCSS tutorial:     https://youtu.be/Zz6eOVaaelI
+    Scaling apps in Angular:     https://youtu.be/Bhd2ayEE9mg
+*/
+/*
+    @import src/variables.scss relative to this file
+    in order to use the global SCSS variables within
+    this file. (Don't include the underscore in
+    _variables.scss when importing. If you want to
+    know why: http://alistapart.com/article/getting-started-with-sass/)
+
+    Open the _variables.scss file in a new tab so you
+    can use and make SCSS variables and make everyone's
+    lives easier.
+*/
+@import '../../../../variables';
+
+.section {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.filter-block {
+    font-size: 0.7rem;
+
+    mat-form-field {
+        display: inline-block;
+        margin: 0.5rem 1rem;
+    }
+
+    mat-select {
+        display: inline-block;
+        width: 10rem;
+    }
+}
+
+.flex-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+
+    mat-card {
+        height: 8rem;
+        width: 15rem;
+        position: relative;
+        overflow: hidden;
+        margin: 0.5rem;
+        background-image: url(../../../../assets/images/BackgRpm.png);
+        background-color: rgba(255, 255, 255, 0.4);
+        background-blend-mode: color;
+        background-size: cover;
+        border: 1px solid $rev-light-gray;
+        border-radius: 12px;
+        cursor: pointer;
+
+        h4 {
+            margin-bottom: 1rem;
+        }
+
+        span {
+            display: block;
+        }
+
+        .status {
+            position: absolute;
+            bottom: 5%;
+            right: 5%;
+            width: 1rem;
+            height: 1rem;
+            border-radius: 50%;
+        }
+
+        .read {
+            background: green;
+        }
+
+        .unread {
+            background: red;
+        }
+
+    }
+
+    mat-card:hover {
+        opacity: 0.5;
+    }
+}

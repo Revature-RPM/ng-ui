@@ -40,17 +40,17 @@
                             <hr>
                             <a mat-menu-item [ngStyle]="{'height': 'auto', 'padding-top': '10px'}" class="unread">
                                 <p><strong>notification.title</strong></p>
-                                <span matTooltip="{{ 'notification.discriminator.content'}}" [matTooltipPosition]="'above'" [matTooltipShowDelay]="'1000'">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas quae, sapiente eos nobis nesciunt aperiam eius reprehenderit sunt voluptatem maxime pariatur ex, cum reiciendis culpa repellat deleniti consequatur, dolorem earum!</span>
+                                <span matTooltip="{{ 'notification.discriminator.content'}}">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas quae, sapiente eos nobis nesciunt aperiam eius reprehenderit sunt voluptatem maxime pariatur ex, cum reiciendis culpa repellat deleniti consequatur, dolorem earum!</span>
                             </a>
                             <hr [ngStyle]="{'color': 'grey'}">
                             <a mat-menu-item [ngStyle]="{'height': 'auto'}" class="unread">
                                 <p><strong>notification.title</strong></p>
-                                <span matTooltip="{{ 'notification.discriminator.content'}}" [matTooltipPosition]="'above'" [matTooltipShowDelay]="'1000'">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas quae, sapiente eos nobis nesciunt aperiam eius reprehenderit sunt voluptatem maxime pariatur ex, cum reiciendis culpa repellat deleniti consequatur, dolorem earum!</span>
+                                <span matTooltip="{{ 'notification.discriminator.content'}}">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas quae, sapiente eos nobis nesciunt aperiam eius reprehenderit sunt voluptatem maxime pariatur ex, cum reiciendis culpa repellat deleniti consequatur, dolorem earum!</span>
                             </a>
                             <hr [ngStyle]="{'color': 'grey'}">
                             <a mat-menu-item [ngStyle]="{'height': 'auto'}" class="unread">
                                 <p><strong>notification.title</strong></p>
-                                <span matTooltip="{{ 'notification.discriminator.content'}}" [matTooltipPosition]="'above'" [matTooltipShowDelay]="'1000'">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas quae, sapiente eos nobis nesciunt aperiam eius reprehenderit sunt voluptatem maxime pariatur ex, cum reiciendis culpa repellat deleniti consequatur, dolorem earum!</span>
+                                <span matTooltip="{{ 'notification.discriminator.content'}}">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas quae, sapiente eos nobis nesciunt aperiam eius reprehenderit sunt voluptatem maxime pariatur ex, cum reiciendis culpa repellat deleniti consequatur, dolorem earum!</span>
                             </a>
                             <hr>
                             <div style="padding: 5px 0 0 10px; color: #41464e;">
@@ -59,16 +59,16 @@
                             <hr style="margin-bottom: 10px">
                             <a mat-menu-item [ngStyle]="{'height': 'auto'}">
                                 <p><strong>notification.title</strong></p>
-                                <span matTooltip="{{ 'notification.discriminator.content'}}" [matTooltipPosition]="'above'" [matTooltipShowDelay]="'1000'">{{ ("notification.discriminator.content".length>30)? ("notification.discriminator.content" | slice:0:30)+'...':("notification.discriminator.content") }}</span>
+                                <span matTooltip="{{ 'notification.discriminator.content'}}">{{ ("notification.discriminator.content".length>30)? ("notification.discriminator.content" | slice:0:30)+'...':("notification.discriminator.content") }}</span>
                             </a>
                             <hr [ngStyle]="{'color': 'grey'}">
                             <a mat-menu-item [ngStyle]="{'height': 'auto'}">
                                 <p><strong>notification.title</strong></p>
-                                <span matTooltip="{{ 'notification.discriminator.content'}}" [matTooltipPosition]="'above'" [matTooltipShowDelay]="'1000'">{{ ("notification.discriminator.content".length>30)? ("notification.discriminator.content" | slice:0:30)+'...':("notification.discriminator.content") }}</span>
+                                <span matTooltip="{{ 'notification.discriminator.content'}}">{{ ("notification.discriminator.content".length>30)? ("notification.discriminator.content" | slice:0:30)+'...':("notification.discriminator.content") }}</span>
                             </a>
                             <hr>
                             <div style="width:auto; text-align: center; padding-top: 10px;">
-                                <a [ngStyle]="{'cursor': 'pointer', 'color': '#6a95ae', 'width': '100%'}">See all</a>
+                                <a [ngStyle]="{'cursor': 'pointer', 'color': '#6a95ae', 'width': '100%'}" [routerLink]="['/notifications']" routerLinkActive="router-link-active" >See all</a>
                             </div>
 						</mat-menu>
 						<img class="user-avatar" src="assets/images/chinchilla2.jpg" (click)="routeToProfile();">

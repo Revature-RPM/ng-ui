@@ -60,7 +60,7 @@ export class ProjectSubmissionPageComponent {
 
 	ngOnInit() {
 		
-		this.userService.user.asObservable().subscribe(
+		this.userService.$userObservable.subscribe(
 			user => {
 				this.user = user;
 				this.projectToUpload.userId = user.id; // setting owner to the project
