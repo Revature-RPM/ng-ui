@@ -44,7 +44,7 @@
 .flex-section {
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start;
+    justify-content: center;
 
     mat-card {
         height: 8rem;
@@ -90,4 +90,18 @@
     mat-card:hover {
         opacity: 0.5;
     }
+
+    input {
+        width: 2rem;
+        text-align: right;
+    }
+
+
+    .btn{
+        background-color: $rev-orange-main;
+        margin-bottom: 10px;
+        color: $rev-white;
+        margin: 0.3rem;
+        border-radius: 5rem;
+      }
 }
