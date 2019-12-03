@@ -3,8 +3,7 @@ import { Injectable } from '@angular/core';
 import {BehaviorSubject, Observable, throwError} from 'rxjs';
 import {catchError, map} from 'rxjs/operators';
 
-import {Message} from '../models/Message';
-import {environment} from '../../environments/environment';
+import {Notification} from '../models/Notification';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -16,7 +15,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class NotificationsService {
-  message: BehaviorSubject<Message>;
+  notification: BehaviorSubject<Notification>;
 
   constructor(private http: HttpClient) { }
 
@@ -34,9 +33,37 @@ export class NotificationsService {
     return throwError('Something went wrong; please try again later.');
   }
 
-getAllNotifications():Observable<Message[]>{
-  let url=`https://localhost:8000/`;
-  return this.http.get<Message[]>(url    /*environment.url + '/notify/', httpOptions*/)
+  // TODO Verify function works, replace url when backend is finished.
+
+  /* Requests all notifications for the current user.
+     This will return any unread notifications and enough
+     read notifications to make the total number five,
+     as long as there are that many read notification.
+     Returns array of notifications.
+  */
+getAllNotifications(userID:any):Observable<Notification[]>{
+  return this.http.get<Notification[]>(`http://localhost:8000/`    /*environment.url + '/notify/', httpOptions*/)
   .pipe(catchError(this.handleError));
 }
+
+// TODO Verify function works, replace url when backend is finished.
+
+/* Requests a page of notifications, regardless of read status.
+   Returns array of notifications.
+*/
+getNotificationPage(userID:any, n:number):Observable<Notification[]>{
+  return this.http.get<Notification[]>(`http://localhost:8000/history?page=${n}`    /*environment.url + '/notify/history?page=${n}', httpOptions*/)
+  .pipe(catchError(this.handleError));
+}
+
+// TODO Verify function works, replace url when backend is finished.
+
+/* Requests an update for a notification if it has been read.
+   Returns a status code.
+*/
+patchReadNotification(notification:Notification){
+  this.http.patch(`http://localhost:8000/`, notification    /*environment.url + '/notify/', httpOptions*/)
+  .pipe(catchError(this.handleError));
+}
+
 }

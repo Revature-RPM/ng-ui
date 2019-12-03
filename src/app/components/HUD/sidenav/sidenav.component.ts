@@ -22,7 +22,7 @@ export class SidenavComponent implements OnInit {
     private userService: UserService,
     private router: Router)
   {
-    this.userService.user.asObservable().subscribe(
+    this.userService.$userObservable.subscribe(
       user => {
         if(user) this.loggedIn = true;
         else this.loggedIn = false;
@@ -57,5 +57,8 @@ export class SidenavComponent implements OnInit {
   goToElement(id: string) {
     let elem = document.getElementById(id);
     elem.scrollIntoView({behavior: "smooth"});
+  }
+  AllNotifications(){
+    this.router.navigate(['notifications']);
   }
 }

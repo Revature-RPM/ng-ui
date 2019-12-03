@@ -1,3 +1,12 @@
-<p>
-  notifications works!
-</p>
+<div class="main-blocks">
+  <h2 id="notifications">{{ title }}</h2>
+  <div *ngIf="notificationList" class="section flex-section">
+    <mat-card *ngFor="let notification of notificationList" (click)="swapNotifications(notification)" mat-fab
+      matTooltip={{notification.title}} matTooltipPosition="above">
+      <mat-card-content>
+        <h4> {{notification.title}} </h4>
+        <span>{{notification.description}}</span>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
