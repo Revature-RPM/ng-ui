@@ -1,8 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { EditDialogComponent } from './edit-dialog.component';
-import { MatDialogModule, MatFormFieldModule, MatTooltipModule, MatDialogRef } from '@angular/material';
+import { MatDialogModule, MatFormFieldModule, MatTooltipModule, MatDialogRef, MatDialog } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ProjectSubmissionPageComponent } from '../project-submission-page/project-submission-page.component';
 
 describe('EditDialogComponent', () => {
   let component: EditDialogComponent;
@@ -10,14 +11,15 @@ describe('EditDialogComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EditDialogComponent ],
+      declarations: [ EditDialogComponent, ProjectSubmissionPageComponent ],
       imports: [MatDialogModule, 
         MatFormFieldModule,
         MatTooltipModule,
-        MatDialogModule,
+        MatDialogRef,
+        MatDialog,
         FormsModule,
         ReactiveFormsModule],
-      providers: [ ],
+      providers: [],
     })
     .compileComponents();
   }));
