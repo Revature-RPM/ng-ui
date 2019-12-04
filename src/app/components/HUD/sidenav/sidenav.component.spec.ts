@@ -2,7 +2,7 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import { BehaviorSubject } from 'rxjs';
 import { User } from 'src/app/models/User';
 import {SidenavComponent} from './sidenav.component';
-import { MatSidenavModule, MatIconModule, MatMenuModule, MatToolbarModule, MatExpansionModule, MatListModule } from '@angular/material';
+import { MatSidenavModule, MatIconModule, MatMenuModule, MatToolbarModule, MatExpansionModule, MatListModule, MatBadgeModule } from '@angular/material';
 import { NavMenuComponent } from '../nav-menu/nav-menu.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -25,7 +25,7 @@ describe('SidenavComponent', () => {
       declarations: [ SidenavComponent, NavMenuComponent ],
       imports: [ MatSidenavModule, MatIconModule, MatMenuModule,
         MatToolbarModule, MatExpansionModule,
-        HttpClientTestingModule, NoopAnimationsModule, MatListModule,
+        HttpClientTestingModule, NoopAnimationsModule, MatListModule, MatBadgeModule,
         RouterTestingModule ],
         providers: [{provide: UserService, useClass: MockUserService}],
     })
@@ -59,12 +59,12 @@ describe('SidenavComponent', () => {
     expect(routerSpy).toHaveBeenCalledWith(['/profile']);
   });
 
-  xit('loggedIn should be false if user is not logged in', () => {
+  it('loggedIn should be false if user is not logged in', () => {
     //component.loggedIn = true;
     
     let userService = TestBed.get(UserService);
     
-    userService.user = new BehaviorSubject<User>(null);
+    userService.user.next(null);
     
     component.ngOnInit();
 

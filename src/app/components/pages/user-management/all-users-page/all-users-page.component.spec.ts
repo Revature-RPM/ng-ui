@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { MatSnackBarModule, MatSidenavModule, MatIconModule,
-  MatMenuModule, MatToolbarModule, MatExpansionModule, MatListModule, MatTableDataSource }
+  MatMenuModule, MatToolbarModule, MatExpansionModule, MatListModule, MatTableDataSource, MatBadgeModule }
   from '@angular/material';
 
 import { SidenavComponent } from 'src/app/components/HUD/sidenav/sidenav.component';
@@ -31,7 +31,7 @@ describe('AllUsersPageComponent', () => {
       declarations: [ AllUsersPageComponent, SidenavComponent, NavMenuComponent ],
       imports: [ MatSnackBarModule, MatSidenavModule, MatIconModule,
         MatMenuModule, MatToolbarModule, 
-        MatExpansionModule, RouterTestingModule, MatListModule,
+        MatExpansionModule, RouterTestingModule, MatListModule, MatBadgeModule,
         HttpClientTestingModule, BrowserAnimationsModule ],
         providers: [{ provide: UserService, useClass: MockUserService },
           { provide: ProjectService, useClass: MockProjectService }
