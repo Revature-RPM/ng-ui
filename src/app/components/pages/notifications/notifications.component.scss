@@ -52,9 +52,9 @@
         position: relative;
         overflow: hidden;
         margin: 0.5rem;
-        background-image: url(../../../../assets/images/BackgRpm.png);
-        background-color: rgba(255, 255, 255, 0.4);
-        background-blend-mode: color;
+        // background-image: url(../../../../assets/images/BackgRpm.png);
+        // background-color: rgba(255, 255, 255, 0.4);
+        // background-blend-mode: color;
         background-size: cover;
         border: 1px solid $rev-light-gray;
         border-radius: 12px;
@@ -88,7 +88,8 @@
     }
 
     mat-card:hover {
-        opacity: 0.5;
+        // opacity: 0.5;
+        background: $rev-lighter-gray;
     }
 
     input {

@@ -22,8 +22,9 @@
 						<button mat-button [matMenuTriggerFor]="menu">
 							<a>
 								<mat-icon *ngIf="!activeNotifications">notifications</mat-icon>
-								<mat-icon matBadgeColor="accent" matBadge="{{parseCount}}" matBadgePosition="above after"
-									*ngIf="activeNotifications">notifications_active</mat-icon>
+								<mat-icon matBadgeColor="accent" matBadge="{{parseCount}}"
+									matBadgePosition="above after" *ngIf="activeNotifications">notifications_active
+								</mat-icon>
 							</a>
 						</button>
 						<!--Drop-down Menu-->
@@ -44,14 +45,24 @@
 										(click)="routeToProject(notification)">
 										<span><strong>{{ notification.title }} </strong></span>
 										<em><span class="date-span">{{ notification.dateCreated | timeAgo }}</span></em>
-										<pre>{{ notification.shortDescription | ellipsis:137 }}</pre>
+										<div>
+											<pre class="short-description-pre">{{ notification.shortDescription | ellipsis:137 }}</pre>
+											<button class="read-button" mat-icon-button (click)="markRead(notification)" 
+											matTooltip="Mark as read" [matTooltipPosition]="'above'"
+											[matTooltipShowDelay]="'500'"></button>
+										</div>
 									</a>
 									<ng-template #notificationIsRead>
 										<a mat-menu-item *ngIf="notification.isRead"
 											(click)="routeToProject(notification)">
 											<span><strong>{{ notification.title }} </strong></span>
 											<em><span class="date-span">{{ notification.dateCreated | timeAgo }}</span></em>
-											<pre>{{ notification.shortDescription | ellipsis:137 }}</pre>
+											<div>
+												<pre class="short-description-pre">{{ notification.shortDescription | ellipsis:137 }}</pre>
+												<button class="unread-button" mat-icon-button (click)="markRead(notification)" 
+												matTooltip="Mark as unread" [matTooltipPosition]="'above'" 
+												[matTooltipShowDelay]="'500'"></button>
+											</div>
 										</a>
 									</ng-template>
 									<hr style="color:grey">

@@ -99,4 +99,7 @@ export class SidenavComponent implements OnInit {
       });
     });
   }
+  markRead(n:Notification){
+    this.notificationService.patchReadNotification(n);
+  }
 }

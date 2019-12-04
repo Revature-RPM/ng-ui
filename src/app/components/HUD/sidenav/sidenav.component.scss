@@ -110,7 +110,7 @@ mat-sidenav-container {
 }
 
 .unread {
-    background: rgba(243, 118, 56, 0.3);
+    background: rgba(243, 118, 56, 0.2);
 }
 
 pre {
@@ -120,6 +120,7 @@ pre {
     white-space: -pre-wrap;
     white-space: -o-pre-wrap;
     word-wrap: break-word;
+    vertical-align: middle;
 }
 
 .mark-as-read-div {
@@ -147,4 +148,30 @@ pre {
 .date-span {
     float: right;
     font-size: 12px;
+}
+
+.short-description-pre {
+    display: inline-block;
+    max-width: 450px;
+}
+
+.read-button {
+    height: 14px;
+    width: 14px;
+    border-radius: 50%;
+    background-color: $rev-blue-light;
+    cursor: pointer;
+    float: right;
+    vertical-align: middle;
+    margin-top: auto;
+}
+
+.unread-button {
+    height: 14px;
+    width: 14px;
+    border-radius: 50%;
+    border: 2px solid $rev-blue-light;
+    float: right;
+    vertical-align: middle;
+    margin-top: auto;
 }
