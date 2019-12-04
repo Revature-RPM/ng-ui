@@ -4,6 +4,7 @@ import { UserService } from 'src/app/services/user.service';
 import { NotificationsService } from 'src/app/services/notifications.service';
 import { Notification } from 'src/app/models/Notification';
 
+
 @Component({
   selector: 'app-sidenav',
   templateUrl: './sidenav.component.html',
@@ -48,6 +49,7 @@ export class SidenavComponent implements OnInit {
   }
 
   ngOnInit() {
+    
     console.log();
     this.notificationService.getAllNotifications(this.userID).subscribe(notices =>{
       console.log(notices);
@@ -77,8 +79,12 @@ export class SidenavComponent implements OnInit {
     let elem = document.getElementById(id);
     elem.scrollIntoView({behavior: "smooth"});
   }
-  AllNotifications(){
-    this.router.navigate(['notifications']);
+  readAll(){
+
   }
-  
+  routeToProject(n:Notification){
+    if (n.isRead == false){
+      this.notificationService.patchReadNotification(n)
+    }
+  }
 }

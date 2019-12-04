@@ -86,6 +86,11 @@ export class NotificationsComponent implements OnInit, OnChanges {
       this.pageNumber = this.pageMax;}
     this.getNotifications(this.currentUser, this.pageNumber);
   }
+  routeToProject(n:Notification){
+    if (n.isRead == false){
+      this.notificationService.patchReadNotification(n);
+    }
+  }
 }
 
 

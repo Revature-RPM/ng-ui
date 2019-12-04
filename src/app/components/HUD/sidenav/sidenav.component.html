@@ -30,21 +30,27 @@
 						<mat-menu #menu="matMenu" xPosition="before" style="padding-bottom:0">
 							<!--Function to mark all noifications as read-->
 							<div class="mark-as-read-div">
-								<span id="notificationSpan">Notifications</span>
-								<a style="cursor:pointer; color:#f37638; width:100%">Mark all as read</a>
+								<span id="notificationSpan">Notifications <em><small>({{ count }})</small></em></span>
+								<a style="cursor:pointer; color:#f37638; width:100%" (click)="readAll()">Mark all as
+									read</a>
 							</div>
 							<hr>
 							<!--Iterator of the notifications-->
 							<div id="dropdown-item-holder">
 								<ng-container *ngFor="let notification of notifications"
 									(click)="swapNotifications(notification)">
-									<a mat-menu-item class="unread" *ngIf="!notification.isRead; else notificationIsRead">
-										<p><strong>{{ notification.title }}</strong></p>
+									<a mat-menu-item class="unread"
+										*ngIf="!notification.isRead; else notificationIsRead"
+										(click)="swapNotifications(notification)">
+										<span><strong>{{ notification.title }} </strong></span>
+										<em><span class="date-span">{{ notification.dateCreated | timeAgo }}</span></em>
 										<pre>{{ notification.shortDescription | ellipsis:137 }}</pre>
 									</a>
 									<ng-template #notificationIsRead>
-										<a mat-menu-item *ngIf="notification.isRead">
-											<p><strong>{{ notification.title }}</strong></p>
+										<a mat-menu-item *ngIf="notification.isRead"
+											(click)="swapNotifications(notification)">
+											<span><strong>{{ notification.title }} </strong></span>
+											<em><span class="date-span">{{ notification.dateCreated | timeAgo }}</span></em>
 											<pre>{{ notification.shortDescription | ellipsis:137 }}</pre>
 										</a>
 									</ng-template>
