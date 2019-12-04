@@ -48,13 +48,18 @@ export class SidenavComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log();
     this.notificationService.getAllNotifications(this.userID).subscribe(notices =>{
+      console.log(notices);
       this.notifications = notices;
+      console.log(this.notifications);
       this.count = 0;
       this.notifications.forEach(notification => {
-        if (notification.read == false){
+        console.log(notification.isRead);
+        if (notification.isRead == false){
           this.activeNotifications = true;
           this.count++;
+          console.log(this.count);
         }
       });
     });

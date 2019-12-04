@@ -1,6 +1,11 @@
 export interface Notification{
-    id?:number;
+    notificationId?:number;
+    dateCreated?:Date;
+    isRead?:boolean;
     title?:string;
-    description?:string;
-    read?:boolean;
+    fullDescription?:string;
+    shortDescription?:string;
+    userId?:number;
+    contentType?:string;
+    projectId?:number;
 }

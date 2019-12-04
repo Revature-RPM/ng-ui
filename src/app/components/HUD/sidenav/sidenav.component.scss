@@ -83,3 +83,63 @@ mat-sidenav-container {
         visibility: hidden;
     }
 }
+
+::ng-deep .mat-menu-panel {
+    width: 499px !important;
+    max-width: none !important;
+    max-height: 500px;
+}
+
+::ng-deep #dropdown-item-holder {
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.mat-menu-item {
+    line-height: 30px;
+    height:auto; 
+    padding-top:10px;
+}
+
+.mat-menu-item:hover:not([disabled]), .mat-menu-item.cdk-program-focused:not([disabled]), .mat-menu-item.cdk-keyboard-focused:not([disabled]), .mat-menu-item-highlighted:not([disabled]) {
+    background: rgba(242, 105, 37, 0.4);
+}
+
+.unread:hover:not([disabled]){
+    background: rgba(243, 118, 56, 0.4);
+}
+
+.unread {
+    background: rgba(243, 118, 56, 0.3);
+}
+
+pre {
+    overflow-x: auto;
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
+}
+
+.mark-as-read-div {
+    width:100%;
+    text-align: right;
+    padding: 0 10px 10px 0;
+}
+
+.see-all-div {
+    width:auto;
+    text-align: center;
+    padding-top: 10px;
+}
+
+.mat-badge-accent .mat-badge-content {
+    background-color: $rev-gray-light;
+    color: white;
+}
+
+#notificationSpan {
+    float: left;
+    padding-left:10px;
+}

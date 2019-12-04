@@ -1,11 +1,8 @@
 <mat-sidenav-container>
-
 	<mat-sidenav opened=false mode="push" #sidenav class="flex-container">
 		<app-nav-menu (menuOptionClicked)="sidenav.toggle()"></app-nav-menu>
 	</mat-sidenav>
-
 	<mat-sidenav-content>
-
 		<mat-toolbar color="primary">
 			<mat-toolbar-row>
 				<button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="sidenav.toggle()">
@@ -13,36 +10,60 @@
 				</button>
 				<div class="spacer"></div>
 				<div class="toolbar-options">
-
 					<div class="inline-block-div" *ngIf="homepage">
 						<a (click)="goToElement('about')">About RPM</a>
 						<a (click)="goToElement('projects')">Projects</a>
 					</div>
-
-					<div class="inline-block-div" *ngIf="loggedIn">
-						<a><mat-icon>settings</mat-icon></a>
+					<div class="inline-block-div">
+						<a>
+							<mat-icon>settings</mat-icon>
+						</a>
 						<!--Notification bell: shows if there are unread notifications-->
 						<button mat-button [matMenuTriggerFor]="menu">
-							<a><mat-icon *ngIf="!activeNotifications">notifications</mat-icon>
+							<a>
+								<mat-icon *ngIf="!activeNotifications">notifications</mat-icon>
 								<mat-icon matBadgeColor="accent" matBadge="{{count}}" matBadgePosition="above after"
-									*ngIf="activeNotifications">notifications_active</mat-icon></a>
+									*ngIf="activeNotifications">notifications_active</mat-icon>
+							</a>
 						</button>
-						<mat-menu #menu="matMenu">
-							<!--Replace with *ngFor="let project of projects-->
-							<button mat-menu-item *ngFor="let notification of notifications"
-							(click)="swapNotifications(notification)">{{notification.title}}</button>
-							<button mat-menu-item (click)="AllNotifications()">See All</button>
+						<!--Drop-down Menu-->
+						<mat-menu #menu="matMenu" xPosition="before" style="padding-bottom:0">
+							<!--Function to mark all noifications as read-->
+							<div class="mark-as-read-div">
+								<span id="notificationSpan">Notifications</span>
+								<a style="cursor:pointer; color:#f37638; width:100%">Mark all as read</a>
+							</div>
+							<hr>
+							<!--Iterator of the notifications-->
+							<div id="dropdown-item-holder">
+								<ng-container *ngFor="let notification of notifications"
+									(click)="swapNotifications(notification)">
+									<a mat-menu-item class="unread" *ngIf="!notification.isRead; else notificationIsRead">
+										<p><strong>{{ notification.title }}</strong></p>
+										<pre>{{ notification.shortDescription | ellipsis:137 }}</pre>
+									</a>
+									<ng-template #notificationIsRead>
+										<a mat-menu-item *ngIf="notification.isRead">
+											<p><strong>{{ notification.title }}</strong></p>
+											<pre>{{ notification.shortDescription | ellipsis:137 }}</pre>
+										</a>
+									</ng-template>
+									<hr style="color:grey">
+								</ng-container>
+							</div>
+							<!--Link to page for all notifications-->
+							<div class="see-all-div">
+								<a style="cursor:pointer; color: #6a95ae; width: 100%" [routerLink]="['/notifications']"
+									routerLinkActive="router-link-active">
+									See all
+								</a>
+							</div>
 						</mat-menu>
 						<img class="user-avatar" src="assets/images/chinchilla2.jpg" (click)="routeToProfile();">
 					</div>
-
 				</div>
 			</mat-toolbar-row>
-
 		</mat-toolbar>
-
 		<router-outlet></router-outlet>
-
 	</mat-sidenav-content>
-
 </mat-sidenav-container>
