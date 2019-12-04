@@ -8,6 +8,7 @@ import { ProjectFilterService } from 'src/app/services/project-filter.service';
 import { NotificationsService } from 'src/app/services/notifications.service';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
+import { ProjectService } from 'src/app/services/project.service';
 
 @Component({
   selector: 'app-notifications',
@@ -30,7 +31,8 @@ export class NotificationsComponent implements OnInit, OnChanges {
   pageMax = 7;
 
   constructor(private router: Router, private userService: UserService, private notificationService: NotificationsService,
-    private filterService: ProjectFilterService, private route: ActivatedRoute, private http: HttpClient) { }
+    private filterService: ProjectFilterService, private route: ActivatedRoute, private projectService: ProjectService, 
+    private http: HttpClient) { }
 
   ngOnInit() {
     this.userService.$userObservable.subscribe(
@@ -86,10 +88,13 @@ export class NotificationsComponent implements OnInit, OnChanges {
       this.pageNumber = this.pageMax;}
     this.getNotifications(this.currentUser, this.pageNumber);
   }
-  routeToProject(n:Notification){
-    if (n.isRead == false){
+  routeToProject(n: Notification) {
+    if (n.isRead == false) 
       this.notificationService.patchReadNotification(n);
-    }
+    this.projectService.getProjectByField("id", n.projectId+"").subscribe(proj => {
+      this.projectService.CurrentProject$.next(proj[0]);
+      this.router.navigate(['/project-view']);
+    });
   }
 }
 

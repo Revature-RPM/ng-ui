@@ -22,7 +22,7 @@
 						<button mat-button [matMenuTriggerFor]="menu">
 							<a>
 								<mat-icon *ngIf="!activeNotifications">notifications</mat-icon>
-								<mat-icon matBadgeColor="accent" matBadge="{{count}}" matBadgePosition="above after"
+								<mat-icon matBadgeColor="accent" matBadge="{{parseCount}}" matBadgePosition="above after"
 									*ngIf="activeNotifications">notifications_active</mat-icon>
 							</a>
 						</button>
@@ -41,14 +41,14 @@
 									(click)="swapNotifications(notification)">
 									<a mat-menu-item class="unread"
 										*ngIf="!notification.isRead; else notificationIsRead"
-										(click)="swapNotifications(notification)">
+										(click)="routeToProject(notification)">
 										<span><strong>{{ notification.title }} </strong></span>
 										<em><span class="date-span">{{ notification.dateCreated | timeAgo }}</span></em>
 										<pre>{{ notification.shortDescription | ellipsis:137 }}</pre>
 									</a>
 									<ng-template #notificationIsRead>
 										<a mat-menu-item *ngIf="notification.isRead"
-											(click)="swapNotifications(notification)">
+											(click)="routeToProject(notification)">
 											<span><strong>{{ notification.title }} </strong></span>
 											<em><span class="date-span">{{ notification.dateCreated | timeAgo }}</span></em>
 											<pre>{{ notification.shortDescription | ellipsis:137 }}</pre>
