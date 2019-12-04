@@ -30,7 +30,7 @@ export class TokenInterceptor implements HttpInterceptor {
 
     const currentTime = Math.round((new Date()).getTime() / 1000);
 
-    if (localStorage.getItem('rpmRefresh') && currentTime < JSON.parse(localStorage.getItem('rpmRefresh')) && request.url.indexOf(environment.url) >= 0) {
+    if (localStorage.getItem('rpmRefresh') && currentTime < JSON.parse(localStorage.getItem('rpmRefresh')) /*&& request.url.indexOf(environment.url) >= 0*/) {
         request = request.clone({
           setHeaders: {
             Authorization: `Bearer ${window.localStorage.getItem('jwt')}`
@@ -44,7 +44,7 @@ export class TokenInterceptor implements HttpInterceptor {
       localStorage.removeItem('jwt');
       localStorage.removeItem('rpmRefresh');
       localStorage.removeItem('user'); // Updated to 'user' from 'rpmUser' to match rest of project - MJ 1906
-      this.userService.user.next(null);
+      this.userService.userSubject.next(null);
 
 
     }

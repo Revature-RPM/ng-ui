@@ -83,3 +83,95 @@ mat-sidenav-container {
         visibility: hidden;
     }
 }
+
+::ng-deep .mat-menu-panel {
+    width: 499px !important;
+    max-width: none !important;
+    max-height: 500px;
+}
+
+::ng-deep #dropdown-item-holder {
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.mat-menu-item {
+    line-height: 30px;
+    height:auto; 
+    padding-top:10px;
+}
+
+.mat-menu-item:hover:not([disabled]), .mat-menu-item.cdk-program-focused:not([disabled]), .mat-menu-item.cdk-keyboard-focused:not([disabled]), .mat-menu-item-highlighted:not([disabled]) {
+    background: rgba(242, 105, 37, 0.4);
+}
+
+.unread:hover:not([disabled]){
+    background: rgba(243, 118, 56, 0.4);
+}
+
+.unread {
+    background: rgba(243, 118, 56, 0.2);
+}
+
+pre {
+    overflow-x: auto;
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
+    vertical-align: middle;
+}
+
+.mark-as-read-div {
+    width:100%;
+    text-align: right;
+    padding: 0 10px 10px 0;
+}
+
+.see-all-div {
+    width:auto;
+    text-align: center;
+    padding-top: 10px;
+}
+
+.mat-badge-accent .mat-badge-content {
+    background-color: $rev-gray-light;
+    color: white;
+}
+
+#notificationSpan {
+    float: left;
+    padding-left:10px;
+}
+
+.date-span {
+    float: right;
+    font-size: 12px;
+}
+
+.short-description-pre {
+    display: inline-block;
+    max-width: 450px;
+}
+
+.read-button {
+    height: 14px;
+    width: 14px;
+    border-radius: 50%;
+    background-color: $rev-blue-light;
+    cursor: pointer;
+    float: right;
+    vertical-align: middle;
+    margin-top: auto;
+}
+
+.unread-button {
+    height: 14px;
+    width: 14px;
+    border-radius: 50%;
+    border: 2px solid $rev-blue-light;
+    float: right;
+    vertical-align: middle;
+    margin-top: auto;
+}

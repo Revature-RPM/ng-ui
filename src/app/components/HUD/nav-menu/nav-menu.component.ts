@@ -33,7 +33,7 @@ export class NavMenuComponent implements OnInit {
    */
   ngOnInit() {
 
-    this.userService.user.asObservable().subscribe(
+    this.userService.$userObservable.subscribe(
       user => {
         this.user = user;
         if (this.user && this.user.role === 'ROLE_ADMIN') this.menu = adminMenu;
