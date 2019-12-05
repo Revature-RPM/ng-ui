@@ -9,6 +9,8 @@
     20-minute SCSS tutorial:     https://youtu.be/Zz6eOVaaelI
     Scaling apps in Angular:     https://youtu.be/Bhd2ayEE9mg
 */
+
+
 /*
     @import src/variables.scss relative to this file
     in order to use the global SCSS variables within
@@ -20,8 +22,8 @@
     can use and make SCSS variables and make everyone's
     lives easier.
 */
-@import '../../../../variables';
 
+@import '../../../../variables';
 .section {
     width: 90%;
     margin: 0 auto;
@@ -29,12 +31,10 @@
 
 .filter-block {
     font-size: 0.7rem;
-
     mat-form-field {
         display: inline-block;
         margin: 0.5rem 1rem;
     }
-
     mat-select {
         display: inline-block;
         width: 10rem;
@@ -45,64 +45,59 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    width: 65%;
+    color: $rev-gray-light;
+}
 
-    mat-card {
-        height: 8rem;
-        width: 15rem;
-        position: relative;
-        overflow: hidden;
-        margin: 0.5rem;
-        // background-image: url(../../../../assets/images/BackgRpm.png);
-        // background-color: rgba(255, 255, 255, 0.4);
-        // background-blend-mode: color;
-        background-size: cover;
-        border: 1px solid $rev-light-gray;
-        border-radius: 12px;
-        cursor: pointer;
+::ng-deep .mat-list-base {
+    width: 100%;
+}
 
-        h4 {
-            margin-bottom: 1rem;
-        }
+::ng-deep .mat-list-base .mat-list-item .mat-line {
+    white-space: inherit;
+    display: inline;
+    vertical-align: middle;
+}
 
-        span {
-            display: block;
-        }
+::ng-deep .mat-list-base .mat-list-item,
+.mat-list-base .mat-list-option {
+    padding: 10px 0;
+}
 
-        .status {
-            position: absolute;
-            bottom: 5%;
-            right: 5%;
-            width: 1rem;
-            height: 1rem;
-            border-radius: 50%;
-        }
+::ng-deep .mat-list-base .mat-list-item.mat-2-line,
+.mat-list-base .mat-list-option.mat-2-line {
+    height: auto;
+}
 
-        .read {
-            background: green;
-        }
+.short-description-p {
+    display: inline-block;
+}
 
-        .unread {
-            background: red;
-        }
+.read-button {
+    height: 14px;
+    width: 14px;
+    border-radius: 50%;
+    background-color: $rev-blue-light;
+    cursor: pointer;
+    float: right;
+}
 
-    }
+.unread-button {
+    height: 14px;
+    width: 14px;
+    border-radius: 50%;
+    border: 2px solid $rev-blue-light;
+    float: right;
+}
 
-    mat-card:hover {
-        // opacity: 0.5;
-        background: $rev-lighter-gray;
-    }
+.unread:hover:not([disabled]) {
+    background: rgba(243, 118, 56, 0.4);
+}
 
-    input {
-        width: 2rem;
-        text-align: right;
-    }
+.unread {
+    background: rgba(243, 118, 56, 0.2);
+}
 
-
-    .btn{
-        background-color: $rev-orange-main;
-        margin-bottom: 10px;
-        color: $rev-white;
-        margin: 0.3rem;
-        border-radius: 5rem;
-      }
+hr {
+    margin: 0;
 }
