@@ -49,10 +49,10 @@ export class NotificationsComponent implements OnInit, OnChanges {
         );
 
         // If the current page is 'notifications' get the userId
-        // if (this.router.url.includes('notification')) {
-        //   this.userId = this.currentUser.id + "";
-        // }
-        // this.getNotifications(this.currentUser, this.pageNumber);
+        if (this.router.url.includes('notification')) {
+          this.userId = this.currentUser.id + "";
+        }
+        this.getNotifications(this.currentUser, this.pageNumber);
     }
 
     ngOnChanges() {
