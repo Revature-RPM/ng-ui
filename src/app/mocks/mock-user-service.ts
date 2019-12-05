@@ -8,8 +8,7 @@ import { OnInit } from '@angular/core';
  *
  */
 export class MockUserService {
-    userSubject: BehaviorSubject<User> = new BehaviorSubject<User>(null);
-    $userObservable: Observable<User> = new Observable<User>(null);
+    user: BehaviorSubject<User> = new BehaviorSubject<User>(null);
     u: User;
     test: any;
     url: string;
@@ -24,8 +23,7 @@ export class MockUserService {
                 username : 'bobWhite',
                 id : 1234,
                 };
-            this.userSubject.next(this.u);
-            this.$userObservable =of(this.u);
+            this.user.next(this.u);
             this.test = true;
             this.url = 'http://www.google.com/NotAUsefulAnswer';
     }
@@ -43,24 +41,24 @@ export class MockUserService {
     logout (): void {}
 
     register(newuser: User): Observable<User> {
-        return  this.userSubject.asObservable();
+        return  this.user.asObservable();
     }
 
     getAllUsers(): Observable<User> {
-        return  this.userSubject.asObservable();
+        return  this.user.asObservable();
     }
 
     updateProfile(user: User): Observable<User> {
-        return  this.userSubject.asObservable();
+        return  this.user.asObservable();
     }
 
     updateUserToAdmin(user: User): Observable<User> {
 
-        return  this.userSubject.asObservable();
+        return  this.user.asObservable();
     }
 
     updateUserRoles(user: User): Observable<User> {
-        return this.userSubject.asObservable();
+        return this.user.asObservable();
     }
 
     checkIfEmailIsInUse(email): Observable<string> {

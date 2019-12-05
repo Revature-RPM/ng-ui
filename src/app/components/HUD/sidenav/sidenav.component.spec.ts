@@ -13,6 +13,7 @@ import { MockUserService } from 'src/app/mocks/mock-user-service';
 import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
 import { RouterScroller } from '@angular/router/src/router_scroller';
+import { PipeModule } from '../../../../pipes/pipe.module'; 
 
 describe('SidenavComponent', () => {
   let component: SidenavComponent;
@@ -26,7 +27,7 @@ describe('SidenavComponent', () => {
       imports: [ MatSidenavModule, MatIconModule, MatMenuModule,
         MatToolbarModule, MatExpansionModule,
         HttpClientTestingModule, NoopAnimationsModule, MatListModule, MatBadgeModule,
-        RouterTestingModule ],
+        RouterTestingModule, PipeModule ],
         providers: [{provide: UserService, useClass: MockUserService}],
     })
     .compileComponents();

@@ -14,7 +14,7 @@
                         <a (click)="goToElement('about')">About RPM</a>
                         <a (click)="goToElement('projects')">Projects</a>
                     </div>
-                    <div class="inline-block-div">
+                    <div class="inline-block-div" *ngIf="loggedIn">
                         <a>
                             <mat-icon>settings</mat-icon>
                         </a>
@@ -38,23 +38,33 @@
                             <hr>
                             <!--Iterator of the notifications-->
                             <div id="dropdown-item-holder">
-                                <ng-container *ngFor="let notification of notifications" (click)="routeToProject(notification)">
-                                    <a mat-menu-item class="unread" *ngIf="!notification.isRead; else notificationIsRead" (click)="routeToProject(notification)">
+                                <ng-container *ngFor="let notification of notifications"
+                                    (click)="routeToProject(notification)">
+                                    <a mat-menu-item class="unread"
+                                        *ngIf="!notification.isRead; else notificationIsRead"
+                                        (click)="routeToProject(notification)">
                                         <span><strong>{{ notification.title }} </strong></span>
                                         <em><span class="date-span">{{ notification.dateCreated | timeAgo }}</span></em>
                                         <div>
-                                            <pre class="short-description-pre">{{ notification.shortDescription | ellipsis:137 }}</pre>
-                                            <button class="read-button" mat-icon-button (click)="markRead(notification)" matTooltip="Mark as read" [matTooltipPosition]="'above'" [matTooltipShowDelay]="'500'"></button>
+                                            <pre
+                                                class="short-description-pre">{{ notification.shortDescription | ellipsis:137 }}</pre>
+                                            <button class="read-button" mat-icon-button (click)="markRead(notification)"
+                                                matTooltip="Mark as read" matTooltipPosition="'above'"
+                                                matTooltipShowDelay="'500'"></button>
                                         </div>
                                     </a>
                                     <ng-template #notificationIsRead>
-                                        <a mat-menu-item *ngIf="notification.isRead" (click)="routeToProject(notification)">
+                                        <a mat-menu-item *ngIf="notification.isRead"
+                                            (click)="routeToProject(notification)">
                                             <span><strong>{{ notification.title }} </strong></span>
                                             <em><span
                                                     class="date-span">{{ notification.dateCreated | timeAgo }}</span></em>
                                             <div>
-                                                <pre class="short-description-pre">{{ notification.shortDescription | ellipsis:137 }}</pre>
-                                                <button class="unread-button" mat-icon-button (click)="markUnread(notification)" matTooltip="Mark as unread" [matTooltipPosition]="'above'" [matTooltipShowDelay]="'500'"></button>
+                                                <pre
+                                                    class="short-description-pre">{{ notification.shortDescription | ellipsis:137 }}</pre>
+                                                <button class="unread-button" mat-icon-button
+                                                    (click)="markUnread(notification)" matTooltip="Mark as unread"
+                                                    matTooltipPosition="'above'" matTooltipShowDelay="'500'"></button>
                                             </div>
                                         </a>
                                     </ng-template>
@@ -63,12 +73,14 @@
                             </div>
                             <!--Link to page for all notifications-->
                             <div class="see-all-div">
-                                <a style="cursor:pointer; color: #6a95ae; width: 100%" [routerLink]="['/notifications']" routerLinkActive="router-link-active">
+                                <a style="cursor:pointer; color: #6a95ae; width: 100%" [routerLink]="['/notifications']"
+                                    routerLinkActive="router-link-active">
                                     See all
                                 </a>
                             </div>
                         </mat-menu>
-                        <img class="user-avatar" src="assets/images/chinchilla2.jpg" alt="User Avatar" (click)="routeToProfile();">
+                        <img class="user-avatar" src="assets/images/chinchilla2.jpg" alt="User Avatar"
+                            (click)="routeToProfile();">
                     </div>
                 </div>
             </mat-toolbar-row>

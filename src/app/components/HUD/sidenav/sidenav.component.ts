@@ -28,7 +28,7 @@ export class SidenavComponent implements OnInit {
   constructor(
     private userService: UserService, private notificationService: NotificationsService,
     private projectService: ProjectService, private router: Router) {
-    this.userService.$userObservable.subscribe(
+    this.userService.user.asObservable().subscribe(
       user => {
         if (user) {
           this.loggedIn = true;
@@ -88,7 +88,6 @@ export class SidenavComponent implements OnInit {
     noticeCount() {
         this.notificationService.getAllNotifications(this.userID).subscribe(notices => {
             this.notifications = notices;
-            console.log(notices);
             this.count = 0;
             this.notifications.forEach(notification => {
                 if (notification.isRead == false) {
@@ -107,37 +106,7 @@ export class SidenavComponent implements OnInit {
         this.notificationService.patchReadNotification(n);
     }
 
-<<<<<<< HEAD
-  routeToProject(n: Notification) {
-    if (n.isRead == false)
-      this.notificationService.patchReadNotification(n);
-    this.projectService.getProjectByField("id", n.projectId + "").subscribe(proj => {
-      this.projectService.CurrentProject$.next(proj[0]);
-      this.router.navigate(['/project-view']);
-    });
-  }
-  noticeCount() {
-    this.notificationService.getAllNotifications(this.userID).subscribe(notices => {
-      this.notifications = notices;
-      this.count = 0;
-      this.notifications.forEach(notification => {
-        if (notification.isRead == false) {
-          this.activeNotifications = true;
-          this.count++;
-          if (this.count > 9)
-            this.parseCount = "9+";
-          else
-            this.parseCount = this.count;
-        }
-      });
-    });
-  }
-  markRead(n:Notification){
-    this.notificationService.patchReadNotification(n);
-  }
-=======
     markUnread(n: Notification) {
         this.notificationService.patchReadNotification(n);
     }
->>>>>>> 118651b3bd6a1e38b4e9863f869bc6f38ef05f96
 }

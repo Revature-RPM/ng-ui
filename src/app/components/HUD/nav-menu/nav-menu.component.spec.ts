@@ -134,8 +134,7 @@ describe('NavMenuComponent', () => {
     //component.loggedIn = component.admin = true;
     
     let userService = TestBed.get(UserService);
-    userService.userSubject = new BehaviorSubject<User>(null);
-    userService.$userObservable = new Observable<User>(null);
+    userService.user = new BehaviorSubject<User>(null);
 
     // tslint:disable-next-line: no-lifecycle-call
     component.ngOnInit();

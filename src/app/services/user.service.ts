@@ -16,20 +16,18 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class UserService {
-  userSubject: BehaviorSubject<User>;
-  public $userObservable: Observable<User>;
+  user: BehaviorSubject<User>;
 
 
   constructor(private http: HttpClient) {
-    if (localStorage.getItem('jwt')) this.userSubject = new BehaviorSubject<User>( (JSON.parse(localStorage.getItem('user'))) );
-    else this.userSubject = new BehaviorSubject<User>( null );
-    this.$userObservable = this.userSubject.asObservable();
+    if (localStorage.getItem('jwt')) this.user = new BehaviorSubject<User>( (JSON.parse(localStorage.getItem('user'))) );
+    else this.user = new BehaviorSubject<User>( null );
   }
 
 
 
   getCurrentUser(): User {
-    return this.userSubject.value;
+    return this.user.value;
   }
 
   // TODO clean this up
@@ -51,7 +49,7 @@ export class UserService {
     localStorage.removeItem('jwt');
     localStorage.removeItem('rpmRefresh');
     localStorage.removeItem('user'); // updated to 'user' from 'rpmUser' to match rest of project - MJ 1906
-    this.userSubject.next(null);
+    this.user.next(null);
   }
 
   // only use environment.url for the base url and concat any restful endpoints
@@ -60,7 +58,7 @@ export class UserService {
     return this.http.post(environment.url + '/auth/login', newuser, {observe: 'response'})
       .pipe(map(response => {
         if (response.headers.get('Authorization')) {
-          this.userSubject.next(response.body);
+          this.user.next(response.body);
           let jwtauthtoken = response.headers.get('Authorization').split(' ')[1];
 
           localStorage.setItem('jwt', jwtauthtoken);
