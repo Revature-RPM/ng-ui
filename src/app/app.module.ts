@@ -1,3 +1,4 @@
+import { TimeAgoPipe } from 'time-ago-pipe';
 import 'hammerjs';
 
 import {BrowserModule} from '@angular/platform-browser';
@@ -37,7 +38,6 @@ import { SelectedProjectViewerComponent } from './components/pages/project-appro
 import { PendingEditRequestsTableComponent } from './components/pages/project-approval/pending-edit-requests-table/pending-edit-requests-table.component';
 import { LexPipe } from './zip-file-explorer/lex.pipe';
 import { LineNumberPipe } from './zip-file-explorer/line-number.pipe';
-import { TimeAgoPipe } from 'time-ago-pipe';
 
 
 
@@ -98,7 +98,7 @@ export function hljsLanguages() {
     HomePageComponent,
     AboutComponent,
     NotificationsComponent,
-    TimeAgoPipe,
+    TimeAgoPipe
   ],
   imports: [
     AppRoutingModule,

@@ -25,7 +25,7 @@ const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'login', component: LoginRegisterPageComponent},
   {path: 'home', component: HomePageComponent},
-  {path: 'notifications', component: NotificationsComponent, canActivate: [AuthGuard] },
+  {path: 'notifications', component: NotificationsComponent },
   {path: 'projects', component: ProjectListComponent},
   {path: 'projects-user', component: ProjectListComponent, canActivate: [AuthGuard] },
   {path: 'projects-pending', component: ProjectsPendingApprovalPageComponent, canActivate: [AdminGuard]},
