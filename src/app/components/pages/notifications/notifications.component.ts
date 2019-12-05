@@ -21,13 +21,12 @@ import { ProjectService } from 'src/app/services/project.service';
         ]),
     ],
 })
-export class NotificationsComponent implements OnInit, OnChanges {
+export class NotificationsComponent implements OnInit {
     title: string = "My Notifications";
     currentUser: User;
     userId: string;
-    notificationList: Notification[];
-    pageNumber = 1;
-    pageMax = 7;
+    notificationList: Notification[] = [];
+    pageNumber = 0;
 
     constructor(
         private router: Router,
@@ -40,7 +39,7 @@ export class NotificationsComponent implements OnInit, OnChanges {
     ) { }
 
     ngOnInit() {
-        this.userService.$userObservable.subscribe(
+        this.userService.user.asObservable().subscribe(
             user => {
                 if (user) {
                     this.currentUser = user;
@@ -50,55 +49,9 @@ export class NotificationsComponent implements OnInit, OnChanges {
 
         // If the current page is 'notifications' get the userId
         if (this.router.url.includes('notification')) {
-          this.userId = this.currentUser.id + "";
+            this.userId = this.currentUser.id + "";
         }
-        this.getNotifications(this.currentUser, this.pageNumber);
-    }
-
-    ngOnChanges() {
-        this.getNotifications(this.currentUser, this.pageNumber);
-        console.log("change detected")
-    }
-
-    getNotifications(userObject: User, n: number): Notification[] {
-        this.notificationService.getNotificationPage(userObject.id, n).subscribe(notices => {
-            this.notificationList = notices;
-            //this.pageMax = XXXXXXXXXXXXXXXXXXXXXX
-        });
-        return this.notificationList;
-    }
-
-    firstPage() {
-        this.pageNumber = 1;
-        this.changedPage();
-    }
-
-    previousPage() {
-        if (this.pageNumber > 1)
-            this.pageNumber--;
-        this.changedPage();
-    }
-
-    nextPage() {
-        if (this.pageNumber < this.pageMax)
-            this.pageNumber++;
-        this.changedPage();
-    }
-
-    lastPage() {
-        this.pageNumber = this.pageMax;
-        this.changedPage();
-    }
-
-    changedPage() {
-        Math.floor(this.pageNumber);
-        if (this.pageNumber < 1) {
-            this.pageNumber = 1;
-        }
-        if (this.pageNumber > this.pageMax) {
-            this.pageNumber = this.pageMax;
-        }
-        this.getNotifications(this.currentUser, this.pageNumber);
+        this.showMore(this.currentUser);
     }
 
     routeToProject(n: Notification) {
@@ -110,12 +63,17 @@ export class NotificationsComponent implements OnInit, OnChanges {
         });
     }
 
-    markRead(n: Notification) {
+    toggleRead(n: Notification) {
         this.notificationService.patchReadNotification(n);
     }
 
-    markUnread(n: Notification) {
-        this.notificationService.patchReadNotification(n);
+    showMore(userObject: User) {
+        this.pageNumber++
+        this.notificationService.getNotificationPage(userObject.id, this.pageNumber).subscribe(notices => {
+            notices.forEach(n => {
+                this.notificationList.push(n)
+            });
+        });
     }
 }
 

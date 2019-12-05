@@ -1,15 +1,15 @@
 <div class="main-blocks">
     <h2 id="notifications">{{ title }}</h2>
-    <div *ngIf="!notificationList" class="section flex-section">
+    <div *ngIf="notificationList" class="section flex-section">
         <mat-list>
-            <ng-container *ngFor="let notification of notifications">
+            <ng-container *ngFor="let notification of notificationList">
                 <mat-list-item class="unread" *ngIf="!notification.isRead; else notificationIsRead" (click)="routeToProject(notification)">
                     <mat-icon mat-list-icon>notifications</mat-icon>
                     <h4 mat-line><strong>{{ notification.title }}</strong></h4>
                     <div mat-line>
                         <p class="short-description-p">{{ notification.fullDescription }}</p>
                     </div>
-                    <button class="unread-button" mat-icon-button (click)="markUnread(notification)" matTooltip="Mark as read" [matTooltipPosition]="'above'" [matTooltipShowDelay]="'500'"></button>
+                    <button class="unread-button" mat-icon-button (click)="toggleRead(notification)" matTooltip="Mark as read" matTooltipPosition="'above'" matTooltipShowDelay="'500'"></button>
                 </mat-list-item>
                 <hr>
                 <ng-template #notificationIsRead>
@@ -19,11 +19,14 @@
                         <div mat-line>
                             <p class="short-description-p">{{ notification.fullDescription }}</p>
                         </div>
-                        <button class="unread-button" mat-icon-button (click)="markUnread(notification)" matTooltip="Mark as unread" [matTooltipPosition]="'above'" [matTooltipShowDelay]="'500'"></button>
+                        <button class="unread-button" mat-icon-button (click)="toggleRead(notification)" matTooltip="Mark as unread" matTooltipPosition="'above'" matTooltipShowDelay="'500'"></button>
                     </mat-list-item>
                     <hr>
                 </ng-template>
             </ng-container>
         </mat-list>
+        <div>
+            <button (click)="showMore(currentUser)">Show more</button>
+        </div>
     </div>
 </div>

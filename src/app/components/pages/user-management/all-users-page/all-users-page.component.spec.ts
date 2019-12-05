@@ -16,6 +16,8 @@ import { Router } from '@angular/router';
 import {User} from 'src/app/models/User';
 import {of, BehaviorSubject, Observable, throwError} from 'rxjs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PipeModule } from 'src/pipes/pipe.module';
+
 
 
 describe('AllUsersPageComponent', () => {
@@ -32,7 +34,7 @@ describe('AllUsersPageComponent', () => {
       imports: [ MatSnackBarModule, MatSidenavModule, MatIconModule,
         MatMenuModule, MatToolbarModule, 
         MatExpansionModule, RouterTestingModule, MatListModule, MatBadgeModule,
-        HttpClientTestingModule, BrowserAnimationsModule ],
+        HttpClientTestingModule, BrowserAnimationsModule, PipeModule ],
         providers: [{ provide: UserService, useClass: MockUserService },
           { provide: ProjectService, useClass: MockProjectService }
         ]

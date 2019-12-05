@@ -58,13 +58,12 @@ export class NotificationsService {
 
     // TODO Verify function works, replace url when backend is finished.
 
-    /* Requests an update for a notification if it has been read.
-       Returns a status code.
-    */
-    patchReadNotification(notification: Notification) {
-        console.log(notification);
-        this.http.patch(`http://localhost:8000/`, notification    /*environment.url + '/notify/', httpOptions*/)
-            .pipe(catchError(this.handleError));
-    }
+/* Requests an update for a notification if it has been read.
+   Returns a status code.
+*/
+patchReadNotification(notification:Notification){
+  this.http.patch(`http://localhost:8000/`, notification    /*environment.url + '/notify/', httpOptions*/)
+  .pipe(catchError(this.handleError));
+}
 
 }

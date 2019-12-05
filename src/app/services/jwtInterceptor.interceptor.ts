@@ -44,7 +44,7 @@ export class TokenInterceptor implements HttpInterceptor {
       localStorage.removeItem('jwt');
       localStorage.removeItem('rpmRefresh');
       localStorage.removeItem('user'); // Updated to 'user' from 'rpmUser' to match rest of project - MJ 1906
-      this.userService.userSubject.next(null);
+      this.userService.user.next(null);
 
 
     }
