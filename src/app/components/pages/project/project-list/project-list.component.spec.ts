@@ -6,7 +6,7 @@ import {ProjectListComponent} from './project-list.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {ProjectService} from 'src/app/services/project.service';
 import { MockProjectService } from 'src/app/mocks/mock-project-service';
-import { EllipsisPipe } from '../../../../ellipsis.pipe';
+import { EllipsisPipe } from '../../../../../pipes/ellipsis.pipe';
 import { projection, detectChanges } from '@angular/core/src/render3';
 import { BehaviorSubject } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';

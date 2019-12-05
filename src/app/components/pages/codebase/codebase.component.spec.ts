@@ -15,7 +15,7 @@ import { Project } from 'src/app/models/Project';
 import { User } from 'src/app/models/User';
 import { CodebaseComponent } from './codebase.component';
 import { DirectoryObject } from './directory_object';
-import { EllipsisPipe } from 'src/app/ellipsis.pipe';
+import { EllipsisPipe } from 'src/pipes/ellipsis.pipe';
 import { RenderFile } from './render_file';
 import { Router } from '@angular/router';
 

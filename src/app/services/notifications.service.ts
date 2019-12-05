@@ -62,7 +62,6 @@ getNotificationPage(userID:any, n:number):Observable<Notification[]>{
    Returns a status code.
 */
 patchReadNotification(notification:Notification){
-  console.log(notification);
   this.http.patch(`http://localhost:8000/`, notification    /*environment.url + '/notify/', httpOptions*/)
   .pipe(catchError(this.handleError));
 }

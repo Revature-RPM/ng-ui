@@ -30,9 +30,11 @@ export class SidenavComponent implements OnInit {
     private projectService: ProjectService, private router: Router) {
     this.userService.$userObservable.subscribe(
       user => {
-        if (user) this.loggedIn = true;
+        if (user) {
+          this.loggedIn = true;
+          this.userID = user.id;
+        }
         else this.loggedIn = false;
-        this.userID = user.id;
       }
     );
 
@@ -85,7 +87,6 @@ export class SidenavComponent implements OnInit {
   noticeCount() {
     this.notificationService.getAllNotifications(this.userID).subscribe(notices => {
       this.notifications = notices;
-      console.log(notices);
       this.count = 0;
       this.notifications.forEach(notification => {
         if (notification.isRead == false) {

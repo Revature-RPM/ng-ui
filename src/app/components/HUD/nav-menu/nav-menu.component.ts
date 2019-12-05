@@ -32,7 +32,6 @@ export class NavMenuComponent implements OnInit {
    * 
    */
   ngOnInit() {
-
     this.userService.$userObservable.subscribe(
       user => {
         this.user = user;

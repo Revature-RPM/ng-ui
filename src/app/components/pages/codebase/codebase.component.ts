@@ -5,7 +5,6 @@ import { Router} from '@angular/router';
 import * as JSZip from 'jszip';
 import { NgMetaService } from 'ngmeta';
 import { ProjectService } from 'src/app/services/project.service';
-import { EllipsisPipe } from 'src/app/ellipsis.pipe';
 import { Project } from 'src/app/models/Project';
 import { DirectoryObject } from './directory_object';
 import { RenderFile } from './render_file';

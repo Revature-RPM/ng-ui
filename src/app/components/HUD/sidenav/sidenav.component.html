@@ -14,7 +14,7 @@
 						<a (click)="goToElement('about')">About RPM</a>
 						<a (click)="goToElement('projects')">Projects</a>
 					</div>
-					<div class="inline-block-div">
+					<div class="inline-block-div" *ngIf="loggedIn">
 						<a>
 							<mat-icon>settings</mat-icon>
 						</a>
@@ -48,8 +48,8 @@
 										<div>
 											<pre class="short-description-pre">{{ notification.shortDescription | ellipsis:137 }}</pre>
 											<button class="read-button" mat-icon-button (click)="markRead(notification)" 
-											matTooltip="Mark as read" [matTooltipPosition]="'above'"
-											[matTooltipShowDelay]="'500'"></button>
+											matTooltip="Mark as read" matTooltipPosition="'above'"
+											matTooltipShowDelay="'500'"></button>
 										</div>
 									</a>
 									<ng-template #notificationIsRead>
@@ -60,8 +60,8 @@
 											<div>
 												<pre class="short-description-pre">{{ notification.shortDescription | ellipsis:137 }}</pre>
 												<button class="unread-button" mat-icon-button (click)="markRead(notification)" 
-												matTooltip="Mark as unread" [matTooltipPosition]="'above'" 
-												[matTooltipShowDelay]="'500'"></button>
+												matTooltip="Mark as unread" matTooltipPosition="'above'" 
+												matTooltipShowDelay="'500'"></button>
 											</div>
 										</a>
 									</ng-template>

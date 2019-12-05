@@ -8,6 +8,7 @@ import { SidenavComponent } from './components/HUD/sidenav/sidenav.component';
 import { NavMenuComponent } from './components/HUD/nav-menu/nav-menu.component';
 import {AppComponent} from './app.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { PipeModule } from '../pipes/pipe.module'; 
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -15,7 +16,7 @@ describe('AppComponent', () => {
       imports: [ MatSidenavModule, MatIconModule, MatMenuModule,
         MatToolbarModule, MatExpansionModule, BrowserAnimationsModule,
         RouterTestingModule, NoopAnimationsModule, MatListModule, MatBadgeModule,
-        HttpClientTestingModule],
+        HttpClientTestingModule, PipeModule],
       declarations: [
         AppComponent, SidenavComponent, NavMenuComponent],
     }).compileComponents();

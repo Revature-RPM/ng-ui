@@ -28,7 +28,7 @@ import {EditDialogComponent} from './components/pages/project-submission/edit-di
 import {TokenInterceptor} from './services/jwtInterceptor.interceptor';
 import { ProfileComponent } from './components/pages/user-management/profile/profile.component';
 import { AllUsersPageComponent } from './components/pages/user-management/all-users-page/all-users-page.component';
-import { EllipsisPipe } from './ellipsis.pipe';
+import { EllipsisPipe } from '../pipes/ellipsis.pipe';
 import { CodebaseComponent } from './components/pages/codebase/codebase.component';
 import { AdminChangeRolesComponent } from './components/pages/user-management/admin-change-roles/admin-change-roles.component';
 import { ProjectsPendingApprovalPageComponent } from './components/pages/project-approval/projects-pending-approval-page/projects-pending-approval-page.component';

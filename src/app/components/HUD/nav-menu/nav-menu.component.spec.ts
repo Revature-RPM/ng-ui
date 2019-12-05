@@ -9,7 +9,7 @@ import { UserService } from 'src/app/services/user.service';
 import { MockUserService } from 'src/app/mocks/mock-user-service';
 import { Router } from '@angular/router';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from 'src/app/models/User';
 import { userMenu, nonUserMenu, adminMenu } from 'src/app/utils/menus';
 
@@ -134,7 +134,8 @@ describe('NavMenuComponent', () => {
     //component.loggedIn = component.admin = true;
     
     let userService = TestBed.get(UserService);
-    userService.user = new BehaviorSubject<User>(null);
+    userService.userSubject = new BehaviorSubject<User>(null);
+    userService.$userObservable = new Observable<User>(null);
 
     // tslint:disable-next-line: no-lifecycle-call
     component.ngOnInit();
