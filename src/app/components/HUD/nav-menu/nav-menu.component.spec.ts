@@ -1,19 +1,23 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import { DebugElement } from '@angular/core';
-import {NavMenuComponent} from './nav-menu.component';
-import { MatButtonModule, MatExpansionModule, MatListModule } from '@angular/material';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-import { By } from '@angular/platform-browser';
-import { UserService } from 'src/app/services/user.service';
-import { MockUserService } from 'src/app/mocks/mock-user-service';
-import { Router } from '@angular/router';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { BehaviorSubject } from 'rxjs';
-import { User } from 'src/app/models/User';
-import { userMenu, nonUserMenu, adminMenu } from 'src/app/utils/menus';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { DebugElement } from "@angular/core";
+import { NavMenuComponent } from "./nav-menu.component";
+import {
+  MatButtonModule,
+  MatExpansionModule,
+  MatListModule
+} from "@angular/material";
+import { HttpClientTestingModule } from "@angular/common/http/testing";
+import { RouterTestingModule } from "@angular/router/testing";
+import { By } from "@angular/platform-browser";
+import { UserService } from "src/app/services/user.service";
+import { MockUserService } from "src/app/mocks/mock-user-service";
+import { Router } from "@angular/router";
+import { NoopAnimationsModule } from "@angular/platform-browser/animations";
+import { BehaviorSubject, Observable, empty } from "rxjs";
+import { User } from "src/app/models/User";
+import { userMenu, nonUserMenu, adminMenu } from "src/app/utils/menus";
 
-describe('NavMenuComponent', () => {
+fdescribe("NavMenuComponent", () => {
   let component: NavMenuComponent;
   let fixture: ComponentFixture<NavMenuComponent>;
   let router: Router;
@@ -28,33 +32,40 @@ describe('NavMenuComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NavMenuComponent ],
-      imports: [ MatButtonModule, MatExpansionModule, MatListModule, HttpClientTestingModule,
-      RouterTestingModule, NoopAnimationsModule],
-      providers: [{provide: UserService, useClass: MockUserService}],
-    })
-    .compileComponents();
+      declarations: [NavMenuComponent],
+      imports: [
+        MatButtonModule,
+        MatExpansionModule,
+        MatListModule,
+        HttpClientTestingModule,
+        RouterTestingModule,
+        NoopAnimationsModule
+      ],
+      providers: [{ provide: UserService, useClass: MockUserService }]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
     router = TestBed.get(Router);
-    routerSpy = spyOn(router, 'navigate').and
-    .callFake( function() { return null; });
-    
+    routerSpy = spyOn(router, "navigate").and.callFake(function() {
+      return null;
+    });
+
     store = {};
-    spyOn(localStorage, 'setItem').and
-      .callFake(function (key, value) { store[key] = value; });
-    spyOn(localStorage, 'getItem').and
-      .callFake(function(key) { return store[key];
-      }
-    );
-    spyOn(localStorage, 'removeItem').and
-      .callFake(function () { return null;}); 
-      
+    spyOn(localStorage, "setItem").and.callFake(function(key, value) {
+      store[key] = value;
+    });
+    spyOn(localStorage, "getItem").and.callFake(function(key) {
+      return store[key];
+    });
+    spyOn(localStorage, "removeItem").and.callFake(function() {
+      return null;
+    });
+
     fixture = TestBed.createComponent(NavMenuComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-    links = fixture.debugElement.queryAll(By.css('mat-list-item'));
+    links = fixture.debugElement.queryAll(By.css("mat-list-item"));
     //0 => All Projects
     homeLink = links[0].nativeElement;
     //1 => My Projects
@@ -75,66 +86,65 @@ describe('NavMenuComponent', () => {
     router = null;
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 
-  it('should hide goToEditRoles function if admin is false', () => {
-    expect(fixture.debugElement.query(By.css('#go-to-edit'))).toBeNull();
+  it("should hide goToEditRoles function if admin is false", () => {
+    expect(fixture.debugElement.query(By.css("#go-to-edit"))).toBeNull();
   });
-  
-  it('should route to home when Home link is clicked', () => {
-    spyOn(component.menuOptionClicked, 'emit');
 
-    homeLink.click()
+  it("should route to home when Home link is clicked", () => {
+    spyOn(component.menuOptionClicked, "emit");
+
+    homeLink.click();
     expect(component.menuOptionClicked.emit).toHaveBeenCalled();
-    expect(routerSpy).toHaveBeenCalledWith(['/home']);
+    expect(routerSpy).toHaveBeenCalledWith(["/home"]);
   });
-  
-  it('should route to projects when All Projects is clicked', () => {
 
+  fit("should route to projects when All Projects is clicked", () => {
     allProjectsLink.click();
-    expect(routerSpy).toHaveBeenCalledWith(['projects']);
+    expect(routerSpy).toHaveBeenCalledWith(["projects"]);
   });
 
-  it('should route to projects-user when My Project is clicked', () => {
+  fit("should route to projects-user when My Project is clicked", () => {
     myProjectsLink.click();
 
-    expect(routerSpy).toHaveBeenCalledWith(['projects-user']);
+    expect(routerSpy).toHaveBeenCalledWith(["projects-user"]);
   });
 
-  it('should route to project-submission when Submit Project is clicked', () => {
+  it("should route to project-submission when Submit Project is clicked", () => {
     submitProjectLink.click();
 
-    expect(routerSpy).toHaveBeenCalledWith(['project-submission']);
+    expect(routerSpy).toHaveBeenCalledWith(["project-submission"]);
   });
 
-  it('should route to profile when Profile is clicked', () => {
+  it("should route to profile when Profile is clicked", () => {
     profileLink.click();
 
-    expect(routerSpy).toHaveBeenCalledWith(['profile']);
+    expect(routerSpy).toHaveBeenCalledWith(["profile"]);
   });
 
-  it('should call logout from userService', () => {
+  it("should call logout from userService", () => {
     let userService = TestBed.get(UserService);
-    spyOn(userService, 'logout');
+    spyOn(userService, "logout");
 
-    component.goToRoute('logout');
+    component.goToRoute("logout");
 
     expect(userService.logout).toHaveBeenCalled();
-    expect(routerSpy).toHaveBeenCalledWith(['']);
+    expect(routerSpy).toHaveBeenCalledWith([""]);
   });
 
   // it('should not be logged in if user does not exist', () => {
-  it('should hide goToEditRoles function if admin is false  ERROR', () => {
-    expect(fixture.debugElement.query(By.css('#go-to-edit'))).toBeNull();
+  it("should hide goToEditRoles function if admin is false  ERROR", () => {
+    expect(fixture.debugElement.query(By.css("#go-to-edit"))).toBeNull();
   });
-  
-  it('should not login if user does not exist', () => {
+
+  fit("should not login if user does not exist", () => {
     //component.loggedIn = component.admin = true;
-    
+
     let userService = TestBed.get(UserService);
-    userService.user = new BehaviorSubject<User>(null);
+    userService.user = empty();
 
     // tslint:disable-next-line: no-lifecycle-call
     component.ngOnInit();
@@ -143,9 +153,9 @@ describe('NavMenuComponent', () => {
     expect(component.loggedIn).toEqual(false);
   });
 
-  it('should display adminMenu if user role is ROLE_ADMIN', () => {
+  it("should display adminMenu if user role is ROLE_ADMIN", () => {
     let userService = TestBed.get(UserService);
-    let u = {role: 'ROLE_ADMIN'};
+    let u = { role: "ROLE_ADMIN" };
     userService.user.next(u);
 
     // tslint:disable-next-line: no-lifecycle-call
@@ -154,12 +164,11 @@ describe('NavMenuComponent', () => {
     expect(component.menu).toEqual(adminMenu);
   });
 
-  it('should display userMenu if user role is user', () => {
+  it("should display userMenu if user role is user", () => {
     let userService = TestBed.get(UserService);
 
     component.ngOnInit();
 
     expect(component.menu).toEqual(userMenu);
   });
-
 });

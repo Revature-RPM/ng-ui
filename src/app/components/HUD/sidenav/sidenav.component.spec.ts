@@ -1,20 +1,31 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import { BehaviorSubject } from 'rxjs';
-import { User } from 'src/app/models/User';
-import {SidenavComponent} from './sidenav.component';
-import { MatSidenavModule, MatIconModule, MatMenuModule, MatToolbarModule, MatExpansionModule, MatListModule } from '@angular/material';
-import { NavMenuComponent } from '../nav-menu/nav-menu.component';
-import { RouterTestingModule } from '@angular/router/testing';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { Router } from '@angular/router';
-import { UserService } from 'src/app/services/user.service';
-import { MockUserService } from 'src/app/mocks/mock-user-service';
-import { By } from '@angular/platform-browser';
-import { of } from 'rxjs';
-import { RouterScroller } from '@angular/router/src/router_scroller';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { BehaviorSubject } from "rxjs";
+import { User } from "src/app/models/User";
+import { SidenavComponent } from "./sidenav.component";
+import {
+  MatSidenavModule,
+  MatIconModule,
+  MatMenuModule,
+  MatToolbarModule,
+  MatExpansionModule,
+  MatListModule,
+  MatBadgeModule,
+  MatTooltipModule
+} from "@angular/material";
+import { NavMenuComponent } from "../nav-menu/nav-menu.component";
+import { RouterTestingModule } from "@angular/router/testing";
+import { NoopAnimationsModule } from "@angular/platform-browser/animations";
+import { HttpClientTestingModule } from "@angular/common/http/testing";
+import { Router } from "@angular/router";
+import { UserService } from "src/app/services/user.service";
+import { MockUserService } from "src/app/mocks/mock-user-service";
+import { By } from "@angular/platform-browser";
+import { of } from "rxjs";
+import { RouterScroller } from "@angular/router/src/router_scroller";
+import { TimeAgoPipe } from "time-ago-pipe";
+import { EllipsisPipe } from "src/app/ellipsis.pipe";
 
-describe('SidenavComponent', () => {
+fdescribe("SidenavComponent", () => {
   let component: SidenavComponent;
   let fixture: ComponentFixture<SidenavComponent>;
   let router;
@@ -22,63 +33,75 @@ describe('SidenavComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SidenavComponent, NavMenuComponent ],
-      imports: [ MatSidenavModule, MatIconModule, MatMenuModule,
-        MatToolbarModule, MatExpansionModule,
-        HttpClientTestingModule, NoopAnimationsModule, MatListModule,
-        RouterTestingModule ],
-        providers: [{provide: UserService, useClass: MockUserService}],
-    })
-    .compileComponents();
+      declarations: [
+        SidenavComponent,
+        NavMenuComponent,
+        TimeAgoPipe,
+        EllipsisPipe
+      ],
+      imports: [
+        MatSidenavModule,
+        MatIconModule,
+        MatMenuModule,
+        MatToolbarModule,
+        MatTooltipModule,
+        MatExpansionModule,
+        MatBadgeModule,
+        HttpClientTestingModule,
+        NoopAnimationsModule,
+        MatListModule,
+        RouterTestingModule
+      ],
+      providers: [{ provide: UserService, useClass: MockUserService }]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
     router = TestBed.get(Router);
-    routerSpy = spyOn(router, 'navigate');
+    routerSpy = spyOn(router, "navigate");
 
     fixture = TestBed.createComponent(SidenavComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  fit("should create", () => {
     expect(component).toBeTruthy();
   });
 
-  it('should route to profile when requested', () => {
+  fit("should route to profile when requested", () => {
     component.routeToProfile();
 
-    expect(routerSpy).toHaveBeenCalledWith(['/profile']);
+    expect(routerSpy).toHaveBeenCalledWith(["/profile"]);
   });
 
-  it('should route to profile when avatar is clicked on', () => {
-    let avatar = fixture.debugElement.query(By.css('.user-avatar'));
-    
+  fit("should route to profile when avatar is clicked on", () => {
+    let avatar = fixture.debugElement.query(By.css(".user-avatar"));
+
     avatar.nativeElement.click();
 
-    expect(routerSpy).toHaveBeenCalledWith(['/profile']);
+    expect(routerSpy).toHaveBeenCalledWith(["/profile"]);
   });
 
-  xit('loggedIn should be false if user is not logged in', () => {
+  xit("loggedIn should be false if user is not logged in", () => {
     //component.loggedIn = true;
-    
+
     let userService = TestBed.get(UserService);
-    
+
     userService.user = new BehaviorSubject<User>(null);
-    
+
     component.ngOnInit();
 
     expect(component.loggedIn).toEqual(false);
-  }) 
-    
-
-  it('should write to console.log when log is called', () => {
-    let consoleSpy = spyOn(console, 'log').and
-      .callFake(function () { return null; });
-
-    component.log('words');
-
-    expect(consoleSpy).toHaveBeenCalledWith('words');
   });
 
+  fit("should write to console.log when log is called", () => {
+    let consoleSpy = spyOn(console, "log").and.callFake(function() {
+      return null;
+    });
+
+    component.log("words");
+
+    expect(consoleSpy).toHaveBeenCalledWith("words");
+  });
 });
