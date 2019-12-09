@@ -12,28 +12,28 @@ import { NotificationsComponent } from './notifications.component';
 import { PipeModule } from 'src/pipes/pipe.module';
 
 describe('NotificationsComponent', () => {
-  let component: NotificationsComponent;
-  let fixture: ComponentFixture<NotificationsComponent>;
+    let component: NotificationsComponent;
+    let fixture: ComponentFixture<NotificationsComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ NotificationsComponent ],
-      imports: [ MatSidenavModule, MatIconModule, MatMenuModule,
-        MatToolbarModule, MatExpansionModule, MatFormFieldModule, 
-        HttpClientTestingModule, NoopAnimationsModule, MatListModule, MatBadgeModule,
-        RouterTestingModule, PipeModule ],
-        providers: [{provide: UserService, useClass: MockUserService}],
-    })
-    .compileComponents();
-  }));
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            declarations: [NotificationsComponent],
+            imports: [MatSidenavModule, MatIconModule, MatMenuModule,
+                MatToolbarModule, MatExpansionModule, MatFormFieldModule,
+                HttpClientTestingModule, NoopAnimationsModule, MatListModule, MatBadgeModule,
+                RouterTestingModule, PipeModule],
+            providers: [{ provide: UserService, useClass: MockUserService }],
+        })
+            .compileComponents();
+    }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(NotificationsComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    beforeEach(() => {
+        fixture = TestBed.createComponent(NotificationsComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });

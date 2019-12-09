@@ -5,10 +5,10 @@ import { EllipsisPipe } from './ellipsis.pipe'
 
 
 @NgModule({
-  declarations: [TimeAgoPipe, EllipsisPipe],
-  imports: [
-    CommonModule
-  ],
-  exports: [TimeAgoPipe, EllipsisPipe]
+    declarations: [TimeAgoPipe, EllipsisPipe],
+    imports: [
+        CommonModule
+    ],
+    exports: [TimeAgoPipe, EllipsisPipe]
 })
 export class PipeModule { }

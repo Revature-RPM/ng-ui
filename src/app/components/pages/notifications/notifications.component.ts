@@ -21,7 +21,7 @@ import { ProjectService } from 'src/app/services/project.service';
         ]),
     ],
 })
-export class NotificationsComponent implements OnInit{
+export class NotificationsComponent implements OnInit {
     title: string = "My Notifications";
     currentUser: User;
     userId: string;
@@ -48,10 +48,10 @@ export class NotificationsComponent implements OnInit{
         );
 
         // If the current page is 'notifications' get the userId
-         if (this.router.url.includes('notification')) {
-           this.userId = this.currentUser.id + "";
-         }
-         this.showMore(this.currentUser);
+        if (this.router.url.includes('notification')) {
+            this.userId = this.currentUser.id + "";
+        }
+        this.showMore(this.currentUser);
     }
 
     routeToProject(n: Notification) {
@@ -67,7 +67,7 @@ export class NotificationsComponent implements OnInit{
         this.notificationService.patchReadNotification(n);
     }
 
-    showMore(userObject: User){
+    showMore(userObject: User) {
         this.pageNumber++
         this.notificationService.getNotificationPage(userObject.id, this.pageNumber).subscribe(notices => {
             notices.forEach(n => {

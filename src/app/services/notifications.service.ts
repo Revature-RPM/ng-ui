@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
 import { Notification } from '../models/Notification';
+import {environment} from '../../environments/environment';
 
 const httpOptions = {
     headers: new HttpHeaders({
@@ -42,7 +43,7 @@ export class NotificationsService {
        Returns array of notifications.
     */
     getAllNotifications(userID: any): Observable<Notification[]> {
-        return this.http.get<Notification[]>(`http://localhost:8000/`    /*environment.url + '/notify/', httpOptions*/)
+        return this.http.get<Notification[]>(environment.url, httpOptions)
             .pipe(catchError(this.handleError));
     }
 
@@ -52,7 +53,7 @@ export class NotificationsService {
        Returns array of notifications.
     */
     getNotificationPage(userID: any, n: number): Observable<Notification[]> {
-        return this.http.get<Notification[]>(`http://localhost:8000/history?page=${n}`    /*environment.url + '/notify/history?page=${n}', httpOptions*/)
+        return this.http.get<Notification[]>(environment.url + '/history?page=${n}', httpOptions)
             .pipe(catchError(this.handleError));
     }
 
@@ -62,7 +63,7 @@ export class NotificationsService {
    Returns a status code.
 */
 patchReadNotification(notification:Notification){
-  this.http.patch(`http://localhost:8000/`, notification    /*environment.url + '/notify/', httpOptions*/)
+  this.http.patch(environment.url, notification, httpOptions)
   .pipe(catchError(this.handleError));
 }
 

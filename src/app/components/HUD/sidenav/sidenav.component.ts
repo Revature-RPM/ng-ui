@@ -25,18 +25,18 @@ export class SidenavComponent implements OnInit {
         console.log(state);
     }
 
-  constructor(
-    private userService: UserService, private notificationService: NotificationsService,
-    private projectService: ProjectService, private router: Router) {
-    this.userService.user.asObservable().subscribe(
-      user => {
-        if (user) {
-          this.loggedIn = true;
-          this.userID = user.id;
-        }
-        else this.loggedIn = false;
-      }
-    );
+    constructor(
+        private userService: UserService, private notificationService: NotificationsService,
+        private projectService: ProjectService, private router: Router) {
+        this.userService.user.asObservable().subscribe(
+            user => {
+                if (user) {
+                    this.loggedIn = true;
+                    this.userID = user.id;
+                }
+                else this.loggedIn = false;
+            }
+        );
 
         /**
          * Subscribe to router changes in order to know when to display content in the toolbar
