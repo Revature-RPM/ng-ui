@@ -1,3 +1,4 @@
+import { TimeAgoPipe } from "time-ago-pipe";
 import "hammerjs";
 
 import { BrowserModule } from "@angular/platform-browser";
@@ -28,7 +29,7 @@ import { EditDialogComponent } from "./components/pages/project-submission/edit-
 import { TokenInterceptor } from "./services/jwtInterceptor.interceptor";
 import { ProfileComponent } from "./components/pages/user-management/profile/profile.component";
 import { AllUsersPageComponent } from "./components/pages/user-management/all-users-page/all-users-page.component";
-import { EllipsisPipe } from "./ellipsis.pipe";
+import { EllipsisPipe } from "../pipes/ellipsis.pipe";
 import { CodebaseComponent } from "./components/pages/codebase/codebase.component";
 import { AdminChangeRolesComponent } from "./components/pages/user-management/admin-change-roles/admin-change-roles.component";
 import { ProjectsPendingApprovalPageComponent } from "./components/pages/project-approval/projects-pending-approval-page/projects-pending-approval-page.component";
@@ -37,7 +38,6 @@ import { SelectedProjectViewerComponent } from "./components/pages/project-appro
 import { PendingEditRequestsTableComponent } from "./components/pages/project-approval/pending-edit-requests-table/pending-edit-requests-table.component";
 import { LexPipe } from "./zip-file-explorer/lex.pipe";
 import { LineNumberPipe } from "./zip-file-explorer/line-number.pipe";
-import { TimeAgoPipe } from "time-ago-pipe";
 
 import typescript from "highlight.js/lib/languages/typescript";
 import javascript from "highlight.js/lib/languages/javascript";

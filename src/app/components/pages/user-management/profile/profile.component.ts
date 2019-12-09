@@ -80,7 +80,7 @@ export class ProfileComponent implements OnInit {
               private ngmeta: NgMetaService) { }
 
   ngOnInit() {
-    this.userService.$userObservable.subscribe(
+    this.userService.user.asObservable().subscribe(
       user => {
         this.user = user;
       }
@@ -120,7 +120,7 @@ export class ProfileComponent implements OnInit {
         (user) => {
         if (user) {
           this.user = user;
-          this.userService.userSubject.next(user);
+          this.userService.user.next(user);
 
           localStorage.setItem('user', JSON.stringify(this.user));
 

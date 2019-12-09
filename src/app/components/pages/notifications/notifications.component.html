@@ -1,23 +1,32 @@
 <div class="main-blocks">
-  <h2 id="notifications">{{ title }}</h2>
-  <div *ngIf="notificationList" class="section flex-section">
-    <div class="section flex-section">
-    <mat-card *ngFor="let notification of notificationList" (click)="routeToProject(notification)" mat-fab
-      matTooltip={{notification.title}} matTooltipPosition="above">
-      <mat-card-content>
-        <h4> {{notification.title}} </h4>
-        <span>{{notification.fullDescription | ellipsis:80}}</span>
-      </mat-card-content>
-    </mat-card>
-    <br>
-  </div>
-    <div *ngIf="pageMax>1">
-      <button class="btn" mat-stroked-button (click)="firstPage()"><mat-icon>first_page</mat-icon></button>
-      <button class="btn" mat-stroked-button (click)="previousPage()"><mat-icon>chevron_left</mat-icon></button>
-      <input type="number" [(ngModel)]="pageNumber" (ngModelChange)="changedPage()" pattern="[0-9]*" min=1 max={{pageMax}} step=1>
-      /{{pageMax}}
-      <button class="btn" mat-stroked-button (click)="nextPage()"><mat-icon>chevron_right</mat-icon></button>
-      <button class="btn" mat-stroked-button (click)="lastPage()"><mat-icon>last_page</mat-icon></button>
+    <h2 id="notifications">{{ title }}</h2>
+    <div *ngIf="notificationList" class="section flex-section">
+        <mat-list>
+            <ng-container *ngFor="let notification of notificationList">
+                <mat-list-item class="unread" *ngIf="!notification.isRead; else notificationIsRead" (click)="routeToProject(notification)">
+                    <mat-icon mat-list-icon>notifications</mat-icon>
+                    <h4 mat-line><strong>{{ notification.title }}</strong></h4>
+                    <div mat-line>
+                        <p class="short-description-p">{{ notification.fullDescription }}</p>
+                    </div>
+                    <button class="unread-button" mat-icon-button (click)="toggleRead(notification)" matTooltip="Mark as read" matTooltipPosition="'above'" matTooltipShowDelay="'500'"></button>
+                </mat-list-item>
+                <hr>
+                <ng-template #notificationIsRead>
+                    <mat-list-item class="read" (click)="routeToProject(notification)">
+                        <mat-icon mat-list-icon>notifications</mat-icon>
+                        <h4 mat-line><strong>{{ notification.title }}</strong></h4>
+                        <div mat-line>
+                            <p class="short-description-p">{{ notification.fullDescription }}</p>
+                        </div>
+                        <button class="unread-button" mat-icon-button (click)="toggleRead(notification)" matTooltip="Mark as unread" matTooltipPosition="'above'" matTooltipShowDelay="'500'"></button>
+                    </mat-list-item>
+                    <hr>
+                </ng-template>
+            </ng-container>
+        </mat-list>
+        <div>
+            <button (click)="showMore(currentUser)">Show more</button>
+        </div>
     </div>
-  </div>
 </div>

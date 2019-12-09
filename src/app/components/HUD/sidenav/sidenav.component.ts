@@ -7,99 +7,106 @@ import { ProjectService } from 'src/app/services/project.service';
 
 
 @Component({
-  selector: 'app-sidenav',
-  templateUrl: './sidenav.component.html',
-  styleUrls: ['./sidenav.component.scss']
+    selector: 'app-sidenav',
+    templateUrl: './sidenav.component.html',
+    styleUrls: ['./sidenav.component.scss']
 })
 export class SidenavComponent implements OnInit {
 
-  loggedIn = false;
-  homepage = false;
-  activeNotifications = false;
-  count = 0;
-  parseCount: any;
-  userID: number;
-  notifications: Notification[];
+    loggedIn = false;
+    homepage = false;
+    activeNotifications = false;
+    count = 0;
+    parseCount: any;
+    userID: number;
+    notifications: Notification[];
 
-  log(state) {
-    console.log(state);
-  }
+    log(state) {
+        console.log(state);
+    }
 
-  constructor(
-    private userService: UserService, private notificationService: NotificationsService,
-    private projectService: ProjectService, private router: Router) {
-    this.userService.$userObservable.subscribe(
-      user => {
-        if (user) this.loggedIn = true;
-        else this.loggedIn = false;
-        this.userID = user.id;
-      }
-    );
+    constructor(
+        private userService: UserService, private notificationService: NotificationsService,
+        private projectService: ProjectService, private router: Router) {
+        this.userService.user.asObservable().subscribe(
+            user => {
+                if (user) {
+                    this.loggedIn = true;
+                    this.userID = user.id;
+                }
+                else this.loggedIn = false;
+            }
+        );
+
+        /**
+         * Subscribe to router changes in order to know when to display content in the toolbar
+         */
+        this.router.events.subscribe(e => {
+            if (e instanceof NavigationEnd) {
+                if (e.url == "/" || e.url.includes("home")) this.homepage = true;
+                else this.homepage = false;
+            }
+
+        });
+
+    }
+
+    ngOnInit() {
+        this.noticeCount();
+    }
+
+    routeToProfile() {
+        this.router.navigate(['/profile']);
+    }
 
     /**
-     * Subscribe to router changes in order to know when to display content in the toolbar
+     * Navigate to the element in the screen that matches the id passed to the method
+     * @param id
      */
-    this.router.events.subscribe(e => {
-      if (e instanceof NavigationEnd) {
-        if (e.url == "/" || e.url.includes("home")) this.homepage = true;
-        else this.homepage = false;
-      }
+    goToElement(id: string) {
+        let elem = document.getElementById(id);
+        elem.scrollIntoView({ behavior: "smooth" });
+    }
 
-    });
+    readAll() {
+        this.notifications.forEach(n => {
+            if (n.isRead == false)
+                this.notificationService.patchReadNotification(n);
+        });
+        this.noticeCount();
+    }
 
-  }
+    routeToProject(n: Notification) {
+        if (n.isRead == false)
+            this.notificationService.patchReadNotification(n);
+        this.projectService.getProjectByField("id", n.projectId + "").subscribe(proj => {
+            this.projectService.CurrentProject$.next(proj[0]);
+            this.router.navigate(['/project-view']);
+        });
+    }
 
-  ngOnInit() {
-    this.noticeCount();
-  }
+    noticeCount() {
+        this.notificationService.getAllNotifications(this.userID).subscribe(notices => {
+            this.notifications = notices;
+            this.count = 0;
+            this.notifications.forEach(notification => {
+                if (notification.isRead == false) {
+                    this.activeNotifications = true;
+                    this.count++;
+                    if (this.count > 9)
+                        this.parseCount = "9+";
+                    else
+                        this.parseCount = this.count;
+                }
+            });
+        });
+    }
 
-  routeToProfile() {
-    this.router.navigate(['/profile']);
-  }
-
-  /**
-   * Navigate to the element in the screen that matches the id passed to the method
-   * @param id
-   */
-  goToElement(id: string) {
-    let elem = document.getElementById(id);
-    elem.scrollIntoView({ behavior: "smooth" });
-  }
-
-  readAll() {
-    this.notifications.forEach(n => {
-      if (n.isRead == false)
+    markRead(n: Notification) {
         this.notificationService.patchReadNotification(n);
-    });
-    this.noticeCount();
-  }
+    }
 
-  routeToProject(n: Notification) {
-    if (n.isRead == false)
-      this.notificationService.patchReadNotification(n);
-    this.projectService.getProjectByField("id", n.projectId + "").subscribe(proj => {
-      this.projectService.CurrentProject$.next(proj[0]);
-      this.router.navigate(['/project-view']);
-    });
-  }
-  noticeCount() {
-    this.notificationService.getAllNotifications(this.userID).subscribe(notices => {
-      this.notifications = notices;
-      console.log(notices);
-      this.count = 0;
-      this.notifications.forEach(notification => {
-        if (notification.isRead == false) {
-          this.activeNotifications = true;
-          this.count++;
-          if (this.count > 9)
-            this.parseCount = "9+";
-          else
-            this.parseCount = this.count;
-        }
-      });
-    });
-  }
-  markRead(n:Notification){
-    this.notificationService.patchReadNotification(n);
-  }
+    markUnread(n: Notification) {
+        this.notificationService.patchReadNotification(n);
+    }
 }
