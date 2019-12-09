@@ -90,7 +90,7 @@ mat-sidenav-container {
 }
 
 .mat-menu-item {
-    line-height: 30px;
+    line-height: 20px;
     height: auto;
     padding-top: 10px;
 }
@@ -113,11 +113,11 @@ mat-sidenav-container {
 pre {
     overflow-x: auto;
     white-space: pre-wrap;
-    white-space: -moz-pre-wrap;
-    white-space: -pre-wrap;
-    white-space: -o-pre-wrap;
     word-wrap: break-word;
     vertical-align: middle;
+    width: 95%;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    margin: 0;
 }
 
 .mark-as-read-div {
@@ -143,8 +143,10 @@ pre {
 }
 
 .date-span {
-    float: right;
     font-size: 12px;
+    float: right;
+    margin-top:-5px;
+    font-style: oblique;
 }
 
 .short-description-pre {
@@ -152,23 +154,32 @@ pre {
     max-width: 450px;
 }
 
+hr {
+    margin: 0;
+    border: 0;
+    border-top: 1px solid $rev-blue-light
+}
+
+.description-div {
+    display: flex;
+    align-items: center;
+}
+
 .read-button {
-    height: 14px;
-    width: 14px;
-    border-radius: 50%;
-    background-color: $rev-blue-light;
-    cursor: pointer;
-    float: right;
-    vertical-align: middle;
-    margin-top: auto;
+    height: 24px;
+    width: 24px;
+    line-height: 24px;
 }
 
 .unread-button {
-    height: 14px;
-    width: 14px;
-    border-radius: 50%;
-    border: 2px solid $rev-blue-light;
-    float: right;
-    vertical-align: middle;
-    margin-top: auto;
+    height: 24px;
+    width: 24px;
+    line-height: 24px;
+}
+
+.title-date-div {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom:2px;
 }

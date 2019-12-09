@@ -73,23 +73,6 @@
     display: inline-block;
 }
 
-.read-button {
-    height: 14px;
-    width: 14px;
-    border-radius: 50%;
-    background-color: $rev-blue-light;
-    cursor: pointer;
-    float: right;
-}
-
-.unread-button {
-    height: 14px;
-    width: 14px;
-    border-radius: 50%;
-    border: 2px solid $rev-blue-light;
-    float: right;
-}
-
 .unread:hover:not([disabled]) {
     background: rgba(243, 118, 56, 0.4);
 }
@@ -100,4 +83,15 @@
 
 hr {
     margin: 0;
+    border: 0;
+    border-top: 1px solid $rev-blue-light
+}
+
+.date-span {
+    font-size: 12px;
+    font-style: oblique;
+    margin-block-start: 1.33em;
+    margin-block-end: 1.33em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
 }

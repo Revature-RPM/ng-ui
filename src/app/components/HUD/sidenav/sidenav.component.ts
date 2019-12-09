@@ -102,11 +102,8 @@ export class SidenavComponent implements OnInit {
         });
     }
     
-    markRead(n: Notification) {
+    toggleRead(n: Notification) {
         this.notificationService.patchReadNotification(n);
-    }
-
-    markUnread(n: Notification) {
-        this.notificationService.patchReadNotification(n);
+        event.stopPropagation();
     }
 }

@@ -3,34 +3,42 @@
     <div *ngIf="notificationList" class="section flex-section">
         <mat-list>
             <ng-container *ngFor="let notification of notificationList">
+                <hr>
                 <mat-list-item class="unread" *ngIf="!notification.isRead; else notificationIsRead"
                     (click)="routeToProject(notification)">
-                    <mat-icon mat-list-icon>notifications</mat-icon>
-                    <h4 mat-line><strong>{{ notification.title }}</strong></h4>
+                    <div mat-line style="display: flex;justify-content: space-between;">
+                        <h4><strong>{{ notification.title }}</strong></h4>
+                        <span class="date-span" matTooltip="{{ notification.dateCreated | date:'medium' }}" matTooltipPosition='above'>
+                        {{ notification.dateCreated | timeAgo }}</span>
+                    </div>
                     <div mat-line>
                         <p class="short-description-p">{{ notification.fullDescription }}</p>
                     </div>
-                    <button class="unread-button" mat-icon-button (click)="toggleRead(notification)"
-                        matTooltip="Mark as read" matTooltipPosition="'above'" matTooltipShowDelay="'500'"></button>
+                    <button class="read-button" mat-icon-button (click)="toggleRead(notification)"
+                        matTooltip="Mark as read" matTooltipPosition='above' matTooltipShowDelay="'500'">
+                        <mat-icon>mail</mat-icon>
+                    </button>
                 </mat-list-item>
-                <hr>
                 <ng-template #notificationIsRead>
                     <mat-list-item class="read" (click)="routeToProject(notification)">
-                        <mat-icon mat-list-icon>notifications</mat-icon>
-                        <h4 mat-line><strong>{{ notification.title }}</strong></h4>
+                        <div mat-line style="display: flex;justify-content: space-between;">
+                            <h4><strong>{{ notification.title }}</strong></h4>
+                            <span class="date-span" matTooltip="{{ notification.dateCreated | date:'medium' }}" matTooltipPosition='above'>
+                            {{ notification.dateCreated | timeAgo }}</span>
+                        </div>
                         <div mat-line>
                             <p class="short-description-p">{{ notification.fullDescription }}</p>
                         </div>
                         <button class="unread-button" mat-icon-button (click)="toggleRead(notification)"
-                            matTooltip="Mark as unread" matTooltipPosition="'above'"
-                            matTooltipShowDelay="'500'"></button>
+                            matTooltip="Mark as unread" matTooltipPosition='above' matTooltipShowDelay="'500'">
+                            <mat-icon>drafts</mat-icon>
+                        </button>
                     </mat-list-item>
-                    <hr>
                 </ng-template>
             </ng-container>
         </mat-list>
-        <div>
-            <button (click)="showMore(currentUser)">Show more</button>
+        <div style="margin:20px;">
+            <button mat-button color="accent" (click)="showMore(currentUser)">Show more</button>
         </div>
     </div>
 </div>
