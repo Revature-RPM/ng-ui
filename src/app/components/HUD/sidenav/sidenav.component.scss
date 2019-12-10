@@ -48,6 +48,10 @@ mat-sidenav-container {
                 cursor: pointer;
                 border-bottom: 2px solid #fff;
             }
+            .mat-badge-accent .mat-badge-content {
+                background-color: $rev-gray-light;
+                color: white;
+            }
         }
     }
 }
@@ -110,20 +114,20 @@ mat-sidenav-container {
     background: rgba(243, 118, 56, 0.2);
 }
 
-pre {
-    overflow-x: auto;
-    white-space: pre-wrap;
-    word-wrap: break-word;
-    vertical-align: middle;
-    width: 95%;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
-    margin: 0;
-}
+
 
 .mark-as-read-div {
     width: auto;
     text-align: right;
     padding: 0 10px 10px 0;
+    #notificationSpan {
+        float: left;
+        padding-left: 10px;
+    }
+    .mark-all-a {
+        cursor:pointer; 
+        color:#f37638; width:100%
+    }
 }
 
 .see-all-div {
@@ -132,15 +136,9 @@ pre {
     padding-top: 10px;
 }
 
-.mat-badge-accent .mat-badge-content {
-    background-color: $rev-gray-light;
-    color: white;
-}
 
-#notificationSpan {
-    float: left;
-    padding-left: 10px;
-}
+
+
 
 .date-span {
     font-size: 12px;
@@ -163,6 +161,15 @@ hr {
 .description-div {
     display: flex;
     align-items: center;
+    pre {
+        overflow-x: auto;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        vertical-align: middle;
+        width: 95%;
+        font-family: Roboto, "Helvetica Neue", sans-serif;
+        margin: 0;
+    }
 }
 
 .read-button {
@@ -183,3 +190,10 @@ hr {
     justify-content: space-between;
     margin-bottom:2px;
 }
+
+.see-all-a {
+    cursor:pointer; 
+    color: #6a95ae; 
+    width: 100%
+}
+

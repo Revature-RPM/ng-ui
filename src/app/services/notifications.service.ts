@@ -34,37 +34,30 @@ export class NotificationsService {
         return throwError('Something went wrong; please try again later.');
     }
 
-    // TODO Verify function works, replace url when backend is finished.
-
-    /* Requests all notifications for the current user.
+    /* Request all notifications for the current user.
        This will return any unread notifications and enough
        read notifications to make the total number five,
-       as long as there are that many read notification.
-       Returns array of notifications.
+       as long as there are that many read notification
+       Returns array of notifications
     */
     getAllNotifications(userID: any): Observable<Notification[]> {
-        return this.http.get<Notification[]>(environment.url, httpOptions)
+        return this.http.get<Notification[]>(`http://localhost:8000` /*environment.url, httpOptions*/)
             .pipe(catchError(this.handleError));
     }
 
-    // TODO Verify function works, replace url when backend is finished.
-
-    /* Requests a page of notifications, regardless of read status.
-       Returns array of notifications.
+    /* Request a page of notifications, regardless of read status
+       Returns array of notifications
     */
     getNotificationPage(userID: any, n: number): Observable<Notification[]> {
-        return this.http.get<Notification[]>(environment.url + '/history?page=${n}', httpOptions)
+        return this.http.get<Notification[]>(`http://localhost:8000/history?page=${n}`/*environment.url + '/history?page=${n}', httpOptions*/)
             .pipe(catchError(this.handleError));
     }
 
-    // TODO Verify function works, replace url when backend is finished.
-
-/* Requests an update for a notification if it has been read.
-   Returns a status code.
-*/
-patchReadNotification(notification:Notification){
-  this.http.patch(environment.url, notification, httpOptions)
-  .pipe(catchError(this.handleError));
-}
+    /* Request a toggle of the notification Read status
+    */
+    patchReadNotification(notification:Notification){
+    this.http.patch(environment.url, notification, httpOptions)
+    .pipe(catchError(this.handleError));
+    }
 
 }

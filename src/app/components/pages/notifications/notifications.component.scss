@@ -69,16 +69,23 @@
     height: auto;
 }
 
-.short-description-p {
+.short-description-span {
     display: inline-block;
+    width: 95%
 }
 
 .unread:hover:not([disabled]) {
+    cursor:pointer;
     background: rgba(243, 118, 56, 0.4);
 }
 
 .unread {
     background: rgba(243, 118, 56, 0.2);
+}
+
+.read:hover {
+    cursor:pointer; 
+    background: rgba(243, 118, 56, 0.4);
 }
 
 hr {
@@ -94,4 +101,14 @@ hr {
     margin-block-end: 1.33em;
     margin-inline-start: 0px;
     margin-inline-end: 0px;
+}
+
+.description-div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#load-more {
+    color: white;
 }

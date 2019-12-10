@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
+import { Component, OnInit, OnChanges, OnDestroy } from '@angular/core';
 import { trigger, state, transition, animate, style } from '@angular/animations';
 import { User } from 'src/app/models/User';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -21,12 +21,13 @@ import { ProjectService } from 'src/app/services/project.service';
         ]),
     ],
 })
-export class NotificationsComponent implements OnInit {
+
+export class NotificationsComponent implements OnInit, OnDestroy {
     title: string = "My Notifications";
     currentUser: User;
     userId: string;
     notificationList: Notification[] = [];
-    pageNumber = 0;
+    pageNumber = 1;
 
     constructor(
         private router: Router,
@@ -39,6 +40,8 @@ export class NotificationsComponent implements OnInit {
     ) { }
 
     ngOnInit() {
+        // Create an event listener for scrolling
+        window.addEventListener('scroll', this.scroll, true);
         this.userService.user.asObservable().subscribe(
             user => {
                 if (user) {
@@ -51,9 +54,21 @@ export class NotificationsComponent implements OnInit {
         if (this.router.url.includes('notification')) {
             this.userId = this.currentUser.id + "";
         }
-        this.showMore(this.currentUser);
+        // Request the first page of notifications, this.pageNumber = 1 at this point
+        this.notificationService.getNotificationPage(this.currentUser, this.pageNumber).subscribe(notices => {
+            notices.forEach(n => {
+                this.notificationList.push(n)
+            });
+        });
     }
-
+    // Close event listener
+    ngOnDestroy() {
+        window.removeEventListener('scroll', this.scroll, true);
+    }
+    /**
+     * Navigate to the project corresponding to the notification
+     * @param n
+     */
     routeToProject(n: Notification) {
         if (n.isRead == false)
             this.notificationService.patchReadNotification(n);
@@ -62,18 +77,30 @@ export class NotificationsComponent implements OnInit {
             this.router.navigate(['/project-view']);
         });
     }
-
+    /**
+     * Toggle the Read status of the notification in the database
+     * @param n 
+     */
     toggleRead(n: Notification) {
         this.notificationService.patchReadNotification(n);
+        event.stopPropagation();
     }
-
-    showMore(userObject: User) {
-        this.pageNumber++
-        this.notificationService.getNotificationPage(userObject.id, this.pageNumber).subscribe(notices => {
-            notices.forEach(n => {
-                this.notificationList.push(n)
+    /**
+     * Load the next page when the "load-more" div moves on screen
+     */
+    scroll = (event): void => { 
+        let h = document.getElementById("load-more");
+        let rect = h.getBoundingClientRect();
+        let elemTop = rect.top;
+        let elemBottom = rect.bottom;
+        if ((elemTop >= 0) && (elemBottom <= window.innerHeight)) {
+            this.pageNumber++
+            this.notificationService.getNotificationPage(this.currentUser, this.pageNumber).subscribe(notices => {
+                notices.forEach(n => {
+                    this.notificationList.push(n)
+                });
             });
-        });
+        }
     }
 }
 

@@ -14,12 +14,17 @@ import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
 import { RouterScroller } from '@angular/router/src/router_scroller';
 import { PipeModule } from '../../../../pipes/pipe.module';
+import { NotificationsService } from 'src/app/services/notifications.service';
+import { MockNotificationService } from 'src/app/mocks/mock-notification-service';
+import { ProjectService } from 'src/app/services/project.service';
+import { MockProjectService } from 'src/app/mocks/mock-project-service';
 
 describe('SidenavComponent', () => {
     let component: SidenavComponent;
     let fixture: ComponentFixture<SidenavComponent>;
     let router;
     let routerSpy;
+    let nService: NotificationsService;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -28,7 +33,9 @@ describe('SidenavComponent', () => {
                 MatToolbarModule, MatExpansionModule,
                 HttpClientTestingModule, NoopAnimationsModule, MatListModule, MatBadgeModule,
                 RouterTestingModule, PipeModule],
-            providers: [{ provide: UserService, useClass: MockUserService }],
+            providers: [{ provide: UserService, useClass: MockUserService },
+                {provide: ProjectService, useClass: MockProjectService},  
+            {provide: NotificationsService, useClass: MockNotificationService}],
         })
             .compileComponents();
     }));
@@ -40,6 +47,7 @@ describe('SidenavComponent', () => {
         fixture = TestBed.createComponent(SidenavComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
+        nService = TestBed.get(NotificationsService);
     });
 
     it('should create', () => {
@@ -81,5 +89,51 @@ describe('SidenavComponent', () => {
 
         expect(consoleSpy).toHaveBeenCalledWith('words');
     });
+
+    it('should request notifications upon creation', () => {
+        expect(component.notifications.length).toEqual(3);
+    })
+
+    it('should display dropdown menu when bell is clicked', () => {
+        let bell = fixture.debugElement.query(By.css('.bell'));
+        bell.nativeElement.click();
+        let seeAll = fixture.debugElement.query(By.css('.see-all-a'));
+        expect(seeAll).toBeTruthy();
+    })
+
+    it('should route to a project when requested', () => {
+        nService.getAllNotifications(20).subscribe((nList)=> {
+            component.routeToProject(nList[1]);
+        });
+        expect(routerSpy).toHaveBeenCalledWith(['/project-view']);
+    })
+
+    it('should route to notification page when "See all" is clicked', () => {
+        let bell = fixture.debugElement.query(By.css('.bell'));
+        bell.nativeElement.click();
+        let seeAll = fixture.debugElement.query(By.css('.see-all-a'));
+        seeAll.nativeElement.click();
+        expect(routerSpy).toHaveBeenCalledWith(['/notifications']);
+    })
+
+    it('should call PatchNotification when an envelope icon is clicked', () => {
+        let patchSpy = spyOn(nService, 'patchReadNotification').and
+            .callFake(function () { return null; });
+        let bell = fixture.debugElement.query(By.css('.bell'));
+        bell.nativeElement.click();
+        let mail = fixture.debugElement.query(By.css('.read-button'));
+        mail.nativeElement.click();
+        expect(patchSpy).toHaveBeenCalled();
+    })
+
+    it('should call PatchNotification twice when "Mark all as read" is clicked', () => {
+        let patchSpy = spyOn(nService, 'patchReadNotification').and
+        .callFake(function () { return null; });
+        let bell = fixture.debugElement.query(By.css('.bell'));
+        bell.nativeElement.click();
+        let readAll = fixture.debugElement.query(By.css('.mark-all-a'));
+        readAll.nativeElement.click();
+        expect(patchSpy).toHaveBeenCalled();
+    })
 
 });

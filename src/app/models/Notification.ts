@@ -7,5 +7,5 @@ export interface Notification{
     shortDescription?:string;
     userId?:number;
     contentType?:string;
-    projectId?:number;
+    projectId?:string;
 }

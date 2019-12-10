@@ -58,7 +58,9 @@ export class SidenavComponent implements OnInit {
     routeToProfile() {
         this.router.navigate(['/profile']);
     }
-
+    routeToNotifications() {
+        this.router.navigate(['/notifications']);
+    }
     /**
      * Navigate to the element in the screen that matches the id passed to the method
      * @param id
@@ -67,7 +69,9 @@ export class SidenavComponent implements OnInit {
         let elem = document.getElementById(id);
         elem.scrollIntoView({ behavior: "smooth" });
     }
-
+    /**
+     * Mark all unread notifications as read, and update the notification counter
+     */
     readAll() {
         this.notifications.forEach(n => {
             if (n.isRead == false)
@@ -75,7 +79,10 @@ export class SidenavComponent implements OnInit {
         });
         this.noticeCount();
     }
-
+    /**
+     * Navigate to the project corresponding to the notification
+     * @param n
+     */
     routeToProject(n: Notification) {
         if (n.isRead == false)
             this.notificationService.patchReadNotification(n);
@@ -84,7 +91,9 @@ export class SidenavComponent implements OnInit {
             this.router.navigate(['/project-view']);
         });
     }
-
+    /**
+     * Retrieve all the notifications relating to the active user, and count the number of unread notifications
+     */
     noticeCount() {
         this.notificationService.getAllNotifications(this.userID).subscribe(notices => {
             this.notifications = notices;
@@ -102,8 +111,13 @@ export class SidenavComponent implements OnInit {
         });
     }
     
+    /**
+     * Toggle the Read status of the notification in the database, and update the notification counter
+     * @param n 
+     */
     toggleRead(n: Notification) {
         this.notificationService.patchReadNotification(n);
         event.stopPropagation();
+        this.noticeCount();
     }
 }

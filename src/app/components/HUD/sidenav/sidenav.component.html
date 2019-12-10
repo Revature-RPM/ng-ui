@@ -20,7 +20,7 @@
                         </a>
                         <!--Notification bell: shows if there are unread notifications-->
                         <button mat-button [matMenuTriggerFor]="menu">
-                            <a>
+                            <a class="bell">
                                 <mat-icon *ngIf="!activeNotifications">notifications</mat-icon>
                                 <mat-icon matBadgeColor="accent" matBadge="{{parseCount}}"
                                     matBadgePosition="above after" *ngIf="activeNotifications">notifications_active
@@ -32,8 +32,7 @@
                             <!--Function to mark all notifications as read-->
                             <div class="mark-as-read-div">
                                 <span id="notificationSpan">Notifications <em><small>({{ count }})</small></em></span>
-                                <a style="cursor:pointer; color:#f37638; width:100%" (click)="readAll()">Mark all as
-                                    read</a>
+                                <a class="mark-all-a" (click)="readAll()">Mark all as read</a>
                             </div>
                             <hr>
                             <!--Iterator of the notifications-->
@@ -72,7 +71,7 @@
                             </div>
                             <!--Link to page for all notifications-->
                             <div class="see-all-div">
-                                <a style="cursor:pointer; color: #6a95ae; width: 100%" [routerLink]="['/notifications']" routerLinkActive="router-link-active">
+                                <a class="see-all-a" (click)="routeToNotifications();">
                                     See all
                                 </a>
                             </div>
