@@ -97,7 +97,7 @@ export class NotificationsComponent implements OnInit, OnDestroy {
             });
         });
     }
-    
+
     scroll = (event): void => {
         let h = document.getElementById("load-more");
         let rect = h.getBoundingClientRect();

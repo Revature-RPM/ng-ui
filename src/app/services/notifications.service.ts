@@ -41,7 +41,7 @@ export class NotificationsService {
        Returns array of notifications
     */
     getAllNotifications(userID: any): Observable<Notification[]> {
-        return this.http.get<Notification[]>(`http://localhost:8000` /*environment.url, httpOptions*/)
+        return this.http.get<Notification[]>(environment.url +'/notifications/', httpOptions)
             .pipe(catchError(this.handleError));
     }
 
@@ -49,14 +49,14 @@ export class NotificationsService {
        Returns array of notifications
     */
     getNotificationPage(userID: any, n: number): Observable<Notification[]> {
-        return this.http.get<Notification[]>(`http://localhost:8000/history?page=${n}`/*environment.url + '/history?page=${n}', httpOptions*/)
+        return this.http.get<Notification[]>(environment.url + '/notifications/history?page=${n}', httpOptions)
             .pipe(catchError(this.handleError));
     }
 
     /* Request a toggle of the notification Read status
     */
     patchReadNotification(notification:Notification){
-    this.http.patch(environment.url, notification, httpOptions)
+    this.http.patch(environment.url +'/notifications/', notification, httpOptions)
     .pipe(catchError(this.handleError));
     }
 

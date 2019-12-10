@@ -29,6 +29,7 @@
     margin: 0 auto;
 }
 
+
 .filter-block {
     font-size: 0.7rem;
     mat-form-field {
@@ -47,6 +48,9 @@
     justify-content: center;
     width: 65%;
     color: $rev-gray-light;
+    #load-more {
+        color: white;
+    }
 }
 
 ::ng-deep .mat-list-base {
@@ -69,11 +73,6 @@
     height: auto;
 }
 
-.short-description-span {
-    display: inline-block;
-    width: 95%
-}
-
 .unread:hover:not([disabled]) {
     cursor:pointer;
     background: rgba(243, 118, 56, 0.4);
@@ -94,6 +93,19 @@ hr {
     border-top: 1px solid $rev-blue-light
 }
 
+.description-div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .short-description-span {
+        display: inline-block;
+        width: 95%
+    }
+}
+.title-div{
+    display: flex;
+    justify-content: space-between;
+}
 .date-span {
     font-size: 12px;
     font-style: oblique;
@@ -101,14 +113,4 @@ hr {
     margin-block-end: 1.33em;
     margin-inline-start: 0px;
     margin-inline-end: 0px;
-}
-
-.description-div {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-#load-more {
-    color: white;
 }
