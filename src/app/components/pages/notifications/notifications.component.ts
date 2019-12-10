@@ -88,18 +88,23 @@ export class NotificationsComponent implements OnInit, OnDestroy {
     /**
      * Load the next page when the "load-more" div moves on screen
      */
-    scroll = (event): void => { 
+
+    getNextPage() {
+        this.pageNumber++
+        this.notificationService.getNotificationPage(this.currentUser, this.pageNumber).subscribe(notices => {
+            notices.forEach(n => {
+                this.notificationList.push(n)
+            });
+        });
+    }
+    
+    scroll = (event): void => {
         let h = document.getElementById("load-more");
         let rect = h.getBoundingClientRect();
         let elemTop = rect.top;
         let elemBottom = rect.bottom;
         if ((elemTop >= 0) && (elemBottom <= window.innerHeight)) {
-            this.pageNumber++
-            this.notificationService.getNotificationPage(this.currentUser, this.pageNumber).subscribe(notices => {
-                notices.forEach(n => {
-                    this.notificationList.push(n)
-                });
-            });
+            this.getNextPage();
         }
     }
 }
