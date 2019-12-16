@@ -1,5 +1,5 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { BehaviorSubject } from 'rxjs';
+import { async, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
+import { BehaviorSubject, observable } from 'rxjs';
 import { User } from 'src/app/models/User';
 import { SidenavComponent } from './sidenav.component';
 import { MatSidenavModule, MatIconModule, MatMenuModule, MatToolbarModule, MatExpansionModule, MatListModule, MatBadgeModule } from '@angular/material';
@@ -19,12 +19,15 @@ import { MockNotificationService } from 'src/app/mocks/mock-notification-service
 import { ProjectService } from 'src/app/services/project.service';
 import { MockProjectService } from 'src/app/mocks/mock-project-service';
 
-describe('SidenavComponent', () => {
+fdescribe('SidenavComponent', () => {
     let component: SidenavComponent;
     let fixture: ComponentFixture<SidenavComponent>;
     let router;
     let routerSpy;
     let nService: NotificationsService;
+    // Nested subscribes throw errors, so the patch function is faced with patchReturn.
+    let patchReturn$ = new BehaviorSubject<boolean>(null);
+    patchReturn$.next(true);
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -50,6 +53,10 @@ describe('SidenavComponent', () => {
         nService = TestBed.get(NotificationsService);
     });
 
+    afterEach(() =>{
+        fixture.destroy();
+    });
+
     it('should create', () => {
         expect(component).toBeTruthy();
     });
@@ -67,6 +74,36 @@ describe('SidenavComponent', () => {
 
         expect(routerSpy).toHaveBeenCalledWith(['/profile']);
     });
+    
+    it('should route to notification page when "See all" is clicked', () => {
+        let bell = fixture.debugElement.query(By.css('.bell'));
+        bell.nativeElement.click();
+        let seeAll = fixture.debugElement.query(By.css('.see-all-a'));
+        seeAll.nativeElement.click();
+        expect(routerSpy).toHaveBeenCalledWith(['/notifications']);
+    })
+    
+    it('should call PatchNotification twice when "Mark all as read" is clicked', () => {
+        let patchSpy = spyOn(nService, 'patchReadNotification').and
+        .callFake(function () { return this.patchReturn$.asObservable(); });
+        let bell = fixture.debugElement.query(By.css('.bell'));
+        bell.nativeElement.click();
+        let readAll = fixture.debugElement.query(By.css('.mark-all-a'));
+        readAll.nativeElement.click();
+        expect(patchSpy).toHaveBeenCalled();
+    })
+
+    it('should call PatchNotification when an envelope icon is clicked', () => {
+        let patchSpy = spyOn(nService, 'patchReadNotification').and
+        .callFake(function () { return this.patchReturn$.asObservable(); });
+        let bell = fixture.debugElement.query(By.css('.bell'));
+        bell.nativeElement.click();
+        let mail = fixture.debugElement.query(By.css('.read-button'));
+        mail.nativeElement.click();
+        expect(patchSpy).toHaveBeenCalled();
+    })
+
+
 
     it('loggedIn should be false if user is not logged in', () => {
         //component.loggedIn = true;
@@ -101,39 +138,12 @@ describe('SidenavComponent', () => {
         expect(seeAll).toBeTruthy();
     })
 
-    it('should route to a project when requested', () => {
+    fit('should route to a project when requested', () => {
         nService.getAllNotifications(20).subscribe((nList)=> {
-            component.routeToProject(nList[1]);
+            component.routeToProject(nList[0]);
+            expect(routerSpy).toHaveBeenCalledWith(['/project-view']);
         });
-        expect(routerSpy).toHaveBeenCalledWith(['/project-view']);
     })
 
-    it('should route to notification page when "See all" is clicked', () => {
-        let bell = fixture.debugElement.query(By.css('.bell'));
-        bell.nativeElement.click();
-        let seeAll = fixture.debugElement.query(By.css('.see-all-a'));
-        seeAll.nativeElement.click();
-        expect(routerSpy).toHaveBeenCalledWith(['/notifications']);
-    })
-
-    it('should call PatchNotification when an envelope icon is clicked', () => {
-        let patchSpy = spyOn(nService, 'patchReadNotification').and
-            .callFake(function () { return null; });
-        let bell = fixture.debugElement.query(By.css('.bell'));
-        bell.nativeElement.click();
-        let mail = fixture.debugElement.query(By.css('.read-button'));
-        mail.nativeElement.click();
-        expect(patchSpy).toHaveBeenCalled();
-    })
-
-    it('should call PatchNotification twice when "Mark all as read" is clicked', () => {
-        let patchSpy = spyOn(nService, 'patchReadNotification').and
-        .callFake(function () { return null; });
-        let bell = fixture.debugElement.query(By.css('.bell'));
-        bell.nativeElement.click();
-        let readAll = fixture.debugElement.query(By.css('.mark-all-a'));
-        readAll.nativeElement.click();
-        expect(patchSpy).toHaveBeenCalled();
-    })
 
 });

@@ -40,7 +40,7 @@
                                 <ng-container *ngFor="let notification of notifications"
                                     (click)="routeToProject(notification)">
                                     <a mat-menu-item class="unread"
-                                        *ngIf="!notification.isRead; else notificationIsRead"
+                                        *ngIf="!notification.read; else notificationIsRead"
                                         (click)="routeToProject(notification)">
                                         <span style="font-size: 18px;"><strong>{{ notification.title }} </strong></span>
                                         <span class="date-span">{{ notification.dateCreated | timeAgo }}</span>
@@ -53,7 +53,7 @@
                                         </div>
                                     </a>
                                     <ng-template #notificationIsRead>
-                                        <a mat-menu-item *ngIf="notification.isRead"
+                                        <a mat-menu-item *ngIf="notification.read"
                                             (click)="routeToProject(notification)">
                                             <span style="font-size: 18px;"><strong>{{ notification.title }} </strong></span>
                                             <span class="date-span">{{ notification.dateCreated | timeAgo }}</span>

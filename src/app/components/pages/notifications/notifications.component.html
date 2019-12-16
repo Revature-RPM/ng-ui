@@ -4,7 +4,7 @@
         <mat-list>
             <ng-container *ngFor="let notification of notificationList">
                 <hr>
-                <mat-list-item class="unread" *ngIf="!notification.isRead; else notificationIsRead" (click)="routeToProject(notification)">
+                <mat-list-item class="unread" *ngIf="!notification.read; else notificationIsRead" (click)="routeToProject(notification)">
                     <div mat-line style="display: flex;justify-content: space-between;">
                         <h4><strong>{{ notification.title }}</strong></h4>
                         <span class="date-span">{{ notification.dateCreated | date:'medium' }}</span>

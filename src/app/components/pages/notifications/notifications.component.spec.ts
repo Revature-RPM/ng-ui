@@ -14,6 +14,7 @@ import { NotificationsService } from 'src/app/services/notifications.service';
 import { MockNotificationService } from 'src/app/mocks/mock-notification-service';
 import { ProjectService } from 'src/app/services/project.service';
 import { MockProjectService } from 'src/app/mocks/mock-project-service';
+import { BehaviorSubject } from 'rxjs';
 
 describe('NotificationsComponent', () => {
     let component: NotificationsComponent;
@@ -21,6 +22,9 @@ describe('NotificationsComponent', () => {
     let router;
     let routerSpy;
     let nService: NotificationsService;
+    // Nested subscribes throw errors, so the patch function is faced with patchReturn.
+    let patchReturn$ = new BehaviorSubject<boolean>(null);
+    patchReturn$.next(true);
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -56,7 +60,7 @@ describe('NotificationsComponent', () => {
 
     it('should call PatchNotification when an envelope icon is clicked', () => {
         let patchSpy = spyOn(nService, 'patchReadNotification').and
-            .callFake(function () { return null; });
+            .callFake(function () { return this.patchReturn$.asObservable(); });
         let mail = fixture.debugElement.query(By.css('.read-button'));
         mail.nativeElement.click();
         expect(patchSpy).toHaveBeenCalled();
@@ -68,8 +72,8 @@ describe('NotificationsComponent', () => {
     })
 
     it('should route to a project when requested', () => {
-        nService.getAllNotifications(20).subscribe((nList)=> {
-            component.routeToProject(nList[1]);
+        nService.getAllNotifications(1).subscribe( nList => {
+            component.routeToProject(nList[0]);
         });
         expect(routerSpy).toHaveBeenCalledWith(['/project-view']);
     })

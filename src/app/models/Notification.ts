@@ -1,7 +1,7 @@
 export interface Notification{
     notificationId?:number;
     dateCreated?:Date;
-    isRead?:boolean;
+    read?:boolean;
     title?:string;
     fullDescription?:string;
     shortDescription?:string;

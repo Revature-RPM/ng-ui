@@ -74,23 +74,31 @@ export class SidenavComponent implements OnInit {
      */
     readAll() {
         this.notifications.forEach(n => {
-            if (n.isRead == false)
-                this.notificationService.patchReadNotification(n);
+            if (n.read == false)
+                this.notificationService.patchReadNotification(n).subscribe(x =>{});
+                n.read = true;
         });
-        this.noticeCount();
+        this.activeNotifications = false;
+        this.count = 0;
+        this.parseCount = 0;
+        this.notifications=this.notifications.slice(0,5);
     }
     /**
      * Navigate to the project corresponding to the notification
-     * @param n
+     * @param n the notification the user clicked
      */
     routeToProject(n: Notification) {
-        if (n.isRead == false)
-            this.notificationService.patchReadNotification(n);
-        this.projectService.getProjectByField("id", n.projectId + "").subscribe(proj => {
+        this.projectService.getProjectByID(n.projectId).subscribe(proj => {
+            if (n.read == false) {
+                this.notificationService.patchReadNotification(n).subscribe(x =>{});
+            }
             this.projectService.CurrentProject$.next(proj[0]);
             this.router.navigate(['/project-view']);
         });
     }
+
+    //  TODO noticeCount should be moved to the NotificationService, so changes to the active notifications
+    //  are instantly updated on the bell and drop-down menu
     /**
      * Retrieve all the notifications relating to the active user, and count the number of unread notifications
      */
@@ -99,7 +107,7 @@ export class SidenavComponent implements OnInit {
             this.notifications = notices;
             this.count = 0;
             this.notifications.forEach(notification => {
-                if (notification.isRead == false) {
+                if (notification.read == false) {
                     this.activeNotifications = true;
                     this.count++;
                     if (this.count > 9)
@@ -110,14 +118,14 @@ export class SidenavComponent implements OnInit {
             });
         });
     }
-    
+    // TODO verify endpoint regarding marking a "read" notification as "unread"
     /**
-     * Toggle the Read status of the notification in the database, and update the notification counter
-     * @param n 
+     * Marks a read notification as unread or an unread notification as read, and updates the counter
+     * @param n the notification the user clicked
      */
     toggleRead(n: Notification) {
-        this.notificationService.patchReadNotification(n);
+        this.notificationService.patchReadNotification(n).subscribe(x =>{this.noticeCount()
+        });
         event.stopPropagation();
-        this.noticeCount();
     }
 }

@@ -27,7 +27,7 @@ export class NotificationsComponent implements OnInit, OnDestroy {
     currentUser: User;
     userId: string;
     notificationList: Notification[] = [];
-    pageNumber = 1;
+    pageNumber = 0;
 
     constructor(
         private router: Router,
@@ -54,9 +54,9 @@ export class NotificationsComponent implements OnInit, OnDestroy {
         if (this.router.url.includes('notification')) {
             this.userId = this.currentUser.id + "";
         }
-        // Request the first page of notifications, this.pageNumber = 1 at this point
-        this.notificationService.getNotificationPage(this.currentUser, this.pageNumber).subscribe(notices => {
-            notices.forEach(n => {
+        // Request the first page of notifications, this.pageNumber = 0 at this point
+        this.notificationService.getNotificationPage(this.currentUser, this.pageNumber).subscribe(page => {
+            page.content.forEach(n => {
                 this.notificationList.push(n)
             });
         });
@@ -67,37 +67,41 @@ export class NotificationsComponent implements OnInit, OnDestroy {
     }
     /**
      * Navigate to the project corresponding to the notification
-     * @param n
+     * @param n the notification 
      */
     routeToProject(n: Notification) {
-        if (n.isRead == false)
-            this.notificationService.patchReadNotification(n);
-        this.projectService.getProjectByField("id", n.projectId + "").subscribe(proj => {
+        this.projectService.getProjectByID(n.projectId).subscribe(proj => {
+            if (n.read == false) {
+                this.notificationService.patchReadNotification(n).subscribe(x =>{});
+            }
             this.projectService.CurrentProject$.next(proj[0]);
             this.router.navigate(['/project-view']);
         });
     }
+    // TODO verify endpoint regarding marking a "read" notification as "unread", update noticeCount when moved to Service
     /**
      * Toggle the Read status of the notification in the database
-     * @param n 
+     * @param n the notification the user clicked
      */
     toggleRead(n: Notification) {
-        this.notificationService.patchReadNotification(n);
+        this.notificationService.patchReadNotification(n).subscribe(x => {});
         event.stopPropagation();
     }
-    /**
-     * Load the next page when the "load-more" div moves on screen
-     */
 
+    /**
+     * Load the next page of notifications for the current user
+     */
     getNextPage() {
         this.pageNumber++
-        this.notificationService.getNotificationPage(this.currentUser, this.pageNumber).subscribe(notices => {
-            notices.forEach(n => {
+        this.notificationService.getNotificationPage(this.currentUser, this.pageNumber).subscribe(page => {
+            page.content.forEach(n => {
                 this.notificationList.push(n)
             });
         });
     }
-
+    /**
+     * Window event listener set to scroll, determine if the "load-more" div is moves on screen and runs getNextPage()
+     */
     scroll = (event): void => {
         let h = document.getElementById("load-more");
         let rect = h.getBoundingClientRect();

@@ -96,20 +96,18 @@ mat-sidenav-container {
 //.matmenu is the parent for all the below items, but nesting is not applying properties
 .matmenu {
     padding-bottom:0;
-    
-    .mat-menu-item {
-        line-height: 20px;
-        height: auto;
-        padding-top: 10px;
-        .date-span {
-            font-size: 12px;
-            float: right;
-            margin-top:-5px;
-            font-style: oblique;
-        }
+}
+.mat-menu-item {
+    line-height: 20px;
+    height: auto;
+    padding-top: 10px;
+    .date-span {
+        font-size: 12px;
+        float: right;
+        margin-top:-5px;
+        font-style: oblique;
     }
 }
-
 .mat-menu-item:hover:not([disabled]),
 .mat-menu-item.cdk-program-focused:not([disabled]),
 .mat-menu-item.cdk-keyboard-focused:not([disabled]),
@@ -169,18 +167,19 @@ hr {
         width: 24px;
         line-height: 24px;
     }
-    .mark-as-read-div {
-        width: auto;
-        text-align: right;
-        padding: 0 10px 10px 0;
-        #notificationSpan {
-            float: left;
-            padding-left: 10px;
-        }
-        .mark-all-a {
-            cursor:pointer; 
-            color:#f37638; width:100%
-        }
+
+}
+.mark-as-read-div {
+    width: auto;
+    text-align: right;
+    padding: 0 10px 10px 0;
+    #notificationSpan {
+        float: left;
+        padding-left: 10px;
+    }
+    .mark-all-a {
+        cursor:pointer; 
+        color:#f37638; width:100%
     }
 }
 
